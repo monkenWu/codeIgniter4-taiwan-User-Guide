@@ -1,40 +1,26 @@
 #######################
-Welcome to CodeIgniter4
+歡迎加入 CodeIgniter4
 #######################
 
-CodeIgniter is an Application Development Framework - a toolkit - for
-people who build web sites using PHP. Its goal is to enable you to
-develop projects much faster than you could if you were writing code
-from scratch, by providing a rich set of libraries for commonly needed
-tasks, as well as a simple interface and logical structure to access
-these libraries. CodeIgniter lets you creatively focus on your project
-by minimizing the amount of code needed for a given task.
+CodeIgniter 是一套給予 PHP 網站工程師使用的應用程式開發框架。你可以利用簡單的邏輯介面操作 CodeIgniter 所提供的豐富函式庫，在碰到常見的需求時，比從頭造輪子更加敏捷。使用 CodeIgniter 能以最少的程式碼達到所需要的功能。
 
-Where possible, CodeIgniter has been kept as flexible as possible,
-allowing you to work in the way you want, not being forced into working
-any certain way. The framework can have core parts easily extended
-or completely replaced to make the system work the way you need it to.
-In short, CodeIgniter is the malleable framework that tries to provide
-the tools you need while staying out of the way.
+CodeIgniter 將最大限度地保持「靈活」的特色，你可以用你喜歡的方式撰寫程式，而不是被條條框框的規則所束縛。框架可以輕鬆地擴充或替換核心組件，讓專案可以按你所想地運作。總地來說， CodeIgniter 是一個可以擴充的框架，它將在不影響開發為前提提供你所需的工具。
 
 ***********************
-Who is CodeIgniter For?
+CodeIgniter 適合誰?
 ***********************
 
-CodeIgniter is right for you if:
+CodeIgniter 適合符合以下敘述的你:
 
--  You want a framework with a small footprint.
--  You need exceptional performance.
--  You want a framework that requires nearly zero configuration.
--  You want a framework that does not require you to use the command
-   line.
--  You want a framework that does not require you to adhere to
-   restrictive coding rules.
--  You are not interested in large-scale monolithic libraries like PEAR.
--  You do not want to be forced to learn a templating language (although
-   a template parser is optionally available if you desire one).
--  You eschew complexity, favoring simple solutions.
--  You need clear, thorough documentation.
+-  你想要一個輕量的框架。
+-  你需要卓越的效能。
+-  你想要一個幾乎零設定的框架。
+-  你想要一個不必下 Command 的框架。
+-  你想要一個不嚴格規範撰寫規則的框架。
+-  你對 PEAR 這種龐大的程式庫不感興趣。
+-  你不想被迫學習一種樣板語言（若是你需要的話，還是可以選用你喜歡的樣板解析器）。
+-  你嚮往簡單解決問題，討厭複雜。
+-  你認為框架必須提供簡單明白的使用文件。
 
 .. toctree::
 	:hidden:
