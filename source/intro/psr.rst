@@ -1,44 +1,33 @@
 **************
-PSR Compliance
+PSR 規範
 **************
 
-The `PHP-FIG <http://www.php-fig.org/>`_ was created in 2009 to help make code more interoperable between frameworks
-by ratifying Interfaces, style guides, and more that members were free to implement or not. While CodeIgniter is
-not a member of the FIG, we are compatible with a number of their proposals. This guide is meant to list the
-status of our compliance with the various accepted, and some draft, proposals.
+`PHP-FIG <http://www.php-fig.org/>`_ 創立於 2009 年，通過統一的介面標準以及程式碼風格標準，提升框架與程式間的協同工作能力（ Interoperability ）。縱使 CodeIgniter 不是 FIG 的成員，但我們還是有相同的目標也採納了許多實作建議。這份文檔所列出的是我們在框架中所遵守的 PSR 規範以及如何實現。
 
-**PSR-1: Basic Coding Standard**
+**PSR-1 ：基本程式寫作標準（ Basic Coding Standard ）**
 
-This recommendation covers basic class, method, and file-naming standards. Our 
-`style guide <https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing/styleguide.rst>`_
-meets PSR-1 and adds its own requirements on top of it.
+這份規範涵蓋了基本類別、方法，以及檔案命名標準。我們的 `開發風格指南 <https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing/styleguide.rst>`_ 符合 PSR-1 ，並且在它的基礎上新增了自己的標準。
 
-**PSR-2: Coding Style Guide**
+**PSR-2 ：程式碼風格指南（ Coding Style Guide ）**
 
-This PSR was fairly controversial when it first came out. CodeIgniter meets many of the recommendations within,
-but does not, and will not, meet all of them.
+這是一份有爭議的 PSR ， CodeIgniter 將最大限度地滿足其中的建議，並不會全部符合。
 
-**PSR-3: Logger Interface**
+**PSR-3 ：記錄檔介面標準（ Logger Interface ）**
 
-CodeIgniter's :doc:`Logger </general/logging>` implements all of the interfaces provided by this PSR.
+CodeIgniter 的 :doc:`紀錄器（ Logger ） </general/logging>` 實作了這份 PSR 所提供的所有介面。
 
-**PSR-4: Autoloading Standard**
+**PSR-4 ：自動載入標準（ Autoloading Standard ）**
 
-This PSR provides a method for organizing file and namespaces to allow for a standard method of autoloading
-classes. Our :doc:`Autoloader </concepts/autoloader>` meets the PSR-4 recommendations.
+這份 PSR 明確地描述 classes 該如何以符合規則的命名空間與檔案路徑進行自動載入。 :doc:`自動載入器（ Autoloader ） </concepts/autoloader>` 符合 PSR-4 的規範。
 
-**PSR-6: Caching Interface**
+**PSR-6 ：快取介面標準（ Caching Interface ）**
 
-CodeIgniter will not be trying to meet this PSR, as we believe it oversteps its needs. The newly proposed
-`SimpleCache Interfaces <https://github.com/dragoonis/fig-standards/blob/psr-simplecache/proposed/simplecache.md>`_
-do look like something we would consider.
+CodeIgniter 並不會嘗試符合這份 PSR 的規範，我們將提出新的 `SimpleCache 介面 <https://github.com/dragoonis/fig-standards/blob/psr-simplecache/proposed/simplecache.md>`_ 以符合我們的需求。
 
-**PSR-7: HTTP Message Interface**
+**PSR-7 ： HTTP訊息介面標準（ HTTP Message Interface ）**
 
-This PSR standardizes a way of representing the HTTP interactions. While many of the concepts became part of our
-HTTP layer, CodeIgniter does not strive for compatibility with this recommendation.
+這份 PSR 標準化了與 HTTP 的溝通方式，縱使有許多概念已經成為 CodeIgniter HTTP 層的一部分，但 CodeIgniter 將最大限度地滿足其中的建議，並不會全部符合。
 
 ---
 
-If you find any places that we claim to meet a PSR but have failed to execute it correctly, please let us know
-and we will get it fixed, or submit a pull request with the required changes.
+如果你發現框架中聲稱符合 PSR 規範的部分，並非按照正確的規範實作時，敬請告知，我們將對其進行修復，或者是至 github 送出 pull request。

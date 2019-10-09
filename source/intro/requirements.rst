@@ -1,33 +1,29 @@
 ###################
-Server Requirements
+系統需求
 ###################
 
-`PHP <http://php.net/>`_ version 7.2 or newer is required, with the 
-`*intl* extension <http://php.net/manual/en/intl.requirements.php>`_ 
-installed. 
+需要至少 `PHP <http://php.net/>`_ 7.2 或更高的版本。 並且安裝了 
+`*intl* 擴充模組 <http://php.net/manual/en/intl.requirements.php>`_
+。
 
-The following PHP extensions should be enabled on your server:
-``php-json``, ``php-mbstring``, ``php-mysqlnd``, `php-xml``
+你的PHP伺服器必須啟用下列擴充模組： ``php-json`` 、 ``php-mbstring`` 、 ``php-mysqlnd`` 、 ``php-xml``。
 
-In order to use the :doc:`CURLRequest </libraries/curlrequest>`, you will need 
-`libcurl <http://php.net/manual/en/curl.requirements.php>`_ installed.
+若你需要使用 :doc:`CURLRequest </libraries/curlrequest>` 函式庫，你可能需要安裝 `libcurl <http://php.net/manual/en/curl.requirements.php>`_ 。
 
-A database is required for most web application programming.
-Currently supported databases are:
+大部分的Web應用程式都需要資料庫，目前支援的資料庫如下：
 
-  - MySQL (5.1+) via the *MySQLi* driver
-  - PostgreSQL via the *Postgre* driver
-  - SQLite3 via the *SQLite3* driver
+  - MySQL (5.1+) 通過 *MySQLi* 驅動。
+  - PostgreSQL 通過 *Postgre* 驅動。
+  - SQLite3 通過 *SQLite3* 驅動。
 
-Not all of the drivers have been converted/rewritten for CodeIgniter4.
-The list below shows the outstanding ones.
+並不是所有的驅動都在CodeIgniter4進行了轉換或重構。以下將列出特別的項目：
 
-  - MySQL (5.1+) via the *pdo* driver
-  - Oracle via the *oci8* and *pdo* drivers
-  - PostgreSQL via the *pdo* driver
-  - MS SQL via the *mssql*, *sqlsrv* (version 2005 and above only) and *pdo* drivers
-  - SQLite via the *sqlite* (version 2) and *pdo* drivers
-  - CUBRID via the *cubrid* and *pdo* drivers
-  - Interbase/Firebird via the *ibase* and *pdo* drivers
-  - ODBC via the *odbc* and *pdo* drivers (you should know that ODBC is actually an abstraction layer)
+  - MySQL (5.1+) 通過 *pdo* 驅動。
+  - Oracle 通過 *oci8* 以及 *pdo* 驅動。
+  - PostgreSQL 通過　*pdo* 驅動。
+  - MS SQL 通過 *mssql*、*sqlsrv* (適用於　2005 或更高的版本)，以及 *pdo* 驅動。
+  - SQLite 通過 *sqlite* (version 2) 以及 *pdo* 驅動。
+  - CUBRID 通過 *cubrid* 以及 *pdo* 驅動。
+  - Interbase/Firebird 通過 *ibase* 以及 *pdo* 驅動。
+  - ODBC 通過 *odbc* 以及 *pdo* 驅動 （您必須知道ODBC實際上是一個抽象層）。
 
