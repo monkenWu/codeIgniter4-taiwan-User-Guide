@@ -1,6 +1,9 @@
 # codeIgniter4-taiwan-User-Guide
 CodeIgniter 4 Traditional Chinese(Taiwan) User Guide - codeigniter4 繁體中文(台灣)使用手冊翻譯計畫
+
 [查閱最新使用手冊](https://monkenwu.github.io/codeIgniter4-taiwan-User-Guide/)
+
+[查閱最新翻譯認領清單](https://github.com/monkenWu/codeIgniter4-taiwan-User-Guide/wiki/%E7%BF%BB%E8%AD%AF%E8%AA%8D%E9%A0%98%E6%B8%85%E5%96%AE)
 
 ## 風格指南
 中文翻譯的文字排版請以 [中文文案排版指北](https://github.com/sparanoid/chinese-copywriting-guidelines) 為主。
@@ -14,10 +17,11 @@ CodeIgniter 4 Traditional Chinese(Taiwan) User Guide - codeigniter4 繁體中文
 
 #### 若你想替翻譯盡一份心力，可以怎麼做？
 1. fork 一份完整的程式碼。
-2. 在主線上產出一條屬於你的分支。
-3. 翻譯結束後編譯一次預覽翻譯效果，並且重複校稿。
-4. 在分支上 push 你所修改的檔案。
-5. 回到 github 發出 pull requests。
+2. 至[翻譯認領串](https://github.com/monkenWu/codeIgniter4-taiwan-User-Guide/issues/1)認領欲翻譯的檔案。
+3. 在主線上產出一條屬於你的分支。
+4. 翻譯結束後編譯一次預覽翻譯效果，並且重複校稿。
+5. 在分支上 push 你所修改的檔案。
+6. 回到 github 發出 pull requests。
 
 #### 簽名
 所有的提交的內容都必須要留下您的簽名，比如說：``John Doe <johndoe@example.com>``，其設定方式與你使用 git 的媒介有所不同，請務必設定完成後再進行提交。
