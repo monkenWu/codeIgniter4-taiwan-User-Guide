@@ -1,63 +1,49 @@
-Manual Installation
+手動安裝
 ###############################################################################
 
-The `CodeIgniter 4 framework <https://github.com/codeigniter4/framework>`_ 
-repository holds the released versions of the framework.
-It is intended for developers who do not wish to use Composer.
+CodeIgniter 4 的 `git 儲存庫 <https://github.com/codeigniter4/framework>`_ 上保存著所有的歷史版本，它適合不希望使用 Composer 進行專案管理的開發人員，因為它下載後就能直接部屬。
 
-Develop your app inside the ``app`` folder, and the ``public`` folder 
-will be your public-facing document root. Do not change anything inside the ``system``
-folder!
+你可以在框架中的 ``app`` 資料夾開發你的應用程式，而 ``public`` 資料夾則是放置網站的公開檔案，請勿修改 ``system`` 資料夾中的任何內容！
 
-**Note**: This is the installation technique closest to that described 
-for `CodeIgniter 3 <https://www.codeigniter.com/user_guide/installation/index.html>`_.
+**Note** ：這是最接近於上一代框架 `CodeIgniter 3 <https://www.codeigniter.com/user_guide/installation/index.html>`_ ，的安裝方式。
 
-Installation
+安裝步驟
 ============================================================
 
-Download the `latest version <https://github.com/CodeIgniter4/framework/releases/latest>`_,
-and extract it to become your project root.
+下載 `版本列表 <https://github.com/CodeIgniter4/framework/releases/latest>`_ 中的最新版本，並且將它解壓縮到你的專案根目錄之中。
 
-Setup
+設定
 -------------------------------------------------------
 
-None
+無。
 
-Upgrading
+如何升級框架
 -------------------------------------------------------
 
-Download a new copy of the framework, and then follow the upgrade
-instructions in the release notice or changelog to merge that with your project.
+至 `版本列表 <https://github.com/CodeIgniter4/framework/releases/latest>`_ 下載框架的最新版本，按照 release notice 或變更紀錄中的說明，將新版本所更新的檔案合併至你的專案之中。
 
-Typically, you replace the ``system`` folder, and check designated
-``app/Config`` folders for affected changes.
+大多時候，你可以直接複製 ``system`` 資料夾進行覆蓋，然後檢查 ``app/Config`` 檔案，因為其中所記載的設定值可能會因為版本的不同而有所改動。
 
-Pros
+優點
 -------------------------------------------------------
 
-Download and run
+下載後就能直接運行。
 
-Cons
+缺點
 -------------------------------------------------------
 
-You are responsible for merge conflicts when updating
+你必須在每次升級框架時，親自處理新舊檔案的合併。
 
-Structure
+結構
 -------------------------------------------------------
 
-Folders in your project after setup:
-app, public, system, writable 
+在安裝 CodeIgniter 4 後，這些資料夾將會部署進你的專案中： app 、 public 、 system 、 writable 。
 
-
-Translations Installation
+安裝多語言系統提示
 ============================================================
 
-If you want to take advantage of the system message translations,
-they can be added to your project in a similar fashion.
+如果在開發的過程中你想在查閱繁體中文或非英語語系的系統提示，可以用下列方式將它們加入到你的專案之中。
 
-Download the `latest version of them <https://github.com/codeigniter4/translations/releases/latest>`_.
-Extract the downloaded zip, and copy the ``Language`` folder contents in it
-to your ``PROJECT_ROOT/app/Languages`` folder.
+進入 `下載列表 <https://github.com/codeigniter4/translations/releases/latest>`_ 中下載官方 git 儲存庫的最新版本，並將下載檔案中的 ``Language`` 資料夾複製到  ``專案根目錄/app/Languages`` 資料夾中。
 
-This would need to be repeated to incorporate any updates
-to the translations.
+往後升級時，直接覆蓋檔案即可升級至最新狀態。
