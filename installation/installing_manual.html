@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Manual Installation &mdash; CodeIgniter4 4.0.0-rc.2 documentation</title>
+  <title>手動安裝 &mdash; CodeIgniter4 4.0.0-rc.2 documentation</title>
   
 
   
@@ -38,9 +38,9 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="CodeIgniter4 4.0.0-rc.2 documentation" href="../index.html"/>
-        <link rel="up" title="Installation" href="index.html"/>
-        <link rel="next" title="Composer Installation" href="installing_composer.html"/>
-        <link rel="prev" title="Installation" href="index.html"/> 
+        <link rel="up" title="安裝指引" href="index.html"/>
+        <link rel="next" title="Composer 安裝" href="installing_composer.html"/>
+        <link rel="prev" title="安裝指引" href="index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -90,9 +90,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/index.html">歡迎加入 CodeIgniter4</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Manual Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installing_composer.html">Composer Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">安裝指引</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">手動安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installing_git.html">Git Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="running.html">Running Your App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="upgrading.html">Upgrading From a Previous Version</a></li>
@@ -187,9 +187,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Installation</a> &raquo;</li>
+          <li><a href="index.html">安裝指引</a> &raquo;</li>
         
-      <li>Manual Installation</li>
+      <li>手動安裝</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -206,54 +206,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="manual-installation">
-<h1>Manual Installation<a class="headerlink" href="#manual-installation" title="Permalink to this headline">¶</a></h1>
-<p>The <a class="reference external" href="https://github.com/codeigniter4/framework">CodeIgniter 4 framework</a>
-repository holds the released versions of the framework.
-It is intended for developers who do not wish to use Composer.</p>
-<p>Develop your app inside the <code class="docutils literal"><span class="pre">app</span></code> folder, and the <code class="docutils literal"><span class="pre">public</span></code> folder
-will be your public-facing document root. Do not change anything inside the <code class="docutils literal"><span class="pre">system</span></code>
-folder!</p>
-<p><strong>Note</strong>: This is the installation technique closest to that described
-for <a class="reference external" href="https://www.codeigniter.com/user_guide/installation/index.html">CodeIgniter 3</a>.</p>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>Download the <a class="reference external" href="https://github.com/CodeIgniter4/framework/releases/latest">latest version</a>,
-and extract it to become your project root.</p>
-<div class="section" id="setup">
-<h3>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h3>
-<p>None</p>
+  <div class="section" id="id1">
+<h1>手動安裝<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>CodeIgniter 4 的 <a class="reference external" href="https://github.com/codeigniter4/framework">git 儲存庫</a> 上保存著所有的歷史版本，它適合不希望使用 Composer 進行專案管理的開發人員，因為它下載後就能直接部屬。</p>
+<p>你可以在框架中的 <code class="docutils literal"><span class="pre">app</span></code> 資料夾開發你的應用程式，而 <code class="docutils literal"><span class="pre">public</span></code> 資料夾則是放置網站的公開檔案，請勿修改 <code class="docutils literal"><span class="pre">system</span></code> 資料夾中的任何內容！</p>
+<p><strong>Note</strong> ：這是最接近於上一代框架 <a class="reference external" href="https://www.codeigniter.com/user_guide/installation/index.html">CodeIgniter 3</a> ，的安裝方式。</p>
+<div class="section" id="id2">
+<h2>安裝步驟<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>下載 <a class="reference external" href="https://github.com/CodeIgniter4/framework/releases/latest">版本列表</a> 中的最新版本，並且將它解壓縮到你的專案根目錄之中。</p>
+<div class="section" id="id4">
+<h3>設定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>無。</p>
 </div>
-<div class="section" id="upgrading">
-<h3>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this headline">¶</a></h3>
-<p>Download a new copy of the framework, and then follow the upgrade
-instructions in the release notice or changelog to merge that with your project.</p>
-<p>Typically, you replace the <code class="docutils literal"><span class="pre">system</span></code> folder, and check designated
-<code class="docutils literal"><span class="pre">app/Config</span></code> folders for affected changes.</p>
+<div class="section" id="id5">
+<h3>如何升級框架<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>至 <a class="reference external" href="https://github.com/CodeIgniter4/framework/releases/latest">版本列表</a> 下載框架的最新版本，按照 release notice 或變更紀錄中的說明，將新版本所更新的檔案合併至你的專案之中。</p>
+<p>大多時候，你可以直接複製 <code class="docutils literal"><span class="pre">system</span></code> 資料夾進行覆蓋，然後檢查 <code class="docutils literal"><span class="pre">app/Config</span></code> 檔案，因為其中所記載的設定值可能會因為版本的不同而有所改動。</p>
 </div>
-<div class="section" id="pros">
-<h3>Pros<a class="headerlink" href="#pros" title="Permalink to this headline">¶</a></h3>
-<p>Download and run</p>
+<div class="section" id="id7">
+<h3>優點<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>下載後就能直接運行。</p>
 </div>
-<div class="section" id="cons">
-<h3>Cons<a class="headerlink" href="#cons" title="Permalink to this headline">¶</a></h3>
-<p>You are responsible for merge conflicts when updating</p>
+<div class="section" id="id8">
+<h3>缺點<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>你必須在每次升級框架時，親自處理新舊檔案的合併。</p>
 </div>
-<div class="section" id="structure">
-<h3>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h3>
-<p>Folders in your project after setup:
-app, public, system, writable</p>
+<div class="section" id="id9">
+<h3>結構<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>在安裝 CodeIgniter 4 後，這些資料夾將會部署進你的專案中： app 、 public 、 system 、 writable 。</p>
 </div>
 </div>
-<div class="section" id="translations-installation">
-<h2>Translations Installation<a class="headerlink" href="#translations-installation" title="Permalink to this headline">¶</a></h2>
-<p>If you want to take advantage of the system message translations,
-they can be added to your project in a similar fashion.</p>
-<p>Download the <a class="reference external" href="https://github.com/codeigniter4/translations/releases/latest">latest version of them</a>.
-Extract the downloaded zip, and copy the <code class="docutils literal"><span class="pre">Language</span></code> folder contents in it
-to your <code class="docutils literal"><span class="pre">PROJECT_ROOT/app/Languages</span></code> folder.</p>
-<p>This would need to be repeated to incorporate any updates
-to the translations.</p>
+<div class="section" id="id10">
+<h2>安裝多語言系統提示<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>如果在開發的過程中你想在查閱繁體中文或非英語語系的系統提示，可以用下列方式將它們加入到你的專案之中。</p>
+<p>進入 <a class="reference external" href="https://github.com/codeigniter4/translations/releases/latest">下載列表</a> 中下載官方 git 儲存庫的最新版本，並將下載檔案中的 <code class="docutils literal"><span class="pre">Language</span></code> 資料夾複製到  <code class="docutils literal"><span class="pre">專案根目錄/app/Languages</span></code> 資料夾中。</p>
+<p>往後升級時，直接覆蓋檔案即可升級至最新狀態。</p>
 </div>
 </div>
 
@@ -267,10 +254,10 @@ to the translations.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="installing_composer.html" class="btn btn-neutral float-right" title="Composer Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="installing_composer.html" class="btn btn-neutral float-right" title="Composer 安裝" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="安裝指引" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -280,7 +267,7 @@ to the translations.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014-2019 British Columbia Institute of Technology.
-      Last updated on Oct 09, 2019.
+      Last updated on Oct 13, 2019.
 
     </p>
   </div>
