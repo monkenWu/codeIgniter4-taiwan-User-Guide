@@ -1,89 +1,74 @@
 #####################
-Application Structure
+應用程式架構
 #####################
 
-To get the most out of CodeIgniter, you need to understand how the application is structured, by default, and what you
-can change to meet the needs of your application.
+為了可以充分的利用 CodeIgniter，你需要了解應用程式的架構，在預設的情況下，你可以為了滿足你的應用程式的需求而去更改內容。
 
-Default Directories
+預設資料夾
 ===================
 
-A fresh install has six directories: ``/app``, ``/system``, ``/public``,
-``/writable``, ``/tests`` and possibly ``/docs``.
-Each of these directories has a very specific part to play.
+新安裝的應用程式中共有六個資料夾：``/app``，``/system``，``/public``，
+``/writable``，``/tests`` 也可能會有 ``/docs`` 。 
+每一個資料夾都扮演著非常重要的角色。
 
 app
 ---
-The ``app`` directory is where all of your application code lives. This comes with a default directory
-structure that works well for many applications. The following folders make up the basic contents:
+``app`` 資料夾儲存著你所有應用程式的代碼。它擁有一個預設的目錄結構，適用於許多的應用程式。以下的資料夾構成基本內容:
+
 
 .. code-block:: none
 
 	/app
-		/Config         Stores the configuration files
-		/Controllers    Controllers determine the program flow
-		/Database       Stores the database migrations and seeds files
-		/Filters        Stores filter classes that can run before and after controller
-		/Helpers        Helpers store collections of standalone functions
-		/Language       Multiple language support reads the language strings from here
-		/Libraries      Useful classes that don't fit in another category
-		/Models         Models work with the database to represent the business entities.
-		/ThirdParty     ThirdParty libraries that can be used in application
-		/Views          Views make up the HTML that is displayed to the client.
+		/Config         儲存設置文件
+		/Controllers    控制器負責程式的運行流程
+		/Database       儲存資料庫遷移和種子文件
+		/Filters        儲存可以在 Controllers 前後運行的類別
+		/Helpers        Helpers 儲存收集所有的獨立功能
+		/Language       支持多語言的功能，讀取了這裡的多語言字串
+		/Libraries      一些不屬於其他分類的實用類別
+		/Models         Models 和資料庫一起工作，描繪出了業務的實體樣貌。
+		/ThirdParty     可以用在應用程式中的第三方庫
+		/Views          Views 製作出可在客戶端顯現的 HTML。
 
-Because the ``app`` directory is already namespaced, you should feel free to modify the structure
-of this directory to suit your application's needs. For example, you might decide to start using the Repository
-pattern and Entity Models to work with your data. In this case, you could rename the ``Models`` directory to
-``Repositories``, and add a new ``Entities`` directory.
+因為 ``app`` 資料夾已經是一個命名空間， 因此你可以任意修改此目錄的結構以滿足你應用程式的需要。例如，你可能決定開始使用存儲庫模式和實體模型來處理數據。在這種情況下，你可以將 ``Models`` 資料夾重新命名成
+``Repositories`` 然後新增一個 ``Entities`` 資料夾。
 
-.. note:: If you rename the ``Controllers`` directory, though, you will not be able to use the automatic method of
-		routing to controllers, and will need to define all of your routes in the routes file.
+.. note:: 如果你重新命名了 ``Controllers`` 資料夾，你會因此無法自動配對至控制器，你必須自行在所有的路由檔案中定義路由。
 
-All files in this directory live under the ``App`` namespace, though you are free to change that in
-**app/Config/Constants.php**.
+此資料夾中的所有文件都位於 ``App`` 命名空間，所以你可以在 **app/Config/Constants.php** 中去任意更改。
 
 system
 ------
-This directory stores the files that make up the framework, itself. While you have a lot of flexibility in how you
-use the application directory, the files in the system directory should never be modified. Instead, you should
-extend the classes, or create new classes, to provide the desired functionality.
+這個資料夾擁有構成 framework 的文件本身。 雖然你在使用應用程式資料夾方面具有很大的靈活性，但系統資料夾中的文件永遠不應該被修改。相反的，你應該擴展類別或創建新的類別，以提供所需的相應功能。
 
-All files in this directory live under the ``CodeIgniter`` namespace.
+這個資料夾中的所有文件，都位於 ``CodeIgniter`` 命名空間下。
 
 public
 ------
 
-The **public** folder holds the browser-accessible portion of your web application,
-preventing direct access to your source code.
-It contains the main **.htaccess** file, **index.php**, and any application
-assets that you add, like CSS, javascript, or
-images.
+**public** 資料夾擁有你的 web 應用中，可以被瀏覽器訪問的部分，這可防止你的原始碼被直接訪問。它包含了主要的 **.htaccess** 文件、**index.php** 和任何你加入應用程式的資源，
+例如 CSS 、 javascript 或是圖片。
 
-This folder is meant to be the "web root" of your site, and your web server
-would be configured to point to it.
+這個資料夾代表了你的網站的「web 根目錄」，你的 web 服務器將會被設定導向此處。
 
 writable
 --------
-This directory holds any directories that might need to be written to in the course of an application's life.
-This includes directories for storing cache files, logs, and any uploads a user might send. You should add any other
-directories that your application will need to write to here. This allows you to keep your other primary directories
-non-writable as an added security measure.
+
+這個資料夾擁有在整個應用程式運行中可能需要被寫入的所有資料夾。包括用於儲存緩存文件、日誌和任何可能來自用戶發送資料的資料夾。你可以在此處添加應用程式需要寫入的任何其他資料夾。作為一個額外確保安全的手段，這允許你可以保持其他的主目錄為不可寫入的狀態。
 
 tests
 -----
-This directory is setup to hold your test files. The ``_support`` directory holds various mock classes and other
-utilities that you can use while writing your tests. This directory does not need to be transferred to your
-production servers.
+
+此資料夾被設置用來儲存你的測試文件。``_support`` 資料夾包含 Mock 類別和其他在編寫測試時，各種可以使用的實用程式。這個資料夾不需要被提交到你的生產環境中。
 
 docs
 ----
-If this directory is part of your project, it holds a local copy of the CodeIgniter4
-User Guide.
+
+這個資料夾擁有一份 CodeIgniter4 用戶手冊的本地副本。
 
 Modifying Directory Locations
 -----------------------------
 
-If you've relocated any of the main directories, you can change the configuration
-settings inside ``app/Config/Paths``.
+如果你需要重新設置任何主資料夾的位置，你可以在 ``app/Config/Paths`` 中修改配置。
 
 Please read `Managing your Applications <../general/managing_apps.html>`_
