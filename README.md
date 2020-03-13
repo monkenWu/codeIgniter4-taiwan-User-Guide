@@ -36,7 +36,8 @@ Sphinx 需要 Python 的支援，如果你的作業系統是 OS X 或是 Ubuntu 
 ### 安裝
 1. 安裝 [easy_install](http://peak.telecommunity.com/DevCenter/EasyInstall#installing-easy-install) 
 2. 執行 ``easy_install "sphinx==1.4.5"``
-3. 執行 ``easy_install sphinxcontrib-phpdomain``
+3. 執行 ``easy_install "sphinxcontrib-phpdomain==0.7.0"``
+4. 執行 ``easy_install "jieba==0.42.1"``
 4. 安裝 CI Lexer ，它的功能是在代碼範例中突出顯示 PHP 、 HTML 、 CSS ，以及 JavaScript 語法（請參閱　cilexer / README　）
 5. 執行 ``cd <專案根目錄>``
 6. 執行 ``make html`` 產出 HTML 。
