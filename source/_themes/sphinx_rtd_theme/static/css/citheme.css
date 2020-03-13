@@ -5,7 +5,7 @@
 /* Raleway Font ------------------------------------------------------------- */
 
 @font-face {
-	font-family: 'Raleway';
+	font-family: 'Raleway','Microsoft JhengHei';
 	font-style: normal;
 	font-weight: 200;
 	src: url('../fonts/Raleway/raleway-v14-latin-200.eot'); /* IE9 Compat Modes */
@@ -18,7 +18,7 @@
 }
 
 @font-face {
-	font-family: 'Raleway';
+	font-family: 'Raleway','Microsoft JhengHei';
 	font-style: italic;
 	font-weight: 200;
 	src: url('../fonts/Raleway/raleway-v14-latin-200italic.eot'); /* IE9 Compat Modes */
@@ -44,7 +44,7 @@
 }
 
 @font-face {
-	font-family: 'Raleway';
+	font-family: 'Raleway','Microsoft JhengHei';
 	font-style: italic;
 	font-weight: 400;
 	src: url('../fonts/Raleway/raleway-v14-latin-italic.eot'); /* IE9 Compat Modes */
@@ -57,7 +57,7 @@
 }
 
 @font-face {
-	font-family: 'Raleway';
+	font-family: 'Raleway','Microsoft JhengHei';
 	font-style: normal;
 	font-weight: 700;
 	src: url('../fonts/Raleway/raleway-v14-latin-700.eot'); /* IE9 Compat Modes */
@@ -70,7 +70,7 @@
 }
 
 @font-face {
-	font-family: 'Raleway';
+	font-family: 'Raleway','Microsoft JhengHei';
 	font-style: italic;
 	font-weight: 700;
 	src: url('../fonts/Raleway/raleway-v14-latin-700italic.eot'); /* IE9 Compat Modes */
@@ -85,7 +85,7 @@
 /* General ------------------------------------------------------------------ */
 
 body, p, legend {
-	font-family: "Raleway","Helvetica", "Arial", sans-serif;
+	font-family: "Raleway","Helvetica", "Arial", sans-serif,'Microsoft JhengHei';
 }
 
 .wy-nav-content {
@@ -99,7 +99,7 @@ body, p, legend {
 /* Titles ------------------------------------------------------------------- */
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: "Raleway", "Helvetica", "Arial", sans-serif;
+	font-family: "Raleway", "Helvetica", "Arial", sans-serif,'Microsoft JhengHei';
 }
 
 h1 {
@@ -207,7 +207,7 @@ div#pulldown-menu {
 
 .wy-side-nav-search a {
 	color: #ffffff;
-	font-family: "Railway", "Helvetica", "Arial", sans-serif;
+	font-family: "Railway", "Helvetica", "Arial", sans-serif,'Microsoft JhengHei';
 }
 
 .wy-side-nav-search input[type=text] {
