@@ -75,12 +75,12 @@ The settings for the Redis server that you wish to use when using the ``Redis`` 
 Class Reference
 ***************
 
-.. php:method:: isSupported()
+.. php:method:: ⠀isSupported()
 
 	:returns:	TRUE if supported, FALSE if not
 	:rtype:	bool
 
-.. php:method:: get($key)
+.. php:method:: ⠀get($key)
 
 	:param	string	$key: Cache item name
 	:returns:	Item value or NULL if not found
@@ -93,7 +93,7 @@ Class Reference
 
 		$foo = $cache->get('my_cached_item');
 
-.. php:method:: save($key, $data[, $ttl = 60[, $raw = FALSE]])
+.. php:method:: ⠀save($key, $data[, $ttl = 60[, $raw = FALSE]])
 
 	:param	string	$key: Cache item name
 	:param	mixed	$data: the data to save
@@ -112,7 +112,7 @@ Class Reference
 .. note:: The ``$raw`` parameter is only utilized by Memcache,
 		  in order to allow usage of ``increment()`` and ``decrement()``.
 
-.. php:method:: delete($key)
+.. php:method:: ⠀delete($key)
 
 	:param	string	$key: name of cached item
 	:returns:	TRUE on success, FALSE on failure
@@ -125,7 +125,7 @@ Class Reference
 
 		$cache->delete('cache_item_id');
 
-.. php:method:: increment($key[, $offset = 1])
+.. php:method:: ⠀increment($key[, $offset = 1])
 
 	:param	string	$key: Cache ID
 	:param	int	$offset: Step/value to add
@@ -142,7 +142,7 @@ Class Reference
 
 		$cache->increment('iterator', 3); // 'iterator' is now 6
 
-.. php:method:: decrement($key[, $offset = 1])
+.. php:method:: ⠀decrement($key[, $offset = 1])
 
 	:param	string	$key: Cache ID
 	:param	int	$offset: Step/value to reduce by
@@ -159,7 +159,7 @@ Class Reference
 
 		$cache->decrement('iterator', 2); // 'iterator' is now 3
 
-.. php:method:: clean()
+.. php:method:: ⠀clean()
 
 	:returns:	TRUE on success, FALSE on failure
 	:rtype:	bool
@@ -171,7 +171,7 @@ Class Reference
 
 			$cache->clean();
 
-.. php:method:: cache_info()
+.. php:method:: ⠀cache_info()
 
 	:returns:	Information on the entire cache database
 	:rtype:	mixed
@@ -185,7 +185,7 @@ Class Reference
 .. note:: The information returned and the structure of the data is dependent
 		  on which adapter is being used.
 
-.. php:method:: getMetadata($key)
+.. php:method:: ⠀getMetadata($key)
 
 	:param	string	$key: Cache item name
 	:returns:	Metadata for the cached item
@@ -221,7 +221,7 @@ Memcached Caching
 Multiple Memcached servers can be specified in the cache configuration file.
 
 For more information on Memcached, please see
-`http://php.net/memcached <http://php.net/memcached>`_.
+`https://www.php.net/memcached <https://www.php.net/memcached>`_.
 
 ================
 WinCache Caching
@@ -230,7 +230,7 @@ WinCache Caching
 Under Windows, you can also utilize the WinCache driver.
 
 For more information on WinCache, please see
-`http://php.net/wincache <http://php.net/wincache>`_.
+`https://www.php.net/wincache <https://www.php.net/wincache>`_.
 
 =============
 Redis Caching
@@ -249,7 +249,7 @@ Available options are::
 	$config['database'] = 0;
 
 For more information on Redis, please see
-`http://redis.io <http://redis.io>`_.
+`https://redis.io <https://redis.io>`_.
 
 ===========
 Dummy Cache

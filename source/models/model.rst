@@ -6,27 +6,38 @@ Using CodeIgniter's Model
     :local:
     :depth: 2
 
-Manual Model Creation
-=====================
+Models
+======
 
-You do not need to extend any special class to create a model for your application. All you need is to get an
-instance of the database connection and you're good to go.
+Models provide a way to interact with a specific table in your database. They come out of the box with helper
+methods for much of the standard ways you would need to interact with a database table, including finding records,
+updating records, deleting records, and more.
+
+Accessing Models
+================
+
+Models are typically stored in the ``app/Models`` directory. They should have a namespace that matches their
+location within the directory, like ``namespace App\Models``.
+
+You can access models within your classes by creating a new instance or using the ``model()`` helper function.
 
 ::
 
-    <?php namespace App\Models;
+    // Create a new class manually
+    $userModel = new App\Models\UserModel();
 
-	use CodeIgniter\Database\ConnectionInterface;
+    // Create a new class with the model function
+    $userModel = model('App\Models\UserModel', false);
 
-	class UserModel
-	{
-		protected $db;
+    // Create a shared instance of the model
+    $userModel = model('App\Models\UserModel');
 
-		public function __construct(ConnectionInterface &$db)
-		{
-			$this->db =& $db;
-		}
-	}
+    // Create shared instance with a supplied database connection
+    // When no namespace is given, it will search through all namespaces
+    // the system knows about and attempt to located the UserModel class.
+    $db = db_connect('custom');
+    $userModel = model('UserModel', true, $db);
+
 
 CodeIgniter's Model
 ===================
@@ -327,7 +338,7 @@ update command, with the added benefit of validation, events, etc::
 
     $userModel
         ->whereIn('id', [1,2,3])
-        ->set(['active' => 1]
+        ->set(['active' => 1])
         ->update();
 
 **save()**
@@ -529,6 +540,28 @@ and simply set ``$validationRules`` to the name of the validation rule group you
 		protected $validationRules = 'users';
 	}
 
+Retrieving Validation Rules
+---------------------------
+
+You can retrieve a model's validation rules by accessing its ``validationRules``
+property::
+
+    $rules = $model->validationRules;
+
+You can also retrieve just a subset of those rules by calling the accessor
+method directly, with options::
+
+    $rules = $model->getValidationRules($options);
+
+The ``$options`` parameter is an associative array with one element,
+whose key is either "except" or "only", and which has as its
+value an array of fieldnames of interest.::
+
+    // get the rules for all but the "username" field
+    $rules = $model->getValidationRules(['except' => ['username']]);
+    // get the rules for only the "city" and "state" fields
+    $rules = $model->getValidationRules(['only' => ['city', 'state']]);
+
 Validation Placeholders
 -----------------------
 
@@ -586,7 +619,7 @@ need it::
 
 	$builder = $userModel->builder();
 
-This builder is already setup with the model's $table.
+This builder is already set up with the model's $table.
 
 You can also use Query Builder methods and the Model's CRUD methods in the same chained call, allowing for
 very elegant use::
@@ -693,13 +726,14 @@ Event            $data contents
 ================ =========================================================================================================
 beforeInsert      **data** = the key/value pairs that are being inserted. If an object or Entity class is passed to the
                   insert method, it is first converted to an array.
-afterInsert       **data** = the original key/value pairs being inserted.
+afterInsert       **id** = the primary key of the new row, or 0 on failure.
+                  **data** = the key/value pairs being inserted.
                   **result** = the results of the insert() method used through the Query Builder.
 beforeUpdate      **id** = the primary key of the row being updated.
                   **data** = the key/value pairs that are being inserted. If an object or Entity class is passed to the
                   insert method, it is first converted to an array.
 afterUpdate       **id** = the primary key of the row being updated.
-                  **data** = the original key/value pairs being updated.
+                  **data** = the key/value pairs being updated.
                   **result** = the results of the update() method used through the Query Builder.
 afterFind         Varies by find* method. See the following:
 - find()          **id** = the primary key of the row being searched for.
@@ -717,3 +751,27 @@ afterDelete       Varies by delete* method. See the following:
                   **result** = the result of the delete() call on the Query Builder.
                   **data** = unused.
 ================ =========================================================================================================
+
+
+Manual Model Creation
+=====================
+
+You do not need to extend any special class to create a model for your application. All you need is to get an
+instance of the database connection and you're good to go. This allows you to bypass the features CodeIgniter's
+Model gives you out of the box, and create a fully custom experience.
+
+::
+
+    <?php namespace App\Models;
+
+	use CodeIgniter\Database\ConnectionInterface;
+
+	class UserModel
+	{
+		protected $db;
+
+		public function __construct(ConnectionInterface &$db)
+		{
+			$this->db =& $db;
+		}
+	}

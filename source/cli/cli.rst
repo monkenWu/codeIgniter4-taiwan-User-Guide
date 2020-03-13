@@ -15,7 +15,7 @@ What is the CLI?
 
 The command-line interface is a text-based method of interacting with
 computers. For more information, check the `Wikipedia
-article <http://en.wikipedia.org/wiki/Command-line_interface>`_.
+article <https://en.wikipedia.org/wiki/Command-line_interface>`_.
 
 Why run via the command-line?
 =============================
@@ -38,7 +38,7 @@ Let's create a simple controller so you can see it in action. Using your
 text editor, create a file called Tools.php, and put the following code
 in it::
 
-	<?php namespace App\Controller;
+	<?php namespace App\Controllers;
 
         use CodeIgniter\Controller;
 

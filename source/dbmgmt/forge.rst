@@ -41,6 +41,15 @@ Returns TRUE/FALSE based on success or failure::
 		echo 'Database created!';
 	}
 
+An optional second parameter set to TRUE will add IF EXISTS statement
+or will check if a database exists before create it (depending on DBMS).
+
+::
+
+	$forge->createDatabase('my_db', TRUE);
+	// gives CREATE DATABASE IF NOT EXISTS my_db
+	// or will check if a database exists
+
 **$forge->dropDatabase('db_name')**
 
 Permits you to drop the database specified in the first parameter.
@@ -304,7 +313,7 @@ Examples::
 		'preferences' => ['type' => 'TEXT', 'first' => TRUE]
 	];
 
-Dropping a Column From a Table
+Dropping Columns From a Table
 ==============================
 
 **$forge->dropColumn()**
@@ -313,7 +322,14 @@ Used to remove a column from a table.
 
 ::
 
-	$forge->dropColumn('table_name', 'column_to_drop');
+	$forge->dropColumn('table_name', 'column_to_drop'); // to drop one single column
+
+Used to remove multiple columns from a table.
+
+::
+
+    $forge->dropColumn('table_name', 'column_1,column_2'); // by proving comma separated column names
+    $forge->dropColumn('table_name', ['column_1', 'column_2']); // by proving array of column names
 
 Modifying a Column in a Table
 =============================
@@ -339,7 +355,7 @@ change the name, you can add a "name" key into the field defining array.
 Class Reference
 ***************
 
-.. php:class:: \CodeIgniter\Database\Forge
+.. php:class:: CodeIgniter\\Database\\Forge
 
 	.. php:method:: addColumn($table[, $field = []])
 
@@ -384,9 +400,10 @@ Class Reference
 
 		Adds a unique key to the set that will be used to create a table. Usage:  See `Adding Keys`_.
 
-	.. php:method:: createDatabase($db_name)
+	.. php:method:: createDatabase($dbName[, $ifNotExists = FALSE])
 
 		:param	string	$db_name: Name of the database to create
+		:param	string	$ifNotExists: Set to TRUE to add an 'IF NOT EXISTS' clause or check if database exists
 		:returns:	TRUE on success, FALSE on failure
 		:rtype:	bool
 
@@ -405,15 +422,15 @@ Class Reference
 	.. php:method:: dropColumn($table, $column_name)
 
 		:param	string	$table: Table name
-		:param	array	$column_name: The column name to drop
+		:param	mixed	$column_names: Comma-delimited string or an array of column names
 		:returns:	TRUE on success, FALSE on failure
 		:rtype:	bool
 
-		Drops a column from a table. Usage:  See `Dropping a Column From a Table`_.
+		Drops single or multiple columns from a table. Usage:  See `Dropping Columns From a Table`_.
 
-	.. php:method:: dropDatabase($db_name)
+	.. php:method:: dropDatabase($dbName)
 
-		:param	string	$db_name: Name of the database to drop
+		:param	string	$dbName: Name of the database to drop
 		:returns:	TRUE on success, FALSE on failure
 		:rtype:	bool
 

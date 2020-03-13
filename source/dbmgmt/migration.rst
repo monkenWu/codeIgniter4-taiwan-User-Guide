@@ -200,7 +200,7 @@ This example will migrate Blog namespace with any new migrations on the test dat
     > php spark migrate -g test -n Blog
 
 When using the `-all` option, it will scan through all namespaces attempting to find any migrations that have
-not been ran. These will all be collected and then sorted as a group by date created. This should help
+not been run. These will all be collected and then sorted as a group by date created. This should help
 to minimize any potential conflicts between the main application and any modules.
 
 **rollback**
@@ -213,6 +213,7 @@ You can use (rollback) with the following options:
 
 - (-g) to choose database group, otherwise default database group will be used.
 - (-b) to choose a batch: natural numbers specify the batch, negatives indicate a relative batch
+- (-f) to force a bypass confirmation question, it is only asked in a production environment
 
 **refresh**
 
@@ -225,6 +226,7 @@ You can use (refresh) with the following options:
 - (-g) to choose database group, otherwise default database group will be used.
 - (-n) to choose namespace, otherwise (App) namespace will be used.
 - (-all) to refresh all namespaces
+- (-f) to force a bypass confirmation question, it is only asked in a production environment
 
 **status**
 
@@ -261,7 +263,6 @@ The following is a table of all the config options for migrations, available in 
 Preference                 Default                Options                    Description
 ========================== ====================== ========================== =============================================================
 **enabled**                TRUE                   TRUE / FALSE               Enable or disable migrations.
-**path**                   'Database/Migrations/' None                       The path to your migrations folder.
 **table**                  migrations             None                       The table name for storing the schema version number.
 **timestampFormat**        Y-m-d-His\_                                        The format to use for timestamps when creating a migration.
 ========================== ====================== ========================== =============================================================
@@ -270,7 +271,7 @@ Preference                 Default                Options                    Des
 Class Reference
 ***************
 
-.. php:class:: CodeIgniter\Database\MigrationRunner
+.. php:class:: CodeIgniter\\Database\\MigrationRunner
 
 	.. php:method:: findMigrations()
 

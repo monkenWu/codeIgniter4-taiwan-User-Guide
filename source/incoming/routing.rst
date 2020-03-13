@@ -122,10 +122,10 @@ is allowed, as are back-references.
 .. important:: Note: If you use back-references you must use the dollar syntax rather than the double backslash syntax.
     A typical RegEx route might look something like this::
 
-	$routes->add('products/([a-z]+)/(\d+)', '$1::id_$2');
+	$routes->add('products/([a-z]+)/(\d+)', 'Products::show/$1/id_$2');
 
-In the above example, a URI similar to products/shirts/123 would instead call the “\Shirts” controller class
-and the “id_123” method.
+In the above example, a URI similar to products/shirts/123 would instead call the ``show`` method
+of the ``Products`` controller class, with the original first and second segment passed as arguments to it.
 
 With regular expressions, you can also catch a segment containing a forward slash (‘/’), which would usually
 represent the delimiter between multiple segments.
@@ -136,7 +136,7 @@ redirect them back to the same page after they log in, you may find this example
 	$routes->add('login/(.+)', 'Auth::login/$1');
 
 For those of you who don’t know regular expressions and want to learn more about them,
-`regular-expressions.info <http://www.regular-expressions.info/>`_ might be a good starting point.
+`regular-expressions.info <https://www.regular-expressions.info/>`_ might be a good starting point.
 
 .. important:: Note: You can also mix and match wildcards with regular expressions.
 

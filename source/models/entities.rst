@@ -153,7 +153,7 @@ Here's an updated User entity to provide some examples of how this could be used
     {
         public function setPassword(string $pass)
         {
-            $this->password = password_hash($pass, PASSWORD_BCRYPT);
+            $this->attributes['password'] = password_hash($pass, PASSWORD_BCRYPT);
 
             return $this;
         }
@@ -374,5 +374,6 @@ attribute to check::
     $user->name = 'Fred';
     $user->hasChanged('name');      // true
 
-Or to check the whole entity for changed values omit the parameter:
+Or to check the whole entity for changed values omit the parameter::
+
     $user->hasChanged();            // true
