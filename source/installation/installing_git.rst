@@ -1,83 +1,74 @@
-Git Installation
+Git 安裝
 ###############################################################################
 
-This would *not* be suitable for app development, but *is* suitable
-for contributing to the framework.
+這種開安裝方式 *不適合* 使用在開發中的專案，但若你想對框架做出貢獻則 *適合* 此種方式安裝。
 
-Installation
+安裝
 -------------------------------------------------------
 
-Install the latest version of the codebase by
+通過以下步驟取得最新版本的框架代碼庫
 
-- forking the `codebase  <https://github.com/codeigniter4/CodeIgniter4>`_ to your github account
-- cloning **your** forked repository locally
+- 將 `代碼庫  <https://github.com/codeigniter4/CodeIgniter4>`_ 分叉（ fork ）至你的 github 帳號
+- 將 **你所分叉的儲存庫** 克隆至本機
 
-Setup
+設定
 -------------------------------------------------------
 
-The command above will create a "CodeIgniter4" folder.
-Feel free to rename that as you see fit.
+上述的命令將會建立一個「 CodeIgniter4 」資料夾，你可以根據你的需要重新命名。
 
-You will want to setup a remote repository alias, so you can synchronize
-your repository with the main one::
+你也可以設定一個遠端儲存庫的別名，同步本地儲存庫與遠端儲存庫::
 
     git remote add upstream https://github.com/codeigniter4/CodeIgniter4.git
 
-Copy the provided ``env`` file to ``.env``, and use that for your git-ignored configuration settings,
+將專案根目錄的 ``env`` 檔案複製後重新命名為 ``.env`` 檔案，並將這個檔案加入至 git 忽略文件（ git-ignored ）中。
 
-Copy the provided ``phpunit.xml.dist`` to ``phpunit.xml`` and tailor it as needed,
-if you want custom unit testing for the framework.
+將專案根目錄的 ``phpunit.xml.dist`` 複製後重新命名為 ``phpunit.xml`` 。在你所需要對框架進行單元測試時，你可以對它進行修改。
 
-Upgrading
+更新
 -------------------------------------------------------
 
+使用以下命令進行更新::
 Update your code anytime::
 
     git checkout develop
     git pull upstream develop
     git push origin develop
 
-Merge conflicts may arise when you pull from "upstream". 
-You will need to resolve them locally.
+當你透過 「 upstream 」進行拉取時，你可能會需要在本地解決合併衝突。
 
-Pros
+優點
 -------------------------------------------------------
 
-- You have the latest version of the codebase (unreleased)
-- You can propose contributions to the framework, by creating a 
-    feature branch and submitting a pull request for it to the main repo
-- a pre-commit hook is installed for your repo, that binds it to the
-    coding-standard we use
+- 取得最新的版本的程式庫（未發布）。
+- 你可以藉由創建一個新的「 feature 」分支，並為主儲存庫提交一個拉取請求（ pull request ）做出貢獻。
+- 已為您的儲存庫安裝一個預提交的鉤子（ pre-commit hook），它將會綁定我們使用的編碼規範。
 
-Cons
+缺點
 -------------------------------------------------------
 
-You need to resolve merge conflicts when you synch with the repo.
+當你在與遠端程式庫進行同步時，你需要親自解決合併衝突。
 
-You would not use this technique for app development.
+在應用程式的開發中你可能不需要這項技術。
 
-Structure
+結構
 -------------------------------------------------------
 
-Folders in your project after setup:
+在執行完上述流程後，這些資料夾將會部署進你的專案中：
 
 - app, public, system, tests, user_guide_src, writable
 
 
-Translations Installation
+安裝多語言系統提示
 ============================================================
 
-If you wish to contribute to the system message translations,
-then fork and clone the `translations repository
-<https://github.com/codeigniter4/translations>`_ separately from the codebase. 
-These are two independent repositories!
+如果你想要貢獻系統提示的翻譯，可以分支並克隆 `translations repository
+<https://github.com/codeigniter4/translations>`_ 這個儲存庫。這個儲存庫與 CodeIgniter4 的儲存庫是各自獨立的！
 
-
-Coding Standards Installation
+安裝編碼規範
 ============================================================
 
-This is bound and installed automatically as part of the
-codebase installation.
+這是綁定在儲存庫中的一部份自動安裝的。
 
-If you wish to use it inside your project too,
+如果你也想在自己的專案中使用它，在你的專案根目錄執行以下指令：
+
 ``composer require codeigniter4/translations @beta``

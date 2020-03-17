@@ -1,80 +1,63 @@
 ###############
-Troubleshooting
+故障排除
 ###############
 
-Here are some common installation problems, and suggested workarounds.
+下述將提到一些常見的安裝問題，以及建議的解決方法。
 
-How do I know if my install is working?
+如何確定我所安裝的框架能正常工作？
 ------------------------------------------------------------------------
 
-From the command line, at your project root::
+在命令列中前往專案根目錄後執行::
 
     php spark serve
 
-``http://localhost:8080`` in your browser should then show the default
-welcome page:
+在你的瀏覽器中瀏覽 ``http://localhost:8080`` 應該要顯示出預設的歡迎畫面:
 
 |CodeIgniter4 Welcome|
 
-I have to include index.php in my URL
+.. |CodeIgniter4 Welcome| image:: ../images/welcome.png
+
+我的網址中包含 index.php 
 -------------------------------------
 
-If a URL like ``/mypage/find/apple`` doesn't work, but the similar
-URL ``/index.php/mypage/find/apple`` does, that sounds like your ``.htaccess`` rules
-(for Apache) are not setup properly, or the ``mod_rewrite`` extension
-in Apache's ``httpd.conf`` is commented out.
+如果像 ``/mypage/find/apple`` 這樣的網址無法瀏覽，但像 ``/index.php/mypage/find/apple`` 這樣的網址卻可以正常工作。則你的 ``.htaccess`` 規則可能沒有正確設置（針對 Apache 來說），或者是在 Apache 的 ``httpd.conf`` 設定檔中擴充元件： ``mod_rewrite`` 的註解沒有被消除。
 
-Only the default page loads
+只能載入預設歡迎畫面
 ---------------------------
 
-If you find that no matter what you put in your URL only your default
-page is loading, it might be that your server does not support the
-REQUEST_URI variable needed to serve search-engine friendly URLs. As a
-first step, open your *app/Config/App.php* file and look for
-the URI Protocol information. It will recommend that you try a couple of
-alternate settings. If it still doesn't work after you've tried this
-you'll need to force CodeIgniter to add a question mark to your URLs. To
-do this open your *app/Config/App.php* file and change this::
+如果你發現，不論你在 URL 中輸入什麼內容，瀏覽器都只載入預設畫面。則可能是你的伺服器不支援針對「搜訊引擎友好」的 URL 。首先，打開你的 *app/Config/App.php* 檔案，並找到 URL 資訊。你可以先嘗試幾個備用設定，如果網址還是無法正常工作，則需要強制 CodeIgniter 向 URL 強制添加問號。
+
+請打開 *app/Config/App.php* 找到以下內容::
 
 	public $indexPage = 'index.php';
 
-To this::
+接著修改成::
 
 	public $indexPage = 'index.php?';
 
-The tutorial gives 404 errors everywhere :(
+總是出現 404 錯誤  :(
 -------------------------------------------
 
-You can't follow the tutorial using PHP's built-in web server.
-It doesn't process the `.htaccess` file needed to route
-requests properly.
+你無法使用 PHP 內建的網頁伺服器來學習這個教學，它無法處理 `.htaccess` 檔以供解析正確的路由請求。
 
-The solution: use Apache to serve your site, or else the built-in
-CodeIgniter equivalent, ``php spark serve`` from your project root.
+解決方案：使用 Apache 部屬你的網站，或者是從專案的根目錄透過命令列，使用 CodeIgniter 內建的 ``php spark serve`` 。
 
-.. |CodeIgniter4 Welcome| image:: ../images/welcome.png
-
-What's with an unhelpful "Whoops!" page?
+"Whoops!" 頁面代表什麼意思?
 ------------------------------------------------------
 
-You find that your app is displaying a page with "Whoops!" and
-then the text line "We seem to have hit a snag. Please try again later...".
+當你發現你造訪你的應用時，只顯示「哇！我們似乎遇到了障礙，請稍後再試 ……（ Whoops! We seem to have hit a snag. Please try again later…）」。
 
-That is a sign that you are in production mode and have hit an
-unrecoverable error, which we don't want to show to the viewer of
-the webapp, for better security.
+這代表你現在處於正式（ production ）環境，並且還發生了不可恢復的錯誤。為了提供更好的安全性，在正式環境中，我們不會向瀏覽器顯示該錯誤。
 
-You can see the error in the debug toolbar display by setting your environment to
-"development" (in `.env`), and reloading the page.
+在根目錄的 ``.env`` 檔案中，將環境設置為開發（ development ）後重新載入頁面。
 
-Don't forget to reset the environment to "production" once you fix the problem!
+一旦你修復了你的問題，別忘了將環境重新設定成正式環境。
 
-CodeIgniter Error Logs
+CodeIgniter 錯誤紀錄檔
 -------------------------------------------------------
 
-CodeIgniter logs error messages, according to the settings in `app/Config/Logger.php`.
+CodeIgniter 根據 `app/Config/Logger.php` 中的設定紀錄錯誤訊息。
 
-You can adjust the error threshold to see more or fewer messages.
+你可以透過調整錯誤閥值以查看更多或更少的錯誤訊息。
 
-The default configuration has daily log files stored in `writable/logs`.
-It would be a good idea to check them if things aren't working the way you expect!
+預設設定將會把每日的紀錄檔儲存在 `writable/logs` 之中。如果它沒有按照預期工作，最好檢查一下它們！

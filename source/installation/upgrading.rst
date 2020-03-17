@@ -1,11 +1,10 @@
 #################################
-Upgrading From a Previous Version
+從舊版升級
 #################################
 
-Please read the upgrade notes corresponding to the version you are
-upgrading from.
+請閱讀對應升級版本的升級說明。
 
 .. toctree::
 	:titlesonly:
 
-	Upgrading from 3.x to 4.x <upgrade_4xx>
+	從 3.x 升級至 4.x <upgrade_4xx>
