@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Running Your App &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>運作你的應用程式 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Upgrading From a Previous Version" href="upgrading.html" />
-    <link rel="prev" title="Git Installation" href="installing_git.html" /> 
+    <link rel="next" title="從舊版升級" href="upgrading.html" />
+    <link rel="prev" title="Git 安裝" href="installing_git.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -96,14 +96,14 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">安裝指引</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installing_composer.html">Composer 安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installing_git.html">Git Installation</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Running Your App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="upgrading.html">Upgrading From a Previous Version</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="upgrade_4xx.html">Upgrading from 3.x to 4.x</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installing_git.html">Git 安裝</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading.html">從舊版升級</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="repositories.html">CodeIgniter Repositories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html">故障排除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repositories.html">CodeIgniter 儲存庫</a></li>
 </ul>
 </li>
 </ul>
@@ -320,7 +320,7 @@
         
           <li><a href="index.html">安裝指引</a> &raquo;</li>
         
-      <li>Running Your App</li>
+      <li>運作你的應用程式</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -337,101 +337,75 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="running-your-app">
-<h1>Running Your App<a class="headerlink" href="#running-your-app" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="id1">
+<h1>運作你的應用程式<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#initial-configuration-setup" id="id2">Initial Configuration &amp; Setup</a></li>
-<li><a class="reference internal" href="#local-development-server" id="id3">Local Development Server</a></li>
-<li><a class="reference internal" href="#hosting-with-apache" id="id4">Hosting with Apache</a></li>
-<li><a class="reference internal" href="#hosting-with-vagrant" id="id5">Hosting with Vagrant</a></li>
+<li><a class="reference internal" href="#id2" id="id9">初始組態與設定</a></li>
+<li><a class="reference internal" href="#id3" id="id10">本地開發伺服器</a></li>
+<li><a class="reference internal" href="#apache" id="id11">部屬在 Apache 伺服器</a></li>
+<li><a class="reference internal" href="#vagrant" id="id12">使用 Vagrant 進行部屬</a></li>
 </ul>
 </div>
-<p>A CodeIgniter 4 app can be run in a number of different ways: hosted on a web server,
-using virtualization, or using CodeIgniter’s command line tool for testing.
-This section addresses how to use each technique, and explains some of the pros and cons of them.</p>
-<p>If you’re new to CodeIgniter, please read the <a class="reference internal" href="../intro/index.html"><span class="doc">Getting Started</span></a>
-section of the User Guide to begin learning how to build dynamic PHP applications. Enjoy!</p>
-<div class="section" id="initial-configuration-setup">
-<h2><a class="toc-backref" href="#id2">Initial Configuration &amp; Setup</a><a class="headerlink" href="#initial-configuration-setup" title="Permalink to this headline">¶</a></h2>
+<p>CodeIgniter 4 應用程式可透過多種不同的方式運作，託管在 Web 伺服器上，使用虛擬化或 CodeIgniter 命令列工具進行測試。
+本條目將會介紹如何使用每種技術，並且說明其中的優缺點。</p>
+<p>如果你初次使用 CodeIgniter ，請閱讀使用手冊的 <a class="reference internal" href="../intro/index.html"><span class="doc">入門</span></a> 條目，了解如何建構動態的 PHP 應用程式。享受吧！</p>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id9">初始組態與設定</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open the <strong>app/Config/App.php</strong> file with a text editor and
-set your base URL. If you need more flexibility, the baseURL may
-be set within the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file as <strong>app.baseURL=”http://example.com”</strong>.</li>
-<li>If you intend to use a database, open the
-<strong>app/Config/Database.php</strong> file with a text editor and set your
-database settings. Alternately, these could be set in your <code class="docutils literal notranslate"><span class="pre">.env</span></code> file.</li>
+<li>使用文字編輯器打開 <strong>app/Config/App.php</strong> 這個檔案並設定基本的 URL 。如果你需要更多的靈活性，可以將 <code class="docutils literal notranslate"><span class="pre">.env</span></code> 檔中的 baseURL 設定為  <strong>app.baseURL=”http://example.com”</strong> 。</li>
+<li>如果需要使用資料庫，請使用文字編輯器打開 <strong>app/Config/Database.php</strong> 這個檔案並設定資料庫。或者可以在 <code class="docutils literal notranslate"><span class="pre">.env</span></code> 中進行這些設定。</li>
 </ol>
-<p>One additional measure to take in production environments is to disable
-PHP error reporting and any other development-only functionality. In
-CodeIgniter, this can be done by setting the <code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code> constant, which
-is more fully described on the <a class="reference internal" href="../general/environments.html"><span class="doc">environments page</span></a>.
-By default, the application will run using the “production” environment. To
-take advantage of the debugging tools provided, you should set the environment
-to “develop”.</p>
+<p>在正式（ production ）環境中，我們可能會禁用 PHP 錯誤報告或任何僅用於開發中的功能。在 CodeIgniter 中，可以透過設定環境變數來達成，在 <a class="reference internal" href="../general/environments.html"><span class="doc">環境變數</span></a> 條目上有更全面的描述。無設定任何環境變數的應用程式將會直接套用正式環境的相關設定。若需要使用框架提供的除錯工具，應將環境設定為開發 <code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code> 。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you will be running your site using a web server (e.g. Apache or Nginx),
-you will need to modify the permissions for the <code class="docutils literal notranslate"><span class="pre">writable</span></code> folder inside
-your project, so that it is writable by the user or account used by your
-web server.</p>
+<p class="last">如果你將在 Web 伺服器（例如：Apache 或 Nginx ）上運作你的網站，則需要修改專案內 <code class="docutils literal notranslate"><span class="pre">writable</span></code> 資料夾許可權，讓 Web 伺服器得以使用具有權限的使用者或帳戶進行寫入。</p>
 </div>
 </div>
-<div class="section" id="local-development-server">
-<h2><a class="toc-backref" href="#id3">Local Development Server</a><a class="headerlink" href="#local-development-server" title="Permalink to this headline">¶</a></h2>
-<p>CodeIgniter 4 comes with a local development server, leveraging PHP’s built-in web server
-with CodeIgniter routing. You can use the <code class="docutils literal notranslate"><span class="pre">serve</span></code> script to launch it,
-with the following command line in the main directory:</p>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id10">本地開發伺服器</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>CodeIgniter 4 附帶了本地開發伺服器，利用了 PHP 內建的 Web 伺服器和 CodeIgniter 路由。你可以在專案根目錄下透過命令列啟動它:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">serve</span>
 </pre></div>
 </div>
-<p>This will launch the server and you can now view your application in your browser at <a class="reference external" href="http://localhost:8080">http://localhost:8080</a>.</p>
+<p>這個命令將會啟動伺服器，你現在可以在瀏覽器中前往 <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> 查看應用程式。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The built-in development server should only be used on local development machines. It should NEVER
-be used on a production server.</p>
+<p class="last">內建的開發伺服器限用於開發環境，它絕不應該在生產伺服器上使用。</p>
 </div>
-<p>If you need to run the site on a host other than simply localhost, you’ll first need to add the host
-to your <code class="docutils literal notranslate"><span class="pre">hosts</span></code> file. The exact location of the file varies in each of the main operating systems, though
-all unix-type systems (include OS X) will typically keep the file at <strong>/etc/hosts</strong>.</p>
-<p>The local development server can be customized with three command line options:</p>
+<p>如果需要在伺服器上運作特別的網址名稱，而不是簡單的本機 localhost，需要先將主機添加到 <code class="docutils literal notranslate"><span class="pre">hosts</span></code> 檔案中。這個檔案的路徑會根據作業系統而各不相同，所有類 Unix 的系統（包括 OSX ）通常都會將這個檔案放置在 <strong>/etc/hosts</strong> 。
+（譯者註： Windows 的 Host 檔案放置在 <strong>C:\WINDOWS\system32\drivers\etc\hosts</strong> 之中）</p>
+<p>你可以透過三種選項自訂本地開發伺服器：</p>
 <ul>
-<li><p class="first">You can use the <code class="docutils literal notranslate"><span class="pre">--host</span></code> CLI option to specify a different host to run the application at:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">serve</span> <span class="o">--</span><span class="nx">host</span><span class="o">=</span><span class="nx">example</span><span class="o">.</span><span class="nx">dev</span>
+<li><p class="first">你可以使用 CLI 中的 <code class="docutils literal notranslate"><span class="pre">-host</span></code> 選項將應用程式運作在你所設定的 host 上:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">serve</span> <span class="o">-</span><span class="nx">host</span> <span class="nx">example</span><span class="o">.</span><span class="nx">dev</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">By default, the server runs on port 8080 but you might have more than one site running, or already have
-another application using that port. You can use the <code class="docutils literal notranslate"><span class="pre">--port</span></code> CLI option to specify a different one:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">serve</span> <span class="o">--</span><span class="nx">port</span><span class="o">=</span><span class="mi">8081</span>
+<li><p class="first">在預設的情形下，伺服器將在 8080 埠上運做。但你可能會需要運做多個網站，或者這個埠已經被其他應用程式佔用。這時，可以使用 CLI 中 <code class="docutils literal notranslate"><span class="pre">-port</span></code> 選項:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">serve</span> <span class="o">-</span><span class="nx">port</span> <span class="mi">8081</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">You can also specify a specific version of PHP to use, with the <code class="docutils literal notranslate"><span class="pre">--php</span></code> CLI option, with its value
-set to the path of the PHP executable you want to use:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">serve</span> <span class="o">--</span><span class="nx">php</span><span class="o">=/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">php7</span><span class="o">.</span><span class="mf">6.5</span><span class="o">.</span><span class="mi">4</span>
+<li><p class="first">你還可以使用 CLI 中的 <code class="docutils literal notranslate"><span class="pre">-php</span></code> 選項指定你所要使用的 PHP 版本，這個選項所需的值是 PHP 執行檔的檔案路徑:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">serve</span> <span class="o">-</span><span class="nx">php</span> <span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">php7</span><span class="o">.</span><span class="mf">6.5</span><span class="o">.</span><span class="mi">4</span>
 </pre></div>
 </div>
 </li>
 </ul>
 </div>
-<div class="section" id="hosting-with-apache">
-<h2><a class="toc-backref" href="#id4">Hosting with Apache</a><a class="headerlink" href="#hosting-with-apache" title="Permalink to this headline">¶</a></h2>
-<p>A CodeIgniter4 webapp is normally hosted on a web server.
-Apache’s <code class="docutils literal notranslate"><span class="pre">httpd</span></code> is the “standard” platform, and assumed in much of our documentation.</p>
-<p>Apache is bundled with many platforms, but can also be downloaded in a bundle
-with a database engine and PHP from [Bitnami](<a class="reference external" href="https://bitnami.com/stacks/infrastructure">https://bitnami.com/stacks/infrastructure</a>).</p>
+<div class="section" id="apache">
+<h2><a class="toc-backref" href="#id11">部屬在 Apache 伺服器</a><a class="headerlink" href="#apache" title="Permalink to this headline">¶</a></h2>
+<p>CodeIgniter4 應用程式通常會部屬在網頁伺服器中。通常 Apache的 <code class="docutils literal notranslate"><span class="pre">httpd</span></code> 是標準的平台，在手冊中我們預設你使用它。</p>
+<p>Apache 與許多平台綁定在一起，你也可以選擇使用 <a class="reference external" href="https://bitnami.com/stacks/infrastructure">Bitnami</a> 所綑綁的資料庫引擎、 PHP 與 Apache。</p>
 <div class="section" id="htaccess">
 <h3>.htaccess<a class="headerlink" href="#htaccess" title="Permalink to this headline">¶</a></h3>
-<p>The “mod_rewrite” module enables URLs without “index.php” in them, and is assumed
-in our user guide.</p>
-<p>Make sure that the rewrite module is enabled (uncommented) in the main
-configuration file, eg. <code class="docutils literal notranslate"><span class="pre">apache2/conf/httpd.conf</span></code>:</p>
+<p>「 mod_rewrite 」這個模組可以用於隱藏 URL 中的「 index.php 」。</p>
+<p>請確認 rewrite 模組在 Apache 設定檔中啟用，例如：<code class="docutils literal notranslate"><span class="pre">apache2/conf/httpd.conf</span></code>:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">LoadModule</span> <span class="nx">rewrite_module</span> <span class="nx">modules</span><span class="o">/</span><span class="nx">mod_rewrite</span><span class="o">.</span><span class="nx">so</span>
 </pre></div>
 </div>
-<p>Also make sure that the default document root’s &lt;Directory&gt; element enables this too,
-in the “AllowOverride” setting:</p>
+<p>同時，你也要確認檔案根目錄的 &lt;Directory&gt; 元素啟用 AllowOverride 功能:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">Directory</span> <span class="s2">&quot;/opt/lamp7.2/apache2/htdocs&quot;</span><span class="o">&gt;</span>
     <span class="nx">Options</span> <span class="nx">Indexes</span> <span class="nx">FollowSymLinks</span>
     <span class="nx">AllowOverride</span> <span class="nx">All</span>
@@ -440,23 +414,18 @@ in the “AllowOverride” setting:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="virtual-hosting">
-<h3>Virtual Hosting<a class="headerlink" href="#virtual-hosting" title="Permalink to this headline">¶</a></h3>
-<p>We recommend using “virtual hosting” to run your apps.
-You can setup different aliases for each of the apps you work on,</p>
-<p>Make sure that the virtual hosting module is enabled (uncommented) in the main
-configuration file, eg. <code class="docutils literal notranslate"><span class="pre">apache2/conf/httpd.conf</span></code>:</p>
+<div class="section" id="id4">
+<h3>虛擬伺服器<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>我們推薦你在「虛擬伺服器」上運作你的應用程式。你可以為每個應用程式設定不同的別名。</p>
+<p>請確認 虛擬伺服器（ virtual hosting ）模組在 Apache 設定檔中啟用，例如：<code class="docutils literal notranslate"><span class="pre">apache2/conf/httpd.conf</span></code>:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">LoadModule</span> <span class="nx">vhost_alias_module</span> <span class="nx">modules</span><span class="o">/</span><span class="nx">mod_vhost_alias</span><span class="o">.</span><span class="nx">so</span>
 </pre></div>
 </div>
-<p>Add a host alias in your “hosts” file, typically <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> on unix-type platforms,
-or <code class="docutils literal notranslate"><span class="pre">c:/Windows/System32/drivers/etc/hosts</span></code> on Windows.
-Add a line to the file. This could be “myproject.local” or “myproject.test”, for instance:</p>
+<p>在類 Unix 平台或 Windows 主機上的 <code class="docutils literal notranslate"><span class="pre">host</span></code> 檔案中添加主機別名，別名可以命名為 myproject.local 或 myproject.test 或任何自訂的別名:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span> <span class="nx">myproject</span><span class="o">.</span><span class="nx">local</span>
 </pre></div>
 </div>
-<p>Add a &lt;VirtualHost&gt; element for your webapp inside the virtual hosting configuration,
-eg. <code class="docutils literal notranslate"><span class="pre">apache2/conf/extra/httpd-vhost.conf</span></code>:</p>
+<p>在虛擬伺服器設定中幫應用程式新增  &lt;VirtualHost&gt; 元素。這個設定檔通常在 <code class="docutils literal notranslate"><span class="pre">apache2/conf/extra/httpd-vhost.conf</span></code>:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">VirtualHost</span> <span class="o">*:</span><span class="mi">80</span><span class="o">&gt;</span>
     <span class="nx">DocumentRoot</span> <span class="s2">&quot;/opt/lamp7.2/apache2/htdocs/myproject/public&quot;</span>
     <span class="nx">ServerName</span> <span class="nx">myproject</span><span class="o">.</span><span class="nx">local</span>
@@ -465,43 +434,34 @@ eg. <code class="docutils literal notranslate"><span class="pre">apache2/conf/ex
 <span class="o">&lt;/</span><span class="nx">VirtualHost</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>If your project folder is not a subfolder of the Apache document root, then your
-&lt;VirtualHost&gt; element may need a nested &lt;Directory&gt; element to grant the web s
-erver access to the files.</p>
+<p>如果你的專案資料夾不在 Apache 文件根目錄，則 &lt;VirtualHost&gt; 需要再新增一層 &lt;Directory&gt; 元素來授權網頁伺服器對檔案的訪問。</p>
 </div>
-<div class="section" id="testing">
-<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
-<p>With the above configuration, your webapp would be accessed with the URL <code class="docutils literal notranslate"><span class="pre">http://myproject.local</span></code> in your browser.</p>
-<p>Apache needs to be restarted whenever you change its configuration.</p>
+<div class="section" id="id5">
+<h3>測試<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>完成了上述的設定後，你的網頁應用程式將可以透過 <code class="docutils literal notranslate"><span class="pre">http://myproject.local</span></code> 在瀏覽器中進行訪問。</p>
+<p>每當改變設定的內容時，都需要重新啟動 Apache。</p>
 </div>
 </div>
-<div class="section" id="hosting-with-vagrant">
-<h2><a class="toc-backref" href="#id5">Hosting with Vagrant</a><a class="headerlink" href="#hosting-with-vagrant" title="Permalink to this headline">¶</a></h2>
-<p>Virtualization is an effective way to test your webapp in the environment you
-plan to deploy on, even if you develop on a different one.
-Even if you are using the same platform for both, virtualization provides an
-isolated environment for testing.</p>
-<p>The codebase comes with a <code class="docutils literal notranslate"><span class="pre">VagrantFile.dist</span></code>, that can be copied to <code class="docutils literal notranslate"><span class="pre">VagrantFile</span></code>
-and tailored for your system, for instance enabling access to specific database or caching engines.</p>
-<div class="section" id="setup">
-<h3>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h3>
-<p>It assumes that you have installed <a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a> and
-<a class="reference external" href="https://www.vagrantup.com/downloads.html">Vagrant</a>
-for your platform.</p>
-<p>The Vagrant configuration file assumes you have the <a class="reference external" href="https://app.vagrantup.com/ubuntu/boxes/bionic64">ubuntu/bionic64 Vagrant box</a> setup on your system:</p>
+<div class="section" id="vagrant">
+<h2><a class="toc-backref" href="#id12">使用 Vagrant 進行部屬</a><a class="headerlink" href="#vagrant" title="Permalink to this headline">¶</a></h2>
+<p>即便你在不同的環境中進行開發，利用虛擬化技術在預計部屬的環境中，對網頁應用程式進行測試是個不錯的方法。</p>
+<p>程式庫中附帶一個 <code class="docutils literal notranslate"><span class="pre">VagrantFile.dist</span></code> 設定檔，可以複製到 <code class="docutils literal notranslate"><span class="pre">VagrantFile</span></code> 並針對該系統進行訂製，例如：啟用對特定資料庫或快取引擎的訪問。</p>
+<div class="section" id="id6">
+<h3>設定<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>我們假設你已經為你的平台安裝了 <a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a> 與
+<a class="reference external" href="https://www.vagrantup.com/downloads.html">Vagrant</a> 。</p>
+<p>Vagrant 設定檔假設你的系統上設定了 <a class="reference external" href="https://app.vagrantup.com/ubuntu/boxes/bionic64">ubuntu/bionic64 Vagrant box</a></p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">vagrant</span> <span class="nx">box</span> <span class="nx">add</span> <span class="nx">ubuntu</span><span class="o">/</span><span class="nx">bionic64</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id1">
-<h3>Testing<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>Once setup, you can then launch your webapp inside a VM, with the command:</p>
+<div class="section" id="id8">
+<h3>測試<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>設定完成後，你可以使用以下命令在 VM 中啟動網頁應用程式:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">vagrant</span> <span class="nx">up</span>
 </pre></div>
 </div>
-<p>Your webapp will be accessible at <code class="docutils literal notranslate"><span class="pre">http://localhost:8080</span></code>, with the code coverage
-report for your build at <code class="docutils literal notranslate"><span class="pre">http://localhost:8081</span></code> and the user guide for
-it at <code class="docutils literal notranslate"><span class="pre">http://localhost:8082</span></code>.</p>
+<p>你的網頁應用程式將可以在 <code class="docutils literal notranslate"><span class="pre">http://localhost:8080</span></code> 造訪，程式碼覆蓋率報告將位於 <code class="docutils literal notranslate"><span class="pre">http://localhost:8081</span></code> ，使用指南則位於 <code class="docutils literal notranslate"><span class="pre">http://localhost:8082</span></code> 。</p>
 </div>
 </div>
 </div>
@@ -514,10 +474,10 @@ it at <code class="docutils literal notranslate"><span class="pre">http://localh
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="upgrading.html" class="btn btn-neutral float-right" title="Upgrading From a Previous Version" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="upgrading.html" class="btn btn-neutral float-right" title="從舊版升級" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="installing_git.html" class="btn btn-neutral float-left" title="Git Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="installing_git.html" class="btn btn-neutral float-left" title="Git 安裝" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -528,7 +488,7 @@ it at <code class="docutils literal notranslate"><span class="pre">http://localh
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Mar 13, 2020.
+        Last updated on Mar 18, 2020.
       </span>
 
     </p>

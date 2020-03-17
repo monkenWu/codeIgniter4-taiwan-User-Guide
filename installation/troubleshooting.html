@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Troubleshooting &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>故障排除 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="CodeIgniter Repositories" href="repositories.html" />
-    <link rel="prev" title="Upgrading from 3.x to 4.x" href="upgrade_4xx.html" /> 
+    <link rel="next" title="CodeIgniter 儲存庫" href="repositories.html" />
+    <link rel="prev" title="從 3.x 升級至 4.x" href="upgrade_4xx.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -96,14 +96,14 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">安裝指引</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installing_composer.html">Composer 安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installing_git.html">Git Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="running.html">Running Your App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="upgrading.html">Upgrading From a Previous Version</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="upgrade_4xx.html">Upgrading from 3.x to 4.x</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installing_git.html">Git 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading.html">從舊版升級</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Troubleshooting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="repositories.html">CodeIgniter Repositories</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">故障排除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repositories.html">CodeIgniter 儲存庫</a></li>
 </ul>
 </li>
 </ul>
@@ -320,7 +320,7 @@
         
           <li><a href="index.html">安裝指引</a> &raquo;</li>
         
-      <li>Troubleshooting</li>
+      <li>故障排除</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -337,69 +337,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="troubleshooting">
-<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h1>
-<p>Here are some common installation problems, and suggested workarounds.</p>
-<div class="section" id="how-do-i-know-if-my-install-is-working">
-<h2>How do I know if my install is working?<a class="headerlink" href="#how-do-i-know-if-my-install-is-working" title="Permalink to this headline">¶</a></h2>
-<p>From the command line, at your project root:</p>
+  <div class="section" id="id1">
+<h1>故障排除<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>下述將提到一些常見的安裝問題，以及建議的解決方法。</p>
+<div class="section" id="id2">
+<h2>如何確定我所安裝的框架能正常工作？<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>在命令列中前往專案根目錄後執行:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">serve</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">http://localhost:8080</span></code> in your browser should then show the default
-welcome page:</p>
+<p>在你的瀏覽器中瀏覽 <code class="docutils literal notranslate"><span class="pre">http://localhost:8080</span></code> 應該要顯示出預設的歡迎畫面:</p>
 <p><img alt="CodeIgniter4 Welcome" src="../_images/welcome.png" /></p>
 </div>
-<div class="section" id="i-have-to-include-index-php-in-my-url">
-<h2>I have to include index.php in my URL<a class="headerlink" href="#i-have-to-include-index-php-in-my-url" title="Permalink to this headline">¶</a></h2>
-<p>If a URL like <code class="docutils literal notranslate"><span class="pre">/mypage/find/apple</span></code> doesn’t work, but the similar
-URL <code class="docutils literal notranslate"><span class="pre">/index.php/mypage/find/apple</span></code> does, that sounds like your <code class="docutils literal notranslate"><span class="pre">.htaccess</span></code> rules
-(for Apache) are not setup properly, or the <code class="docutils literal notranslate"><span class="pre">mod_rewrite</span></code> extension
-in Apache’s <code class="docutils literal notranslate"><span class="pre">httpd.conf</span></code> is commented out.</p>
+<div class="section" id="index-php">
+<h2>我的網址中包含 index.php<a class="headerlink" href="#index-php" title="Permalink to this headline">¶</a></h2>
+<p>如果像 <code class="docutils literal notranslate"><span class="pre">/mypage/find/apple</span></code> 這樣的網址無法瀏覽，但像 <code class="docutils literal notranslate"><span class="pre">/index.php/mypage/find/apple</span></code> 這樣的網址卻可以正常工作。則你的 <code class="docutils literal notranslate"><span class="pre">.htaccess</span></code> 規則可能沒有正確設置（針對 Apache 來說），或者是在 Apache 的 <code class="docutils literal notranslate"><span class="pre">httpd.conf</span></code> 設定檔中擴充元件： <code class="docutils literal notranslate"><span class="pre">mod_rewrite</span></code> 的註解沒有被消除。</p>
 </div>
-<div class="section" id="only-the-default-page-loads">
-<h2>Only the default page loads<a class="headerlink" href="#only-the-default-page-loads" title="Permalink to this headline">¶</a></h2>
-<p>If you find that no matter what you put in your URL only your default
-page is loading, it might be that your server does not support the
-REQUEST_URI variable needed to serve search-engine friendly URLs. As a
-first step, open your <em>app/Config/App.php</em> file and look for
-the URI Protocol information. It will recommend that you try a couple of
-alternate settings. If it still doesn’t work after you’ve tried this
-you’ll need to force CodeIgniter to add a question mark to your URLs. To
-do this open your <em>app/Config/App.php</em> file and change this:</p>
+<div class="section" id="id3">
+<h2>只能載入預設歡迎畫面<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>如果你發現，不論你在 URL 中輸入什麼內容，瀏覽器都只載入預設畫面。則可能是你的伺服器不支援針對「搜訊引擎友好」的 URL 。首先，打開你的 <em>app/Config/App.php</em> 檔案，並找到 URL 資訊。你可以先嘗試幾個備用設定，如果網址還是無法正常工作，則需要強制 CodeIgniter 向 URL 強制添加問號。</p>
+<p>請打開 <em>app/Config/App.php</em> 找到以下內容:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$indexPage</span> <span class="o">=</span> <span class="s1">&#39;index.php&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>To this:</p>
+<p>接著修改成:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$indexPage</span> <span class="o">=</span> <span class="s1">&#39;index.php?&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="the-tutorial-gives-404-errors-everywhere">
-<h2>The tutorial gives 404 errors everywhere :(<a class="headerlink" href="#the-tutorial-gives-404-errors-everywhere" title="Permalink to this headline">¶</a></h2>
-<p>You can’t follow the tutorial using PHP’s built-in web server.
-It doesn’t process the <cite>.htaccess</cite> file needed to route
-requests properly.</p>
-<p>The solution: use Apache to serve your site, or else the built-in
-CodeIgniter equivalent, <code class="docutils literal notranslate"><span class="pre">php</span> <span class="pre">spark</span> <span class="pre">serve</span></code> from your project root.</p>
+<div class="section" id="id4">
+<h2>總是出現 404 錯誤  :(<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>你無法使用 PHP 內建的網頁伺服器來學習這個教學，它無法處理 <cite>.htaccess</cite> 檔以供解析正確的路由請求。</p>
+<p>解決方案：使用 Apache 部屬你的網站，或者是從專案的根目錄透過命令列，使用 CodeIgniter 內建的 <code class="docutils literal notranslate"><span class="pre">php</span> <span class="pre">spark</span> <span class="pre">serve</span></code> 。</p>
 </div>
-<div class="section" id="what-s-with-an-unhelpful-whoops-page">
-<h2>What’s with an unhelpful “Whoops!” page?<a class="headerlink" href="#what-s-with-an-unhelpful-whoops-page" title="Permalink to this headline">¶</a></h2>
-<p>You find that your app is displaying a page with “Whoops!” and
-then the text line “We seem to have hit a snag. Please try again later…”.</p>
-<p>That is a sign that you are in production mode and have hit an
-unrecoverable error, which we don’t want to show to the viewer of
-the webapp, for better security.</p>
-<p>You can see the error in the debug toolbar display by setting your environment to
-“development” (in <cite>.env</cite>), and reloading the page.</p>
-<p>Don’t forget to reset the environment to “production” once you fix the problem!</p>
+<div class="section" id="whoops">
+<h2>“Whoops!” 頁面代表什麼意思?<a class="headerlink" href="#whoops" title="Permalink to this headline">¶</a></h2>
+<p>當你發現你造訪你的應用時，只顯示「哇！我們似乎遇到了障礙，請稍後再試 ……（ Whoops! We seem to have hit a snag. Please try again later…）」。</p>
+<p>這代表你現在處於正式（ production ）環境，並且還發生了不可恢復的錯誤。為了提供更好的安全性，在正式環境中，我們不會向瀏覽器顯示該錯誤。</p>
+<p>在根目錄的 <code class="docutils literal notranslate"><span class="pre">.env</span></code> 檔案中，將環境設置為開發（ development ）後重新載入頁面。</p>
+<p>一旦你修復了你的問題，別忘了將環境重新設定成正式環境。</p>
 </div>
-<div class="section" id="codeigniter-error-logs">
-<h2>CodeIgniter Error Logs<a class="headerlink" href="#codeigniter-error-logs" title="Permalink to this headline">¶</a></h2>
-<p>CodeIgniter logs error messages, according to the settings in <cite>app/Config/Logger.php</cite>.</p>
-<p>You can adjust the error threshold to see more or fewer messages.</p>
-<p>The default configuration has daily log files stored in <cite>writable/logs</cite>.
-It would be a good idea to check them if things aren’t working the way you expect!</p>
+<div class="section" id="codeigniter">
+<h2>CodeIgniter 錯誤紀錄檔<a class="headerlink" href="#codeigniter" title="Permalink to this headline">¶</a></h2>
+<p>CodeIgniter 根據 <cite>app/Config/Logger.php</cite> 中的設定紀錄錯誤訊息。</p>
+<p>你可以透過調整錯誤閥值以查看更多或更少的錯誤訊息。</p>
+<p>預設設定將會把每日的紀錄檔儲存在 <cite>writable/logs</cite> 之中。如果它沒有按照預期工作，最好檢查一下它們！</p>
 </div>
 </div>
 
@@ -411,10 +393,10 @@ It would be a good idea to check them if things aren’t working the way you exp
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="repositories.html" class="btn btn-neutral float-right" title="CodeIgniter Repositories" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="repositories.html" class="btn btn-neutral float-right" title="CodeIgniter 儲存庫" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="upgrade_4xx.html" class="btn btn-neutral float-left" title="Upgrading from 3.x to 4.x" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="upgrade_4xx.html" class="btn btn-neutral float-left" title="從 3.x 升級至 4.x" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -425,7 +407,7 @@ It would be a good idea to check them if things aren’t working the way you exp
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Mar 13, 2020.
+        Last updated on Mar 18, 2020.
       </span>
 
     </p>
