@@ -14,18 +14,18 @@ Composer 安裝
 安裝穩定版本
 ============================================================
 
-在 `Git 儲存庫 <https://github.com/codeigniter4/appstarter>`_ 中的 CodeIgniter 4 穩定版本將包含一個基本的框架與程式（預設歡迎畫面），Composer 將依賴 Git 儲存庫所發布的最新版本。
+`Codeigniter4 appstarter 儲存庫 <https://github.com/codeigniter4/appstarter>`_ 包含一個最簡應用程式， Composer 將依賴這個儲存庫的最新版本。
 
 若你希望將 CodeIgniter4 使用在全新的產品開發專案中，你將適合這種安裝方式。
 
 安裝與設定
 -------------------------------------------------------
 
-在專案的根目錄中執行以下指令： ::
+在預計安裝專案的資料夾中下執行以下指令： ::
 
-    composer create-project codeigniter4/appstarter project-root -s rc
+    composer create-project codeigniter4/appstarter project-root
 
-執行上述指令將會在目錄下新增一個「 project-root 」 資料夾。
+執行上述指令將會創建一個「 project-root 」 資料夾。
 
 如果你省略了上述指令中「 project-root 」參數，那麼 Composer 將會自動生成出「 appstarter 」資料夾，你可以依照自己的需求命名你的資料夾。
 
@@ -33,7 +33,7 @@ Composer 安裝
 
 下例將使用默認的專案資料夾名稱「 appstarter 」演示上述需求的安裝指令： ::
 
-    composer create-project codeigniter4/appstarter -s rc --no-dev
+    composer create-project codeigniter4/appstarter --no-dev
 
 往後若需要升及框架，你只需要按照下一小節「如何升級框架」來進行升級。
 
@@ -73,22 +73,19 @@ Composer 安裝
 安裝與設定
 -------------------------------------------------------
 
-`CodeIgniter 4 開發中版本 <https://github.com/codeigniter4/devstarter>`_ 將包含一個基本的框架與程式（預設歡迎畫面），但其組成依賴於框架的開發（ develop ）分支，將會是未發布的版本。
-
-這種安裝方式將適合希望把 CodeIgniter4 部屬在全新專案的開發者，你必須注意的是，開發中的版本將會有頻繁的更改或是功能的刪減，也有可能運作著未穩定的程式。
+App starter 儲存庫附帶一個 ``builds`` 腳本，可以切換穩定版本框架與最新開發版本框架之間的 Composer 來源。對於願意接受最新最新且未發布的特性（可能不穩定）的開發人員，請使用這個腳本。
 
 你可以閱讀  `開發中的使用者說明書（原文） <https://codeigniter4.github.io/CodeIgniter4/>`_，這與穩定發布版的使用者說明書不同，它將會明確地記載開發中的功能與使用說明。 
 
 在專案的根目錄中執行以下指令： ::
 
-    composer create-project codeigniter4/devstarter -s dev
+    php builds development
 
-透過這行指令的執行 Composer 將會自動生成出「 devstarter 」資料夾，你可以依照自己的需求命名你的資料夾。
+執行這個命令後，將會更新 *composer.json* 把儲存庫指向 ``develop`` 分支 ，並且更新 config 和 XML 檔案中的對應路徑。若你需要還原這些改動，請執行： ::
 
-你也可以提供自己的專案名稱作為第三個 Composer 參數，如果你不想包含 phpunit 及其所有的 Composer 依賴（ dependencies ），則必須在指令中添加「 –no-dev 」。滿足上述需求，你的指令可能會像下述例子： ::
+    php builds release
 
-    composer create-project codeigniter4/devstarter my-awesome-project -s dev --no-dev
-
+使用 ``builds`` 後請務必執行 ``composer update`` ，以便將你的 vendor 資料夾與目前希望運作的版本進行同步。
 
 如何升級框架
 -------------------------------------------------------
@@ -133,7 +130,7 @@ Composer 安裝
 
 在你的專案根目錄執行以下指令： ::
 
-    composer require codeigniter4/framework @rc
+    composer require codeigniter4/framework
 
 與前兩個 Composer 安裝方法相同，你可以通過「 --no-dev 」引數，省略安裝 phpunit 及其 Composer 依賴，
 
