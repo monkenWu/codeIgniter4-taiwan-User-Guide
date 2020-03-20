@@ -45,7 +45,7 @@ Sphinx 需要 Python 的支援，如果你的作業系統是 MacOS 或是 Ubuntu
 5. 執行 ``cd <專案根目錄>``
 6. 執行 ``make html`` 產出 HTML 。
 
-### Ubuntu 或 WSL 可以這麼部屬
+#### Ubuntu 或 WSL 可以這麼部屬
 
 1. 安裝Python3.7
     ```
