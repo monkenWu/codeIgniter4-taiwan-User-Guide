@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Build Your First Application &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>建構第一個應用程式 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
   
 
   
@@ -108,7 +108,7 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Build Your First Application</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">建構第一個應用程式</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="static_pages.html">Static pages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="news_section.html">News section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="create_news_items.html">Create news items</a></li>
@@ -120,10 +120,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 概觀</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">應用程式架構</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">Models、Views 以及 Controllers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">Autoloading Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">Services</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">Working With HTTP Requests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">Security Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
 </li>
 </ul>
@@ -318,7 +318,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Build Your First Application</li>
+      <li>建構第一個應用程式</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -335,107 +335,71 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="build-your-first-application">
-<h1>Build Your First Application<a class="headerlink" href="#build-your-first-application" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>This tutorial is intended to introduce you to the CodeIgniter4 framework
-and the basic principles of MVC architecture. It will show you how a
-basic CodeIgniter application is constructed in a step-by-step fashion.</p>
-<p>If you are not familiar with PHP, we recommend that you check out
-the <a class="reference external" href="https://www.w3schools.com/php/default.asp">W3Schools PHP Tutorial</a> before continuing.</p>
-<p>In this tutorial, you will be creating a <strong>basic news application</strong>. You
-will begin by writing the code that can load static pages. Next, you
-will create a news section that reads news items from a database.
-Finally, you’ll add a form to create news items in the database.</p>
-<p>This tutorial will primarily focus on:</p>
+  <div class="section" id="id1">
+<h1>建構第一個應用程式<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>緒論<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>本教學旨在向您介紹 CodeIgniter4 框架與 MVC 設計模式的基本原則。它將會向你展示如何逐步建構一個基本的 CodeIgniter 應用程式。</p>
+<p>如果你對 PHP 並不熟悉，我們建議你在使用這個教學之前，不妨先查看 <a class="reference external" href="https://www.w3school.com.cn/php/index.asp">W3Schools PHP</a> （簡體中文）教學。</p>
+<p>在這個教學中，你將會創建一個 <strong>基本的新聞應用程式</strong> 。首先會從靜態頁面的程式開始編寫。接著，你將創建從資料庫中讀取新聞內容的程式。最後，你將透過教學創建一個表單頁面，並且透過這個表單你可以在資料庫中創建新聞內容。</p>
+<p>本教學將著重於：</p>
 <ul class="simple">
-<li>Model-View-Controller basics</li>
-<li>Routing basics</li>
-<li>Form validation</li>
-<li>Performing basic database queries using CodeIgniter’s “Query Builder”</li>
+<li>模型、視圖與控制器的基本知識。</li>
+<li>路由的基本知識。</li>
+<li>表單驗證。</li>
+<li>使用 CodeIgniter 的「查詢生成器」執行基本的資料庫查詢。</li>
 </ul>
-<p>The entire tutorial is split up over several pages, each explaining a
-small part of the functionality of the CodeIgniter framework. You’ll go
-through the following pages:</p>
+<p>整個教學被切分成了數個條目，每個條目都解釋了一部份的 CodeIgniter 框架功能。你將會瀏覽以下幾個頁面：</p>
 <ul class="simple">
-<li>Introduction, this page, which gives you an overview of what to
-expect and gets your default application downloaded and running.</li>
-<li><a class="reference internal" href="static_pages.html"><span class="doc">Static pages</span></a>, which will teach you the basics
-of controllers, views and routing.</li>
-<li><a class="reference internal" href="news_section.html"><span class="doc">News section</span></a>, where you’ll start using models
-and will be doing some basic database operations.</li>
-<li><a class="reference internal" href="create_news_items.html"><span class="doc">Create news items</span></a>, which will introduce
-more advanced database operations and form validation.</li>
-<li><a class="reference internal" href="conclusion.html"><span class="doc">Conclusion</span></a>, which will give you some pointers on
-further reading and other resources.</li>
+<li>緒論（本頁），概述整個教學的內容，並且部屬基本的 CodeIgniter 框架以及運行。</li>
+<li><a class="reference internal" href="static_pages.html"><span class="doc">靜態頁面</span></a>，教導你控制器、視圖與路由的基本知識。</li>
+<li><a class="reference internal" href="news_section.html"><span class="doc">新聞頁面</span></a>，你將開始使用模型，並執行一些基本的資料庫操作。</li>
+<li><a class="reference internal" href="create_news_items.html"><span class="doc">建立新聞</span></a>，開始更深入的資料庫操作，以及表單驗證。</li>
+<li><a class="reference internal" href="conclusion.html"><span class="doc">結論</span></a>，將給你一些進一步閱讀其他資源的指引。</li>
 </ul>
-<p>Enjoy your exploration of the CodeIgniter framework.</p>
+<p>開始享受對 CodeIgniter 的探索吧！</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
-<div class="section" id="getting-up-and-running">
-<h2>Getting Up and Running<a class="headerlink" href="#getting-up-and-running" title="Permalink to this headline">¶</a></h2>
-<p>You can download a release manually from the site, but for this tutorial we will
-use the recommended way and install the AppStarter package through Composer.
-From your command line type the following:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">➜</span> <span class="nx">composer</span> <span class="nx">create</span><span class="o">-</span><span class="nx">project</span> <span class="nx">codeigniter4</span><span class="o">/</span><span class="nx">appstarter</span> <span class="nx">ci</span><span class="o">-</span><span class="nx">blog</span> <span class="o">-</span><span class="nx">s</span> <span class="nx">rc</span>
+<div class="section" id="id3">
+<h2>部屬與運作<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>你可以從官方網站手動下載發行版，但在這個教學中，我們推薦你透過 Composer 安裝 AppStarter 程式包（一個穩定版本），並且在命令列中，請使用下列指令：</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">➜</span> <span class="nx">composer</span> <span class="nx">create</span><span class="o">-</span><span class="nx">project</span> <span class="nx">codeigniter4</span><span class="o">/</span><span class="nx">appstarter</span> <span class="nx">ci</span><span class="o">-</span><span class="nx">blog</span>
 </pre></div>
 </div>
-<p>This creates a new folder, ci-blog, which contains your application code, with
-CodeIgniter installed in the vendor folder.</p>
-<p>By default, CodeIgniter starts up in production mode. This is a safety feature
-to keep your site a bit more secure in case settings are messed up once it is live.
-So first let’s fix that. Copy or rename the <code class="docutils literal notranslate"><span class="pre">env</span></code> file to <code class="docutils literal notranslate"><span class="pre">.env</span></code>. Open it up.</p>
-<p>This file contains server-specific settings. This means you never will need to
-commit any sensitive information to your version control system. It includes
-some of the most common ones you want to enter already, though they are all commented
-out. So uncomment the line with CI_ENVIRONMENT on it, and change <code class="docutils literal notranslate"><span class="pre">production</span></code> to
-<code class="docutils literal notranslate"><span class="pre">development</span></code>:</p>
+<p>這將會建立一個新的 ci-blog 資料夾，你的應用程式將會包含在其中， CodeIgniter 將被安裝在 vendor 資料夾。</p>
+<p>在預設情況下，CodeIgniter 將以正式（ production ）模式運作。這是一項安全性功能，它可以預防你的網站在正式上線後更加安全。但在開發的過程中，我們需要一些環境設定，所以先將根目錄下的 <code class="docutils literal notranslate"><span class="pre">env</span></code> 複製後重新命名成 <code class="docutils literal notranslate"><span class="pre">.env</span></code>，並且打開它。</p>
+<p>這個檔案包含特定於伺服器的設定，這代表著你不需要向版本控制系統提交任何敏感資訊。它包括一些你會需要的常見內容，儘管它們目前是被註解掉的狀態。因此，你首先需要取消 CI_ENVIRONMENT 的註解，並且將 <code class="docutils literal notranslate"><span class="pre">production</span></code> 替換成 <code class="docutils literal notranslate"><span class="pre">development</span></code>:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">CI_ENVIRONMENT</span> <span class="o">=</span> <span class="nx">development</span>
 </pre></div>
 </div>
-<p>With that out of the way it’s time to view your application in a browser. You can
-serve it through any server of your choice, Apache, Nginx, etc, but CodeIgniter
-comes with a simple command that takes advantage of PHP’s built-in server to get
-you up and running fast on your development machines. Type the following on the
-command line from the root of your project:</p>
+<p>完成了上述設定，是時候在瀏覽器中查看你的應用程式了。你可以通過你使用的任何伺服器 Apache 或 Nginx 提供服務，但 CodeIgniter 提供一個簡但的指令，利用 PHP 的內建伺服器讓你在開發環境中可以快速啟動且運行。請進入專案根目錄鍵入下列指令:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">serve</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="the-welcome-page">
-<h2>The Welcome Page<a class="headerlink" href="#the-welcome-page" title="Permalink to this headline">¶</a></h2>
-<p>Now point your browser to the correct URL you will be greeted by a welcome screen.
-Try it now by heading to the following URL:</p>
+<div class="section" id="id4">
+<h2>歡迎頁面<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>現在，將你的瀏覽器指向正確的 URL ，你將可以看到歡迎畫面。請試著在瀏覽器中鍵入以下 URL:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">http</span><span class="o">://</span><span class="nx">localhost</span><span class="o">:</span><span class="mi">8080</span>
 </pre></div>
 </div>
-<p>and you should be greeted by the following page:</p>
+<p>你應該可以看到以下畫面:</p>
 <img alt="../_images/welcome1.png" src="../_images/welcome1.png" />
-<p>This means that your application works and you can start making changes to it.</p>
+<p>這代表你的應用程式正常工作中，你可以開始對它進行修改。</p>
 </div>
-<div class="section" id="debugging">
-<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
-<p>Now that you’re in development mode, you’ll see a toolbar on the bottom of your application.
-This toolbar contains a number of helpful items that you can reference during development.
-This will never show in production environments. Clicking any of the tabs along the bottom
-brings up additional information. Clicking the X on the right of the toolbar minimizes it
-to a small square with the CodeIgniter flame on it. If you click that the toolbar
-will show again.</p>
-<p>In addition to this, CodeIgniter has some helpful error pages when you hit exceptions or
-other errors in your program. Open up <code class="docutils literal notranslate"><span class="pre">app/Controllers/Home.php</span></code> and change some line
-to generate an error (removing a semi-colon or brace should do the trick!). You will be
-greeted by a screen looking something like this:</p>
+<div class="section" id="id5">
+<h2>除錯<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>現在，你正處於開發（ development ）模式，你將在應用程式底部看到一個工具列。這個工具列有著許多有用的功能，你可以在開發期間使用這些功能。這個工具列並不會在正式環境中出現。按一下底下的選項卡可以顯示不同功能的資訊，按了工具列右側的 X 將可以把工具列縮小成一個方塊，這個方塊上頭有著 CodeIgniter 的火焰，再按一下工具列就會再次顯示。</p>
+<p>除此之外，在開發的過程中如果你的程式出現異常或錯誤時，CodeIgniter 還有一個十分有用的錯誤頁面。打開 <code class="docutils literal notranslate"><span class="pre">app/Controllers/Home.php</span></code> 文件，並且嘗試更改一些程式碼故意產生錯誤（刪除大括弧或分號），重新整理畫面後你將可以看到以下畫面：</p>
 <img alt="../_images/error.png" src="../_images/error.png" />
-<p>There are a couple of things to note here:</p>
-<p>1. Hovering over the red header at the top reveals a <code class="docutils literal notranslate"><span class="pre">search</span></code> link that will open up
-Google.com in a new tab and searching for the exception.
-2. Clicking the <code class="docutils literal notranslate"><span class="pre">arguments</span></code> link on any line in the Backtrace will expand a list of
-the arguments that were passed into that function call.</p>
-<p>Everything else should be clear when you see it.</p>
-<p>Now that we know how to get started and how to debug a little, let’s get started building this
-small news application.</p>
+<p>你需要注意幾件事情：</p>
+<ol class="arabic simple">
+<li>頂部的紅色標題是一個連結，點下去後將會自動打開 Google.com 並替您搜索這個異常。</li>
+<li>按一下 Backtrace 中任意的 <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 鏈結將展開傳遞到該函數，並且呼叫中的參數列表。</li>
+</ol>
+<p>當你看到它時，一切會非常明瞭。</p>
+<p>現在，我們已經知道如何部屬與如何除錯，讓我們開始建構這個小型應用程式吧！</p>
 </div>
 </div>
 
@@ -461,7 +425,7 @@ small news application.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Mar 18, 2020.
+        Last updated on Mar 20, 2020.
       </span>
 
     </p>
