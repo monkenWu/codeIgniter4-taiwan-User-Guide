@@ -31,9 +31,12 @@ CodeIgniter 使用手冊基於 Sphinx 進行撰寫，它可以管理文檔並且
 格式進行撰寫。
 
 ### 首要條件
-Sphinx 需要 Python 的支援，如果你的作業系統是 OS X 或是 Ubuntu ，則內建了 Python 。你可以在 Terminal 中以不附帶任何參數的方式執行 ``Python`` ，它會載入並顯示你的 Python 版本。如果你使用的版本並非 2.7.* ，請額外或重新安裝一組。
+Sphinx 需要 Python 的支援，如果你的作業系統是 MacOS 或是 Ubuntu ，則內建了 Python 。你可以在 Terminal 中以不附帶任何參數的方式執行 ``Python`` ，它會載入並顯示你的 Python 版本。如果你使用的版本並非3.6以上 ，請更新或重新安裝。
 
 ### 安裝
+
+#### MacOS 與 Linux
+
 1. 安裝 [easy_install](http://peak.telecommunity.com/DevCenter/EasyInstall#installing-easy-install) 
 2. 執行 ``easy_install "sphinx==1.4.5"``
 3. 執行 ``easy_install "sphinxcontrib-phpdomain==0.7.0"``
@@ -41,6 +44,30 @@ Sphinx 需要 Python 的支援，如果你的作業系統是 OS X 或是 Ubuntu 
 4. 安裝 CI Lexer ，它的功能是在代碼範例中突出顯示 PHP 、 HTML 、 CSS ，以及 JavaScript 語法（請參閱　cilexer / README　）
 5. 執行 ``cd <專案根目錄>``
 6. 執行 ``make html`` 產出 HTML 。
+
+### Ubuntu 或 WSL 可以這麼部屬
+
+1. 安裝Python3.7
+    ```
+    $ sudo apt update
+    $ sudo apt install software-properties-common
+    $ sudo add-apt-repository ppa:deadsnakes/ppa
+    $ sudo apt install python3.7
+    $ python3.7 --version
+    ```
+2. 安裝 pip
+    ```
+    $ sudo apt-get install python3-pip
+    ```
+3. 安裝相關套件
+    ```
+    $ python3 -m pip install "sphinx==1.4.5"
+    $ python3 -m pip install "sphinxcontrib-phpdomain==0.7.0"
+    $ python3 -m pip install "jieba==0.42.1"
+    $ cd <專案根目錄>/cilexer
+    $ sudo python3 setup.py install
+    ```
+4. 執行 ``cd <專案根目錄>`` 執行 ``make html`` 產出 HTML 。
 
 ### 編輯與創建文檔
 所有原始檔案都存放在 ``source /`` 底下，你可以新增新的文檔或修改已有的文檔。就和修改程式碼一樣，我們建議新的內容都是以分支的方式新增，並且向此 Repository 發出  pull requests 。
