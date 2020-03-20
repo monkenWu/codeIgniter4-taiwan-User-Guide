@@ -1,221 +1,197 @@
 ###################
-Security Guidelines
+安全指南
 ###################
 
-We take security seriously.
-CodeIgniter incorporates a number of features and techniques to either enforce
-good security practices, or to enable you to do so easily.
+我們非常重視安全性，CodeIgniter 包含許多功能和技術去加強安全實踐，也能使你輕鬆不少。
 
-We respect the `Open Web Application Security Project (OWASP) <https://owasp.org>`_
-and follow their recommendations as much as possible.
+我們重視 `開放 Web 應用程式安全專案（OWASP） <https://www.owasp.org>`_ ，並盡可能的遵循他們的建議。
 
-The following comes from
-`OWASP Top Ten Cheat Sheet <https://owasp.org/www-project-top-ten/>`_,
-identifying the top vulnerabilities for web applications.
-For each, we provide a brief description, the OWASP recommendations, and then
-the CodeIgniter provisions to address the problem.
+以下為 Web 應用程式的主要漏洞，來自 `OWASP 十大備忘錄  <https://www.owasp.org/index.php/OWASP_Top_Ten_Cheat_Sheet>`_。對於每個漏洞，我們會簡單的敘述、提供OWASP 的建議，然後利用規定 CodeIgniter 的實踐來解決這個問題。
 
 ************
-A1 Injection
+A1 注入攻擊
 ************
 
-An injection is the inappropriate insertion of partial or complete data via
-the input data from the client to the application. Attack vectors include SQL,
-XML, ORM, code & buffer overflows.
+注入攻擊是在從使用者端到應用程式的輸入資料中，插入不當的資料。攻擊的手段包括 SQL、XML、ORM、代碼和緩衝區溢位。
 
-OWASP recommendations
+OWASP 建議
 ---------------------
 
-- Presentation: set correct content type, character set & locale
-- Submission: validate fields and provide feedback
-- Controller: sanitize input; positive input validation using correct character set
-- Model: parameterized queries
+- 演示：規定輸入的資料類型、字元集和地區
+- 提交：驗證欄位並提供回饋
+- 控制器：將輸入內容消毒，使用正確的字元集進行正輸入驗證
+- 模型：參數化查詢
 
-CodeIgniter provisions
+CodeIgniter 實踐
 ----------------------
 
-- `HTTP library <../incoming/incomingrequest.html>`_ provides for input field filtering & content metadata
-- Form validation library
+- `HTTP 函式庫 <../incoming/incomingrequest.html>`_ 提供對輸入欄位的過濾和內容的元資料
+- 表單驗證函式庫
 
 *********************************************
-A2 Weak authentication and session management
+A2 身分驗證不足以及 session 管理不當
 *********************************************
 
-Inadequate authentication or improper session management can lead to a user
-getting more privileges than they are entitled to.
+身份驗證不足或 session 管理不當都可能導致，使用者獲得超過他們身分的許可權。
 
-OWASP recommendations
+OWASP 建議
 ---------------------
 
-- Presentation: validate authentication & role; send CSRF token with forms
-- Design: only use built-in session management
-- Controller: validate user, role, CSRF token
-- Model: validate role
-- Tip: consider the use of a request governor
+- 演示：驗證使用者和身份；使用表單發送 CSRF token
+- 設計：僅使用內置 session 管理
+- 控制器：驗證使用者、身分、CSRF token
+- 模型：驗證身分
+- 提示：考慮使用請求調速器
 
-CodeIgniter provisions
+CodeIgniter 實踐
 ----------------------
 
-- `Session <../libraries/sessions.html>`_ library
-- `HTTP library <../incoming/incomingrequest.html>`_ provides for CSRF validation
-- Easy to add third party authentication
+- `Session 函式庫 <../libraries/sessions.html>`_ 
+- `HTTP 函式庫 <../incoming/incomingrequest.html>`_ 提供 CSRF 驗證
+- 易於添加第三方的驗證功能
 
 *****************************
-A3 Cross Site Scripting (XSS)
+A3 跨站腳本攻擊 (XSS)
 *****************************
 
-Insufficient input validation where one user can add content to a web site
-that can be malicious when viewed by other users to the web site.
+當對輸入的驗證不足時，使用者可以向網站添加惡意內容，影響其他使用者瀏覽網站。
 
-OWASP recommendations
+OWASP 建議
 ---------------------
 
-- Presentation: output encode all user data as per output context; set input constraints
-- Controller: positive input validation
-- Tips: only process trustworthy data; do not store data HTML encoded in DB
+- 演示：將使用者資料編碼成單一內容，並限制輸入內容
+- 控制器：正輸入驗證
+- 提示：僅處理可信的資料；不在資料庫中儲存 HTML 
 
-CodeIgniter provisions
+CodeIgniter 實踐
 ----------------------
 
-- esc function
-- Form validation library
+- esc 函數
+- 表單驗證函式庫
 
 ***********************************
-A4 Insecure Direct Object Reference
+A4 不安全的直接參考物件
 ***********************************
 
-Insecure Direct Object References occur when an application provides direct
-access to objects based on user-supplied input. As a result of this vulnerability
-attackers can bypass authorization and access resources in the system directly,
-for example database records or files.
+當應用程式根據使用者輸入的內容，直接存取物件時，會發生這個漏洞。由於此漏洞，攻擊者可以繞過授權並直接訪問系統中的資源，例如資料庫記錄或檔案。
 
-OWASP recommendations
+OWASP 建議
 ---------------------
 
-- Presentation: don't expose internal data; use random reference maps
-- Controller: obtain data from trusted sources or random reference maps
-- Model: validate user roles before updating data
+- 演示：不公開內部資料；使用隨機參考映射
+- 控制器：只從受信任的來源或隨機參考映射來獲取資料
+- 模型：在更新資料之前，先驗證使用者的身分
 
-CodeIgniter provisions
+CodeIgniter 實踐
 ----------------------
 
-- Form validation library
-- Easy to add third party authentication
+- 表單驗證函式庫
+- 易於添加第三方的驗證功能
 
 ****************************
-A5 Security Misconfiguration
+A5 錯誤的安全設定
 ****************************
 
-Improper configuration of an application architecture can lead to mistakes
-that might compromise the security of the whole architecture.
+不當的設定應用程式架構可能會導致錯誤，從而危及整個架構的安全性。
 
-OWASP recommendations
+OWASP 建議
 ---------------------
 
-- Presentation: harden web and application servers; use HTTP strict transport security
-- Controller: harden web and application servers; protect your XML stack
-- Model: harden database servers
+演示：強化 Web 和應用程式伺服器；使用嚴格的 HTTP 安全性傳輸
+控制器：強化 Web 和應用伺服器；保護你的 XML 堆疊
+模型：強化資料庫伺服器
 
-CodeIgniter provisions
+CodeIgniter 實踐
 ----------------------
 
-- Sanity checks during bootstrap
+- 在 bootstrap 時進行合理的檢查
 
 **************************
-A6 Sensitive Data Exposure
+A6 暴露敏感的資料
 **************************
 
-Sensitive data must be protected when it is transmitted through the network.
-Such data can include user credentials and credit cards. As a rule of thumb,
-if data must be protected when it is stored, it must be protected also during
-transmission.
+敏感的資料通過網路傳輸時必須受到保護。例如使用者憑據和信用卡就屬於此類資料。根據經驗，如果資料儲存時就必須保護資料，則在傳輸過程中也必須保護資料。
 
-OWASP recommendations
+OWASP 建議
 ---------------------
 
-- Presentation: use TLS1.2; use strong ciphers and hashes; do not send keys or hashes to browser
-- Controller: use strong ciphers and hashes
-- Model: mandate strong encrypted communications with servers
+演示：使用 TLS1.2；使用有強密碼和雜湊；不向瀏覽器發送金鑰或雜湊
+控制器：使用強密碼和雜湊
+模型：要求與伺服器通信時，進行強加密
 
-CodeIgniter provisions
+CodeIgniter 實踐
 ----------------------
 
-- Session keys stored encrypted
+- 加密儲存 Session 金鑰
 
 ****************************************
-A7 Missing Function Level Access Control
+A7 缺少功能級存取控制
 ****************************************
 
-Sensitive data must be protected when it is transmitted through the network.
-Such data can include user credentials and credit cards. As a rule of thumb,
-if data must be protected when it is stored, it must be protected also during
-transmission.
+敏感的資料通過網路傳輸時必須受到保護。例如使用者憑據和信用卡就屬於此類資料。根據經驗，如果資料儲存時就必須保護資料，則在傳輸過程中也必須保護資料。
 
-OWASP recommendations
+OWASP 建議
 ---------------------
 
-- Presentation: ensure that non-web data is outside the web root; validate users and roles; send CSRF tokens
-- Controller: validate users and roles; validate CSRF tokens
-- Model: validate roles
+- 演示：確保 Web 根內沒有非 Web 資料；驗證使用者和角色；發送 CSRF token
+- 控制器：驗證使用者和身分；驗證 CSRF token
+- 模型：驗證身分
 
-CodeIgniter provisions
+CodeIgniter 實踐
 ----------------------
 
-- Public folder, with application and system outside
-- `HTTP library <../incoming/incomingrequest.html>`_ provides for CSRF validation
+- 在應用程式和系統外部有公用資料夾。
+- `HTTP 函式庫 <../incoming/incomingrequest.html>`_ 提供 CSRF 驗證
 
 ************************************
-A8 Cross Site Request Forgery (CSRF)
+A8 跨網站請求偽造 (CSRF)
 ************************************
 
-CSRF is an attack that forces an end user to execute unwanted actions on a web
-application in which he/she is currently authenticated.
+CSRF 攻擊會迫使在 Web 應用程式中已經驗證身份的終端使用者，執行他們不想要的操作。
 
-OWASP recommendations
+OWASP 建議
 ---------------------
 
-- Presentation: validate users and roles; send CSRF tokens
-- Controller: validate users and roles; validate CSRF tokens
-- Model: validate roles
+- 演示：驗證使用者和身分；發送 CSRF 權杖
+- 控制器：驗證使用者和身分；驗證 CSRF 權杖
+- 模型：驗證身分
 
-CodeIgniter provisions
+CodeIgniter 實踐
 ----------------------
 
-- `HTTP library <../incoming/incomingrequest.html>`_ provides for CSRF validation
+- `HTTP 函式庫 <../incoming/incomingrequest.html>`_ 提供 CSRF 驗證
 
 **********************************************
-A9 Using Components with Known Vulnerabilities
+A9 使用具有已知漏洞的元件
 **********************************************
 
-Many applications have known vulnerabilities and known attack strategies that
-can be exploited in order to gain remote control or to exploit data.
+許多應用程式或函式庫都有已知的漏洞和攻擊策略，可以利用他們來獲得遠端的控制權或資料。
 
-OWASP recommendations
+OWASP 建議
 ---------------------
 
-- Don't use any of these
+- 避免使用這些元件
 
-CodeIgniter provisions
+CodeIgniter 實踐
 ----------------------
 
-- Third party libraries incorporated must be vetted
+- 合作的第三方函式庫都需要經過審核
 
 **************************************
-A10 Unvalidated Redirects and Forwards
+A10 未驗證的重定向和跳轉
 **************************************
 
-Faulty business logic or injected actionable code could redirect the user
-inappropriately.
+錯誤的業務邏輯或被注入可操作的程式碼可能會不當的重定向使用者。
 
-OWASP recommendations
+OWASP 建議
 ---------------------
 
-- Presentation: don't use URL redirection; use random indirect references
-- Controller: don't use URL redirection; use random indirect references
-- Model: validate roles
+- 演示：避免使用 URL 重定向；使用隨機間接參考
+- 控制器：避免使用 URL 重定向；使用隨機間接參考
+- 模型：驗證身分
 
-CodeIgniter provisions
+CodeIgniter 實踐
 ----------------------
 
-- `HTTP library <../incoming/incomingrequest.html>`_ provides for ...
-- `Session <../libraries/sessions.html>`_ library provides flashdata
+- `HTTP 函式庫 <../incoming/incomingrequest.html>`_ 提供相關功能
+- `Session 函式庫 <../libraries/sessions.html>`_ 提供快閃記憶體資料

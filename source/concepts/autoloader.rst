@@ -1,96 +1,67 @@
 #################
-Autoloading Files
+自動載入檔案
 #################
 
-Every application consists of a large number of classes in many different locations.
-The framework provides classes for core functionality. Your application will have a
-number of libraries, models, and other entities to make it work. You might have third-party
-classes that your project is using. Keeping track of where every single file is, and
-hard-coding that location into your files in a series of ``requires()`` is a massive
-headache and very error-prone. That's where autoloaders come in.
+每個應用程式都在不同的位置包含有大量的類文件，像是框架有為了實現核心功能的類，而你的應用可能又會擁有大量的函式庫、模型以及其他實體文件，甚至你也可能需要第三方的類別庫來供專案使用。記錄每個單獨檔案的路徑，並寫死在一系列的 ``requires()`` 在檔案中，這是一件非常令人頭痛且容易出錯的事情。這就是為什麼需要自動載入器。
 
-CodeIgniter provides a very flexible autoloader that can be used with very little configuration.
-It can locate individual non-namespaced classes, namespaced classes that adhere to
-`PSR4 <https://www.php-fig.org/psr/psr-4/>`_ autoloading
-directory structures, and will even attempt to locate classes in common directories (like Controllers,
-Models, etc).
+CodeIgniter 提供了一個非常靈活且極少需要配置的自動載入器。它可以定位單個非命名空間標註的類別、符合 `PSR4 <http://www.php-fig.org/psr/psr-4/>`_ 的命名空間規範目錄加載結構的類別，甚至可以在常規目錄下定位類別檔案（例如 Controller、Model等）。
 
-For performance improvement, the core CodeIgniter components have been added to the classmap.
+為了提升效能，CodeIgniter的核心組件已被添加到類別映射檔案中。
 
-The autoloader works great by itself, but can also work with other autoloaders, like
-`Composer <https://getcomposer.org>`_, or even your own custom autoloaders, if needed.
-Because they're all registered through
-`spl_autoload_register <https://www.php.net/manual/en/function.spl-autoload-register.php>`_,
-they work in sequence and don't get in each other's way.
+自動載入器可以獨立運行，但如果你需要的話，也可以和其他自動載入器協同運行，例如 `Composer <https://getcomposer.org>`_ 或者是你自己的自定義載入器。因為它們都是通過 `spl_autoload_register <http://php.net/manual/en/function.spl-autoload-register.php>`_ 來註冊運行的，所以可以依次運行，互不干擾。
 
-The autoloader is always active, being registered with ``spl_autoload_register()`` at the
-beginning of the framework's execution.
+自動載入器總是處於激活狀態，在框架開始運行時通過 ``spl_autoload_register()`` 進行註冊。
 
-Configuration
+設定
 =============
 
-Initial configuration is done in **/app/Config/Autoload.php**. This file contains two primary
-arrays: one for the classmap, and one for PSR4-compatible namespaces.
+初始設定是在 **/app/Config/Autoload.php** 文件中進行。該文件包含兩個的主要陣列，一個用於類別映射圖，一個用於符合 PSR-4 的命名空間規範。
 
-Namespaces
+命名空間
 ==========
 
-The recommended method for organizing your classes is to create one or more namespaces for your
-application's files. This is most important for any business-logic related classes, entity classes,
-etc. The ``psr4`` array in the configuration file allows you to map the namespace to the directory
-those classes can be found in::
+我們建議，通過在應用程式檔案中創建一個或多個命名空間來管理你的類別。而這一點，對於業務邏輯相關聯的類別、實體類別等也是最為重要的。設定檔案中的 ``psr4`` 陣列，允許你將命名空間和對應的類別所存在的目錄進行映射::
 
 	$psr4 = [
 		'App'         => APPPATH,
 		'CodeIgniter' => SYSTEMPATH,
 	];
 
-The key of each row is the namespace itself. This does not need a trailing slash. If you use double-quotes
-to define the array, be sure to escape the backward slash. That means that it would be ``My\\App``,
-not ``My\App``. The value is the location to the directory the classes can be found in. They should
-have a trailing slash.
+陣列每一行的鍵就是命名空間本身，不需要反斜線。如果你需要在定義陣列時使用雙引號，就必須使用反斜線進行轉義。這代表會長得像 ``My\\App`` 而不是 ``My\App`` 這樣。對應的值就是這些類別所存在的資料夾，而這些值需要含有反斜線。
 
-By default, the application folder is namespace to the ``App`` namespace. While you are not forced to namespace the controllers,
-libraries, or models in the application directory, if you do, they will be found under the ``App`` namespace.
-You may change this namespace by editing the **/app/Config/Constants.php** file and setting the
-new namespace value under the ``APP_NAMESPACE`` setting::
+應用程式的資料夾預設對應著 ``App`` 命名空間。雖然你沒有一定要給應用程式目錄下的控制器、庫和模型聲明命名空間，但是如果你這樣做了的話， 這些檔案就可以在 ``App`` 命名空間下被找到。你可以透過編輯 **/app/Config/Constants.php** 檔案來改變這個命名空間，並且透過更改 ``APP_NAMESPACE`` 選項來設置新的命名空間數值::
 
 	define('APP_NAMESPACE', 'App');
 
-You will need to modify any existing files that are referencing the current namespace.
+你需要修改所有現存指向當前命名空間的檔案。
 
-.. important:: Config files are namespaced in the ``Config`` namespace, not in ``App\Config`` as you might
-	expect. This allows the core system files to always be able to locate them, even when the application
-	namespace has changed.
+.. important:: 設定檔案被聲名在 ``Config`` 命名空間中，而不是如你所想的 ``App\Config``。這個特性使得核心系統文件，甚至在應用程式的命名空間被更改的情況下，也可以被精準的定位。
 
-Classmap
+
+
+類別映射圖
 ========
 
-The classmap is used extensively by CodeIgniter to eke the last ounces of performance out of the system
-by not hitting the file-system with extra ``is_file()`` calls. You can use the classmap to link to
-third-party libraries that are not namespaced::
+類別映射圖是 CodeIgniter 用來榨乾系統最後一分性能的手段，通過不額外調用 ``is_file()`` 查詢文件系統來實現。即使第三方函式庫並沒有命名空間，你也可以利用類別映射圖來連接他們::
 
 	$classmap = [
 		'Markdown' => APPPATH .'third_party/markdown.php'
 	];
 
-The key of each row is the name of the class that you want to locate. The value is the path to locate it at.
+每一行的鍵就是你想定位的類別名，而值就是用來定位它的路徑
 
-Legacy Support
+支援舊版本
 ==============
 
-If neither of the above methods finds the class, and the class is not namespaced, the autoloader will look in the
-**/app/Libraries** and **/app/Models** directories to attempt to locate the files. This provides
-a measure to help ease the transition from previous versions.
+如果以上的所有方法都找不到對應的類別文件，且這個類別也沒有對應的命名空間，自動載入器將會查找 **/application/Libraries** 和 **/application/Models** 目錄來嘗試定位檔案。這提供了舊版本過渡到新版本的一個方式。
 
-There are no configuration options for legacy support.
+對於舊版本而言，沒有額外的設定選項。
 
-Composer Support
+支援 Composer
 ================
 
-Composer support is automatically initialized by default. By default, it looks for Composer's autoload file at
-ROOTPATH.'vendor/autoload.php'. If you need to change the location of that file for any reason, you can modify
-the value defined in ``Config\Constants.php``.
+CodeIgniter 在初始化時就會預設支援 Composer。 它會在 ``ROOTPATH.'vendor/autoload.php'`` 中尋找 Composer 的自動載入檔案。 如果你需要更改這個檔案的位置，你可以修改定義在 ``Config\Constants.php`` 中的值。
 
-.. note:: If the same namespace is defined in both CodeIgniter and Composer, CodeIgniter's autoloader will be
-    the first one to get a chance to locate the file.
+.. note:: 如果同時在 CodeIgniter 和 Composer 中定義了命名空間，CodeIgniter 的自動載入器會優先定位到檔案。
+
+	
