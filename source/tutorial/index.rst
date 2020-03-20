@@ -1,45 +1,36 @@
 ############################
-Build Your First Application
+建構第一個應用程式
 ############################
 
-Overview
+緒論
 ********
 
-This tutorial is intended to introduce you to the CodeIgniter4 framework
-and the basic principles of MVC architecture. It will show you how a
-basic CodeIgniter application is constructed in a step-by-step fashion.
+本教學旨在向您介紹 CodeIgniter4 框架與 MVC 設計模式的基本原則。它將會向你展示如何逐步建構一個基本的 CodeIgniter 應用程式。
 
-If you are not familiar with PHP, we recommend that you check out
-the `W3Schools PHP Tutorial <https://www.w3schools.com/php/default.asp>`_ before continuing.
+如果你對 PHP 並不熟悉，我們建議你在使用這個教學之前，不妨先查看 `W3Schools PHP <https://www.w3school.com.cn/php/index.asp>`_ （簡體中文）教學。
 
-In this tutorial, you will be creating a **basic news application**. You
-will begin by writing the code that can load static pages. Next, you
-will create a news section that reads news items from a database.
-Finally, you'll add a form to create news items in the database.
+在這個教學中，你將會創建一個 **基本的新聞應用程式** 。首先會從靜態頁面的程式開始編寫。接著，你將創建從資料庫中讀取新聞內容的程式。最後，你將透過教學創建一個表單頁面，並且透過這個表單你可以在資料庫中創建新聞內容。
 
-This tutorial will primarily focus on:
+本教學將著重於：
 
--  Model-View-Controller basics
--  Routing basics
--  Form validation
--  Performing basic database queries using CodeIgniter's "Query Builder"
+- 模型、視圖與控制器的基本知識。
+- 路由的基本知識。
+- 表單驗證。
+- 使用 CodeIgniter 的「查詢生成器」執行基本的資料庫查詢。
 
-The entire tutorial is split up over several pages, each explaining a
-small part of the functionality of the CodeIgniter framework. You'll go
-through the following pages:
+整個教學被切分成了數個條目，每個條目都解釋了一部份的 CodeIgniter 框架功能。你將會瀏覽以下幾個頁面：
 
--  Introduction, this page, which gives you an overview of what to
-   expect and gets your default application downloaded and running.
--  :doc:`Static pages <static_pages>`, which will teach you the basics
-   of controllers, views and routing.
--  :doc:`News section <news_section>`, where you'll start using models
-   and will be doing some basic database operations.
--  :doc:`Create news items <create_news_items>`, which will introduce
-   more advanced database operations and form validation.
--  :doc:`Conclusion <conclusion>`, which will give you some pointers on
-   further reading and other resources.
+-  緒論（本頁），概述整個教學的內容，並且部屬基本的 CodeIgniter 框架以及運行。
 
-Enjoy your exploration of the CodeIgniter framework.
+- :doc:`靜態頁面 <static_pages>`，教導你控制器、視圖與路由的基本知識。
+
+- :doc:`新聞頁面 <news_section>`，你將開始使用模型，並執行一些基本的資料庫操作。
+
+- :doc:`建立新聞 <create_news_items>`，開始更深入的資料庫操作，以及表單驗證。
+
+- :doc:`結論 <conclusion>`，將給你一些進一步閱讀其他資源的指引。
+
+開始享受對 CodeIgniter 的探索吧！
 
 .. toctree::
 	:hidden:
@@ -50,83 +41,55 @@ Enjoy your exploration of the CodeIgniter framework.
 	create_news_items
 	conclusion
 
-Getting Up and Running
+部屬與運作
 **********************
 
-You can download a release manually from the site, but for this tutorial we will
-use the recommended way and install the AppStarter package through Composer.
-From your command line type the following:
+你可以從官方網站手動下載發行版，但在這個教學中，我們推薦你透過 Composer 安裝 AppStarter 程式包（一個穩定版本），並且在命令列中，請使用下列指令：
 
 ::
 
-    ➜ composer create-project codeigniter4/appstarter ci-blog -s rc
+    ➜ composer create-project codeigniter4/appstarter ci-blog
 
-This creates a new folder, ci-blog, which contains your application code, with
-CodeIgniter installed in the vendor folder.
+這將會建立一個新的 ci-blog 資料夾，你的應用程式將會包含在其中， CodeIgniter 將被安裝在 vendor 資料夾。
 
-By default, CodeIgniter starts up in production mode. This is a safety feature
-to keep your site a bit more secure in case settings are messed up once it is live.
-So first let's fix that. Copy or rename the ``env`` file to ``.env``. Open it up.
+在預設情況下，CodeIgniter 將以正式（ production ）模式運作。這是一項安全性功能，它可以預防你的網站在正式上線後更加安全。但在開發的過程中，我們需要一些環境設定，所以先將根目錄下的 ``env`` 複製後重新命名成 ``.env``，並且打開它。
 
-This file contains server-specific settings. This means you never will need to
-commit any sensitive information to your version control system. It includes
-some of the most common ones you want to enter already, though they are all commented
-out. So uncomment the line with CI_ENVIRONMENT on it, and change ``production`` to
-``development``::
+這個檔案包含特定於伺服器的設定，這代表著你不需要向版本控制系統提交任何敏感資訊。它包括一些你會需要的常見內容，儘管它們目前是被註解掉的狀態。因此，你首先需要取消 CI_ENVIRONMENT 的註解，並且將 ``production`` 替換成 ``development``::
 
     CI_ENVIRONMENT = development
 
-With that out of the way it's time to view your application in a browser. You can
-serve it through any server of your choice, Apache, Nginx, etc, but CodeIgniter
-comes with a simple command that takes advantage of PHP's built-in server to get
-you up and running fast on your development machines. Type the following on the
-command line from the root of your project::
+完成了上述設定，是時候在瀏覽器中查看你的應用程式了。你可以通過你使用的任何伺服器 Apache 或 Nginx 提供服務，但 CodeIgniter 提供一個簡但的指令，利用 PHP 的內建伺服器讓你在開發環境中可以快速啟動且運行。請進入專案根目錄鍵入下列指令::
 
     php spark serve
 
-
-The Welcome Page
+歡迎頁面
 ****************
 
-Now point your browser to the correct URL you will be greeted by a welcome screen.
-Try it now by heading to the following URL:
-
-::
+現在，將你的瀏覽器指向正確的 URL ，你將可以看到歡迎畫面。請試著在瀏覽器中鍵入以下 URL::
 
     http://localhost:8080
 
-and you should be greeted by the following page:
+你應該可以看到以下畫面:
 
 .. image:: ../images/welcome.png
 
-This means that your application works and you can start making changes to it.
+這代表你的應用程式正常工作中，你可以開始對它進行修改。
 
-Debugging
+除錯
 *********
 
-Now that you're in development mode, you'll see a toolbar on the bottom of your application.
-This toolbar contains a number of helpful items that you can reference during development.
-This will never show in production environments. Clicking any of the tabs along the bottom
-brings up additional information. Clicking the X on the right of the toolbar minimizes it
-to a small square with the CodeIgniter flame on it. If you click that the toolbar
-will show again.
+現在，你正處於開發（ development ）模式，你將在應用程式底部看到一個工具列。這個工具列有著許多有用的功能，你可以在開發期間使用這些功能。這個工具列並不會在正式環境中出現。按一下底下的選項卡可以顯示不同功能的資訊，按了工具列右側的 X 將可以把工具列縮小成一個方塊，這個方塊上頭有著 CodeIgniter 的火焰，再按一下工具列就會再次顯示。
 
-In addition to this, CodeIgniter has some helpful error pages when you hit exceptions or
-other errors in your program. Open up ``app/Controllers/Home.php`` and change some line
-to generate an error (removing a semi-colon or brace should do the trick!). You will be
-greeted by a screen looking something like this:
+除此之外，在開發的過程中如果你的程式出現異常或錯誤時，CodeIgniter 還有一個十分有用的錯誤頁面。打開 ``app/Controllers/Home.php`` 文件，並且嘗試更改一些程式碼故意產生錯誤（刪除大括弧或分號），重新整理畫面後你將可以看到以下畫面：
 
 .. image:: ../images/error.png
 
-There are a couple of things to note here:
+你需要注意幾件事情：
 
-1. Hovering over the red header at the top reveals a ``search`` link that will open up
-Google.com in a new tab and searching for the exception.
-2. Clicking the ``arguments`` link on any line in the Backtrace will expand a list of
-the arguments that were passed into that function call.
+1. 頂部的紅色標題是一個連結，點下去後將會自動打開 Google.com 並替您搜索這個異常。
 
-Everything else should be clear when you see it.
+2. 按一下 Backtrace 中任意的 ``arguments`` 鏈結將展開傳遞到該函數，並且呼叫中的參數列表。
 
+當你看到它時，一切會非常明瞭。
 
-Now that we know how to get started and how to debug a little, let's get started building this
-small news application.
+現在，我們已經知道如何部屬與如何除錯，讓我們開始建構這個小型應用程式吧！
