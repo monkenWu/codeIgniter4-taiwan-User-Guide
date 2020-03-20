@@ -1,52 +1,38 @@
 ##########################
-Working With HTTP Requests
+處裡 HTTP 請求
 ##########################
 
-In order to get the most out of CodeIgniter, you need to have a basic understanding of how HTTP requests
-and responses work. Since this is what you work with while developing web applications, understanding the
-concepts behind HTTP is a **must** for all developers that want to be successful.
+為了充分地使用 CodeIgniter，你需要對處理 HTTP 請求和響應的方式有基本的了解。對於所有想要成功的 Web 開發者來說，**必須** 要理解 HTTP 背後的概念。
 
-The first part of this chapter gives an overview. After the concepts are out of the way, we will discuss
-how to work with the requests and responses within CodeIgniter.
+本章的第一部分會簡單的的概述 HTTP ，接著我們會討論如何使用 CodeIgniter 來處理 HTTP 請求與響應。
 
-What is HTTP?
+甚麼是 HTTP ?
 =============
 
-HTTP is simply a text-based convention that allows two machines to talk to each other. When a browser
-requests a page, it asks the server if it can get the page. The server then prepares the page and sends
-a response back to the browser that asked for it. That's pretty much it. Obviously, there are some complexities
-that you can use, but the basics are really pretty simple.
+HTTP 是兩台機器基於文本互相通信的一種協定。當瀏覽器請求頁面時，它會詢問伺服器是否可以獲取該頁面，然後，伺服器會準備好頁面並發送響應回發送請求的瀏覽器。就是這麼簡單，當然可以講得更複雜些，但基本上就是這樣。
 
-HTTP is the term used to describe that exchange convention. It stands for HyperText Transfer Protocol. Your goal when
-you develop web applications is to always understand what the browser is requesting, and be able to
-respond appropriately.
+HTTP 是用於描述交換協定的術語。它代表超文本傳輸協定（Hypertext Transfer Protocol）。當你在開發 web 應用程式時，你只需要專注在了解瀏覽器要求了什麼，並如何做出適當的響應。
 
-The Request
+HTTP 請求
 -----------
-Whenever a client (a web browser, smartphone app, etc) makes a request, it sends a small text message
-to the server and waits for a response.
 
-The request would look something like this::
+當使用者端（瀏覽器，手機 APP 等）發送 HTTP 請求時，它會向伺服器發送一則文本訊息然後等待響應。
+
+這個文本訊息會長得像這樣::
 
 	GET / HTTP/1.1
 	Host codeigniter.com
 	Accept: text/html
 	User-Agent: Chrome/46.0.2490.80
 
-This message displays all of the information necessary to know what the client is requesting. It tells the
-method for the request (GET, POST, DELETE, etc), and the version of HTTP it supports.
+這則訊息包含了所有伺服器需要用來了解使用者端請求的資訊。比如它請求的 method（GET，POST，DELETE 等）以及它的 HTTP 版本。
 
-The request also includes a number of optional request headers that can contain a wide variety of
-information such as what languages the client wants the content displayed as, the types of formats the
-client accepts, and much more. Wikipedia has an article that lists `all header fields
-<https://en.wikipedia.org/wiki/List_of_HTTP_header_fields>`_ if you want to look it over.
+這個請求還包含了許多可選的標頭，這些標頭可以包含各種資訊：例如使用者端希望內容顯示為哪種語言、使用者端接受的格式類型等等。如果你有需要的話，維基百科上有一篇文章，列出了 `所有的 HTTTP 頭欄位 <https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5>`_
 
-The Response
+HTTP 響應
 ------------
 
-Once the server receives the request, your application will take that information and generate some output.
-The server will bundle your output as part of its response to the client. This is also represented as
-a simple text message that looks something like this::
+伺服器在收到請求後，你的 web 應用程式會處理這則訊息然後輸出一些結果。伺服器會將你的輸出結果綑綁為響應給使用者端的一部分。服務器對使用者端的響應訊息看起來會像這樣::
 
 	HTTP/1.1 200 OK
 	Server: nginx/1.8.0
@@ -57,18 +43,13 @@ a simple text message that looks something like this::
 		. . .
 	</html>
 
-The response tells the client what version of the HTTP specification that it's using and, probably most
-importantly, the status code (200). The status code is one of a number of codes that have been standardized
-to have a very specific meaning to the client. This can tell them that it was successful (200), or that the page
-wasn't found (404). Head over to IANA for a `full list of HTTP status codes
-<https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml>`_.
+響應訊息告訴使用者端，伺服器正在使用的 HTTP 版本規範，以及響應狀態碼（200）。狀態碼對於使用者端而言，是具有特定涵義且標準化的代碼：它可以告訴使用者端響應成功（200），或者找不到頁面（404）等等。在 IANA 可以找到 
+`完整的響應狀態碼列表 <https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml>`_。（`這裡有 MDN 的中文版狀態碼列表 <https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Status>`_）
 
-Working with Requests and Responses
+處理 HTTP 請求和響應
 -----------------------------------
 
-While PHP provides ways to interact with the request and response headers, CodeIgniter, like most frameworks,
-abstracts them so that you have a consistent, simple interface to them. The :doc:`IncomingRequest class </incoming/incomingrequest>`
-is an object-oriented representation of the HTTP request. It provides everything you need::
+雖然 PHP 提供了原生與 HTTP 請求和響應進行交互的方式，但 CodeIgniter 像大多數框架一樣，將它們抽象化，讓你擁有一個一致、簡單的介面。:doc:`IncomingRequest 類 </incoming/incomingrequest>` 是 HTTP 請求的物件導向形式。它有著你所需要的一切::
 
 	use CodeIgniter\HTTP\IncomingRequest;
 
@@ -94,13 +75,11 @@ is an object-oriented representation of the HTTP request. It provides everything
 
 	$request->getMethod();  // GET, POST, PUT, etc
 
-The request class does a lot of work in the background for you, that you never need to worry about.
-The `isAJAX()` and `isSecure()` methods check several different methods to determine the correct answer.
+request 類會在後台為你做很多工作，幫你省心。``isAJAX()`` 和 ``isSecure()`` 函數會自動檢查幾種不同的 method 來確定最後正確的回答。
 
-.. note:: The ``isAJAX()`` method depends on the ``X-Requested-With`` header, which in some cases is not sent by default in XHR requests via JavaScript (i.e. fetch). See the :doc:`AJAX Requests </general/ajax>` section on how to avoid this problem.
+.. note:: ``isAJAX()`` 方法取決於 ``X-Requested-With`` 標頭，在某些情況下，預設是不會通過 JavaScript（即 fetch）在 XHR 請求中發送的標頭。請參閱 :doc:`AJAX 請求 </general/ajax>` 部分，瞭解如何避免這個問題。
 
-CodeIgniter also provides a :doc:`Response class </outgoing/response>` that is an object-oriented representation
-of the HTTP response. This gives you an easy and powerful way to construct your response to the client::
+CodeIgniter 還提供了 :doc:`Response 類 </outgoing/response>`，它是 HTTP 響應的物件導向形式。它為你提供一種簡單而強大的方法來建構對客戶的響應::
 
   use CodeIgniter\HTTP\Response;
 
@@ -114,4 +93,4 @@ of the HTTP response. This gives you an easy and powerful way to construct your 
   // Sends the output to the browser
   $response->send();
 
-In addition, the Response class allows you to work the HTTP cache layer for the best performance.
+此外， :doc:`Response 類 </outgoing/response>` 還允許你處理 HTTP 快取層以獲得最佳性能。
