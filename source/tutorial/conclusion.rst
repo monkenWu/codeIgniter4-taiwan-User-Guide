@@ -1,4 +1,4 @@
-Conclusion
+結論
 ###############################################################################
 
 This tutorial did not cover all of the things you might expect of a

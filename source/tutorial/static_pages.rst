@@ -1,71 +1,51 @@
-Static pages
+靜態頁面
 ###############################################################################
 
-**Note:** This tutorial assumes you've downloaded CodeIgniter and
-:doc:`installed the framework <../installation/index>` in your
-development environment.
+**注:** 這個教學預設你已經下載了 CodeIgniter 並且在開發環境中 :doc:`部屬了框架 <../installation/index>` 。
 
-The first thing you're going to do is set up a **controller** to handle
-static pages. A controller is simply a class that helps delegate work.
-It is the glue of your web application.
+你要做的第一件事就是設置一個 **控制器** 來處理靜態頁面。控制器是一個有助於指派工作的類別。它可以說是 Web 應用程式間的黏著劑。
 
-For example, when a call is made to:
+舉個例子，當呼叫:
 
 	``http://example.com/news/latest/10``
 
-We might imagine that there is a controller named "news". The method
-being called on news would be "latest". The news method's job could be to
-grab 10 news items, and render them on the page. Very often in MVC,
-you'll see URL patterns that match:
+我們可以想像有個控制器名為「新聞（ news ）」，新聞呼叫的是 「最新的（latest）」這個方法（ method ）。這個方法可能會獲取 10 條新聞，並且將其呈現在畫面上。在 MVC 中，你經常會看到這子的 URL 映射模式:
 
 	``http://example.com/[controller-class]/[controller-method]/[arguments]``
 
-As URL schemes become more complex, this may change. But for now, this
-is all we will need to know.
+隨著 URL 的需求變得越來越複雜，這種方案可能會有所變化。但是現在，我們只需要先了解這些就好了。
 
-Let's make our first controller
+讓我們製作第一個控制器
 -------------------------------------------------------
 
-Create a file at **app/Controllers/Pages.php** with the following
-code.
+在 **app/Controllers/Pages.php** 中創建一個有以下程式碼的檔案。::
 
-::
-
-    <?php namespace App\Controllers;
-    use CodeIgniter\Controller;
+	<?php namespace App\Controllers;
+	
+	use CodeIgniter\Controller;
 
 	class Pages extends Controller {
 
-        public function index()
-        {
-            return view('welcome_message');
-        }
+		public function index()
+		{
+			return view('welcome_message');
+		}
 
-        public function showme($page = 'home')
-        {
-        }
+		public function showme($page = 'home')
+		{
+		}
 	}
 
-You have created a class named ``Pages``, with a ``showme`` method that accepts
-one argument named ``$page``. It also has an ``index()`` method, the same
-as the default controller found in **app/Controllers/Home.php**; that method
-displays the CodeIgniter welcome page.
 
-The ``Pages`` class is extending the
-``CodeIgniter\Controller`` class. This means that the new Pages class can access the
-methods and variables defined in the ``CodeIgniter\Controller`` class
-(*system/Controller.php*).
+你創建了一個名為 ``Pages`` 的類別，這個類別具有 ``showme`` 方法，這個方法將會被傳入 ``$page`` 參數。 還有一個 ``index()`` 方法，這與 **app/Controllers/Home.php** 這個控制器相同，將會默認顯示 CodeIgniter 歡迎頁面。
 
-The **controller is what will become the center of every request** to
-your web application. Like any php class, you refer to
-it within your controllers as ``$this``.
+``Pages`` 繼承  ``CodeIgniter\Controller`` 類別。這代表， Pages 類別將可以呼叫 ``CodeIgniter\Controller`` 類別（ *system/Controller.php* ）中定義的方法與變數。
 
-Now that you've created your first method, it's time to make some basic page
-templates. We will be creating two "views" (page templates) that act as
-our page footer and header.
+控制器是每個 Web 應用程式的 **請求中心** 。與任何 PHP 類別一樣，在控制器中必須使用 ``$this`` 呼叫。
 
-Create the header at **app/Views/templates/header.php** and add
-the following code:
+現在，你已經創建了第一個方法，是時候製作一些用於 footer 與 header 的頁面樣板（ templates ）了。
+
+在 **app/Views/templates/header.php** 路徑上創建含有下列程式碼的 header 檔案：
 
 ::
 
@@ -78,11 +58,7 @@ the following code:
 
 		<h1><?= $title; ?></h1>
 
-The header contains the basic HTML code that you'll want to display
-before loading the main view, together with a heading. It will also
-output the ``$title`` variable, which we'll define later in the controller.
-Now, create a footer at **app/Views/templates/footer.php** that
-includes the following code:
+header 包含載入主要視圖之前輸出的基本 HTML 程式碼與標題。它還會輸出 ``$title`` 變數，等等我們將會在控制器對這個變數進行定義。接著，在 **app/Views/templates/footer.php** 路徑上創建含有下列程式碼的 footer 檔案：
 
 ::
 
@@ -90,21 +66,15 @@ includes the following code:
 	</body>
 	</html>
 
-Adding logic to the controller
+在控制器中新增邏輯
 -------------------------------------------------------
 
-Earlier you set up a controller with a ``showme()`` method. The method
-accepts one parameter, which is the name of the page to be loaded. The
-static page bodies will be located in the **app/Views/pages/**
-directory.
+剛才，你設定了一個包含 ``showme()`` 方法的控制器。這個方法將傳入一個參數，
+這個參數是被載入的頁面的名稱。靜態頁面的主體將被儲存在 **app/Views/pages/** 目錄中。
 
-In that directory, create two files named **home.php** and **about.php**.
-Within those files, type some text − anything you'd like − and save them.
-If you like to be particularly un-original, try "Hello World!".
+在這個目錄中，創建名為 **home.php** 與 **about.php** 這兩個檔案。在這些檔案中，輸入一些你喜歡的文字，並且保存它們。如果你不喜歡獨樹一格，你可以鍵入「 Hello World! 」。
 
-In order to load those pages, you'll have to check whether the requested
-page actually exists. This will be the body of the ``showme()`` method
-in the ``Pages`` controller created above:
+為了載入這些頁面，你必須檢查請求的頁面是否實際存在，這些判斷邏輯是在創建 ``Pages`` 控制器後，於 ``showme()`` 方法中的主體。
 
 ::
 
@@ -123,111 +93,72 @@ in the ``Pages`` controller created above:
 		echo view('templates/footer', $data);
 	}
 
-Now, when the requested page does exist, it is loaded, including the header and
-footer, and displayed to the user. If the requested page doesn't exist, a "404
-Page not found" error is shown.
+現在，當請求的頁面實際存在時，將載入該頁面（包含 header 與 footer ），並顯示給使用者。如果請求的頁面不存在，將顯示「 404 Page not found 」錯誤。
 
-The first line in this method checks whether the page actually exists.
-PHP's native ``is_file()`` function is used to check whether the file
-is where it's expected to be. The ``PageNotFoundException`` is a CodeIgniter
-exception that causes the default error page to show.
+這個方法中的第一行將檢查頁面是否實際存在。 PHP 的原生 ``is_file()`` 函數用於檢查檔案是否位於預期的位置。拋出 ``PageNotFoundException`` 異常將會導致 CodeIgniter 顯示預設的錯誤頁面。
 
-In the header template, the ``$title`` variable was used to customize the
-page title. The value of title is defined in this method, but instead of
-assigning the value to a variable, it is assigned to the title element
-in the ``$data`` array.
+在 header 樣板中， ``$title`` 變數用於自訂頁面的標題。標題的值將在這個方法中進行定義。它不是將值直接宣告在變數之中，而是宣告成 ``$data`` 陣列中鍵值為 title 的元素。
 
-The last thing that has to be done is loading the views in the order
-they should be displayed. The ``view()`` method built-in to
-CodeIgniter will be used to do this. The second parameter in the ``view()`` method is
-used to pass values to the view. Each value in the ``$data`` array is
-assigned to a variable with the name of its key. So the value of
-``$data['title']`` in the controller is equivalent to ``$title`` in the
-view.
+最後我們得按照順序依序載入視圖，對於這個操作，我們使用 CodeIgniter 內建的 ``view()`` 方法。``view()`` 方法中的第二個參數用於將一些值傳遞給視圖。 ``$data`` 陣列中的每個值在傳遞給視圖後，將會被宣告為以鍵值命名的變數。所以控制器中的 ``$data['title']`` 將等價於視圖中的 ``$title`` 。
 
-.. note:: Any files and directory names passed into the **view()** function MUST
-	match the case of the actual directory and file itself or the system will
-	throw errors on case-sensitive platforms.
+.. note:: 傳入 **view()** 函數的任何檔案名稱與目錄名稱都必須真實存在且完全一致，否則你的程式可能會在一些區分大小寫的系統平台上出現錯誤。
 
-Running the App
+運作應用程式
 -------------------------------------------------------
 
-Ready to test? You cannot run the app using PHP's built-in server,
-since it will not properly process the ``.htaccess`` rules that are provided in
-``public``, and which eliminate the need to specify "index.php/"
-as part of a URL. CodeIgniter has its own command that you can use though.
+準備好進行測試了嗎？你不能將這個 app 運作在 PHP 內建的伺服器之中，因為它無法正確處理 ``public`` 資料夾下 ``.htaccess`` 檔案所提供的路徑規則。這個檔案中的規則主要是讓你在 URL 中省略 「 index.php/ 」。而 CodeIgniter 有自己的命令，你可以使用這個命令。
 
-From the command line, at the root of your project:
-
+在命令列中移動到專案的根目錄，執行：
 ::
 
     php spark serve
 
-will start a web server, accessible on port 8080. If you set the location field
-in your browser to ``localhost:8080``, you should see the CodeIgniter welcome page.
+這行指令將會把 Web 伺服器啟動在 8080 埠上，如果在瀏覽器中前往 ``localhost:8080`` ，你應該可以看到 CodeIgniter 的歡迎畫面。
 
-You can now try several URLs in the browser location field, to see what the `Pages`
-controller you made above produces...
+現在，你可以在瀏覽器中嘗試多種 URL ，以查看上面製作的 `Pages` 究竟產生了甚麼......
 
-- ``localhost:8080/pages`` will show the results from the `index` method
-  inside our `Pages` controller, which is to display the CodeIgniter "welcome" page,
-  because "index" is the default controller method
-- ``localhost:8080/pages/index`` will also show the CodeIgniter "welcome" page,
-  because we explicitly asked for the "index" method
-- ``localhost:8080/pages/showme`` will show the "home" page that you made above,
-  because it is the default "page" parameter to the `showme()` method.
-- ``localhost:8080/pages/showme/home`` will also show the "home" page that you made above,
-  because we explicitly asked for it
-- ``localhost:8080/pages/showme/about`` will show the "about" page that you made above,
-  because we explicitly asked for it
-- ``localhost:8080/pages/showme/shop`` will show a "404 - File Not Found" error page,
-  because there is no `app/Views/pages/shop.php`
+- ``localhost:8080/pages`` 將顯示控制器中 `index` 方法的結果，也就是顯示 CodeIgniter 「 welcome 」 頁面，因為 `index` 是控制器的預設方法。
 
+- ``localhost:8080/pages/index`` 也會顯示 CodeIgniter 「 welcome 」 頁面，因為我們明確的要求使用 index 方法。
 
-Routing
+- ``localhost:8080/pages/showme`` 將顯示剛才製作的「 home 」頁面，因為它是 `showme()` 方法所預設的 page 參數。
+
+- ``localhost:8080/pages/showme/home`` 將顯示 「 home 」頁面 ，因為我們明確的要求了 page 的值。
+
+- ``localhost:8080/pages/showme/about`` 因為我們明確的要求了 about ，將顯示你剛才製作的「 about 」頁面，
+
+- ``localhost:8080/pages/showme/shop`` 將顯示「 404 - File Not Found 」錯誤畫面，因為 `app/Views/pages/shop.php` 並不存在。
+
+路由
 -------------------------------------------------------
 
-The controller is now functioning!
+控制器運作正常！
 
-Using custom routing rules, you have the power to map any URI to any
-controller and method, and break free from the normal convention:
-``http://example.com/[controller-class]/[controller-method]/[arguments]``
+使用自訂的路由規則，你可以將任何 URL 映射到任何控制器和方法，並且跳出這個預設的路由約定： ``http://example.com/[controller-class]/[controller-method]/[arguments]``
 
-Let's do that. Open the routing file located at
-*app/Config/Routes.php* and look for the "Route Definitions"
-section of the configuration file.
+讓我們試試看吧！打開 *app/Config/Routes.php* 這個路由設定檔，並查找其中「定義路由（ Route Definitions ）」的部分。
 
-The only uncommented line there to start with should be:::
+唯一沒有被註解的程式應該是這一行：
+::
 
     $routes->get('/', 'Home::index');
 
-This directive says that any incoming request without any content
-specified should be handled by the ``index`` method inside the ``Home`` controller.
+這個指令指出，未指定任何內容的請求都應該由 ``Home`` 控制器的 ``index`` 方法進行處理。
 
-Add the following line, **after** the route directive for '/'.
-
+我們緊接著在這一行程式下方新增下列程式：
 ::
 
 	$routes->get('(:any)', 'Pages::showme/$1');
 
-CodeIgniter reads its routing rules from top to bottom and routes the
-request to the first matching rule. Each rule is a regular expression
-(left-side) mapped to a controller and method name separated by slashes
-(right-side). When a request comes in, CodeIgniter looks for the first
-match, and calls the appropriate controller and method, possibly with
-arguments.
+CodeIgniter 將從上至下依序讀取路由規則，並將請求導向至第一個匹配的規則。每一個規則都是左側的正規表示法，以及右側的控制器和方法名稱所組成（以斜線分隔）。當請求進入時， CodeIgniter 會找到第一個匹配項，並且呼叫適當的控制器與方法（可能會有參數），
 
-More information about routing can be found in the URI Routing
-:doc:`documentation </incoming/routing>`.
+有關路由的詳細資訊，請參閱路由 :doc:`條目 </incoming/routing>`。
 
-Here, the second rule in the ``$routes`` array matches **any** request
-using the wildcard string ``(:any)``. and passes the parameter to the
-``view()`` method of the ``Pages`` class.
+在這裡， ``$routes`` 陣列中的第二個規則是， **任何** 請求都會與萬用字元字串 ``(:any)`` 相匹配後，再參數傳遞給 ``Pages`` 類別的 ``view()`` 方法。
 
-Now visit ``home``. Did it get routed correctly to the ``showme()``
-method in the pages controller? Awesome!
+現在造訪 ``home`` 。它是不是正確將路由導向至控制器中的 ``showme()`` 方法呢？做得好！
 
-You should see something like the following:
+你應該可以看到類似於以下內容的畫面:
 
 .. image:: ../images/tutorial1.png
     :align: center

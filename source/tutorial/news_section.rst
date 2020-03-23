@@ -1,28 +1,16 @@
-News section
+新聞頁面
 ###############################################################################
 
-In the last section, we went over some basic concepts of the framework
-by writing a class that references static pages. We cleaned up the URI by
-adding custom routing rules. Now it's time to introduce dynamic content
-and start using a database.
+在上一個條目中，我們撰寫了引用靜態頁面的類別，也介紹了框架的一些基本概念。我們通過新增自訂路由規則獲得更加整潔的 URL 。是時候引入動態內容並且開始操作資料庫了！
 
-Create a database to work with
+建立要使用的資料庫
 -------------------------------------------------------
 
-The CodeIgniter installation assumes that you have set up an appropriate
-database, as outlined in the :doc:`requirements </intro/requirements>`.
-In this tutorial, we provide SQL code for a MySQL database, and 
-we also assume that you have a suitable client for issuing database
-commands (mysql, MySQL Workbench, or phpMyAdmin).
+CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intro/requirements>` 所提到的。在本教學中，我們提供了基於 MySQL 資料庫的 SQL 程式碼。我們也假設你有一個用於資料庫管理的軟體（ mysql 、 MySQL Workbench 或 phpMyAdmin ）。
 
-You need to create a database that can be used for this tutorial,
-and then configure CodeIgniter to use it.
+你需要創建一個這個教學需要使用到的資料庫，然後在 CodeIgniter 設定使用它。
 
-Using your database client, connect to your database and run the SQL command below (MySQL).
-Also, add some seed records. For now, we'll just show you the SQL statements needed
-to create the table, but you should be aware that this can be done programmatically
-once you are more familiar with CodeIgniter; you can read about :doc:`Migrations <../dbmgmt/migration>`
-and :doc:`Seeds <../dbmgmt/seeds>` to create more useful database setups later.
+使用資料庫管理軟體，連接到資料庫並且執行下列 SQL 命令（ MySql ），以及添加一些合適的測試資料。以下提到的將是創建 SQL 表所需的語句，但你應該要知道，在熟悉了 CodeIgniter 之後，就可以使用程式設計的方式完成這個操作。你可以閱讀有關於 :doc:`遷移 <../dbmgmt/migration>` 與 :doc:`資料填充 <../dbmgmt/seeds>` 的資訊，以便於創建更有用的資料庫設定。
 
 ::
 
@@ -35,23 +23,23 @@ and :doc:`Seeds <../dbmgmt/seeds>` to create more useful database setups later.
 		KEY slug (slug)
 	);
 
-A note of interest: a "slug", in the context of web publishing, is a 
-user- and SEO-friendly short text used in a URL to identify and describe a resource.
+註：slug 是在 Web 發布內容中，面相使用者與 SEO 用於友好地識別與描述資源的簡短文字。
 
-The seed records might be something like:::
+測試資料可能會類似於：
 
+::
 
     INSERT INTO news VALUES 
     (1,'Elvis sighted','elvis-sighted','Elvis was sighted at the Podunk internet cafe. It looked like he was writing a CodeIgniter app.'),
     (2,'Say it isn\'t so!','say-it-isnt-so','Scientists conclude that some programmers have a sense of humor.'),
     (3,'Caffeination, Yes!','caffeination-yes','World\'s largest coffee shop open onsite nested coffee shop for staff only.');
 
-Connect to your database
+連接資料庫
 -------------------------------------------------------
 
-The local configuration file, ``.env``, that you created when you installed
-CodeIgniter, should have the database property settings uncommented and 
-set appropriately for the database you want to use.::
+請打開在部屬 CodeIgniter 時所創建的環境設定檔 ``.env`` ，在設定檔中取消資料庫相關設定的註解，並且依據要連入的資料庫進行相關設定。
+
+::
 
     database.default.hostname = localhost
     database.default.database = ci4tutorial
@@ -59,17 +47,12 @@ set appropriately for the database you want to use.::
     database.default.password = root
     database.default.DBDriver = MySQLi
 
-Setting up your model
+設定模型
 -------------------------------------------------------
 
-Instead of writing database operations right in the controller, queries
-should be placed in a model, so they can easily be reused later. Models
-are the place where you retrieve, insert, and update information in your
-database or other data stores. They provide access to your data.
+資料庫查詢不該在控制器中實作，而是在模型中進撰寫，以便日後可以輕鬆地重用它們。模型是資料庫與其他資料儲存媒介，檢索、插入和更新資料的地方。它們讓你能夠對資料進行訪問。
 
-Open up the **app/Models/** directory and create a new file called
-**NewsModel.php** and add the following code. Make sure you've configured
-your database properly as described :doc:`here <../database/configuration>`.
+打開 **app/Models/** 目錄後，新建名為 **NewsModel.php** 且包含下列程式碼的的檔案。在這之前，請確定你已經正確設定了資料庫，就像 :doc:`這裡 <../database/configuration>` 所說的。
 
 ::
 
@@ -82,20 +65,9 @@ your database properly as described :doc:`here <../database/configuration>`.
 		protected $table = 'news';
 	}
 
-This code looks similar to the controller code that was used earlier. It
-creates a new model by extending ``CodeIgniter\Model`` and loads the database
-library. This will make the database class available through the
-``$this->db`` object.
+這些程式瑪與前一個條目的控制器程式碼類似，這個新創建的模型繼承了 ``CodeIgniter\Model`` 類別以及載入了資料庫函式庫。與資料庫類別的溝通可以呼叫 ``$this->db`` 物件達成。
 
-Now that the database and a model have been set up, you'll need a method
-to get all of our posts from our database. To do this, the database
-abstraction layer that is included with CodeIgniter —
-:doc:`Query Builder <../database/query_builder>` — is used. This makes it
-possible to write your 'queries' once and make them work on :doc:`all
-supported database systems <../intro/requirements>`. The Model class
-also allows you to easily work with the Query Builder and provides
-some additional tools to make working with data simpler. Add the
-following code to your model.
+現在，資料庫與模型已經設定完畢，你需要一種方法從資料庫獲取所有的新聞內容。因此，我們使用 CodeIgniter :doc:`查詢產生器（ Query Builder ） <../database/query_builder>` 類別，這其中包含著資料庫的抽象層。透過查詢產生器我們可以輕鬆撰寫查詢，並使他們在 :doc:`所有支援的資料庫系統 <../intro/requirements>` 穩定工作。模型類別還允許使用查詢產生器輕鬆建立查詢，並提供了一些工具來簡化資料處理的流程。將下列程式碼加入剛才我們創建的模型中。
 
 ::
 
@@ -111,26 +83,14 @@ following code to your model.
 		             ->first();
 	}
 
-With this code, you can perform two different queries. You can get all
-news records, or get a news item by its `slug <#>`_. You might have
-noticed that the ``$slug`` variable wasn't sanitized before running the
-query; :doc:`Query Builder <../database/query_builder>` does this for you.
+這個程式碼包含兩個不同的查詢，你可以得到所有的新聞紀錄，或者是按條獲取。你可能已經注意到，在執行查詢之前我們尚未進行變數處理。 :doc:`查詢產生器 <../database/query_builder>` 會替您執行這個操作，使你的資料庫查詢更加安全。
 
-The two methods used here, ``findAll()`` and ``first()``, are provided
-by the Model class. They already know the table to use based on the ``$table``
-property we set in **NewsModel** class, earlier. They are helper methods
-that use the Query Builder to run their commands on the current table, and
-returning an array of results in the format of your choice. In this example,
-``findAll()`` returns an array of objects.
+此處所使用的兩種方法 ``findAll()`` 與 ``first()`` 由 Model 類別提供。它們藉由我們在 **NewsModel** 類別中設定的 ``$table`` 屬性知道要使用的資料表。它們是輔助方法，使用查詢產生器在當前的資料表上執行命查詢，並且以你所選擇的格式回傳結果陣列。在這個範例中， ``findAll()`` 回傳一個物件陣列。
 
-Display the news
+顯示新聞
 -------------------------------------------------------
 
-Now that the queries are written, the model should be tied to the views
-that are going to display the news items to the user. This could be done
-in our ``Pages`` controller created earlier, but for the sake of clarity,
-a new ``News`` controller is defined. Create the new controller at
-*app/Controllers/News.php*.
+現在，查詢已經撰寫完成，模型應該要綁定在向使用者顯示新聞項目的視圖。這可以在之前創建的 ``Pages`` 控制器中完成，但為了清楚起見，我們定義一個新的控制器。在 *app/Controllers/News.php* 路徑上使用以下程式碼創建新的 ``News`` 控制器檔案。 
 
 ::
 
@@ -155,20 +115,13 @@ a new ``News`` controller is defined. Create the new controller at
 		}
 	}
 
-Looking at the code, you may see some similarity with the files we
-created earlier. First, it extends a core CodeIgniter class, ``Controller``,
-which provides a couple of helper methods, and makes sure that you have
-access to the current ``Request`` and ``Response`` objects, as well as the
-``Logger`` class, for saving information to disk.
+看看程式碼，你可能會發現與我們之前建立的文件有相似之處。首先，它繼承了 CodeIgniter 核心類別 ``Controller`` ，這個類別提供了幾個輔助方法，並且確保你可以使用當前的 ``Request`` 與 ``Response`` 物件。以及將運作資訊保存在伺服器的 ``Logger`` 類別。
 
-Next, there are two methods, one to view all news items, and one for a specific
-news item. You can see that the ``$slug`` variable is passed to the model's
-method in the second method. The model is using this slug to identify the
-news item to be returned.
+接下來，有兩個方法，一個用於查看所有新聞專案，另一個用於查看特定的新聞專案。 ``$slug`` 變數在第二個方法中傳遞給模型，而模型也使用 slug 回傳相應的新聞。
 
-Now the data is retrieved by the controller through our model, but
-nothing is displayed yet. The next thing to do is, passing this data to
-the views. Modify the ``index()`` method to look like this::
+現在，控制器通過我們的模型檢索資料，但尚未顯示任何資料。接下來我們得將這些資料傳遞給視圖。將  ``index()`` 修改成向下面這樣。
+
+::
 
 	public function index()
 	{
@@ -184,11 +137,7 @@ the views. Modify the ``index()`` method to look like this::
 		echo view('templates/footer');
 	}
 
-The code above gets all news records from the model and assigns it to a
-variable. The value for the title is also assigned to the ``$data['title']``
-element and all data is passed to the views. You now need to create a
-view to render the news items. Create **app/Views/news/overview.php**
-and add the next piece of code.
+上面的程式碼從模型獲得所有的新聞紀錄後，將它分配給變數。標題的值被宣告在 ``$data['title']`` 之中，所有資料都會傳送給視圖。現在需要創建一個視圖來呈現新聞畫面，在 **app/Views/news/overview.php** 中創建擁有以下程式碼的檔案。
 
 ::
 
@@ -215,16 +164,10 @@ and add the next piece of code.
 
 	<?php endif ?>
 
-Here, each news item is looped and displayed to the user. You can see we
-wrote our template in PHP mixed with HTML. If you prefer to use a template
-language, you can use CodeIgniter's :doc:`View
-Parser </outgoing/view_parser>` or a third party parser.
+在這裡每個專案將會透過迴圈產生並且顯示給使用者。你可以看到我們在 PHP 中撰寫了樣板，並且讓它與 HTML 混合。如果你更喜歡使用 樣板語法，則可以使用 CodeIgniter 的 :doc:`視圖剖析器（ View
+Parser ） </outgoing/view_parser>` 。或置入任何你喜歡的剖析器進入 CodeIgniter 。
 
-The news overview page is now done, but a page to display individual
-news items is still absent. The model created earlier is made in such
-a way that it can easily be used for this functionality. You only need to
-add some code to the controller and create a new view. Go back to the
-``News`` controller and update the ``view()`` method with the following:
+新聞概述的畫面已經完成，但顯示單個新聞的頁面我們還沒做完。剛才我們創建建的模型中有個方法可以輕鬆地用於這個需求。你只需要向控制器新增一些程式碼，並且創建新的視圖。讓我們回到 ``News`` 控制器，並且更新 ``view()`` 方法。
 
 ::
 
@@ -246,10 +189,7 @@ add some code to the controller and create a new view. Go back to the
 		echo view('templates/footer');
 	}
 
-Instead of calling the ``getNews()`` method without a parameter, the
-``$slug`` variable is passed, so it will return the specific news item.
-The only thing left to do is create the corresponding view at
-**app/Views/news/view.php**. Put the following code in this file.
+為了要取得特定的新聞項目，我們得向 ``getNews()`` 方法傳遞 ``$slug`` 變數。剩下的工作只剩在 **app/Views/news/view.php** 中創下擁有下列程式碼的視圖。
 
 ::
 
@@ -257,15 +197,10 @@ The only thing left to do is create the corresponding view at
 	echo '<h2>'.$news['title'].'</h2>';
 	echo $news['body'];
 
-Routing
+路由
 -------------------------------------------------------
 
-Because of the wildcard routing rule created earlier, you need an extra
-route to view the controller that you just made. Modify your routing file
-(**app/config/routes.php**) so it looks as follows.
-This makes sure the requests reach the ``News`` controller instead of
-going directly to the ``Pages`` controller. The first line routes URI's
-with a slug to the ``view()`` method in the ``News`` controller.
+由於前面創建了萬用字元路由規則，因此你需要額外的路由來查看剛剛創建的控制器。新增以下設定到路由設定檔（ **app/config/routes.php** ），這樣可以確保瀏覽器請求可以送到 ``News`` 控制器。而不是直達 ``Pages`` 控制器。第一行路由將會把 slug 傳遞到 ``News`` 控制器的 ``view()`` 方法。
 
 ::
 
@@ -273,9 +208,7 @@ with a slug to the ``view()`` method in the ``News`` controller.
 	$routes->get('news', 'News::index');
 	$routes->get('(:any)', 'Pages::showme/$1');
 
-Point your browser to your "news" page, i.e. ``localhost:8080/news``,
-you should see a list of the news items, each of which has a link
-to display just the one article.
+將瀏覽器指向你的新聞頁面，即造訪 ``localhost:8080/news`` 。你應該可以看到新聞的清單，每條新聞都有一個連結，它將只顯示一篇文章。
 
 .. image:: ../images/tutorial2.png
     :align: center

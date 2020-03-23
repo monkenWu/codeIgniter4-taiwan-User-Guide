@@ -1,4 +1,4 @@
-Create news items
+建立新聞
 ###############################################################################
 
 You now know how you can read data from a database using CodeIgniter, but
