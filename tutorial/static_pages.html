@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Static pages &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>靜態頁面 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
   
 
   
@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="News section" href="news_section.html" />
+    <link rel="next" title="新聞頁面" href="news_section.html" />
     <link rel="prev" title="建構第一個應用程式" href="index.html" /> 
 </head>
 
@@ -109,10 +109,10 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">建構第一個應用程式</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Static pages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="news_section.html">News section</a></li>
-<li class="toctree-l2"><a class="reference internal" href="create_news_items.html">Create news items</a></li>
-<li class="toctree-l2"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">靜態頁面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="news_section.html">新聞頁面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_news_items.html">建立新聞</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conclusion.html">結論</a></li>
 </ul>
 </li>
 </ul>
@@ -320,7 +320,7 @@
         
           <li><a href="index.html">建構第一個應用程式</a> &raquo;</li>
         
-      <li>Static pages</li>
+      <li>靜態頁面</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -337,61 +337,42 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="static-pages">
-<h1>Static pages<a class="headerlink" href="#static-pages" title="Permalink to this headline">¶</a></h1>
-<p><strong>Note:</strong> This tutorial assumes you’ve downloaded CodeIgniter and
-<a class="reference internal" href="../installation/index.html"><span class="doc">installed the framework</span></a> in your
-development environment.</p>
-<p>The first thing you’re going to do is set up a <strong>controller</strong> to handle
-static pages. A controller is simply a class that helps delegate work.
-It is the glue of your web application.</p>
-<p>For example, when a call is made to:</p>
+  <div class="section" id="id1">
+<h1>靜態頁面<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><strong>注:</strong> 這個教學預設你已經下載了 CodeIgniter 並且在開發環境中 <a class="reference internal" href="../installation/index.html"><span class="doc">部屬了框架</span></a> 。</p>
+<p>你要做的第一件事就是設置一個 <strong>控制器</strong> 來處理靜態頁面。控制器是一個有助於指派工作的類別。它可以說是 Web 應用程式間的黏著劑。</p>
+<p>舉個例子，當呼叫:</p>
 <blockquote>
 <div><code class="docutils literal notranslate"><span class="pre">http://example.com/news/latest/10</span></code></div></blockquote>
-<p>We might imagine that there is a controller named “news”. The method
-being called on news would be “latest”. The news method’s job could be to
-grab 10 news items, and render them on the page. Very often in MVC,
-you’ll see URL patterns that match:</p>
+<p>我們可以想像有個控制器名為「新聞（ news ）」，新聞呼叫的是 「最新的（latest）」這個方法（ method ）。這個方法可能會獲取 10 條新聞，並且將其呈現在畫面上。在 MVC 中，你經常會看到這子的 URL 映射模式:</p>
 <blockquote>
 <div><code class="docutils literal notranslate"><span class="pre">http://example.com/[controller-class]/[controller-method]/[arguments]</span></code></div></blockquote>
-<p>As URL schemes become more complex, this may change. But for now, this
-is all we will need to know.</p>
-<div class="section" id="let-s-make-our-first-controller">
-<h2>Let’s make our first controller<a class="headerlink" href="#let-s-make-our-first-controller" title="Permalink to this headline">¶</a></h2>
-<p>Create a file at <strong>app/Controllers/Pages.php</strong> with the following
-code.</p>
+<p>隨著 URL 的需求變得越來越複雜，這種方案可能會有所變化。但是現在，我們只需要先了解這些就好了。</p>
+<div class="section" id="id2">
+<h2>讓我們製作第一個控制器<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>在 <strong>app/Controllers/Pages.php</strong> 中創建一個有以下程式碼的檔案。:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+
 <span class="k">use</span> <span class="nx">CodeIgniter\Controller</span><span class="p">;</span>
 
-    <span class="k">class</span> <span class="nc">Pages</span> <span class="k">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">Pages</span> <span class="k">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;welcome_message&#39;</span><span class="p">);</span>
-    <span class="p">}</span>
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;welcome_message&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">showme</span><span class="p">(</span><span class="nv">$page</span> <span class="o">=</span> <span class="s1">&#39;home&#39;</span><span class="p">)</span>
-    <span class="p">{</span>
-    <span class="p">}</span>
-    <span class="p">}</span>
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">showme</span><span class="p">(</span><span class="nv">$page</span> <span class="o">=</span> <span class="s1">&#39;home&#39;</span><span class="p">)</span>
+        <span class="p">{</span>
+        <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>You have created a class named <code class="docutils literal notranslate"><span class="pre">Pages</span></code>, with a <code class="docutils literal notranslate"><span class="pre">showme</span></code> method that accepts
-one argument named <code class="docutils literal notranslate"><span class="pre">$page</span></code>. It also has an <code class="docutils literal notranslate"><span class="pre">index()</span></code> method, the same
-as the default controller found in <strong>app/Controllers/Home.php</strong>; that method
-displays the CodeIgniter welcome page.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">Pages</span></code> class is extending the
-<code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code> class. This means that the new Pages class can access the
-methods and variables defined in the <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code> class
-(<em>system/Controller.php</em>).</p>
-<p>The <strong>controller is what will become the center of every request</strong> to
-your web application. Like any php class, you refer to
-it within your controllers as <code class="docutils literal notranslate"><span class="pre">$this</span></code>.</p>
-<p>Now that you’ve created your first method, it’s time to make some basic page
-templates. We will be creating two “views” (page templates) that act as
-our page footer and header.</p>
-<p>Create the header at <strong>app/Views/templates/header.php</strong> and add
-the following code:</p>
+<p>你創建了一個名為 <code class="docutils literal notranslate"><span class="pre">Pages</span></code> 的類別，這個類別具有 <code class="docutils literal notranslate"><span class="pre">showme</span></code> 方法，這個方法將會被傳入 <code class="docutils literal notranslate"><span class="pre">$page</span></code> 參數。 還有一個 <code class="docutils literal notranslate"><span class="pre">index()</span></code> 方法，這與 <strong>app/Controllers/Home.php</strong> 這個控制器相同，將會默認顯示 CodeIgniter 歡迎頁面。</p>
+<p><code class="docutils literal notranslate"><span class="pre">Pages</span></code> 繼承  <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code> 類別。這代表， Pages 類別將可以呼叫 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code> 類別（ <em>system/Controller.php</em> ）中定義的方法與變數。</p>
+<p>控制器是每個 Web 應用程式的 <strong>請求中心</strong> 。與任何 PHP 類別一樣，在控制器中必須使用 <code class="docutils literal notranslate"><span class="pre">$this</span></code> 呼叫。</p>
+<p>現在，你已經創建了第一個方法，是時候製作一些用於 footer 與 header 的頁面樣板（ templates ）了。</p>
+<p>在 <strong>app/Views/templates/header.php</strong> 路徑上創建含有下列程式碼的 header 檔案：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;!</span><span class="nx">doctype</span> <span class="nx">html</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
@@ -402,29 +383,19 @@ the following code:</p>
         <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;&lt;?=</span> <span class="nv">$title</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>The header contains the basic HTML code that you’ll want to display
-before loading the main view, together with a heading. It will also
-output the <code class="docutils literal notranslate"><span class="pre">$title</span></code> variable, which we’ll define later in the controller.
-Now, create a footer at <strong>app/Views/templates/footer.php</strong> that
-includes the following code:</p>
+<p>header 包含載入主要視圖之前輸出的基本 HTML 程式碼與標題。它還會輸出 <code class="docutils literal notranslate"><span class="pre">$title</span></code> 變數，等等我們將會在控制器對這個變數進行定義。接著，在 <strong>app/Views/templates/footer.php</strong> 路徑上創建含有下列程式碼的 footer 檔案：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span>        <span class="o">&lt;</span><span class="nx">em</span><span class="o">&gt;&amp;</span><span class="nb">copy</span><span class="p">;</span> <span class="mi">2019</span><span class="o">&lt;/</span><span class="nx">em</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="nx">body</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="nx">html</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="adding-logic-to-the-controller">
-<h2>Adding logic to the controller<a class="headerlink" href="#adding-logic-to-the-controller" title="Permalink to this headline">¶</a></h2>
-<p>Earlier you set up a controller with a <code class="docutils literal notranslate"><span class="pre">showme()</span></code> method. The method
-accepts one parameter, which is the name of the page to be loaded. The
-static page bodies will be located in the <strong>app/Views/pages/</strong>
-directory.</p>
-<p>In that directory, create two files named <strong>home.php</strong> and <strong>about.php</strong>.
-Within those files, type some text − anything you’d like − and save them.
-If you like to be particularly un-original, try “Hello World!”.</p>
-<p>In order to load those pages, you’ll have to check whether the requested
-page actually exists. This will be the body of the <code class="docutils literal notranslate"><span class="pre">showme()</span></code> method
-in the <code class="docutils literal notranslate"><span class="pre">Pages</span></code> controller created above:</p>
+<div class="section" id="id3">
+<h2>在控制器中新增邏輯<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>剛才，你設定了一個包含 <code class="docutils literal notranslate"><span class="pre">showme()</span></code> 方法的控制器。這個方法將傳入一個參數，
+這個參數是被載入的頁面的名稱。靜態頁面的主體將被儲存在 <strong>app/Views/pages/</strong> 目錄中。</p>
+<p>在這個目錄中，創建名為 <strong>home.php</strong> 與 <strong>about.php</strong> 這兩個檔案。在這些檔案中，輸入一些你喜歡的文字，並且保存它們。如果你不喜歡獨樹一格，你可以鍵入「 Hello World! 」。</p>
+<p>為了載入這些頁面，你必須檢查請求的頁面是否實際存在，這些判斷邏輯是在創建 <code class="docutils literal notranslate"><span class="pre">Pages</span></code> 控制器後，於 <code class="docutils literal notranslate"><span class="pre">showme()</span></code> 方法中的主體。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">showme</span><span class="p">(</span><span class="nv">$page</span> <span class="o">=</span> <span class="s1">&#39;home&#39;</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">is_file</span><span class="p">(</span><span class="nx">APPPATH</span><span class="o">.</span><span class="s1">&#39;/Views/pages/&#39;</span><span class="o">.</span><span class="nv">$page</span><span class="o">.</span><span class="s1">&#39;.php&#39;</span><span class="p">))</span>
@@ -441,94 +412,52 @@ in the <code class="docutils literal notranslate"><span class="pre">Pages</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Now, when the requested page does exist, it is loaded, including the header and
-footer, and displayed to the user. If the requested page doesn’t exist, a “404
-Page not found” error is shown.</p>
-<p>The first line in this method checks whether the page actually exists.
-PHP’s native <code class="docutils literal notranslate"><span class="pre">is_file()</span></code> function is used to check whether the file
-is where it’s expected to be. The <code class="docutils literal notranslate"><span class="pre">PageNotFoundException</span></code> is a CodeIgniter
-exception that causes the default error page to show.</p>
-<p>In the header template, the <code class="docutils literal notranslate"><span class="pre">$title</span></code> variable was used to customize the
-page title. The value of title is defined in this method, but instead of
-assigning the value to a variable, it is assigned to the title element
-in the <code class="docutils literal notranslate"><span class="pre">$data</span></code> array.</p>
-<p>The last thing that has to be done is loading the views in the order
-they should be displayed. The <code class="docutils literal notranslate"><span class="pre">view()</span></code> method built-in to
-CodeIgniter will be used to do this. The second parameter in the <code class="docutils literal notranslate"><span class="pre">view()</span></code> method is
-used to pass values to the view. Each value in the <code class="docutils literal notranslate"><span class="pre">$data</span></code> array is
-assigned to a variable with the name of its key. So the value of
-<code class="docutils literal notranslate"><span class="pre">$data['title']</span></code> in the controller is equivalent to <code class="docutils literal notranslate"><span class="pre">$title</span></code> in the
-view.</p>
+<p>現在，當請求的頁面實際存在時，將載入該頁面（包含 header 與 footer ），並顯示給使用者。如果請求的頁面不存在，將顯示「 404 Page not found 」錯誤。</p>
+<p>這個方法中的第一行將檢查頁面是否實際存在。 PHP 的原生 <code class="docutils literal notranslate"><span class="pre">is_file()</span></code> 函數用於檢查檔案是否位於預期的位置。拋出 <code class="docutils literal notranslate"><span class="pre">PageNotFoundException</span></code> 異常將會導致 CodeIgniter 顯示預設的錯誤頁面。</p>
+<p>在 header 樣板中， <code class="docutils literal notranslate"><span class="pre">$title</span></code> 變數用於自訂頁面的標題。標題的值將在這個方法中進行定義。它不是將值直接宣告在變數之中，而是宣告成 <code class="docutils literal notranslate"><span class="pre">$data</span></code> 陣列中鍵值為 title 的元素。</p>
+<p>最後我們得按照順序依序載入視圖，對於這個操作，我們使用 CodeIgniter 內建的 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法。<code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法中的第二個參數用於將一些值傳遞給視圖。 <code class="docutils literal notranslate"><span class="pre">$data</span></code> 陣列中的每個值在傳遞給視圖後，將會被宣告為以鍵值命名的變數。所以控制器中的 <code class="docutils literal notranslate"><span class="pre">$data['title']</span></code> 將等價於視圖中的 <code class="docutils literal notranslate"><span class="pre">$title</span></code> 。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Any files and directory names passed into the <strong>view()</strong> function MUST
-match the case of the actual directory and file itself or the system will
-throw errors on case-sensitive platforms.</p>
+<p class="last">傳入 <strong>view()</strong> 函數的任何檔案名稱與目錄名稱都必須真實存在且完全一致，否則你的程式可能會在一些區分大小寫的系統平台上出現錯誤。</p>
 </div>
 </div>
-<div class="section" id="running-the-app">
-<h2>Running the App<a class="headerlink" href="#running-the-app" title="Permalink to this headline">¶</a></h2>
-<p>Ready to test? You cannot run the app using PHP’s built-in server,
-since it will not properly process the <code class="docutils literal notranslate"><span class="pre">.htaccess</span></code> rules that are provided in
-<code class="docutils literal notranslate"><span class="pre">public</span></code>, and which eliminate the need to specify “index.php/”
-as part of a URL. CodeIgniter has its own command that you can use though.</p>
-<p>From the command line, at the root of your project:</p>
+<div class="section" id="id4">
+<h2>運作應用程式<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>準備好進行測試了嗎？你不能將這個 app 運作在 PHP 內建的伺服器之中，因為它無法正確處理 <code class="docutils literal notranslate"><span class="pre">public</span></code> 資料夾下 <code class="docutils literal notranslate"><span class="pre">.htaccess</span></code> 檔案所提供的路徑規則。這個檔案中的規則主要是讓你在 URL 中省略 「 index.php/ 」。而 CodeIgniter 有自己的命令，你可以使用這個命令。</p>
+<p>在命令列中移動到專案的根目錄，執行：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">serve</span>
 </pre></div>
 </div>
-<p>will start a web server, accessible on port 8080. If you set the location field
-in your browser to <code class="docutils literal notranslate"><span class="pre">localhost:8080</span></code>, you should see the CodeIgniter welcome page.</p>
-<p>You can now try several URLs in the browser location field, to see what the <cite>Pages</cite>
-controller you made above produces…</p>
+<p>這行指令將會把 Web 伺服器啟動在 8080 埠上，如果在瀏覽器中前往 <code class="docutils literal notranslate"><span class="pre">localhost:8080</span></code> ，你應該可以看到 CodeIgniter 的歡迎畫面。</p>
+<p>現在，你可以在瀏覽器中嘗試多種 URL ，以查看上面製作的 <cite>Pages</cite> 究竟產生了甚麼……</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages</span></code> will show the results from the <cite>index</cite> method
-inside our <cite>Pages</cite> controller, which is to display the CodeIgniter “welcome” page,
-because “index” is the default controller method</li>
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/index</span></code> will also show the CodeIgniter “welcome” page,
-because we explicitly asked for the “index” method</li>
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme</span></code> will show the “home” page that you made above,
-because it is the default “page” parameter to the <cite>showme()</cite> method.</li>
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme/home</span></code> will also show the “home” page that you made above,
-because we explicitly asked for it</li>
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme/about</span></code> will show the “about” page that you made above,
-because we explicitly asked for it</li>
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme/shop</span></code> will show a “404 - File Not Found” error page,
-because there is no <cite>app/Views/pages/shop.php</cite></li>
+<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages</span></code> 將顯示控制器中 <cite>index</cite> 方法的結果，也就是顯示 CodeIgniter 「 welcome 」 頁面，因為 <cite>index</cite> 是控制器的預設方法。</li>
+<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/index</span></code> 也會顯示 CodeIgniter 「 welcome 」 頁面，因為我們明確的要求使用 index 方法。</li>
+<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme</span></code> 將顯示剛才製作的「 home 」頁面，因為它是 <cite>showme()</cite> 方法所預設的 page 參數。</li>
+<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme/home</span></code> 將顯示 「 home 」頁面 ，因為我們明確的要求了 page 的值。</li>
+<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme/about</span></code> 因為我們明確的要求了 about ，將顯示你剛才製作的「 about 」頁面，</li>
+<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme/shop</span></code> 將顯示「 404 - File Not Found 」錯誤畫面，因為 <cite>app/Views/pages/shop.php</cite> 並不存在。</li>
 </ul>
 </div>
-<div class="section" id="routing">
-<h2>Routing<a class="headerlink" href="#routing" title="Permalink to this headline">¶</a></h2>
-<p>The controller is now functioning!</p>
-<p>Using custom routing rules, you have the power to map any URI to any
-controller and method, and break free from the normal convention:
-<code class="docutils literal notranslate"><span class="pre">http://example.com/[controller-class]/[controller-method]/[arguments]</span></code></p>
-<p>Let’s do that. Open the routing file located at
-<em>app/Config/Routes.php</em> and look for the “Route Definitions”
-section of the configuration file.</p>
-<p>The only uncommented line there to start with should be::</p>
+<div class="section" id="id5">
+<h2>路由<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>控制器運作正常！</p>
+<p>使用自訂的路由規則，你可以將任何 URL 映射到任何控制器和方法，並且跳出這個預設的路由約定： <code class="docutils literal notranslate"><span class="pre">http://example.com/[controller-class]/[controller-method]/[arguments]</span></code></p>
+<p>讓我們試試看吧！打開 <em>app/Config/Routes.php</em> 這個路由設定檔，並查找其中「定義路由（ Route Definitions ）」的部分。</p>
+<p>唯一沒有被註解的程式應該是這一行：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;Home::index&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>This directive says that any incoming request without any content
-specified should be handled by the <code class="docutils literal notranslate"><span class="pre">index</span></code> method inside the <code class="docutils literal notranslate"><span class="pre">Home</span></code> controller.</p>
-<p>Add the following line, <strong>after</strong> the route directive for ‘/’.</p>
+<p>這個指令指出，未指定任何內容的請求都應該由 <code class="docutils literal notranslate"><span class="pre">Home</span></code> 控制器的 <code class="docutils literal notranslate"><span class="pre">index</span></code> 方法進行處理。</p>
+<p>我們緊接著在這一行程式下方新增下列程式：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;(:any)&#39;</span><span class="p">,</span> <span class="s1">&#39;Pages::showme/$1&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>CodeIgniter reads its routing rules from top to bottom and routes the
-request to the first matching rule. Each rule is a regular expression
-(left-side) mapped to a controller and method name separated by slashes
-(right-side). When a request comes in, CodeIgniter looks for the first
-match, and calls the appropriate controller and method, possibly with
-arguments.</p>
-<p>More information about routing can be found in the URI Routing
-<a class="reference internal" href="../incoming/routing.html"><span class="doc">documentation</span></a>.</p>
-<p>Here, the second rule in the <code class="docutils literal notranslate"><span class="pre">$routes</span></code> array matches <strong>any</strong> request
-using the wildcard string <code class="docutils literal notranslate"><span class="pre">(:any)</span></code>. and passes the parameter to the
-<code class="docutils literal notranslate"><span class="pre">view()</span></code> method of the <code class="docutils literal notranslate"><span class="pre">Pages</span></code> class.</p>
-<p>Now visit <code class="docutils literal notranslate"><span class="pre">home</span></code>. Did it get routed correctly to the <code class="docutils literal notranslate"><span class="pre">showme()</span></code>
-method in the pages controller? Awesome!</p>
-<p>You should see something like the following:</p>
+<p>CodeIgniter 將從上至下依序讀取路由規則，並將請求導向至第一個匹配的規則。每一個規則都是左側的正規表示法，以及右側的控制器和方法名稱所組成（以斜線分隔）。當請求進入時， CodeIgniter 會找到第一個匹配項，並且呼叫適當的控制器與方法（可能會有參數），</p>
+<p>有關路由的詳細資訊，請參閱路由 <a class="reference internal" href="../incoming/routing.html"><span class="doc">條目</span></a>。</p>
+<p>在這裡， <code class="docutils literal notranslate"><span class="pre">$routes</span></code> 陣列中的第二個規則是， <strong>任何</strong> 請求都會與萬用字元字串 <code class="docutils literal notranslate"><span class="pre">(:any)</span></code> 相匹配後，再參數傳遞給 <code class="docutils literal notranslate"><span class="pre">Pages</span></code> 類別的 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法。</p>
+<p>現在造訪 <code class="docutils literal notranslate"><span class="pre">home</span></code> 。它是不是正確將路由導向至控制器中的 <code class="docutils literal notranslate"><span class="pre">showme()</span></code> 方法呢？做得好！</p>
+<p>你應該可以看到類似於以下內容的畫面:</p>
 <img alt="../_images/tutorial1.png" class="align-center" src="../_images/tutorial1.png" />
 </div>
 </div>
@@ -541,7 +470,7 @@ method in the pages controller? Awesome!</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="news_section.html" class="btn btn-neutral float-right" title="News section" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="news_section.html" class="btn btn-neutral float-right" title="新聞頁面" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="建構第一個應用程式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -555,7 +484,7 @@ method in the pages controller? Awesome!</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Mar 20, 2020.
+        Last updated on Mar 24, 2020.
       </span>
 
     </p>

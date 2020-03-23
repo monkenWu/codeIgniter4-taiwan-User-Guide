@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>News section &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>新聞頁面 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Create news items" href="create_news_items.html" />
-    <link rel="prev" title="Static pages" href="static_pages.html" /> 
+    <link rel="next" title="建立新聞" href="create_news_items.html" />
+    <link rel="prev" title="靜態頁面" href="static_pages.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -109,10 +109,10 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">建構第一個應用程式</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="static_pages.html">Static pages</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">News section</a></li>
-<li class="toctree-l2"><a class="reference internal" href="create_news_items.html">Create news items</a></li>
-<li class="toctree-l2"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="static_pages.html">靜態頁面</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">新聞頁面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_news_items.html">建立新聞</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conclusion.html">結論</a></li>
 </ul>
 </li>
 </ul>
@@ -320,7 +320,7 @@
         
           <li><a href="index.html">建構第一個應用程式</a> &raquo;</li>
         
-      <li>News section</li>
+      <li>新聞頁面</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -337,26 +337,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="news-section">
-<h1>News section<a class="headerlink" href="#news-section" title="Permalink to this headline">¶</a></h1>
-<p>In the last section, we went over some basic concepts of the framework
-by writing a class that references static pages. We cleaned up the URI by
-adding custom routing rules. Now it’s time to introduce dynamic content
-and start using a database.</p>
-<div class="section" id="create-a-database-to-work-with">
-<h2>Create a database to work with<a class="headerlink" href="#create-a-database-to-work-with" title="Permalink to this headline">¶</a></h2>
-<p>The CodeIgniter installation assumes that you have set up an appropriate
-database, as outlined in the <a class="reference internal" href="../intro/requirements.html"><span class="doc">requirements</span></a>.
-In this tutorial, we provide SQL code for a MySQL database, and
-we also assume that you have a suitable client for issuing database
-commands (mysql, MySQL Workbench, or phpMyAdmin).</p>
-<p>You need to create a database that can be used for this tutorial,
-and then configure CodeIgniter to use it.</p>
-<p>Using your database client, connect to your database and run the SQL command below (MySQL).
-Also, add some seed records. For now, we’ll just show you the SQL statements needed
-to create the table, but you should be aware that this can be done programmatically
-once you are more familiar with CodeIgniter; you can read about <a class="reference internal" href="../dbmgmt/migration.html"><span class="doc">Migrations</span></a>
-and <a class="reference internal" href="../dbmgmt/seeds.html"><span class="doc">Seeds</span></a> to create more useful database setups later.</p>
+  <div class="section" id="id1">
+<h1>新聞頁面<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>在上一個條目中，我們撰寫了引用靜態頁面的類別，也介紹了框架的一些基本概念。我們通過新增自訂路由規則獲得更加整潔的 URL 。是時候引入動態內容並且開始操作資料庫了！</p>
+<div class="section" id="id2">
+<h2>建立要使用的資料庫<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>CodeIgniter 假設你使用了所支援資料庫，如 <a class="reference internal" href="../intro/requirements.html"><span class="doc">系統需求</span></a> 所提到的。在本教學中，我們提供了基於 MySQL 資料庫的 SQL 程式碼。我們也假設你有一個用於資料庫管理的軟體（ mysql 、 MySQL Workbench 或 phpMyAdmin ）。</p>
+<p>你需要創建一個這個教學需要使用到的資料庫，然後在 CodeIgniter 設定使用它。</p>
+<p>使用資料庫管理軟體，連接到資料庫並且執行下列 SQL 命令（ MySql ），以及添加一些合適的測試資料。以下提到的將是創建 SQL 表所需的語句，但你應該要知道，在熟悉了 CodeIgniter 之後，就可以使用程式設計的方式完成這個操作。你可以閱讀有關於 <a class="reference internal" href="../dbmgmt/migration.html"><span class="doc">遷移</span></a> 與 <a class="reference internal" href="../dbmgmt/seeds.html"><span class="doc">資料填充</span></a> 的資訊，以便於創建更有用的資料庫設定。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="nx">news</span> <span class="p">(</span>
         <span class="nx">id</span> <span class="nx">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="nx">AUTO_INCREMENT</span><span class="p">,</span>
         <span class="nx">title</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
@@ -367,9 +355,8 @@ and <a class="reference internal" href="../dbmgmt/seeds.html"><span class="doc">
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>A note of interest: a “slug”, in the context of web publishing, is a
-user- and SEO-friendly short text used in a URL to identify and describe a resource.</p>
-<p>The seed records might be something like::</p>
+<p>註：slug 是在 Web 發布內容中，面相使用者與 SEO 用於友好地識別與描述資源的簡短文字。</p>
+<p>測試資料可能會類似於：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">INSERT</span> <span class="nx">INTO</span> <span class="nx">news</span> <span class="nx">VALUES</span>
 <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;Elvis sighted&#39;</span><span class="p">,</span><span class="s1">&#39;elvis-sighted&#39;</span><span class="p">,</span><span class="s1">&#39;Elvis was sighted at the Podunk internet cafe. It looked like he was writing a CodeIgniter app.&#39;</span><span class="p">),</span>
 <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;Say it isn\&#39;t so!&#39;</span><span class="p">,</span><span class="s1">&#39;say-it-isnt-so&#39;</span><span class="p">,</span><span class="s1">&#39;Scientists conclude that some programmers have a sense of humor.&#39;</span><span class="p">),</span>
@@ -377,11 +364,9 @@ user- and SEO-friendly short text used in a URL to identify and describe a resou
 </pre></div>
 </div>
 </div>
-<div class="section" id="connect-to-your-database">
-<h2>Connect to your database<a class="headerlink" href="#connect-to-your-database" title="Permalink to this headline">¶</a></h2>
-<p>The local configuration file, <code class="docutils literal notranslate"><span class="pre">.env</span></code>, that you created when you installed
-CodeIgniter, should have the database property settings uncommented and
-set appropriately for the database you want to use.:</p>
+<div class="section" id="id3">
+<h2>連接資料庫<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>請打開在部屬 CodeIgniter 時所創建的環境設定檔 <code class="docutils literal notranslate"><span class="pre">.env</span></code> ，在設定檔中取消資料庫相關設定的註解，並且依據要連入的資料庫進行相關設定。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">database</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nx">hostname</span> <span class="o">=</span> <span class="nx">localhost</span>
 <span class="nx">database</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nx">database</span> <span class="o">=</span> <span class="nx">ci4tutorial</span>
 <span class="nx">database</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nx">username</span> <span class="o">=</span> <span class="nx">root</span>
@@ -390,15 +375,10 @@ set appropriately for the database you want to use.:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="setting-up-your-model">
-<h2>Setting up your model<a class="headerlink" href="#setting-up-your-model" title="Permalink to this headline">¶</a></h2>
-<p>Instead of writing database operations right in the controller, queries
-should be placed in a model, so they can easily be reused later. Models
-are the place where you retrieve, insert, and update information in your
-database or other data stores. They provide access to your data.</p>
-<p>Open up the <strong>app/Models/</strong> directory and create a new file called
-<strong>NewsModel.php</strong> and add the following code. Make sure you’ve configured
-your database properly as described <a class="reference internal" href="../database/configuration.html"><span class="doc">here</span></a>.</p>
+<div class="section" id="id4">
+<h2>設定模型<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>資料庫查詢不該在控制器中實作，而是在模型中進撰寫，以便日後可以輕鬆地重用它們。模型是資料庫與其他資料儲存媒介，檢索、插入和更新資料的地方。它們讓你能夠對資料進行訪問。</p>
+<p>打開 <strong>app/Models/</strong> 目錄後，新建名為 <strong>NewsModel.php</strong> 且包含下列程式碼的的檔案。在這之前，請確定你已經正確設定了資料庫，就像 <a class="reference internal" href="../database/configuration.html"><span class="doc">這裡</span></a> 所說的。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
@@ -409,19 +389,8 @@ your database properly as described <a class="reference internal" href="../datab
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This code looks similar to the controller code that was used earlier. It
-creates a new model by extending <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Model</span></code> and loads the database
-library. This will make the database class available through the
-<code class="docutils literal notranslate"><span class="pre">$this-&gt;db</span></code> object.</p>
-<p>Now that the database and a model have been set up, you’ll need a method
-to get all of our posts from our database. To do this, the database
-abstraction layer that is included with CodeIgniter —
-<a class="reference internal" href="../database/query_builder.html"><span class="doc">Query Builder</span></a> — is used. This makes it
-possible to write your ‘queries’ once and make them work on <a class="reference internal" href="../intro/requirements.html"><span class="doc">all
-supported database systems</span></a>. The Model class
-also allows you to easily work with the Query Builder and provides
-some additional tools to make working with data simpler. Add the
-following code to your model.</p>
+<p>這些程式瑪與前一個條目的控制器程式碼類似，這個新創建的模型繼承了 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Model</span></code> 類別以及載入了資料庫函式庫。與資料庫類別的溝通可以呼叫 <code class="docutils literal notranslate"><span class="pre">$this-&gt;db</span></code> 物件達成。</p>
+<p>現在，資料庫與模型已經設定完畢，你需要一種方法從資料庫獲取所有的新聞內容。因此，我們使用 CodeIgniter <a class="reference internal" href="../database/query_builder.html"><span class="doc">查詢產生器（ Query Builder ）</span></a> 類別，這其中包含著資料庫的抽象層。透過查詢產生器我們可以輕鬆撰寫查詢，並使他們在 <a class="reference internal" href="../intro/requirements.html"><span class="doc">所有支援的資料庫系統</span></a> 穩定工作。模型類別還允許使用查詢產生器輕鬆建立查詢，並提供了一些工具來簡化資料處理的流程。將下列程式碼加入剛才我們創建的模型中。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">getNews</span><span class="p">(</span><span class="nv">$slug</span> <span class="o">=</span> <span class="k">false</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$slug</span> <span class="o">===</span> <span class="k">false</span><span class="p">)</span>
@@ -435,24 +404,12 @@ following code to your model.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>With this code, you can perform two different queries. You can get all
-news records, or get a news item by its <a class="reference external" href="#">slug</a>. You might have
-noticed that the <code class="docutils literal notranslate"><span class="pre">$slug</span></code> variable wasn’t sanitized before running the
-query; <a class="reference internal" href="../database/query_builder.html"><span class="doc">Query Builder</span></a> does this for you.</p>
-<p>The two methods used here, <code class="docutils literal notranslate"><span class="pre">findAll()</span></code> and <code class="docutils literal notranslate"><span class="pre">first()</span></code>, are provided
-by the Model class. They already know the table to use based on the <code class="docutils literal notranslate"><span class="pre">$table</span></code>
-property we set in <strong>NewsModel</strong> class, earlier. They are helper methods
-that use the Query Builder to run their commands on the current table, and
-returning an array of results in the format of your choice. In this example,
-<code class="docutils literal notranslate"><span class="pre">findAll()</span></code> returns an array of objects.</p>
+<p>這個程式碼包含兩個不同的查詢，你可以得到所有的新聞紀錄，或者是按條獲取。你可能已經注意到，在執行查詢之前我們尚未進行變數處理。 <a class="reference internal" href="../database/query_builder.html"><span class="doc">查詢產生器</span></a> 會替您執行這個操作，使你的資料庫查詢更加安全。</p>
+<p>此處所使用的兩種方法 <code class="docutils literal notranslate"><span class="pre">findAll()</span></code> 與 <code class="docutils literal notranslate"><span class="pre">first()</span></code> 由 Model 類別提供。它們藉由我們在 <strong>NewsModel</strong> 類別中設定的 <code class="docutils literal notranslate"><span class="pre">$table</span></code> 屬性知道要使用的資料表。它們是輔助方法，使用查詢產生器在當前的資料表上執行命查詢，並且以你所選擇的格式回傳結果陣列。在這個範例中， <code class="docutils literal notranslate"><span class="pre">findAll()</span></code> 回傳一個物件陣列。</p>
 </div>
-<div class="section" id="display-the-news">
-<h2>Display the news<a class="headerlink" href="#display-the-news" title="Permalink to this headline">¶</a></h2>
-<p>Now that the queries are written, the model should be tied to the views
-that are going to display the news items to the user. This could be done
-in our <code class="docutils literal notranslate"><span class="pre">Pages</span></code> controller created earlier, but for the sake of clarity,
-a new <code class="docutils literal notranslate"><span class="pre">News</span></code> controller is defined. Create the new controller at
-<em>app/Controllers/News.php</em>.</p>
+<div class="section" id="id5">
+<h2>顯示新聞<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>現在，查詢已經撰寫完成，模型應該要綁定在向使用者顯示新聞項目的視圖。這可以在之前創建的 <code class="docutils literal notranslate"><span class="pre">Pages</span></code> 控制器中完成，但為了清楚起見，我們定義一個新的控制器。在 <em>app/Controllers/News.php</em> 路徑上使用以下程式碼創建新的 <code class="docutils literal notranslate"><span class="pre">News</span></code> 控制器檔案。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">App\Models\NewsModel</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">CodeIgniter\Controller</span><span class="p">;</span>
@@ -475,18 +432,9 @@ a new <code class="docutils literal notranslate"><span class="pre">News</span></
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Looking at the code, you may see some similarity with the files we
-created earlier. First, it extends a core CodeIgniter class, <code class="docutils literal notranslate"><span class="pre">Controller</span></code>,
-which provides a couple of helper methods, and makes sure that you have
-access to the current <code class="docutils literal notranslate"><span class="pre">Request</span></code> and <code class="docutils literal notranslate"><span class="pre">Response</span></code> objects, as well as the
-<code class="docutils literal notranslate"><span class="pre">Logger</span></code> class, for saving information to disk.</p>
-<p>Next, there are two methods, one to view all news items, and one for a specific
-news item. You can see that the <code class="docutils literal notranslate"><span class="pre">$slug</span></code> variable is passed to the model’s
-method in the second method. The model is using this slug to identify the
-news item to be returned.</p>
-<p>Now the data is retrieved by the controller through our model, but
-nothing is displayed yet. The next thing to do is, passing this data to
-the views. Modify the <code class="docutils literal notranslate"><span class="pre">index()</span></code> method to look like this:</p>
+<p>看看程式碼，你可能會發現與我們之前建立的文件有相似之處。首先，它繼承了 CodeIgniter 核心類別 <code class="docutils literal notranslate"><span class="pre">Controller</span></code> ，這個類別提供了幾個輔助方法，並且確保你可以使用當前的 <code class="docutils literal notranslate"><span class="pre">Request</span></code> 與 <code class="docutils literal notranslate"><span class="pre">Response</span></code> 物件。以及將運作資訊保存在伺服器的 <code class="docutils literal notranslate"><span class="pre">Logger</span></code> 類別。</p>
+<p>接下來，有兩個方法，一個用於查看所有新聞專案，另一個用於查看特定的新聞專案。 <code class="docutils literal notranslate"><span class="pre">$slug</span></code> 變數在第二個方法中傳遞給模型，而模型也使用 slug 回傳相應的新聞。</p>
+<p>現在，控制器通過我們的模型檢索資料，但尚未顯示任何資料。接下來我們得將這些資料傳遞給視圖。將  <code class="docutils literal notranslate"><span class="pre">index()</span></code> 修改成向下面這樣。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
 <span class="p">{</span>
         <span class="nv">$model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NewsModel</span><span class="p">();</span>
@@ -502,11 +450,7 @@ the views. Modify the <code class="docutils literal notranslate"><span class="pr
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The code above gets all news records from the model and assigns it to a
-variable. The value for the title is also assigned to the <code class="docutils literal notranslate"><span class="pre">$data['title']</span></code>
-element and all data is passed to the views. You now need to create a
-view to render the news items. Create <strong>app/Views/news/overview.php</strong>
-and add the next piece of code.</p>
+<p>上面的程式碼從模型獲得所有的新聞紀錄後，將它分配給變數。標題的值被宣告在 <code class="docutils literal notranslate"><span class="pre">$data['title']</span></code> 之中，所有資料都會傳送給視圖。現在需要創建一個視圖來呈現新聞畫面，在 <strong>app/Views/news/overview.php</strong> 中創建擁有以下程式碼的檔案。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;&lt;?=</span> <span class="nv">$title</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
 
 <span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$news</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nb">is_array</span><span class="p">(</span><span class="nv">$news</span><span class="p">))</span> <span class="o">:</span> <span class="cp">?&gt;</span>
@@ -531,15 +475,9 @@ and add the next piece of code.</p>
 <span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
 </pre></div>
 </div>
-<p>Here, each news item is looped and displayed to the user. You can see we
-wrote our template in PHP mixed with HTML. If you prefer to use a template
-language, you can use CodeIgniter’s <a class="reference internal" href="../outgoing/view_parser.html"><span class="doc">View
-Parser</span></a> or a third party parser.</p>
-<p>The news overview page is now done, but a page to display individual
-news items is still absent. The model created earlier is made in such
-a way that it can easily be used for this functionality. You only need to
-add some code to the controller and create a new view. Go back to the
-<code class="docutils literal notranslate"><span class="pre">News</span></code> controller and update the <code class="docutils literal notranslate"><span class="pre">view()</span></code> method with the following:</p>
+<p>在這裡每個專案將會透過迴圈產生並且顯示給使用者。你可以看到我們在 PHP 中撰寫了樣板，並且讓它與 HTML 混合。如果你更喜歡使用 樣板語法，則可以使用 CodeIgniter 的 <a class="reference internal" href="../outgoing/view_parser.html"><span class="doc">視圖剖析器（ View
+Parser ）</span></a> 。或置入任何你喜歡的剖析器進入 CodeIgniter 。</p>
+<p>新聞概述的畫面已經完成，但顯示單個新聞的頁面我們還沒做完。剛才我們創建建的模型中有個方法可以輕鬆地用於這個需求。你只需要向控制器新增一些程式碼，並且創建新的視圖。讓我們回到 <code class="docutils literal notranslate"><span class="pre">News</span></code> 控制器，並且更新 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">view</span><span class="p">(</span><span class="nv">$slug</span> <span class="o">=</span> <span class="k">NULL</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="nv">$model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NewsModel</span><span class="p">();</span>
@@ -559,32 +497,22 @@ add some code to the controller and create a new view. Go back to the
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Instead of calling the <code class="docutils literal notranslate"><span class="pre">getNews()</span></code> method without a parameter, the
-<code class="docutils literal notranslate"><span class="pre">$slug</span></code> variable is passed, so it will return the specific news item.
-The only thing left to do is create the corresponding view at
-<strong>app/Views/news/view.php</strong>. Put the following code in this file.</p>
+<p>為了要取得特定的新聞項目，我們得向 <code class="docutils literal notranslate"><span class="pre">getNews()</span></code> 方法傳遞 <code class="docutils literal notranslate"><span class="pre">$slug</span></code> 變數。剩下的工作只剩在 <strong>app/Views/news/view.php</strong> 中創下擁有下列程式碼的視圖。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 <span class="k">echo</span> <span class="s1">&#39;&lt;h2&gt;&#39;</span><span class="o">.</span><span class="nv">$news</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/h2&gt;&#39;</span><span class="p">;</span>
 <span class="k">echo</span> <span class="nv">$news</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">];</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="routing">
-<h2>Routing<a class="headerlink" href="#routing" title="Permalink to this headline">¶</a></h2>
-<p>Because of the wildcard routing rule created earlier, you need an extra
-route to view the controller that you just made. Modify your routing file
-(<strong>app/config/routes.php</strong>) so it looks as follows.
-This makes sure the requests reach the <code class="docutils literal notranslate"><span class="pre">News</span></code> controller instead of
-going directly to the <code class="docutils literal notranslate"><span class="pre">Pages</span></code> controller. The first line routes URI’s
-with a slug to the <code class="docutils literal notranslate"><span class="pre">view()</span></code> method in the <code class="docutils literal notranslate"><span class="pre">News</span></code> controller.</p>
+<div class="section" id="id6">
+<h2>路由<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>由於前面創建了萬用字元路由規則，因此你需要額外的路由來查看剛剛創建的控制器。新增以下設定到路由設定檔（ <strong>app/config/routes.php</strong> ），這樣可以確保瀏覽器請求可以送到 <code class="docutils literal notranslate"><span class="pre">News</span></code> 控制器。而不是直達 <code class="docutils literal notranslate"><span class="pre">Pages</span></code> 控制器。第一行路由將會把 slug 傳遞到 <code class="docutils literal notranslate"><span class="pre">News</span></code> 控制器的 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;news/(:segment)&#39;</span><span class="p">,</span> <span class="s1">&#39;News::view/$1&#39;</span><span class="p">);</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;news&#39;</span><span class="p">,</span> <span class="s1">&#39;News::index&#39;</span><span class="p">);</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;(:any)&#39;</span><span class="p">,</span> <span class="s1">&#39;Pages::showme/$1&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Point your browser to your “news” page, i.e. <code class="docutils literal notranslate"><span class="pre">localhost:8080/news</span></code>,
-you should see a list of the news items, each of which has a link
-to display just the one article.</p>
+<p>將瀏覽器指向你的新聞頁面，即造訪 <code class="docutils literal notranslate"><span class="pre">localhost:8080/news</span></code> 。你應該可以看到新聞的清單，每條新聞都有一個連結，它將只顯示一篇文章。</p>
 <img alt="../_images/tutorial2.png" class="align-center" src="../_images/tutorial2.png" />
 </div>
 </div>
@@ -597,10 +525,10 @@ to display just the one article.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="create_news_items.html" class="btn btn-neutral float-right" title="Create news items" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="create_news_items.html" class="btn btn-neutral float-right" title="建立新聞" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="static_pages.html" class="btn btn-neutral float-left" title="Static pages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="static_pages.html" class="btn btn-neutral float-left" title="靜態頁面" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -611,7 +539,7 @@ to display just the one article.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Mar 20, 2020.
+        Last updated on Mar 24, 2020.
       </span>
 
     </p>
