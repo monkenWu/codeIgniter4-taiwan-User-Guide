@@ -1,19 +1,12 @@
 建立新聞
 ###############################################################################
 
-You now know how you can read data from a database using CodeIgniter, but
-you haven't written any information to the database yet. In this section,
-you'll expand your news controller and model created earlier to include
-this functionality.
+現在，你已經知道如何使用 CodeIgniter 從資料庫中讀取資料，但尚未將任何資訊寫入到資料庫中。在本條目，你將擴充之前創建的新聞控制器與模型以完成此功能。
 
-Create a form
+創建表單
 -------------------------------------------------------
 
-To input data into the database, you need to create a form where you can
-input the information to be stored. This means you'll be needing a form
-with two fields, one for the title and one for the text. You'll derive
-the slug from our title in the model. Create a new view at
-**app/Views/news/create.php**.
+你需要製作出一個表單，藉由表單的輸入才能將資料存入資料庫。這代表你需要製作一個包含兩個欄位的表單，一個欄位用於標題、一個欄位用於文章內容。你將從模型中的標題派生出這個 slug 。請在 **app/Views/news/create.php** 新建一個包含下列程式碼的視圖。
 
 ::
 
@@ -33,14 +26,9 @@ the slug from our title in the model. Create a new view at
 
     </form>
 
-There is only one thing here that probably look unfamiliar to you: the 
-``\Config\Services::validation()->listErrors()`` function. It is used to report
-errors related to form validation.
+你可能會覺得 ``\Config\Services::validation()->listErrors()`` 這個函數看起來很陌生。它能用於表單驗證相關的錯誤報告。
 
-Go back to your ``News`` controller. You're going to do two things here,
-check whether the form was submitted and whether the submitted data
-passed the validation rules. You'll use the :doc:`form
-validation <../libraries/validation>` library to do this.
+回到你的 ``News`` 控制器。你將在這裡執行：檢查表單是否已經提交、提交的資料是否通過驗證，這兩項操作。我們使用 :doc:`表單驗證 <../libraries/validation>` 函式庫進行驗證。
 
 ::
 
@@ -70,46 +58,26 @@ validation <../libraries/validation>` library to do this.
         }
     }
 
-The code above adds a lot of functionality. The first few lines load the
-form helper and the NewsModel. After that, the Controller-provided helper
-function is used to validate the $_POST fields. In this case, the title and
-text fields are required.
+上面的程式碼增加了很多功能，前幾行負責載入表單輔助函式與新聞模型。之後，透過輔助函式驗證 $_POST 欄位。在這種情形下，標題和文字欄位是必須的。
 
-CodeIgniter has a powerful validation library as demonstrated
-above. You can read :doc:`more about this library
-here <../libraries/validation>`.
+如上所述， CodeIgniter 具有強大的驗證函式庫，你可以在 :doc:`這裡 <../libraries/validation>` 閱讀更多關於這個函式庫的資訊。
 
-Continuing down, you can see a condition that checks whether the form
-validation ran successfully. If it did not, the form is displayed; if it
-was submitted **and** passed all the rules, the model is called. This
-takes care of passing the news item into the model.
-This contains a new function, url\_title(). This function -
-provided by the :doc:`URL helper <../helpers/url_helper>` - strips down
-the string you pass it, replacing all spaces by dashes (-) and makes
-sure everything is in lowercase characters. This leaves you with a nice
-slug, perfect for creating URIs.
+繼續往下看，你可以看到一個條件式，檢查表單驗證是否成功運行。如果沒有成功，則顯示表單；；如果表單提交後，也通過了所有的規則，就會呼叫模型，把新聞的資料傳遞到模型中。這裡你會看到一個新的函數 url\_title() （由 :doc:`URL 輔助函數 <../helpers/url_helper>` 提供），它將你傳遞給它的字串使用破折號替代所有的空格，你便可以獲得一個漂亮的 slug ，這非常適合用於創建 URL 。
 
-After this, a view is loaded to display a success message. Create a view at
-**app/Views/news/success.php** and write a success message. 
+在這之後，就會載入一個視圖來顯示成功訊息，新建一個 **app/Views/news/success.php** 檔案並且寫入一些成功訊息。
 
-This could be as simple as:::
+你可簡單地這麼寫：
+
+::
 
     News item created successfully. 
 
-Model Updating
+更新模型
 -------------------------------------------------------
 
-The only thing that remains is ensuring that your model is set up
-to allow data to be saved properly. The ``save()`` method that was
-used will determine whether the information should be inserted
-or if the row already exists and should be updated, based on the presence
-of a primary key. In this case, there is no ``id`` field passed to it,
-so it will insert a new row into it's table, **news**.
+完成了上述工作，剩下的就是將模型給設定好，讓資料可以被正確保存。 ``save()`` 方法將根據主鍵來判斷是否需要插入訊息，若是這一筆資料已存在便會執行更新。在本例中，我們並沒有傳遞 id 給它，所以它將會插入一筆新的紀錄在 **news** 表。
 
-However, by default the insert and update methods in the model will
-not actually save any data because it doesn't know what fields are
-safe to be updated. Edit the model to provide it a list of updatable
-fields in the ``$allowedFields`` property.
+但是，在默認的情形向，模型中的插入與更新方法並不會保存任何資料，因為它不知道那些欄位是可以被安全地更新。我們可以編輯模型，在 ``$allowedFields`` 屬性中宣告可更新地欄位列表。
 
 ::
 
@@ -123,19 +91,12 @@ fields in the ``$allowedFields`` property.
         protected $allowedFields = ['title', 'slug', 'body'];
     }
 
-This new property now contains the fields that we allow to be saved to the
-database. Notice that we leave out the ``id``? That's because you will almost
-never need to do that, since it is an auto-incrementing field in the database.
-This helps protect against Mass Assignment Vulnerabilities. If your model is
-handling your timestamps, you would also leave those out.
+這個新的屬性現在包含了允許被更新的欄位，注意到我們省略了 ``id`` 嗎？這是因為你幾乎不需要這樣做，它在資料庫中是一個自動遞增的欄位。這有助於防止 Mass assignment vulnerability 漏洞的發生。如果你的模型正在處理你的時間戳，那麼你也應該將那些時間戳排除在外。
 
-Routing
+路由
 -------------------------------------------------------
 
-Before you can start adding news items into your CodeIgniter application
-you have to add an extra rule to **app/Config/Routes.php** file. Make sure your
-file contains the following. This makes sure CodeIgniter sees 'create'
-as a method instead of a news item's slug.
+在你開始在你的 CodeIgniter 應用程式中添加新聞之前，你必須到 **app/Config/Routes.php** 這個設定檔添加額外的規則，這將可以確保 CodeIgniter 將 'create' 視為一個可執行的方法，而不是新聞的 slug 。
 
 ::
 
@@ -144,9 +105,7 @@ as a method instead of a news item's slug.
     $routes->get('news', 'News::index');
     $routes->get('(:any)', 'Pages::view/$1');
 
-Now point your browser to your local development environment where you
-installed CodeIgniter and add ``/news/create`` to the URL.
-Add some news and check out the different pages you made.
+現在將瀏覽器指向你的 CodeIgniter 開發環境，並前往 ``/news/create`` 這個URL添加一些新聞，就可以查看你所添加的不同頁面了！
 
 .. image:: ../images/tutorial3.png
     :align: center
@@ -162,11 +121,9 @@ Add some news and check out the different pages you made.
     :align: left
  
 
-Congratulations
+恭喜你
 -------------------------------------------------------
 
-You just completed your first CodeIgniter4 application!
+你剛剛完成了你第一個 CodeIgniter4 應用程式！
 
-The image to the left shows your project's **app** folder,
-with all of the files that you created in green.
-The two modified configuration files (Database & Routes) are not shown.
+左圖顯示的是專案的 **app** 資料夾，你所創建的所有文件顯示成綠色字體。兩個你所修改的設定檔案（資料庫與路由設定檔）並沒有改變顏色。
