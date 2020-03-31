@@ -11,8 +11,11 @@ Here's how to force the ``X-Requested-With`` header to be sent in the Fetch API 
 Fetch API
 =========
 
+::
+
     fetch(url, {
-        method: "get",
+        met
+        hod: "get",
         headers: {
 
           "Content-Type": "application/json",
@@ -29,6 +32,8 @@ jQuery
 
 For libraries like jQuery for example, it is not necessary to make explicit the sending of this header, because according to the `official documentation <https://api.jquery.com/jquery.ajax/>`_ it is a standard header for all requests ``$.ajax()``. But if you still want to force the shipment to not take risks, just do it as follows:
 
+::
+
     $.ajax({
         url: "your url",
 
@@ -42,10 +47,14 @@ VueJS
 
 In VueJS you just need to add the following code to the ``created`` function, as long as you are using Axios for this type of request.
 
+::
+
     axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 
 React
 =====
+
+::
 
     axios.get("your url", {headers: {'Content-Type': 'application/json'}})

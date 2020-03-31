@@ -104,9 +104,9 @@ CodeIgniter 可以自動搜尋你在任何定義的命名空間中創建的任�
 - 在命名空間內，這個檔案必須在 ``Config\Services.php`` 中
 - 它必須擴展自 ``CodeIgniter\Config\BaseService``
 
-用個小例子來說明一下::
+用個小例子來說明一下，假設您在根目錄中創建了一個新目錄 ``Blog`` 。這將容納一個帶有控制器、模型等的 **blog 模組** ，並且您希望將某些類別作為 service 提供。第一步是創建新檔案 ``Blog\Config\Services.php`` ，他的架構應為：
 
-假設您在根目錄中創建了一個新目錄 ``Blog``。這將容納一個帶有控制器、模型等的 **blog 模組**，並且您希望將某些類別作為 service 提供。第一步是創建新檔案 ``Blog\Config\Services.php`` ，他的架構應為::
+::
 
     <?php namespace Blog\Config;
 
