@@ -2,42 +2,42 @@
 CodeIgniter URLs
 ################
 
-By default, URLs in CodeIgniter are designed to be search-engine and human-friendly. Rather than using the standard
-"query-string" approach to URLs that is synonymous with dynamic systems, CodeIgniter uses a **segment-based** approach::
+在預設的情況下， CodeIgniter 中的 URL 設計得友好於搜尋引擎與人類。 CodeIgniter 沒有使用 query-string 的方式處理 URL ，而是以 **基於區段** 的方式進行處理：
+
+::
 
 	example.com/news/article/my_article
 
-URI Segments
+URI 區段
 ============
 
-The segments in the URL, in following with the Model-View-Controller approach, usually represent::
+按照 模型-視圖-控制器 的規則， URL 中的區段通常會這樣子表示：
+
+::
 
 	example.com/class/method/ID
 
-1. The first segment represents the controller **class** that should be invoked.
-2. The second segment represents the class **method** that should be called.
-3. The third, and any additional segments, represent the ID and any variables that will be passed to the controller.
+1. 第一個區段通常是指被呼叫的控制器　**類別** 。
+2. 第二個區段通常使指被呼叫類別下的 **方法** 。
+3. 在這之後任何的區段，都將會成為傳遞給控制器的變數（方法的參數）。
 
-The :doc:`URI Library <../libraries/uri>` and the :doc:`URL Helper <../helpers/url_helper>` contain functions that make it easy
-to work with your URI data. In addition, your URLs can be remapped using the :doc:`URI Routing </incoming/routing>`
-feature for more flexibility.
+在 :doc:`URI 函式庫 <../libraries/uri>` 與 :doc:`URL 輔助函數 <../helpers/url_helper>` 包含了一些函數可以便利地處理你的 URL 資料。除此之外，你的 URL 也可以使用 :doc:`URL 路由 </incoming/routing>` 功能重新映射，讓它變得更加靈活。
 
-Removing the index.php file
+隱藏在路由中的 index.php
 ===========================
 
-By default, the **index.php** file will be included in your URLs::
+通常， **index.php** 檔案會在你的 URLs 中出現：
+
+::
 
 	example.com/index.php/news/article/my_article
 
-If your server supports rewriting URLs you can easily remove this file with URL rewriting. This is handled differently
-by different servers, but we will show examples for the two most common web servers here.
+如果你的伺服器支援 URL 重寫的功能，你可以通過 URL 重寫來輕易地隱藏這個檔案。不同伺服器的處理方式各不相同，我們將在這裡以兩個最常見的 Web 伺服器作為例子。
 
-Apache Web Server
+Apache 網頁伺服器
 -----------------
 
-Apache must have the *mod_rewrite* extension enabled. If it does, you can use a ``.htaccess`` file with some simple rules.
-Here is an example of such a file, using the "negative" method in which everything is redirected except the specified
-items:
+Apache 必須啟用 *mod_rewrite* 擴充元件。如果成功啟用，你就可以使用帶有簡單規則 ``.htaccess`` 檔案。這裡以一個使用了「 negative 」方法的例子，除了被指定的項目外，所有的請求都會被重新定向：
 
 .. code-block:: apache
 
@@ -46,18 +46,16 @@ items:
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteRule ^(.*)$ index.php/$1 [L]
 
-In this example, any HTTP request other than those for existing directories and existing files are treated as a
-request for your index.php file.
+在這個例子中，除了已存在真實路徑的目錄與檔案外，任何的 HTTP 請求都會被視為對 index.php 進行請求。
 
-.. note:: These specific rules might not work for all server configurations.
+.. note:: 這些特定的規則可能不會在所有伺服器設定上都有效。
 
-.. note:: Make sure to also exclude from the above rules any assets that you might need to be accessible from the outside world.
+.. note:: 請確保上述的規則中，排除了你所要使用到的靜態資源。
 
 NGINX
 -----
 
-Under NGINX, you can define a location block and use the ``try_files`` directive to get the same effect as we did with
-the above Apache configuration:
+在 NGINX 下，你可以定義一個 location 程式塊，然後使用 ``try_files`` 指令，就可以得到與 Apache 設定檔相同的效果：
 
 .. code-block:: nginx
 
@@ -65,5 +63,4 @@ the above Apache configuration:
 		try_files $uri $uri/ /index.php$is_args$args;
 	}
 
-This will first look for a file or directory matching the URI (constructing the full path to each file from the
-settings of the root and alias directives), and then sends the request to the index.php file along with any arguments.
+首先，它會先尋找一個與 URL 相同的檔案或目錄（從根目錄和別名指令的設定下，建構出完整的檔案路徑），之後才會把請求與參數導向至 index.php 。
