@@ -9,6 +9,8 @@
 
 以下的程式根據你 :doc:`設定檔 <configuration>` 中的設定載入並初始化資料庫類別：
 
+::
+
 	$db = \Config\Database::connect();
 
 類別一旦被載入，就可以像以下的說明做使用：
@@ -86,6 +88,8 @@
 ===================
 
 :doc:`查詢生成器 <query_builder>` 提供一個取得資料的簡單方法：
+
+::
 
 	$query = $db->table('table_name')->get();
 

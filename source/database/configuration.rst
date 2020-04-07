@@ -11,6 +11,8 @@ app/Config/Database.php。你也可以藉由.env檔設定資料庫連線資料�
 
 資料庫設定值被存放在一個遵照以下規範的類屬性裡面：
 
+::
+
 	public $default = [
 		'DSN'	   => '',
 		'hostname' => 'localhost',
@@ -37,6 +39,8 @@ app/Config/Database.php。你也可以藉由.env檔設定資料庫連線資料�
 某些資料庫驅動(例如：PDO、PostgreSQL、Oracle、ODBC)可能需要提供完整的DSN字串。在這些狀況下，你就需要使用'DSN'
 設定參數，就像是使用原生PHP的驅動擴展一樣，例如：
 
+::
+
 	// PDO
 	$default['DSN'] = 'pgsql:host=localhost;port=5432;dbname=database_name';
 
@@ -47,51 +51,55 @@ app/Config/Database.php。你也可以藉由.env檔設定資料庫連線資料�
 
 .. note:: 如果你提供的DSN字串缺少了一些有效的參數(例如：資料庫的字元集)，若這些參數出現在其他設定中，CodeIgniter將自動在DNS的字串中附加上這些參數。
 
-當主要連線因為某些原因無法連線時，你可以設定故障排除。可以透過以下的連接設定做故障排除::
+當主要連線因為某些原因無法連線時，你可以設定故障排除。可以透過以下的連接設定做故障排除：
+
+::
 
 	$default['failover'] = [
-			[
-				'hostname' => 'localhost1',
-				'username' => '',
-				'password' => '',
-				'database' => '',
-				'DBDriver' => 'MySQLi',
-				'DBPrefix' => '',
-				'pConnect' => TRUE,
-				'DBDebug'  => TRUE,
-				'cacheOn'  => FALSE,
-				'cacheDir' => '',
-				'charset'  => 'utf8',
-				'DBCollat' => 'utf8_general_ci',
-				'swapPre'  => '',
-				'encrypt'  => FALSE,
-				'compress' => FALSE,
-				'strictOn' => FALSE
-			],
-			[
-				'hostname' => 'localhost2',
-				'username' => '',
-				'password' => '',
-				'database' => '',
-				'DBDriver' => 'MySQLi',
-				'DBPrefix' => '',
-				'pConnect' => TRUE,
-				'DBDebug'  => TRUE,
-				'cacheOn'  => FALSE,
-				'cacheDir' => '',
-				'charset'  => 'utf8',
-				'DBCollat' => 'utf8_general_ci',
-				'swapPre'  => '',
-				'encrypt'  => FALSE,
-				'compress' => FALSE,
-				'strictOn' => FALSE
-			]
-		];
+		[
+			'hostname' => 'localhost1',
+			'username' => '',
+			'password' => '',
+			'database' => '',
+			'DBDriver' => 'MySQLi',
+			'DBPrefix' => '',
+			'pConnect' => TRUE,
+			'DBDebug'  => TRUE,
+			'cacheOn'  => FALSE,
+			'cacheDir' => '',
+			'charset'  => 'utf8',
+			'DBCollat' => 'utf8_general_ci',
+			'swapPre'  => '',
+			'encrypt'  => FALSE,
+			'compress' => FALSE,
+			'strictOn' => FALSE
+		],
+		[
+			'hostname' => 'localhost2',
+			'username' => '',
+			'password' => '',
+			'database' => '',
+			'DBDriver' => 'MySQLi',
+			'DBPrefix' => '',
+			'pConnect' => TRUE,
+			'DBDebug'  => TRUE,
+			'cacheOn'  => FALSE,
+			'cacheDir' => '',
+			'charset'  => 'utf8',
+			'DBCollat' => 'utf8_general_ci',
+			'swapPre'  => '',
+			'sencrypt'  => FALSE,
+			'compress' => FALSE,
+			'strictOn' => FALSE
+		]
+	];
 
 你可以指定任意數量的故障排除。
 
 你可以選擇保存多個資料庫連線設定。例如，在一個系統下執行多個環境(開發、正式、測試等)，你可以為了每一個開發環境建立獨立的資
-料庫設定，並且可以按照你的需求任意切換。如果要設定'test'的資料庫環境，可以參閱以下範例::
+料庫設定，並且可以按照你的需求任意切換。如果要設定'test'的資料庫環境，可以參閱以下範例：
+
+::
 
 	public $test = [
 		'DSN'	   => '',
@@ -138,7 +146,9 @@ app/Config/Database.php。你也可以藉由.env檔設定資料庫連線資料�
 --------------------------
 
 你也可以使用目前伺服器資料庫的設定，儲存你的設定參數在 ``.env`` 檔中。你只需要在預設值設定中輸入你想要改變的參數即可。
-參數的命名必須遵守以下的格式，其中 ``default`` 是這個群組的名稱::
+參數的命名必須遵守以下的格式，其中 ``default`` 是這個群組的名稱：
+
+::
 
 	database.default.username = 'root';
 	database.default.password = '';
@@ -146,7 +156,7 @@ app/Config/Database.php。你也可以藉由.env檔設定資料庫連線資料�
 
 如同其他所有的
 
-設定值說明:
+設定值說明：
 ----------------------
 
 ======================  ===========================================================================================================
