@@ -1,5 +1,5 @@
 #######
-Testing
+測試
 #######
 
 CodeIgniter ships with a number of tools to help you test and debug your application thoroughly. 
