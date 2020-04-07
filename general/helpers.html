@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Helper Functions &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>輔助函數 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
   
 
   
@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Global Functions and Constants" href="common_functions.html" />
+    <link rel="next" title="全域函數與常數" href="common_functions.html" />
     <link rel="prev" title="CodeIgniter URLs" href="urls.html" /> 
 </head>
 
@@ -131,8 +131,8 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">一般主題</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="configuration.html">組態設定檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URLs</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Helper Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common_functions.html">Global Functions and Constants</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">全域函數與常數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logging.html">Logging Information</a></li>
 <li class="toctree-l2"><a class="reference internal" href="errors.html">Error Handling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html">Web Page Caching</a></li>
@@ -320,7 +320,7 @@
         
           <li><a href="index.html">一般主題</a> &raquo;</li>
         
-      <li>Helper Functions</li>
+      <li>輔助函數</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -337,125 +337,78 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="helper-functions">
-<h1>Helper Functions<a class="headerlink" href="#helper-functions" title="Permalink to this headline">¶</a></h1>
-<p>Helpers, as the name suggests, help you with tasks. Each helper file is
-simply a collection of functions in a particular category. There are <strong>URL
-Helpers</strong>, that assist in creating links, there are <strong>Form Helpers</strong> that help
-you create form elements, <strong>Text Helpers</strong> perform various text formatting
-routines, <strong>Cookie Helpers</strong> set and read cookies, <strong>File Helpers</strong> help you
-deal with files, etc.</p>
+  <div class="section" id="id1">
+<h1>輔助函數<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>輔助函數，顧名思義就是輔助你完成任務的助手。每個輔助函數檔案都是特定類別的功能集合。有輔助你創造連結的 <strong>URL 輔助函數</strong> 、創建表單元素的 <strong>表單輔助函數</strong> 、各種文字格式化的 <strong>文字輔助函數</strong> 、設定和讀取 Cookie 的 <strong>Cookie 輔助函數</strong>，以及替你處理檔案的 <strong>檔案輔助函數</strong> 等等功能。</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#loading-a-helper" id="id1">Loading a Helper</a><ul>
-<li><a class="reference internal" href="#loading-from-non-standard-locations" id="id2">Loading from Non-standard Locations</a></li>
+<li><a class="reference internal" href="#id2" id="id7">載入輔助函數</a><ul>
+<li><a class="reference internal" href="#id3" id="id8">從非標準位置載入輔助函數</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#using-a-helper" id="id3">Using a Helper</a></li>
-<li><a class="reference internal" href="#extending-helpers" id="id4">“Extending” Helpers</a></li>
-<li><a class="reference internal" href="#now-what" id="id5">Now What?</a></li>
+<li><a class="reference internal" href="#id4" id="id9">使用輔助函助</a></li>
+<li><a class="reference internal" href="#id5" id="id10">擴充輔助函數</a></li>
+<li><a class="reference internal" href="#id6" id="id11">接下來呢？</a></li>
 </ul>
 </div>
-<p>Unlike most other systems in CodeIgniter, Helpers are not written in an
-Object Oriented format. They are simple, procedural functions. Each
-helper function performs one specific task, with no dependence on other
-functions.</p>
-<p>CodeIgniter does not load Helper Files by default, so the first step in
-using a Helper is to load it. Once loaded, it becomes globally available
-in your <a class="reference internal" href="../incoming/controllers.html"><span class="doc">controller</span></a> and
-<a class="reference internal" href="../outgoing/views.html"><span class="doc">views</span></a>.</p>
-<p>Helpers are typically stored in your <strong>system/Helpers</strong>, or
-<strong>app/Helpers directory</strong>. CodeIgniter will look first in your
-<strong>app/Helpers directory</strong>. If the directory does not exist or the
-specified helper is not located there CI will instead look in your
-global <em>system/Helpers/</em> directory.</p>
-<div class="section" id="loading-a-helper">
-<h2><a class="toc-backref" href="#id1">Loading a Helper</a><a class="headerlink" href="#loading-a-helper" title="Permalink to this headline">¶</a></h2>
-<p>Loading a helper file is quite simple using the following method:</p>
+<p>與大多數的框架不同，CodeIgniter 的輔助函數不是以物件導向的方式撰寫的。它們是簡單且過程式的函數（ procedural functions ）。每個輔助函數只執行一個特定的任務，並不會依賴其他函數。</p>
+<p>因為 CodeIgniter 在預設的情況下並不會載入任何程式檔案，所以使用輔助函數的第一步就是得先載入它。一旦載入後，它將會在你的 <a class="reference internal" href="../incoming/controllers.html"><span class="doc">控制器</span></a> 與 <a class="reference internal" href="../outgoing/views.html"><span class="doc">視圖</span></a> 中變成全域可以使用的狀態。</p>
+<p>輔助函數通常會存放在 <strong>system/Helpers</strong> 或 <strong>app/Helpers</strong> 路徑下。 CodeIgniter 首先會在 <strong>app/Helpers</strong> 路徑下尋找你所指定的輔助函數。如果不存在，才會在全域的 <strong>system/Helpers/</strong> 路徑下尋找。</p>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id7">載入輔助函數</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>載入一個輔助函數是一件非常簡單的事情，就下面這樣：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Where <strong>name</strong> is the file name of the helper, without the .php file
-extension or the “helper” part.</p>
-<p>For example, to load the <strong>Cookie Helper</strong> file, which is named
-<strong>cookie_helper.php</strong>, you would do this:</p>
+<p>其中的 <strong>name</strong> 是輔助函數的檔案名稱，並不包含 .php 副檔名或 helper 字詞。</p>
+<p>例如，要載入 <strong>Cookie 輔助函數</strong> 它的檔案名稱是 <strong>cookie_helper.php</strong> ，你要載入它時則必須這麼做：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;cookie&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>If you need to load more than one helper at a time, you can pass
-an array of file names in and all of them will be loaded:</p>
+<p>如果你需要同時載入多個輔助函數，你可以將一個陣列傳入其中，所有陣列中有提到的檔案名稱都會被載入。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">helper</span><span class="p">([</span><span class="s1">&#39;cookie&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p>A helper can be loaded anywhere within your controller methods (or
-even within your View files, although that’s not a good practice), as
-long as you load it before you use it. You can load your helpers in your
-controller constructor so that they become available automatically in
-any function, or you can load a helper in a specific function that needs
-it.</p>
+<p>只要在使用輔助函數之前載入它，它可以在你的控制器的任何地方載入（雖然這並不是個好方法，但你甚至可以在視圖檔案中進行載入）。你可以在控制器的建構中載入輔助函數，這樣它就能在任何函數中自動可用。或者，你也可以在需要輔助函數的特定函數中載入只有它可以使用的輔助函數。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The Helper loading method above does not return a value, so
-don’t try to assign it to a variable. Just use it as shown.</p>
+<p class="last">上面所提到的輔助函數載入方法並不會回傳任何值，所以不要試圖藉由載入方法來宣告任何變數，如上所示地使用它就行了。</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The URL helper is always loaded so you do not need to load it yourself.</p>
+<p class="last">URL 輔助函數會在任何時候自動載入，所以你不需要手動載入它。</p>
 </div>
-<div class="section" id="loading-from-non-standard-locations">
-<h3><a class="toc-backref" href="#id2">Loading from Non-standard Locations</a><a class="headerlink" href="#loading-from-non-standard-locations" title="Permalink to this headline">¶</a></h3>
-<p>Helpers can be loaded from directories outside of <strong>app/Helpers</strong> and
-<strong>system/Helpers</strong>, as long as that path can be found through a namespace that
-has been set up within the PSR-4 section of the <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">Autoloader config file</span></a>.
-You would prefix the name of the Helper with the namespace that it can be located
-in. Within that namespaced directory, the loader expects it to live within a
-sub-directory named <code class="docutils literal notranslate"><span class="pre">Helpers</span></code>. An example will help understand this.</p>
-<p>For this example, assume that we have grouped together all of our Blog-related
-code into its own namespace, <code class="docutils literal notranslate"><span class="pre">Example\Blog</span></code>. The files exist on our server at
-<strong>/Modules/Blog/</strong>. So, we would put our Helper files for the blog module in
-<strong>/Modules/Blog/Helpers/</strong>. A <strong>blog_helper</strong> file would be at
-<strong>/Modules/Blog/Helpers/blog_helper.php</strong>. Within our controller we could
-use the following command to load the helper for us:</p>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id8">從非標準位置載入輔助函數</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>輔助函數可以從 <strong>app/Helpers</strong> 以及 <strong>system/Helpers</strong> 以外的路徑載入，在 <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">自動載入檔案</span></a> 的 PSR-4 部分中所設定的命名空間可以找到預設以外的路徑。你可以在輔助函數的名稱前加上它所屬的命名空間，在這個命名空間中，載入器希望它位於 <code class="docutils literal notranslate"><span class="pre">Helpers</span></code> 子目錄裡，下面的範例可以幫助你解決這個問題。</p>
+<p>在這個範例中，假設我們將所有與 Blog 相關的程式碼都歸類到自己的命名空中，就像 <code class="docutils literal notranslate"><span class="pre">Example\Blog</span></code> 這樣。這些檔案都放置在伺服器的 <strong>/Modules/Blog/</strong> 路徑中。因此，我們把 blog 模組的輔助函數檔案放在 <strong>/Modules/Blog/Helpers/</strong> 中，也就是把 <strong>blog_helper</strong> 儲存在 <strong>/Modules/Blog/Helpers/blog_helper.php</strong> 這個位置。在我們的控制器裡，我們可以用下述方式來載入輔助函數：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;Modules\Blog\blog&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The functions within files loaded this way are not truly namespaced.
-The namespace is simply used as a convenient way to locate the files.</p>
+<p class="last">以這種方式載入的檔案，它所表示的命名空間並不是真正的命名空間，而是一種方便定位檔案的方式。</p>
 </div>
 </div>
 </div>
-<div class="section" id="using-a-helper">
-<h2><a class="toc-backref" href="#id3">Using a Helper</a><a class="headerlink" href="#using-a-helper" title="Permalink to this headline">¶</a></h2>
-<p>Once you’ve loaded the Helper File containing the function you intend to
-use, you’ll call it the way you would a standard PHP function.</p>
-<p>For example, to create a link using the <code class="docutils literal notranslate"><span class="pre">anchor()</span></code> function in one of
-your view files you would do this:</p>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id9">使用輔助函助</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>一旦你載入了你想要使用的輔助函數檔案，你就可以像是呼叫內建 PHP 函數一樣呼叫它們。</p>
+<p>例如，在你的一個視圖檔案中使用 <code class="docutils literal notranslate"><span class="pre">anchor()</span></code> 函數建立一個連接，你可以這麼做：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">anchor</span><span class="p">(</span><span class="s1">&#39;blog/comments&#39;</span><span class="p">,</span> <span class="s1">&#39;Click Here&#39;</span><span class="p">);</span><span class="cp">?&gt;</span>
 </pre></div>
 </div>
-<p>Where “Click Here” is the name of the link, and “blog/comments” is the
-URI to the controller/method you wish to link to.</p>
+<p>其中的 Click Here 是連結的名稱， blog/comments 則是希望可以連接到的控制器與方法的 URI 。</p>
 </div>
-<div class="section" id="extending-helpers">
-<h2><a class="toc-backref" href="#id4">“Extending” Helpers</a><a class="headerlink" href="#extending-helpers" title="Permalink to this headline">¶</a></h2>
-<p>To “extend” Helpers, create a file in your <strong>app/Helpers/</strong> folder
-with an identical name to the existing Helper.</p>
-<p>If all you need to do is add some functionality to an existing helper -
-perhaps add a function or two, or change how a particular helper
-function operates - then it’s overkill to replace the entire helper with
-your version. In this case, it’s better to simply “extend” the Helper.</p>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id10">擴充輔助函數</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>如果你想要「擴充」輔助函數，請在  <strong>app/Helpers/</strong> 資料夾下新建一個與現有輔助函數相同名子的檔案。</p>
+<p>如果你只想要在現有的輔助函數中添加一兩個新功能，或者是改變一個特定的輔助函數下的功能的運作方式，那麼使用你的版本直接替換整個輔助函數就會顯得矯枉過正了。在這種需求下，最好是簡單地擴充輔助函數。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The term “extend” is used loosely since Helper functions are
-procedural and discrete and cannot be extended in the traditional
-programmatic sense. Under the hood, this gives you the ability to
-add to, or to replace the functions a Helper provides.</p>
+<p class="last">術語「擴充」的定義不太嚴謹，因為擴充函數有著過程式且離散的特性，不能在傳統程序化（programmatic）的意義上進行擴充。就本質上來說，「擴充」這個功能可以讓你獲得增加或替換輔助函數中方法的能力。</p>
 </div>
-<p>For example, to extend the native <strong>Array Helper</strong> you’ll create a file
-named <strong>app/Helpers/array_helper.php</strong>, and add or override
-functions:</p>
+<p>例如，為了擴充原生的 <strong>陣列輔助函數</strong> 你將新建一個名為 <strong>app/Helpers/array_helper.php</strong> 的檔案，你可以新增或覆蓋函數。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// any_in_array() is not in the Array Helper, so it defines a new function</span>
 <span class="k">function</span> <span class="nf">any_in_array</span><span class="p">(</span><span class="nv">$needle</span><span class="p">,</span> <span class="nv">$haystack</span><span class="p">)</span>
 <span class="p">{</span>
@@ -480,20 +433,16 @@ functions:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The <strong>helper()</strong> method will scan through all PSR-4 namespaces defined in <strong>app/Config/Autoload.php</strong>
-and load in ALL matching helpers of the same name. This allows any module’s helpers
-to be loaded, as well as any helpers you’ve created specifically for this application. The load order
-is as follows:</p>
+<p><strong>helper()</strong> 方法將會掃描所有在 <strong>app/Config/Autoload.php</strong> 中定義的 PSR-4 命名空間，並載入所有相同名稱的輔助函數。這樣就可以載入任何模組的輔助函數，以及你為某個應用程式專門建立的輔助函數。載入順序如下所示：</p>
 <ol class="arabic simple">
-<li>app/Helpers - Files loaded here are always loaded first.</li>
-<li>{namespace}/Helpers - All namespaces are looped through in the order they are defined.</li>
-<li>system/Helpers - The base file is loaded last</li>
+<li>app/Helpers ：在這裡的檔案將會最先被載入。</li>
+<li>{namespace}/Helpers ：所有的命名空間都是按照定義的順序循環載入。</li>
+<li>system/Helpers ：基本檔案最後才會進行載入。</li>
 </ol>
 </div>
-<div class="section" id="now-what">
-<h2><a class="toc-backref" href="#id5">Now What?</a><a class="headerlink" href="#now-what" title="Permalink to this headline">¶</a></h2>
-<p>In the Table of Contents, you’ll find a list of all the available Helper
-Files. Browse each one to see what they do.</p>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id11">接下來呢？</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>所有你可以使用的輔助函數都在輔助函數條目中條列著。細心查閱吧！看看它們如何使用。</p>
 </div>
 </div>
 
@@ -505,7 +454,7 @@ Files. Browse each one to see what they do.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="common_functions.html" class="btn btn-neutral float-right" title="Global Functions and Constants" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="common_functions.html" class="btn btn-neutral float-right" title="全域函數與常數" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="urls.html" class="btn btn-neutral float-left" title="CodeIgniter URLs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -519,7 +468,7 @@ Files. Browse each one to see what they do.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Mar 31, 2020.
+        Last updated on Apr 07, 2020.
       </span>
 
     </p>
