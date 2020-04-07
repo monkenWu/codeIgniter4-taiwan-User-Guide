@@ -4,6 +4,7 @@
 
 CodeIgniter ships with a number of tools to help you test and debug your application thoroughly. 
 The following sections should get you quickly testing your applications.
+測試
 
 .. toctree::
     :titlesonly:
