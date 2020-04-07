@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Database Quick Start: Example Code &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>資料庫 快速入門: 範例程式 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Database Configuration" href="configuration.html" />
-    <link rel="prev" title="Working With Databases" href="index.html" /> 
+    <link rel="next" title="資料庫設定" href="configuration.html" />
+    <link rel="prev" title="資料庫操作" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -145,7 +145,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP Messages</a></li>
@@ -173,19 +173,19 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Working With Databases</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Quick Start: Usage Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html">Database Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="connecting.html">Connecting to a Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="queries.html">Running Queries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="results.html">Generating Query Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="helpers.html">Query Helper Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="query_builder.html">Query Builder Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transactions.html">Transactions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="metadata.html">Getting MetaData</a></li>
-<li class="toctree-l2"><a class="reference internal" href="call_function.html">Custom Function Calls</a></li>
-<li class="toctree-l2"><a class="reference internal" href="events.html">Database Events</a></li>
-<li class="toctree-l2"><a class="reference internal" href="utilities.html">Database Utilities</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">資料庫操作</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">快速入門: 範例程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">連接資料庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="queries.html">執行查詢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">產生查詢結果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">查詢輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_builder.html">查詢生成器類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transactions.html">交易</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">取得資料表資訊</a></li>
+<li class="toctree-l2"><a class="reference internal" href="call_function.html">自訂函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html">資料庫事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html">資料庫工具</a></li>
 </ul>
 </li>
 </ul>
@@ -318,9 +318,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Working With Databases</a> &raquo;</li>
+          <li><a href="index.html">資料庫操作</a> &raquo;</li>
         
-      <li>Database Quick Start: Example Code</li>
+      <li>資料庫 快速入門: 範例程式</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -337,24 +337,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="database-quick-start-example-code">
-<h1>Database Quick Start: Example Code<a class="headerlink" href="#database-quick-start-example-code" title="Permalink to this headline">¶</a></h1>
-<p>The following page contains example code showing how the database class
-is used. For complete details please read the individual pages
-describing each function.</p>
-<div class="section" id="initializing-the-database-class">
-<h2>Initializing the Database Class<a class="headerlink" href="#initializing-the-database-class" title="Permalink to this headline">¶</a></h2>
-<p>The following code loads and initializes the database class based on
-your <a class="reference internal" href="configuration.html"><span class="doc">configuration</span></a> settings:</p>
+  <div class="section" id="id1">
+<h1>資料庫 快速入門: 範例程式<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>以下的頁面包含了示範如何使用資料庫類別的範例程式。請閱讀各個函數的說明頁面來了解完整的細節。</p>
+<div class="section" id="id2">
+<h2>初始化資料庫類別<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>以下的程式根據你 <a class="reference internal" href="configuration.html"><span class="doc">設定檔</span></a> 中的設定載入並初始化資料庫類別：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span> <span class="o">=</span> <span class="nx">\Config\Database</span><span class="o">::</span><span class="na">connect</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>Once loaded the class is ready to be used as described below.</p>
-<p>Note: If all your pages require database access you can connect
-automatically. See the <a class="reference internal" href="connecting.html"><span class="doc">connecting</span></a> page for details.</p>
+<p>類別一旦被載入，就可以像以下的說明做使用：</p>
+<p>注意：如果你的所有頁面都需要存取資料庫，你可以設定自動連線。請參考 <a class="reference internal" href="connecting.html"><span class="doc">資料庫連線</span></a> 來了解細節</p>
 </div>
-<div class="section" id="standard-query-with-multiple-results-object-version">
-<h2>Standard Query With Multiple Results (Object Version)<a class="headerlink" href="#standard-query-with-multiple-results-object-version" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>標準的多結果查詢(物件版)<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name, title, email FROM my_table&#39;</span><span class="p">);</span>
 <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">();</span>
 
@@ -368,11 +364,10 @@ automatically. See the <a class="reference internal" href="connecting.html"><spa
 <span class="k">echo</span> <span class="s1">&#39;Total Results: &#39;</span> <span class="o">.</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$results</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The above getResult() function returns an array of <strong>objects</strong>. Example:
-$row-&gt;title</p>
+<p>以上的 getResult() 函數會傳回一個 <strong>物件</strong> 陣列。範例：$row-&gt;title。</p>
 </div>
-<div class="section" id="standard-query-with-multiple-results-array-version">
-<h2>Standard Query With Multiple Results (Array Version)<a class="headerlink" href="#standard-query-with-multiple-results-array-version" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>標準的多結果查詢(陣列版)<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span>   <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name, title, email FROM my_table&#39;</span><span class="p">);</span>
 <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResultArray</span><span class="p">();</span>
 
@@ -384,40 +379,37 @@ $row-&gt;title</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The above getResultArray() function returns an array of standard array
-indexes. Example: $row[‘title’]</p>
+<p>以上的 getResultArray() 函數會傳回一個標準的索引陣列。範例：$row[‘title’]。</p>
 </div>
-<div class="section" id="standard-query-with-single-result">
-<h2>Standard Query With Single Result<a class="headerlink" href="#standard-query-with-single-result" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>標準的單一結果查詢(物件版)<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name FROM my_table LIMIT 1&#39;</span><span class="p">);</span>
 <span class="nv">$row</span>   <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getRow</span><span class="p">();</span>
 <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>The above getRow() function returns an <strong>object</strong>. Example: $row-&gt;name</p>
+<p>以上的 getRow() 函數會傳回一個 <strong>物件</strong>。範例：$row-&gt;name。</p>
 </div>
-<div class="section" id="standard-query-with-single-result-array-version">
-<h2>Standard Query With Single Result (Array version)<a class="headerlink" href="#standard-query-with-single-result-array-version" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h2>標準的單一結果查詢(陣列版)<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name FROM my_table LIMIT 1&#39;</span><span class="p">);</span>
 <span class="nv">$row</span>   <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getRowArray</span><span class="p">();</span>
 <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">];</span>
 </pre></div>
 </div>
-<p>The above getRowArray() function returns an <strong>array</strong>. Example:
-$row[‘name’]</p>
+<p>以上的 getRowArray() 函數會傳回一個 <strong>陣列</strong>。範例：$row[‘name’]。</p>
 </div>
-<div class="section" id="standard-insert">
-<h2>Standard Insert<a class="headerlink" href="#standard-insert" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h2>標準新增<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO mytable (title, name) VALUES (&quot;</span><span class="o">.</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;)&quot;</span><span class="p">;</span>
 <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">affectedRows</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="query-builder-query">
-<h2>Query Builder Query<a class="headerlink" href="#query-builder-query" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="query_builder.html"><span class="doc">Query Builder Pattern</span></a> gives you a simplified
-means of retrieving data:</p>
+<div class="section" id="id8">
+<h2>查詢生成器 查詢<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="query_builder.html"><span class="doc">查詢生成器</span></a> 提供一個取得資料的簡單方法：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
@@ -426,12 +418,10 @@ means of retrieving data:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The above get() function retrieves all the results from the supplied
-table. The <a class="reference internal" href="query_builder.html"><span class="doc">Query Builder</span></a> class contains a full
-complement of functions for working with data.</p>
+<p>以上的 get() 函數會回傳指定的資料表中所有的結果。<a class="reference internal" href="query_builder.html"><span class="doc">查詢生成器</span></a> 類別包含完整的資料操作方法</p>
 </div>
-<div class="section" id="query-builder-insert">
-<h2>Query Builder Insert<a class="headerlink" href="#query-builder-insert" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id9">
+<h2>查詢生成器 新增<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="nv">$title</span><span class="p">,</span>
         <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$name</span><span class="p">,</span>
@@ -452,10 +442,10 @@ complement of functions for working with data.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="configuration.html" class="btn btn-neutral float-right" title="Database Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="configuration.html" class="btn btn-neutral float-right" title="資料庫設定" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Working With Databases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="資料庫操作" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -466,7 +456,7 @@ complement of functions for working with data.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 07, 2020.
+        Last updated on Apr 08, 2020.
       </span>
 
     </p>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working With Databases &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>資料庫操作 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
   
 
   
@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Database Quick Start: Example Code" href="examples.html" />
+    <link rel="next" title="資料庫 快速入門: 範例程式" href="examples.html" />
     <link rel="prev" title="Alternate PHP Syntax for View Files" href="../outgoing/alternative_php.html" /> 
 </head>
 
@@ -145,7 +145,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP Messages</a></li>
@@ -173,19 +173,19 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Working With Databases</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples.html">Quick Start: Usage Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html">Database Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="connecting.html">Connecting to a Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="queries.html">Running Queries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="results.html">Generating Query Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="helpers.html">Query Helper Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="query_builder.html">Query Builder Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transactions.html">Transactions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="metadata.html">Getting MetaData</a></li>
-<li class="toctree-l2"><a class="reference internal" href="call_function.html">Custom Function Calls</a></li>
-<li class="toctree-l2"><a class="reference internal" href="events.html">Database Events</a></li>
-<li class="toctree-l2"><a class="reference internal" href="utilities.html">Database Utilities</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">資料庫操作</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">快速入門: 範例程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">連接資料庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="queries.html">執行查詢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">產生查詢結果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">查詢輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_builder.html">查詢生成器類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transactions.html">交易</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">取得資料表資訊</a></li>
+<li class="toctree-l2"><a class="reference internal" href="call_function.html">自訂函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html">資料庫事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html">資料庫工具</a></li>
 </ul>
 </li>
 </ul>
@@ -318,7 +318,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Working With Databases</li>
+      <li>資料庫操作</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -335,25 +335,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="working-with-databases">
-<h1>Working With Databases<a class="headerlink" href="#working-with-databases" title="Permalink to this headline">¶</a></h1>
-<p>CodeIgniter comes with a full-featured and very fast abstracted database
-class that supports both traditional structures and Query Builder
-patterns. The database functions offer clear, simple syntax.</p>
+  <div class="section" id="id1">
+<h1>資料庫操作<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>CodeIgniter 提供一個全功能而且快速的抽像資料庫類別，支援傳統的結構與查詢生成器。 資料庫函數提供清楚而簡單的語法。</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Quick Start: Usage Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="configuration.html">Database Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="connecting.html">Connecting to a Database</a></li>
-<li class="toctree-l1"><a class="reference internal" href="queries.html">Running Queries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="results.html">Generating Query Results</a></li>
-<li class="toctree-l1"><a class="reference internal" href="helpers.html">Query Helper Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="query_builder.html">Query Builder Class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="transactions.html">Transactions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="metadata.html">Getting MetaData</a></li>
-<li class="toctree-l1"><a class="reference internal" href="call_function.html">Custom Function Calls</a></li>
-<li class="toctree-l1"><a class="reference internal" href="events.html">Database Events</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utilities.html">Database Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">快速入門: 範例程式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">資料庫設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connecting.html">連接資料庫</a></li>
+<li class="toctree-l1"><a class="reference internal" href="queries.html">執行查詢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">產生查詢結果</a></li>
+<li class="toctree-l1"><a class="reference internal" href="helpers.html">查詢輔助函數</a></li>
+<li class="toctree-l1"><a class="reference internal" href="query_builder.html">查詢生成器類別</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transactions.html">交易</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html">取得資料表資訊</a></li>
+<li class="toctree-l1"><a class="reference internal" href="call_function.html">自訂函數</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">資料庫事件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">資料庫工具</a></li>
 </ul>
 </div>
 </div>
@@ -366,7 +364,7 @@ patterns. The database functions offer clear, simple syntax.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="examples.html" class="btn btn-neutral float-right" title="Database Quick Start: Example Code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="資料庫 快速入門: 範例程式" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../outgoing/alternative_php.html" class="btn btn-neutral float-left" title="Alternate PHP Syntax for View Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -380,7 +378,7 @@ patterns. The database functions offer clear, simple syntax.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 07, 2020.
+        Last updated on Apr 08, 2020.
       </span>
 
     </p>

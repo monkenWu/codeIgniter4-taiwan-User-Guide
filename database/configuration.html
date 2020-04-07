@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Database Configuration &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>資料庫設定 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
   
 
   
@@ -39,7 +39,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Connecting to your Database" href="connecting.html" />
-    <link rel="prev" title="Database Quick Start: Example Code" href="examples.html" /> 
+    <link rel="prev" title="資料庫 快速入門: 範例程式" href="examples.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -145,7 +145,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP Messages</a></li>
@@ -173,19 +173,19 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Working With Databases</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="examples.html">Quick Start: Usage Examples</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Database Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="connecting.html">Connecting to a Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="queries.html">Running Queries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="results.html">Generating Query Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="helpers.html">Query Helper Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="query_builder.html">Query Builder Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transactions.html">Transactions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="metadata.html">Getting MetaData</a></li>
-<li class="toctree-l2"><a class="reference internal" href="call_function.html">Custom Function Calls</a></li>
-<li class="toctree-l2"><a class="reference internal" href="events.html">Database Events</a></li>
-<li class="toctree-l2"><a class="reference internal" href="utilities.html">Database Utilities</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">資料庫操作</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="examples.html">快速入門: 範例程式</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">資料庫設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">連接資料庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="queries.html">執行查詢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">產生查詢結果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">查詢輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_builder.html">查詢生成器類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transactions.html">交易</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">取得資料表資訊</a></li>
+<li class="toctree-l2"><a class="reference internal" href="call_function.html">自訂函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html">資料庫事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html">資料庫工具</a></li>
 </ul>
 </li>
 </ul>
@@ -318,9 +318,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Working With Databases</a> &raquo;</li>
+          <li><a href="index.html">資料庫操作</a> &raquo;</li>
         
-      <li>Database Configuration</li>
+      <li>資料庫設定</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -337,20 +337,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="database-configuration">
-<h1>Database Configuration<a class="headerlink" href="#database-configuration" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="id1">
+<h1>資料庫設定<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#configuring-with-env-file" id="id1">Configuring With .env File</a></li>
-<li><a class="reference internal" href="#explanation-of-values" id="id2">Explanation of Values:</a></li>
+<li><a class="reference internal" href="#env" id="id3">使用.env檔設定</a></li>
+<li><a class="reference internal" href="#id2" id="id4">設定值說明：</a></li>
 </ul>
 </div>
-<p>CodeIgniter has a config file that lets you store your database
-connection values (username, password, database name, etc.). The config
-file is located at app/Config/Database.php. You can also set
-database connection values in the .env file. See below for more details.</p>
-<p>The config settings are stored in a class property that is an array with this
-prototype:</p>
+<p>CodeIgniter 提供一個設定檔讓你設定資料庫連線資料(使用者名稱、密碼、資料庫名稱等…)。這一個設定檔位於
+app/Config/Database.php。你也可以藉由.env檔設定資料庫連線資料。參閱以下說明了解更多</p>
+<p>資料庫設定值被存放在一個遵照以下規範的類屬性裡面：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$default</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;DSN&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
         <span class="s1">&#39;hostname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
@@ -373,12 +370,9 @@ prototype:</p>
 <span class="p">];</span>
 </pre></div>
 </div>
-<p>The name of the class property is the connection name, and can be used
-while connecting to specify a group name.</p>
-<p>Some database drivers (such as PDO, PostgreSQL, Oracle, ODBC) might
-require a full DSN string to be provided. If that is the case, you
-should use the ‘DSN’ configuration setting, as if you’re using the
-driver’s underlying native PHP extension, like this:</p>
+<p>類別屬性的名稱就是連線名稱，並且可以用特殊群組名稱連線。</p>
+<p>某些資料庫驅動(例如：PDO、PostgreSQL、Oracle、ODBC)可能需要提供完整的DSN字串。在這些狀況下，你就需要使用’DSN’
+設定參數，就像是使用原生PHP的驅動擴展一樣，例如：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// PDO</span>
 <span class="nv">$default</span><span class="p">[</span><span class="s1">&#39;DSN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;pgsql:host=localhost;port=5432;dbname=database_name&#39;</span><span class="p">;</span>
 
@@ -388,63 +382,56 @@ driver’s underlying native PHP extension, like this:</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you do not specify a DSN string for a driver that requires it, CodeIgniter
-will try to build it with the rest of the provided settings.</p>
+<p class="last">如果你沒有為驅動指定DSN字串，CodeIgniter將會使用你提供的其他設定去建構你的資料庫。</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you provide a DSN string and it is missing some valid settings (e.g. the
-database character set), which are present in the rest of the configuration
-fields, CodeIgniter will append them.</p>
+<p class="last">如果你提供的DSN字串缺少了一些有效的參數(例如：資料庫的字元集)，若這些參數出現在其他設定中，CodeIgniter將自動在DNS的字串中附加上這些參數。</p>
 </div>
-<p>You can also specify failovers for the situation when the main connection cannot connect for some reason.
-These failovers can be specified by setting the failover for a connection like this:</p>
+<p>當主要連線因為某些原因無法連線時，你可以設定故障排除。可以透過以下的連接設定做故障排除：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$default</span><span class="p">[</span><span class="s1">&#39;failover&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="p">[</span>
-                        <span class="s1">&#39;hostname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost1&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;database&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;DBDriver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;MySQLi&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;DBPrefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;pConnect&#39;</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
-                        <span class="s1">&#39;DBDebug&#39;</span>  <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
-                        <span class="s1">&#39;cacheOn&#39;</span>  <span class="o">=&gt;</span> <span class="k">FALSE</span><span class="p">,</span>
-                        <span class="s1">&#39;cacheDir&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;charset&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;DBCollat&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;utf8_general_ci&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;swapPre&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;encrypt&#39;</span>  <span class="o">=&gt;</span> <span class="k">FALSE</span><span class="p">,</span>
-                        <span class="s1">&#39;compress&#39;</span> <span class="o">=&gt;</span> <span class="k">FALSE</span><span class="p">,</span>
-                        <span class="s1">&#39;strictOn&#39;</span> <span class="o">=&gt;</span> <span class="k">FALSE</span>
-                <span class="p">],</span>
-                <span class="p">[</span>
-                        <span class="s1">&#39;hostname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost2&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;database&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;DBDriver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;MySQLi&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;DBPrefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;pConnect&#39;</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
-                        <span class="s1">&#39;DBDebug&#39;</span>  <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
-                        <span class="s1">&#39;cacheOn&#39;</span>  <span class="o">=&gt;</span> <span class="k">FALSE</span><span class="p">,</span>
-                        <span class="s1">&#39;cacheDir&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;charset&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;DBCollat&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;utf8_general_ci&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;swapPre&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;encrypt&#39;</span>  <span class="o">=&gt;</span> <span class="k">FALSE</span><span class="p">,</span>
-                        <span class="s1">&#39;compress&#39;</span> <span class="o">=&gt;</span> <span class="k">FALSE</span><span class="p">,</span>
-                        <span class="s1">&#39;strictOn&#39;</span> <span class="o">=&gt;</span> <span class="k">FALSE</span>
-                <span class="p">]</span>
-        <span class="p">];</span>
+        <span class="p">[</span>
+                <span class="s1">&#39;hostname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost1&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;database&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;DBDriver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;MySQLi&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;DBPrefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;pConnect&#39;</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+                <span class="s1">&#39;DBDebug&#39;</span>  <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+                <span class="s1">&#39;cacheOn&#39;</span>  <span class="o">=&gt;</span> <span class="k">FALSE</span><span class="p">,</span>
+                <span class="s1">&#39;cacheDir&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;charset&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;DBCollat&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;utf8_general_ci&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;swapPre&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;encrypt&#39;</span>  <span class="o">=&gt;</span> <span class="k">FALSE</span><span class="p">,</span>
+                <span class="s1">&#39;compress&#39;</span> <span class="o">=&gt;</span> <span class="k">FALSE</span><span class="p">,</span>
+                <span class="s1">&#39;strictOn&#39;</span> <span class="o">=&gt;</span> <span class="k">FALSE</span>
+        <span class="p">],</span>
+        <span class="p">[</span>
+                <span class="s1">&#39;hostname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost2&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;database&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;DBDriver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;MySQLi&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;DBPrefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;pConnect&#39;</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+                <span class="s1">&#39;DBDebug&#39;</span>  <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+                <span class="s1">&#39;cacheOn&#39;</span>  <span class="o">=&gt;</span> <span class="k">FALSE</span><span class="p">,</span>
+                <span class="s1">&#39;cacheDir&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;charset&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;DBCollat&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;utf8_general_ci&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;swapPre&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;sencrypt&#39;</span>  <span class="o">=&gt;</span> <span class="k">FALSE</span><span class="p">,</span>
+                <span class="s1">&#39;compress&#39;</span> <span class="o">=&gt;</span> <span class="k">FALSE</span><span class="p">,</span>
+                <span class="s1">&#39;strictOn&#39;</span> <span class="o">=&gt;</span> <span class="k">FALSE</span>
+        <span class="p">]</span>
+<span class="p">];</span>
 </pre></div>
 </div>
-<p>You can specify as many failovers as you like.</p>
-<p>You may optionally store multiple sets of connection
-values. If, for example, you run multiple environments (development,
-production, test, etc.) under a single installation, you can set up a
-connection group for each, then switch between groups as needed. For
-example, to set up a “test” environment you would do this:</p>
+<p>你可以指定任意數量的故障排除。</p>
+<p>你可以選擇保存多個資料庫連線設定。例如，在一個系統下執行多個環境(開發、正式、測試等)，你可以為了每一個開發環境建立獨立的資
+料庫設定，並且可以按照你的需求任意切換。如果要設定’test’的資料庫環境，可以參閱以下範例：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$test</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;DSN&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
         <span class="s1">&#39;hostname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
@@ -467,20 +454,15 @@ example, to set up a “test” environment you would do this:</p>
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>Then, to globally tell the system to use that group you would set this
-variable located in the config file:</p>
+<p>然後，要以全域的方式告訴系統，在設定檔中使用’test’這組連線:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$defaultGroup</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The name ‘test’ is arbitrary. It can be anything you want. By
-default we’ve used the word “default” for the primary connection,
-but it too can be renamed to something more relevant to your project.</p>
+<p class="last">‘test’的名稱可以由你去任意更改。預設的情況下，主要的連線會使用”default”。但你也可以更改成跟你的專案有關係的名稱</p>
 </div>
-<p>You could modify the config file to detect the environment and automatically
-update the <cite>defaultGroup</cite> value to the correct one by adding the required logic
-within the class’ constructor:</p>
+<p>你可以更改設定檔來檢測環境，並且在類別的建構函數中新增需要的邏輯，將 <cite>defaultGroup</cite> 自動更新成正確的數值:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Database</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="nv">$development</span> <span class="o">=</span> <span class="p">[</span><span class="o">...</span><span class="p">];</span>
@@ -494,113 +476,110 @@ within the class’ constructor:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="section" id="configuring-with-env-file">
-<h2><a class="toc-backref" href="#id1">Configuring With .env File</a><a class="headerlink" href="#configuring-with-env-file" title="Permalink to this headline">¶</a></h2>
-<p>You can also save your configuration values within a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file with the current server’s
-database settings. You only need to enter the values that change from what is in the
-default group’s configuration settings. The values should be name following this format, where
-<code class="docutils literal notranslate"><span class="pre">default</span></code> is the group name:</p>
+<div class="section" id="env">
+<h2><a class="toc-backref" href="#id3">使用.env檔設定</a><a class="headerlink" href="#env" title="Permalink to this headline">¶</a></h2>
+<p>你也可以使用目前伺服器資料庫的設定，儲存你的設定參數在 <code class="docutils literal notranslate"><span class="pre">.env</span></code> 檔中。你只需要在預設值設定中輸入你想要改變的參數即可。
+參數的命名必須遵守以下的格式，其中 <code class="docutils literal notranslate"><span class="pre">default</span></code> 是這個群組的名稱：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">database</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nx">username</span> <span class="o">=</span> <span class="s1">&#39;root&#39;</span><span class="p">;</span>
 <span class="nx">database</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nx">password</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
 <span class="nx">database</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nx">database</span> <span class="o">=</span> <span class="s1">&#39;ci4&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>As with all other</p>
+<p>如同其他所有的</p>
 </div>
-<div class="section" id="explanation-of-values">
-<h2><a class="toc-backref" href="#id2">Explanation of Values:</a><a class="headerlink" href="#explanation-of-values" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id4">設定值說明：</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="83%" />
+<col width="14%" />
+<col width="86%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Name Config</th>
-<th class="head">Description</th>
+<tr class="row-odd"><th class="head">設定名稱</th>
+<th class="head">說明</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td><strong>dsn</strong></td>
-<td>The DSN connect string (an all-in-one configuration sequence).</td>
+<td>DSN連線字串 (所有設定一次完成的設定方式)。</td>
 </tr>
 <tr class="row-odd"><td><strong>hostname</strong></td>
-<td>The hostname of your database server. Often this is ‘localhost’.</td>
+<td>你的資料庫伺服器的hostname。通常本地端是’localhost’。</td>
 </tr>
 <tr class="row-even"><td><strong>username</strong></td>
-<td>The username used to connect to the database.</td>
+<td>用以連線資料庫的使用者名稱。</td>
 </tr>
 <tr class="row-odd"><td><strong>password</strong></td>
-<td>The password used to connect to the database.</td>
+<td>用以連線資料庫的使用者密碼。</td>
 </tr>
 <tr class="row-even"><td><strong>database</strong></td>
-<td>The name of the database you want to connect to.</td>
+<td>你所要連線的資料庫名稱。</td>
 </tr>
 <tr class="row-odd"><td><strong>DBDriver</strong></td>
-<td>The database type. eg: MySQLi, Postgre, etc. The case must match the driver name</td>
+<td>資料庫驅動。例如：MySQLi、Postgre等。名稱必須完全符合驅動的名稱。</td>
 </tr>
 <tr class="row-even"><td><strong>DBPrefix</strong></td>
-<td>An optional table prefix which will added to the table name when running
-<a class="reference internal" href="query_builder.html"><span class="doc">Query Builder</span></a> queries. This permits multiple CodeIgniter
-installations to share one database.</td>
+<td>資料表字首。當使用 <a class="reference internal" href="query_builder.html"><span class="doc">查詢生成器</span></a> 查詢資料時，會自動新增該值到資料表的字首。這允許了多個CodeIgniter共用同個資料庫。</td>
 </tr>
 <tr class="row-odd"><td><strong>pConnect</strong></td>
-<td>TRUE/FALSE (boolean) - Whether to use a persistent connection.</td>
+<td>TRUE/FALSE (boolean) - 是否使用保持連線的功能。</td>
 </tr>
 <tr class="row-even"><td><strong>DBDebug</strong></td>
-<td>TRUE/FALSE (boolean) - Whether database errors should be displayed.</td>
+<td>TRUE/FALSE (boolean) - 是否顯示資料庫的錯誤訊息。</td>
 </tr>
 <tr class="row-odd"><td><strong>cacheOn</strong></td>
-<td>TRUE/FALSE (boolean) - Whether database query caching is enabled.</td>
+<td>TRUE/FALSE (boolean) - 是否使用資料庫快取的功能。</td>
 </tr>
 <tr class="row-even"><td><strong>cacheDir</strong></td>
-<td>The absolute server path to your database query cache directory.</td>
+<td>資料庫查詢時的快取目錄。該目錄為伺服器的絕對路徑。</td>
 </tr>
 <tr class="row-odd"><td><strong>charset</strong></td>
-<td>The character set used in communicating with the database.</td>
+<td>與資料庫溝通時，所使用的字元集。</td>
 </tr>
 <tr class="row-even"><td><strong>DBCollat</strong></td>
-<td><p class="first">The character collation used in communicating with the database</p>
+<td><p class="first">與資料庫溝通時，所使用的字元排序。</p>
 <div class="last admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Only used in the ‘MySQLi’ driver.</p>
+<p class="last">只有在 ‘MySQLi’ 中才能使用。</p>
 </div>
 </td>
 </tr>
 <tr class="row-odd"><td><strong>swapPre</strong></td>
-<td>A default table prefix that should be swapped with dbprefix. This is useful for distributed
-applications where you might run manually written queries, and need the prefix to still be
-customizable by the end user.</td>
+<td>可以與dbprefix交換的資料表字首。這對於分散式的應用程式很有用，當你可能需要手動編輯查詢，並且需要由終端使用者去定義字首。</td>
 </tr>
 <tr class="row-even"><td><strong>schema</strong></td>
-<td>The database schema, defaults to ‘public’. Used by PostgreSQL and ODBC drivers.</td>
+<td>資料庫綱目，預設為’public’。被PostgreSQL和ODBC的驅動做使用。</td>
 </tr>
 <tr class="row-odd"><td><strong>encrypt</strong></td>
-<td><p class="first">Whether or not to use an encrypted connection.</p>
-<blockquote class="last">
-<div><ul class="simple">
-<li>‘sqlsrv’ and ‘pdo/sqlsrv’ drivers accept TRUE/FALSE</li>
-<li>‘MySQLi’ and ‘pdo/mysql’ drivers accept an array with the following options:<ul>
-<li>‘ssl_key’    - Path to the private key file</li>
-<li>‘ssl_cert’   - Path to the public key certificate file</li>
-<li>‘ssl_ca’     - Path to the certificate authority file</li>
-<li>‘ssl_capath’ - Path to a directory containing trusted CA certificates in PEM format</li>
-<li>‘ssl_cipher’ - List of <em>allowed</em> ciphers to be used for the encryption, separated by colons (‘:’)</li>
-<li>‘ssl_verify’ - TRUE/FALSE; Whether to verify the server certificate or not (‘MySQLi’ only)</li>
-</ul>
+<td><blockquote class="first">
+<div>是否使用加密連線。</div></blockquote>
+<ul class="last">
+<li><p class="first">‘sqlsrv’ 和 ‘pdo/sqlsrv’ 驅動使用 TRUE/FALSE</p>
 </li>
+<li><p class="first">‘MySQLi’ 和 ‘pdo/mysql’ 驅動使用以下的陣列參數:</p>
+<blockquote>
+<div><ul class="simple">
+<li>‘ssl_key’    - 私密金鑰檔案的路徑。</li>
+<li>‘ssl_cert’   - 公開金鑰認證檔案的路徑。</li>
+<li>‘ssl_ca’     - 認證機構檔案的路徑。</li>
+<li>‘ssl_capath’ - 包含PEM格式的可信任數位認證的目錄路徑。</li>
+<li>‘ssl_cipher’ - 加密密碼中， <cite>允許</cite> 使用的密碼列表，使用冒號(‘:’)做區隔。</li>
+<li>‘ssl_verify’ - TRUE/FALSE。是否驗證伺服器認證(僅限 ‘MySQLi’ 使用)。</li>
 </ul>
 </div></blockquote>
+</li>
+</ul>
 </td>
 </tr>
 <tr class="row-even"><td><strong>compress</strong></td>
-<td>Whether or not to use client compression (MySQL only).</td>
+<td>是否使用客戶端壓縮(MySQL專用)</td>
 </tr>
 <tr class="row-odd"><td><strong>strictOn</strong></td>
-<td>TRUE/FALSE (boolean) - Whether to force “Strict Mode” connections, good for ensuring strict SQL
-while developing an application.</td>
+<td>TRUE/FALSE (boolean) - 是否強制 “Strict Mode” 連線，使用嚴格的SQL對應用程式的開發是有幫助的。</td>
 </tr>
 <tr class="row-even"><td><strong>port</strong></td>
-<td><p class="first">The database port number. To use this value you have to add a line to the database config array.</p>
+<td><blockquote class="first">
+<div>設定資料庫port。要使用這項設定你需要在資料庫設定參數陣列當中加入。</div></blockquote>
 <div class="last highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$default</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5432</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -610,11 +589,9 @@ while developing an application.</td>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Depending on what database platform you are using (MySQL, PostgreSQL,
-etc.) not all values will be needed. For example, when using SQLite you
-will not need to supply a username or password, and the database name
-will be the path to your database file. The information above assumes
-you are using MySQL.</p>
+<p class="last">並不是所有設定值都需要被設定，這會根據你所使用的資料庫平台(MySQL、PostgreSQL等)。
+例如：當你在使用SQLite時，你不需要設定使用者名稱或密碼，而且你的資料庫名稱就是資料庫的路徑。
+以上的資訊都是假設你在使用的是MySQL。</p>
 </div>
 </div>
 </div>
@@ -630,7 +607,7 @@ you are using MySQL.</p>
         <a href="connecting.html" class="btn btn-neutral float-right" title="Connecting to your Database" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="examples.html" class="btn btn-neutral float-left" title="Database Quick Start: Example Code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-left" title="資料庫 快速入門: 範例程式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -641,7 +618,7 @@ you are using MySQL.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 07, 2020.
+        Last updated on Apr 08, 2020.
       </span>
 
     </p>
