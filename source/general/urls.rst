@@ -2,7 +2,7 @@
 CodeIgniter URLs
 ################
 
-在預設的情況下， CodeIgniter 中的 URL 設計得友好於搜尋引擎與人類。 CodeIgniter 沒有使用 query-string 的方式處理 URL ，而是以 **基於區段** 的方式進行處理：
+在預設的情況下， CodeIgniter 中 URL 的設計友好於搜尋引擎與人類。 CodeIgniter 沒有使用 query-string 的方式處理 URL ，而是以 **基於區段** 的方式進行處理：
 
 ::
 
@@ -17,8 +17,8 @@ URI 區段
 
 	example.com/class/method/ID
 
-1. 第一個區段通常是指被呼叫的控制器　**類別** 。
-2. 第二個區段通常使指被呼叫類別下的 **方法** 。
+1. 第一個區段通常是指被呼叫的控制器 **類別** 。
+2. 第二個區段通常是指被呼叫類別下的 **方法** 。
 3. 在這之後任何的區段，都將會成為傳遞給控制器的變數（方法的參數）。
 
 在 :doc:`URI 函式庫 <../libraries/uri>` 與 :doc:`URL 輔助函數 <../helpers/url_helper>` 包含了一些函數可以便利地處理你的 URL 資料。除此之外，你的 URL 也可以使用 :doc:`URL 路由 </incoming/routing>` 功能重新映射，讓它變得更加靈活。
@@ -37,7 +37,7 @@ URI 區段
 Apache 網頁伺服器
 -----------------
 
-Apache 必須啟用 *mod_rewrite* 擴充元件。如果成功啟用，你就可以使用帶有簡單規則 ``.htaccess`` 檔案。這裡以一個使用了「 negative 」方法的例子，除了被指定的項目外，所有的請求都會被重新定向：
+Apache 必須啟用 *mod_rewrite* 擴充元件。如果成功啟用，你就可以讓啟用帶有簡單規則的 ``.htaccess`` 檔案。我們使用了「 negative 」方法作為例子，除了被指定的項目外，所有的請求都會被重新定向：
 
 .. code-block:: apache
 

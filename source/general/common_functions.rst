@@ -1,9 +1,8 @@
 ##############################
-Global Functions and Constants
+全域函數與常數
 ##############################
 
-CodeIgniter uses provides a few functions and variables that are globally defined, and are available to you at any point.
-These do not require loading any additional libraries or helpers.
+CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以使用，這些函數和變數不需要載入任何額外的程式庫或輔助函數。
 
 .. contents::
     :local:
@@ -11,87 +10,83 @@ These do not require loading any additional libraries or helpers.
 
 
 ================
-Global Functions
+全域函數
 ================
 
-Service Accessors
+服務存取器
 =================
 
 .. php:function:: cache ( [$key] )
 
-    :param  string $key: The cache name of the item to retrieve from cache (Optional)
-    :returns: Either the cache object, or the item retrieved from the cache
+    :param  string $key: 想要從快取項目中取出的快取名稱。（可選）
+    :returns: 單獨指定的快取項目，或者是整個快取物件。
     :rtype: mixed
 
-    If no $key is provided, will return the Cache engine instance. If a $key
-    is provided, will return the value of $key as stored in the cache currently,
-    or null if no value is found.
+    如果沒有提供 $key ，將會回傳快取引擎的實體。如果提供了 $key ，則會回傳現在儲存在快取中的 $key 的值，如果沒有找到，則會回傳 null 。
 
-    Examples::
+    範例：
+	
+	::
 
      	$foo = cache('foo');
     	$cache = cache();
 
 .. php:function:: env ( $key[, $default=null])
 
-	:param string $key: The name of the environment variable to retrieve
-	:param mixed  $default: The default value to return if no value is found.
-	:returns: The environment variable, the default value, or null.
+	:param string $key: 需要檢索的環境變數名稱
+	:param mixed  $default: 如果沒有找到值，默認回傳的值。
+	:returns: 環境變數，默認值或為 null 。
 	:rtype: mixed
 
-	Used to retrieve values that have previously been set to the environment,
-	or return a default value if it is not found. Will format boolean values
-	to actual booleans instead of string representations.
+	用於檢索已經被設定過的環境變數，如果沒有找到，則會回傳一個默認值。將會是實際的布林值，而不是以字串表示。
 
-	Especially useful when used in conjunction with .env files for setting
-	values that are specific to the environment itself, like database
-	settings, API keys, etc.
+	當與 .env 檔案結合使用時，這個函數會特別有用。用於設定環境本身的特定值，如資料庫設定、API 金鑰等等。
 
 .. php:function:: esc ( $data, $context='html' [, $encoding])
 
-	:param   string|array   $data: The information to be escaped.
-	:param   string   $context: The escaping context. Default is 'html'.
-	:param   string   $encoding: The character encoding of the string.
-	:returns: The escaped data.
+	:param   string|array   $data: 預計被跳脫的資訊。
+	:param   string   $context: 轉譯的內容，預設是 html 。
+	:param   string   $encoding: 字串的編碼格式。
+	:returns: 跳脫後的資料。
 	:rtype: mixed
 
-	Escapes data for inclusion in web pages, to help prevent XSS attacks.
-	This uses the Laminas Escaper library to handle the actual filtering of the data.
+	在你的網頁中使用跳脫後的資訊，將可以防止 XSS 攻擊。這個函數使用 Laminas Escaper 程式庫來處理實際的資料過濾。
 
-	If $data is a string, then it simply escapes and returns it.
-	If $data is an array, then it loops over it, escaping each 'value' of the key/value pairs.
+	如果 $data 是一個字串，那麼就會被轉譯後回傳。如果 $data 是一個陣列，那麼它就會針對陣列做循環，轉換調每個鍵/值的「值」。
 
-	Valid context values: html, js, css, url, attr, raw, null
+	支援的內容值： html 、 js 、 css 、 url 、 attr 、 raw 、 null 。
 
 .. php:function:: helper( $filename )
 
-	:param   string|array  $filename: The name of the helper file to load, or an array of names.
+	:param   string|array  $filename: 要載入的輔助函數名稱，或者是含有多個輔助函數名稱的陣列。
 
-	Loads a helper file.
+	載入一個輔助函數檔案。
 
-	For full details, see the :doc:`helpers` page.
+	詳情請參閱 :doc:`helpers` 頁面。
 
 .. php:function:: lang($line[, $args[, $locale ]])
 
-	:param string $line: The line of text to retrieve
-	:param array  $args: An array of data to substitute for placeholders.
-	:param string $locale: Specify a different locale to be used instead of default one.
+	:param string $line: 要檢索的文字行數。
+	:param array  $args: 替代置換符號的資料陣列。
+	:param string $locale: 指定要使用的語言環境，而非默認的語言環境。
 
-	Retrieves a locale-specific file based on an alias string.
+	根據別名字串檢索特定的語言環境檔案。
 
-	For more information, see the :doc:`Localization </outgoing/localization>` page.
+	更多資訊，請參閱 :doc:`Localization </outgoing/localization>` 頁面。
 
 .. php:function:: old( $key[, $default = null, [, $escape = 'html' ]] )
 
-	:param string $key: The name of the old form data to check for.
-	:param mixed  $default: The default value to return if $key doesn't exist.
-	:param mixed  $escape: An `escape <#esc>`_ context or false to disable it.
-	:returns: The value of the defined key, or the default value.
+	:param string $key: 需要檢查的舊表單資料。
+	:param mixed  $default: 如果 $key 不存在，則返回默認值。
+	:param mixed  $escape: `轉譯 <#esc>`_ 內容或使用 false 禁用。
+	:returns: 定義 key 的值，或者使用默認值。
 	:rtype: mixed
 
-	Provides a simple way to access "old input data" from submitting a form.
+	提供一個簡單的方法，可以從已經提交的表單中造訪「舊的輸入資料」。
 
-	Example::
+	範例：
+	
+	::
 
 		// in controller, checking form submittal
 		if (! $model->save($user))
@@ -106,29 +101,25 @@ Service Accessors
 		// Or with arrays
 		<input type="email" name="user[email]" value="<?= old('user.email') ?>">
 
-.. note:: If you are using the :doc:`form helper </helpers/form_helper>`, this feature is built-in. You only
-		need to use this function when not using the form helper.
+.. note:: 這個功能內建在 :doc:`表單輔助函數 </helpers/form_helper>` 之中，若是你不使用表單輔助函數，你才會需要用到這個功能。
 
 .. php:function:: session( [$key] )
 
-	:param string $key: The name of the session item to check for.
-	:returns: An instance of the Session object if no $key, the value found in the session for $key, or null.
+	:param string $key: 需要檢查的 Session 項目名稱。
+	:returns: 如果沒有傳入 $key ，則會回傳 Session 物件的實體；如果有傳入 $key ，則尋找 Session 中是否有這個值後回傳，若找不到則為 null。 
 	:rtype: mixed
 
-	Provides a convenient way to access the session class and to retrieve a
-	stored value. For more information, see the :doc:`Sessions </libraries/sessions>` page.
+	提供一個訪問 Session 類別和檢索儲存值的便捷方法，更多訊息請參閱 :doc:`Sessions </libraries/sessions>` 頁面。
 
 .. php:function:: timer( [$name] )
 
-	:param string $name: The name of the benchmark point.
-	:returns: The Timer instance
+	:param string $name: 基準點的名稱。
+	:returns: Timer 實體。
 	:rtype: CodeIgniter\Debug\Timer
 
-	A convenience method that provides quick access to the Timer class. You can pass in the name
-	of a benchmark point as the only parameter. This will start timing from this point, or stop
-	timing if a timer with this name is already running.
+	提供快速造訪 Timer 類別的方法，你可以傳遞一個基準點名稱做為唯一參數。方法將從這個基準點開始計時，如果已經有一個帶有這個名子的 Timer 再運作，則會停止運作。
 
-	Example::
+	範例::
 
 		// Get an instance
 		$timer = timer();
@@ -140,254 +131,248 @@ Service Accessors
 
 .. php:function:: view ($name [, $data [, $options ]])
 
-	:param   string   $name: The name of the file to load
-	:param   array    $data: An array of key/value pairs to make available within the view.
-	:param   array    $options: An array of options that will be passed to the rendering class.
-	:returns: The output from the view.
+	:param   string   $name: 要載入的檔案名稱。
+	:param   array    $data: 傳遞給視圖的 鍵/值 陣列。
+	:param   array    $options: 將會傳遞給渲染類別的選項陣列。
+	:returns: 輸出視圖。
 	:rtype: string
 
-	Grabs the current RendererInterface-compatible class
-	and tells it to render the specified view. Simply provides
-	a convenience method that can be used in Controllers,
-	libraries, and routed closures.
+	抓取目前的 RendererInterface 相容類別，並告訴它渲染所指定的視圖。提供便捷的方法，可以在控制器、程式庫與路由閉包中使用。
 
-	Currently, only one option is available for use within the `$options` array, `saveData` which specifies
-	that data will persistent between multiple calls to `view()` within the same request. By default, the
-	data for that view is forgotten after displaying that single view file.
+	在 `$options` 陣列中有一個選項可以使用，即 `saveData` 。它指定的資料將保持在同一請求多次呼叫的 `View()` 之中。在默認的情況下，這個視圖的資料將在顯示視圖後被棄用。
 
-	The $option array is provided primarily to facilitate third-party integrations with
-	libraries like Twig.
+	提供 $option 陣列是為了方便第三方與 Twig 等程式庫的集成。
 
-	Example::
+	範例::
 
 		$data = ['user' => $user];
 
 		echo view('user_profile', $data);
 
-	For more details, see the :doc:`Views </outgoing/views>` page.
+	更多詳情，請閱讀 :doc:`視圖 </outgoing/views>` 頁面。
 
-Miscellaneous Functions
+其他功能
 =======================
 
 .. php:function:: csrf_token ()
 
-	:returns: The name of the current CSRF token.
+	:returns: 當前 CSRF 令牌的名稱。
 	:rtype: string
 
-	Returns the name of the current CSRF token.
+	回傳當前 CSRF 令牌的名稱。
 
 .. php:function:: csrf_header ()
 
-	:returns: The name of the header for current CSRF token.
+	:returns: 當前 CSRF 令牌的 header 名稱。
 	:rtype: string
 
-	The name of the header for current CSRF token.
+	當前 CSRF 令牌的 header 名稱。
 
 .. php:function:: csrf_hash ()
 
-	:returns: The current value of the CSRF hash.
+	:returns: 當前 CSRF 的雜湊值。
 	:rtype: string
 
-	Returns the current CSRF hash value.
+	當前 CSRF 的雜湊值。
 
 .. php:function:: csrf_field ()
 
-	:returns: A string with the HTML for hidden input with all required CSRF information.
+	:returns: 一個帶有隱藏輸入的 HTML 字串，包含所有需要的 CSRF 訊息。
 	:rtype: string
 
-	Returns a hidden input with the CSRF information already inserted:
+	回傳已經插入 CSRF 訊息的隱藏輸入：
+
+	::
 
 		<input type="hidden" name="{csrf_token}" value="{csrf_hash}">
 
 .. php:function:: csrf_meta ()
 
-	:returns: A string with the HTML for meta tag with all required CSRF information.
+	:returns: 一個包含 meta 標籤的 HTML 字串，包含所有需要的 CSRF 訊息。
 	:rtype: string
 
-	Returns a meta tag with the CSRF information already inserted:
+	回傳一個已經插入了 CSRF 訊息的 meta 標籤：
+
+	::
 
 		<meta name="{csrf_header}" content="{csrf_hash}">
 
 .. php:function:: force_https ( $duration = 31536000 [, $request = null [, $response = null]] )
 
-	:param  int  $duration: The number of seconds browsers should convert links to this resource to HTTPS.
-	:param  RequestInterface $request: An instance of the current Request object.
-	:param  ResponseInterface $response: An instance of the current Response object.
+	:param  int  $duration: 瀏覽器將連接到這個資源轉換成 HTTPS 的秒數。
+	:param  RequestInterface $request: 目前 Request 物件的實體。
+	:param  ResponseInterface $response: 目前 Response 物件的實體。
 
-	Checks to see if the page is currently being accessed via HTTPS. If it is, then
-	nothing happens. If it is not, then the user is redirected back to the current URI
-	but through HTTPS. Will set the HTTP Strict Transport Security header, which instructs
-	modern browsers to automatically modify any HTTP requests to HTTPS requests for the $duration.
+	檢查目前是否通過 HTTPS 造訪該頁面。如果是，將不動作。若否，則該使用者將會以 HTTPS 的形式被重新導向到當前 URL 。將會設定 HTTP Strict-Transport-Security 標頭，它將讓現代瀏覽器自動把 $duration 的所有 HTTP 請求修改為 HTTPS 請求。
 
 .. php:function:: is_cli ()
 
-	:returns: TRUE if the script is being executed from the command line or FALSE otherwise.
+	:returns: 如果該腳本是從命令列中執行，則回傳 TRUE 否則回傳 FALSE 。
 	:rtype: bool
 
 .. php:function:: log_message ($level, $message [, $context])
 
-	:param   string   $level: The level of severity
-	:param   string   $message: The message that is to be logged.
-	:param   array    $context: An associative array of tags and their values that should be replaced in $message
-	:returns: TRUE if was logged successfully or FALSE if there was a problem logging it
+	:param   string   $level: 嚴重程度。
+	:param   string   $message: 要記錄的訊息。
+	:param   array    $context: 包含標籤與值的關聯陣列，在 $message 中被替換。
+	:returns: 如果紀錄成功則為 TRUE ；如果紀錄失敗則為 FALSE 。
 	:rtype: bool
 
-	Logs a message using the Log Handlers defined in **app/Config/Logger.php**.
+	使用 **app/Config/Logger.php** 中定義的日誌處理程式來記錄訊息。
+	
+	級別可能是以下值之一： **emergency （緊急）** 、 **alert （提示）** 、 **critical （重要）** 、 **error （錯誤）** 、 **warning （警告）** 、 **notice （通知）** 、 **info （訊息）**，與 **debug （除錯）**.
 
-	Level can be one of the following values: **emergency**, **alert**, **critical**, **error**, **warning**,
-	**notice**, **info**, or **debug**.
-
-	Context can be used to substitute values in the message string. For full details, see the
-	:doc:`Logging Information <logging>` page.
+	$context 可以用來替代訊息字串中的值，有關詳細資訊，請參閱 :doc:`日誌資訊 <logging>` 頁面。
 
 .. php:function:: redirect( string $uri )
 
-	:param  string  $uri: The URI to redirect the user to.
+	:param  string  $uri: 使用者將被重新導向的目標 URL 。
 
-	Returns a RedirectResponse instance allowing you to easily create redirects::
+	回傳一個 RedirectResponse 實體，允許使用者輕鬆創建重新定向：
 
-		// Go back to the previous page
+	::
+
+		// 返回上一頁
 		return redirect()->back();
 
-		// Go to specific UI
+		// 前往特定的 URI
 		return redirect()->to('/admin');
 
-		// Go to a named/reverse-routed URI
+		// 前往 named/reverse-routed 的 URI
 		return redirect()->route('named_route');
 
-		// Keep the old input values upon redirect so they can be used by the `old()` function
+		// 在重新定向時保留舊的輸入值，這樣他們就可以被 `old()` 函數使用。
 		return redirect()->back()->withInput();
 
-		// Set a flash message
+		// 設定快閃訊息（Flash message）
 		return redirect()->back()->with('foo', 'message');
 
-	When passing a URI into the function, it is treated as a reverse-route request, not a relative/full URI, treating
-        it the same as using redirect()->route()::
+	當傳遞 URL 到函數中時，它會被視為反向路由請求，而不是 relative/full 的 URI ，處理方式與使用 redirect()->route() 相同 ：
 
-                // Go to a named/reverse-routed URI
+	::
+
+        	// 前往 named/reverse-routed 的 URI
 		return redirect('named_route');
 
 .. php:function:: remove_invisible_characters($str[, $urlEncoded = TRUE])
 
-	:param	string	$str: Input string
-	:param	bool	$urlEncoded: Whether to remove URL-encoded characters as well
+	:param	string	$str: 輸入字串
+	:param	bool	$urlEncoded: 是否要清除 URL 編碼的字元
 	:returns:	Sanitized string
 	:rtype:	string
 
-	This function prevents inserting NULL characters between ASCII
-	characters, like Java\\0script.
+	這個函數可以防止在 ASCII 字元間插入 NULL 字元，就像 Java\\0script 。
 
-	Example::
+	範例：
+	
+	::
 
 		remove_invisible_characters('Java\\0script');
-		// Returns: 'Javascript'
+		// 最後會輸出: 'Javascript'　字串
 
 .. php:function:: route_to ( $method [, ...$params] )
 
-	:param   string   $method: The named route alias, or name of the controller/method to match.
-	:param   mixed   $params: One or more parameters to be passed to be matched in the route.
+	:param   string   $method: 命名路由的別名，或是要匹配的 控制器／方法 的名稱。
+	:param   mixed   $params: 在路由中傳遞一個或多個要匹配的參數。
 
-	Generates a relative URI for you based on either a named route alias, or a controller::method
-	combination. Will take parameters into effect, if provided.
+	根據命名的路由別名以及 控制器::方法 ，生成一個相對的 URI 組合。如果提供了參數，則參數將會生效。
 
-	For full details, see the :doc:`/incoming/routing` page.
+	有關更多訊息，請見 :doc:`/incoming/routing` 頁面.
 
 .. php:function:: service ( $name [, ...$params] )
 
-	:param   string   $name: The name of the service to load
-	:param   mixed    $params: One or more parameters to pass to the service method.
-	:returns: An instance of the service class specified.
+	:param   string   $name: 要被載入的服務名稱。
+	:param   mixed    $params: 傳遞給方法的一個或多個的參數。
+	:returns: 指定的服務類別的實體。
 	:rtype: mixed
 
-	Provides easy access to any of the :doc:`Services <../concepts/services>` defined in the system.
-	This will always return a shared instance of the class, so no matter how many times this is called
-	during a single request, only one class instance will be created.
+	提供了對系統中定義的任何 :doc:`Services <../concepts/services>` 的方便訪問。這將始終回傳一個共享的類別實體，因此無論在一次的請求中呼叫多少次，都只會創建一個類別實體。
 
-	Example::
+	範例：
+	
+	::
 
 		$logger = service('logger');
 		$renderer = service('renderer', APPPATH.'views/');
 
 .. php:function:: single_service ( $name [, ...$params] )
 
-	:param   string   $name: The name of the service to load
-	:param   mixed    $params: One or more parameters to pass to the service method.
-	:returns: An instance of the service class specified.
+	:param   string   $name: 要載入的服務名稱。
+	:param   mixed    $params: 一個或多個要傳遞給服務方法的參數。
+	:returns: 指定的服務類別的實體。
 	:rtype: mixed
 
-	Identical to the **service()** function described above, except that all calls to this
-	function will return a new instance of the class, where **service** returns the same
-	instance every time.
+	與上面描述的 **service()** 函數相同，但呼叫這個函數每次都會回傳一個新的類別實體，而 **service** 每次的回傳則是相同的實體。
 
 .. php:function:: stringify_attributes ( $attributes [, $js] )
 
-	:param   mixed    $attributes: string, array of key value pairs, or object
-	:param   boolean  $js: TRUE if values do not need quotes (Javascript-style)
-	:returns: String containing the attribute key/value pairs, comma-separated
+	:param   mixed    $attributes: 字串、鍵值陣列或物件。
+	:param   boolean  $js: 如果值不需要引號，則為 TRUE （ Javascript 風格 ）。
+	:returns: 含有屬性 鍵／值 的字串，以逗號分開。
 	:rtype: string
 
-	Helper function used to convert a string, array, or object of attributes to a string.
+	輔助函數用於將字串、陣列或物件屬性串換成字串。
 
 ================
-Global Constants
+全域常數
 ================
 
-The following constants are always available anywhere within your application.
+以下的常數將可以在應用程式中的任何地方使用。
 
-Core Constants
+核心常數
 ==============
 
 .. php:const:: APPPATH
 
-	The path to the **app** directory.
+	**app** 目錄的絕對路徑。
 
 .. php:const:: ROOTPATH
 
-	The path to the project root directory. Just above ``APPPATH``.
+	專案根目錄的絕對路徑，也就是 ``APPPATH`` 的上一層。
 
 .. php:const:: SYSTEMPATH
 
-	The path to the **system** directory.
+	**system** 資料夾的絕對路徑。
 
 .. php:const:: FCPATH
 
-	The path to the directory that holds the front controller.
+	存放前置（front）控制器的絕對路徑。
 
 .. php:const:: WRITEPATH
 
-	The path to the **writable** directory.
+	**writable** 目錄的絕對路徑。
 
-Time Constants
+時間常數
 ==============
 
 .. php:const:: SECOND
 
-	Equals 1.
+	等於 1.
 
 .. php:const:: MINUTE
 
-	Equals 60.
+	等於 60.
 
 .. php:const:: HOUR
 
-	Equals 3600.
+	等於 3600.
 
 .. php:const:: DAY
 
-	Equals 86400.
+	等於 86400.
 
 .. php:const:: WEEK
 
-	Equals 604800.
+	等於 604800.
 
 .. php:const:: MONTH
 
-	Equals 2592000.
+	等於 2592000.
 
 .. php:const:: YEAR
 
-	Equals 31536000.
+	等於 31536000.
 
 .. php:const:: DECADE
 
-	Equals 315360000.
+	等於 315360000.
