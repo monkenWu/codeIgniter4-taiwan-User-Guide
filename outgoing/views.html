@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -341,14 +341,14 @@
 <h1>Views<a class="headerlink" href="#views" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#creating-a-view" id="id1">Creating a View</a></li>
-<li><a class="reference internal" href="#displaying-a-view" id="id2">Displaying a View</a></li>
-<li><a class="reference internal" href="#loading-multiple-views" id="id3">Loading Multiple Views</a></li>
-<li><a class="reference internal" href="#storing-views-within-sub-directories" id="id4">Storing Views within Sub-directories</a></li>
-<li><a class="reference internal" href="#namespaced-views" id="id5">Namespaced Views</a></li>
-<li><a class="reference internal" href="#caching-views" id="id6">Caching Views</a></li>
-<li><a class="reference internal" href="#adding-dynamic-data-to-the-view" id="id7">Adding Dynamic Data to the View</a></li>
-<li><a class="reference internal" href="#creating-loops" id="id8">Creating Loops</a></li>
+<li><p><a class="reference internal" href="#creating-a-view" id="id1">Creating a View</a></p></li>
+<li><p><a class="reference internal" href="#displaying-a-view" id="id2">Displaying a View</a></p></li>
+<li><p><a class="reference internal" href="#loading-multiple-views" id="id3">Loading Multiple Views</a></p></li>
+<li><p><a class="reference internal" href="#storing-views-within-sub-directories" id="id4">Storing Views within Sub-directories</a></p></li>
+<li><p><a class="reference internal" href="#namespaced-views" id="id5">Namespaced Views</a></p></li>
+<li><p><a class="reference internal" href="#caching-views" id="id6">Caching Views</a></p></li>
+<li><p><a class="reference internal" href="#adding-dynamic-data-to-the-view" id="id7">Adding Dynamic Data to the View</a></p></li>
+<li><p><a class="reference internal" href="#creating-loops" id="id8">Creating Loops</a></p></li>
 </ul>
 </div>
 <p>A view is simply a web page, or a page fragment, like a header, footer, sidebar, etc. In fact,
@@ -381,8 +381,8 @@ not read the <a class="reference internal" href="../incoming/controllers.html"><
 </div>
 <p>Where <em>name</em> is the name of your view file.</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">If the file extension is omitted, then the views are expected to end with the .php extension.</p>
+<p class="admonition-title">Important</p>
+<p>If the file extension is omitted, then the views are expected to end with the .php extension.</p>
 </div>
 <p>Now, open the controller file you made earlier called <code class="docutils literal notranslate"><span class="pre">Blog.php</span></code>, and replace the echo statement with the view function:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
@@ -401,8 +401,8 @@ not read the <a class="reference internal" href="../incoming/controllers.html"><
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">While all of the examples show echo the view directly, you can also return the output from the view, instead,
+<p class="admonition-title">Note</p>
+<p>While all of the examples show echo the view directly, you can also return the output from the view, instead,
 and it will be appended to any captured output.</p>
 </div>
 </div>
@@ -592,7 +592,7 @@ typically be in the form of a multi-dimensional array.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -341,13 +341,14 @@
 <h1>Logging Information<a class="headerlink" href="#logging-information" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#configuration" id="id1">Configuration</a><ul>
-<li><a class="reference internal" href="#using-multiple-log-handlers" id="id2">Using Multiple Log Handlers</a></li>
+<li><p><a class="reference internal" href="#configuration" id="id1">Configuration</a></p>
+<ul>
+<li><p><a class="reference internal" href="#using-multiple-log-handlers" id="id2">Using Multiple Log Handlers</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#modifying-the-message-with-context" id="id3">Modifying the Message With Context</a></li>
-<li><a class="reference internal" href="#using-third-party-loggers" id="id4">Using Third-Party Loggers</a></li>
-<li><a class="reference internal" href="#loggeraware-trait" id="id5">LoggerAware Trait</a></li>
+<li><p><a class="reference internal" href="#modifying-the-message-with-context" id="id3">Modifying the Message With Context</a></p></li>
+<li><p><a class="reference internal" href="#using-third-party-loggers" id="id4">Using Third-Party Loggers</a></p></li>
+<li><p><a class="reference internal" href="#loggeraware-trait" id="id5">LoggerAware Trait</a></p></li>
 </ul>
 </div>
 <p>You can log information to the local log files by using the <code class="docutils literal notranslate"><span class="pre">log_message()</span></code> method. You must supply
@@ -361,14 +362,14 @@ The second parameter is the message itself:</p>
 </div>
 <p>There are eight different log levels, matching to the <a class="reference external" href="https://tools.ietf.org/html/rfc5424">RFC 5424</a> levels, and they are as follows:</p>
 <ul class="simple">
-<li><strong>debug</strong> - Detailed debug information.</li>
-<li><strong>info</strong> - Interesting events in your application, like a user logging in, logging SQL queries, etc.</li>
-<li><strong>notice</strong> - Normal, but significant events in your application.</li>
-<li><strong>warning</strong> - Exceptional occurrences that are not errors, like the use of deprecated APIs, poor use of an API, or other undesirable things that are not necessarily wrong.</li>
-<li><strong>error</strong> - Runtime errors that do not require immediate action but should typically be logged and monitored.</li>
-<li><strong>critical</strong> - Critical conditions, like an application component not available, or an unexpected exception.</li>
-<li><strong>alert</strong> - Action must be taken immediately, like when an entire website is down, the database unavailable, etc.</li>
-<li><strong>emergency</strong> - The system is unusable.</li>
+<li><p><strong>debug</strong> - Detailed debug information.</p></li>
+<li><p><strong>info</strong> - Interesting events in your application, like a user logging in, logging SQL queries, etc.</p></li>
+<li><p><strong>notice</strong> - Normal, but significant events in your application.</p></li>
+<li><p><strong>warning</strong> - Exceptional occurrences that are not errors, like the use of deprecated APIs, poor use of an API, or other undesirable things that are not necessarily wrong.</p></li>
+<li><p><strong>error</strong> - Runtime errors that do not require immediate action but should typically be logged and monitored.</p></li>
+<li><p><strong>critical</strong> - Critical conditions, like an application component not available, or an unexpected exception.</p></li>
+<li><p><strong>alert</strong> - Action must be taken immediately, like when an entire website is down, the database unavailable, etc.</p></li>
+<li><p><strong>emergency</strong> - The system is unusable.</p></li>
 </ul>
 <p>The logging system does not provide ways to alert sysadmins or webmasters about these events, they solely log
 the information. For many of the more critical event levels, the logging happens automatically by the
@@ -398,11 +399,11 @@ to the threshold value:</p>
 <p>The logging system can support multiple methods of handling logging running at the same time. Each handler can
 be set to handle specific levels and ignore the rest. Currently, two handlers come with a default install:</p>
 <ul class="simple">
-<li><strong>File Handler</strong> is the default handler and will create a single file for every day locally. This is the
-recommended method of logging.</li>
-<li><strong>ChromeLogger Handler</strong> If you have the <a class="reference external" href="https://craig.is/writing/chrome-logger">ChromeLogger extension</a>
+<li><p><strong>File Handler</strong> is the default handler and will create a single file for every day locally. This is the
+recommended method of logging.</p></li>
+<li><p><strong>ChromeLogger Handler</strong> If you have the <a class="reference external" href="https://craig.is/writing/chrome-logger">ChromeLogger extension</a>
 installed in the Chrome web browser, you can use this handler to display the log information in
-Chrome’s console window.</li>
+Chrome’s console window.</p></li>
 </ul>
 <p>The handlers are configured in the main configuration file, in the <code class="docutils literal notranslate"><span class="pre">$handlers</span></code> property, which is simply
 an array of handlers and their configuration. Each handler is specified with the key being the fully
@@ -454,37 +455,37 @@ file name and line number. You must still provide the exception placeholder in t
 </pre></div>
 </div>
 <p>Several core placeholders exist that will be automatically expanded for you based on the current page request:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="24%" />
-<col width="76%" />
+<col style="width: 24%" />
+<col style="width: 76%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Placeholder</th>
-<th class="head">Inserted value</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Placeholder</p></th>
+<th class="head"><p>Inserted value</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>{post_vars}</td>
-<td>$_POST variables</td>
+<tbody>
+<tr class="row-even"><td><p>{post_vars}</p></td>
+<td><p>$_POST variables</p></td>
 </tr>
-<tr class="row-odd"><td>{get_vars}</td>
-<td>$_GET variables</td>
+<tr class="row-odd"><td><p>{get_vars}</p></td>
+<td><p>$_GET variables</p></td>
 </tr>
-<tr class="row-even"><td>{session_vars}</td>
-<td>$_SESSION variables</td>
+<tr class="row-even"><td><p>{session_vars}</p></td>
+<td><p>$_SESSION variables</p></td>
 </tr>
-<tr class="row-odd"><td>{env}</td>
-<td>Current environment name, i.e. development</td>
+<tr class="row-odd"><td><p>{env}</p></td>
+<td><p>Current environment name, i.e. development</p></td>
 </tr>
-<tr class="row-even"><td>{file}</td>
-<td>The name of file calling the logger</td>
+<tr class="row-even"><td><p>{file}</p></td>
+<td><p>The name of file calling the logger</p></td>
 </tr>
-<tr class="row-odd"><td>{line}</td>
-<td>The line in {file} where the logger was called</td>
+<tr class="row-odd"><td><p>{line}</p></td>
+<td><p>The line in {file} where the logger was called</p></td>
 </tr>
-<tr class="row-even"><td>{env:foo}</td>
-<td>The value of ‘foo’ in $_ENV</td>
+<tr class="row-even"><td><p>{env:foo}</p></td>
+<td><p>The value of ‘foo’ in $_ENV</p></td>
 </tr>
 </tbody>
 </table>
@@ -531,7 +532,7 @@ still be able to log as it would expect, as long as it can find a PSR3 compatibl
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

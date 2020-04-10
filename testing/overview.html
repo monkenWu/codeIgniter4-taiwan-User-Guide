@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -344,15 +344,17 @@ Support for <code class="docutils literal notranslate"><span class="pre">PHPUnit
 helper methods to make testing every aspect of your application as painless as possible.</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#system-set-up" id="id2">System Set Up</a><ul>
-<li><a class="reference internal" href="#installing-phpunit" id="id3">Installing phpUnit</a></li>
+<li><p><a class="reference internal" href="#system-set-up" id="id2">System Set Up</a></p>
+<ul>
+<li><p><a class="reference internal" href="#installing-phpunit" id="id3">Installing phpUnit</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#testing-your-application" id="id4">Testing Your Application</a><ul>
-<li><a class="reference internal" href="#phpunit-configuration" id="id5">PHPUnit Configuration</a></li>
-<li><a class="reference internal" href="#the-test-class" id="id6">The Test Class</a></li>
-<li><a class="reference internal" href="#mocking-services" id="id7">Mocking Services</a></li>
-<li><a class="reference internal" href="#stream-filters" id="id8">Stream Filters</a></li>
+<li><p><a class="reference internal" href="#testing-your-application" id="id4">Testing Your Application</a></p>
+<ul>
+<li><p><a class="reference internal" href="#phpunit-configuration" id="id5">PHPUnit Configuration</a></p></li>
+<li><p><a class="reference internal" href="#the-test-class" id="id6">The Test Class</a></p></li>
+<li><p><a class="reference internal" href="#mocking-services" id="id7">Mocking Services</a></p></li>
+<li><p><a class="reference internal" href="#stream-filters" id="id8">Stream Filters</a></p></li>
 </ul>
 </li>
 </ul>
@@ -432,8 +434,8 @@ are expected to be located in the <strong>tests/app</strong> directory by defaul
 remember that the <strong>app</strong> directory is the root of the <code class="docutils literal notranslate"><span class="pre">App</span></code> namespace, so any classes you use must
 have the correct namespace relative to <code class="docutils literal notranslate"><span class="pre">App</span></code>.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Namespaces are not strictly required for test classes, but they are helpful to ensure no class names collide.</p>
+<p class="admonition-title">Note</p>
+<p>Namespaces are not strictly required for test classes, but they are helpful to ensure no class names collide.</p>
 </div>
 <p>When testing database results, you must use the <a class="reference external" href="database.html">CIDatabaseTestClass</a> class.</p>
 <div class="section" id="additional-assertions">
@@ -623,7 +625,7 @@ might be helpful. The <code class="docutils literal notranslate"><span class="pr
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

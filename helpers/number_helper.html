@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Number Helper &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>Number 輔助函數 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
   
 
   
@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Security Helper" href="security_helper.html" />
-    <link rel="prev" title="Inflector Helper" href="inflector_helper.html" /> 
+    <link rel="next" title="安全性輔助函數" href="security_helper.html" />
+    <link rel="prev" title="Inflector 輔助函數" href="inflector_helper.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Helpers</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="form_helper.html">Form Helper</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">輔助函數</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -318,9 +318,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Helpers</a> &raquo;</li>
+          <li><a href="index.html">輔助函數</a> &raquo;</li>
         
-      <li>Number Helper</li>
+      <li>Number 輔助函數</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -337,186 +337,163 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="number-helper">
-<h1>Number Helper<a class="headerlink" href="#number-helper" title="Permalink to this headline">¶</a></h1>
-<p>The Number Helper file contains functions that help you work with
-numeric data in a locale-aware manner.</p>
+  <div class="section" id="number">
+<h1>Number 輔助函數<a class="headerlink" href="#number" title="Permalink to this headline">¶</a></h1>
+<p>Number 輔助函數包含可以幫助你以語言環境感知方式處理數據資料的功能。</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#loading-this-helper" id="id1">Loading this Helper</a></li>
-<li><a class="reference internal" href="#when-things-go-wrong" id="id2">When Things Go Wrong</a></li>
-<li><a class="reference internal" href="#available-functions" id="id3">Available Functions</a></li>
+<li><p><a class="reference internal" href="#id1" id="id4">載入此輔助函數</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id5">當事情不太對勁的時候</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id6">可用的功能</a></p></li>
 </ul>
 </div>
-<div class="custom-index container"></div><div class="section" id="loading-this-helper">
-<h2><a class="toc-backref" href="#id1">Loading this Helper</a><a class="headerlink" href="#loading-this-helper" title="Permalink to this headline">¶</a></h2>
-<p>This helper is loaded using the following code:</p>
+<div class="custom-index container"></div><div class="section" id="id1">
+<h2><a class="toc-backref" href="#id4">載入此輔助函數</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>此輔助函數可以利用以下的程式碼載入：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="when-things-go-wrong">
-<h2><a class="toc-backref" href="#id2">When Things Go Wrong</a><a class="headerlink" href="#when-things-go-wrong" title="Permalink to this headline">¶</a></h2>
-<p>If PHP’s internationalization and localization logic cannot handle
-a value provided, for the given locale and options, then a
-<code class="docutils literal notranslate"><span class="pre">BadFunctionCallException()</span></code> will be thrown.</p>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id5">當事情不太對勁的時候</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>當 PHP 的全域化與本地化的邏輯無法針對給定的語言環境與選項處理你提供的值，它將會拋出 <code class="docutils literal notranslate"><span class="pre">BadFunctionCallException()</span></code>。</p>
 </div>
-<div class="section" id="available-functions">
-<h2><a class="toc-backref" href="#id3">Available Functions</a><a class="headerlink" href="#available-functions" title="Permalink to this headline">¶</a></h2>
-<p>The following functions are available:</p>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id6">可用的功能</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>以下敘述的功能皆可用：</p>
 <dl class="function">
 <dt id="number_to_size">
-<code class="descname">number_to_size</code><span class="sig-paren">(</span><em>$num[, $precision = 1[, $locale = null]</em><span class="sig-paren">)</span><a class="headerlink" href="#number_to_size" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>$num</strong> (<em>mixed</em>) – Number of bytes</li>
-<li><strong>$precision</strong> (<em>int</em>) – Floating point precision</li>
+<code class="sig-name descname">number_to_size</code><span class="sig-paren">(</span><em class="sig-param">$num[, $precision = 1[, $locale = null]</em><span class="sig-paren">)</span><a class="headerlink" href="#number_to_size" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$num</strong> (<em>mixed</em>) – byte 數量</p></li>
+<li><p><strong>$precision</strong> (<em>int</em>) – 浮點數精度</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Formatted data size string, or false if the provided value is not numeric</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">string</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p>Formats numbers as bytes, based on size, and adds the appropriate
-suffix. Examples:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">456</span><span class="p">);</span> <span class="c1">// Returns 456 Bytes</span>
-<span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">4567</span><span class="p">);</span> <span class="c1">// Returns 4.5 KB</span>
-<span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">45678</span><span class="p">);</span> <span class="c1">// Returns 44.6 KB</span>
-<span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">456789</span><span class="p">);</span> <span class="c1">// Returns 447.8 KB</span>
-<span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">3456789</span><span class="p">);</span> <span class="c1">// Returns 3.3 MB</span>
-<span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">12345678912345</span><span class="p">);</span> <span class="c1">// Returns 1.8 GB</span>
-<span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">123456789123456789</span><span class="p">);</span> <span class="c1">// Returns 11,228.3 TB</span>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>格式化的數據大小字符串，如果提供的值不是數字，則為false</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+<p>基於檔案大小將數字格式化為 byte 並加上合適的後綴。例如:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">456</span><span class="p">);</span> <span class="c1">// 回傳 456 Bytes</span>
+<span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">4567</span><span class="p">);</span> <span class="c1">// 回傳 4.5 KB</span>
+<span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">45678</span><span class="p">);</span> <span class="c1">// 回傳 44.6 KB</span>
+<span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">456789</span><span class="p">);</span> <span class="c1">// 回傳 447.8 KB</span>
+<span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">3456789</span><span class="p">);</span> <span class="c1">// 回傳 3.3 MB</span>
+<span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">12345678912345</span><span class="p">);</span> <span class="c1">// 回傳 1.8 GB</span>
+<span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">123456789123456789</span><span class="p">);</span> <span class="c1">// 回傳 11,228.3 TB</span>
 </pre></div>
 </div>
-<p>An optional second parameter allows you to set the precision of the result:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">45678</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// Returns 44.61 KB</span>
+<p>選填的第二個參數讓你可以設定結果的精度:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">45678</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// 回傳 44.61 KB</span>
 </pre></div>
 </div>
-<p>An optional third parameter allows you to specify the locale that should
-be used when generating the number, and can affect the formatting. If no
-locale is specified, the Request will be analyzed and an appropriate
-locale taken from the headers, or the app-default:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// Generates 11.2 TB</span>
+<p>選填的第三個參數讓你可以指定在產生數字時應該被使用的地區，並且可以影響他的格式化
+如果沒有指定地區，該 Request 將會被解析並從 headers 或是根據 app-default 中找尋一個合適的地區:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// 產生 11.2 TB</span>
 <span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">12345678912345</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;en_US&#39;</span><span class="p">);</span>
-<span class="c1">// Generates 11,2 TB</span>
+<span class="c1">// 產生 11,2 TB</span>
 <span class="k">echo</span> <span class="nx">number_to_size</span><span class="p">(</span><span class="mi">12345678912345</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;fr_FR&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The text generated by this function is found in the following
-language file: <em>language/&lt;your_lang&gt;/Number.php</em></p>
+<p class="admonition-title">Note</p>
+<p>由此功能產生的文字語言可以在 <em>language/&lt;your_lang&gt;/Number.php</em> 中找到。</p>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="number_to_amount">
-<code class="descname">number_to_amount</code><span class="sig-paren">(</span><em>$num[, $precision = 1[, $locale = null]</em><span class="sig-paren">)</span><a class="headerlink" href="#number_to_amount" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>$num</strong> (<em>mixed</em>) – Number to format</li>
-<li><strong>$precision</strong> (<em>int</em>) – Floating point precision</li>
-<li><strong>$locale</strong> (<em>string</em>) – The locale to use for formatting</li>
+<code class="sig-name descname">number_to_amount</code><span class="sig-paren">(</span><em class="sig-param">$num[, $precision = 1[, $locale = null]</em><span class="sig-paren">)</span><a class="headerlink" href="#number_to_amount" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$num</strong> (<em>mixed</em>) – 欲格式化的數字</p></li>
+<li><p><strong>$precision</strong> (<em>int</em>) – 浮點數的精度</p></li>
+<li><p><strong>$locale</strong> (<em>string</em>) – 要用來格式化的區域</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A human-readable version of the string, or false if the provided value is not numeric</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">string</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p>Converts a number into a human-readable version, like <strong>123.4 trillion</strong>
-for numbers up to the quadrillions. Examples:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">number_to_amount</span><span class="p">(</span><span class="mi">123456</span><span class="p">);</span> <span class="c1">// Returns 123 thousand</span>
-<span class="k">echo</span> <span class="nx">number_to_amount</span><span class="p">(</span><span class="mi">123456789</span><span class="p">);</span> <span class="c1">// Returns 123 million</span>
-<span class="k">echo</span> <span class="nx">number_to_amount</span><span class="p">(</span><span class="mi">1234567890123</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// Returns 1.23 trillion</span>
-<span class="k">echo</span> <span class="nx">number_to_amount</span><span class="p">(</span><span class="s1">&#39;123,456,789,012&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// Returns 123.46 billion</span>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>一個人類可讀的字串版本，如果提供的值不是數字將回傳 false。</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+<p>將數字轉換為人能理解的版本，像是 <strong>123.4 trillion</strong>
+數字最大可以到四千萬。例如:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">number_to_amount</span><span class="p">(</span><span class="mi">123456</span><span class="p">);</span> <span class="c1">// 回傳 123 thousand</span>
+<span class="k">echo</span> <span class="nx">number_to_amount</span><span class="p">(</span><span class="mi">123456789</span><span class="p">);</span> <span class="c1">// 回傳 123 million</span>
+<span class="k">echo</span> <span class="nx">number_to_amount</span><span class="p">(</span><span class="mi">1234567890123</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// 回傳 1.23 trillion</span>
+<span class="k">echo</span> <span class="nx">number_to_amount</span><span class="p">(</span><span class="s1">&#39;123,456,789,012&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// 回傳 123.46 billion</span>
 </pre></div>
 </div>
-<p>An optional second parameter allows you to set the precision of the result:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">number_to_amount</span><span class="p">(</span><span class="mi">45678</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// Returns 45.68 thousand</span>
+<p>選填的第二個參數允許你設定結果的精度:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">number_to_amount</span><span class="p">(</span><span class="mi">45678</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// 回傳 45.68 thousand</span>
 </pre></div>
 </div>
-<p>An optional third parameter allows the locale to be specified:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">number_to_amount</span><span class="p">(</span><span class="s1">&#39;123,456,789,012&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;de_DE&#39;</span><span class="p">);</span> <span class="c1">// Returns 123,46 billion</span>
+<p>選填的第三個參數允許指定地區:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">number_to_amount</span><span class="p">(</span><span class="s1">&#39;123,456,789,012&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;de_DE&#39;</span><span class="p">);</span> <span class="c1">// 回傳 123,46 billion</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="number_to_currency">
-<code class="descname">number_to_currency</code><span class="sig-paren">(</span><em>$num</em>, <em>$currency</em><span class="optional">[</span>, <em>$locale = null</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#number_to_currency" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>$num</strong> (<em>mixed</em>) – Number to format</li>
-<li><strong>$currency</strong> (<em>string</em>) – The currency type, i.e. USD, EUR, etc</li>
-<li><strong>$locale</strong> (<em>string</em>) – The locale to use for formatting</li>
-<li><strong>$fraction</strong> (<em>integer</em>) – Number of fraction digits after decimal point</li>
+<code class="sig-name descname">number_to_currency</code><span class="sig-paren">(</span><em class="sig-param">$num</em>, <em class="sig-param">$currency</em><span class="optional">[</span>, <em class="sig-param">$locale = null</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#number_to_currency" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$num</strong> (<em>mixed</em>) – 欲格式化的數字</p></li>
+<li><p><strong>$currency</strong> (<em>string</em>) – 貨幣種類，諸如 USD，EUR</p></li>
+<li><p><strong>$locale</strong> (<em>string</em>) – 用來格式化的地區</p></li>
+<li><p><strong>$fraction</strong> (<em>integer</em>) – 小數點後的位數</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The number as the appropriate currency for the locale</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">string</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p>Converts a number in common currency formats, like USD, EUR, GBP, etc:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">number_to_currency</span><span class="p">(</span><span class="mf">1234.56</span><span class="p">,</span> <span class="s1">&#39;USD&#39;</span><span class="p">);</span>  <span class="c1">// Returns $1,234.56</span>
-<span class="k">echo</span> <span class="nx">number_to_currency</span><span class="p">(</span><span class="mf">1234.56</span><span class="p">,</span> <span class="s1">&#39;EUR&#39;</span><span class="p">);</span>  <span class="c1">// Returns €1,234.56</span>
-<span class="k">echo</span> <span class="nx">number_to_currency</span><span class="p">(</span><span class="mf">1234.56</span><span class="p">,</span> <span class="s1">&#39;GBP&#39;</span><span class="p">);</span>  <span class="c1">// Returns £1,234.56</span>
-<span class="k">echo</span> <span class="nx">number_to_currency</span><span class="p">(</span><span class="mf">1234.56</span><span class="p">,</span> <span class="s1">&#39;YEN&#39;</span><span class="p">);</span>  <span class="c1">// Returns YEN1,234.56</span>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>該數字做為設置區域貨幣的合適價錢</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+<p>將數字轉換為常見的貨幣形式，諸如 USD，EUR，GBP:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">number_to_currency</span><span class="p">(</span><span class="mf">1234.56</span><span class="p">,</span> <span class="s1">&#39;USD&#39;</span><span class="p">);</span>  <span class="c1">// 回傳 $1,234.56</span>
+<span class="k">echo</span> <span class="nx">number_to_currency</span><span class="p">(</span><span class="mf">1234.56</span><span class="p">,</span> <span class="s1">&#39;EUR&#39;</span><span class="p">);</span>  <span class="c1">// 回傳 €1,234.56</span>
+<span class="k">echo</span> <span class="nx">number_to_currency</span><span class="p">(</span><span class="mf">1234.56</span><span class="p">,</span> <span class="s1">&#39;GBP&#39;</span><span class="p">);</span>  <span class="c1">// 回傳 £1,234.56</span>
+<span class="k">echo</span> <span class="nx">number_to_currency</span><span class="p">(</span><span class="mf">1234.56</span><span class="p">,</span> <span class="s1">&#39;YEN&#39;</span><span class="p">);</span>  <span class="c1">// 回傳 YEN1,234.56</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="number_to_roman">
-<code class="descname">number_to_roman</code><span class="sig-paren">(</span><em>$num</em><span class="sig-paren">)</span><a class="headerlink" href="#number_to_roman" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>$num</strong> (<em>string</em>) – The number want to convert</li>
+<code class="sig-name descname">number_to_roman</code><span class="sig-paren">(</span><em class="sig-param">$num</em><span class="sig-paren">)</span><a class="headerlink" href="#number_to_roman" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$num</strong> (<em>string</em>) – 欲轉換的數字</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The roman number converted from given parameter</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">string|null</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p>Converts a number into roman:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">number_to_roman</span><span class="p">(</span><span class="mi">23</span><span class="p">);</span>  <span class="c1">// Returns XXIII</span>
-<span class="k">echo</span> <span class="nx">number_to_roman</span><span class="p">(</span><span class="mi">324</span><span class="p">);</span>  <span class="c1">// Returns CCCXXIV</span>
-<span class="k">echo</span> <span class="nx">number_to_roman</span><span class="p">(</span><span class="mi">2534</span><span class="p">);</span>  <span class="c1">// Returns MMDXXXIV</span>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>從給定參數轉換的羅馬數字</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string|null</p>
+</dd>
+</dl>
+<p>將一個數字轉換為羅馬數字:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">number_to_roman</span><span class="p">(</span><span class="mi">23</span><span class="p">);</span>  <span class="c1">// 回傳 XXIII</span>
+<span class="k">echo</span> <span class="nx">number_to_roman</span><span class="p">(</span><span class="mi">324</span><span class="p">);</span>  <span class="c1">// 回傳 CCCXXIV</span>
+<span class="k">echo</span> <span class="nx">number_to_roman</span><span class="p">(</span><span class="mi">2534</span><span class="p">);</span>  <span class="c1">// 回傳 MMDXXXIV</span>
 </pre></div>
 </div>
-<p>This function only handles numbers in the range 1 through 3999.
-It will return null for any value outside that range .</p>
+<p>此功能處理從 1 到 3999 的數字。
+任何超出範圍的數值傳入它將會回傳 null 。</p>
 </dd></dl>
 
 </div>
@@ -530,10 +507,10 @@ It will return null for any value outside that range .</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="security_helper.html" class="btn btn-neutral float-right" title="Security Helper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="security_helper.html" class="btn btn-neutral float-right" title="安全性輔助函數" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="inflector_helper.html" class="btn btn-neutral float-left" title="Inflector Helper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="inflector_helper.html" class="btn btn-neutral float-left" title="Inflector 輔助函數" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -544,7 +521,7 @@ It will return null for any value outside that range .</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

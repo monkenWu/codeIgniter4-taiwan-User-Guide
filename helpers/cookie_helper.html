@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Cookie Helper &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>Cookie 輔助函數 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
   
 
   
@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Date Helper" href="date_helper.html" />
-    <link rel="prev" title="Array Helper" href="array_helper.html" /> 
+    <link rel="next" title="日期輔助函數" href="date_helper.html" />
+    <link rel="prev" title="陣列輔助函數" href="array_helper.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Helpers</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="array_helper.html">Array Helper</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="form_helper.html">Form Helper</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">輔助函數</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -318,9 +318,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Helpers</a> &raquo;</li>
+          <li><a href="index.html">輔助函數</a> &raquo;</li>
         
-      <li>Cookie Helper</li>
+      <li>Cookie 輔助函數</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -337,114 +337,97 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="cookie-helper">
-<h1>Cookie Helper<a class="headerlink" href="#cookie-helper" title="Permalink to this headline">¶</a></h1>
-<p>The Cookie Helper file contains functions that assist in working with
-cookies.</p>
+  <div class="section" id="cookie">
+<h1>Cookie 輔助函數<a class="headerlink" href="#cookie" title="Permalink to this headline">¶</a></h1>
+<p>Cookie 輔助函數檔案包含幫助使用 cookie 的功能。</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#loading-this-helper" id="id1">Loading this Helper</a></li>
-<li><a class="reference internal" href="#available-functions" id="id2">Available Functions</a></li>
+<li><p><a class="reference internal" href="#id1" id="id3">載入此輔助函數</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id4">可以使用的功能</a></p></li>
 </ul>
 </div>
-<div class="custom-index container"></div><div class="section" id="loading-this-helper">
-<h2><a class="toc-backref" href="#id1">Loading this Helper</a><a class="headerlink" href="#loading-this-helper" title="Permalink to this headline">¶</a></h2>
-<p>This helper is loaded using the following code:</p>
+<div class="custom-index container"></div><div class="section" id="id1">
+<h2><a class="toc-backref" href="#id3">載入此輔助函數</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>此輔助函數可以利用以下的程式碼載入：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;cookie&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="available-functions">
-<h2><a class="toc-backref" href="#id2">Available Functions</a><a class="headerlink" href="#available-functions" title="Permalink to this headline">¶</a></h2>
-<p>The following functions are available:</p>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id4">可以使用的功能</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>以下的功能都是可用的:</p>
 <dl class="function">
 <dt id="set_cookie">
-<code class="descname">set_cookie</code><span class="sig-paren">(</span><em>$name</em><span class="optional">[</span>, <em>$value = ''</em><span class="optional">[</span>, <em>$expire = ''</em><span class="optional">[</span>, <em>$domain = ''</em><span class="optional">[</span>, <em>$path = '/'</em><span class="optional">[</span>, <em>$prefix = ''</em><span class="optional">[</span>, <em>$secure = false</em><span class="optional">[</span>, <em>$httpOnly = false</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#set_cookie" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>$name</strong> (<em>mixed</em>) – Cookie name <em>or</em> associative array of all of the parameters available to this function</li>
-<li><strong>$value</strong> (<em>string</em>) – Cookie value</li>
-<li><strong>$expire</strong> (<em>int</em>) – Number of seconds until expiration</li>
-<li><strong>$domain</strong> (<em>string</em>) – Cookie domain (usually: .yourdomain.com)</li>
-<li><strong>$path</strong> (<em>string</em>) – Cookie path</li>
-<li><strong>$prefix</strong> (<em>string</em>) – Cookie name prefix</li>
-<li><strong>$secure</strong> (<em>bool</em>) – Whether to only send the cookie through HTTPS</li>
-<li><strong>$httpOnly</strong> (<em>bool</em>) – Whether to hide the cookie from JavaScript</li>
+<code class="sig-name descname">set_cookie</code><span class="sig-paren">(</span><em class="sig-param">$name</em><span class="optional">[</span>, <em class="sig-param">$value = ''</em><span class="optional">[</span>, <em class="sig-param">$expire = ''</em><span class="optional">[</span>, <em class="sig-param">$domain = ''</em><span class="optional">[</span>, <em class="sig-param">$path = '/'</em><span class="optional">[</span>, <em class="sig-param">$prefix = ''</em><span class="optional">[</span>, <em class="sig-param">$secure = false</em><span class="optional">[</span>, <em class="sig-param">$httpOnly = false</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#set_cookie" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$name</strong> (<em>mixed</em>) – Cookie名稱 <em>或</em> 所有可用於此函數的所有參數的關聯陣列</p></li>
+<li><p><strong>$value</strong> (<em>string</em>) – Cookie 值</p></li>
+<li><p><strong>$expire</strong> (<em>int</em>) – 到期前的秒數</p></li>
+<li><p><strong>$domain</strong> (<em>string</em>) – Cookie 域 （通常會是: .yourdomain.com）</p></li>
+<li><p><strong>$path</strong> (<em>string</em>) – Cookie 路徑</p></li>
+<li><p><strong>$prefix</strong> (<em>string</em>) – Cookie 名稱前綴</p></li>
+<li><p><strong>$secure</strong> (<em>bool</em>) – 是否僅透過 HTTPS 傳送 cookie</p></li>
+<li><p><strong>$httpOnly</strong> (<em>bool</em>) – 是否對 JavaScript 隱藏 cookie</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">void</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p>This helper function gives you friendlier syntax to set browser
-cookies. Refer to the <a class="reference internal" href="../outgoing/response.html"><span class="doc">Response Library</span></a> for
-a description of its use, as this function is an alias for
-<code class="docutils literal notranslate"><span class="pre">Response::setCookie()</span></code>.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>void</p>
+</dd>
+</dl>
+<p>這個輔助函數功能給你更友善的語法來設定瀏覽器 cookie。
+請參閱 <a class="reference internal" href="../outgoing/response.html"><span class="doc">回應庫</span></a> 對應它的使用說明,
+由於此函數是 <code class="docutils literal notranslate"><span class="pre">Response::setCookie()</span></code> 的一種。</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="get_cookie">
-<code class="descname">get_cookie</code><span class="sig-paren">(</span><em>$index</em><span class="optional">[</span>, <em>$xssClean = false</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#get_cookie" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>$index</strong> (<em>string</em>) – Cookie name</li>
-<li><strong>$xss_clean</strong> (<em>bool</em>) – Whether to apply XSS filtering to the returned value</li>
+<code class="sig-name descname">get_cookie</code><span class="sig-paren">(</span><em class="sig-param">$index</em><span class="optional">[</span>, <em class="sig-param">$xssClean = false</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#get_cookie" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$index</strong> (<em>string</em>) – Cookie 名稱</p></li>
+<li><p><strong>$xss_clean</strong> (<em>bool</em>) – 是否對回傳值使用 XSS 過濾</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The cookie value or NULL if not found</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">mixed</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p>This helper function gives you friendlier syntax to get browser
-cookies. Refer to the <a class="reference internal" href="../incoming/incomingrequest.html"><span class="doc">IncomingRequest Library</span></a> for
-detailed description of its use, as this function acts very
-similarly to <code class="docutils literal notranslate"><span class="pre">IncomingRequest::getCookie()</span></code>, except it will also prepend
-the <code class="docutils literal notranslate"><span class="pre">$cookiePrefix</span></code> that you might’ve set in your
-<em>app/Config/App.php</em> file.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>cookie 值或如果沒找到的 NULL</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>混合的</p>
+</dd>
+</dl>
+<p>此輔助函數功能提供更友善的語法以取得 cookie。
+由於此功能的動作與``IncomingRequest::getCookie()``相似，
+請參照 <a class="reference internal" href="../incoming/incomingrequest.html"><span class="doc">傳入請求庫</span></a>
+以找到更詳細的使用說明。除非它同時也會預置你可能預先設定在你的
+<em>app/Config/App.php</em> 檔中的 <code class="docutils literal notranslate"><span class="pre">$cookiePrefix</span></code></p>
 </dd></dl>
 
 <dl class="function">
 <dt id="delete_cookie">
-<code class="descname">delete_cookie</code><span class="sig-paren">(</span><em>$name</em><span class="optional">[</span>, <em>$domain = ''</em><span class="optional">[</span>, <em>$path = '/'</em><span class="optional">[</span>, <em>$prefix = ''</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#delete_cookie" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>$name</strong> (<em>string</em>) – Cookie name</li>
-<li><strong>$domain</strong> (<em>string</em>) – Cookie domain (usually: .yourdomain.com)</li>
-<li><strong>$path</strong> (<em>string</em>) – Cookie path</li>
-<li><strong>$prefix</strong> (<em>string</em>) – Cookie name prefix</li>
+<code class="sig-name descname">delete_cookie</code><span class="sig-paren">(</span><em class="sig-param">$name</em><span class="optional">[</span>, <em class="sig-param">$domain = ''</em><span class="optional">[</span>, <em class="sig-param">$path = '/'</em><span class="optional">[</span>, <em class="sig-param">$prefix = ''</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#delete_cookie" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$name</strong> (<em>string</em>) – Cookie 名稱</p></li>
+<li><p><strong>$domain</strong> (<em>string</em>) – Cookie 域 (通常會是: .yourdomain.com)</p></li>
+<li><p><strong>$path</strong> (<em>string</em>) – Cookie 路徑</p></li>
+<li><p><strong>$prefix</strong> (<em>string</em>) – Cookie 名稱前綴</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">void</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p>Lets you delete a cookie. Unless you’ve set a custom path or other
-values, only the name of the cookie is needed.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>void</p>
+</dd>
+</dl>
+<p>讓你刪除一個 cookie。除非你有設定一個自訂的路徑
+或其他值，否則你只需要 cookie 的名稱就足夠了。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">delete_cookie</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>This function is otherwise identical to <code class="docutils literal notranslate"><span class="pre">set_cookie()</span></code>, except that it
-does not have the value and expiration parameters. You can submit an
-array of values in the first parameter or you can set discrete
-parameters.</p>
+<p>此功能與 <code class="docutils literal notranslate"><span class="pre">set_cookie()</span></code> 幾乎相同，除了它沒有值與倒數參數。
+你可以在第一個參數提交一個陣列的值，或是你可以設定離散的參數。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">delete_cookie</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$domain</span><span class="p">,</span> <span class="nv">$path</span><span class="p">,</span> <span class="nv">$prefix</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -461,10 +444,10 @@ parameters.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="date_helper.html" class="btn btn-neutral float-right" title="Date Helper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="date_helper.html" class="btn btn-neutral float-right" title="日期輔助函數" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="array_helper.html" class="btn btn-neutral float-left" title="Array Helper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="array_helper.html" class="btn btn-neutral float-left" title="陣列輔助函數" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -475,7 +458,7 @@ parameters.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -364,8 +364,8 @@
 </div>
 <p>你需要修改所有現存指向當前命名空間的檔案。</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">設定檔案被聲名在 <code class="docutils literal notranslate"><span class="pre">Config</span></code> 命名空間中，而不是如你所想的 <code class="docutils literal notranslate"><span class="pre">App\Config</span></code>。這個特性使得核心系統文件，甚至在應用程式的命名空間被更改的情況下，也可以被精準的定位。</p>
+<p class="admonition-title">Important</p>
+<p>設定檔案被聲名在 <code class="docutils literal notranslate"><span class="pre">Config</span></code> 命名空間中，而不是如你所想的 <code class="docutils literal notranslate"><span class="pre">App\Config</span></code>。這個特性使得核心系統文件，甚至在應用程式的命名空間被更改的情況下，也可以被精準的定位。</p>
 </div>
 </div>
 <div class="section" id="id4">
@@ -387,8 +387,8 @@
 <h2>支援 Composer<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>CodeIgniter 在初始化時就會預設支援 Composer。 它會在 <code class="docutils literal notranslate"><span class="pre">ROOTPATH.'vendor/autoload.php'</span></code> 中尋找 Composer 的自動載入檔案。 如果你需要更改這個檔案的位置，你可以修改定義在 <code class="docutils literal notranslate"><span class="pre">Config\Constants.php</span></code> 中的值。</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">如果同時在 CodeIgniter 和 Composer 中定義了命名空間，CodeIgniter 的自動載入器會優先定位到檔案。</p>
+<p class="admonition-title">Note</p>
+<p>如果同時在 CodeIgniter 和 Composer 中定義了命名空間，CodeIgniter 的自動載入器會優先定位到檔案。</p>
 </div>
 </div>
 </div>
@@ -415,7 +415,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

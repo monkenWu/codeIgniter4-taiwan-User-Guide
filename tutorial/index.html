@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -344,18 +344,18 @@
 <p>在這個教學中，你將會創建一個 <strong>基本的新聞應用程式</strong> 。首先會從靜態頁面的程式開始編寫。接著，你將創建從資料庫中讀取新聞內容的程式。最後，你將透過教學創建一個表單頁面，並且透過這個表單你可以在資料庫中創建新聞內容。</p>
 <p>本教學將著重於：</p>
 <ul class="simple">
-<li>模型、視圖與控制器的基本知識。</li>
-<li>路由的基本知識。</li>
-<li>表單驗證。</li>
-<li>使用 CodeIgniter 的「查詢生成器」執行基本的資料庫查詢。</li>
+<li><p>模型、視圖與控制器的基本知識。</p></li>
+<li><p>路由的基本知識。</p></li>
+<li><p>表單驗證。</p></li>
+<li><p>使用 CodeIgniter 的「查詢生成器」執行基本的資料庫查詢。</p></li>
 </ul>
 <p>整個教學被切分成了數個條目，每個條目都解釋了一部份的 CodeIgniter 框架功能。你將會瀏覽以下幾個頁面：</p>
 <ul class="simple">
-<li>緒論（本頁），概述整個教學的內容，並且部屬基本的 CodeIgniter 框架以及運行。</li>
-<li><a class="reference internal" href="static_pages.html"><span class="doc">靜態頁面</span></a>，教導你控制器、視圖與路由的基本知識。</li>
-<li><a class="reference internal" href="news_section.html"><span class="doc">新聞頁面</span></a>，你將開始使用模型，並執行一些基本的資料庫操作。</li>
-<li><a class="reference internal" href="create_news_items.html"><span class="doc">建立新聞</span></a>，開始更深入的資料庫操作，以及表單驗證。</li>
-<li><a class="reference internal" href="conclusion.html"><span class="doc">結論</span></a>，將給你一些進一步閱讀其他資源的指引。</li>
+<li><p>緒論（本頁），概述整個教學的內容，並且部屬基本的 CodeIgniter 框架以及運行。</p></li>
+<li><p><a class="reference internal" href="static_pages.html"><span class="doc">靜態頁面</span></a>，教導你控制器、視圖與路由的基本知識。</p></li>
+<li><p><a class="reference internal" href="news_section.html"><span class="doc">新聞頁面</span></a>，你將開始使用模型，並執行一些基本的資料庫操作。</p></li>
+<li><p><a class="reference internal" href="create_news_items.html"><span class="doc">建立新聞</span></a>，開始更深入的資料庫操作，以及表單驗證。</p></li>
+<li><p><a class="reference internal" href="conclusion.html"><span class="doc">結論</span></a>，將給你一些進一步閱讀其他資源的指引。</p></li>
 </ul>
 <p>開始享受對 CodeIgniter 的探索吧！</p>
 <div class="toctree-wrapper compound">
@@ -395,8 +395,8 @@
 <img alt="../_images/error.png" src="../_images/error.png" />
 <p>你需要注意幾件事情：</p>
 <ol class="arabic simple">
-<li>頂部的紅色標題是一個連結，點下去後將會自動打開 Google.com 並替您搜索這個異常。</li>
-<li>按一下 Backtrace 中任意的 <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 鏈結將展開傳遞到該函數，並且呼叫中的參數列表。</li>
+<li><p>頂部的紅色標題是一個連結，點下去後將會自動打開 Google.com 並替您搜索這個異常。</p></li>
+<li><p>按一下 Backtrace 中任意的 <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 鏈結將展開傳遞到該函數，並且呼叫中的參數列表。</p></li>
 </ol>
 <p>當你看到它時，一切會非常明瞭。</p>
 <p>現在，我們已經知道如何部屬與如何除錯，讓我們開始建構這個小型應用程式吧！</p>
@@ -425,7 +425,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

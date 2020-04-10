@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -341,35 +341,37 @@
 <h1>URI Routing<a class="headerlink" href="#uri-routing" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#setting-your-own-routing-rules" id="id1">Setting your own routing rules</a></li>
-<li><a class="reference internal" href="#placeholders" id="id2">Placeholders</a></li>
-<li><a class="reference internal" href="#examples" id="id3">Examples</a></li>
-<li><a class="reference internal" href="#custom-placeholders" id="id4">Custom Placeholders</a></li>
-<li><a class="reference internal" href="#regular-expressions" id="id5">Regular Expressions</a></li>
-<li><a class="reference internal" href="#closures" id="id6">Closures</a></li>
-<li><a class="reference internal" href="#mapping-multiple-routes" id="id7">Mapping multiple routes</a></li>
-<li><a class="reference internal" href="#redirecting-routes" id="id8">Redirecting Routes</a></li>
-<li><a class="reference internal" href="#grouping-routes" id="id9">Grouping Routes</a></li>
-<li><a class="reference internal" href="#environment-restrictions" id="id10">Environment Restrictions</a></li>
-<li><a class="reference internal" href="#reverse-routing" id="id11">Reverse Routing</a></li>
-<li><a class="reference internal" href="#using-named-routes" id="id12">Using Named Routes</a></li>
-<li><a class="reference internal" href="#using-http-verbs-in-routes" id="id13">Using HTTP verbs in routes</a></li>
-<li><a class="reference internal" href="#command-line-only-routes" id="id14">Command-Line only Routes</a></li>
-<li><a class="reference internal" href="#global-options" id="id15">Global Options</a><ul>
-<li><a class="reference internal" href="#applying-filters" id="id16">Applying Filters</a></li>
-<li><a class="reference internal" href="#assigning-namespace" id="id17">Assigning Namespace</a></li>
-<li><a class="reference internal" href="#limit-to-hostname" id="id18">Limit to Hostname</a></li>
-<li><a class="reference internal" href="#limit-to-subdomains" id="id19">Limit to Subdomains</a></li>
-<li><a class="reference internal" href="#offsetting-the-matched-parameters" id="id20">Offsetting the Matched Parameters</a></li>
+<li><p><a class="reference internal" href="#setting-your-own-routing-rules" id="id1">Setting your own routing rules</a></p></li>
+<li><p><a class="reference internal" href="#placeholders" id="id2">Placeholders</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
+<li><p><a class="reference internal" href="#custom-placeholders" id="id4">Custom Placeholders</a></p></li>
+<li><p><a class="reference internal" href="#regular-expressions" id="id5">Regular Expressions</a></p></li>
+<li><p><a class="reference internal" href="#closures" id="id6">Closures</a></p></li>
+<li><p><a class="reference internal" href="#mapping-multiple-routes" id="id7">Mapping multiple routes</a></p></li>
+<li><p><a class="reference internal" href="#redirecting-routes" id="id8">Redirecting Routes</a></p></li>
+<li><p><a class="reference internal" href="#grouping-routes" id="id9">Grouping Routes</a></p></li>
+<li><p><a class="reference internal" href="#environment-restrictions" id="id10">Environment Restrictions</a></p></li>
+<li><p><a class="reference internal" href="#reverse-routing" id="id11">Reverse Routing</a></p></li>
+<li><p><a class="reference internal" href="#using-named-routes" id="id12">Using Named Routes</a></p></li>
+<li><p><a class="reference internal" href="#using-http-verbs-in-routes" id="id13">Using HTTP verbs in routes</a></p></li>
+<li><p><a class="reference internal" href="#command-line-only-routes" id="id14">Command-Line only Routes</a></p></li>
+<li><p><a class="reference internal" href="#global-options" id="id15">Global Options</a></p>
+<ul>
+<li><p><a class="reference internal" href="#applying-filters" id="id16">Applying Filters</a></p></li>
+<li><p><a class="reference internal" href="#assigning-namespace" id="id17">Assigning Namespace</a></p></li>
+<li><p><a class="reference internal" href="#limit-to-hostname" id="id18">Limit to Hostname</a></p></li>
+<li><p><a class="reference internal" href="#limit-to-subdomains" id="id19">Limit to Subdomains</a></p></li>
+<li><p><a class="reference internal" href="#offsetting-the-matched-parameters" id="id20">Offsetting the Matched Parameters</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#routes-configuration-options" id="id21">Routes Configuration Options</a><ul>
-<li><a class="reference internal" href="#default-namespace" id="id22">Default Namespace</a></li>
-<li><a class="reference internal" href="#default-controller" id="id23">Default Controller</a></li>
-<li><a class="reference internal" href="#default-method" id="id24">Default Method</a></li>
-<li><a class="reference internal" href="#translate-uri-dashes" id="id25">Translate URI Dashes</a></li>
-<li><a class="reference internal" href="#use-defined-routes-only" id="id26">Use Defined Routes Only</a></li>
-<li><a class="reference internal" href="#override" id="id27">404 Override</a></li>
+<li><p><a class="reference internal" href="#routes-configuration-options" id="id21">Routes Configuration Options</a></p>
+<ul>
+<li><p><a class="reference internal" href="#default-namespace" id="id22">Default Namespace</a></p></li>
+<li><p><a class="reference internal" href="#default-controller" id="id23">Default Controller</a></p></li>
+<li><p><a class="reference internal" href="#default-method" id="id24">Default Method</a></p></li>
+<li><p><a class="reference internal" href="#translate-uri-dashes" id="id25">Translate URI Dashes</a></p></li>
+<li><p><a class="reference internal" href="#use-defined-routes-only" id="id26">Use Defined Routes Only</a></p></li>
+<li><p><a class="reference internal" href="#override" id="id27">404 Override</a></p></li>
 </ul>
 </li>
 </ul>
@@ -422,16 +424,16 @@ process, these placeholders are replaced with the value of the Regular Expressio
 used for readability.</p>
 <p>The following placeholders are available for you to use in your routes:</p>
 <ul class="simple">
-<li><strong>(:any)</strong> will match all characters from that point to the end of the URI. This may include multiple URI segments.</li>
-<li><strong>(:segment)</strong> will match any character except for a forward slash (/) restricting the result to a single segment.</li>
-<li><strong>(:num)</strong> will match any integer.</li>
-<li><strong>(:alpha)</strong> will match any string of alphabetic characters</li>
-<li><strong>(:alphanum)</strong> will match any string of alphabetic characters or integers, or any combination of the two.</li>
-<li><strong>(:hash)</strong> is the same as <strong>:segment</strong>, but can be used to easily see which routes use hashed ids (see the <a class="reference internal" href="../models/model.html"><span class="doc">Model</span></a> docs).</li>
+<li><p><strong>(:any)</strong> will match all characters from that point to the end of the URI. This may include multiple URI segments.</p></li>
+<li><p><strong>(:segment)</strong> will match any character except for a forward slash (/) restricting the result to a single segment.</p></li>
+<li><p><strong>(:num)</strong> will match any integer.</p></li>
+<li><p><strong>(:alpha)</strong> will match any string of alphabetic characters</p></li>
+<li><p><strong>(:alphanum)</strong> will match any string of alphabetic characters or integers, or any combination of the two.</p></li>
+<li><p><strong>(:hash)</strong> is the same as <strong>:segment</strong>, but can be used to easily see which routes use hashed ids (see the <a class="reference internal" href="../models/model.html"><span class="doc">Model</span></a> docs).</p></li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last"><strong>{locale}</strong> cannot be used as a placeholder or other part of the route, as it is reserved for use
+<p class="admonition-title">Note</p>
+<p><strong>{locale}</strong> cannot be used as a placeholder or other part of the route, as it is reserved for use
 in <a class="reference internal" href="../outgoing/localization.html"><span class="doc">localization</span></a>.</p>
 </div>
 </div>
@@ -459,8 +461,8 @@ and the “productLookup” method:</p>
 <p>A URL with “product” as the first segment, and a number in the second will be remapped to the “Catalog” class
 and the “productLookupByID” method passing in the match as a variable to the method.</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">While the <code class="docutils literal notranslate"><span class="pre">add()</span></code> method is convenient, it is recommended to always use the HTTP-verb-based
+<p class="admonition-title">Important</p>
+<p>While the <code class="docutils literal notranslate"><span class="pre">add()</span></code> method is convenient, it is recommended to always use the HTTP-verb-based
 routes, described below, as it is more secure. It will also provide a slight performance increase, since
 only routes that match the current request method are stored, resulting in fewer routes to scan through
 when trying to find a match.</p>
@@ -483,10 +485,10 @@ This must be called before you add the route:</p>
 <p>If you prefer you can use regular expressions to define your routing rules. Any valid regular expression
 is allowed, as are back-references.</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
+<p class="admonition-title">Important</p>
 <p>Note: If you use back-references you must use the dollar syntax rather than the double backslash syntax.
 A typical RegEx route might look something like this:</p>
-<div class="last highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;products/([a-z]+)/(\d+)&#39;</span><span class="p">,</span> <span class="s1">&#39;Products::show/$1/id_$2&#39;</span><span class="p">);</span>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;products/([a-z]+)/(\d+)&#39;</span><span class="p">,</span> <span class="s1">&#39;Products::show/$1/id_$2&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -502,8 +504,8 @@ redirect them back to the same page after they log in, you may find this example
 <p>For those of you who don’t know regular expressions and want to learn more about them,
 <a class="reference external" href="https://www.regular-expressions.info/">regular-expressions.info</a> might be a good starting point.</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">Note: You can also mix and match wildcards with regular expressions.</p>
+<p class="admonition-title">Important</p>
+<p>Note: You can also mix and match wildcards with regular expressions.</p>
 </div>
 </div>
 <div class="section" id="closures">
@@ -734,8 +736,8 @@ that does not have any subdomain present, this will not be matched:</p>
 </pre></div>
 </div>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">The system is not perfect and should be tested for your specific domain before being used in production.
+<p class="admonition-title">Important</p>
+<p>The system is not perfect and should be tested for your specific domain before being used in production.
 Most domains should work fine but some edge case ones, especially with a period in the domain itself (not used
 to separate suffixes or www) can potentially lead to false positives.</p>
 </div>
@@ -867,7 +869,7 @@ a valid class/method pair, just like you would show in any route, or a Closure:<
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

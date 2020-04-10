@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -348,17 +348,17 @@
 <div class="section" id="id2">
 <h3>OWASP 建議<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>演示：規定輸入的資料類型、字元集和地區</li>
-<li>提交：驗證欄位並提供回饋</li>
-<li>控制器：將輸入內容消毒，使用正確的字元集進行正輸入驗證</li>
-<li>模型：參數化查詢</li>
+<li><p>演示：規定輸入的資料類型、字元集和地區</p></li>
+<li><p>提交：驗證欄位並提供回饋</p></li>
+<li><p>控制器：將輸入內容消毒，使用正確的字元集進行正輸入驗證</p></li>
+<li><p>模型：參數化查詢</p></li>
 </ul>
 </div>
 <div class="section" id="codeigniter">
 <h3>CodeIgniter 實踐<a class="headerlink" href="#codeigniter" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供對輸入欄位的過濾和內容的元資料</li>
-<li>表單驗證函式庫</li>
+<li><p><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供對輸入欄位的過濾和內容的元資料</p></li>
+<li><p>表單驗證函式庫</p></li>
 </ul>
 </div>
 </div>
@@ -368,19 +368,19 @@
 <div class="section" id="id3">
 <h3>OWASP 建議<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>演示：驗證使用者和身份；使用表單發送 CSRF token</li>
-<li>設計：僅使用內置 session 管理</li>
-<li>控制器：驗證使用者、身分、CSRF token</li>
-<li>模型：驗證身分</li>
-<li>提示：考慮使用請求調速器</li>
+<li><p>演示：驗證使用者和身份；使用表單發送 CSRF token</p></li>
+<li><p>設計：僅使用內置 session 管理</p></li>
+<li><p>控制器：驗證使用者、身分、CSRF token</p></li>
+<li><p>模型：驗證身分</p></li>
+<li><p>提示：考慮使用請求調速器</p></li>
 </ul>
 </div>
 <div class="section" id="id4">
 <h3>CodeIgniter 實踐<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference external" href="../libraries/sessions.html">Session 函式庫</a></li>
-<li><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供 CSRF 驗證</li>
-<li>易於添加第三方的驗證功能</li>
+<li><p><a class="reference external" href="../libraries/sessions.html">Session 函式庫</a></p></li>
+<li><p><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供 CSRF 驗證</p></li>
+<li><p>易於添加第三方的驗證功能</p></li>
 </ul>
 </div>
 </div>
@@ -390,16 +390,16 @@
 <div class="section" id="id6">
 <h3>OWASP 建議<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>演示：將使用者資料編碼成單一內容，並限制輸入內容</li>
-<li>控制器：正輸入驗證</li>
-<li>提示：僅處理可信的資料；不在資料庫中儲存 HTML</li>
+<li><p>演示：將使用者資料編碼成單一內容，並限制輸入內容</p></li>
+<li><p>控制器：正輸入驗證</p></li>
+<li><p>提示：僅處理可信的資料；不在資料庫中儲存 HTML</p></li>
 </ul>
 </div>
 <div class="section" id="id7">
 <h3>CodeIgniter 實踐<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>esc 函數</li>
-<li>表單驗證函式庫</li>
+<li><p>esc 函數</p></li>
+<li><p>表單驗證函式庫</p></li>
 </ul>
 </div>
 </div>
@@ -409,16 +409,16 @@
 <div class="section" id="id8">
 <h3>OWASP 建議<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>演示：不公開內部資料；使用隨機參考映射</li>
-<li>控制器：只從受信任的來源或隨機參考映射來獲取資料</li>
-<li>模型：在更新資料之前，先驗證使用者的身分</li>
+<li><p>演示：不公開內部資料；使用隨機參考映射</p></li>
+<li><p>控制器：只從受信任的來源或隨機參考映射來獲取資料</p></li>
+<li><p>模型：在更新資料之前，先驗證使用者的身分</p></li>
 </ul>
 </div>
 <div class="section" id="id9">
 <h3>CodeIgniter 實踐<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>表單驗證函式庫</li>
-<li>易於添加第三方的驗證功能</li>
+<li><p>表單驗證函式庫</p></li>
+<li><p>易於添加第三方的驗證功能</p></li>
 </ul>
 </div>
 </div>
@@ -434,7 +434,7 @@
 <div class="section" id="id11">
 <h3>CodeIgniter 實踐<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>在 bootstrap 時進行合理的檢查</li>
+<li><p>在 bootstrap 時進行合理的檢查</p></li>
 </ul>
 </div>
 </div>
@@ -450,7 +450,7 @@
 <div class="section" id="id13">
 <h3>CodeIgniter 實踐<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>加密儲存 Session 金鑰</li>
+<li><p>加密儲存 Session 金鑰</p></li>
 </ul>
 </div>
 </div>
@@ -460,16 +460,16 @@
 <div class="section" id="id14">
 <h3>OWASP 建議<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>演示：確保 Web 根內沒有非 Web 資料；驗證使用者和角色；發送 CSRF token</li>
-<li>控制器：驗證使用者和身分；驗證 CSRF token</li>
-<li>模型：驗證身分</li>
+<li><p>演示：確保 Web 根內沒有非 Web 資料；驗證使用者和角色；發送 CSRF token</p></li>
+<li><p>控制器：驗證使用者和身分；驗證 CSRF token</p></li>
+<li><p>模型：驗證身分</p></li>
 </ul>
 </div>
 <div class="section" id="id15">
 <h3>CodeIgniter 實踐<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>在應用程式和系統外部有公用資料夾。</li>
-<li><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供 CSRF 驗證</li>
+<li><p>在應用程式和系統外部有公用資料夾。</p></li>
+<li><p><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供 CSRF 驗證</p></li>
 </ul>
 </div>
 </div>
@@ -479,15 +479,15 @@
 <div class="section" id="id17">
 <h3>OWASP 建議<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>演示：驗證使用者和身分；發送 CSRF 權杖</li>
-<li>控制器：驗證使用者和身分；驗證 CSRF 權杖</li>
-<li>模型：驗證身分</li>
+<li><p>演示：驗證使用者和身分；發送 CSRF 權杖</p></li>
+<li><p>控制器：驗證使用者和身分；驗證 CSRF 權杖</p></li>
+<li><p>模型：驗證身分</p></li>
 </ul>
 </div>
 <div class="section" id="id18">
 <h3>CodeIgniter 實踐<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供 CSRF 驗證</li>
+<li><p><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供 CSRF 驗證</p></li>
 </ul>
 </div>
 </div>
@@ -497,13 +497,13 @@
 <div class="section" id="id20">
 <h3>OWASP 建議<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>避免使用這些元件</li>
+<li><p>避免使用這些元件</p></li>
 </ul>
 </div>
 <div class="section" id="id21">
 <h3>CodeIgniter 實踐<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>合作的第三方函式庫都需要經過審核</li>
+<li><p>合作的第三方函式庫都需要經過審核</p></li>
 </ul>
 </div>
 </div>
@@ -513,16 +513,16 @@
 <div class="section" id="id22">
 <h3>OWASP 建議<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>演示：避免使用 URL 重定向；使用隨機間接參考</li>
-<li>控制器：避免使用 URL 重定向；使用隨機間接參考</li>
-<li>模型：驗證身分</li>
+<li><p>演示：避免使用 URL 重定向；使用隨機間接參考</p></li>
+<li><p>控制器：避免使用 URL 重定向；使用隨機間接參考</p></li>
+<li><p>模型：驗證身分</p></li>
 </ul>
 </div>
 <div class="section" id="id23">
 <h3>CodeIgniter 實踐<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供相關功能</li>
-<li><a class="reference external" href="../libraries/sessions.html">Session 函式庫</a> 提供快閃記憶體資料</li>
+<li><p><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供相關功能</p></li>
+<li><p><a class="reference external" href="../libraries/sessions.html">Session 函式庫</a> 提供快閃記憶體資料</p></li>
 </ul>
 </div>
 </div>
@@ -550,7 +550,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

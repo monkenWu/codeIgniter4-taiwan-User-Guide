@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Date Helper &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>日期輔助函數 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
   
 
   
@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Filesystem Helper" href="filesystem_helper.html" />
-    <link rel="prev" title="Cookie Helper" href="cookie_helper.html" /> 
+    <link rel="next" title="檔案系統輔助函數" href="filesystem_helper.html" />
+    <link rel="prev" title="Cookie 輔助函數" href="cookie_helper.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Helpers</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="form_helper.html">Form Helper</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">輔助函數</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -318,9 +318,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Helpers</a> &raquo;</li>
+          <li><a href="index.html">輔助函數</a> &raquo;</li>
         
-      <li>Date Helper</li>
+      <li>日期輔助函數</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -337,93 +337,79 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="date-helper">
-<h1>Date Helper<a class="headerlink" href="#date-helper" title="Permalink to this headline">¶</a></h1>
-<p>The Date Helper file contains functions that assist in working with
-dates.</p>
+  <div class="section" id="id1">
+<h1>日期輔助函數<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>日期輔助函數檔案包含協助與日期運作的功能</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#loading-this-helper" id="id2">Loading this Helper</a></li>
-<li><a class="reference internal" href="#available-functions" id="id3">Available Functions</a></li>
+<li><p><a class="reference internal" href="#id2" id="id5">載入此輔助函數</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id6">可用的功能</a></p></li>
 </ul>
 </div>
-<div class="custom-index container"></div><div class="section" id="loading-this-helper">
-<h2><a class="toc-backref" href="#id2">Loading this Helper</a><a class="headerlink" href="#loading-this-helper" title="Permalink to this headline">¶</a></h2>
-<p>This helper is loaded using the following code:</p>
+<div class="custom-index container"></div><div class="section" id="id2">
+<h2><a class="toc-backref" href="#id5">載入此輔助函數</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>此輔助函數可以利用以下的程式碼載入：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="available-functions">
-<h2><a class="toc-backref" href="#id3">Available Functions</a><a class="headerlink" href="#available-functions" title="Permalink to this headline">¶</a></h2>
-<p>The following functions are available:</p>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id6">可用的功能</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>以下敘述的功能皆可用：</p>
 <dl class="function">
 <dt id="now">
-<code class="descname">now</code><span class="sig-paren">(</span><span class="optional">[</span><em>$timezone = NULL</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#now" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>$timezone</strong> (<em>string</em>) – Timezone</li>
+<code class="sig-name descname">now</code><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param">$timezone = NULL</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#now" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$timezone</strong> (<em>string</em>) – 時區</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">UNIX timestamp</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">int</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p>Returns the current time as a UNIX timestamp, referenced either to your server’s
-local time or any PHP supported timezone, based on the “time reference” setting
-in your config file. If you do not intend to set your master time reference to
-any other PHP supported timezone (which you’ll typically do if you run a site
-that lets each user set their own timezone settings) there is no benefit to using
-this function over PHP’s <code class="docutils literal notranslate"><span class="pre">time()</span></code> function.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>UNIX 時間戳</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p>回傳當前時間做為一個 UNIX 時間戳，基於你的 config 檔案中所設定的「參考時間」，
+引用到伺服器的本地時間或任何 PHP 所支援的時區。
+如果你無意於設定你的 master 時間為任何其他 PHP 所支援的時區（如果你運行一個網站，你通常會允許每個使用者設定自己的時區）
+在 PHP 上使用 <code class="docutils literal notranslate"><span class="pre">time()</span></code> 功能並沒有好處。:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">now</span><span class="p">(</span><span class="s1">&#39;Australia/Victoria&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>If a timezone is not provided, it will return <code class="docutils literal notranslate"><span class="pre">time()</span></code> based on the
-<strong>time_reference</strong> setting.</p>
+<p>如果時間戳並不被支援，它將會根據 <strong>time_reference</strong> 設定回傳 <code class="docutils literal notranslate"><span class="pre">time()</span></code> 。</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="timezone_select">
-<code class="descname">timezone_select</code><span class="sig-paren">(</span><span class="optional">[</span><em>$class = ''</em>, <em>$default = ''</em>, <em>$what = DateTimeZone::ALL</em>, <em>$country = null</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#timezone_select" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>$class</strong> (<em>string</em>) – Optional class to apply to the select field</li>
-<li><strong>$default</strong> (<em>string</em>) – Default value for initial selection</li>
-<li><strong>$what</strong> (<em>int</em>) – DateTimeZone class constants (see <a class="reference external" href="https://www.php.net/manual/en/datetimezone.listidentifiers.php">listIdentifiers</a>)</li>
-<li><strong>$country</strong> (<em>string</em>) – <p>A two-letter ISO 3166-1 compatible country code (see <a class="reference external" href="https://www.php.net/manual/en/datetimezone.listidentifiers.php">listIdentifiers</a>)</p>
-</li>
+<code class="sig-name descname">timezone_select</code><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param">$class = ''</em>, <em class="sig-param">$default = ''</em>, <em class="sig-param">$what = DateTimeZone::ALL</em>, <em class="sig-param">$country = null</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#timezone_select" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$class</strong> (<em>string</em>) – 可選擇是否要應用於選取範圍的類別</p></li>
+<li><p><strong>$default</strong> (<em>string</em>) – 最初選擇的預設值</p></li>
+<li><p><strong>$what</strong> (<em>int</em>) – DateTimeZone 類別常數 (請參考 <a class="reference external" href="https://www.php.net/manual/en/datetimezone.listidentifiers.php">listIdentifiers</a>)</p></li>
+<li><p><strong>$country</strong> (<em>string</em>) – <p>一個兩個字的 ISO 3166-1 相容的國家 / 地區代碼 (請參考 <a class="reference external" href="https://www.php.net/manual/en/datetimezone.listidentifiers.php">listIdentifiers</a>)</p>
+</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Preformatted HTML select field</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">string</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p>Generates a <cite>select</cite> form field of available timezones (optionally filtered by <cite>$what</cite> and <cite>$country</cite>).
-You can supply an option class to apply to the field to make formatting easier, as well as a default
-selected value.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>預先格式化的 HTML 選擇欄位</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+<p>產生一個 <cite>選擇</cite> 可用的時區的表單欄位 （可以根據你的選擇透過 <cite>$what</cite> 與 <cite>$country</cite> 過濾結果）
+你可以提供一個選項類別應用在欄位上以利簡化格式，還可以提供一個預設選取的值。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">timezone_select</span><span class="p">(</span><span class="s1">&#39;custom-select&#39;</span><span class="p">,</span> <span class="s1">&#39;America/New_York&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>許多先前在 CodeIgniter 3 內的 <code class="docutils literal notranslate"><span class="pre">date_helper</span></code> 許多功能已經在 CodeIgniter 4 中被移動到 <code class="docutils literal notranslate"><span class="pre">I18n</span></code> 模塊</p>
 </dd></dl>
 
-<p>Many functions previously found in the CodeIgniter 3 <code class="docutils literal notranslate"><span class="pre">date_helper</span></code> have been moved to the <code class="docutils literal notranslate"><span class="pre">I18n</span></code>
-module in CodeIgniter 4.</p>
 </div>
 </div>
 
@@ -435,10 +421,10 @@ module in CodeIgniter 4.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="filesystem_helper.html" class="btn btn-neutral float-right" title="Filesystem Helper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="filesystem_helper.html" class="btn btn-neutral float-right" title="檔案系統輔助函數" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="cookie_helper.html" class="btn btn-neutral float-left" title="Cookie Helper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="cookie_helper.html" class="btn btn-neutral float-left" title="Cookie 輔助函數" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -449,7 +435,7 @@ module in CodeIgniter 4.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

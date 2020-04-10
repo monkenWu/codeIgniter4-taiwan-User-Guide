@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -349,68 +349,68 @@
 <p>在開始專案的轉移之前， <strong>請詳細閱讀使用指南</strong> ！</p>
 <p><strong>下載</strong></p>
 <ul class="simple">
-<li>CI4 仍然可以下載後直接運行的方式使用，即利用 zip 或 tarball 進行部屬。專案文件中包含完整的使用指南（在 <cite>doc</cite> 資料夾中）。</li>
-<li>也可以使用 Composer 進行安裝。</li>
+<li><p>CI4 仍然可以下載後直接運行的方式使用，即利用 zip 或 tarball 進行部屬。專案文件中包含完整的使用指南（在 <cite>doc</cite> 資料夾中）。</p></li>
+<li><p>也可以使用 Composer 進行安裝。</p></li>
 </ul>
 <p><strong>命名空間</strong></p>
 <ul class="simple">
-<li>CI4 是針對 PHP7.2+ 版本所設計的，除了 helpers 以外的所有類別都使用了命名空間的特性。</li>
+<li><p>CI4 是針對 PHP7.2+ 版本所設計的，除了 helpers 以外的所有類別都使用了命名空間的特性。</p></li>
 </ul>
 <p><strong>應用程式結構</strong></p>
 <ul class="simple">
-<li>框架仍然具有 <code class="docutils literal notranslate"><span class="pre">app</span></code> 與 <code class="docutils literal notranslate"><span class="pre">system</span></code> 資料夾，其功能與以前相同。</li>
-<li>框架現在提供了一個名為 <code class="docutils literal notranslate"><span class="pre">public</span></code> 的資料夾，可以放置應用程式會使用到的靜態文件。</li>
-<li>以及一個名為 <code class="docutils literal notranslate"><span class="pre">writable</span></code> 的資料夾，用於儲存快取（cache）資料、日誌（log）與會話（session）資料。</li>
-<li><code class="docutils literal notranslate"><span class="pre">app</span></code> 資料夾類似於 CI3 中的 application 資料夾，不過某些名稱與之前不同，並且某些子資料夾被移動到 <code class="docutils literal notranslate"><span class="pre">writable</span></code> 之中。</li>
-<li><code class="docutils literal notranslate"><span class="pre">application/core</span></code> 已經被取消，現在我們有不同的框架擴充機制（見下文）。</li>
+<li><p>框架仍然具有 <code class="docutils literal notranslate"><span class="pre">app</span></code> 與 <code class="docutils literal notranslate"><span class="pre">system</span></code> 資料夾，其功能與以前相同。</p></li>
+<li><p>框架現在提供了一個名為 <code class="docutils literal notranslate"><span class="pre">public</span></code> 的資料夾，可以放置應用程式會使用到的靜態文件。</p></li>
+<li><p>以及一個名為 <code class="docutils literal notranslate"><span class="pre">writable</span></code> 的資料夾，用於儲存快取（cache）資料、日誌（log）與會話（session）資料。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">app</span></code> 資料夾類似於 CI3 中的 application 資料夾，不過某些名稱與之前不同，並且某些子資料夾被移動到 <code class="docutils literal notranslate"><span class="pre">writable</span></code> 之中。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">application/core</span></code> 已經被取消，現在我們有不同的框架擴充機制（見下文）。</p></li>
 </ul>
 <p><strong>載入類別</strong></p>
 <ul class="simple">
-<li>不再有 CodeIgniter「超級物件」 的存在，框架組件的將會作為屬性，動態載入至控制器之中。</li>
-<li>類別只在需要它的地方才進行實作，組件統一由 <code class="docutils literal notranslate"><span class="pre">Services</span></code> 進行管理。</li>
-<li>類別載入器將自動以 PSR4 的規則，在 <code class="docutils literal notranslate"><span class="pre">App</span></code> （應用程式）和 <code class="docutils literal notranslate"><span class="pre">CodeIgniter</span></code> （系統）這兩個頂級命名空間進行類別定位；支援　Composer 自動載入，甚至是類別檔案在沒有宣告命名空間的情形下，也可以透過假設的方式，根據它們位於的文件夾，找到正確的模型與函式庫。</li>
-<li>為了支援你熟悉的應用程式結構，你可以透過設定類別載入器來達成。例如使用：「 <a class="reference external" href="https://zh.wikipedia.org/wiki/HMVC">HMVC</a> 」風格。</li>
+<li><p>不再有 CodeIgniter「超級物件」 的存在，框架組件的將會作為屬性，動態載入至控制器之中。</p></li>
+<li><p>類別只在需要它的地方才進行實作，組件統一由 <code class="docutils literal notranslate"><span class="pre">Services</span></code> 進行管理。</p></li>
+<li><p>類別載入器將自動以 PSR4 的規則，在 <code class="docutils literal notranslate"><span class="pre">App</span></code> （應用程式）和 <code class="docutils literal notranslate"><span class="pre">CodeIgniter</span></code> （系統）這兩個頂級命名空間進行類別定位；支援　Composer 自動載入，甚至是類別檔案在沒有宣告命名空間的情形下，也可以透過假設的方式，根據它們位於的文件夾，找到正確的模型與函式庫。</p></li>
+<li><p>為了支援你熟悉的應用程式結構，你可以透過設定類別載入器來達成。例如使用：「 <a class="reference external" href="https://zh.wikipedia.org/wiki/HMVC">HMVC</a> 」風格。</p></li>
 </ul>
 <p><strong>控制器</strong></p>
 <ul class="simple">
-<li>控制器將繼承 \CodeIgniter\Controller 類別而不是 CI_Controller 類別。</li>
-<li>控制器不再需要建構函式（呼叫 CI 魔術方法），除非這是你創建的基本控制器的一部份。</li>
-<li>與 CI3 相比， CI4 所提供的  <code class="docutils literal notranslate"><span class="pre">Request</span></code> 與 <code class="docutils literal notranslate"><span class="pre">Response</span></code> 物件功能更加強大。</li>
-<li>如果你需要使用基本控制器（例如 CI3 的 MY_Controller ），你可以在任何你喜歡的位置創建它，並且繼承 \CodeIgniter\Controller 類別，接著就可以讓其他的控制器繼承這個基本控制器。</li>
+<li><p>控制器將繼承 \CodeIgniter\Controller 類別而不是 CI_Controller 類別。</p></li>
+<li><p>控制器不再需要建構函式（呼叫 CI 魔術方法），除非這是你創建的基本控制器的一部份。</p></li>
+<li><p>與 CI3 相比， CI4 所提供的  <code class="docutils literal notranslate"><span class="pre">Request</span></code> 與 <code class="docutils literal notranslate"><span class="pre">Response</span></code> 物件功能更加強大。</p></li>
+<li><p>如果你需要使用基本控制器（例如 CI3 的 MY_Controller ），你可以在任何你喜歡的位置創建它，並且繼承 \CodeIgniter\Controller 類別，接著就可以讓其他的控制器繼承這個基本控制器。</p></li>
 </ul>
 <p><strong>模型</strong></p>
 <ul class="simple">
-<li>模型將繼承 \CodeIgniter\Model 類別，而不是 CI_Model 類別。</li>
-<li>CI4 模型擁有更多便利的功能，用於連結資料庫、實現基本的 CRUD 、模型內驗證與自動分頁等功能。</li>
-<li>CI4 也提供讓你可以自由實作的 <code class="docutils literal notranslate"><span class="pre">Entity</span></code> （實體）類別，提供你更豐富的資料映射資料表的功能。</li>
-<li>CI3 的 <code class="docutils literal notranslate"><span class="pre">$this-&gt;load-&gt;model(x);</span></code> 已棄用。現在，在你所想要使用的組件內，你可以按照命名空間的定義，使用 <code class="docutils literal notranslate"><span class="pre">$this-&gt;x</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">X();</span></code> 實作你想使用的模型類別。</li>
+<li><p>模型將繼承 \CodeIgniter\Model 類別，而不是 CI_Model 類別。</p></li>
+<li><p>CI4 模型擁有更多便利的功能，用於連結資料庫、實現基本的 CRUD 、模型內驗證與自動分頁等功能。</p></li>
+<li><p>CI4 也提供讓你可以自由實作的 <code class="docutils literal notranslate"><span class="pre">Entity</span></code> （實體）類別，提供你更豐富的資料映射資料表的功能。</p></li>
+<li><p>CI3 的 <code class="docutils literal notranslate"><span class="pre">$this-&gt;load-&gt;model(x);</span></code> 已棄用。現在，在你所想要使用的組件內，你可以按照命名空間的定義，使用 <code class="docutils literal notranslate"><span class="pre">$this-&gt;x</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">X();</span></code> 實作你想使用的模型類別。</p></li>
 </ul>
 <p><strong>視圖</strong></p>
 <ul class="simple">
-<li>CI4 的視圖與先前的版本大同小異，他們最大的不同是呼叫的方式改變了。 CI3 中的 <code class="docutils literal notranslate"><span class="pre">$this-&gt;load-&gt;view(x);</span></code> 已被取消，現在你可以使用 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">view(x);</span></code> 載入你需要使用的視圖。</li>
-<li>CI4 支援「視圖單元」功能，它能夠分塊建構你的響應。</li>
-<li>樣板解析器依然存在，並且大大增強。</li>
+<li><p>CI4 的視圖與先前的版本大同小異，他們最大的不同是呼叫的方式改變了。 CI3 中的 <code class="docutils literal notranslate"><span class="pre">$this-&gt;load-&gt;view(x);</span></code> 已被取消，現在你可以使用 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">view(x);</span></code> 載入你需要使用的視圖。</p></li>
+<li><p>CI4 支援「視圖單元」功能，它能夠分塊建構你的響應。</p></li>
+<li><p>樣板解析器依然存在，並且大大增強。</p></li>
 </ul>
 <p><strong>函式庫</strong></p>
 <ul class="simple">
-<li>你的應用程式類別依然可以載入在 <code class="docutils literal notranslate"><span class="pre">app/Libraries</span></code> 之中的類別，但這些類別也可以儲存在別處。</li>
-<li>CI3 的 <code class="docutils literal notranslate"><span class="pre">$this-&gt;load-&gt;library(x);</span></code> 已棄用。現在，在你所想要使用的組件內，你可以按照命名空間的定義，使用 <code class="docutils literal notranslate"><span class="pre">$this-&gt;x</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">X();</span></code> 實作你想使用的函式庫類別。</li>
+<li><p>你的應用程式類別依然可以載入在 <code class="docutils literal notranslate"><span class="pre">app/Libraries</span></code> 之中的類別，但這些類別也可以儲存在別處。</p></li>
+<li><p>CI3 的 <code class="docutils literal notranslate"><span class="pre">$this-&gt;load-&gt;library(x);</span></code> 已棄用。現在，在你所想要使用的組件內，你可以按照命名空間的定義，使用 <code class="docutils literal notranslate"><span class="pre">$this-&gt;x</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">X();</span></code> 實作你想使用的函式庫類別。</p></li>
 </ul>
 <p><strong>輔助函式</strong></p>
 <ul class="simple">
-<li>輔助函式與以舊版本相比有些簡化但大致相同。</li>
+<li><p>輔助函式與以舊版本相比有些簡化但大致相同。</p></li>
 </ul>
 <p><strong>事件</strong></p>
 <ul class="simple">
-<li>鉤子（ Hooks ）現在已被事件（Events）替代。</li>
-<li>CI3 的 <code class="docutils literal notranslate"><span class="pre">$hook['post_controller_constructor']</span></code> 已被棄用。現在，你可以使用命名空間下的 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Events\Events;</span></code> 的 <code class="docutils literal notranslate"><span class="pre">Events::on('post_controller_constructor',</span> <span class="pre">['MyClass',</span> <span class="pre">'MyFunction']);</span></code> 靜態方法達成一樣的效果。</li>
-<li>事件功能始終啟用，並且全域可用。</li>
+<li><p>鉤子（ Hooks ）現在已被事件（Events）替代。</p></li>
+<li><p>CI3 的 <code class="docutils literal notranslate"><span class="pre">$hook['post_controller_constructor']</span></code> 已被棄用。現在，你可以使用命名空間下的 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Events\Events;</span></code> 的 <code class="docutils literal notranslate"><span class="pre">Events::on('post_controller_constructor',</span> <span class="pre">['MyClass',</span> <span class="pre">'MyFunction']);</span></code> 靜態方法達成一樣的效果。</p></li>
+<li><p>事件功能始終啟用，並且全域可用。</p></li>
 </ul>
 <p><strong>擴充框架</strong></p>
 <ul class="simple">
-<li>在擴充、更換核心類別上，你不再需要使用 <code class="docutils literal notranslate"><span class="pre">core</span></code> 資料夾保存諸如 <code class="docutils literal notranslate"><span class="pre">MY_...</span></code> 的檔案。</li>
-<li>在函式庫資料夾下，某些類別用於繼承或取代框架中原有的功能。現在，你不再需要以 <code class="docutils literal notranslate"><span class="pre">MY_x</span></code> 來命名。</li>
-<li>你可以在任何需要的地方創建這個類別，只需要在 <code class="docutils literal notranslate"><span class="pre">app/Config/Services.php</span></code> 中添加合適服務方法（ service methods ），來替換掉默認組件。</li>
+<li><p>在擴充、更換核心類別上，你不再需要使用 <code class="docutils literal notranslate"><span class="pre">core</span></code> 資料夾保存諸如 <code class="docutils literal notranslate"><span class="pre">MY_...</span></code> 的檔案。</p></li>
+<li><p>在函式庫資料夾下，某些類別用於繼承或取代框架中原有的功能。現在，你不再需要以 <code class="docutils literal notranslate"><span class="pre">MY_x</span></code> 來命名。</p></li>
+<li><p>你可以在任何需要的地方創建這個類別，只需要在 <code class="docutils literal notranslate"><span class="pre">app/Config/Services.php</span></code> 中添加合適服務方法（ service methods ），來替換掉默認組件。</p></li>
 </ul>
 </div>
 
@@ -436,7 +436,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

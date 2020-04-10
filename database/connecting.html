@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -356,9 +356,9 @@ and is provided for your convenience:</p>
 <div class="section" id="available-parameters">
 <h2>Available Parameters<a class="headerlink" href="#available-parameters" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>The database group name, a string that must match the config class’ property name. Default value is $config-&gt;defaultGroup.</li>
-<li>TRUE/FALSE (boolean). Whether to return the shared connection (see
-Connecting to Multiple Databases below).</li>
+<li><p>The database group name, a string that must match the config class’ property name. Default value is $config-&gt;defaultGroup.</p></li>
+<li><p>TRUE/FALSE (boolean). Whether to return the shared connection (see
+Connecting to Multiple Databases below).</p></li>
 </ol>
 </div>
 <div class="section" id="manually-connecting-to-a-database">
@@ -391,11 +391,11 @@ do so as follows:</p>
 <p>Note: Change the words “group_one” and “group_two” to the specific
 group names you are connecting to.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>You don’t need to create separate database configurations if you
 only need to use a different database on the same connection. You
 can switch to a different database when you need to, like this:</p>
-<div class="last line-block">
+<div class="line-block">
 <div class="line">$db-&gt;setDatabase($database2_name);</div>
 </div>
 </div>
@@ -438,8 +438,8 @@ consider pinging the server by using the reconnect() method before
 sending further queries, which can gracefully keep the connection alive
 or re-establish it.</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">If you are using MySQLi database driver, the reconnect() method
+<p class="admonition-title">Important</p>
+<p>If you are using MySQLi database driver, the reconnect() method
 does not ping the server but it closes the connection then connects again.</p>
 </div>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">reconnect</span><span class="p">();</span>
@@ -479,7 +479,7 @@ connections, you can explicitly close the connection.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

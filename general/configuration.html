@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -343,30 +343,30 @@
 <p>與其他框架不同， CodeIgniter 的可設定選項並不包含在一個檔案中。相反，每個需要設定的類別都會有一個與它相同名稱的組態設定檔案。你可以在 <strong>/app/Config</strong> 資料夾中找到應用程式的設定文件。</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#id2" id="id11">使用組態設定檔案</a></li>
-<li><a class="reference internal" href="#id3" id="id12">創建組態設定檔案</a></li>
-<li><a class="reference internal" href="#id4" id="id13">環境變數</a></li>
-<li><a class="reference internal" href="#codeigniter" id="id14">環境變數與 CodeIgniter</a></li>
-<li><a class="reference internal" href="#id5" id="id15">巢狀變數</a></li>
-<li><a class="reference internal" href="#id6" id="id16">命名空間變數</a></li>
-<li><a class="reference internal" href="#id7" id="id17">組態設定類別與環境變數</a></li>
-<li><a class="reference internal" href="#id8" id="id18">將環境變數視為陣列</a></li>
-<li><a class="reference internal" href="#id9" id="id19">處理不同環境</a></li>
-<li><a class="reference internal" href="#registrars" id="id20">註冊器</a></li>
+<li><p><a class="reference internal" href="#id2" id="id11">使用組態設定檔案</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id12">創建組態設定檔案</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id13">環境變數</a></p></li>
+<li><p><a class="reference internal" href="#codeigniter" id="id14">環境變數與 CodeIgniter</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id15">巢狀變數</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id16">命名空間變數</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id17">組態設定類別與環境變數</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id18">將環境變數視為陣列</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id19">處理不同環境</a></p></li>
+<li><p><a class="reference internal" href="#registrars" id="id20">註冊器</a></p></li>
 </ul>
 </div>
 <div class="section" id="id2">
 <h2><a class="toc-backref" href="#id11">使用組態設定檔案</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>你可以通過幾種不同的方式來訪問類別的組態設定檔案。</p>
 <ul class="simple">
-<li>通過使用 <code class="docutils literal notranslate"><span class="pre">new</span></code> 保留字來創建一個實體：</li>
+<li><p>通過使用 <code class="docutils literal notranslate"><span class="pre">new</span></code> 保留字來創建一個實體：</p></li>
 </ul>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// Creating new configuration object by hand</span>
 <span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Config\Pager</span><span class="p">();</span>
 </pre></div>
 </div>
 <ul>
-<li><p class="first">通過 <code class="docutils literal notranslate"><span class="pre">config()</span></code> 函式:</p>
+<li><p>通過 <code class="docutils literal notranslate"><span class="pre">config()</span></code> 函式:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// Creating a new object with config function</span>
 <span class="nv">$config</span> <span class="o">=</span> <span class="nx">config</span><span class="p">(</span><span class="s1">&#39;Pager&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
 
@@ -416,8 +416,8 @@
 <p>CodeIgniter 通過使用「點 env」檔實現環境變數，這使得設定環境變數變得簡單又不用費功夫。「點 env」檔這個說法來自於 CodeIgniter 環境變數檔案的名稱，它指的是「 .env 」。</p>
 <p>CodeIgniter 希望你將 <strong>.env</strong> 檔案置於根目錄下，緊鄰 <code class="docutils literal notranslate"><span class="pre">system</span></code> 與 <code class="docutils literal notranslate"><span class="pre">app</span></code> 目錄。在 CodeIgniter 中，有一個用於環境變數的樣板文件，它位於根目錄下，名為 <strong>env</strong> （注意！這個檔案的開頭並沒有 <strong>點</strong> ）。它內涵所有你的專案可能會使用到的變數集合，這些變數已經被分配了空值、虛值或默認值。你可以藉由將這個檔案重新命名成 <strong>.env</strong> 或將這個檔案複製一份命名成 <strong>.env</strong> 使它開始作用。這個檔案將會作為你的應用程式的起點。</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">為了不讓敏感資訊洩漏出去，請確定你的版本控制系統不追蹤 <strong>.env</strong> 檔案。以 <em>git</em> 來說，就是在  <strong>.gitignore</strong> 添加這個需要被忽略的檔案。</p>
+<p class="admonition-title">Important</p>
+<p>為了不讓敏感資訊洩漏出去，請確定你的版本控制系統不追蹤 <strong>.env</strong> 檔案。以 <em>git</em> 來說，就是在  <strong>.gitignore</strong> 添加這個需要被忽略的檔案。</p>
 </div>
 <p>設定將會以「名稱 = 值」的方式，儲存在 <strong>.env</strong> 檔案中。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">S3_BUCKET</span> <span class="o">=</span> <span class="nx">dotenv</span>
@@ -573,7 +573,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -342,23 +342,25 @@
 <p>CodeIgniter makes working with files uploaded through a form much simpler and more secure than using PHP’s <code class="docutils literal notranslate"><span class="pre">$_FILES</span></code>
 array directly. This extends the <a class="reference internal" href="files.html"><span class="doc">File class</span></a> and thus gains all of the features of that class.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">This is not the same as the File Uploading class in previous versions of CodeIgniter. This provides a raw
+<p class="admonition-title">Note</p>
+<p>This is not the same as the File Uploading class in previous versions of CodeIgniter. This provides a raw
 interface to the uploaded files with a few small features.</p>
 </div>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#accessing-files" id="id1">Accessing Files</a><ul>
-<li><a class="reference internal" href="#all-files" id="id2">All Files</a></li>
-<li><a class="reference internal" href="#single-file" id="id3">Single File</a></li>
+<li><p><a class="reference internal" href="#accessing-files" id="id1">Accessing Files</a></p>
+<ul>
+<li><p><a class="reference internal" href="#all-files" id="id2">All Files</a></p></li>
+<li><p><a class="reference internal" href="#single-file" id="id3">Single File</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#working-with-the-file" id="id4">Working With the File</a><ul>
-<li><a class="reference internal" href="#verify-a-file" id="id5">Verify A File</a></li>
-<li><a class="reference internal" href="#file-names" id="id6">File Names</a></li>
-<li><a class="reference internal" href="#other-file-info" id="id7">Other File Info</a></li>
-<li><a class="reference internal" href="#moving-files" id="id8">Moving Files</a></li>
-<li><a class="reference internal" href="#store-files" id="id9">Store Files</a></li>
+<li><p><a class="reference internal" href="#working-with-the-file" id="id4">Working With the File</a></p>
+<ul>
+<li><p><a class="reference internal" href="#verify-a-file" id="id5">Verify A File</a></p></li>
+<li><p><a class="reference internal" href="#file-names" id="id6">File Names</a></p></li>
+<li><p><a class="reference internal" href="#other-file-info" id="id7">Other File Info</a></p></li>
+<li><p><a class="reference internal" href="#moving-files" id="id8">Moving Files</a></p></li>
+<li><p><a class="reference internal" href="#store-files" id="id9">Store Files</a></p></li>
 </ul>
 </li>
 </ul>
@@ -485,8 +487,8 @@ In controller:</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">using <code class="docutils literal notranslate"><span class="pre">getFiles()</span></code> is more appropriate</p>
+<p class="admonition-title">Note</p>
+<p>using <code class="docutils literal notranslate"><span class="pre">getFiles()</span></code> is more appropriate</p>
 </div>
 </div>
 </div>
@@ -508,13 +510,13 @@ move the file to a new location.</p>
 message with the <code class="docutils literal notranslate"><span class="pre">getError()</span></code> and <code class="docutils literal notranslate"><span class="pre">getErrorString()</span></code> methods. The following errors can be discovered through
 this method:</p>
 <ul class="simple">
-<li>The file exceeds your upload_max_filesize ini directive.</li>
-<li>The file exceeds the upload limit defined in your form.</li>
-<li>The file was only partially uploaded.</li>
-<li>No file was uploaded.</li>
-<li>The file could not be written on disk.</li>
-<li>File could not be uploaded: missing temporary directory.</li>
-<li>File upload was stopped by a PHP extension.</li>
+<li><p>The file exceeds your upload_max_filesize ini directive.</p></li>
+<li><p>The file exceeds the upload limit defined in your form.</p></li>
+<li><p>The file was only partially uploaded.</p></li>
+<li><p>No file was uploaded.</p></li>
+<li><p>The file could not be written on disk.</p></li>
+<li><p>File could not be uploaded: missing temporary directory.</p></li>
+<li><p>File upload was stopped by a PHP extension.</p></li>
 </ul>
 </div>
 <div class="section" id="file-names">
@@ -576,9 +578,9 @@ the <code class="docutils literal notranslate"><span class="pre">hasMoved()</spa
 </div>
 <p>Moving an uploaded file can fail, with an HTTPException, under several circumstances:</p>
 <ul class="simple">
-<li>the file has already been moved</li>
-<li>the file did not upload successfully</li>
-<li>the file move operation fails (eg. improper permissions)</li>
+<li><p>the file has already been moved</p></li>
+<li><p>the file did not upload successfully</p></li>
+<li><p>the file move operation fails (eg. improper permissions)</p></li>
 </ul>
 </div>
 <div class="section" id="store-files">
@@ -600,9 +602,9 @@ passing it as thesecond parameter:</p>
 </div>
 <p>Moving an uploaded file can fail, with an HTTPException, under several circumstances:</p>
 <ul class="simple">
-<li>the file has already been moved</li>
-<li>the file did not upload successfully</li>
-<li>the file move operation fails (eg. improper permissions)</li>
+<li><p>the file has already been moved</p></li>
+<li><p>the file did not upload successfully</p></li>
+<li><p>the file move operation fails (eg. improper permissions)</p></li>
 </ul>
 </div>
 </div>
@@ -630,7 +632,7 @@ passing it as thesecond parameter:</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

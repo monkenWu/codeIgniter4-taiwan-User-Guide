@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -344,12 +344,13 @@ via the URL in a browser they can also be loaded via the command-line
 interface (CLI).</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#what-is-the-cli" id="id1">What is the CLI?</a></li>
-<li><a class="reference internal" href="#why-run-via-the-command-line" id="id2">Why run via the command-line?</a></li>
-<li><a class="reference internal" href="#let-s-try-it-hello-world" id="id3">Let’s try it: Hello World!</a></li>
-<li><a class="reference internal" href="#that-s-the-basics" id="id4">That’s the basics!</a><ul>
-<li><a class="reference internal" href="#cli-only-routing" id="id5">CLI-Only Routing</a></li>
-<li><a class="reference internal" href="#the-cli-library" id="id6">The CLI Library</a></li>
+<li><p><a class="reference internal" href="#what-is-the-cli" id="id1">What is the CLI?</a></p></li>
+<li><p><a class="reference internal" href="#why-run-via-the-command-line" id="id2">Why run via the command-line?</a></p></li>
+<li><p><a class="reference internal" href="#let-s-try-it-hello-world" id="id3">Let’s try it: Hello World!</a></p></li>
+<li><p><a class="reference internal" href="#that-s-the-basics" id="id4">That’s the basics!</a></p>
+<ul>
+<li><p><a class="reference internal" href="#cli-only-routing" id="id5">CLI-Only Routing</a></p></li>
+<li><p><a class="reference internal" href="#the-cli-library" id="id6">The CLI Library</a></p></li>
 </ul>
 </li>
 </ul>
@@ -365,13 +366,13 @@ article</a>.</p>
 <p>There are many reasons for running CodeIgniter from the command-line,
 but they are not always obvious.</p>
 <ul class="simple">
-<li>Run your cron-jobs without needing to use <em>wget</em> or <em>curl</em>.</li>
-<li>Make your cron-jobs inaccessible from being loaded in the URL by
-checking the return value of <a class="reference internal" href="../general/common_functions.html#is_cli" title="is_cli"><code class="xref php php-func docutils literal notranslate"><span class="pre">is_cli()</span></code></a>.</li>
-<li>Make interactive “tasks” that can do things like set permissions,
-prune cache folders, run backups, etc.</li>
-<li>Integrate with other applications in other languages. For example, a
-random C++ script could call one command and run code in your models!</li>
+<li><p>Run your cron-jobs without needing to use <em>wget</em> or <em>curl</em>.</p></li>
+<li><p>Make your cron-jobs inaccessible from being loaded in the URL by
+checking the return value of <a class="reference internal" href="../general/common_functions.html#is_cli" title="is_cli"><code class="xref php php-func docutils literal notranslate"><span class="pre">is_cli()</span></code></a>.</p></li>
+<li><p>Make interactive “tasks” that can do things like set permissions,
+prune cache folders, run backups, etc.</p></li>
+<li><p>Integrate with other applications in other languages. For example, a
+random C++ script could call one command and run code in your models!</p></li>
 </ul>
 </div>
 <div class="section" id="let-s-try-it-hello-world">
@@ -464,7 +465,7 @@ allows you to prompt a user for information, making it easy to build flexible, s
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

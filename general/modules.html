@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -345,24 +345,26 @@ of the standard file types within the framework are supported, like controllers,
 language files, etc. Modules may contain as few, or as many, of these as you like.</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#namespaces" id="id1">Namespaces</a></li>
-<li><a class="reference internal" href="#auto-discovery" id="id2">Auto-Discovery</a><ul>
-<li><a class="reference internal" href="#enable-disable-discover" id="id3">Enable/Disable Discover</a></li>
-<li><a class="reference internal" href="#specify-discovery-items" id="id4">Specify Discovery Items</a></li>
-<li><a class="reference internal" href="#discovery-and-composer" id="id5">Discovery and Composer</a></li>
+<li><p><a class="reference internal" href="#namespaces" id="id1">Namespaces</a></p></li>
+<li><p><a class="reference internal" href="#auto-discovery" id="id2">Auto-Discovery</a></p>
+<ul>
+<li><p><a class="reference internal" href="#enable-disable-discover" id="id3">Enable/Disable Discover</a></p></li>
+<li><p><a class="reference internal" href="#specify-discovery-items" id="id4">Specify Discovery Items</a></p></li>
+<li><p><a class="reference internal" href="#discovery-and-composer" id="id5">Discovery and Composer</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#working-with-files" id="id6">Working With Files</a><ul>
-<li><a class="reference internal" href="#routes" id="id7">Routes</a></li>
-<li><a class="reference internal" href="#controllers" id="id8">Controllers</a></li>
-<li><a class="reference internal" href="#config-files" id="id9">Config Files</a></li>
-<li><a class="reference internal" href="#migrations" id="id10">Migrations</a></li>
-<li><a class="reference internal" href="#seeds" id="id11">Seeds</a></li>
-<li><a class="reference internal" href="#helpers" id="id12">Helpers</a></li>
-<li><a class="reference internal" href="#language-files" id="id13">Language Files</a></li>
-<li><a class="reference internal" href="#libraries" id="id14">Libraries</a></li>
-<li><a class="reference internal" href="#models" id="id15">Models</a></li>
-<li><a class="reference internal" href="#views" id="id16">Views</a></li>
+<li><p><a class="reference internal" href="#working-with-files" id="id6">Working With Files</a></p>
+<ul>
+<li><p><a class="reference internal" href="#routes" id="id7">Routes</a></p></li>
+<li><p><a class="reference internal" href="#controllers" id="id8">Controllers</a></p></li>
+<li><p><a class="reference internal" href="#config-files" id="id9">Config Files</a></p></li>
+<li><p><a class="reference internal" href="#migrations" id="id10">Migrations</a></p></li>
+<li><p><a class="reference internal" href="#seeds" id="id11">Seeds</a></p></li>
+<li><p><a class="reference internal" href="#helpers" id="id12">Helpers</a></p></li>
+<li><p><a class="reference internal" href="#language-files" id="id13">Language Files</a></p></li>
+<li><p><a class="reference internal" href="#libraries" id="id14">Libraries</a></p></li>
+<li><p><a class="reference internal" href="#models" id="id15">Models</a></p></li>
+<li><p><a class="reference internal" href="#views" id="id16">Views</a></p></li>
 </ul>
 </li>
 </ul>
@@ -421,10 +423,10 @@ or Repositories, etc.</p>
 configured to make integrating modules into your applications simpler by automatically discovering many different
 file types, including:</p>
 <ul class="simple">
-<li><a class="reference internal" href="../extending/events.html"><span class="doc">Events</span></a></li>
-<li><a class="reference internal" href="configuration.html"><span class="doc">Registrars</span></a></li>
-<li><a class="reference internal" href="../incoming/routing.html"><span class="doc">Route files</span></a></li>
-<li><a class="reference internal" href="../concepts/services.html"><span class="doc">Services</span></a></li>
+<li><p><a class="reference internal" href="../extending/events.html"><span class="doc">Events</span></a></p></li>
+<li><p><a class="reference internal" href="configuration.html"><span class="doc">Registrars</span></a></p></li>
+<li><p><a class="reference internal" href="../incoming/routing.html"><span class="doc">Route files</span></a></p></li>
+<li><p><a class="reference internal" href="../concepts/services.html"><span class="doc">Services</span></a></p></li>
 </ul>
 <p>This is configured in the file <strong>app/Config/Modules.php</strong>.</p>
 <p>The auto-discovery system works by scanning any psr4 namespaces that have been defined within <strong>Config/Autoload.php</strong>
@@ -464,8 +466,8 @@ guide, but is being reproduced here so that it’s easier to grasp how all of th
 <p>By default, <a class="reference internal" href="../incoming/routing.html"><span class="doc">routes</span></a> are automatically scanned for within modules. It can be turned off in
 the <strong>Modules</strong> config file, described above.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Since the files are being included into the current scope, the <code class="docutils literal notranslate"><span class="pre">$routes</span></code> instance is already defined for you.
+<p class="admonition-title">Note</p>
+<p>Since the files are being included into the current scope, the <code class="docutils literal notranslate"><span class="pre">$routes</span></code> instance is already defined for you.
 It will cause errors if you attempt to redefine that class.</p>
 </div>
 </div>
@@ -566,7 +568,7 @@ file follows the same directory structures as the main application directory.</p
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

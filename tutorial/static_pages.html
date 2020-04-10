@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -343,10 +343,12 @@
 <p>你要做的第一件事就是設置一個 <strong>控制器</strong> 來處理靜態頁面。控制器是一個有助於指派工作的類別。它可以說是 Web 應用程式間的黏著劑。</p>
 <p>舉個例子，當呼叫:</p>
 <blockquote>
-<div><code class="docutils literal notranslate"><span class="pre">http://example.com/news/latest/10</span></code></div></blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">http://example.com/news/latest/10</span></code></p>
+</div></blockquote>
 <p>我們可以想像有個控制器名為「新聞（ news ）」，新聞呼叫的是 「最新的（latest）」這個方法（ method ）。這個方法可能會獲取 10 條新聞，並且將其呈現在畫面上。在 MVC 中，你經常會看到這子的 URL 映射模式:</p>
 <blockquote>
-<div><code class="docutils literal notranslate"><span class="pre">http://example.com/[controller-class]/[controller-method]/[arguments]</span></code></div></blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">http://example.com/[controller-class]/[controller-method]/[arguments]</span></code></p>
+</div></blockquote>
 <p>隨著 URL 的需求變得越來越複雜，這種方案可能會有所變化。但是現在，我們只需要先了解這些就好了。</p>
 <div class="section" id="id2">
 <h2>讓我們製作第一個控制器<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
@@ -417,8 +419,8 @@
 <p>在 header 樣板中， <code class="docutils literal notranslate"><span class="pre">$title</span></code> 變數用於自訂頁面的標題。標題的值將在這個方法中進行定義。它不是將值直接宣告在變數之中，而是宣告成 <code class="docutils literal notranslate"><span class="pre">$data</span></code> 陣列中鍵值為 title 的元素。</p>
 <p>最後我們得按照順序依序載入視圖，對於這個操作，我們使用 CodeIgniter 內建的 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法。<code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法中的第二個參數用於將一些值傳遞給視圖。 <code class="docutils literal notranslate"><span class="pre">$data</span></code> 陣列中的每個值在傳遞給視圖後，將會被宣告為以鍵值命名的變數。所以控制器中的 <code class="docutils literal notranslate"><span class="pre">$data['title']</span></code> 將等價於視圖中的 <code class="docutils literal notranslate"><span class="pre">$title</span></code> 。</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">傳入 <strong>view()</strong> 函數的任何檔案名稱與目錄名稱都必須真實存在且完全一致，否則你的程式可能會在一些區分大小寫的系統平台上出現錯誤。</p>
+<p class="admonition-title">Note</p>
+<p>傳入 <strong>view()</strong> 函數的任何檔案名稱與目錄名稱都必須真實存在且完全一致，否則你的程式可能會在一些區分大小寫的系統平台上出現錯誤。</p>
 </div>
 </div>
 <div class="section" id="id4">
@@ -431,12 +433,12 @@
 <p>這行指令將會把 Web 伺服器啟動在 8080 埠上，如果在瀏覽器中前往 <code class="docutils literal notranslate"><span class="pre">localhost:8080</span></code> ，你應該可以看到 CodeIgniter 的歡迎畫面。</p>
 <p>現在，你可以在瀏覽器中嘗試多種 URL ，以查看上面製作的 <cite>Pages</cite> 究竟產生了甚麼……</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages</span></code> 將顯示控制器中 <cite>index</cite> 方法的結果，也就是顯示 CodeIgniter 「 welcome 」 頁面，因為 <cite>index</cite> 是控制器的預設方法。</li>
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/index</span></code> 也會顯示 CodeIgniter 「 welcome 」 頁面，因為我們明確的要求使用 index 方法。</li>
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme</span></code> 將顯示剛才製作的「 home 」頁面，因為它是 <cite>showme()</cite> 方法所預設的 page 參數。</li>
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme/home</span></code> 將顯示 「 home 」頁面 ，因為我們明確的要求了 page 的值。</li>
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme/about</span></code> 因為我們明確的要求了 about ，將顯示你剛才製作的「 about 」頁面，</li>
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme/shop</span></code> 將顯示「 404 - File Not Found 」錯誤畫面，因為 <cite>app/Views/pages/shop.php</cite> 並不存在。</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages</span></code> 將顯示控制器中 <cite>index</cite> 方法的結果，也就是顯示 CodeIgniter 「 welcome 」 頁面，因為 <cite>index</cite> 是控制器的預設方法。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/index</span></code> 也會顯示 CodeIgniter 「 welcome 」 頁面，因為我們明確的要求使用 index 方法。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme</span></code> 將顯示剛才製作的「 home 」頁面，因為它是 <cite>showme()</cite> 方法所預設的 page 參數。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme/home</span></code> 將顯示 「 home 」頁面 ，因為我們明確的要求了 page 的值。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme/about</span></code> 因為我們明確的要求了 about ，將顯示你剛才製作的「 about 」頁面，</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme/shop</span></code> 將顯示「 404 - File Not Found 」錯誤畫面，因為 <cite>app/Views/pages/shop.php</cite> 並不存在。</p></li>
 </ul>
 </div>
 <div class="section" id="id5">
@@ -484,7 +486,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>

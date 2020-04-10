@@ -23,11 +23,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/citheme.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -227,19 +227,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">Filesystem Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
 </ul>
 </li>
 </ul>
@@ -345,8 +345,8 @@ and this form field is hidden from a human but accessible to a Bot. When data is
 assumed the request is coming from a Bot, and you can throw a <code class="docutils literal notranslate"><span class="pre">HoneypotException</span></code>.</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#enabling-honeypot" id="id1">Enabling Honeypot</a></li>
-<li><a class="reference internal" href="#customizing-honeypot" id="id2">Customizing Honeypot</a></li>
+<li><p><a class="reference internal" href="#enabling-honeypot" id="id1">Enabling Honeypot</a></p></li>
+<li><p><a class="reference internal" href="#customizing-honeypot" id="id2">Customizing Honeypot</a></p></li>
 </ul>
 </div>
 <div class="section" id="enabling-honeypot">
@@ -374,10 +374,10 @@ and modify the <code class="docutils literal notranslate"><span class="pre">$ali
 <p>Honeypot can be customized. The fields below can be set either in
 <code class="docutils literal notranslate"><span class="pre">app/Config/Honeypot.php</span></code> or in <code class="docutils literal notranslate"><span class="pre">.env</span></code>.</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">hidden</span></code> - true|false to control visibility of the honeypot field; default is <code class="docutils literal notranslate"><span class="pre">true</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">label</span></code> - HTML label for the honeypot field, default is ‘Fill This Field’</li>
-<li><code class="docutils literal notranslate"><span class="pre">name</span></code> - name of the HTML form field used for the template; default is ‘honeypot’</li>
-<li><code class="docutils literal notranslate"><span class="pre">template</span></code> - form field template used for the honeypot; default is ‘&lt;label&gt;{label}&lt;/label&gt;&lt;input type=”text” name=”{name}” value=””/&gt;’</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hidden</span></code> - true|false to control visibility of the honeypot field; default is <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">label</span></code> - HTML label for the honeypot field, default is ‘Fill This Field’</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> - name of the HTML form field used for the template; default is ‘honeypot’</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">template</span></code> - form field template used for the honeypot; default is ‘&lt;label&gt;{label}&lt;/label&gt;&lt;input type=”text” name=”{name}” value=””/&gt;’</p></li>
 </ul>
 </div>
 </div>
@@ -404,7 +404,7 @@ and modify the <code class="docutils literal notranslate"><span class="pre">$ali
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 08, 2020.
+        Last updated on Apr 10, 2020.
       </span>
 
     </p>
