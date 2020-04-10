@@ -1,57 +1,56 @@
-###############
-Security Helper
-###############
+##################
+Security 輔助函式
+##################
 
-The Security Helper file contains security related functions.
+Security 輔助函式包含與安全相關的功能。
 
 .. contents::
   :local:
 
-Loading this Helper
+讀取此輔助函式
 ===================
 
-This helper is loaded using the following code::
+此輔助函式可以利用以下的程式碼讀取::
 
 	helper('security');
 
-Available Functions
+可用的功能
 ===================
 
-The following functions are available:
+以下敘述的功能皆可用：
 
 .. php:function:: sanitize_filename($filename)
 
-	:param	string	$filename: Filename
-    	:returns:	Sanitized file name
+	:param	string	$filename: 檔案名稱
+    	:returns:	消毒過的檔案名稱
     	:rtype:	string
 
-    	Provides protection against directory traversal.
+    	提供遍歷目錄的保護。
 
-    	This function is an alias for ``\CodeIgniter\Security::sanitize_filename()``.
-	For more info, please see the :doc:`Security Library <../libraries/security>`
-	documentation.
+    	此功能是 ``\CodeIgniter\Security::sanitize_filename()`` 的一個別名。
+	如果需要更多資訊，請見 :doc:`Security Library <../libraries/security>`。
 
 .. php:function:: strip_image_tags($str)
 
-	:param	string	$str: Input string
-    	:returns:	The input string with no image tags
+	:param	string	$str: 輸入字串
+    	:returns:	輸入字串不包含 image 標籤
     	:rtype:	string
 
-    	This is a security function that will strip image tags from a string.
-    	It leaves the image URL as plain text.
+    	這是一個可以從字串中隔除 image 標籤的安全功能。
+    	它會把 image URL 留為普通文字。
 
-    	Example::
+    	例如::
 
 		$string = strip_image_tags($string);
 
 .. php:function:: encode_php_tags($str)
 
-	:param	string	$str: Input string
-    	:returns:	Safely formatted string
+	:param	string	$str: 輸入字串
+    	:returns:	安全格式化的字串
     	:rtype:	string
 
-    	This is a security function that converts PHP tags to entities.
+    	這是一個可以將 PHP 標籤轉為實體的安全功能。
 
-	Example::
+	例如::
 
 		$string = encode_php_tags($string);
