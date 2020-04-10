@@ -1,8 +1,8 @@
 ###############
-Cookie 輔助函式
+Cookie 輔助函數
 ###############
 
-Cookie 輔助函式檔案包含幫助使用 cookie 的功能。
+Cookie 輔助函數檔案包含幫助使用 cookie 的功能。
 
 .. contents::
   :local:
@@ -11,10 +11,12 @@ Cookie 輔助函式檔案包含幫助使用 cookie 的功能。
 
   <div class="custom-index container"></div>
 
-讀取此輔助函式
+載入此輔助函數
 ===================
 
-此輔助函式可以利用以下的程式碼讀取:::
+此輔助函數可以利用以下的程式碼載入：
+
+::
 
 	helper('cookie');
 
@@ -35,7 +37,7 @@ Cookie 輔助函式檔案包含幫助使用 cookie 的功能。
 	:param	bool	$httpOnly: 是否對 JavaScript 隱藏 cookie
 	:rtype:	void
 
-	這個輔助函式功能給你更友善的語法來設定瀏覽器 cookie。
+	這個輔助函數功能給你更友善的語法來設定瀏覽器 cookie。
 	請參閱 :doc:`回應庫 </outgoing/response>` 對應它的使用說明,
 	由於此函數是 ``Response::setCookie()`` 的一種。
 
@@ -46,7 +48,7 @@ Cookie 輔助函式檔案包含幫助使用 cookie 的功能。
 	:returns:	cookie 值或如果沒找到的 NULL
 	:rtype:	混合的
 
-	此輔助函式功能提供更友善的語法以取得 cookie。
+	此輔助函數功能提供更友善的語法以取得 cookie。
 	由於此功能的動作與``IncomingRequest::getCookie()``相似，
 	請參照 :doc:`傳入請求庫 </incoming/incomingrequest>` 
 	以找到更詳細的使用說明。除非它同時也會預置你可能預先設定在你的 
