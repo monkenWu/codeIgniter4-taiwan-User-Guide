@@ -1,8 +1,8 @@
-#######
-Helpers
-#######
+#########
+輔助函式
+#########
 
-Helpers are collections of useful procedural functions.
+輔助函式是實用的程序性的功能的集合
 
 .. toctree::
 	:glob:

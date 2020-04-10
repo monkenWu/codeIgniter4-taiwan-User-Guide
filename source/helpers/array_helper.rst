@@ -1,34 +1,32 @@
-############
-Array Helper
-############
+###############
+Array 輔助函式
+###############
 
-The array helper provides several functions to simplify more complex usages of arrays. It is not intended to duplicate
-any of the existing functionality that PHP provides - unless it is to vastly simplify their usage.
+Array 輔助函數提供了多種功能用以簡化陣列更複雜的應用。他並不打算複製任何 PHP 現存的功能 - 除非它已經大大的簡化了它們的使用難度
 
 .. contents::
     :local:
 
-Loading this Helper
+讀取此陣列輔助函式
 ===================
 
-This helper is loaded using the following code::
+此陣列輔助函式可以透過以下程式碼讀取::
 
 	helper('array');
 
-Available Functions
+可用的功能
 ===================
 
-The following functions are available:
+以下列舉的功能都可用:
 
 ..  php:function:: dot_array_search(string $search, array $values)
 
-    :param  string  $search: The dot-notation string describing how to search the array
-    :param  array   $values: The array to search
-    :returns: The value found within the array, or null
-    :rtype: mixed
+    :param  string  $search: dot-notation String 解釋了如何對陣列進行搜尋
+    :param  array   $values: 欲搜尋的字串
+    :returns: 在陣列中所搜尋到S的值，或是空
+    :rtype: 混合型態
 
-    This method allows you to use dot-notation to search through an array for a specific-key,
-    and allows the use of a the '*' wildcard. Given the following array::
+    此方法使你能夠使用 dot-notation 對陣列搜尋一個特定的值，並且允許使用「 * 」通配符。給定以下陣列 ::
 
         $data = [
             'foo' => [
@@ -41,8 +39,7 @@ The following functions are available:
             ]
         ]
 
-    We can locate the value of 'fizz' by using the search string "foo.buzz.fizz". Likewise, the value
-    of baz can be found with "foo.bar.baz"::
+    我們可以利用 「 foo.buzz.fizz 」 這個搜尋字串定位 fizz 的值。同樣的， baz 的值可以透過 「 foo.bar.baz 」 找到::
 
         // Returns: 11
         $fizz = dot_array_search('foo.buzz.fizz', $data);
@@ -50,9 +47,7 @@ The following functions are available:
         // Returns: 23
         $baz = dot_array_search('foo.bar.baz', $data);
 
-    You can use the asterisk as a wildcard to replace any of the segments. When found, it will search through all
-    of the child nodes until it finds it. This is handy if you don't know the values, or if your values
-    have a numeric index::
+    你可以利用星號取代任何的段落。當星號被發現，它會對所有的子節點做搜尋直到找出結果。如果你不知道你的值，或是你的值有一個數字的指標，這個功能是很方便的。::
 
         // Returns: 23
         $baz = dot_array_search('foo.*.baz', $data);

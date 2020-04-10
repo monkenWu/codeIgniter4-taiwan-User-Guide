@@ -1,9 +1,8 @@
-###########
-Form Helper
-###########
+##############
+Form 輔助函式
+##############
 
-The Form Helper file contains functions that assist in working with
-forms.
+Form 輔助涵式檔案包含與型式互動的輔助功能
 
 .. contents::
   :local:
@@ -12,105 +11,95 @@ forms.
 
   <div class="custom-index container"></div>
 
-Loading this Helper
+讀取此輔助函式
 ===================
 
-This helper is loaded using the following code::
+此輔助函式可以利用以下的程式碼讀取::
 
 	helper('form');
 
-Escaping field values
+脫離領域的值
 =====================
 
-You may need to use HTML and characters such as quotes within your form
-elements. In order to do that safely, you'll need to use
+你或許需要使用 HTML 與像是引用的字元在你的型式元素中。 
+為了安全的實作，你會需要使用
 :doc:`common function <../general/common_functions>`
 :func:`esc()`.
 
-Consider the following example::
+以底下的範例為考量::
 
 	$string = 'Here is a string containing "quoted" text.';
 
 	<input type="text" name="myfield" value="<?= $string; ?>" />
 
-Since the above string contains a set of quotes, it will cause the form
-to break. The :php:func:`esc()` function converts HTML special
-characters so that it can be used safely::
+由於上述的字串包含一組引用，他將會造成型式破裂
+:php:func:`esc()` 功能會轉換特殊的 HTML 字元以便它可以安全地被利用::
 
 	<input type="text" name="myfield" value="<?= esc($string); ?>" />
 
-.. note:: If you use any of the form helper functions listed on this page,
-        and you pass values as an associative array,
-	the form values will be automatically escaped, so there is no need
-	to call this function. Use it only if you are creating your own
-	form elements, which you would pass as strings.
+.. note:: 如果你使用此頁面所列出的任一 form 輔助函式，並且你傳遞值作為關聯陣列，
+	form 的值會被自動脫離，因此你沒有必要呼叫此函式。只有你在建立你自己的 form 元素的時候使用，在你會以字串型式傳遞的時候使用
 
-Available Functions
+可用的功能
 ===================
 
-The following functions are available:
+以下敘述的功能皆可用：
 
 .. php:function:: form_open([$action = ''[, $attributes = ''[, $hidden = []]]])
 
-	:param	string	$action: Form action/target URI string
-    	:param	mixed	$attributes: HTML attributes, as an array or escaped string
-    	:param	array	$hidden: An array of hidden fields' definitions
-    	:returns:	An HTML form opening tag
+	:param	string	$action: Form 動作／目標 URI 字串
+    	:param	mixed	$attributes: HTML 屬性，是一個陣列或跳脫的字串
+    	:param	array	$hidden: 一個隱藏域的定義陣列
+    	:returns:	HTML form 開啟標籤
     	:rtype:	string
 
-    	Creates an opening form tag with a base URL **built from your config preferences**.
-	It will optionally let you add form attributes and hidden input fields, and
-	will always add the `accept-charset` attribute based on the charset value in your
-	config file.
+    	建立一個啟動標籤內含一個 **從你的配置偏好建立的** 基礎 URL。
+		它將會讓你選擇增加 form 屬性與隱藏輸入區，同時也會根據你的 config 檔案中的 charset 值永遠增加 `accept-charset` 屬性。
 
-	The main benefit of using this tag rather than hard coding your own HTML is that
-	it permits your site to be more portable in the event your URLs ever change.
+	使用這個標籤而不是強硬的編寫你自己的 HTML 程式的主要好處是它將會讓你的網站在變更 URL 時更輕便
 
-	Here's a simple example::
+	這是一個簡單的範例::
 
 		echo form_open('email/send');
 
-	The above example would create a form that points to your base URL plus the
-	"email/send" URI segments, like this::
+	上述的範例會建立一個 form 指向你的基礎 URL 加上 "email/send" URI 段落，像是這個::
 
 		<form method="post" accept-charset="utf-8" action="http://example.com/index.php/email/send">
 
-	**Adding Attributes**
+	**增加屬性**
 
-		Attributes can be added by passing an associative array to the second
-		parameter, like this::
+		屬性可以透過傳遞一個關聯的陣列到第二個參數來增加，像是這樣::
 
 			$attributes = ['class' => 'email', 'id' => 'myform'];
 			echo form_open('email/send', $attributes);
 
-		Alternatively, you can specify the second parameter as a string::
+		或者，你可以指定第二個參數為一個字串::
 
 			echo form_open('email/send', 'class="email" id="myform"');
 
-		The above examples would create a form similar to this::
+		上述的範例會產生一個類似於這個的 form::
 
 			<form method="post" accept-charset="utf-8" action="http://example.com/index.php/email/send" class="email" id="myform">
 			
-		If CSRF filter is turned on `form_open()` will generate CSRF field at the beginning of the form. You can specify ID of this field by passing csrf_id as one of the $attribute array:
+		如果 CSRF 過濾器是開啟的，`form_open()` 將會在 form 的最一開始產生 CSRF 域。你可以透過將 csrf_id 作為其中一個 $attribute 陣列傳送進 form 以指定這個域的ID:
 		
 			form_open('/u/sign-up', ['csrf_id' => 'my-id']);
 			
-		will return:
+		它將會回傳:
 		
 			<form action="/u/sign-up" method="post" accept-charset="utf-8">
 			<input type="hidden" id="my-id" name="csrf_field" value="964ede6e0ae8a680f7b8eab69136717d" />
 
-	**Adding Hidden Input Fields**
+	**增加隱藏的輸入域**
 
-		Hidden fields can be added by passing an associative array to the
-		third parameter, like this::
+		隱藏的輸入域可以藉由傳送一個關聯的陣列到第三個參數以增加，項是這樣::
 
 			$hidden = ['username' => 'Joe', 'member_id' => '234'];
 			echo form_open('email/send', '', $hidden);
 
-		You can skip the second parameter by passing any false value to it.
+		你可以透過傳遞任何 false 值到第二參數以跳過第二個參數。
 
-		The above example would create a form similar to this::
+		上述的範例會產生一個類似於這個的 form::
 
 			<form method="post" accept-charset="utf-8" action="http://example.com/index.php/email/send">
 				<input type="hidden" name="username" value="Joe" />
@@ -118,10 +107,10 @@ The following functions are available:
 
 .. php:function:: form_open_multipart([$action = ''[, $attributes = ''[, $hidden = []]]])
 
-	:param	string	$action: Form action/target URI string
-    	:param	mixed	$attributes: HTML attributes, as an array or escaped string
-    	:param	array	$hidden: An array of hidden fields' definitions
-    	:returns:	An HTML multipart form opening tag
+	:param	string	$action: Form 動作／目標 URI 字串
+    	:param	mixed	$attributes: HTML 屬性，是一個陣列或跳脫的字串
+    	:param	array	$hidden: 一個隱藏域的定義陣列
+    	:returns:	HTML multipart 多部份的 form 開啟標籤
     	:rtype:	string
 
     	This function is identical to :php:func:`form_open()` above,
