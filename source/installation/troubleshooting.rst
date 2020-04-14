@@ -53,10 +53,10 @@
 
 一旦你修復了你的問題，別忘了將環境重新設定成正式環境。
 
-CodeIgniter 錯誤紀錄檔
+CodeIgniter 錯誤日誌
 -------------------------------------------------------
 
-CodeIgniter 根據 `app/Config/Logger.php` 中的設定紀錄錯誤訊息。
+CodeIgniter 根據 `app/Config/Logger.php` 中的設定日誌錯誤訊息。
 
 你可以透過調整錯誤閥值以查看更多或更少的錯誤訊息。
 
