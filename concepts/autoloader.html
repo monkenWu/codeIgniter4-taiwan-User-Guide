@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Services" href="services.html" />
-    <link rel="prev" title="Models、Views 以及 Controllers" href="mvc.html" /> 
+    <link rel="next" title="服務（services）" href="services.html" />
+    <link rel="prev" title="模型、視圖與控制器" href="mvc.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -118,10 +118,10 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">CodeIgniter4 概觀</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="structure.html">應用程式架構</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mvc.html">Models、Views 以及 Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structure.html">應用程式結構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">自動載入檔案</a></li>
-<li class="toctree-l2"><a class="reference internal" href="services.html">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="services.html">服務（services）</a></li>
 <li class="toctree-l2"><a class="reference internal" href="http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="security.html">安全指南</a></li>
 </ul>
@@ -339,14 +339,14 @@
             
   <div class="section" id="id1">
 <h1>自動載入檔案<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>每個應用程式都在不同的位置包含有大量的類文件，像是框架有為了實現核心功能的類，而你的應用可能又會擁有大量的函式庫、模型以及其他實體文件，甚至你也可能需要第三方的類別庫來供專案使用。記錄每個單獨檔案的路徑，並寫死在一系列的 <code class="docutils literal notranslate"><span class="pre">requires()</span></code> 在檔案中，這是一件非常令人頭痛且容易出錯的事情。這就是為什麼需要自動載入器。</p>
+<p>每個應用程式都在不同的位置包含有大量的類別檔案，像是框架有為了實現核心功能的類別，而你的應用可能又會擁有大量的程式庫、模型以及其他實體檔案，甚至你也可能需要第三方的類別庫來供專案使用。記錄每個單獨檔案的路徑，並寫死在一系列的 <code class="docutils literal notranslate"><span class="pre">requires()</span></code> 在檔案中，這是一件非常令人頭痛且容易出錯的事情。這就是為什麼需要自動載入器。</p>
 <p>CodeIgniter 提供了一個非常靈活且極少需要配置的自動載入器。它可以定位單個非命名空間標註的類別、符合 <a class="reference external" href="http://www.php-fig.org/psr/psr-4/">PSR4</a> 的命名空間規範目錄加載結構的類別，甚至可以在常規目錄下定位類別檔案（例如 Controller、Model等）。</p>
 <p>為了提升效能，CodeIgniter的核心組件已被添加到類別映射檔案中。</p>
 <p>自動載入器可以獨立運行，但如果你需要的話，也可以和其他自動載入器協同運行，例如 <a class="reference external" href="https://getcomposer.org">Composer</a> 或者是你自己的自定義載入器。因為它們都是通過 <a class="reference external" href="http://php.net/manual/en/function.spl-autoload-register.php">spl_autoload_register</a> 來註冊運行的，所以可以依次運行，互不干擾。</p>
 <p>自動載入器總是處於激活狀態，在框架開始運行時通過 <code class="docutils literal notranslate"><span class="pre">spl_autoload_register()</span></code> 進行註冊。</p>
 <div class="section" id="id2">
 <h2>設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>初始設定是在 <strong>/app/Config/Autoload.php</strong> 文件中進行。該文件包含兩個的主要陣列，一個用於類別映射圖，一個用於符合 PSR-4 的命名空間規範。</p>
+<p>初始設定是在 <strong>/app/Config/Autoload.php</strong> 檔案中進行。該檔案包含兩個的主要陣列，一個用於類別映射圖，一個用於符合 PSR-4 的命名空間規範。</p>
 </div>
 <div class="section" id="id3">
 <h2>命名空間<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
@@ -358,29 +358,29 @@
 </pre></div>
 </div>
 <p>陣列每一行的鍵就是命名空間本身，不需要反斜線。如果你需要在定義陣列時使用雙引號，就必須使用反斜線進行轉義。這代表會長得像 <code class="docutils literal notranslate"><span class="pre">My\\App</span></code> 而不是 <code class="docutils literal notranslate"><span class="pre">My\App</span></code> 這樣。對應的值就是這些類別所存在的資料夾，而這些值需要含有反斜線。</p>
-<p>應用程式的資料夾預設對應著 <code class="docutils literal notranslate"><span class="pre">App</span></code> 命名空間。雖然你沒有一定要給應用程式目錄下的控制器、庫和模型聲明命名空間，但是如果你這樣做了的話， 這些檔案就可以在 <code class="docutils literal notranslate"><span class="pre">App</span></code> 命名空間下被找到。你可以透過編輯 <strong>/app/Config/Constants.php</strong> 檔案來改變這個命名空間，並且透過更改 <code class="docutils literal notranslate"><span class="pre">APP_NAMESPACE</span></code> 選項來設置新的命名空間數值:</p>
+<p>應用程式的資料夾預設對應著 <code class="docutils literal notranslate"><span class="pre">App</span></code> 命名空間。雖然你沒有一定要給應用程式目錄下的控制器、程式庫和模型宣告命名空間，但是如果你這樣做了的話， 這些檔案就可以在 <code class="docutils literal notranslate"><span class="pre">App</span></code> 命名空間下被找到。你可以透過編輯 <strong>/app/Config/Constants.php</strong> 檔案來改變這個命名空間，並且透過更改 <code class="docutils literal notranslate"><span class="pre">APP_NAMESPACE</span></code> 選項來設置新的命名空間數值:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nb">define</span><span class="p">(</span><span class="s1">&#39;APP_NAMESPACE&#39;</span><span class="p">,</span> <span class="s1">&#39;App&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>你需要修改所有現存指向當前命名空間的檔案。</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>設定檔案被聲名在 <code class="docutils literal notranslate"><span class="pre">Config</span></code> 命名空間中，而不是如你所想的 <code class="docutils literal notranslate"><span class="pre">App\Config</span></code>。這個特性使得核心系統文件，甚至在應用程式的命名空間被更改的情況下，也可以被精準的定位。</p>
+<p>設定檔案被聲名在 <code class="docutils literal notranslate"><span class="pre">Config</span></code> 命名空間中，而不是如你所想的 <code class="docutils literal notranslate"><span class="pre">App\Config</span></code>。這個特性使得核心系統檔案，甚至在應用程式的命名空間被更改的情況下，也可以被精準的定位。</p>
 </div>
 </div>
 <div class="section" id="id4">
 <h2>類別映射圖<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>類別映射圖是 CodeIgniter 用來榨乾系統最後一分性能的手段，通過不額外調用 <code class="docutils literal notranslate"><span class="pre">is_file()</span></code> 查詢文件系統來實現。即使第三方函式庫並沒有命名空間，你也可以利用類別映射圖來連接他們:</p>
+<p>類別映射圖是 CodeIgniter 用來榨乾系統最後一分性能的手段，通過不額外調用 <code class="docutils literal notranslate"><span class="pre">is_file()</span></code> 查詢檔案系統來實現。即使第三方程式庫並沒有命名空間，你也可以利用類別映射圖來連接他們:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$classmap</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;Markdown&#39;</span> <span class="o">=&gt;</span> <span class="nx">APPPATH</span> <span class="o">.</span><span class="s1">&#39;third_party/markdown.php&#39;</span>
 <span class="p">];</span>
 </pre></div>
 </div>
-<p>每一行的鍵就是你想定位的類別名，而值就是用來定位它的路徑</p>
+<p>每一行的鍵值就是你想定位的類別名，而值就是用來定位它的路徑</p>
 </div>
 <div class="section" id="id5">
 <h2>支援舊版本<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<p>如果以上的所有方法都找不到對應的類別文件，且這個類別也沒有對應的命名空間，自動載入器將會查找 <strong>/application/Libraries</strong> 和 <strong>/application/Models</strong> 目錄來嘗試定位檔案。這提供了舊版本過渡到新版本的一個方式。</p>
+<p>如果以上的所有方法都找不到對應的類別檔案，且這個類別也沒有對應的命名空間，自動載入器將會查找 <strong>/application/Libraries</strong> 和 <strong>/application/Models</strong> 目錄來嘗試定位檔案。這提供了舊版本過渡到新版本的一個方式。</p>
 <p>對於舊版本而言，沒有額外的設定選項。</p>
 </div>
 <div class="section" id="id6">
@@ -401,10 +401,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="services.html" class="btn btn-neutral float-right" title="Services" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="services.html" class="btn btn-neutral float-right" title="服務（services）" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="mvc.html" class="btn btn-neutral float-left" title="Models、Views 以及 Controllers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="mvc.html" class="btn btn-neutral float-left" title="模型、視圖與控制器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -415,7 +415,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 10, 2020.
+        Last updated on Apr 14, 2020.
       </span>
 
     </p>

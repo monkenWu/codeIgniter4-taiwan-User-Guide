@@ -118,10 +118,10 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 概觀</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">應用程式架構</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">Models、Views 以及 Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">應用程式結構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -342,26 +342,25 @@
 <p>這種開安裝方式 <em>不適合</em> 使用在開發中的專案，但若你想對框架做出貢獻則 <em>適合</em> 此種方式安裝。</p>
 <div class="section" id="id1">
 <h2>安裝<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>通過以下步驟取得最新版本的框架代碼庫</p>
+<p>通過以下步驟取得最新版本的框架儲存庫。</p>
 <ul class="simple">
-<li><p>將 <a class="reference external" href="https://github.com/codeigniter4/CodeIgniter4">代碼庫</a> 分叉（ fork ）至你的 github 帳號</p></li>
+<li><p>將 <a class="reference external" href="https://github.com/codeigniter4/CodeIgniter4">儲存庫</a> 分叉至你的 github 帳號</p></li>
 <li><p>將 <strong>你所分叉的儲存庫</strong> 克隆至本機</p></li>
 </ul>
 </div>
 <div class="section" id="id3">
 <h2>設定<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>上述的命令將會建立一個「 CodeIgniter4 」資料夾，你可以根據你的需要重新命名。</p>
-<p>你也可以設定一個遠端儲存庫的別名，同步本地儲存庫與遠端儲存庫:</p>
+<p>你也可以設定一個遠端儲存庫的別名，同步本地儲存庫與遠端儲存庫：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">git</span> <span class="nx">remote</span> <span class="nx">add</span> <span class="nx">upstream</span> <span class="nx">https</span><span class="o">://</span><span class="nx">github</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">codeigniter4</span><span class="o">/</span><span class="nx">CodeIgniter4</span><span class="o">.</span><span class="nx">git</span>
 </pre></div>
 </div>
-<p>將專案根目錄的 <code class="docutils literal notranslate"><span class="pre">env</span></code> 檔案複製後重新命名為 <code class="docutils literal notranslate"><span class="pre">.env</span></code> 檔案，並將這個檔案加入至 git 忽略文件（ git-ignored ）中。</p>
+<p>將專案根目錄的 <code class="docutils literal notranslate"><span class="pre">env</span></code> 檔案複製後重新命名為 <code class="docutils literal notranslate"><span class="pre">.env</span></code> 檔案，並將這個檔案加入至 git 忽略檔案（ git-ignored ）中。</p>
 <p>將專案根目錄的 <code class="docutils literal notranslate"><span class="pre">phpunit.xml.dist</span></code> 複製後重新命名為 <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code> 。在你所需要對框架進行單元測試時，你可以對它進行修改。</p>
 </div>
 <div class="section" id="id4">
 <h2>更新<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>使用以下命令進行更新::
-Update your code anytime:</p>
+<p>使用以下命令進行更新：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">git</span> <span class="nx">checkout</span> <span class="nx">develop</span>
 <span class="nx">git</span> <span class="nx">pull</span> <span class="nx">upstream</span> <span class="nx">develop</span>
 <span class="nx">git</span> <span class="nx">push</span> <span class="nx">origin</span> <span class="nx">develop</span>
@@ -372,9 +371,9 @@ Update your code anytime:</p>
 <div class="section" id="id5">
 <h2>優點<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>取得最新的版本的程式庫（未發布）。</p></li>
-<li><p>你可以藉由創建一個新的「 feature 」分支，並為主儲存庫提交一個拉取請求（ pull request ）做出貢獻。</p></li>
-<li><p>已為您的儲存庫安裝一個預提交的鉤子（ pre-commit hook），它將會綁定我們使用的編碼規範。</p></li>
+<li><p>取得最新的版本的程式碼庫（未發布）。</p></li>
+<li><p>你可以藉由創建一個新的「 feature 」分支，並為主儲存庫提交一個拉取請求做出貢獻。</p></li>
+<li><p>已為您的儲存庫安裝一個預提交的鉤子，它將會同捆我們使用的編碼規範。</p></li>
 </ul>
 </div>
 <div class="section" id="id6">
@@ -423,7 +422,7 @@ Update your code anytime:</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 10, 2020.
+        Last updated on Apr 14, 2020.
       </span>
 
     </p>

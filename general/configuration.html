@@ -118,10 +118,10 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 概觀</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">應用程式架構</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">Models、Views 以及 Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">應用程式結構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -365,8 +365,9 @@
 <span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Config\Pager</span><span class="p">();</span>
 </pre></div>
 </div>
-<ul>
-<li><p>通過 <code class="docutils literal notranslate"><span class="pre">config()</span></code> 函式:</p>
+<ul class="simple">
+<li><p>通過 <code class="docutils literal notranslate"><span class="pre">config()</span></code> 函數：</p></li>
+</ul>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// Creating a new object with config function</span>
 <span class="nv">$config</span> <span class="o">=</span> <span class="nx">config</span><span class="p">(</span><span class="s1">&#39;Pager&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
 
@@ -377,8 +378,6 @@
 <span class="nv">$config</span> <span class="o">=</span> <span class="nx">config</span><span class="p">(</span> <span class="s1">&#39;Config\\Pager&#39;</span> <span class="p">);</span>
 </pre></div>
 </div>
-</li>
-</ul>
 <p>所有「組態設定物件」的屬性都是公開的，所以你可以像其他屬性一樣訪問設定檔：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span> <span class="o">=</span> <span class="nx">config</span><span class="p">(</span><span class="s1">&#39;Pager&#39;</span><span class="p">);</span>
 <span class="c1">// Access settings as object properties</span>
@@ -573,7 +572,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 10, 2020.
+        Last updated on Apr 14, 2020.
       </span>
 
     </p>

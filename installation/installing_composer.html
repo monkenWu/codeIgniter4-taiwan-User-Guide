@@ -118,10 +118,10 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 概觀</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">應用程式架構</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">Models、Views 以及 Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">應用程式結構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -342,14 +342,14 @@
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#id1" id="id20">安裝穩定版本</a></p></li>
-<li><p><a class="reference internal" href="#id7" id="id21">安裝開發中版本</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id21">安裝最新版本</a></p></li>
 <li><p><a class="reference internal" href="#codeigniter4" id="id22">將 CodeIgniter4 部屬到現有專案中</a></p></li>
 <li><p><a class="reference internal" href="#id19" id="id23">安裝多語言系統提示</a></p></li>
 </ul>
 </div>
 <p>你可以利用多種方式透過 Composer 安裝 CodeIgniter4 。</p>
 <p>前兩種方式將說明如何以建立新專案為目標安裝 CodeIgniter4 ；第三種方式將告訴你如何把 CodeIgniter4 添加到現有的網頁應用程式之中。</p>
-<p><strong>Note</strong> ：如果你是用 Git 進行專案管理並且與他人共同開發，那麼 git ignored 將會自動忽略 <code class="docutils literal notranslate"><span class="pre">vendor</span></code> 資料夾，你必須要在 clone 你的儲存庫後執行 <code class="docutils literal notranslate"><span class="pre">composer</span> <span class="pre">update</span></code> ，將專案所依賴的程式庫下載至本地開發環境之中。</p>
+<p><strong>Note</strong> ：如果你是用 Git 進行專案管理並且與他人共同開發，那麼 git ignored 將會自動忽略 <code class="docutils literal notranslate"><span class="pre">vendor</span></code> 資料夾，你必須要在克隆你的儲存庫後執行 <code class="docutils literal notranslate"><span class="pre">composer</span> <span class="pre">update</span></code> ，將專案所依賴的程式庫下載至本地開發環境之中。</p>
 <div class="section" id="id1">
 <h2><a class="toc-backref" href="#id20">安裝穩定版本</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://github.com/codeigniter4/appstarter">Codeigniter4 appstarter 儲存庫</a> 包含一個最簡應用程式， Composer 將依賴這個儲存庫的最新版本。</p>
@@ -361,8 +361,8 @@
 </pre></div>
 </div>
 <p>執行上述指令將會創建一個「 project-root 」 資料夾。</p>
-<p>如果你省略了上述指令中「 project-root 」參數，那麼 Composer 將會自動生成出「 appstarter 」資料夾，你可以依照自己的需求命名你的資料夾。</p>
-<p>若是你不需要安裝 phpunit 及其所有的 Composer 依賴（ dependencies ），則必須在上述的指令中添加「 –no-dev 」。執行了這個指令， Composer 將會安裝單純的框架檔案，以及我們預先綑綁的三個所需的依賴程式庫。</p>
+<p>如果你省略了上述指令中「 project-root 」引數，那麼 Composer 將會自動生成出「 appstarter 」資料夾，你可以依照自己的需求命名你的資料夾。</p>
+<p>若是你不需要安裝 phpunit 及其所有的 Composer 依賴（ dependencies ），則必須在上述的指令中添加「 –no-dev 」。執行了這個指令， Composer 將會安裝單純的框架檔案，以及我們預先同捆的三個所需的依賴程式庫。</p>
 <p>下例將使用默認的專案資料夾名稱「 appstarter 」演示上述需求的安裝指令：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="nx">create</span><span class="o">-</span><span class="nx">project</span> <span class="nx">codeigniter4</span><span class="o">/</span><span class="nx">appstarter</span> <span class="o">--</span><span class="nx">no</span><span class="o">-</span><span class="nx">dev</span>
 </pre></div>
@@ -397,10 +397,10 @@
 </div>
 </div>
 <div class="section" id="id7">
-<h2><a class="toc-backref" href="#id21">安裝開發中版本</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id21">安裝最新版本</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id8">
 <h3>安裝與設定<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
-<p>App starter 儲存庫附帶一個 <code class="docutils literal notranslate"><span class="pre">builds</span></code> 腳本，可以切換穩定版本框架與最新開發版本框架之間的 Composer 來源。對於願意接受最新最新且未發布的特性（可能不穩定）的開發人員，請使用這個腳本。</p>
+<p>穩定版本儲存庫附帶一個 <code class="docutils literal notranslate"><span class="pre">builds</span></code> 腳本，可以切換穩定版本框架與最新開發版本框架之間的 Composer 來源。對於願意接受最新且未發布的特性（可能不穩定）的開發人員，請使用這個腳本。</p>
 <p>你可以閱讀  <a class="reference external" href="https://codeigniter4.github.io/CodeIgniter4/">開發中的使用者說明書（原文）</a>，這與穩定發布版的使用者說明書不同，它將會明確地記載開發中的功能與使用說明。</p>
 <p>在專案的根目錄中執行以下指令：</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">builds</span> <span class="nx">development</span>
@@ -515,7 +515,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 10, 2020.
+        Last updated on Apr 14, 2020.
       </span>
 
     </p>

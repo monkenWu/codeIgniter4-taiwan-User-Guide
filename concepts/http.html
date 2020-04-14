@@ -39,7 +39,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="安全指南" href="security.html" />
-    <link rel="prev" title="Services" href="services.html" /> 
+    <link rel="prev" title="服務（services）" href="services.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -118,10 +118,10 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">CodeIgniter4 概觀</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="structure.html">應用程式架構</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mvc.html">Models、Views 以及 Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structure.html">應用程式結構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="autoloader.html">自動載入檔案</a></li>
-<li class="toctree-l2"><a class="reference internal" href="services.html">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="services.html">服務（services）</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="security.html">安全指南</a></li>
 </ul>
@@ -356,7 +356,7 @@
 </pre></div>
 </div>
 <p>這則訊息包含了所有伺服器需要用來了解使用者端請求的資訊。比如它請求的 method（GET，POST，DELETE 等）以及它的 HTTP 版本。</p>
-<p>這個請求還包含了許多可選的標頭，這些標頭可以包含各種資訊：例如使用者端希望內容顯示為哪種語言、使用者端接受的格式類型等等。如果你有需要的話，維基百科上有一篇文章，列出了 <a class="reference external" href="https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5">所有的 HTTTP 頭欄位</a></p>
+<p>這個請求還包含了許多可選的標頭，這些標頭可以包含各種資訊：例如使用者端希望內容顯示為哪種語言、使用者端接受的格式類型等等。如果你有需要的話，維基百科上有一篇文章，列出了 <a class="reference external" href="https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5">所有的 HTTTP 標頭欄位</a></p>
 </div>
 <div class="section" id="id3">
 <h3>HTTP 響應<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
@@ -376,7 +376,7 @@
 </div>
 <div class="section" id="id5">
 <h3>處理 HTTP 請求和響應<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<p>雖然 PHP 提供了原生與 HTTP 請求和響應進行交互的方式，但 CodeIgniter 像大多數框架一樣，將它們抽象化，讓你擁有一個一致、簡單的介面。<a class="reference internal" href="../incoming/incomingrequest.html"><span class="doc">IncomingRequest 類</span></a> 是 HTTP 請求的物件導向形式。它有著你所需要的一切:</p>
+<p>雖然 PHP 提供了原生與 HTTP 請求和響應進行交互的方式，但 CodeIgniter 像大多數框架一樣，將它們抽象化，讓你擁有一個一致、簡單的介面。<a class="reference internal" href="../incoming/incomingrequest.html"><span class="doc">IncomingRequest 類別</span></a> 是 HTTP 請求的物件導向形式。它有著你所需要的一切:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\HTTP\IncomingRequest</span><span class="p">;</span>
 
 <span class="nv">$request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IncomingRequest</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Config\App</span><span class="p">(),</span> <span class="k">new</span> <span class="nx">\CodeIgniter\HTTP\URI</span><span class="p">());</span>
@@ -402,12 +402,12 @@
 <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getMethod</span><span class="p">();</span>  <span class="c1">// GET, POST, PUT, etc</span>
 </pre></div>
 </div>
-<p>request 類會在後台為你做很多工作，幫你省心。<code class="docutils literal notranslate"><span class="pre">isAJAX()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">isSecure()</span></code> 函數會自動檢查幾種不同的 method 來確定最後正確的回答。</p>
+<p>request 類別會在後台為你做很多工作，幫你省心。<code class="docutils literal notranslate"><span class="pre">isAJAX()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">isSecure()</span></code> 函數會自動檢查幾種不同的 method 來確定最後正確的回答。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code class="docutils literal notranslate"><span class="pre">isAJAX()</span></code> 方法取決於 <code class="docutils literal notranslate"><span class="pre">X-Requested-With</span></code> 標頭，在某些情況下，預設是不會通過 JavaScript（即 fetch）在 XHR 請求中發送的標頭。請參閱 <a class="reference internal" href="../general/ajax.html"><span class="doc">AJAX 請求</span></a> 部分，瞭解如何避免這個問題。</p>
 </div>
-<p>CodeIgniter 還提供了 <a class="reference internal" href="../outgoing/response.html"><span class="doc">Response 類</span></a>，它是 HTTP 響應的物件導向形式。它為你提供一種簡單而強大的方法來建構對客戶的響應:</p>
+<p>CodeIgniter 還提供了 :doc:響應類別 &lt;/outgoing/response&gt;`，它是 HTTP 響應的物件導向形式。它為你提供一種簡單而強大的方法來建構對客戶的響應:</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\HTTP\Response</span><span class="p">;</span>
 
 <span class="nv">$response</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">();</span>
@@ -421,7 +421,7 @@
 <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>此外， <a class="reference internal" href="../outgoing/response.html"><span class="doc">Response 類</span></a> 還允許你處理 HTTP 快取層以獲得最佳性能。</p>
+<p>此外， <a class="reference internal" href="../outgoing/response.html"><span class="doc">響應類別</span></a> 還允許你處理 HTTP 快取層以獲得最佳效能。</p>
 </div>
 </div>
 </div>
@@ -437,7 +437,7 @@
         <a href="security.html" class="btn btn-neutral float-right" title="安全指南" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="services.html" class="btn btn-neutral float-left" title="Services" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="services.html" class="btn btn-neutral float-left" title="服務（services）" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -448,7 +448,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 10, 2020.
+        Last updated on Apr 14, 2020.
       </span>
 
     </p>

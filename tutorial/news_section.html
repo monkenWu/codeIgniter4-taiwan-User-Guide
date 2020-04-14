@@ -118,10 +118,10 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 概觀</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">應用程式架構</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">Models、Views 以及 Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">應用程式結構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -344,7 +344,7 @@
 <h2>建立要使用的資料庫<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>CodeIgniter 假設你使用了所支援資料庫，如 <a class="reference internal" href="../intro/requirements.html"><span class="doc">系統需求</span></a> 所提到的。在本教學中，我們提供了基於 MySQL 資料庫的 SQL 程式碼。我們也假設你有一個用於資料庫管理的軟體（ mysql 、 MySQL Workbench 或 phpMyAdmin ）。</p>
 <p>你需要創建一個這個教學需要使用到的資料庫，然後在 CodeIgniter 設定使用它。</p>
-<p>使用資料庫管理軟體，連接到資料庫並且執行下列 SQL 命令（ MySql ），以及添加一些合適的測試資料。以下提到的將是創建 SQL 表所需的語句，但你應該要知道，在熟悉了 CodeIgniter 之後，就可以使用程式設計的方式完成這個操作。你可以閱讀有關於 <a class="reference internal" href="../dbmgmt/migration.html"><span class="doc">遷移</span></a> 與 <a class="reference internal" href="../dbmgmt/seeds.html"><span class="doc">資料填充</span></a> 的資訊，以便於創建更有用的資料庫設定。</p>
+<p>使用資料庫管理軟體，連接到資料庫並且執行下列 SQL 命令（ MySql ），以及添加一些合適的測試資料。以下提到的將是創建 SQL 資料表所需的語句，但你應該要知道，在熟悉了 CodeIgniter 之後，就可以使用程式設計的方式完成這個操作。你可以閱讀有關於 <a class="reference internal" href="../dbmgmt/migration.html"><span class="doc">遷移</span></a> 與 <a class="reference internal" href="../dbmgmt/seeds.html"><span class="doc">資料填充</span></a> 的資訊，以便於創建更有用的資料庫設定。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="nx">news</span> <span class="p">(</span>
         <span class="nx">id</span> <span class="nx">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="nx">AUTO_INCREMENT</span><span class="p">,</span>
         <span class="nx">title</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
@@ -389,7 +389,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>這些程式瑪與前一個條目的控制器程式碼類似，這個新創建的模型繼承了 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Model</span></code> 類別以及載入了資料庫函式庫。與資料庫類別的溝通可以呼叫 <code class="docutils literal notranslate"><span class="pre">$this-&gt;db</span></code> 物件達成。</p>
+<p>這些程式瑪與前一個條目的控制器程式碼類似，這個新創建的模型繼承了 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Model</span></code> 類別以及載入了資料庫函數庫。與資料庫類別的溝通可以呼叫 <code class="docutils literal notranslate"><span class="pre">$this-&gt;db</span></code> 物件達成。</p>
 <p>現在，資料庫與模型已經設定完畢，你需要一種方法從資料庫獲取所有的新聞內容。因此，我們使用 CodeIgniter <a class="reference internal" href="../database/query_builder.html"><span class="doc">查詢產生器（ Query Builder ）</span></a> 類別，這其中包含著資料庫的抽象層。透過查詢產生器我們可以輕鬆撰寫查詢，並使他們在 <a class="reference internal" href="../intro/requirements.html"><span class="doc">所有支援的資料庫系統</span></a> 穩定工作。模型類別還允許使用查詢產生器輕鬆建立查詢，並提供了一些工具來簡化資料處理的流程。將下列程式碼加入剛才我們創建的模型中。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">getNews</span><span class="p">(</span><span class="nv">$slug</span> <span class="o">=</span> <span class="k">false</span><span class="p">)</span>
 <span class="p">{</span>
@@ -475,8 +475,7 @@
 <span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
 </pre></div>
 </div>
-<p>在這裡每個專案將會透過迴圈產生並且顯示給使用者。你可以看到我們在 PHP 中撰寫了樣板，並且讓它與 HTML 混合。如果你更喜歡使用 樣板語法，則可以使用 CodeIgniter 的 <a class="reference internal" href="../outgoing/view_parser.html"><span class="doc">視圖剖析器（ View
-Parser ）</span></a> 。或置入任何你喜歡的剖析器進入 CodeIgniter 。</p>
+<p>在這裡每個專案將會透過迴圈產生並且顯示給使用者。你可以看到我們在 PHP 中撰寫了樣板，並且讓它與 HTML 混合。如果你更喜歡使用 樣板語法，則可以使用 CodeIgniter 的 <a class="reference internal" href="../outgoing/view_parser.html"><span class="doc">視圖器解析器</span></a> 。或置入任何你喜歡的解析器進入 CodeIgniter 。</p>
 <p>新聞概述的畫面已經完成，但顯示單個新聞的頁面我們還沒做完。剛才我們創建建的模型中有個方法可以輕鬆地用於這個需求。你只需要向控制器新增一些程式碼，並且創建新的視圖。讓我們回到 <code class="docutils literal notranslate"><span class="pre">News</span></code> 控制器，並且更新 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法。</p>
 <div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">view</span><span class="p">(</span><span class="nv">$slug</span> <span class="o">=</span> <span class="k">NULL</span><span class="p">)</span>
 <span class="p">{</span>
@@ -539,7 +538,7 @@ Parser ）</span></a> 。或置入任何你喜歡的剖析器進入 CodeIgniter 
     <p>
         &copy; Copyright 2019-2020 CodeIgniter Foundation
       <span class="lastupdated">
-        Last updated on Apr 10, 2020.
+        Last updated on Apr 14, 2020.
       </span>
 
     </p>
