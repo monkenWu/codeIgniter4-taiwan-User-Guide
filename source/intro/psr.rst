@@ -12,9 +12,9 @@ PSR 規範
 
 這是一份有爭議的 PSR ， CodeIgniter 將最大限度地滿足其中的建議，並不會全部符合。
 
-**PSR-3 ：記錄檔介面標準（ Logger Interface ）**
+**PSR-3 ：日誌記錄器（ Logger Interface ）**
 
-CodeIgniter 的 :doc:`紀錄器（ Logger ） </general/logging>` 實作了這份 PSR 所提供的所有介面。
+CodeIgniter 的 :doc:`日誌記錄器（ 記錄 ） </general/logging>` 實作了這份 PSR 所提供的所有介面。
 
 **PSR-4 ：自動載入標準（ Autoloading Standard ）**
 
@@ -30,4 +30,4 @@ CodeIgniter 並不會嘗試符合這份 PSR 的規範，我們將提出新的 `S
 
 ---
 
-如果你發現框架中聲稱符合 PSR 規範的部分，並非按照正確的規範實作時，敬請告知，我們將對其進行修復，或者是至 github 送出 pull request。
+如果你發現框架中聲稱符合 PSR 規範的部分，並非按照正確的規範實作時，敬請告知，我們將對其進行修復，或者是至 github 送出拉取請求。

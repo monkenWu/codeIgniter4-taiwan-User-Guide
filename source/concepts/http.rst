@@ -27,7 +27,7 @@ HTTP 請求
 
 這則訊息包含了所有伺服器需要用來了解使用者端請求的資訊。比如它請求的 method（GET，POST，DELETE 等）以及它的 HTTP 版本。
 
-這個請求還包含了許多可選的標頭，這些標頭可以包含各種資訊：例如使用者端希望內容顯示為哪種語言、使用者端接受的格式類型等等。如果你有需要的話，維基百科上有一篇文章，列出了 `所有的 HTTTP 頭欄位 <https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5>`_
+這個請求還包含了許多可選的標頭，這些標頭可以包含各種資訊：例如使用者端希望內容顯示為哪種語言、使用者端接受的格式類型等等。如果你有需要的話，維基百科上有一篇文章，列出了 `所有的 HTTTP 標頭欄位 <https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5>`_
 
 HTTP 響應
 ------------
@@ -49,7 +49,7 @@ HTTP 響應
 處理 HTTP 請求和響應
 -----------------------------------
 
-雖然 PHP 提供了原生與 HTTP 請求和響應進行交互的方式，但 CodeIgniter 像大多數框架一樣，將它們抽象化，讓你擁有一個一致、簡單的介面。:doc:`IncomingRequest 類 </incoming/incomingrequest>` 是 HTTP 請求的物件導向形式。它有著你所需要的一切::
+雖然 PHP 提供了原生與 HTTP 請求和響應進行交互的方式，但 CodeIgniter 像大多數框架一樣，將它們抽象化，讓你擁有一個一致、簡單的介面。:doc:`IncomingRequest 類別 </incoming/incomingrequest>` 是 HTTP 請求的物件導向形式。它有著你所需要的一切::
 
 	use CodeIgniter\HTTP\IncomingRequest;
 
@@ -75,11 +75,11 @@ HTTP 響應
 
 	$request->getMethod();  // GET, POST, PUT, etc
 
-request 類會在後台為你做很多工作，幫你省心。``isAJAX()`` 和 ``isSecure()`` 函數會自動檢查幾種不同的 method 來確定最後正確的回答。
+request 類別會在後台為你做很多工作，幫你省心。``isAJAX()`` 和 ``isSecure()`` 函數會自動檢查幾種不同的 method 來確定最後正確的回答。
 
 .. note:: ``isAJAX()`` 方法取決於 ``X-Requested-With`` 標頭，在某些情況下，預設是不會通過 JavaScript（即 fetch）在 XHR 請求中發送的標頭。請參閱 :doc:`AJAX 請求 </general/ajax>` 部分，瞭解如何避免這個問題。
 
-CodeIgniter 還提供了 :doc:`Response 類 </outgoing/response>`，它是 HTTP 響應的物件導向形式。它為你提供一種簡單而強大的方法來建構對客戶的響應::
+CodeIgniter 還提供了 :doc:響應類別 </outgoing/response>`，它是 HTTP 響應的物件導向形式。它為你提供一種簡單而強大的方法來建構對客戶的響應::
 
   use CodeIgniter\HTTP\Response;
 
@@ -93,4 +93,4 @@ CodeIgniter 還提供了 :doc:`Response 類 </outgoing/response>`，它是 HTTP 
   // Sends the output to the browser
   $response->send();
 
-此外， :doc:`Response 類 </outgoing/response>` 還允許你處理 HTTP 快取層以獲得最佳性能。
+此外， :doc:`響應類別 </outgoing/response>` 還允許你處理 HTTP 快取層以獲得最佳效能。

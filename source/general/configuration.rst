@@ -22,7 +22,9 @@
 	// Creating new configuration object by hand
 	$config = new \Config\Pager();
 
-- 通過 ``config()`` 函式::
+- 通過 ``config()`` 函數：
+
+::
 
 	// Creating a new object with config function
 	$config = config('Pager', false);
@@ -34,6 +36,7 @@
 	$config = config( 'Config\\Pager' );
 
 所有「組態設定物件」的屬性都是公開的，所以你可以像其他屬性一樣訪問設定檔：
+
 ::
 
         $config = config('Pager');
@@ -52,6 +55,7 @@
 當你需要一個新的組態設定時，首先，你得在你需要的地方創建一個新的檔案。預設的檔案位置（推薦用於大多數的情況）在 **/app/Config** 。這個類別應該使用合適的命名空間，並且它應該繼承 ``CodeIgniter\Config\BaseConfig`` ，確保它可以接收特定的環境設定。
 
 相關的設定完成後，你可以開始定義這個類別，並用你設定的公開屬性來填充它。
+
 ::
 
     <?php namespace Config;
@@ -82,6 +86,7 @@ CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` �
 .. important:: 為了不讓敏感資訊洩漏出去，請確定你的版本控制系統不追蹤 **.env** 檔案。以 *git* 來說，就是在  **.gitignore** 添加這個需要被忽略的檔案。
 
 設定將會以「名稱 = 值」的方式，儲存在 **.env** 檔案中。
+
 ::
 
 	S3_BUCKET = dotenv
@@ -89,6 +94,7 @@ CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` �
         CI_ENVIRONMENT = development
 
 **.env** 檔會在你的應用程式運作時自動載入，並把設定放在運作的環境中。若一個變數已經存在於環境中，則不會被覆蓋過去。若需要取得環境變數，可以使用以下任何一個方法： ``getenv()`` 、 ``$_SERVER`` 或 ``$_ENV`` 。
+
 ::
 
 	$s3_bucket = getenv('S3_BUCKET');
@@ -99,6 +105,7 @@ CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` �
 =================
 
 為了減少程式量，你可以藉由在 ``${...}`` 內寫上變數名稱來重用已經在檔案裡宣告過的變數。
+
 ::
 
         BASE_DIR="/var/webroot/project-root"

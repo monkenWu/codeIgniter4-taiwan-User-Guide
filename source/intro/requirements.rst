@@ -8,7 +8,7 @@
 
 你的PHP伺服器必須啟用下列擴充模組： ``php-json`` 、 ``php-mbstring`` 、 ``php-mysqlnd`` 、 ``php-xml``。
 
-若你需要使用 :doc:`CURLRequest </libraries/curlrequest>` 函式庫，你可能需要安裝 `libcurl <http://php.net/manual/en/curl.requirements.php>`_ 。
+若你需要使用 :doc:`CURLRequest </libraries/curlrequest>` 程式庫，你可能需要安裝 `libcurl <http://php.net/manual/en/curl.requirements.php>`_ 。
 
 大部分的Web應用程式都需要資料庫，目前支援的資料庫如下：
 
