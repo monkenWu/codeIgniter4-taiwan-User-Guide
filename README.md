@@ -5,6 +5,8 @@ CodeIgniter 4 Traditional Chinese(Taiwan) User Guide - codeigniter4 繁體中文
 
 [查閱最新翻譯認領清單](https://github.com/monkenWu/codeIgniter4-taiwan-User-Guide/wiki/%E7%BF%BB%E8%AD%AF%E8%AA%8D%E9%A0%98%E6%B8%85%E5%96%AE)
 
+[翻譯詞彙對照表](https://hackmd.io/@monkenWu/rkdtL9f_8)
+
 ## 風格指南
 中文翻譯的文字排版請以 [中文文案排版指北](https://github.com/sparanoid/chinese-copywriting-guidelines) 為主。
 
