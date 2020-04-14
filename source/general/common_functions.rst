@@ -117,7 +117,7 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 	:returns: Timer 實體。
 	:rtype: CodeIgniter\Debug\Timer
 
-	提供快速造訪 Timer 類別的方法，你可以傳遞一個基準點名稱做為唯一參數。方法將從這個基準點開始計時，如果已經有一個帶有這個名子的 Timer 再運作，則會停止運作。
+	提供快速造訪 Timer 類別的方法，你可以傳遞一個基準點名稱做為唯一引數。方法將從這個基準點開始計時，如果已經有一個帶有這個名子的 Timer 再運作，則會停止運作。
 
 	範例::
 
@@ -273,16 +273,16 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 .. php:function:: route_to ( $method [, ...$params] )
 
 	:param   string   $method: 命名路由的別名，或是要匹配的 控制器／方法 的名稱。
-	:param   mixed   $params: 在路由中傳遞一個或多個要匹配的參數。
+	:param   mixed   $params: 在路由中傳遞一個或多個要匹配的引數。
 
-	根據命名的路由別名以及 控制器::方法 ，生成一個相對的 URI 組合。如果提供了參數，則參數將會生效。
+	根據命名的路由別名以及 控制器::方法 ，生成一個相對的 URI 組合。如果提供了引數，則引數將會生效。
 
 	有關更多訊息，請見 :doc:`/incoming/routing` 頁面.
 
 .. php:function:: service ( $name [, ...$params] )
 
 	:param   string   $name: 要被載入的服務名稱。
-	:param   mixed    $params: 傳遞給方法的一個或多個的參數。
+	:param   mixed    $params: 傳遞給方法的一個或多個的引數。
 	:returns: 指定的服務類別的實體。
 	:rtype: mixed
 
@@ -298,7 +298,7 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 .. php:function:: single_service ( $name [, ...$params] )
 
 	:param   string   $name: 要載入的服務名稱。
-	:param   mixed    $params: 一個或多個要傳遞給服務方法的參數。
+	:param   mixed    $params: 一個或多個要傳遞給服務方法的引數。
 	:returns: 指定的服務類別的實體。
 	:rtype: mixed
 
