@@ -117,7 +117,7 @@ Within the file, you would return an array, where each element in the array has 
 
         'language_key' => 'The actual message to be shown.'
 
-It also support nested definition:
+It also support nested definition::
 
         'language_key' => [
             'nested' => [

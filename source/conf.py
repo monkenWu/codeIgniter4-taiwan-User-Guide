@@ -18,7 +18,7 @@
 
 project = 'CodeIgniter4'
 author = 'CodeIgniter 基金會'
-copyright = '2019-2020 CodeIgniter 基金會'
+copyright = '2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 '
 language = 'zh_TW'
 html_search_language = 'zh'
 

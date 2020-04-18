@@ -5,12 +5,14 @@ CodeIgniter 4 Traditional Chinese(Taiwan) User Guide - codeigniter4 繁體中文
 
 [查閱最新翻譯認領清單](https://github.com/monkenWu/codeIgniter4-taiwan-User-Guide/wiki/%E7%BF%BB%E8%AD%AF%E8%AA%8D%E9%A0%98%E6%B8%85%E5%96%AE)
 
-[翻譯詞彙對照表](https://hackmd.io/@monkenWu/rkdtL9f_8)
 
 ## 風格指南
 中文翻譯的文字排版請以 [中文文案排版指北](https://github.com/sparanoid/chinese-copywriting-guidelines) 為主。
 
 ### 參考
+
+專業名詞與框架內用語的統一譯名請以 [翻譯詞彙對照表](https://hackmd.io/@monkenWu/rkdtL9f_8) 文件文主；若有新名詞未定義或是有爭議，則請發 issue 討論，我們將會持續更新內容。
+
 繁體中文翻譯請盡量遵守 [CodeIgniter3 使用手冊](https://codeigniter.org.tw/userguide3/) 的翻譯風格。
 
 簡體中文版本的 [CodeIgniter4 使用手冊](https://github.com/CodeIgniter-Chinese/codeigniter4-user-guide) 也正在翻譯中，可以參考其翻譯但不接受直接以簡體中文轉換為繁體中文。請注意，中國與台灣在程式開發專業詞彙上的譯名大不相同。
@@ -33,43 +35,58 @@ CodeIgniter 使用手冊基於 Sphinx 進行撰寫，它可以管理文檔並且
 格式進行撰寫。
 
 ### 首要條件
-Sphinx 需要 Python 的支援，如果你的作業系統是 MacOS 或是 Ubuntu ，則內建了 Python 。你可以在 Terminal 中以不附帶任何參數的方式執行 ``Python`` ，它會載入並顯示你的 Python 版本。如果你使用的版本並非3.6以上 ，請更新或重新安裝。
+
+#### Python
+
+Sphinx 需要 Python3.5+ ，如果你的作業系統是 MacOS 或是 Ubuntu ，則內建了 Python 。你可以通過 Terminal 確認你的版本：
+
+```
+python --version
+Python 2.7.17
+
+python3 --version
+Python 3.6.9
+```
+
+如果你使用的版本並非 3.5 以上，請透過 `Python.org <https://www.python.org/downloads/>`_ 更新或重新安裝。Linux 應該使用作業系統內建的軟體管理器進行更新。
+
+#### pip
+
+現在，你已經擁有了 Python3.5+ ，你還必須擁有 
+`pip <https://pip.pypa.io/en/stable/>`_ （python套件管理器）。
+
+你可以使用 ``pip`` 或是 ``pip3`` 檢查你是否安裝了 pip 。pip 遵循了與 python 相同的命名規則。請注意，他應該會在最後寫著 python 3.x 。
+
+```
+pip --version
+pip 9.0.1 from /usr/lib/python2.7/dist-packages (python 2.7)
+
+pip3 --version
+pip 9.0.1 from /usr/lib/python3/dist-packages (python 3.6)
+```
+
+如果你是從 `Python.org <https://www.python.org/downloads/>`_ 下載了 Python3.5+ ，那麼 pip 已經自動安裝好了。
 
 ### 安裝
 
-#### MacOS 與 Linux
+現在，我們需要安裝 Sphinx 和它所依賴的項目。根據作業系統的不同，選擇 pip 或 pip3 作為指令。
 
-1. 安裝 [easy_install](http://peak.telecommunity.com/DevCenter/EasyInstall#installing-easy-install) 
-2. 執行 ``easy_install "sphinx==1.4.5"``
-3. 執行 ``easy_install "sphinxcontrib-phpdomain==0.7.0"``
-4. 執行 ``easy_install "jieba==0.42.1"``
-4. 安裝 CI Lexer ，它的功能是在代碼範例中突出顯示 PHP 、 HTML 、 CSS ，以及 JavaScript 語法（請參閱　cilexer / README　）
-5. 執行 ``cd <專案根目錄>``
-6. 執行 ``make html`` 產出 HTML 。
+```
+pip install -r {project_root}/requirements.txt
 
-#### Ubuntu 或 WSL 可以這麼部屬
+pip3 install -r {project_root}/requirements.txt
+```
 
-1. 安裝Python3.7
-    ```
-    $ sudo apt update
-    $ sudo apt install software-properties-common
-    $ sudo add-apt-repository ppa:deadsnakes/ppa
-    $ sudo apt install python3.7
-    $ python3.7 --version
-    ```
-2. 安裝 pip
-    ```
-    $ sudo apt-get install python3-pip
-    ```
-3. 安裝相關套件
-    ```
-    $ python3 -m pip install "sphinx==1.4.5"
-    $ python3 -m pip install "sphinxcontrib-phpdomain==0.7.0"
-    $ python3 -m pip install "jieba==0.42.1"
-    $ cd <專案根目錄>/cilexer
-    $ sudo python3 setup.py install
-    ```
-4. 執行 ``cd <專案根目錄>`` 執行 ``make html`` 產出 HTML 。
+在完成這一步驟後，你得重新啟動命令列視窗，因為需要重啟 Python 才可以找到我們安裝的應用程式。
+
+### 編譯
+
+現在，是時候產生整個說明文件了
+
+```
+cd {project_root}
+make html
+```
 
 ### 編輯與創建文檔
 所有原始檔案都存放在 ``source /`` 底下，你可以新增新的文檔或修改已有的文檔。就和修改程式碼一樣，我們建議新的內容都是以分支的方式新增，並且向此 Repository 發出  pull requests 。
