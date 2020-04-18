@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>手動安裝 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>手動安裝 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Composer 安裝" href="installing_composer.html" />
     <link rel="prev" title="安裝指引" href="index.html" /> 
 </head>
@@ -338,37 +340,37 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>手動安裝<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>手動安裝<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>CodeIgniter 4 的 <a class="reference external" href="https://github.com/codeigniter4/framework">git 儲存庫</a> 上保存著所有的歷史版本，它適合不希望使用 Composer 進行專案管理的開發人員，因為它下載後就能直接部屬。</p>
 <p>你可以在框架中的 <code class="docutils literal notranslate"><span class="pre">app</span></code> 資料夾開發你的應用程式，而 <code class="docutils literal notranslate"><span class="pre">public</span></code> 資料夾則是放置網站的公開檔案，請勿修改 <code class="docutils literal notranslate"><span class="pre">system</span></code> 資料夾中的任何內容！</p>
 <p><strong>Note</strong> ：這是最接近於上一代框架 <a class="reference external" href="https://www.codeigniter.com/user_guide/installation/index.html">CodeIgniter 3</a> ，的安裝方式。</p>
 <div class="section" id="id2">
-<h2>安裝步驟<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>安裝步驟<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <p>下載 <a class="reference external" href="https://github.com/CodeIgniter4/framework/releases/latest">版本列表</a> 中的最新版本，並且將它解壓縮到你的專案根目錄之中。</p>
 <div class="section" id="id4">
-<h3>設定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3>設定<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
 <p>無。</p>
 </div>
 <div class="section" id="id5">
-<h3>如何升級框架<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h3>如何升級框架<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
 <p>至 <a class="reference external" href="https://github.com/CodeIgniter4/framework/releases/latest">版本列表</a> 下載框架的最新版本，按照 release notice 或變更紀錄中的說明，將新版本所更新的檔案合併至你的專案之中。</p>
 <p>大多時候，你可以直接複製 <code class="docutils literal notranslate"><span class="pre">system</span></code> 資料夾進行覆蓋，然後檢查 <code class="docutils literal notranslate"><span class="pre">app/Config</span></code> 檔案，因為其中所記載的設定值可能會因為版本的不同而有所改動。</p>
 </div>
 <div class="section" id="id7">
-<h3>優點<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h3>優點<a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
 <p>下載後就能直接運行。</p>
 </div>
 <div class="section" id="id8">
-<h3>缺點<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h3>缺點<a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
 <p>你必須在每次升級框架時，親自處理新舊檔案的合併。</p>
 </div>
 <div class="section" id="id9">
-<h3>結構<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<h3>結構<a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h3>
 <p>在安裝 CodeIgniter 4 後，這些資料夾將會部署進你的專案中： app 、 public 、 system 、 writable 。</p>
 </div>
 </div>
 <div class="section" id="id10">
-<h2>安裝多語言系統提示<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<h2>安裝多語言系統提示<a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h2>
 <p>如果在開發的過程中你想在查閱繁體中文或非英語語系的系統提示，可以用下列方式將它們加入到你的專案之中。</p>
 <p>進入 <a class="reference external" href="https://github.com/codeigniter4/translations/releases/latest">下載列表</a> 中下載官方 git 儲存庫的最新版本，並將下載檔案中的 <code class="docutils literal notranslate"><span class="pre">Language</span></code> 資料夾複製到  <code class="docutils literal notranslate"><span class="pre">專案根目錄/app/Languages</span></code> 資料夾中。</p>
 <p>往後升級時，直接覆蓋檔案即可升級至最新狀態。</p>
@@ -395,9 +397,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

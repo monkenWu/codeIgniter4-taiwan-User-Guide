@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>全域函數與常數 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>全域函數與常數 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Logging Information" href="logging.html" />
     <link rel="prev" title="輔助函數" href="helpers.html" /> 
 </head>
@@ -338,48 +340,50 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>全域函數與常數<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>全域函數與常數<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以使用，這些函數和變數不需要載入任何額外的程式庫或輔助函數。</p>
-<div class="contents local topic" id="contents">
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><p><a class="reference internal" href="#id2" id="id9">全域函數</a></p>
-<ul>
-<li><p><a class="reference internal" href="#id3" id="id10">服務存取器</a></p></li>
-<li><p><a class="reference internal" href="#id5" id="id11">其他功能</a></p></li>
+<li><a class="reference internal" href="#id3" id="id10">全域函數</a><ul>
+<li><a class="reference internal" href="#id4" id="id11">服務存取器</a></li>
+<li><a class="reference internal" href="#id6" id="id12">其他功能</a></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id6" id="id12">全域常數</a></p>
-<ul>
-<li><p><a class="reference internal" href="#id7" id="id13">核心常數</a></p></li>
-<li><p><a class="reference internal" href="#id8" id="id14">時間常數</a></p></li>
+<li><a class="reference internal" href="#id7" id="id13">全域常數</a><ul>
+<li><a class="reference internal" href="#id8" id="id14">核心常數</a></li>
+<li><a class="reference internal" href="#id9" id="id15">時間常數</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="section" id="id2">
-<h2><a class="toc-backref" href="#id9">全域函數</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id3">
-<h3><a class="toc-backref" href="#id10">服務存取器</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h2><a class="toc-backref" href="#id10">全域函數</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id11">服務存取器</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
 <dl class="function">
 <dt id="cache">
-<code class="sig-name descname">cache</code><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param">$key</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#cache" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$key</strong> (<em>string</em>) – 想要從快取項目中取出的快取名稱。（可選）</p></li>
+<code class="descname">cache</code><span class="sig-paren">(</span><span class="optional">[</span><em>$key</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#cache" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>string</em>) – 想要從快取項目中取出的快取名稱。（可選）</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>單獨指定的快取項目，或者是整個快取物件。</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>mixed</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">單獨指定的快取項目，或者是整個快取物件。</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>如果沒有提供 $key ，將會回傳快取引擎的實體。如果提供了 $key ，則會回傳現在儲存在快取中的 $key 的值，如果沒有找到，則會回傳 null 。</p>
 <p>範例：</p>
 <blockquote>
-<div><div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$foo</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
+<div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$foo</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
 <span class="nv">$cache</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -388,43 +392,51 @@
 
 <dl class="function">
 <dt id="env">
-<code class="sig-name descname">env</code><span class="sig-paren">(</span><em class="sig-param">$key</em><span class="optional">[</span>, <em class="sig-param">$default=null</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#env" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$key</strong> (<em>string</em>) – 需要檢索的環境變數名稱</p></li>
-<li><p><strong>$default</strong> (<em>mixed</em>) – 如果沒有找到值，默認回傳的值。</p></li>
+<code class="descname">env</code><span class="sig-paren">(</span><em>$key</em><span class="optional">[</span>, <em>$default=null</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#env" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>string</em>) – 需要檢索的環境變數名稱</li>
+<li><strong>$default</strong> (<em>mixed</em>) – 如果沒有找到值，默認回傳的值。</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>環境變數，默認值或為 null 。</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>mixed</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">環境變數，默認值或為 null 。</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>用於檢索已經被設定過的環境變數，如果沒有找到，則會回傳一個默認值。將會是實際的布林值，而不是以字串表示。</p>
 <p>當與 .env 檔案結合使用時，這個函數會特別有用。用於設定環境本身的特定值，如資料庫設定、API 金鑰等等。</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="esc">
-<code class="sig-name descname">esc</code><span class="sig-paren">(</span><em class="sig-param">$data</em>, <em class="sig-param">$context='html'</em><span class="optional">[</span>, <em class="sig-param">$encoding</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#esc" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$data</strong> (<em>string|array</em>) – 預計被跳脫的資訊。</p></li>
-<li><p><strong>$context</strong> (<em>string</em>) – 轉譯的內容，預設是 html 。</p></li>
-<li><p><strong>$encoding</strong> (<em>string</em>) – 字串的編碼格式。</p></li>
+<code class="descname">esc</code><span class="sig-paren">(</span><em>$data</em>, <em>$context='html'</em><span class="optional">[</span>, <em>$encoding</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#esc" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$data</strong> (<em>string|array</em>) – 預計被跳脫的資訊。</li>
+<li><strong>$context</strong> (<em>string</em>) – 轉譯的內容，預設是 html 。</li>
+<li><strong>$encoding</strong> (<em>string</em>) – 字串的編碼格式。</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>跳脫後的資料。</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>mixed</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">跳脫後的資料。</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>在你的網頁中使用跳脫後的資訊，將可以防止 XSS 攻擊。這個函數使用 Laminas Escaper 程式庫來處理實際的資料過濾。</p>
 <p>如果 $data 是一個字串，那麼就會被轉譯後回傳。如果 $data 是一個陣列，那麼它就會針對陣列做循環，轉換調每個鍵/值的「值」。</p>
 <p>支援的內容值： html 、 js 、 css 、 url 、 attr 、 raw 、 null 。</p>
@@ -432,55 +444,67 @@
 
 <dl class="function">
 <dt id="helper">
-<code class="sig-name descname">helper</code><span class="sig-paren">(</span><em class="sig-param">$filename</em><span class="sig-paren">)</span><a class="headerlink" href="#helper" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$filename</strong> (<em>string|array</em>) – 要載入的輔助函數名稱，或者是含有多個輔助函數名稱的陣列。</p></li>
+<code class="descname">helper</code><span class="sig-paren">(</span><em>$filename</em><span class="sig-paren">)</span><a class="headerlink" href="#helper" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first last simple">
+<li><strong>$filename</strong> (<em>string|array</em>) – 要載入的輔助函數名稱，或者是含有多個輔助函數名稱的陣列。</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <p>載入一個輔助函數檔案。</p>
 <p>詳情請參閱 <a class="reference internal" href="helpers.html"><span class="doc">輔助函數</span></a> 頁面。</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="lang">
-<code class="sig-name descname">lang</code><span class="sig-paren">(</span><em class="sig-param">$line</em><span class="optional">[</span>, <em class="sig-param">$args</em><span class="optional">[</span>, <em class="sig-param">$locale</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#lang" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$line</strong> (<em>string</em>) – 要檢索的文字行數。</p></li>
-<li><p><strong>$args</strong> (<em>array</em>) – 替代置換符號的資料陣列。</p></li>
-<li><p><strong>$locale</strong> (<em>string</em>) – 指定要使用的語言環境，而非默認的語言環境。</p></li>
+<code class="descname">lang</code><span class="sig-paren">(</span><em>$line</em><span class="optional">[</span>, <em>$args</em><span class="optional">[</span>, <em>$locale</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#lang" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first last simple">
+<li><strong>$line</strong> (<em>string</em>) – 要檢索的文字行數。</li>
+<li><strong>$args</strong> (<em>array</em>) – 替代置換符號的資料陣列。</li>
+<li><strong>$locale</strong> (<em>string</em>) – 指定要使用的語言環境，而非默認的語言環境。</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <p>根據別名字串檢索特定的語言環境檔案。</p>
 <p>更多資訊，請參閱 <a class="reference internal" href="../outgoing/localization.html"><span class="doc">Localization</span></a> 頁面。</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="old">
-<code class="sig-name descname">old</code><span class="sig-paren">(</span><em class="sig-param">$key</em><span class="optional">[</span>, <em class="sig-param">$default = null</em><span class="optional">[</span>, <em class="sig-param">$escape = 'html'</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#old" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$key</strong> (<em>string</em>) – 需要檢查的舊表單資料。</p></li>
-<li><p><strong>$default</strong> (<em>mixed</em>) – 如果 $key 不存在，則返回默認值。</p></li>
-<li><p><strong>$escape</strong> (<em>mixed</em>) – <a class="reference external" href="#esc">轉譯</a> 內容或使用 false 禁用。</p></li>
+<code class="descname">old</code><span class="sig-paren">(</span><em>$key</em><span class="optional">[</span>, <em>$default = null</em><span class="optional">[</span>, <em>$escape = 'html'</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#old" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>string</em>) – 需要檢查的舊表單資料。</li>
+<li><strong>$default</strong> (<em>mixed</em>) – 如果 $key 不存在，則返回默認值。</li>
+<li><strong>$escape</strong> (<em>mixed</em>) – <a class="reference external" href="#esc">轉譯</a> 內容或使用 false 禁用。</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>定義 key 的值，或者使用默認值。</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>mixed</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">定義 key 的值，或者使用默認值。</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>提供一個簡單的方法，可以從已經提交的表單中造訪「舊的輸入資料」。</p>
 <p>範例：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// in controller, checking form submittal</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// in controller, checking form submittal</span>
 <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$user</span><span class="p">))</span>
 <span class="p">{</span>
         <span class="c1">// &#39;withInput&#39; is what specifies &quot;old data&quot;</span>
@@ -497,47 +521,55 @@
 </dd></dl>
 
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>這個功能內建在 <a class="reference internal" href="../helpers/form_helper.html"><span class="doc">表單輔助函數</span></a> 之中，若是你不使用表單輔助函數，你才會需要用到這個功能。</p>
+<p class="first admonition-title">備註</p>
+<p class="last">這個功能內建在 <a class="reference internal" href="../helpers/form_helper.html"><span class="doc">表單輔助函數</span></a> 之中，若是你不使用表單輔助函數，你才會需要用到這個功能。</p>
 </div>
 <dl class="function">
 <dt id="session">
-<code class="sig-name descname">session</code><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param">$key</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#session" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$key</strong> (<em>string</em>) – 需要檢查的 Session 項目名稱。</p></li>
+<code class="descname">session</code><span class="sig-paren">(</span><span class="optional">[</span><em>$key</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#session" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>string</em>) – 需要檢查的 Session 項目名稱。</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>如果沒有傳入 $key ，則會回傳 Session 物件的實體；如果有傳入 $key ，則尋找 Session 中是否有這個值後回傳，若找不到則為 null。</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>mixed</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">如果沒有傳入 $key ，則會回傳 Session 物件的實體；如果有傳入 $key ，則尋找 Session 中是否有這個值後回傳，若找不到則為 null。</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>提供一個訪問 Session 類別和檢索儲存值的便捷方法，更多訊息請參閱 <a class="reference internal" href="../libraries/sessions.html"><span class="doc">Sessions</span></a> 頁面。</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="timer">
-<code class="sig-name descname">timer</code><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param">$name</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#timer" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$name</strong> (<em>string</em>) – 基準點的名稱。</p></li>
+<code class="descname">timer</code><span class="sig-paren">(</span><span class="optional">[</span><em>$name</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#timer" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$name</strong> (<em>string</em>) – 基準點的名稱。</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Timer 實體。</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>CodeIgniterDebugTimer</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">Timer 實體。</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniterDebugTimer</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>提供快速造訪 Timer 類別的方法，你可以傳遞一個基準點名稱做為唯一引數。方法將從這個基準點開始計時，如果已經有一個帶有這個名子的 Timer 再運作，則會停止運作。</p>
 <p>範例:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// Get an instance</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Get an instance</span>
 <span class="nv">$timer</span> <span class="o">=</span> <span class="nx">timer</span><span class="p">();</span>
 
 <span class="c1">// Set timer start and stop points</span>
@@ -550,27 +582,31 @@
 
 <dl class="function">
 <dt id="view">
-<code class="sig-name descname">view</code><span class="sig-paren">(</span><em class="sig-param">$name</em><span class="optional">[</span>, <em class="sig-param">$data</em><span class="optional">[</span>, <em class="sig-param">$options</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#view" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$name</strong> (<em>string</em>) – 要載入的檔案名稱。</p></li>
-<li><p><strong>$data</strong> (<em>array</em>) – 傳遞給視圖的 鍵/值 陣列。</p></li>
-<li><p><strong>$options</strong> (<em>array</em>) – 將會傳遞給渲染類別的選項陣列。</p></li>
+<code class="descname">view</code><span class="sig-paren">(</span><em>$name</em><span class="optional">[</span>, <em>$data</em><span class="optional">[</span>, <em>$options</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#view" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$name</strong> (<em>string</em>) – 要載入的檔案名稱。</li>
+<li><strong>$data</strong> (<em>array</em>) – 傳遞給視圖的 鍵/值 陣列。</li>
+<li><strong>$options</strong> (<em>array</em>) – 將會傳遞給渲染類別的選項陣列。</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>輸出視圖。</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">輸出視圖。</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>抓取目前的 RendererInterface 相容類別，並告訴它渲染所指定的視圖。提供便捷的方法，可以在控制器、程式庫與路由閉包中使用。</p>
 <p>在 <cite>$options</cite> 陣列中有一個選項可以使用，即 <cite>saveData</cite> 。它指定的資料將保持在同一請求多次呼叫的 <cite>View()</cite> 之中。在默認的情況下，這個視圖的資料將在顯示視圖後被棄用。</p>
 <p>提供 $option 陣列是為了方便第三方與 Twig 等程式庫的集成。</p>
 <p>範例:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user</span><span class="p">];</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user</span><span class="p">];</span>
 
 <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;user_profile&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
 </pre></div>
@@ -579,130 +615,150 @@
 </dd></dl>
 
 </div>
-<div class="section" id="id5">
-<h3><a class="toc-backref" href="#id11">其他功能</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id12">其他功能</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
 <dl class="function">
 <dt id="csrf_token">
-<code class="sig-name descname">csrf_token</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#csrf_token" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>當前 CSRF 令牌的名稱。</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>string</p>
-</dd>
-</dl>
+<code class="descname">csrf_token</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#csrf_token" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">當前 CSRF 令牌的名稱。</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
 <p>回傳當前 CSRF 令牌的名稱。</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="csrf_header">
-<code class="sig-name descname">csrf_header</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#csrf_header" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>當前 CSRF 令牌的 header 名稱。</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>string</p>
-</dd>
-</dl>
+<code class="descname">csrf_header</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#csrf_header" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">當前 CSRF 令牌的 header 名稱。</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
 <p>當前 CSRF 令牌的 header 名稱。</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="csrf_hash">
-<code class="sig-name descname">csrf_hash</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#csrf_hash" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>當前 CSRF 的雜湊值。</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>string</p>
-</dd>
-</dl>
+<code class="descname">csrf_hash</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#csrf_hash" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">當前 CSRF 的雜湊值。</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
 <p>當前 CSRF 的雜湊值。</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="csrf_field">
-<code class="sig-name descname">csrf_field</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#csrf_field" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>一個帶有隱藏輸入的 HTML 字串，包含所有需要的 CSRF 訊息。</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>string</p>
-</dd>
-</dl>
+<code class="descname">csrf_field</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#csrf_field" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">一個帶有隱藏輸入的 HTML 字串，包含所有需要的 CSRF 訊息。</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
 <p>回傳已經插入 CSRF 訊息的隱藏輸入：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;{csrf_token}&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;{csrf_hash}&quot;</span><span class="o">&gt;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;{csrf_token}&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;{csrf_hash}&quot;</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="csrf_meta">
-<code class="sig-name descname">csrf_meta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#csrf_meta" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>一個包含 meta 標籤的 HTML 字串，包含所有需要的 CSRF 訊息。</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>string</p>
-</dd>
-</dl>
+<code class="descname">csrf_meta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#csrf_meta" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">一個包含 meta 標籤的 HTML 字串，包含所有需要的 CSRF 訊息。</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
 <p>回傳一個已經插入了 CSRF 訊息的 meta 標籤：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;{csrf_header}&quot;</span> <span class="nx">content</span><span class="o">=</span><span class="s2">&quot;{csrf_hash}&quot;</span><span class="o">&gt;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;{csrf_header}&quot;</span> <span class="nx">content</span><span class="o">=</span><span class="s2">&quot;{csrf_hash}&quot;</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="force_https">
-<code class="sig-name descname">force_https</code><span class="sig-paren">(</span><em class="sig-param">$duration = 31536000</em><span class="optional">[</span>, <em class="sig-param">$request = null</em><span class="optional">[</span>, <em class="sig-param">$response = null</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#force_https" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$duration</strong> (<em>int</em>) – 瀏覽器將連接到這個資源轉換成 HTTPS 的秒數。</p></li>
-<li><p><strong>$request</strong> (<em>RequestInterface</em>) – 目前 Request 物件的實體。</p></li>
-<li><p><strong>$response</strong> (<em>ResponseInterface</em>) – 目前 Response 物件的實體。</p></li>
+<code class="descname">force_https</code><span class="sig-paren">(</span><em>$duration = 31536000</em><span class="optional">[</span>, <em>$request = null</em><span class="optional">[</span>, <em>$response = null</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#force_https" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first last simple">
+<li><strong>$duration</strong> (<em>int</em>) – 瀏覽器將連接到這個資源轉換成 HTTPS 的秒數。</li>
+<li><strong>$request</strong> (<em>RequestInterface</em>) – 目前 Request 物件的實體。</li>
+<li><strong>$response</strong> (<em>ResponseInterface</em>) – 目前 Response 物件的實體。</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <p>檢查目前是否通過 HTTPS 造訪該頁面。如果是，將不動作。若否，則該使用者將會以 HTTPS 的形式被重新導向到當前 URL 。將會設定 HTTP Strict-Transport-Security 標頭，它將讓現代瀏覽器自動把 $duration 的所有 HTTP 請求修改為 HTTPS 請求。</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="is_cli">
-<code class="sig-name descname">is_cli</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#is_cli" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>如果該腳本是從命令列中執行，則回傳 TRUE 否則回傳 FALSE 。</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>bool</p>
-</dd>
-</dl>
+<code class="descname">is_cli</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#is_cli" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">如果該腳本是從命令列中執行，則回傳 TRUE 否則回傳 FALSE 。</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="log_message">
-<code class="sig-name descname">log_message</code><span class="sig-paren">(</span><em class="sig-param">$level</em>, <em class="sig-param">$message</em><span class="optional">[</span>, <em class="sig-param">$context</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#log_message" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$level</strong> (<em>string</em>) – 嚴重程度。</p></li>
-<li><p><strong>$message</strong> (<em>string</em>) – 要記錄的訊息。</p></li>
-<li><p><strong>$context</strong> (<em>array</em>) – 包含標籤與值的關聯陣列，在 $message 中被替換。</p></li>
+<code class="descname">log_message</code><span class="sig-paren">(</span><em>$level</em>, <em>$message</em><span class="optional">[</span>, <em>$context</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#log_message" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$level</strong> (<em>string</em>) – 嚴重程度。</li>
+<li><strong>$message</strong> (<em>string</em>) – 要記錄的訊息。</li>
+<li><strong>$context</strong> (<em>array</em>) – 包含標籤與值的關聯陣列，在 $message 中被替換。</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>如果紀錄成功則為 TRUE ；如果紀錄失敗則為 FALSE 。</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">如果紀錄成功則為 TRUE ；如果紀錄失敗則為 FALSE 。</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>使用 <strong>app/Config/Logger.php</strong> 中定義的日誌處理程式來記錄訊息。</p>
 <p>級別可能是以下值之一： <strong>emergency （緊急）</strong> 、 <strong>alert （提示）</strong> 、 <strong>critical （重要）</strong> 、 <strong>error （錯誤）</strong> 、 <strong>warning （警告）</strong> 、 <strong>notice （通知）</strong> 、 <strong>info （訊息）</strong>，與 <strong>debug （除錯）</strong>.</p>
 <p>$context 可以用來替代訊息字串中的值，有關詳細資訊，請參閱 <a class="reference internal" href="logging.html"><span class="doc">日誌資訊</span></a> 頁面。</p>
@@ -710,16 +766,20 @@
 
 <dl class="function">
 <dt id="redirect">
-<code class="sig-name descname">redirect</code><span class="sig-paren">(</span><em class="sig-param">string $uri</em><span class="sig-paren">)</span><a class="headerlink" href="#redirect" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$uri</strong> (<em>string</em>) – 使用者將被重新導向的目標 URL 。</p></li>
+<code class="descname">redirect</code><span class="sig-paren">(</span><em>string $uri</em><span class="sig-paren">)</span><a class="headerlink" href="#redirect" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first last simple">
+<li><strong>$uri</strong> (<em>string</em>) – 使用者將被重新導向的目標 URL 。</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <p>回傳一個 RedirectResponse 實體，允許使用者輕鬆創建重新定向：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// 返回上一頁</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 返回上一頁</span>
 <span class="k">return</span> <span class="nx">redirect</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">back</span><span class="p">();</span>
 
 <span class="c1">// 前往特定的 URI</span>
@@ -736,7 +796,7 @@
 </pre></div>
 </div>
 <p>當傳遞 URL 到函數中時，它會被視為反向路由請求，而不是 relative/full 的 URI ，處理方式與使用 redirect()-&gt;route() 相同 ：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// 前往 named/reverse-routed 的 URI</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 前往 named/reverse-routed 的 URI</span>
 <span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;named_route&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -744,24 +804,28 @@
 
 <dl class="function">
 <dt id="remove_invisible_characters">
-<code class="sig-name descname">remove_invisible_characters</code><span class="sig-paren">(</span><em class="sig-param">$str</em><span class="optional">[</span>, <em class="sig-param">$urlEncoded = TRUE</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#remove_invisible_characters" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$str</strong> (<em>string</em>) – 輸入字串</p></li>
-<li><p><strong>$urlEncoded</strong> (<em>bool</em>) – 是否要清除 URL 編碼的字元</p></li>
+<code class="descname">remove_invisible_characters</code><span class="sig-paren">(</span><em>$str</em><span class="optional">[</span>, <em>$urlEncoded = TRUE</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#remove_invisible_characters" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$str</strong> (<em>string</em>) – 輸入字串</li>
+<li><strong>$urlEncoded</strong> (<em>bool</em>) – 是否要清除 URL 編碼的字元</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Sanitized string</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">Sanitized string</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>這個函數可以防止在 ASCII 字元間插入 NULL 字元，就像 Java\0script 。</p>
 <p>範例：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">remove_invisible_characters</span><span class="p">(</span><span class="s1">&#39;Java\\0script&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">remove_invisible_characters</span><span class="p">(</span><span class="s1">&#39;Java\\0script&#39;</span><span class="p">);</span>
 <span class="c1">// 最後會輸出: &#39;Javascript&#39;　字串</span>
 </pre></div>
 </div>
@@ -769,39 +833,47 @@
 
 <dl class="function">
 <dt id="route_to">
-<code class="sig-name descname">route_to</code><span class="sig-paren">(</span><em class="sig-param">$method</em><span class="optional">[</span>, <em class="sig-param">...$params</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#route_to" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$method</strong> (<em>string</em>) – 命名路由的別名，或是要匹配的 控制器／方法 的名稱。</p></li>
-<li><p><strong>$params</strong> (<em>mixed</em>) – 在路由中傳遞一個或多個要匹配的引數。</p></li>
+<code class="descname">route_to</code><span class="sig-paren">(</span><em>$method</em><span class="optional">[</span>, <em>...$params</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#route_to" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first last simple">
+<li><strong>$method</strong> (<em>string</em>) – 命名路由的別名，或是要匹配的 控制器／方法 的名稱。</li>
+<li><strong>$params</strong> (<em>mixed</em>) – 在路由中傳遞一個或多個要匹配的引數。</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <p>根據命名的路由別名以及 控制器::方法 ，生成一個相對的 URI 組合。如果提供了引數，則引數將會生效。</p>
 <p>有關更多訊息，請見 <a class="reference internal" href="../incoming/routing.html"><span class="doc">URI Routing</span></a> 頁面.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="service">
-<code class="sig-name descname">service</code><span class="sig-paren">(</span><em class="sig-param">$name</em><span class="optional">[</span>, <em class="sig-param">...$params</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#service" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$name</strong> (<em>string</em>) – 要被載入的服務名稱。</p></li>
-<li><p><strong>$params</strong> (<em>mixed</em>) – 傳遞給方法的一個或多個的引數。</p></li>
+<code class="descname">service</code><span class="sig-paren">(</span><em>$name</em><span class="optional">[</span>, <em>...$params</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#service" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$name</strong> (<em>string</em>) – 要被載入的服務名稱。</li>
+<li><strong>$params</strong> (<em>mixed</em>) – 傳遞給方法的一個或多個的引數。</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>指定的服務類別的實體。</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>mixed</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">指定的服務類別的實體。</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>提供了對系統中定義的任何 <a class="reference internal" href="../concepts/services.html"><span class="doc">Services</span></a> 的方便訪問。這將始終回傳一個共享的類別實體，因此無論在一次的請求中呼叫多少次，都只會創建一個類別實體。</p>
 <p>範例：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$logger</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;logger&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$logger</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;logger&#39;</span><span class="p">);</span>
 <span class="nv">$renderer</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;renderer&#39;</span><span class="p">,</span> <span class="nx">APPPATH</span><span class="o">.</span><span class="s1">&#39;views/&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -809,129 +881,137 @@
 
 <dl class="function">
 <dt id="single_service">
-<code class="sig-name descname">single_service</code><span class="sig-paren">(</span><em class="sig-param">$name</em><span class="optional">[</span>, <em class="sig-param">...$params</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#single_service" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$name</strong> (<em>string</em>) – 要載入的服務名稱。</p></li>
-<li><p><strong>$params</strong> (<em>mixed</em>) – 一個或多個要傳遞給服務方法的引數。</p></li>
+<code class="descname">single_service</code><span class="sig-paren">(</span><em>$name</em><span class="optional">[</span>, <em>...$params</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#single_service" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$name</strong> (<em>string</em>) – 要載入的服務名稱。</li>
+<li><strong>$params</strong> (<em>mixed</em>) – 一個或多個要傳遞給服務方法的引數。</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>指定的服務類別的實體。</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>mixed</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">指定的服務類別的實體。</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>與上面描述的 <strong>service()</strong> 函數相同，但呼叫這個函數每次都會回傳一個新的類別實體，而 <strong>service</strong> 每次的回傳則是相同的實體。</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="stringify_attributes">
-<code class="sig-name descname">stringify_attributes</code><span class="sig-paren">(</span><em class="sig-param">$attributes</em><span class="optional">[</span>, <em class="sig-param">$js</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#stringify_attributes" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$attributes</strong> (<em>mixed</em>) – 字串、鍵值陣列或物件。</p></li>
-<li><p><strong>$js</strong> (<em>boolean</em>) – 如果值不需要引號，則為 TRUE （ Javascript 風格 ）。</p></li>
+<code class="descname">stringify_attributes</code><span class="sig-paren">(</span><em>$attributes</em><span class="optional">[</span>, <em>$js</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#stringify_attributes" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$attributes</strong> (<em>mixed</em>) – 字串、鍵值陣列或物件。</li>
+<li><strong>$js</strong> (<em>boolean</em>) – 如果值不需要引號，則為 TRUE （ Javascript 風格 ）。</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>含有屬性 鍵／值 的字串，以逗號分開。</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">含有屬性 鍵／值 的字串，以逗號分開。</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>輔助函數用於將字串、陣列或物件屬性串換成字串。</p>
 </dd></dl>
 
 </div>
 </div>
-<div class="section" id="id6">
-<h2><a class="toc-backref" href="#id12">全域常數</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-<p>以下的常數將可以在應用程式中的任何地方使用。</p>
 <div class="section" id="id7">
-<h3><a class="toc-backref" href="#id13">核心常數</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h2><a class="toc-backref" href="#id13">全域常數</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
+<p>以下的常數將可以在應用程式中的任何地方使用。</p>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id14">核心常數</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
 <dl class="const">
 <dt id="APPPATH">
-<em class="property">constant </em><code class="sig-name descname">APPPATH</code><a class="headerlink" href="#APPPATH" title="Permalink to this definition">¶</a></dt>
+<em class="property">constant </em><code class="descname">APPPATH</code><a class="headerlink" href="#APPPATH" title="本定義的永久連結">¶</a></dt>
 <dd><p><strong>app</strong> 目錄的絕對路徑。</p>
 </dd></dl>
 
 <dl class="const">
 <dt id="ROOTPATH">
-<em class="property">constant </em><code class="sig-name descname">ROOTPATH</code><a class="headerlink" href="#ROOTPATH" title="Permalink to this definition">¶</a></dt>
+<em class="property">constant </em><code class="descname">ROOTPATH</code><a class="headerlink" href="#ROOTPATH" title="本定義的永久連結">¶</a></dt>
 <dd><p>專案根目錄的絕對路徑，也就是 <code class="docutils literal notranslate"><span class="pre">APPPATH</span></code> 的上一層。</p>
 </dd></dl>
 
 <dl class="const">
 <dt id="SYSTEMPATH">
-<em class="property">constant </em><code class="sig-name descname">SYSTEMPATH</code><a class="headerlink" href="#SYSTEMPATH" title="Permalink to this definition">¶</a></dt>
+<em class="property">constant </em><code class="descname">SYSTEMPATH</code><a class="headerlink" href="#SYSTEMPATH" title="本定義的永久連結">¶</a></dt>
 <dd><p><strong>system</strong> 資料夾的絕對路徑。</p>
 </dd></dl>
 
 <dl class="const">
 <dt id="FCPATH">
-<em class="property">constant </em><code class="sig-name descname">FCPATH</code><a class="headerlink" href="#FCPATH" title="Permalink to this definition">¶</a></dt>
+<em class="property">constant </em><code class="descname">FCPATH</code><a class="headerlink" href="#FCPATH" title="本定義的永久連結">¶</a></dt>
 <dd><p>存放前置（front）控制器的絕對路徑。</p>
 </dd></dl>
 
 <dl class="const">
 <dt id="WRITEPATH">
-<em class="property">constant </em><code class="sig-name descname">WRITEPATH</code><a class="headerlink" href="#WRITEPATH" title="Permalink to this definition">¶</a></dt>
+<em class="property">constant </em><code class="descname">WRITEPATH</code><a class="headerlink" href="#WRITEPATH" title="本定義的永久連結">¶</a></dt>
 <dd><p><strong>writable</strong> 目錄的絕對路徑。</p>
 </dd></dl>
 
 </div>
-<div class="section" id="id8">
-<h3><a class="toc-backref" href="#id14">時間常數</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id15">時間常數</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h3>
 <dl class="const">
 <dt id="SECOND">
-<em class="property">constant </em><code class="sig-name descname">SECOND</code><a class="headerlink" href="#SECOND" title="Permalink to this definition">¶</a></dt>
+<em class="property">constant </em><code class="descname">SECOND</code><a class="headerlink" href="#SECOND" title="本定義的永久連結">¶</a></dt>
 <dd><p>等於 1.</p>
 </dd></dl>
 
 <dl class="const">
 <dt id="MINUTE">
-<em class="property">constant </em><code class="sig-name descname">MINUTE</code><a class="headerlink" href="#MINUTE" title="Permalink to this definition">¶</a></dt>
+<em class="property">constant </em><code class="descname">MINUTE</code><a class="headerlink" href="#MINUTE" title="本定義的永久連結">¶</a></dt>
 <dd><p>等於 60.</p>
 </dd></dl>
 
 <dl class="const">
 <dt id="HOUR">
-<em class="property">constant </em><code class="sig-name descname">HOUR</code><a class="headerlink" href="#HOUR" title="Permalink to this definition">¶</a></dt>
+<em class="property">constant </em><code class="descname">HOUR</code><a class="headerlink" href="#HOUR" title="本定義的永久連結">¶</a></dt>
 <dd><p>等於 3600.</p>
 </dd></dl>
 
 <dl class="const">
 <dt id="DAY">
-<em class="property">constant </em><code class="sig-name descname">DAY</code><a class="headerlink" href="#DAY" title="Permalink to this definition">¶</a></dt>
+<em class="property">constant </em><code class="descname">DAY</code><a class="headerlink" href="#DAY" title="本定義的永久連結">¶</a></dt>
 <dd><p>等於 86400.</p>
 </dd></dl>
 
 <dl class="const">
 <dt id="WEEK">
-<em class="property">constant </em><code class="sig-name descname">WEEK</code><a class="headerlink" href="#WEEK" title="Permalink to this definition">¶</a></dt>
+<em class="property">constant </em><code class="descname">WEEK</code><a class="headerlink" href="#WEEK" title="本定義的永久連結">¶</a></dt>
 <dd><p>等於 604800.</p>
 </dd></dl>
 
 <dl class="const">
 <dt id="MONTH">
-<em class="property">constant </em><code class="sig-name descname">MONTH</code><a class="headerlink" href="#MONTH" title="Permalink to this definition">¶</a></dt>
+<em class="property">constant </em><code class="descname">MONTH</code><a class="headerlink" href="#MONTH" title="本定義的永久連結">¶</a></dt>
 <dd><p>等於 2592000.</p>
 </dd></dl>
 
 <dl class="const">
 <dt id="YEAR">
-<em class="property">constant </em><code class="sig-name descname">YEAR</code><a class="headerlink" href="#YEAR" title="Permalink to this definition">¶</a></dt>
+<em class="property">constant </em><code class="descname">YEAR</code><a class="headerlink" href="#YEAR" title="本定義的永久連結">¶</a></dt>
 <dd><p>等於 31536000.</p>
 </dd></dl>
 
 <dl class="const">
 <dt id="DECADE">
-<em class="property">constant </em><code class="sig-name descname">DECADE</code><a class="headerlink" href="#DECADE" title="Permalink to this definition">¶</a></dt>
+<em class="property">constant </em><code class="descname">DECADE</code><a class="headerlink" href="#DECADE" title="本定義的永久連結">¶</a></dt>
 <dd><p>等於 315360000.</p>
 </dd></dl>
 
@@ -959,9 +1039,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

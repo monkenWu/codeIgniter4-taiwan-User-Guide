@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Testing &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>Testing &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Testing Your Database" href="database.html" />
     <link rel="prev" title="Testing" href="index.html" /> 
 </head>
@@ -338,60 +340,58 @@
            <div itemprop="articleBody">
             
   <div class="section" id="testing">
-<h1>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h1>
+<h1>Testing<a class="headerlink" href="#testing" title="本標題的永久連結">¶</a></h1>
 <p>CodeIgniter has been built to make testing both the framework and your application as simple as possible.
 Support for <code class="docutils literal notranslate"><span class="pre">PHPUnit</span></code> is built in, and the framework provides a number of convenient
 helper methods to make testing every aspect of your application as painless as possible.</p>
-<div class="contents local topic" id="contents">
+<div class="contents local topic" id="id1">
 <ul class="simple">
-<li><p><a class="reference internal" href="#system-set-up" id="id2">System Set Up</a></p>
-<ul>
-<li><p><a class="reference internal" href="#installing-phpunit" id="id3">Installing phpUnit</a></p></li>
+<li><a class="reference internal" href="#system-set-up" id="id3">System Set Up</a><ul>
+<li><a class="reference internal" href="#installing-phpunit" id="id4">Installing phpUnit</a></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#testing-your-application" id="id4">Testing Your Application</a></p>
-<ul>
-<li><p><a class="reference internal" href="#phpunit-configuration" id="id5">PHPUnit Configuration</a></p></li>
-<li><p><a class="reference internal" href="#the-test-class" id="id6">The Test Class</a></p></li>
-<li><p><a class="reference internal" href="#mocking-services" id="id7">Mocking Services</a></p></li>
-<li><p><a class="reference internal" href="#stream-filters" id="id8">Stream Filters</a></p></li>
+<li><a class="reference internal" href="#testing-your-application" id="id5">Testing Your Application</a><ul>
+<li><a class="reference internal" href="#phpunit-configuration" id="id6">PHPUnit Configuration</a></li>
+<li><a class="reference internal" href="#the-test-class" id="id7">The Test Class</a></li>
+<li><a class="reference internal" href="#mocking-services" id="id8">Mocking Services</a></li>
+<li><a class="reference internal" href="#stream-filters" id="id9">Stream Filters</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="system-set-up">
-<h2><a class="toc-backref" href="#id2">System Set Up</a><a class="headerlink" href="#system-set-up" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">System Set Up</a><a class="headerlink" href="#system-set-up" title="本標題的永久連結">¶</a></h2>
 <div class="section" id="installing-phpunit">
-<h3><a class="toc-backref" href="#id3">Installing phpUnit</a><a class="headerlink" href="#installing-phpunit" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">Installing phpUnit</a><a class="headerlink" href="#installing-phpunit" title="本標題的永久連結">¶</a></h3>
 <p>CodeIgniter uses <a class="reference external" href="https://phpunit.de/">phpUnit</a> as the basis for all of its testing. There are two ways to install
 phpUnit to use within your system.</p>
 <div class="section" id="composer">
-<h4>Composer<a class="headerlink" href="#composer" title="Permalink to this headline">¶</a></h4>
+<h4>Composer<a class="headerlink" href="#composer" title="本標題的永久連結">¶</a></h4>
 <p>The recommended method is to install it in your project using <a class="reference external" href="https://getcomposer.org/">Composer</a>. While it’s possible
 to install it globally we do not recommend it, since it can cause compatibility issues with other projects on your
 system as time goes on.</p>
 <p>Ensure that you have Composer installed on your system. From the project root (the directory that contains the
 application and system directories) type the following from the command line:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">composer</span> <span class="k">require</span> <span class="o">--</span><span class="nx">dev</span> <span class="nx">phpunit</span><span class="o">/</span><span class="nx">phpunit</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">composer</span> <span class="k">require</span> <span class="o">--</span><span class="nx">dev</span> <span class="nx">phpunit</span><span class="o">/</span><span class="nx">phpunit</span>
 </pre></div>
 </div>
 <p>This will install the correct version for your current PHP version. Once that is done, you can run all of the
 tests for this project by typing:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="o">./</span><span class="nx">vendor</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">phpunit</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="o">./</span><span class="nx">vendor</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">phpunit</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="phar">
-<h4>Phar<a class="headerlink" href="#phar" title="Permalink to this headline">¶</a></h4>
+<h4>Phar<a class="headerlink" href="#phar" title="本標題的永久連結">¶</a></h4>
 <p>The other option is to download the .phar file from the <a class="reference external" href="https://phpunit.de/getting-started/phpunit-7.html">phpUnit</a> site.
 This is a standalone file that should be placed within your project root.</p>
 </div>
 </div>
 </div>
 <div class="section" id="testing-your-application">
-<h2><a class="toc-backref" href="#id4">Testing Your Application</a><a class="headerlink" href="#testing-your-application" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Testing Your Application</a><a class="headerlink" href="#testing-your-application" title="本標題的永久連結">¶</a></h2>
 <div class="section" id="phpunit-configuration">
-<h3><a class="toc-backref" href="#id5">PHPUnit Configuration</a><a class="headerlink" href="#phpunit-configuration" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">PHPUnit Configuration</a><a class="headerlink" href="#phpunit-configuration" title="本標題的永久連結">¶</a></h3>
 <p>The framework has a <code class="docutils literal notranslate"><span class="pre">phpunit.xml.dist</span></code> file in the project root. This controls unit
 testing of the framework itself. If you provide your own <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code>, it will
 over-ride this.</p>
@@ -399,11 +399,11 @@ over-ride this.</p>
 <code class="docutils literal notranslate"><span class="pre">ThirdParty</span></code> folders, if you are unit testing your application.</p>
 </div>
 <div class="section" id="the-test-class">
-<h3><a class="toc-backref" href="#id6">The Test Class</a><a class="headerlink" href="#the-test-class" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">The Test Class</a><a class="headerlink" href="#the-test-class" title="本標題的永久連結">¶</a></h3>
 <p>In order to take advantage of the additional tools provided, your tests must extend <code class="docutils literal notranslate"><span class="pre">CIUnitTestCase</span></code>. All tests
 are expected to be located in the <strong>tests/app</strong> directory by default.</p>
 <p>To test a new library, <strong>Foo</strong>, you would create a new file at <strong>tests/app/Libraries/FooTest.php</strong>:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Test\CIUnitTestCase</span><span class="p">;</span>
 
@@ -417,7 +417,7 @@ are expected to be located in the <strong>tests/app</strong> directory by defaul
 </pre></div>
 </div>
 <p>To test one of your models, you might end up with something like this in <code class="docutils literal notranslate"><span class="pre">tests/app/Models/OneOfMyModelsTest.php</span></code>:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Test\CIUnitTestCase</span><span class="p">;</span>
 
@@ -434,16 +434,16 @@ are expected to be located in the <strong>tests/app</strong> directory by defaul
 remember that the <strong>app</strong> directory is the root of the <code class="docutils literal notranslate"><span class="pre">App</span></code> namespace, so any classes you use must
 have the correct namespace relative to <code class="docutils literal notranslate"><span class="pre">App</span></code>.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Namespaces are not strictly required for test classes, but they are helpful to ensure no class names collide.</p>
+<p class="first admonition-title">備註</p>
+<p class="last">Namespaces are not strictly required for test classes, but they are helpful to ensure no class names collide.</p>
 </div>
 <p>When testing database results, you must use the <a class="reference external" href="database.html">CIDatabaseTestClass</a> class.</p>
 <div class="section" id="additional-assertions">
-<h4>Additional Assertions<a class="headerlink" href="#additional-assertions" title="Permalink to this headline">¶</a></h4>
+<h4>Additional Assertions<a class="headerlink" href="#additional-assertions" title="本標題的永久連結">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">CIUnitTestCase</span></code> provides additional unit testing assertions that you might find useful.</p>
 <p><strong>assertLogged($level, $expectedMessage)</strong></p>
 <p>Ensure that something you expected to be logged actually was:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">LoggerConfig</span><span class="p">();</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">LoggerConfig</span><span class="p">();</span>
 <span class="nv">$logger</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Logger</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
 
 <span class="o">...</span> <span class="k">do</span> <span class="nx">something</span> <span class="nx">that</span> <span class="nx">you</span> <span class="nx">expect</span> <span class="nx">a</span> <span class="nb">log</span> <span class="nx">entry</span> <span class="nx">from</span>
@@ -454,7 +454,7 @@ have the correct namespace relative to <code class="docutils literal notranslate
 </div>
 <p><strong>assertEventTriggered($eventName)</strong></p>
 <p>Ensure that an event you expected to be triggered actually was:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$arg</span><span class="p">)</span> <span class="k">use</span><span class="p">(</span><span class="o">&amp;</span><span class="nv">$result</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$arg</span><span class="p">)</span> <span class="k">use</span><span class="p">(</span><span class="o">&amp;</span><span class="nv">$result</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$arg</span><span class="p">;</span>
 <span class="p">});</span>
 
@@ -465,11 +465,11 @@ have the correct namespace relative to <code class="docutils literal notranslate
 </div>
 <p><strong>assertHeaderEmitted($header, $ignoreCase=false)</strong></p>
 <p>Ensure that a header or cookie was actually emitted:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">setCookie</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">setCookie</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
 
 <span class="nb">ob_start</span><span class="p">();</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
-<span class="nv">$output</span> <span class="o">=</span> <span class="nb">ob_get_clean</span><span class="p">();</span> <span class="c1">// in case you want to check the adtual body</span>
+<span class="nv">$output</span> <span class="o">=</span> <span class="nb">ob_get_clean</span><span class="p">();</span> <span class="c1">// in case you want to check the actual body</span>
 
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHeaderEmitted</span><span class="p">(</span><span class="s2">&quot;Set-Cookie: foo=bar&quot;</span><span class="p">);</span>
 </pre></div>
@@ -478,30 +478,30 @@ have the correct namespace relative to <code class="docutils literal notranslate
 in PHPunit</a>.</p>
 <p><strong>assertHeaderNotEmitted($header, $ignoreCase=false)</strong></p>
 <p>Ensure that a header or cookie was not emitted:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">setCookie</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">setCookie</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
 
 <span class="nb">ob_start</span><span class="p">();</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
-<span class="nv">$output</span> <span class="o">=</span> <span class="nb">ob_get_clean</span><span class="p">();</span> <span class="c1">// in case you want to check the adtual body</span>
+<span class="nv">$output</span> <span class="o">=</span> <span class="nb">ob_get_clean</span><span class="p">();</span> <span class="c1">// in case you want to check the actual body</span>
 
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHeaderNotEmitted</span><span class="p">(</span><span class="s2">&quot;Set-Cookie: banana&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Note: the test case with this should be <a class="reference external" href="https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess">run as a separate process
 in PHPunit</a>.</p>
-<p><strong>assertCloseEnough($expected, $actual, $message=’’, $tolerance=1)</strong></p>
+<p><strong>assertCloseEnough($expected, $actual, $message=』』, $tolerance=1)</strong></p>
 <p>For extended execution time testing, tests that the absolute difference
 between expected and actual time is within the prescribed tolerance.:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$timer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Timer</span><span class="p">();</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$timer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Timer</span><span class="p">();</span>
 <span class="nv">$timer</span><span class="o">-&gt;</span><span class="na">start</span><span class="p">(</span><span class="s1">&#39;longjohn&#39;</span><span class="p">,</span> <span class="nb">strtotime</span><span class="p">(</span><span class="s1">&#39;-11 minutes&#39;</span><span class="p">));</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertCloseEnough</span><span class="p">(</span><span class="mi">11</span> <span class="o">*</span> <span class="mi">60</span><span class="p">,</span> <span class="nv">$timer</span><span class="o">-&gt;</span><span class="na">getElapsedTime</span><span class="p">(</span><span class="s1">&#39;longjohn&#39;</span><span class="p">));</span>
 </pre></div>
 </div>
 <p>The above test will allow the actual time to be either 660 or 661 seconds.</p>
-<p><strong>assertCloseEnoughString($expected, $actual, $message=’’, $tolerance=1)</strong></p>
+<p><strong>assertCloseEnoughString($expected, $actual, $message=』』, $tolerance=1)</strong></p>
 <p>For extended execution time testing, tests that the absolute difference
 between expected and actual time, formatted as strings, is within the prescribed tolerance.:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$timer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Timer</span><span class="p">();</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$timer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Timer</span><span class="p">();</span>
 <span class="nv">$timer</span><span class="o">-&gt;</span><span class="na">start</span><span class="p">(</span><span class="s1">&#39;longjohn&#39;</span><span class="p">,</span> <span class="nb">strtotime</span><span class="p">(</span><span class="s1">&#39;-11 minutes&#39;</span><span class="p">));</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertCloseEnoughString</span><span class="p">(</span><span class="mi">11</span> <span class="o">*</span> <span class="mi">60</span><span class="p">,</span> <span class="nv">$timer</span><span class="o">-&gt;</span><span class="na">getElapsedTime</span><span class="p">(</span><span class="s1">&#39;longjohn&#39;</span><span class="p">));</span>
 </pre></div>
@@ -509,13 +509,13 @@ between expected and actual time, formatted as strings, is within the prescribed
 <p>The above test will allow the actual time to be either 660 or 661 seconds.</p>
 </div>
 <div class="section" id="accessing-protected-private-properties">
-<h4>Accessing Protected/Private Properties<a class="headerlink" href="#accessing-protected-private-properties" title="Permalink to this headline">¶</a></h4>
+<h4>Accessing Protected/Private Properties<a class="headerlink" href="#accessing-protected-private-properties" title="本標題的永久連結">¶</a></h4>
 <p>When testing, you can use the following setter and getter methods to access protected and private methods and
 properties in the classes that you are testing.</p>
 <p><strong>getPrivateMethodInvoker($instance, $method)</strong></p>
 <p>Enables you to call private methods from outside the class. This returns a function that can be called. The first
 parameter is an instance of the class to test. The second parameter is the name of the method you want to call.</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an instance of the class to test</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an instance of the class to test</span>
 <span class="nv">$obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
 
 <span class="c1">// Get the invoker for the &#39;privateMethod&#39; method.</span>
@@ -528,7 +528,7 @@ parameter is an instance of the class to test. The second parameter is the name 
 <p><strong>getPrivateProperty($instance, $property)</strong></p>
 <p>Retrieves the value of a private/protected class property from an instance of a class. The first parameter is an
 instance of the class to test. The second parameter is the name of the property.</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an instance of the class to test</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an instance of the class to test</span>
 <span class="nv">$obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
 
 <span class="c1">// Test the value</span>
@@ -538,7 +538,7 @@ instance of the class to test. The second parameter is the name of the property.
 <p><strong>setPrivateProperty($instance, $property, $value)</strong></p>
 <p>Set a protected value within a class instance. The first parameter is an instance of the class to test. The second
 parameter is the name of the property to set the value of. The third parameter is the value to set it to:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an instance of the class to test</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an instance of the class to test</span>
 <span class="nv">$obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
 
 <span class="c1">// Set the value</span>
@@ -550,7 +550,7 @@ parameter is the name of the property to set the value of. The third parameter i
 </div>
 </div>
 <div class="section" id="mocking-services">
-<h3><a class="toc-backref" href="#id7">Mocking Services</a><a class="headerlink" href="#mocking-services" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">Mocking Services</a><a class="headerlink" href="#mocking-services" title="本標題的永久連結">¶</a></h3>
 <p>You will often find that you need to mock one of the services defined in <strong>app/Config/Services.php</strong> to limit
 your tests to only the code in question, while simulating various responses from the services. This is especially
 true when testing controllers and other integration testing. The <strong>Services</strong> class provides two methods to make this
@@ -558,7 +558,7 @@ simple: <code class="docutils literal notranslate"><span class="pre">injectMock(
 <p><strong>injectMock()</strong></p>
 <p>This method allows you to define the exact instance that will be returned by the Services class. You can use this to
 set properties of a service so that it behaves in a certain way, or replace a service with a mocked class.</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">testSomething</span><span class="p">()</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">testSomething</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="nv">$curlrequest</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getMockBuilder</span><span class="p">(</span><span class="s1">&#39;CodeIgniter\HTTP\CURLRequest&#39;</span><span class="p">)</span>
                         <span class="o">-&gt;</span><span class="na">setMethods</span><span class="p">([</span><span class="s1">&#39;request&#39;</span><span class="p">])</span>
@@ -575,12 +575,12 @@ class exactly. The second parameter is the instance to replace it with.</p>
 <p>Removes all mocked classes from the Services class, bringing it back to its original state.</p>
 </div>
 <div class="section" id="stream-filters">
-<h3><a class="toc-backref" href="#id8">Stream Filters</a><a class="headerlink" href="#stream-filters" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">Stream Filters</a><a class="headerlink" href="#stream-filters" title="本標題的永久連結">¶</a></h3>
 <p><strong>CITestStreamFilter</strong> provides an alternate to these helper methods.</p>
 <p>You may need to test things that are difficult to test. Sometimes, capturing a stream, like PHP’s own STDOUT, or STDERR,
 might be helpful. The <code class="docutils literal notranslate"><span class="pre">CITestStreamFilter</span></code> helps you capture the output from the stream of your choice.</p>
 <p>An example demonstrating this inside one of your test cases:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">setUp</span><span class="p">()</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">setUp</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="nx">CITestStreamFilter</span><span class="o">::</span><span class="nv">$buffer</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
     <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">stream_filter</span> <span class="o">=</span> <span class="nb">stream_filter_append</span><span class="p">(</span><span class="nx">STDOUT</span><span class="p">,</span> <span class="s1">&#39;CITestStreamFilter&#39;</span><span class="p">);</span>
@@ -623,9 +623,9 @@ might be helpful. The <code class="docutils literal notranslate"><span class="pr
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

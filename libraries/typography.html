@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Typography &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>Typography &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Working with Uploaded Files" href="uploaded_files.html" />
     <link rel="prev" title="Dates and Times" href="time.html" /> 
 </head>
@@ -338,47 +340,51 @@
            <div itemprop="articleBody">
             
   <div class="section" id="typography">
-<h1>Typography<a class="headerlink" href="#typography" title="Permalink to this headline">¶</a></h1>
+<h1>Typography<a class="headerlink" href="#typography" title="本標題的永久連結">¶</a></h1>
 <p>The Typography library contains methods that help you format text
 in semantically relevant ways.</p>
 <div class="section" id="loading-the-library">
-<h2>Loading the Library<a class="headerlink" href="#loading-the-library" title="Permalink to this headline">¶</a></h2>
+<h2>Loading the Library<a class="headerlink" href="#loading-the-library" title="本標題的永久連結">¶</a></h2>
 <p>Like all services in CodeIgniter, it can be loaded via <code class="docutils literal notranslate"><span class="pre">Config\Services</span></code>, though you usually will not need
 to load it manually:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$typography</span> <span class="o">=</span> <span class="nx">\Config\Services</span><span class="o">::</span><span class="na">typography</span><span class="p">();</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$typography</span> <span class="o">=</span> <span class="nx">\Config\Services</span><span class="o">::</span><span class="na">typography</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="available-static-functions">
-<h2>Available static functions<a class="headerlink" href="#available-static-functions" title="Permalink to this headline">¶</a></h2>
+<h2>Available static functions<a class="headerlink" href="#available-static-functions" title="本標題的永久連結">¶</a></h2>
 <p>The following functions are available:</p>
 <p><strong>autoTypography()</strong></p>
 <dl class="function">
 <dt id="autoTypography">
-<code class="sig-name descname">autoTypography</code><span class="sig-paren">(</span><em class="sig-param">$str</em><span class="optional">[</span>, <em class="sig-param">$reduce_linebreaks = FALSE</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#autoTypography" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$str</strong> (<em>string</em>) – Input string</p></li>
-<li><p><strong>$reduce_linebreaks</strong> (<em>bool</em>) – Whether to reduce multiple instances of double newlines to two</p></li>
+<code class="descname">autoTypography</code><span class="sig-paren">(</span><em>$str</em><span class="optional">[</span>, <em>$reduce_linebreaks = FALSE</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#autoTypography" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$str</strong> (<em>string</em>) – Input string</li>
+<li><strong>$reduce_linebreaks</strong> (<em>bool</em>) – Whether to reduce multiple instances of double newlines to two</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>HTML-formatted typography-safe string</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">HTML-formatted typography-safe string</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>Formats text so that it is semantically and typographically correct
 HTML.</p>
 <p>Usage example:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$string</span> <span class="o">=</span> <span class="nv">$typography</span><span class="o">-&gt;</span><span class="na">autoTypography</span><span class="p">(</span><span class="nv">$string</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$string</span> <span class="o">=</span> <span class="nv">$typography</span><span class="o">-&gt;</span><span class="na">autoTypography</span><span class="p">(</span><span class="nv">$string</span><span class="p">);</span>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Typographic formatting can be processor intensive, particularly if
+<p class="first admonition-title">備註</p>
+<p class="last">Typographic formatting can be processor intensive, particularly if
 you have a lot of content being formatted. If you choose to use this
 function you may want to consider <a class="reference internal" href="../general/caching.html"><span class="doc">caching</span></a> your
 pages.</p>
@@ -388,25 +394,29 @@ pages.</p>
 <p><strong>formatCharacters()</strong></p>
 <dl class="function">
 <dt id="formatCharacters">
-<code class="sig-name descname">formatCharacters</code><span class="sig-paren">(</span><em class="sig-param">$str</em><span class="sig-paren">)</span><a class="headerlink" href="#formatCharacters" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$str</strong> (<em>string</em>) – Input string</p></li>
+<code class="descname">formatCharacters</code><span class="sig-paren">(</span><em>$str</em><span class="sig-paren">)</span><a class="headerlink" href="#formatCharacters" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$str</strong> (<em>string</em>) – Input string</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>String with formatted characters.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">String with formatted characters.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>This function mainly converts double and single quotes
 to curly entities, but it also converts em-dashes,
 double spaces, and ampersands.</p>
 <p>Usage example:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$string</span> <span class="o">=</span> <span class="nv">$typography</span><span class="o">-&gt;</span><span class="na">formatCharacters</span><span class="p">(</span><span class="nv">$string</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$string</span> <span class="o">=</span> <span class="nv">$typography</span><span class="o">-&gt;</span><span class="na">formatCharacters</span><span class="p">(</span><span class="nv">$string</span><span class="p">);</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -414,25 +424,29 @@ double spaces, and ampersands.</p>
 <p><strong>nl2brExceptPre()</strong></p>
 <dl class="function">
 <dt id="nl2brExceptPre">
-<code class="sig-name descname">nl2brExceptPre</code><span class="sig-paren">(</span><em class="sig-param">$str</em><span class="sig-paren">)</span><a class="headerlink" href="#nl2brExceptPre" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$str</strong> (<em>string</em>) – Input string</p></li>
+<code class="descname">nl2brExceptPre</code><span class="sig-paren">(</span><em>$str</em><span class="sig-paren">)</span><a class="headerlink" href="#nl2brExceptPre" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$str</strong> (<em>string</em>) – Input string</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>String with HTML-formatted line breaks</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">String with HTML-formatted line breaks</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>Converts newlines to &lt;br /&gt; tags unless they appear within &lt;pre&gt; tags.
 This function is identical to the native PHP <code class="docutils literal notranslate"><span class="pre">nl2br()</span></code> function,
 except that it ignores &lt;pre&gt; tags.</p>
 <p>Usage example:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$string</span> <span class="o">=</span> <span class="nv">$typography</span><span class="o">-&gt;</span><span class="na">nl2brExceptPre</span><span class="p">(</span><span class="nv">$string</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$string</span> <span class="o">=</span> <span class="nv">$typography</span><span class="o">-&gt;</span><span class="na">nl2brExceptPre</span><span class="p">(</span><span class="nv">$string</span><span class="p">);</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -460,9 +474,9 @@ except that it ignores &lt;pre&gt; tags.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

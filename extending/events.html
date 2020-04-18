@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Events &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>Events &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Extending the Controller" href="basecontroller.html" />
     <link rel="prev" title="Replacing Common Functions" href="common.html" /> 
 </head>
@@ -338,25 +340,25 @@
            <div itemprop="articleBody">
             
   <div class="section" id="events">
-<h1>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h1>
+<h1>Events<a class="headerlink" href="#events" title="本標題的永久連結">¶</a></h1>
 <p>CodeIgniter’s Events feature provides a means to tap into and modify the inner workings of the framework without hacking
 core files. When CodeIgniter runs it follows a specific execution process. There may be instances, however, when you’d
 like to cause some action to take place at a particular stage in the execution process. For example, you might want to run
 a script right before your controllers get loaded, or right after, or you might want to trigger one of your own scripts
 in some other location.</p>
 <p>Events work on a <em>publish/subscribe</em> pattern, where an event, is triggered at some point during the script execution.
-Other scripts can “subscribe” to that event by registering with the Events class to let it know they want to perform an
+Other scripts can 「subscribe」 to that event by registering with the Events class to let it know they want to perform an
 action when that event is triggered.</p>
 <div class="section" id="enabling-events">
-<h2>Enabling Events<a class="headerlink" href="#enabling-events" title="Permalink to this headline">¶</a></h2>
+<h2>Enabling Events<a class="headerlink" href="#enabling-events" title="本標題的永久連結">¶</a></h2>
 <p>Events are always enabled, and are available globally.</p>
 </div>
 <div class="section" id="defining-an-event">
-<h2>Defining an Event<a class="headerlink" href="#defining-an-event" title="Permalink to this headline">¶</a></h2>
+<h2>Defining an Event<a class="headerlink" href="#defining-an-event" title="本標題的永久連結">¶</a></h2>
 <p>Most events are defined within the <strong>app/Config/Events.php</strong> file. You can subscribe an action to an event with
-the Events class’ <code class="docutils literal notranslate"><span class="pre">on()</span></code> method. The first parameter is the name of the event to subscribe to. The second parameter is
+the Events class』 <code class="docutils literal notranslate"><span class="pre">on()</span></code> method. The first parameter is the name of the event to subscribe to. The second parameter is
 a callable that will be run when that event is triggered:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\Events\Events</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\Events\Events</span><span class="p">;</span>
 
 <span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;pre_system&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;MyClass&#39;</span><span class="p">,</span> <span class="s1">&#39;MyFunction&#39;</span><span class="p">]);</span>
 </pre></div>
@@ -364,7 +366,7 @@ a callable that will be run when that event is triggered:</p>
 <p>In this example, whenever the <strong>pre_controller</strong> event is executed, an instance of <code class="docutils literal notranslate"><span class="pre">MyClass</span></code> is created and the
 <code class="docutils literal notranslate"><span class="pre">MyFunction</span></code> method is run. Note that the second parameter can be <em>any</em> form of
 <a class="reference external" href="https://www.php.net/manual/en/function.is-callable.php">callable</a> that PHP recognizes:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// Call a standalone function</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Call a standalone function</span>
 <span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;pre_system&#39;</span><span class="p">,</span> <span class="s1">&#39;some_function&#39;</span><span class="p">);</span>
 
 <span class="c1">// Call on an instance method</span>
@@ -382,17 +384,17 @@ a callable that will be run when that event is triggered:</p>
 </pre></div>
 </div>
 <div class="section" id="setting-priorities">
-<h3>Setting Priorities<a class="headerlink" href="#setting-priorities" title="Permalink to this headline">¶</a></h3>
+<h3>Setting Priorities<a class="headerlink" href="#setting-priorities" title="本標題的永久連結">¶</a></h3>
 <p>Since multiple methods can be subscribed to a single event, you will need a way to define in what order those methods
 are called. You can do this by passing a priority value as the third parameter of the <code class="docutils literal notranslate"><span class="pre">on()</span></code> method. Lower values
 are executed first, with a value of 1 having the highest priority, and there being no limit on the lower values:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;post_controller_constructor&#39;</span><span class="p">,</span> <span class="s1">&#39;some_function&#39;</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;post_controller_constructor&#39;</span><span class="p">,</span> <span class="s1">&#39;some_function&#39;</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Any subscribers with the same priority will be executed in the order they were defined.</p>
 <p>Three constants are defined for your use, that set some helpful ranges on the values. You are not required to use these
 but you might find they aid readability:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nb">define</span><span class="p">(</span><span class="s1">&#39;EVENT_PRIORITY_LOW&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nb">define</span><span class="p">(</span><span class="s1">&#39;EVENT_PRIORITY_LOW&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;EVENT_PRIORITY_NORMAL&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;EVENT_PRIORITY_HIGH&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
 </pre></div>
@@ -402,15 +404,15 @@ the subscribers will stop.</p>
 </div>
 </div>
 <div class="section" id="publishing-your-own-events">
-<h2>Publishing your own Events<a class="headerlink" href="#publishing-your-own-events" title="Permalink to this headline">¶</a></h2>
+<h2>Publishing your own Events<a class="headerlink" href="#publishing-your-own-events" title="本標題的永久連結">¶</a></h2>
 <p>The Events library makes it simple for you to create events in your own code, also. To use this feature, you would simply
 need to call the <code class="docutils literal notranslate"><span class="pre">trigger()</span></code> method on the <strong>Events</strong> class with the name of the event:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">\CodeIgniter\Events\Events</span><span class="o">::</span><span class="na">trigger</span><span class="p">(</span><span class="s1">&#39;some_event&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">\CodeIgniter\Events\Events</span><span class="o">::</span><span class="na">trigger</span><span class="p">(</span><span class="s1">&#39;some_event&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>You can pass any number of arguments to the subscribers by adding them as additional parameters. Subscribers will be
 given the arguments in the same order as defined:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">\CodeIgniter\Events\Events</span><span class="o">::</span><span class="na">trigger</span><span class="p">(</span><span class="s1">&#39;some_events&#39;</span><span class="p">,</span> <span class="nv">$foo</span><span class="p">,</span> <span class="nv">$bar</span><span class="p">,</span> <span class="nv">$baz</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">\CodeIgniter\Events\Events</span><span class="o">::</span><span class="na">trigger</span><span class="p">(</span><span class="s1">&#39;some_events&#39;</span><span class="p">,</span> <span class="nv">$foo</span><span class="p">,</span> <span class="nv">$bar</span><span class="p">,</span> <span class="nv">$baz</span><span class="p">);</span>
 
 <span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;some_event&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$foo</span><span class="p">,</span> <span class="nv">$bar</span><span class="p">,</span> <span class="nv">$baz</span><span class="p">)</span> <span class="p">{</span>
         <span class="o">...</span>
@@ -419,25 +421,25 @@ given the arguments in the same order as defined:</p>
 </div>
 </div>
 <div class="section" id="simulating-events">
-<h2>Simulating Events<a class="headerlink" href="#simulating-events" title="Permalink to this headline">¶</a></h2>
+<h2>Simulating Events<a class="headerlink" href="#simulating-events" title="本標題的永久連結">¶</a></h2>
 <p>During testing, you might not want the events to actually fire, as sending out hundreds of emails a day is both slow
 and counter-productive. You can tell the Events class to only simulate running the events with the <code class="docutils literal notranslate"><span class="pre">simulate()</span></code> method.
 When <strong>true</strong>, all events will be skipped over during the trigger method. Everything else will work as normal, though.</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="o">::</span><span class="na">simulate</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="o">::</span><span class="na">simulate</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>You can stop simulation by passing false:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="o">::</span><span class="na">simulate</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="o">::</span><span class="na">simulate</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="event-points">
-<h2>Event Points<a class="headerlink" href="#event-points" title="Permalink to this headline">¶</a></h2>
+<h2>Event Points<a class="headerlink" href="#event-points" title="本標題的永久連結">¶</a></h2>
 <p>The following is a list of available event points within the CodeIgniter core code:</p>
 <ul class="simple">
-<li><p><strong>pre_system</strong> Called very early during system execution. Only the benchmark and events class have been loaded at this point. No routing or other processes have happened.</p></li>
-<li><p><strong>post_controller_constructor</strong> Called immediately after your controller is instantiated, but prior to any method calls happening.</p></li>
-<li><p><strong>post_system</strong> Called after the final rendered page is sent to the browser, at the end of system execution after the finalized data is sent to the browser.</p></li>
+<li><strong>pre_system</strong> Called very early during system execution. Only the benchmark and events class have been loaded at this point. No routing or other processes have happened.</li>
+<li><strong>post_controller_constructor</strong> Called immediately after your controller is instantiated, but prior to any method calls happening.</li>
+<li><strong>post_system</strong> Called after the final rendered page is sent to the browser, at the end of system execution after the finalized data is sent to the browser.</li>
 </ul>
 </div>
 </div>
@@ -462,9 +464,9 @@ When <strong>true</strong>, all events will be skipped over during the trigger m
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

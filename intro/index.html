@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>歡迎加入 CodeIgniter4 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>歡迎加入 CodeIgniter4 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="系統需求" href="requirements.html" />
     <link rel="prev" title="CodeIgniter4 使用手冊" href="../index.html" /> 
 </head>
@@ -336,22 +338,22 @@
            <div itemprop="articleBody">
             
   <div class="section" id="codeigniter4">
-<h1>歡迎加入 CodeIgniter4<a class="headerlink" href="#codeigniter4" title="Permalink to this headline">¶</a></h1>
+<h1>歡迎加入 CodeIgniter4<a class="headerlink" href="#codeigniter4" title="本標題的永久連結">¶</a></h1>
 <p>CodeIgniter 是一套給予 PHP 網站工程師使用的應用程式開發框架。你可以利用簡單的邏輯介面操作 CodeIgniter 所提供的豐富程式庫，在碰到常見的需求時，比從頭造輪子更加敏捷。使用 CodeIgniter 能以最少的程式碼達到所需要的功能。</p>
 <p>CodeIgniter 將最大限度地保持「靈活」的特色，你可以用你喜歡的方式撰寫程式，而不是被條條框框的規則所束縛。框架可以輕鬆地擴充或替換核心組件，讓專案可以按你所想地運作。總地來說， CodeIgniter 是一個可以擴充的框架，它將在不影響開發為前提提供你所需的工具。</p>
 <div class="section" id="codeigniter">
-<h2>CodeIgniter 適合誰?<a class="headerlink" href="#codeigniter" title="Permalink to this headline">¶</a></h2>
+<h2>CodeIgniter 適合誰?<a class="headerlink" href="#codeigniter" title="本標題的永久連結">¶</a></h2>
 <p>CodeIgniter 適合符合以下敘述的你:</p>
 <ul class="simple">
-<li><p>你想要一個輕量的框架。</p></li>
-<li><p>你需要卓越的效能。</p></li>
-<li><p>你想要一個幾乎零設定的框架。</p></li>
-<li><p>你想要一個不必下命令列的框架。</p></li>
-<li><p>你想要一個不嚴格規範撰寫規則的框架。</p></li>
-<li><p>你對 PEAR 這種龐大的程式庫不感興趣。</p></li>
-<li><p>你不想被迫學習一種樣板語言（若是你需要的話，還是可以選用你喜歡的樣板解析器）。</p></li>
-<li><p>你嚮往簡單解決問題，討厭複雜。</p></li>
-<li><p>你認為框架必須提供簡單明白的使用文件。</p></li>
+<li>你想要一個輕量的框架。</li>
+<li>你需要卓越的效能。</li>
+<li>你想要一個幾乎零設定的框架。</li>
+<li>你想要一個不必下命令列的框架。</li>
+<li>你想要一個不嚴格規範撰寫規則的框架。</li>
+<li>你對 PEAR 這種龐大的程式庫不感興趣。</li>
+<li>你不想被迫學習一種樣板語言（若是你需要的話，還是可以選用你喜歡的樣板解析器）。</li>
+<li>你嚮往簡單解決問題，討厭複雜。</li>
+<li>你認為框架必須提供簡單明白的使用文件。</li>
 </ul>
 <div class="toctree-wrapper compound">
 </div>
@@ -378,9 +380,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

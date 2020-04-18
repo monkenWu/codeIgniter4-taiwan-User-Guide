@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Database Events &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>Database Events &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Utilities" href="utilities.html" />
     <link rel="prev" title="Custom Function Calls" href="call_function.html" /> 
 </head>
@@ -338,19 +340,19 @@
            <div itemprop="articleBody">
             
   <div class="section" id="database-events">
-<h1>Database Events<a class="headerlink" href="#database-events" title="Permalink to this headline">¶</a></h1>
+<h1>Database Events<a class="headerlink" href="#database-events" title="本標題的永久連結">¶</a></h1>
 <p>The Database classes contain a few <a class="reference internal" href="../extending/events.html"><span class="doc">Events</span></a> that you can tap into in
 order to learn more about what is happening during the database execution. These events can
 be used to collect data for analysis and reporting. The <a class="reference internal" href="../testing/debugging.html"><span class="doc">Debug Toolbar</span></a>
 uses this to collect the queries to display in the Toolbar.</p>
 <div class="section" id="the-events">
-<h2>The Events<a class="headerlink" href="#the-events" title="Permalink to this headline">¶</a></h2>
+<h2>The Events<a class="headerlink" href="#the-events" title="本標題的永久連結">¶</a></h2>
 <p><strong>DBQuery</strong></p>
 <p>This event is triggered whenever a new query has been run, whether successful or not. The only parameter is
 a <a class="reference internal" href="queries.html"><span class="doc">Query</span></a> instance of the current query. You could use this to display all queries
 in STDOUT, or logging to a file, or even creating tools to do automatic query analysis to help you spot
 potentially missing indexes, slow queries, etc. An example usage might be:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// In Config\Events.php</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// In Config\Events.php</span>
 <span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;DBQuery&#39;</span><span class="p">,</span> <span class="s1">&#39;CodeIgniter\Debug\Toolbar\Collectors\Database::collect&#39;</span><span class="p">);</span>
 
 <span class="c1">// Collect the queries so something can be done with them later.</span>
@@ -383,9 +385,9 @@ potentially missing indexes, slow queries, etc. An example usage might be:</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

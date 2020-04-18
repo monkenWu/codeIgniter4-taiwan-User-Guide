@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>資料庫 快速入門: 範例程式 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>資料庫 快速入門: 範例程式 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="資料庫設定" href="configuration.html" />
     <link rel="prev" title="資料庫操作" href="index.html" /> 
 </head>
@@ -338,20 +340,20 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>資料庫 快速入門: 範例程式<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>資料庫 快速入門: 範例程式<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>以下的頁面包含了示範如何使用資料庫類別的範例程式。請閱讀各個函數的說明頁面來了解完整的細節。</p>
 <div class="section" id="id2">
-<h2>初始化資料庫類別<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>初始化資料庫類別<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <p>以下的程式根據你 <a class="reference internal" href="configuration.html"><span class="doc">設定檔</span></a> 中的設定載入並初始化資料庫類別：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span> <span class="o">=</span> <span class="nx">\Config\Database</span><span class="o">::</span><span class="na">connect</span><span class="p">();</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span> <span class="o">=</span> <span class="nx">\Config\Database</span><span class="o">::</span><span class="na">connect</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>類別一旦被載入，就可以像以下的說明做使用：</p>
 <p>注意：如果你的所有頁面都需要存取資料庫，你可以設定自動連線。請參考 <a class="reference internal" href="connecting.html"><span class="doc">資料庫連線</span></a> 來了解細節</p>
 </div>
 <div class="section" id="id3">
-<h2>標準的多結果查詢(物件版)<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name, title, email FROM my_table&#39;</span><span class="p">);</span>
+<h2>標準的多結果查詢(物件版)<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name, title, email FROM my_table&#39;</span><span class="p">);</span>
 <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">();</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$results</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
@@ -367,8 +369,8 @@
 <p>以上的 getResult() 函數會傳回一個 <strong>物件</strong> 陣列。範例：$row-&gt;title。</p>
 </div>
 <div class="section" id="id4">
-<h2>標準的多結果查詢(陣列版)<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span>   <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name, title, email FROM my_table&#39;</span><span class="p">);</span>
+<h2>標準的多結果查詢(陣列版)<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span>   <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name, title, email FROM my_table&#39;</span><span class="p">);</span>
 <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResultArray</span><span class="p">();</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$results</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
@@ -379,11 +381,11 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>以上的 getResultArray() 函數會傳回一個標準的索引陣列。範例：$row[‘title’]。</p>
+<p>以上的 getResultArray() 函數會傳回一個標準的索引陣列。範例：$row[『title』]。</p>
 </div>
 <div class="section" id="id5">
-<h2>標準的單一結果查詢(物件版)<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name FROM my_table LIMIT 1&#39;</span><span class="p">);</span>
+<h2>標準的單一結果查詢(物件版)<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name FROM my_table LIMIT 1&#39;</span><span class="p">);</span>
 <span class="nv">$row</span>   <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getRow</span><span class="p">();</span>
 <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
 </pre></div>
@@ -391,26 +393,26 @@
 <p>以上的 getRow() 函數會傳回一個 <strong>物件</strong>。範例：$row-&gt;name。</p>
 </div>
 <div class="section" id="id6">
-<h2>標準的單一結果查詢(陣列版)<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name FROM my_table LIMIT 1&#39;</span><span class="p">);</span>
+<h2>標準的單一結果查詢(陣列版)<a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name FROM my_table LIMIT 1&#39;</span><span class="p">);</span>
 <span class="nv">$row</span>   <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getRowArray</span><span class="p">();</span>
 <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">];</span>
 </pre></div>
 </div>
-<p>以上的 getRowArray() 函數會傳回一個 <strong>陣列</strong>。範例：$row[‘name’]。</p>
+<p>以上的 getRowArray() 函數會傳回一個 <strong>陣列</strong>。範例：$row[『name』]。</p>
 </div>
 <div class="section" id="id7">
-<h2>標準新增<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO mytable (title, name) VALUES (&quot;</span><span class="o">.</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;)&quot;</span><span class="p">;</span>
+<h2>標準新增<a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO mytable (title, name) VALUES (&quot;</span><span class="o">.</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;)&quot;</span><span class="p">;</span>
 <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">affectedRows</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id8">
-<h2>查詢生成器 查詢<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<h2>查詢生成器 查詢<a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h2>
 <p><a class="reference internal" href="query_builder.html"><span class="doc">查詢生成器</span></a> 提供一個取得資料的簡單方法：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
 <span class="p">{</span>
@@ -421,8 +423,8 @@
 <p>以上的 get() 函數會回傳指定的資料表中所有的結果。<a class="reference internal" href="query_builder.html"><span class="doc">查詢生成器</span></a> 類別包含完整的資料操作方法</p>
 </div>
 <div class="section" id="id9">
-<h2>查詢生成器 新增<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+<h2>查詢生成器 新增<a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h2>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="nv">$title</span><span class="p">,</span>
         <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$name</span><span class="p">,</span>
         <span class="s1">&#39;date&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$date</span>
@@ -454,9 +456,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

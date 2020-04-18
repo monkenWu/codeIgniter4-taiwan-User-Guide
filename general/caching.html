@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Web Page Caching &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>Web Page Caching &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="AJAX Requests" href="ajax.html" />
     <link rel="prev" title="Error Handling" href="errors.html" /> 
 </head>
@@ -338,7 +340,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="web-page-caching">
-<h1>Web Page Caching<a class="headerlink" href="#web-page-caching" title="Permalink to this headline">¶</a></h1>
+<h1>Web Page Caching<a class="headerlink" href="#web-page-caching" title="本標題的永久連結">¶</a></h1>
 <p>CodeIgniter lets you cache your pages in order to achieve maximum
 performance.</p>
 <p>Although CodeIgniter is quite fast, the amount of dynamic information
@@ -348,7 +350,7 @@ page load speeds. By caching your pages, since they are saved in their
 fully rendered state, you can achieve performance much closer to that of
 static web pages.</p>
 <div class="section" id="how-does-caching-work">
-<h2>How Does Caching Work?<a class="headerlink" href="#how-does-caching-work" title="Permalink to this headline">¶</a></h2>
+<h2>How Does Caching Work?<a class="headerlink" href="#how-does-caching-work" title="本標題的永久連結">¶</a></h2>
 <p>Caching can be enabled on a per-page basis, and you can set the length
 of time that a page should remain cached before being refreshed. When a
 page is loaded for the first time, the file will be cached using the
@@ -357,16 +359,16 @@ will be retrieved and sent to the requesting user’s browser. If it has
 expired, it will be deleted and refreshed before being sent to the
 browser.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The Benchmark tag is not cached so you can still view your page
+<p class="first admonition-title">備註</p>
+<p class="last">The Benchmark tag is not cached so you can still view your page
 load speed when caching is enabled.</p>
 </div>
 </div>
 <div class="section" id="enabling-caching">
-<h2>Enabling Caching<a class="headerlink" href="#enabling-caching" title="Permalink to this headline">¶</a></h2>
+<h2>Enabling Caching<a class="headerlink" href="#enabling-caching" title="本標題的永久連結">¶</a></h2>
 <p>To enable caching, put the following tag in any of your controller
 methods:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cachePage</span><span class="p">(</span><span class="nv">$n</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cachePage</span><span class="p">(</span><span class="nv">$n</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Where <code class="docutils literal notranslate"><span class="pre">$n</span></code> is the number of <strong>seconds</strong> you wish the page to remain
@@ -375,23 +377,23 @@ cached between refreshes.</p>
 the order that it appears, so place it wherever it seems most logical to
 you. Once the tag is in place, your pages will begin being cached.</p>
 <div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>If you change configuration options that might affect
+<p class="first admonition-title">重要</p>
+<p class="last">If you change configuration options that might affect
 your output, you have to manually delete your cache files.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Before the cache files can be written you must set the cache
+<p class="first admonition-title">備註</p>
+<p class="last">Before the cache files can be written you must set the cache
 engine up by editing <strong>app/Config/Cache.php</strong>.</p>
 </div>
 </div>
 <div class="section" id="deleting-caches">
-<h2>Deleting Caches<a class="headerlink" href="#deleting-caches" title="Permalink to this headline">¶</a></h2>
+<h2>Deleting Caches<a class="headerlink" href="#deleting-caches" title="本標題的永久連結">¶</a></h2>
 <p>If you no longer wish to cache a file you can remove the caching tag and
 it will no longer be refreshed when it expires.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Removing the tag will not delete the cache immediately. It will
+<p class="first admonition-title">備註</p>
+<p class="last">Removing the tag will not delete the cache immediately. It will
 have to expire normally.</p>
 </div>
 </div>
@@ -417,9 +419,9 @@ have to expire normally.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

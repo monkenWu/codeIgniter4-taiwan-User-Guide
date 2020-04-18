@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CodeIgniter 儲存庫 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>CodeIgniter 儲存庫 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="建構第一個應用程式" href="../tutorial/index.html" />
     <link rel="prev" title="故障排除" href="troubleshooting.html" /> 
 </head>
@@ -338,119 +340,119 @@
            <div itemprop="articleBody">
             
   <div class="section" id="codeigniter">
-<h1>CodeIgniter 儲存庫<a class="headerlink" href="#codeigniter" title="Permalink to this headline">¶</a></h1>
+<h1>CodeIgniter 儲存庫<a class="headerlink" href="#codeigniter" title="本標題的永久連結">¶</a></h1>
 <p>CodeIgniter4 開源專案有自己的 <a class="reference external" href="https://github.com/codeigniter4">Github 組織</a> 。</p>
 <p>對於程式碼的貢獻者來說，下述有幾個開發儲存庫:</p>
-<table class="docutils align-default">
+<table border="1" class="docutils">
 <colgroup>
-<col style="width: 19%" />
-<col style="width: 14%" />
-<col style="width: 67%" />
+<col width="19%" />
+<col width="14%" />
+<col width="67%" />
 </colgroup>
-<thead>
-<tr class="row-odd"><th class="head" rowspan="2"><p>儲存庫</p></th>
-<th class="head" rowspan="2"><p>受眾</p></th>
-<th class="head" rowspan="2"><p>描述</p></th>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" rowspan="2">儲存庫</th>
+<th class="head" rowspan="2">受眾</th>
+<th class="head" rowspan="2">描述</th>
 </tr>
 <tr class="row-even"></tr>
 </thead>
-<tbody>
-<tr class="row-odd"><td rowspan="2"><p>CodeIgniter4</p></td>
-<td rowspan="2"><p>貢獻者</p></td>
-<td rowspan="2"><p>專案程式庫、系統測試與使用手冊原始碼</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="2">CodeIgniter4</td>
+<td rowspan="2">貢獻者</td>
+<td rowspan="2">專案程式庫、系統測試與使用手冊原始碼</td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>translations</p></td>
-<td rowspan="2"><p>開發者</p></td>
-<td rowspan="2"><p>系統訊息翻譯</p></td>
+<tr class="row-odd"><td rowspan="2">translations</td>
+<td rowspan="2">開發者</td>
+<td rowspan="2">系統訊息翻譯</td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>coding-standard</p></td>
-<td rowspan="2"><p>貢獻者</p></td>
-<td rowspan="2"><p>程式碼風格規範 &amp; 規則</p></td>
+<tr class="row-odd"><td rowspan="2">coding-standard</td>
+<td rowspan="2">貢獻者</td>
+<td rowspan="2">程式碼風格規範 &amp; 規則</td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"></td>
-<td rowspan="2"></td>
-<td rowspan="2"></td>
+<tr class="row-odd"><td rowspan="2">&#160;</td>
+<td rowspan="2">&#160;</td>
+<td rowspan="2">&#160;</td>
 </tr>
 <tr class="row-even"></tr>
 </tbody>
 </table>
 <p>下列是部屬用儲存庫，在安裝指引的條目中有提到過。當新版本發布時，部屬用儲存庫會自動產生，你將無法對這些儲存庫做出貢獻。</p>
-<table class="docutils align-default">
+<table border="1" class="docutils">
 <colgroup>
-<col style="width: 19%" />
-<col style="width: 14%" />
-<col style="width: 67%" />
+<col width="19%" />
+<col width="14%" />
+<col width="67%" />
 </colgroup>
-<thead>
-<tr class="row-odd"><th class="head" rowspan="2"><p>儲存庫</p></th>
-<th class="head" rowspan="2"><p>受眾</p></th>
-<th class="head" rowspan="2"><p>描述</p></th>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" rowspan="2">儲存庫</th>
+<th class="head" rowspan="2">受眾</th>
+<th class="head" rowspan="2">描述</th>
 </tr>
 <tr class="row-even"></tr>
 </thead>
-<tbody>
-<tr class="row-odd"><td rowspan="2"><p>framework</p></td>
-<td rowspan="2"><p>開發者</p></td>
-<td rowspan="2"><p>框架已發布的版本</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="2">framework</td>
+<td rowspan="2">開發者</td>
+<td rowspan="2">框架已發布的版本</td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>appstarter</p></td>
-<td rowspan="2"><p>開發者</p></td>
-<td rowspan="2"><p>Starter 專案（ app/public/writable ）倚賴於 framework</p></td>
+<tr class="row-odd"><td rowspan="2">appstarter</td>
+<td rowspan="2">開發者</td>
+<td rowspan="2">Starter 專案（ app/public/writable ）倚賴於 framework</td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>userguide</p></td>
-<td rowspan="2"><p>所有人</p></td>
-<td rowspan="2"><p>內建的使用者手冊</p></td>
+<tr class="row-odd"><td rowspan="2">userguide</td>
+<td rowspan="2">所有人</td>
+<td rowspan="2">內建的使用者手冊</td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"></td>
-<td rowspan="2"></td>
-<td rowspan="2"></td>
+<tr class="row-odd"><td rowspan="2">&#160;</td>
+<td rowspan="2">&#160;</td>
+<td rowspan="2">&#160;</td>
 </tr>
 <tr class="row-even"></tr>
 </tbody>
 </table>
 <p>在所有提到的儲存庫的最新版本，都可以透過 Github 儲存庫頁面第二層導航列的 Code 選項中的 releases 連結下載最新版本。也可以透過 Clone or download 按鈕克隆或下載當前（開發中）的版本。</p>
 <div class="section" id="composer">
-<h2>Composer 程式包<a class="headerlink" href="#composer" title="Permalink to this headline">¶</a></h2>
+<h2>Composer 程式包<a class="headerlink" href="#composer" title="本標題的永久連結">¶</a></h2>
 <p>我們也在 <a class="reference external" href="https://packagist.org/search/?query=codeigniter4">packagist.org</a>. 維護著 composer-installable packages ，對應下述儲存庫:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://packagist.org/packages/codeigniter4/framework">codeigniter4/framework</a></p></li>
-<li><p><a class="reference external" href="https://packagist.org/packages/codeigniter4/appstarter">codeigniter4/appstarter</a></p></li>
-<li><p><a class="reference external" href="https://packagist.org/packages/codeigniter4/translations">codeigniter4/translations</a></p></li>
-<li><p><a class="reference external" href="https://packagist.org/packages/codeigniter4/codeigniter4-standard">codeigniter4/coding-standard</a></p></li>
+<li><a class="reference external" href="https://packagist.org/packages/codeigniter4/framework">codeigniter4/framework</a></li>
+<li><a class="reference external" href="https://packagist.org/packages/codeigniter4/appstarter">codeigniter4/appstarter</a></li>
+<li><a class="reference external" href="https://packagist.org/packages/codeigniter4/translations">codeigniter4/translations</a></li>
+<li><a class="reference external" href="https://packagist.org/packages/codeigniter4/codeigniter4-standard">codeigniter4/coding-standard</a></li>
 </ul>
 <p>有關詳細資訊，請參閱 <a class="reference internal" href="index.html"><span class="doc">安裝指引</span></a> 條目。</p>
 </div>
 <div class="section" id="codeigniter4">
-<h2>CodeIgniter4 專案<a class="headerlink" href="#codeigniter4" title="Permalink to this headline">¶</a></h2>
+<h2>CodeIgniter4 專案<a class="headerlink" href="#codeigniter4" title="本標題的永久連結">¶</a></h2>
 <p>我們在 Github 上維護著 <a class="reference external" href="https://github.com/">codeigniter4projects</a> 組織，這個組織用於管理可以輕鬆使用框架的專案，即便他不屬於框架的一部份。</p>
-<table class="docutils align-default">
+<table border="1" class="docutils">
 <colgroup>
-<col style="width: 19%" />
-<col style="width: 14%" />
-<col style="width: 67%" />
+<col width="19%" />
+<col width="14%" />
+<col width="67%" />
 </colgroup>
-<thead>
-<tr class="row-odd"><th class="head" rowspan="2"><p>儲存庫</p></th>
-<th class="head" rowspan="2"><p>受眾</p></th>
-<th class="head" rowspan="2"><p>描述</p></th>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" rowspan="2">儲存庫</th>
+<th class="head" rowspan="2">受眾</th>
+<th class="head" rowspan="2">描述</th>
 </tr>
 <tr class="row-even"></tr>
 </thead>
-<tbody>
-<tr class="row-odd"><td rowspan="2"><p>website2</p></td>
-<td rowspan="2"><p>開發者</p></td>
-<td rowspan="2"><p>使用 CodeIgniter4 撰寫的 codeigniter.com 網站</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="2">website2</td>
+<td rowspan="2">開發者</td>
+<td rowspan="2">使用 CodeIgniter4 撰寫的 codeigniter.com 網站</td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"></td>
-<td rowspan="2"></td>
-<td rowspan="2"></td>
+<tr class="row-odd"><td rowspan="2">&#160;</td>
+<td rowspan="2">&#160;</td>
+<td rowspan="2">&#160;</td>
 </tr>
 <tr class="row-even"></tr>
 </tbody>
@@ -479,9 +481,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Composer 安裝 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>Composer 安裝 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Git 安裝" href="installing_git.html" />
     <link rel="prev" title="手動安裝" href="installing_manual.html" /> 
 </head>
@@ -338,155 +340,155 @@
            <div itemprop="articleBody">
             
   <div class="section" id="composer">
-<h1>Composer 安裝<a class="headerlink" href="#composer" title="Permalink to this headline">¶</a></h1>
-<div class="contents local topic" id="contents">
+<h1>Composer 安裝<a class="headerlink" href="#composer" title="本標題的永久連結">¶</a></h1>
+<div class="contents local topic" id="id1">
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id20">安裝穩定版本</a></p></li>
-<li><p><a class="reference internal" href="#id7" id="id21">安裝最新版本</a></p></li>
-<li><p><a class="reference internal" href="#codeigniter4" id="id22">將 CodeIgniter4 部屬到現有專案中</a></p></li>
-<li><p><a class="reference internal" href="#id19" id="id23">安裝多語言系統提示</a></p></li>
+<li><a class="reference internal" href="#id2" id="id21">安裝穩定版本</a></li>
+<li><a class="reference internal" href="#id8" id="id22">安裝最新版本</a></li>
+<li><a class="reference internal" href="#codeigniter4" id="id23">將 CodeIgniter4 部屬到現有專案中</a></li>
+<li><a class="reference internal" href="#id20" id="id24">安裝多語言系統提示</a></li>
 </ul>
 </div>
 <p>你可以利用多種方式透過 Composer 安裝 CodeIgniter4 。</p>
 <p>前兩種方式將說明如何以建立新專案為目標安裝 CodeIgniter4 ；第三種方式將告訴你如何把 CodeIgniter4 添加到現有的網頁應用程式之中。</p>
 <p><strong>Note</strong> ：如果你是用 Git 進行專案管理並且與他人共同開發，那麼 git ignored 將會自動忽略 <code class="docutils literal notranslate"><span class="pre">vendor</span></code> 資料夾，你必須要在克隆你的儲存庫後執行 <code class="docutils literal notranslate"><span class="pre">composer</span> <span class="pre">update</span></code> ，將專案所依賴的程式庫下載至本地開發環境之中。</p>
-<div class="section" id="id1">
-<h2><a class="toc-backref" href="#id20">安裝穩定版本</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id21">安裝穩定版本</a><a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <p><a class="reference external" href="https://github.com/codeigniter4/appstarter">Codeigniter4 appstarter 儲存庫</a> 包含一個最簡應用程式， Composer 將依賴這個儲存庫的最新版本。</p>
 <p>若你希望將 CodeIgniter4 使用在全新的產品開發專案中，你將適合這種安裝方式。</p>
-<div class="section" id="id2">
-<h3>安裝與設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>安裝與設定<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h3>
 <p>在預計安裝專案的資料夾中下執行以下指令：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="nx">create</span><span class="o">-</span><span class="nx">project</span> <span class="nx">codeigniter4</span><span class="o">/</span><span class="nx">appstarter</span> <span class="nx">project</span><span class="o">-</span><span class="nx">root</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="nx">create</span><span class="o">-</span><span class="nx">project</span> <span class="nx">codeigniter4</span><span class="o">/</span><span class="nx">appstarter</span> <span class="nx">project</span><span class="o">-</span><span class="nx">root</span>
 </pre></div>
 </div>
 <p>執行上述指令將會創建一個「 project-root 」 資料夾。</p>
 <p>如果你省略了上述指令中「 project-root 」引數，那麼 Composer 將會自動生成出「 appstarter 」資料夾，你可以依照自己的需求命名你的資料夾。</p>
 <p>若是你不需要安裝 phpunit 及其所有的 Composer 依賴（ dependencies ），則必須在上述的指令中添加「 –no-dev 」。執行了這個指令， Composer 將會安裝單純的框架檔案，以及我們預先同捆的三個所需的依賴程式庫。</p>
 <p>下例將使用默認的專案資料夾名稱「 appstarter 」演示上述需求的安裝指令：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="nx">create</span><span class="o">-</span><span class="nx">project</span> <span class="nx">codeigniter4</span><span class="o">/</span><span class="nx">appstarter</span> <span class="o">--</span><span class="nx">no</span><span class="o">-</span><span class="nx">dev</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="nx">create</span><span class="o">-</span><span class="nx">project</span> <span class="nx">codeigniter4</span><span class="o">/</span><span class="nx">appstarter</span> <span class="o">--</span><span class="nx">no</span><span class="o">-</span><span class="nx">dev</span>
 </pre></div>
 </div>
 <p>往後若需要升及框架，你只需要按照下一小節「如何升級框架」來進行升級。</p>
 </div>
-<div class="section" id="id3">
-<h3>如何升級框架<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>如何升級框架<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
 <p>每當有新版本的 codeigniter4 發布時，請從專案的根目錄執行以下指令：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="nx">update</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="nx">update</span>
 </pre></div>
 </div>
 <p>如果你在創建專案時使用了「 –no-dev 」，那麼在升級框架時你也必須做一樣的事：  <code class="docutils literal notranslate"><span class="pre">composer</span> <span class="pre">update</span> <span class="pre">--no-dev</span></code> 。</p>
 <p>最後，你必須閱讀新版本的升級說明，並檢查 <code class="docutils literal notranslate"><span class="pre">app/Config</span></code> 資料夾中的文件是否因為升級有所改變。</p>
 </div>
-<div class="section" id="id4">
-<h3>優點<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h3>優點<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
 <p>安裝簡單；容易更新。</p>
 </div>
-<div class="section" id="id5">
-<h3>缺點<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3>缺點<a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
 <p>在自動更新後，仍需檢查 <code class="docutils literal notranslate"><span class="pre">app/Config</span></code> 是否有因為升級而有所改變。</p>
 </div>
-<div class="section" id="id6">
-<h3>結構<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>結構<a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
 <p>在安裝 CodeIgniter 4 後，這些資料夾將會部署進你的專案中：</p>
 <ul class="simple">
-<li><p>app, public, tests, writable</p></li>
-<li><p>vendor/codeigniter4/framework/system</p></li>
-<li><p>vendor/codeigniter4/framework/app &amp; public (更新後可以利用這裡比較 <code class="docutils literal notranslate"><span class="pre">app/Config</span></code> 是否有所不同。)</p></li>
+<li>app, public, tests, writable</li>
+<li>vendor/codeigniter4/framework/system</li>
+<li>vendor/codeigniter4/framework/app &amp; public (更新後可以利用這裡比較 <code class="docutils literal notranslate"><span class="pre">app/Config</span></code> 是否有所不同。)</li>
 </ul>
 </div>
 </div>
-<div class="section" id="id7">
-<h2><a class="toc-backref" href="#id21">安裝最新版本</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id8">
-<h3>安裝與設定<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h2><a class="toc-backref" href="#id22">安裝最新版本</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id9">
+<h3>安裝與設定<a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h3>
 <p>穩定版本儲存庫附帶一個 <code class="docutils literal notranslate"><span class="pre">builds</span></code> 腳本，可以切換穩定版本框架與最新開發版本框架之間的 Composer 來源。對於願意接受最新且未發布的特性（可能不穩定）的開發人員，請使用這個腳本。</p>
 <p>你可以閱讀  <a class="reference external" href="https://codeigniter4.github.io/CodeIgniter4/">開發中的使用者說明書（原文）</a>，這與穩定發布版的使用者說明書不同，它將會明確地記載開發中的功能與使用說明。</p>
 <p>在專案的根目錄中執行以下指令：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">builds</span> <span class="nx">development</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">builds</span> <span class="nx">development</span>
 </pre></div>
 </div>
 <p>執行這個命令後，將會更新 <em>composer.json</em> 把儲存庫指向 <code class="docutils literal notranslate"><span class="pre">develop</span></code> 分支 ，並且更新 config 和 XML 檔案中的對應路徑。若你需要還原這些改動，請執行：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">builds</span> <span class="nx">release</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">builds</span> <span class="nx">release</span>
 </pre></div>
 </div>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">builds</span></code> 後請務必執行 <code class="docutils literal notranslate"><span class="pre">composer</span> <span class="pre">update</span></code> ，以便將你的 vendor 資料夾與目前希望運作的版本進行同步。</p>
 </div>
-<div class="section" id="id10">
-<h3>如何升級框架<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>如何升級框架<a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h3>
 <p>每當有新版本的 codeigniter4 發布時，請從專案的根目錄執行以下指令：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="nx">update</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="nx">update</span>
 </pre></div>
 </div>
 <p>如果你在創建專案時使用了「 –no-dev 」，那麼在升級框架時你也必須做一樣的事：  <code class="docutils literal notranslate"><span class="pre">composer</span> <span class="pre">update</span> <span class="pre">--no-dev</span></code> 。</p>
 <p>請務必檢查「修改記錄檔（ changelog ）」，查看框架是否有任何足以影響你的應用程式的改動，請記住，最新的更改可能未記載於記錄檔之中。</p>
 <p>最後，你必須閱讀新版本的升級說明，並檢查 <code class="docutils literal notranslate"><span class="pre">app/Config</span></code> 資料夾中的文件是否因為升級有所改變。</p>
 </div>
-<div class="section" id="id11">
-<h3>優點<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h3>優點<a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h3>
 <p>安裝簡單；容易更新；最新版本。</p>
 </div>
-<div class="section" id="id12">
-<h3>缺點<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id13">
+<h3>缺點<a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h3>
 <p>我們將不保證框架的穩定性，升級後出現任何的問題將是你的責任。</p>
 <p>在自動更新後，仍需檢查 <code class="docutils literal notranslate"><span class="pre">app/Config</span></code> 是否有因為升級而有所改變。</p>
 </div>
-<div class="section" id="id13">
-<h3>結構<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id14">
+<h3>結構<a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h3>
 <p>在安裝 CodeIgniter 4 後，這些資料夾將會部署進你的專案中：</p>
 <ul class="simple">
-<li><p>app, public, tests, writable</p></li>
-<li><p>vendor/codeigniter4/framework/system</p></li>
-<li><p>vendor/codeigniter4/framework/app &amp; public (更新後可以利用這裡比較 <code class="docutils literal notranslate"><span class="pre">app/Config</span></code> 是否有所不同。)</p></li>
+<li>app, public, tests, writable</li>
+<li>vendor/codeigniter4/framework/system</li>
+<li>vendor/codeigniter4/framework/app &amp; public (更新後可以利用這裡比較 <code class="docutils literal notranslate"><span class="pre">app/Config</span></code> 是否有所不同。)</li>
 </ul>
 </div>
 </div>
 <div class="section" id="codeigniter4">
-<h2><a class="toc-backref" href="#id22">將 CodeIgniter4 部屬到現有專案中</a><a class="headerlink" href="#codeigniter4" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id23">將 CodeIgniter4 部屬到現有專案中</a><a class="headerlink" href="#codeigniter4" title="本標題的永久連結">¶</a></h2>
 <p>與「手動安裝」 <a class="reference external" href="https://github.com/codeigniter4/framework">CodeIgniter 4</a> 相同，你也可以透過 Composer 下載最新版本再自行部屬。</p>
 <p>你可以在框架中的 <code class="docutils literal notranslate"><span class="pre">app</span></code> 資料夾開發你的應用程式，而 <code class="docutils literal notranslate"><span class="pre">public</span></code> 資料夾則是放置網站的公開檔案。</p>
 <p>在你的專案根目錄執行以下指令：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="k">require</span> <span class="nx">codeigniter4</span><span class="o">/</span><span class="nx">framework</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="k">require</span> <span class="nx">codeigniter4</span><span class="o">/</span><span class="nx">framework</span>
 </pre></div>
 </div>
 <p>與前兩個 Composer 安裝方法相同，你可以通過「 –no-dev 」引數，省略安裝 phpunit 及其 Composer 依賴，</p>
-<div class="section" id="id14">
-<h3>安裝<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h3>安裝<a class="headerlink" href="#id15" title="本標題的永久連結">¶</a></h3>
 <p>將 app 、 publuc 、 tests 以及 writable 資料夾從 <code class="docutils literal notranslate"><span class="pre">vendor/codeigniter4/framework</span></code> 複製到你的專案根目錄中。</p>
 <p>並且，也將 <code class="docutils literal notranslate"><span class="pre">env</span></code> 、 <code class="docutils literal notranslate"><span class="pre">phpunit.xml.dist</span></code> 以及 <code class="docutils literal notranslate"><span class="pre">spark</span></code> 檔案，從 <code class="docutils literal notranslate"><span class="pre">vendor/codeigniter4/framework</span></code> 複製到你的專案根目錄中。</p>
 <p>為了讓框架得以載入正確的 system 資料夾，你必須調整 <code class="docutils literal notranslate"><span class="pre">app/Config/Paths.php</span></code> 中 $systemDirectory 變數的路徑字串，指向 <code class="docutils literal notranslate"><span class="pre">vendor/codeigniter/framework</span></code> 的相對位置。</p>
 </div>
-<div class="section" id="id15">
-<h3>如何升級框架<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id16">
+<h3>如何升級框架<a class="headerlink" href="#id16" title="本標題的永久連結">¶</a></h3>
 <p>每當有新版本的 codeigniter4 發布時，請從專案的根目錄執行以下指令：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="nx">update</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="nx">update</span>
 </pre></div>
 </div>
 <p>如果你在創建專案時使用了「 –no-dev 」，那麼在升級框架時你也必須做一樣的事：  <code class="docutils literal notranslate"><span class="pre">composer</span> <span class="pre">update</span> <span class="pre">--no-dev</span></code> 。</p>
 <p>最後，你必須閱讀新版本的升級說明，並檢查 <code class="docutils literal notranslate"><span class="pre">app/Config</span></code> 資料夾中的文件是否因為升級有所改變。</p>
 </div>
-<div class="section" id="id16">
-<h3>優點<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id17">
+<h3>優點<a class="headerlink" href="#id17" title="本標題的永久連結">¶</a></h3>
 <p>相對簡單的安裝；容易更新。</p>
 </div>
-<div class="section" id="id17">
-<h3>缺點<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id18">
+<h3>缺點<a class="headerlink" href="#id18" title="本標題的永久連結">¶</a></h3>
 <p>在自動更新後，仍需檢查 <code class="docutils literal notranslate"><span class="pre">app/Config</span></code> 是否有因為升級而有所改變。</p>
 </div>
-<div class="section" id="id18">
-<h3>結構<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id19">
+<h3>結構<a class="headerlink" href="#id19" title="本標題的永久連結">¶</a></h3>
 <p>在執行完上述流程後，這些資料夾將會部署進你的專案中：</p>
 <ul class="simple">
-<li><p>app, public, tests, writable</p></li>
-<li><p>vendor/codeigniter4/framework/system</p></li>
+<li>app, public, tests, writable</li>
+<li>vendor/codeigniter4/framework/system</li>
 </ul>
 </div>
 </div>
-<div class="section" id="id19">
-<h2><a class="toc-backref" href="#id23">安裝多語言系統提示</a><a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id20">
+<h2><a class="toc-backref" href="#id24">安裝多語言系統提示</a><a class="headerlink" href="#id20" title="本標題的永久連結">¶</a></h2>
 <p>如果在開發的過程中你想在查閱繁體中文或非英語語系的系統提示，可以用下列方式將它們加入到你的專案之中。</p>
 <p>在你的專案根目錄執行以下指令：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="k">require</span> <span class="nx">codeigniter4</span><span class="o">/</span><span class="nx">translations</span> <span class="o">@</span><span class="nx">beta</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="k">require</span> <span class="nx">codeigniter4</span><span class="o">/</span><span class="nx">translations</span> <span class="o">@</span><span class="nx">beta</span>
 </pre></div>
 </div>
 <p>每當你執行 <code class="docutils literal notranslate"><span class="pre">composer</span> <span class="pre">update</span></code> 後，多語言的系統提示也將隨著框架一同升級。</p>
@@ -513,9 +515,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

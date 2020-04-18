@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>模型、視圖與控制器 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>模型、視圖與控制器 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="自動載入檔案" href="autoloader.html" />
     <link rel="prev" title="應用程式結構" href="structure.html" /> 
 </head>
@@ -338,7 +340,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>模型、視圖與控制器<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>模型、視圖與控制器<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>當創建一個應用程式的時候，我們需要有一種便捷且可以簡易組織代碼的架構。和很多 web 框架類似， CodeIgniter 框架也使用了模型、視圖以及控制器的架構，即 MVC 模式。這種方式可以將資料、畫面和流程等部分，分別作為單獨的組件存放在我們的應用程式中。需要特別注意的是，可能每個人會對某個組件所擔任的角色有不同的看法，那麼，下面我們就通過這個文檔來說明這些組件所擔任的角色，如果你有不同的想法，你可以依照你的需求自由決定如何使用這些組件。</p>
 <p><strong>模型</strong> 主要用來管理應用程式的資料，以及幫助應用程式執行特殊的業務規則。</p>
 <p><strong>視圖</strong> 是一個幾乎不具邏輯的簡單的檔案，只負責展示資料給使用者。</p>
@@ -346,9 +348,9 @@
 <p>在最一般的狀況下，控制器和模型 只是一個完成特定工作的類別。它們雖然不是你唯一可以使用的類別類型，但它們是構成整個框架的核心。我們在框架中指定 <strong>/app</strong> 資料夾來儲存他們，但你只要將他們正確地放進命名空間中，你也可以儲存在任何你想要的位置，我們稍後會更加詳細的討論。</p>
 <p>下面我們就來一一地仔細看一下這三個主要的組件。</p>
 <div class="section" id="id2">
-<h2>組件<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>組件<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <div class="section" id="id3">
-<h3>視圖<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>視圖<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h3>
 <p>視圖 是最簡單的檔案，通常是一個 HTML 檔案加入少量的 PHP 程式碼。視圖中的 PHP 程式碼應該盡量保持簡單，一般只是顯示一個變數的內容，或者通過循環語句將物件的資料展示在表格中。</p>
 <p>視圖從控制器中獲取資料並展示，控制器利用變數將資料發送給 視圖，並可以將其通過簡單的 <code class="docutils literal notranslate"><span class="pre">echo</span></code> 指令將資料展示出來。你也可以在一個視圖中再插入視圖，這樣可以很簡單的在每個頁面上展示出通用的頁眉和頁腳。</p>
 <p>視圖類型的檔案通常存放在 <strong>/app/Views</strong> 資料夾中，但如果在創建檔案時不按照一定的規則創建的話，會顯得我們的程式碼雜亂無章。 CodeIgniter 框架雖然沒有任何的硬性規定，但依照經驗我們會在 <strong>Views</strong> 資料夾中為每一個控制器創建一個資料夾。然後通過方法名來命名視圖。這樣之後會比較好找。
@@ -357,14 +359,14 @@
 <p><a class="reference internal" href="../outgoing/views.html"><span class="doc">想更深入地了解視圖</span></a></p>
 </div>
 <div class="section" id="id4">
-<h3>模型<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3>模型<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
 <p>模型的主要任務是為應用程式維護單一種類的資料。例如：用戶、部落格貼文、交易資訊等。在這種情況下，模型有以下兩種工作：從資料庫中抓取或輸入資料來執行業務規則；對資料庫中的資料進行實際的保存和查詢。</p>
 <p>對於許多開發人員而言，在確定執行哪些業務規則時會感到困惑。它只是代表著資料的任何限制和需求都由模型負責，包括在保存資料前先將原始資料統一成公司的標準，或者在資料傳給 控制器前先將資料格式化。透過把業務需求保留在模型中，可以保證你不用在多個控制器中出現重複的程式碼，避免忘了更新不同區塊的程式碼而導致出錯。</p>
 <p>模型類型的檔案通常保存在 <strong>/app/Models</strong> 這個資料夾中，雖然它們也可以使用一個命名空間去分組，但是還是建議您將模型檔案放在這個資料夾中。</p>
 <p><a class="reference internal" href="../models/model.html"><span class="doc">想更深入地了解模型</span></a></p>
 </div>
 <div class="section" id="id5">
-<h3>控制器<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h3>控制器<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
 <p>控制器主要擔任了幾個不同的角色。最常見的就是他們會接收使用者的請求，然後判斷這個請求應該執行什麼樣的操作。而這一過程通常會涉及到將資料發送給模型保存，或者去請求模型將資料傳遞給視圖去顯示畫面。它也可以用來載入其他程式的類別，需要的話，也可以處理模型權限之外的特殊任務。</p>
 <p>控制器的額外任務就是用來處理和 HTTP 請求相關的所有事情 —— 重新導向、認證、Web 安全、編碼等。總而言之，控制器是你的應用程式的入口，透過控制器，訪問你的應用程式的使用者才可以到達指定的地方，並獲取符合他們想要的格式的資料。</p>
 <p>控制器通常會保存在 <strong>/app/Controllers</strong> 這個資料夾中, 雖然它們也可以使用命名空間去分組，但是還是建議您將控制器存放在這個資料夾中。</p>
@@ -393,9 +395,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

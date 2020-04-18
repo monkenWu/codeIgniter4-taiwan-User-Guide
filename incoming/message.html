@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>HTTP Messages &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>HTTP Messages &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Request Class" href="request.html" />
     <link rel="prev" title="Controller Filters" href="filters.html" /> 
 </head>
@@ -338,7 +340,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="http-messages">
-<h1>HTTP Messages<a class="headerlink" href="#http-messages" title="Permalink to this headline">¶</a></h1>
+<h1>HTTP Messages<a class="headerlink" href="#http-messages" title="本標題的永久連結">¶</a></h1>
 <p>The Message class provides an interface to the portions of an HTTP message that are common to both
 requests and responses, including the message body, protocol version, utilities for working with
 the headers, and methods for handling content negotiation.</p>
@@ -347,7 +349,7 @@ the headers, and methods for handling content negotiation.</p>
 negotiation methods, may apply only to a request or response, and not the other one, but they have
 been included here to keep the header methods together.</p>
 <div class="section" id="what-is-content-negotiation">
-<h2>What is Content Negotiation?<a class="headerlink" href="#what-is-content-negotiation" title="Permalink to this headline">¶</a></h2>
+<h2>What is Content Negotiation?<a class="headerlink" href="#what-is-content-negotiation" title="本標題的永久連結">¶</a></h2>
 <p>At it’s heart Content Negotiation is simply a part of the HTTP specification that allows a single
 resource to serve more than one type of content, allowing the clients to request the type of
 data that works best for them.</p>
@@ -357,61 +359,70 @@ is requesting and selects the best match from the image formats that it supports
 likely choosing a JPEG image to return.</p>
 <p>This same negotiation can happen with four types of data:</p>
 <ul class="simple">
-<li><p><strong>Media/Document Type</strong> - this could be image format, or HTML vs. XML or JSON.</p></li>
-<li><p><strong>Character Set</strong> - The character set the returned document should be set in. Typically is UTF-8.</p></li>
-<li><p><strong>Document Encoding</strong> - Typically the type of compression used on the results.</p></li>
-<li><p><strong>Document Language</strong> - For sites that support multiple languages, this helps determine which to return.</p></li>
+<li><strong>Media/Document Type</strong> - this could be image format, or HTML vs. XML or JSON.</li>
+<li><strong>Character Set</strong> - The character set the returned document should be set in. Typically is UTF-8.</li>
+<li><strong>Document Encoding</strong> - Typically the type of compression used on the results.</li>
+<li><strong>Document Language</strong> - For sites that support multiple languages, this helps determine which to return.</li>
 </ul>
 <div class="section" id="class-reference">
-<h3>Class Reference<a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h3>
+<h3>Class Reference<a class="headerlink" href="#class-reference" title="本標題的永久連結">¶</a></h3>
 <dl class="class">
 <dt>
-<code class="sig-name descname">CodeIgniter\HTTP\Message</code></dt>
+<code class="descname">CodeIgniter\HTTP\Message</code></dt>
 <dd><dl class="method">
 <dt id="body">
-<code class="sig-name descname">body</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#body" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The current message body</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>string</p>
-</dd>
-</dl>
+<code class="descname">body</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#body" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">The current message body</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
 <p>Returns the current message body, if any has been set. If not body exists, returns null:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">();</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">();</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="setBody">
-<code class="sig-name descname">setBody</code><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param">$str</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#setBody" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$str</strong> (<em>string</em>) – The body of the message.</p></li>
+<code class="descname">setBody</code><span class="sig-paren">(</span><span class="optional">[</span><em>$str</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#setBody" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$str</strong> (<em>string</em>) – The body of the message.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the Message instance to allow methods to be chained together.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><p>CodeIgniter\HTTP\Message instance.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">the Message instance to allow methods to be chained together.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><p>CodeIgniter\HTTP\Message instance.</p>
 <p>Sets the body of the current request.</p>
 </p>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="populateHeaders">
-<code class="sig-name descname">populateHeaders</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#populateHeaders" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>void</p>
-</dd>
-</dl>
+<code class="descname">populateHeaders</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#populateHeaders" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">void</td>
+</tr>
+</tbody>
+</table>
 <p>Scans and parses the headers found in the SERVER data and stores it for later access.
 This is used by the <a class="reference internal" href="incomingrequest.html"><span class="doc">IncomingRequest Class</span></a> to make
 the current request’s headers available.</p>
@@ -423,38 +434,44 @@ The preceding <code class="docutils literal notranslate"><span class="pre">HTTP_
 
 <dl class="method">
 <dt id="getHeaders">
-<code class="sig-name descname">getHeaders</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#getHeaders" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>An array of all of the headers found.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>array</p>
-</dd>
-</dl>
+<code class="descname">getHeaders</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#getHeaders" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">An array of all of the headers found.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">array</td>
+</tr>
+</tbody>
+</table>
 <p>Returns an array of all headers found or previously set.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="getHeader">
-<code class="sig-name descname">getHeader</code><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param">$name</em><span class="optional">[</span>, <em class="sig-param">$filter = null</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#getHeader" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$name</strong> (<em>string</em>) – The name of the header you want to retrieve the value of.</p></li>
-<li><p><strong>$filter</strong> (<em>int</em>) – The type of filter to apply. A list of filters can be found <a class="reference external" href="https://www.php.net/manual/en/filter.filters.php">here</a>.</p></li>
+<code class="descname">getHeader</code><span class="sig-paren">(</span><span class="optional">[</span><em>$name</em><span class="optional">[</span>, <em>$filter = null</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#getHeader" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$name</strong> (<em>string</em>) – The name of the header you want to retrieve the value of.</li>
+<li><strong>$filter</strong> (<em>int</em>) – The type of filter to apply. A list of filters can be found <a class="reference external" href="https://www.php.net/manual/en/filter.filters.php">here</a>.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The current value of the header. If the header has multiple values, they will be returned as an array.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string|array|null</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">The current value of the header. If the header has multiple values, they will be returned as an array.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string|array|null</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>Allows you to retrieve the current value of a single message header. <code class="docutils literal notranslate"><span class="pre">$name</span></code> is the case-insensitive header name.
 While the header is converted internally as described above, you can access the header with any type of case:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// These are all the same:</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// These are all the same:</span>
 <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getHeader</span><span class="p">(</span><span class="s1">&#39;HOST&#39;</span><span class="p">);</span>
 <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getHeader</span><span class="p">(</span><span class="s1">&#39;Host&#39;</span><span class="p">);</span>
 <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getHeader</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">);</span>
@@ -462,7 +479,7 @@ While the header is converted internally as described above, you can access the 
 </div>
 <p>If the header has multiple values, the values will return as an array of values. You can use the <code class="docutils literal notranslate"><span class="pre">headerLine()</span></code>
 method to retrieve the values as a string:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getHeader</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getHeader</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">);</span>
 
 <span class="c1">// Outputs something like:</span>
 <span class="p">[</span>
@@ -472,30 +489,34 @@ method to retrieve the values as a string:</p>
 </pre></div>
 </div>
 <p>You can filter the header by passing a filter value in as the second parameter:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getHeader</span><span class="p">(</span><span class="s1">&#39;Document-URI&#39;</span><span class="p">,</span> <span class="nx">FILTER_SANITIZE_URL</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getHeader</span><span class="p">(</span><span class="s1">&#39;Document-URI&#39;</span><span class="p">,</span> <span class="nx">FILTER_SANITIZE_URL</span><span class="p">);</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="headerLine">
-<code class="sig-name descname">headerLine</code><span class="sig-paren">(</span><em class="sig-param">$name</em><span class="sig-paren">)</span><a class="headerlink" href="#headerLine" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$name</strong> (<em>string</em>) – The name of the header to retrieve.</p></li>
+<code class="descname">headerLine</code><span class="sig-paren">(</span><em>$name</em><span class="sig-paren">)</span><a class="headerlink" href="#headerLine" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$name</strong> (<em>string</em>) – The name of the header to retrieve.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A string representing the header value.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">A string representing the header value.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>Returns the value(s) of the header as a string. This method allows you to easily get a string representation
 of the header values when the header has multiple values. The values are appropriately joined:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">headerLine</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">headerLine</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">);</span>
 
 <span class="c1">// Outputs:</span>
 <span class="nx">en</span><span class="p">,</span> <span class="nx">en</span><span class="o">-</span><span class="nx">US</span>
@@ -505,133 +526,155 @@ of the header values when the header has multiple values. The values are appropr
 
 <dl class="method">
 <dt>
-<code class="sig-name descname">setHeader</code><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param">$name</em><span class="optional">[</span>, <em class="sig-param">$value</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$name</strong> (<em>string</em>) – The name of the header to set the value for.</p></li>
-<li><p><strong>$value</strong> (<em>mixed</em>) – The value to set the header to.</p></li>
+<code class="descname">setHeader</code><span class="sig-paren">(</span><span class="optional">[</span><em>$name</em><span class="optional">[</span>, <em>$value</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$name</strong> (<em>string</em>) – The name of the header to set the value for.</li>
+<li><strong>$value</strong> (<em>mixed</em>) – The value to set the header to.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The current message instance</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>CodeIgniter\HTTP\Message</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">The current message instance</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniter\HTTP\Message</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>Sets the value of a single header. <code class="docutils literal notranslate"><span class="pre">$name</span></code> is the case-insensitive name of the header. If the header
 doesn’t already exist in the collection, it will be created. The <code class="docutils literal notranslate"><span class="pre">$value</span></code> can be either a string
 or an array of strings:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">setHeader</span><span class="p">(</span><span class="s1">&#39;Host&#39;</span><span class="p">,</span> <span class="s1">&#39;codeigniter.com&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">setHeader</span><span class="p">(</span><span class="s1">&#39;Host&#39;</span><span class="p">,</span> <span class="s1">&#39;codeigniter.com&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="removeHeader">
-<code class="sig-name descname">removeHeader</code><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param">$name</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#removeHeader" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$name</strong> (<em>string</em>) – The name of the header to remove.</p></li>
+<code class="descname">removeHeader</code><span class="sig-paren">(</span><span class="optional">[</span><em>$name</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#removeHeader" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$name</strong> (<em>string</em>) – The name of the header to remove.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The current message instance</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>CodeIgniter\HTTP\Message</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">The current message instance</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniter\HTTP\Message</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>Removes the header from the Message. <code class="docutils literal notranslate"><span class="pre">$name</span></code> is the case-insensitive name of the header:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="s1">&#39;Host&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="s1">&#39;Host&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="appendHeader">
-<code class="sig-name descname">appendHeader</code><span class="sig-paren">(</span><em class="sig-param">[$name[, $value]])</em><span class="sig-paren">)</span><a class="headerlink" href="#appendHeader" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$name</strong> (<em>string</em>) – The name of the header to modify</p></li>
-<li><p><strong>$value</strong> (<em>mixed</em>) – The value to add to the header.</p></li>
+<code class="descname">appendHeader</code><span class="sig-paren">(</span><em>[$name[, $value]])</em><span class="sig-paren">)</span><a class="headerlink" href="#appendHeader" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$name</strong> (<em>string</em>) – The name of the header to modify</li>
+<li><strong>$value</strong> (<em>mixed</em>) – The value to add to the header.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The current message instance</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>CodeIgniter\HTTP\Message</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">The current message instance</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniter\HTTP\Message</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>Adds a value to an existing header. The header must already be an array of values instead of a single string.
 If it is a string then a LogicException will be thrown.</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">appendHeader</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">,</span> <span class="s1">&#39;en-US; q=0.8&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">appendHeader</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">,</span> <span class="s1">&#39;en-US; q=0.8&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="protocolVersion">
-<code class="sig-name descname">protocolVersion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#protocolVersion" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The current HTTP protocol version</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>string</p>
-</dd>
-</dl>
+<code class="descname">protocolVersion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#protocolVersion" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">The current HTTP protocol version</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
 <p>Returns the message’s current HTTP protocol. If none has been set, will return <code class="docutils literal notranslate"><span class="pre">null</span></code>. Acceptable values
 are <code class="docutils literal notranslate"><span class="pre">1.0</span></code> and <code class="docutils literal notranslate"><span class="pre">1.1</span></code>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="setProtocolVersion">
-<code class="sig-name descname">setProtocolVersion</code><span class="sig-paren">(</span><em class="sig-param">$version</em><span class="sig-paren">)</span><a class="headerlink" href="#setProtocolVersion" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$version</strong> (<em>string</em>) – The HTTP protocol version</p></li>
+<code class="descname">setProtocolVersion</code><span class="sig-paren">(</span><em>$version</em><span class="sig-paren">)</span><a class="headerlink" href="#setProtocolVersion" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$version</strong> (<em>string</em>) – The HTTP protocol version</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The current message instance</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>CodeIgniter\HTTP\Message</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">The current message instance</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniter\HTTP\Message</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>Sets the HTTP protocol version this Message uses. Valid values are <code class="docutils literal notranslate"><span class="pre">1.0</span></code> or <code class="docutils literal notranslate"><span class="pre">1.1</span></code>:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">setProtocolVersion</span><span class="p">(</span><span class="s1">&#39;1.1&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">setProtocolVersion</span><span class="p">(</span><span class="s1">&#39;1.1&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="negotiateMedia">
-<code class="sig-name descname">negotiateMedia</code><span class="sig-paren">(</span><em class="sig-param">$supported</em><span class="optional">[</span>, <em class="sig-param">$strictMatch=false</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#negotiateMedia" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$supported</strong> (<em>array</em>) – An array of media types the application supports</p></li>
-<li><p><strong>$strictMatch</strong> (<em>bool</em>) – Whether it should force an exact match to happen.</p></li>
+<code class="descname">negotiateMedia</code><span class="sig-paren">(</span><em>$supported</em><span class="optional">[</span>, <em>$strictMatch=false</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#negotiateMedia" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$supported</strong> (<em>array</em>) – An array of media types the application supports</li>
+<li><strong>$strictMatch</strong> (<em>bool</em>) – Whether it should force an exact match to happen.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The supported media type that best matches what is requested.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">The supported media type that best matches what is requested.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>Parses the <code class="docutils literal notranslate"><span class="pre">Accept</span></code> header and compares with the application’s supported media types to determine
 the best match. Returns the appropriate media type. The first parameter is an array of application supported
 media types that should be compared against header values:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$supported</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$supported</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;image/png&#39;</span><span class="p">,</span>
         <span class="s1">&#39;image/jpg&#39;</span><span class="p">,</span>
         <span class="s1">&#39;image/gif&#39;</span>
@@ -645,7 +688,7 @@ values and the supported values, the first element of the array will be returned
 <p>Per the <a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-5.3">RFC</a> the match has the option of returning a
 default value, like this method does, or to return an empty string. If you need to have an exact match and
 would like an empty string returned instead, pass <code class="docutils literal notranslate"><span class="pre">true</span></code> as the second parameter:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// Returns empty string if no match.</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Returns empty string if no match.</span>
 <span class="nv">$imageType</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">negotiateMedia</span><span class="p">(</span><span class="nv">$supported</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -656,23 +699,27 @@ For more details, please read the <a class="reference external" href="https://to
 
 <dl class="method">
 <dt id="negotiateCharset">
-<code class="sig-name descname">negotiateCharset</code><span class="sig-paren">(</span><em class="sig-param">$supported</em><span class="sig-paren">)</span><a class="headerlink" href="#negotiateCharset" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$supported</strong> (<em>array</em>) – An array of character sets the application supports.</p></li>
+<code class="descname">negotiateCharset</code><span class="sig-paren">(</span><em>$supported</em><span class="sig-paren">)</span><a class="headerlink" href="#negotiateCharset" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$supported</strong> (<em>array</em>) – An array of character sets the application supports.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The supported character set that best matches what is required.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">The supported character set that best matches what is required.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>This is used identically to the <code class="docutils literal notranslate"><span class="pre">negotiateMedia()</span></code> method, except that it matches against the <code class="docutils literal notranslate"><span class="pre">Accept-Charset</span></code>
 header string:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$supported</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$supported</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;utf-8&#39;</span><span class="p">,</span>
         <span class="s1">&#39;iso-8895-9&#39;</span>
 <span class="p">];</span>
@@ -684,23 +731,27 @@ header string:</p>
 
 <dl class="method">
 <dt id="negotiateEncoding">
-<code class="sig-name descname">negotiateEncoding</code><span class="sig-paren">(</span><em class="sig-param">$supported</em><span class="sig-paren">)</span><a class="headerlink" href="#negotiateEncoding" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$supported</strong> (<em>array</em>) – An array of character encodings the application supports.</p></li>
+<code class="descname">negotiateEncoding</code><span class="sig-paren">(</span><em>$supported</em><span class="sig-paren">)</span><a class="headerlink" href="#negotiateEncoding" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$supported</strong> (<em>array</em>) – An array of character encodings the application supports.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The supported character set that best matches what is required.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">The supported character set that best matches what is required.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>Determines the best match between the application-supported values and the <code class="docutils literal notranslate"><span class="pre">Accept-Encoding</span></code> header value.
 If no match is found, will return the first element of the <code class="docutils literal notranslate"><span class="pre">$supported</span></code> array:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$supported</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$supported</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;gzip&#39;</span><span class="p">,</span>
         <span class="s1">&#39;compress&#39;</span>
 <span class="p">];</span>
@@ -711,23 +762,27 @@ If no match is found, will return the first element of the <code class="docutils
 
 <dl class="method">
 <dt id="negotiateLanguage">
-<code class="sig-name descname">negotiateLanguage</code><span class="sig-paren">(</span><em class="sig-param">$supported</em><span class="sig-paren">)</span><a class="headerlink" href="#negotiateLanguage" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$supported</strong> (<em>array</em>) – An array of languages the application supports.</p></li>
+<code class="descname">negotiateLanguage</code><span class="sig-paren">(</span><em>$supported</em><span class="sig-paren">)</span><a class="headerlink" href="#negotiateLanguage" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$supported</strong> (<em>array</em>) – An array of languages the application supports.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The supported language that best matches what is required.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">The supported language that best matches what is required.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>Determines the best match between the application-supported languages and the <code class="docutils literal notranslate"><span class="pre">Accept-Language</span></code> header value.
 If no match is found, will return the first element of the <code class="docutils literal notranslate"><span class="pre">$supported</span></code> array:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$supported</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$supported</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;en&#39;</span><span class="p">,</span>
         <span class="s1">&#39;fr&#39;</span><span class="p">,</span>
         <span class="s1">&#39;x-pig-latin&#39;</span>
@@ -764,9 +819,9 @@ If no match is found, will return the first element of the <code class="docutils
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

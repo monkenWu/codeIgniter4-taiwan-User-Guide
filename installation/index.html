@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>安裝指引 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>安裝指引 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="手動安裝" href="installing_manual.html" />
     <link rel="prev" title="PSR 規範" href="../intro/psr.html" /> 
 </head>
@@ -336,12 +338,12 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>安裝指引<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>安裝指引<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>CodeIgniter4可以通過多種方式安裝：手動安裝、 <a class="reference external" href="https://getcomposer.org">Composer</a>　安裝，或是使用　<a class="reference external" href="https://git-scm.com/">Git</a>　安裝，選擇最適合你的方式。</p>
 <ul class="simple">
-<li><p>如果你希望以 CodeIgniter3 聞名的：「下載後直接運作」這種安裝方式，請選擇手動安裝。</p></li>
-<li><p>如果你的專案預期會使用多種不同的程式庫，並打算透過 PHP Composer 進行管理，那麼我們建議你使用 Composer 部屬 CodeIgniter4 環境。</p></li>
-<li><p>如果你想對 CodeIgniter4 做出貢獻，那麼 Git 安裝會是最適合你的方式。</p></li>
+<li>如果你希望以 CodeIgniter3 聞名的：「下載後直接運作」這種安裝方式，請選擇手動安裝。</li>
+<li>如果你的專案預期會使用多種不同的程式庫，並打算透過 PHP Composer 進行管理，那麼我們建議你使用 Composer 部屬 CodeIgniter4 環境。</li>
+<li>如果你想對 CodeIgniter4 做出貢獻，那麼 Git 安裝會是最適合你的方式。</li>
 </ul>
 <div class="toctree-wrapper compound">
 <ul>
@@ -359,8 +361,8 @@
 </div>
 <p>不論你使用哪一種安裝方式部屬 CodeIgniter4 ，你都可以線上閱讀 <a class="reference external" href="https://monkenwu.github.io/codeIgniter4-taiwan-User-Guide/">中文使用手冊</a> 。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>在使用 CodeIgniter 4 之前，請確定你所運行的環境符合我們的 <a class="reference internal" href="../intro/requirements.html"><span class="doc">系統需求</span></a> ，特別是最低 PHP 版本以及啟用對應的 PHP 擴充模組。比如說：在 <code class="docutils literal notranslate"><span class="pre">php.ini</span></code> 中取消掉 curl 和 intl 的註解才能啟用這些擴充模組。</p>
+<p class="first admonition-title">備註</p>
+<p class="last">在使用 CodeIgniter 4 之前，請確定你所運行的環境符合我們的 <a class="reference internal" href="../intro/requirements.html"><span class="doc">系統需求</span></a> ，特別是最低 PHP 版本以及啟用對應的 PHP 擴充模組。比如說：在 <code class="docutils literal notranslate"><span class="pre">php.ini</span></code> 中取消掉 curl 和 intl 的註解才能啟用這些擴充模組。</p>
 </div>
 </div>
 
@@ -384,9 +386,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

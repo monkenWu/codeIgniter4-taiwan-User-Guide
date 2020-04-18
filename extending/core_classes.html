@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Creating Core System Classes &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>Creating Core System Classes &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Replacing Common Functions" href="common.html" />
     <link rel="prev" title="Extending CodeIgniter" href="index.html" /> 
 </head>
@@ -338,52 +340,52 @@
            <div itemprop="articleBody">
             
   <div class="section" id="creating-core-system-classes">
-<h1>Creating Core System Classes<a class="headerlink" href="#creating-core-system-classes" title="Permalink to this headline">¶</a></h1>
+<h1>Creating Core System Classes<a class="headerlink" href="#creating-core-system-classes" title="本標題的永久連結">¶</a></h1>
 <p>Every time CodeIgniter runs there are several base classes that are initialized automatically as part of the core
 framework. It is possible, however, to swap any of the core system classes with your own version or even just extend
 the core versions.</p>
 <p><strong>Most users will never have any need to do this, but the option to replace or extend them does exist for those
 who would like to significantly alter the CodeIgniter core.</strong></p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Messing with a core system class has a lot of implications, so make sure you know what you are doing before
+<p class="first admonition-title">備註</p>
+<p class="last">Messing with a core system class has a lot of implications, so make sure you know what you are doing before
 attempting it.</p>
 </div>
 <div class="section" id="system-class-list">
-<h2>System Class List<a class="headerlink" href="#system-class-list" title="Permalink to this headline">¶</a></h2>
+<h2>System Class List<a class="headerlink" href="#system-class-list" title="本標題的永久連結">¶</a></h2>
 <p>The following is a list of the core system files that are invoked every time CodeIgniter runs:</p>
 <ul class="simple">
-<li><p>Config\Services</p></li>
-<li><p>CodeIgniter\Autoloader\Autoloader</p></li>
-<li><p>CodeIgniter\Config\DotEnv</p></li>
-<li><p>CodeIgniter\Controller</p></li>
-<li><p>CodeIgniter\Debug\Exceptions</p></li>
-<li><p>CodeIgniter\Debug\Timer</p></li>
-<li><p>CodeIgniter\Events\Events</p></li>
-<li><p>CodeIgniter\HTTP\CLIRequest (if launched from command line only)</p></li>
-<li><p>CodeIgniter\HTTP\IncomingRequest (if launched over HTTP)</p></li>
-<li><p>CodeIgniter\HTTP\Request</p></li>
-<li><p>CodeIgniter\HTTP\Response</p></li>
-<li><p>CodeIgniter\HTTP\Message</p></li>
-<li><p>CodeIgniter\HTTP\URI</p></li>
-<li><p>CodeIgniter\Log\Logger</p></li>
-<li><p>CodeIgniter\Log\Handlers\BaseHandler</p></li>
-<li><p>CodeIgniter\Log\Handlers\FileHandler</p></li>
-<li><p>CodeIgniter\Router\RouteCollection</p></li>
-<li><p>CodeIgniter\Router\Router</p></li>
-<li><p>CodeIgniter\Security\Security</p></li>
-<li><p>CodeIgniter\View\View</p></li>
-<li><p>CodeIgniter\View\Escaper</p></li>
+<li>Config\Services</li>
+<li>CodeIgniter\Autoloader\Autoloader</li>
+<li>CodeIgniter\Config\DotEnv</li>
+<li>CodeIgniter\Controller</li>
+<li>CodeIgniter\Debug\Exceptions</li>
+<li>CodeIgniter\Debug\Timer</li>
+<li>CodeIgniter\Events\Events</li>
+<li>CodeIgniter\HTTP\CLIRequest (if launched from command line only)</li>
+<li>CodeIgniter\HTTP\IncomingRequest (if launched over HTTP)</li>
+<li>CodeIgniter\HTTP\Request</li>
+<li>CodeIgniter\HTTP\Response</li>
+<li>CodeIgniter\HTTP\Message</li>
+<li>CodeIgniter\HTTP\URI</li>
+<li>CodeIgniter\Log\Logger</li>
+<li>CodeIgniter\Log\Handlers\BaseHandler</li>
+<li>CodeIgniter\Log\Handlers\FileHandler</li>
+<li>CodeIgniter\Router\RouteCollection</li>
+<li>CodeIgniter\Router\Router</li>
+<li>CodeIgniter\Security\Security</li>
+<li>CodeIgniter\View\View</li>
+<li>CodeIgniter\View\Escaper</li>
 </ul>
 </div>
 <div class="section" id="replacing-core-classes">
-<h2>Replacing Core Classes<a class="headerlink" href="#replacing-core-classes" title="Permalink to this headline">¶</a></h2>
+<h2>Replacing Core Classes<a class="headerlink" href="#replacing-core-classes" title="本標題的永久連結">¶</a></h2>
 <p>To use one of your own system classes instead of a default one, ensure that the <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">Autoloader</span></a>
 can find your class, that your new class extends the appropriate interface, and modify the appropriate
 <a class="reference internal" href="../concepts/services.html"><span class="doc">Service</span></a> to load your class in place of the core class.</p>
 <p>For example, if you have a new <code class="docutils literal notranslate"><span class="pre">App\Libraries\RouteCollection</span></code> class that you would like to use in place of
 the core system class, you would create your class like this:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Router\RouteCollectionInterface</span><span class="p">;</span>
 
@@ -394,7 +396,7 @@ the core system class, you would create your class like this:</p>
 </pre></div>
 </div>
 <p>Then  you would modify the <code class="docutils literal notranslate"><span class="pre">routes</span></code> service to load your class instead:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">routes</span><span class="p">(</span><span class="nx">bool</span> <span class="nv">$getShared</span> <span class="o">=</span> <span class="k">true</span><span class="p">)</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">routes</span><span class="p">(</span><span class="nx">bool</span> <span class="nv">$getShared</span> <span class="o">=</span> <span class="k">true</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$getShared</span><span class="p">)</span>
         <span class="p">{</span>
@@ -407,15 +409,15 @@ the core system class, you would create your class like this:</p>
 </div>
 </div>
 <div class="section" id="extending-core-classes">
-<h2>Extending Core Classes<a class="headerlink" href="#extending-core-classes" title="Permalink to this headline">¶</a></h2>
+<h2>Extending Core Classes<a class="headerlink" href="#extending-core-classes" title="本標題的永久連結">¶</a></h2>
 <p>If all you need to is add some functionality to an existing library - perhaps add a method or two - then it’s overkill
 to recreate the entire library. In this case, it’s better to simply extend the class. Extending the class is nearly
 identical to replacing a class with one exception:</p>
 <ul class="simple">
-<li><p>The class declaration must extend the parent class.</p></li>
+<li>The class declaration must extend the parent class.</li>
 </ul>
 <p>For example, to extend the native RouteCollection class, you would declare your class with:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Router\RouteCollection</span><span class="p">;</span>
 
@@ -426,11 +428,11 @@ identical to replacing a class with one exception:</p>
 </pre></div>
 </div>
 <p>If you need to use a constructor in your class make sure you extend the parent constructor:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">CodeIgniter\Router\RouteCollection</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Router\RouteCollection</span> <span class="k">as</span> <span class="nx">BaseRouteCollection</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">RouteCollection</span> <span class="k">extends</span> <span class="nx">RouteCollection</span>
+<span class="k">class</span> <span class="nc">RouteCollection</span> <span class="k">extends</span> <span class="nx">BaseRouteCollection</span>
 <span class="p">{</span>
      <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
      <span class="p">{</span>
@@ -464,9 +466,9 @@ instead of the native ones (this is known as “method overriding”). This allo
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

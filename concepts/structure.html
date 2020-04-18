@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>應用程式結構 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>應用程式結構 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="模型、視圖與控制器" href="mvc.html" />
     <link rel="prev" title="CodeIgniter4 概觀" href="index.html" /> 
 </head>
@@ -338,15 +340,15 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>應用程式結構<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>應用程式結構<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>為了可以充分的利用 CodeIgniter，你需要了解應用程式的結構，在預設的情況下，你可以為了滿足你的應用程式的需求而去更改內容。</p>
 <div class="section" id="id2">
-<h2>預設資料夾<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>預設資料夾<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <p>新安裝的應用程式中共有六個資料夾：<code class="docutils literal notranslate"><span class="pre">/app</span></code>，<code class="docutils literal notranslate"><span class="pre">/system</span></code>，<code class="docutils literal notranslate"><span class="pre">/public</span></code>，
 <code class="docutils literal notranslate"><span class="pre">/writable</span></code>，<code class="docutils literal notranslate"><span class="pre">/tests</span></code> 也可能會有 <code class="docutils literal notranslate"><span class="pre">/docs</span></code> 。
 每一個資料夾都扮演著非常重要的角色。</p>
 <div class="section" id="app">
-<h3>app<a class="headerlink" href="#app" title="Permalink to this headline">¶</a></h3>
+<h3>app<a class="headerlink" href="#app" title="本標題的永久連結">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">app</span></code> 資料夾儲存著你所有應用程式的代碼。它擁有一個預設的目錄結構，適用於許多的應用程式。以下的資料夾構成基本內容:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/app
         /Config         儲存設定檔案
@@ -364,35 +366,35 @@
 <p>因為 <code class="docutils literal notranslate"><span class="pre">app</span></code> 資料夾已經是一個命名空間， 因此你可以任意修改此目錄的結構以滿足你應用程式的需要。例如，你可能決定開始使用存儲庫模式和實體模型來處理資料。在這種情況下，你可以將 <code class="docutils literal notranslate"><span class="pre">Models</span></code> 資料夾重新命名成
 <code class="docutils literal notranslate"><span class="pre">Repositories</span></code> 然後新增一個 <code class="docutils literal notranslate"><span class="pre">Entities</span></code> 資料夾。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>如果你重新命名了 <code class="docutils literal notranslate"><span class="pre">Controllers</span></code> 資料夾，你會因此無法自動配對至控制器，你必須自行在所有的路由檔案中定義路由。</p>
+<p class="first admonition-title">備註</p>
+<p class="last">如果你重新命名了 <code class="docutils literal notranslate"><span class="pre">Controllers</span></code> 資料夾，你會因此無法自動配對至控制器，你必須自行在所有的路由檔案中定義路由。</p>
 </div>
 <p>此資料夾中的所有檔案都位於 <code class="docutils literal notranslate"><span class="pre">App</span></code> 命名空間，所以你可以在 <strong>app/Config/Constants.php</strong> 中去任意更改。</p>
 </div>
 <div class="section" id="system">
-<h3>system<a class="headerlink" href="#system" title="Permalink to this headline">¶</a></h3>
+<h3>system<a class="headerlink" href="#system" title="本標題的永久連結">¶</a></h3>
 <p>這個資料夾擁有構成框架的檔案本身。 雖然你在使用應用程式資料夾方面具有很大的靈活性，但系統資料夾中的檔案永遠不應該被修改。相反的，你應該擴充類別或創建新的類別，以提供所需的相應功能。</p>
 <p>這個資料夾中的所有檔案，都位於 <code class="docutils literal notranslate"><span class="pre">CodeIgniter</span></code> 命名空間下。</p>
 </div>
 <div class="section" id="public">
-<h3>public<a class="headerlink" href="#public" title="Permalink to this headline">¶</a></h3>
+<h3>public<a class="headerlink" href="#public" title="本標題的永久連結">¶</a></h3>
 <p><strong>public</strong> 資料夾擁有你的 web 應用中，可以被瀏覽器訪問的部分，這可防止你的原始碼被直接訪問。它包含了主要的 <strong>.htaccess</strong> 檔案、<strong>index.php</strong> 和任何你加入應用程式的資源，例如 CSS 、 javascript 或是圖片。</p>
 <p>這個資料夾代表了你的網站的「web 根目錄」，你的 web 伺服器將會被設定導向此處。</p>
 </div>
 <div class="section" id="writable">
-<h3>writable<a class="headerlink" href="#writable" title="Permalink to this headline">¶</a></h3>
+<h3>writable<a class="headerlink" href="#writable" title="本標題的永久連結">¶</a></h3>
 <p>這個資料夾擁有在整個應用程式運行中可能需要被寫入的所有資料夾。包括用於儲存快取檔案、日誌和任何可能來自用戶發送資料的資料夾。你可以在此處添加應用程式需要寫入的任何其他資料夾。作為一個額外確保安全的手段，這允許你可以保持其他的主目錄為不可寫入的狀態。</p>
 </div>
 <div class="section" id="tests">
-<h3>tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h3>
+<h3>tests<a class="headerlink" href="#tests" title="本標題的永久連結">¶</a></h3>
 <p>此資料夾被設定用來儲存你的測試檔案。<code class="docutils literal notranslate"><span class="pre">_support</span></code> 資料夾包含 Mock 類別和其他在編寫測試時，各種可以使用的實用程式。這個資料夾不需要被提交到你的生產環境中。</p>
 </div>
 <div class="section" id="docs">
-<h3>docs<a class="headerlink" href="#docs" title="Permalink to this headline">¶</a></h3>
+<h3>docs<a class="headerlink" href="#docs" title="本標題的永久連結">¶</a></h3>
 <p>這個資料夾擁有一份 CodeIgniter4 使用手冊的本地副本。</p>
 </div>
 <div class="section" id="modifying-directory-locations">
-<h3>Modifying Directory Locations<a class="headerlink" href="#modifying-directory-locations" title="Permalink to this headline">¶</a></h3>
+<h3>Modifying Directory Locations<a class="headerlink" href="#modifying-directory-locations" title="本標題的永久連結">¶</a></h3>
 <p>如果你需要重新設定任何主資料夾的位置，你可以在 <code class="docutils literal notranslate"><span class="pre">app/Config/Paths</span></code> 中修改設定。</p>
 <p>請閱讀 <a class="reference external" href="../general/managing_apps.html">管理你的應用程式</a></p>
 </div>
@@ -419,9 +421,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

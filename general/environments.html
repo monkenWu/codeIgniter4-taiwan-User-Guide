@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Handling Multiple Environments &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>Handling Multiple Environments &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Controllers and Routing" href="../incoming/index.html" />
     <link rel="prev" title="Managing your Applications" href="managing_apps.html" /> 
 </head>
@@ -338,27 +340,27 @@
            <div itemprop="articleBody">
             
   <div class="section" id="handling-multiple-environments">
-<h1>Handling Multiple Environments<a class="headerlink" href="#handling-multiple-environments" title="Permalink to this headline">¶</a></h1>
+<h1>Handling Multiple Environments<a class="headerlink" href="#handling-multiple-environments" title="本標題的永久連結">¶</a></h1>
 <p>Developers often desire different system behavior depending on whether
 an application is running in a development or production environment.
 For example, verbose error output is something that would be useful
 while developing an application, but it may also pose a security issue
-when “live”. In development environments, you might want additional
+when 「live」. In development environments, you might want additional
 tools loaded that you don’t in production environments, etc.</p>
 <div class="section" id="the-environment-constant">
-<h2>The ENVIRONMENT Constant<a class="headerlink" href="#the-environment-constant" title="Permalink to this headline">¶</a></h2>
+<h2>The ENVIRONMENT Constant<a class="headerlink" href="#the-environment-constant" title="本標題的永久連結">¶</a></h2>
 <p>By default, CodeIgniter comes with the environment constant set to use
 the value provided in <code class="docutils literal notranslate"><span class="pre">$_SERVER['CI_ENVIRONMENT']</span></code>, otherwise defaulting to
-‘production’. This can be set in several ways depending on your server setup.</p>
+『production』. This can be set in several ways depending on your server setup.</p>
 <div class="section" id="env">
-<h3>.env<a class="headerlink" href="#env" title="Permalink to this headline">¶</a></h3>
+<h3>.env<a class="headerlink" href="#env" title="本標題的永久連結">¶</a></h3>
 <p>The simplest method to set the variable is in your <a class="reference internal" href="configuration.html"><span class="doc">.env file</span></a>.</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">CI_ENVIRONMENT</span> <span class="o">=</span> <span class="s">development</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="apache">
-<h3>Apache<a class="headerlink" href="#apache" title="Permalink to this headline">¶</a></h3>
+<h3>Apache<a class="headerlink" href="#apache" title="本標題的永久連結">¶</a></h3>
 <p>This server variable can be set in your <code class="docutils literal notranslate"><span class="pre">.htaccess</span></code> file or Apache
 config using <a class="reference external" href="https://httpd.apache.org/docs/2.2/mod/mod_env.html#setenv">SetEnv</a>.</p>
 <div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">SetEnv</span> CI_ENVIRONMENT development
@@ -366,7 +368,7 @@ config using <a class="reference external" href="https://httpd.apache.org/docs/2
 </div>
 </div>
 <div class="section" id="nginx">
-<h3>nginx<a class="headerlink" href="#nginx" title="Permalink to this headline">¶</a></h3>
+<h3>nginx<a class="headerlink" href="#nginx" title="本標題的永久連結">¶</a></h3>
 <p>Under nginx, you must pass the environment variable through the <code class="docutils literal notranslate"><span class="pre">fastcgi_params</span></code>
 in order for it to show up under the <cite>$_SERVER</cite> variable. This allows it to work on the
 virtual-host level, instead of using <cite>env</cite> to set it for the entire server, though that
@@ -392,7 +394,7 @@ section), you may use this constant in your own development to
 differentiate between which environment you are running in.</p>
 </div>
 <div class="section" id="boot-files">
-<h3>Boot Files<a class="headerlink" href="#boot-files" title="Permalink to this headline">¶</a></h3>
+<h3>Boot Files<a class="headerlink" href="#boot-files" title="本標題的永久連結">¶</a></h3>
 <p>CodeIgniter requires that a PHP script matching the environment’s name is located
 under <strong>APPPATH/Config/Boot</strong>. These files can contain any customizations that
 you would like to make for your environment, whether it’s updating the error display
@@ -400,27 +402,27 @@ settings, loading additional developer tools, or anything else. These are
 automatically loaded by the system. The following files are already created in
 a fresh install:</p>
 <ul class="simple">
-<li><p>development.php</p></li>
-<li><p>production.php</p></li>
-<li><p>testing.php</p></li>
+<li>development.php</li>
+<li>production.php</li>
+<li>testing.php</li>
 </ul>
 </div>
 </div>
 <div class="section" id="effects-on-default-framework-behavior">
-<h2>Effects On Default Framework Behavior<a class="headerlink" href="#effects-on-default-framework-behavior" title="Permalink to this headline">¶</a></h2>
+<h2>Effects On Default Framework Behavior<a class="headerlink" href="#effects-on-default-framework-behavior" title="本標題的永久連結">¶</a></h2>
 <p>There are some places in the CodeIgniter system where the ENVIRONMENT
 constant is used. This section describes how default framework behavior
 is affected.</p>
 <div class="section" id="error-reporting">
-<h3>Error Reporting<a class="headerlink" href="#error-reporting" title="Permalink to this headline">¶</a></h3>
-<p>Setting the ENVIRONMENT constant to a value of ‘development’ will cause
+<h3>Error Reporting<a class="headerlink" href="#error-reporting" title="本標題的永久連結">¶</a></h3>
+<p>Setting the ENVIRONMENT constant to a value of 『development』 will cause
 all PHP errors to be rendered to the browser when they occur.
-Conversely, setting the constant to ‘production’ will disable all error
+Conversely, setting the constant to 『production』 will disable all error
 output. Disabling error reporting in production is a
 <a class="reference internal" href="../concepts/security.html"><span class="doc">good security practice</span></a>.</p>
 </div>
 <div class="section" id="configuration-files">
-<h3>Configuration Files<a class="headerlink" href="#configuration-files" title="Permalink to this headline">¶</a></h3>
+<h3>Configuration Files<a class="headerlink" href="#configuration-files" title="本標題的永久連結">¶</a></h3>
 <p>Optionally, you can have CodeIgniter load environment-specific
 configuration files. This may be useful for managing things like
 differing API keys across multiple environments. This is described in
@@ -450,9 +452,9 @@ more detail in the Handling Different Environments section of the
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

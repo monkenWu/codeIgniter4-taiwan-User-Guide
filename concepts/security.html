@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>安全指南 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>安全指南 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="一般主題" href="../general/index.html" />
     <link rel="prev" title="處裡 HTTP 請求" href="http.html" /> 
 </head>
@@ -338,191 +340,191 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>安全指南<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>安全指南<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>我們非常重視安全性，CodeIgniter 包含許多功能和技術去加強安全實踐，也能使你輕鬆不少。</p>
 <p>我們重視 <a class="reference external" href="https://www.owasp.org">開放 Web 應用程式安全專案（OWASP）</a> ，並盡可能的遵循他們的建議。</p>
 <p>以下為 Web 應用程式的主要漏洞，來自 <a class="reference external" href="https://www.owasp.org/index.php/OWASP_Top_Ten_Cheat_Sheet">OWASP 十大備忘錄</a>。對於每個漏洞，我們會簡單的敘述、提供OWASP 的建議，然後利用規定 CodeIgniter 的實踐來解決這個問題。</p>
 <div class="section" id="a1">
-<h2>A1 注入攻擊<a class="headerlink" href="#a1" title="Permalink to this headline">¶</a></h2>
+<h2>A1 注入攻擊<a class="headerlink" href="#a1" title="本標題的永久連結">¶</a></h2>
 <p>注入攻擊是在從使用者端到應用程式的輸入資料中，插入不當的資料。攻擊的手段包括 SQL、XML、ORM、代碼和緩衝區溢位。</p>
 <div class="section" id="id2">
-<h3>OWASP 建議<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>OWASP 建議<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p>演示：規定輸入的資料類型、字元集和地區</p></li>
-<li><p>提交：驗證欄位並提供回饋</p></li>
-<li><p>控制器：將輸入內容消毒，使用正確的字元集進行正輸入驗證</p></li>
-<li><p>模型：參數化查詢</p></li>
+<li>演示：規定輸入的資料類型、字元集和地區</li>
+<li>提交：驗證欄位並提供回饋</li>
+<li>控制器：將輸入內容消毒，使用正確的字元集進行正輸入驗證</li>
+<li>模型：參數化查詢</li>
 </ul>
 </div>
 <div class="section" id="codeigniter">
-<h3>CodeIgniter 實踐<a class="headerlink" href="#codeigniter" title="Permalink to this headline">¶</a></h3>
+<h3>CodeIgniter 實踐<a class="headerlink" href="#codeigniter" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供對輸入欄位的過濾和內容的元資料</p></li>
-<li><p>表單驗證函式庫</p></li>
+<li><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供對輸入欄位的過濾和內容的元資料</li>
+<li>表單驗證函式庫</li>
 </ul>
 </div>
 </div>
 <div class="section" id="a2-session">
-<h2>A2 身分驗證不足以及 session 管理不當<a class="headerlink" href="#a2-session" title="Permalink to this headline">¶</a></h2>
+<h2>A2 身分驗證不足以及 session 管理不當<a class="headerlink" href="#a2-session" title="本標題的永久連結">¶</a></h2>
 <p>身份驗證不足或 session 管理不當都可能導致，使用者獲得超過他們身分的許可權。</p>
 <div class="section" id="id3">
-<h3>OWASP 建議<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>OWASP 建議<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p>演示：驗證使用者和身份；使用表單發送 CSRF token</p></li>
-<li><p>設計：僅使用內置 session 管理</p></li>
-<li><p>控制器：驗證使用者、身分、CSRF token</p></li>
-<li><p>模型：驗證身分</p></li>
-<li><p>提示：考慮使用請求調速器</p></li>
+<li>演示：驗證使用者和身份；使用表單發送 CSRF token</li>
+<li>設計：僅使用內置 session 管理</li>
+<li>控制器：驗證使用者、身分、CSRF token</li>
+<li>模型：驗證身分</li>
+<li>提示：考慮使用請求調速器</li>
 </ul>
 </div>
 <div class="section" id="id4">
-<h3>CodeIgniter 實踐<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3>CodeIgniter 實踐<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p><a class="reference external" href="../libraries/sessions.html">Session 函式庫</a></p></li>
-<li><p><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供 CSRF 驗證</p></li>
-<li><p>易於添加第三方的驗證功能</p></li>
+<li><a class="reference external" href="../libraries/sessions.html">Session 函式庫</a></li>
+<li><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供 CSRF 驗證</li>
+<li>易於添加第三方的驗證功能</li>
 </ul>
 </div>
 </div>
 <div class="section" id="a3-xss">
-<h2>A3 跨站腳本攻擊 (XSS)<a class="headerlink" href="#a3-xss" title="Permalink to this headline">¶</a></h2>
+<h2>A3 跨站腳本攻擊 (XSS)<a class="headerlink" href="#a3-xss" title="本標題的永久連結">¶</a></h2>
 <p>當對輸入的驗證不足時，使用者可以向網站添加惡意內容，影響其他使用者瀏覽網站。</p>
 <div class="section" id="id6">
-<h3>OWASP 建議<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h3>OWASP 建議<a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p>演示：將使用者資料編碼成單一內容，並限制輸入內容</p></li>
-<li><p>控制器：正輸入驗證</p></li>
-<li><p>提示：僅處理可信的資料；不在資料庫中儲存 HTML</p></li>
+<li>演示：將使用者資料編碼成單一內容，並限制輸入內容</li>
+<li>控制器：正輸入驗證</li>
+<li>提示：僅處理可信的資料；不在資料庫中儲存 HTML</li>
 </ul>
 </div>
 <div class="section" id="id7">
-<h3>CodeIgniter 實踐<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h3>CodeIgniter 實踐<a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p>esc 函數</p></li>
-<li><p>表單驗證函式庫</p></li>
+<li>esc 函數</li>
+<li>表單驗證函式庫</li>
 </ul>
 </div>
 </div>
 <div class="section" id="a4">
-<h2>A4 不安全的直接參考物件<a class="headerlink" href="#a4" title="Permalink to this headline">¶</a></h2>
+<h2>A4 不安全的直接參考物件<a class="headerlink" href="#a4" title="本標題的永久連結">¶</a></h2>
 <p>當應用程式根據使用者輸入的內容，直接存取物件時，會發生這個漏洞。由於此漏洞，攻擊者可以繞過授權並直接訪問系統中的資源，例如資料庫記錄或檔案。</p>
 <div class="section" id="id8">
-<h3>OWASP 建議<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h3>OWASP 建議<a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p>演示：不公開內部資料；使用隨機參考映射</p></li>
-<li><p>控制器：只從受信任的來源或隨機參考映射來獲取資料</p></li>
-<li><p>模型：在更新資料之前，先驗證使用者的身分</p></li>
+<li>演示：不公開內部資料；使用隨機參考映射</li>
+<li>控制器：只從受信任的來源或隨機參考映射來獲取資料</li>
+<li>模型：在更新資料之前，先驗證使用者的身分</li>
 </ul>
 </div>
 <div class="section" id="id9">
-<h3>CodeIgniter 實踐<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<h3>CodeIgniter 實踐<a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p>表單驗證函式庫</p></li>
-<li><p>易於添加第三方的驗證功能</p></li>
+<li>表單驗證函式庫</li>
+<li>易於添加第三方的驗證功能</li>
 </ul>
 </div>
 </div>
 <div class="section" id="a5">
-<h2>A5 錯誤的安全設定<a class="headerlink" href="#a5" title="Permalink to this headline">¶</a></h2>
+<h2>A5 錯誤的安全設定<a class="headerlink" href="#a5" title="本標題的永久連結">¶</a></h2>
 <p>不當的設定應用程式架構可能會導致錯誤，從而危及整個架構的安全性。</p>
 <div class="section" id="id10">
-<h3>OWASP 建議<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<h3>OWASP 建議<a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h3>
 <p>演示：強化 Web 和應用程式伺服器；使用嚴格的 HTTP 安全性傳輸
 控制器：強化 Web 和應用伺服器；保護你的 XML 堆疊
 模型：強化資料庫伺服器</p>
 </div>
 <div class="section" id="id11">
-<h3>CodeIgniter 實踐<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<h3>CodeIgniter 實踐<a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p>在 bootstrap 時進行合理的檢查</p></li>
+<li>在 bootstrap 時進行合理的檢查</li>
 </ul>
 </div>
 </div>
 <div class="section" id="a6">
-<h2>A6 暴露敏感的資料<a class="headerlink" href="#a6" title="Permalink to this headline">¶</a></h2>
+<h2>A6 暴露敏感的資料<a class="headerlink" href="#a6" title="本標題的永久連結">¶</a></h2>
 <p>敏感的資料通過網路傳輸時必須受到保護。例如使用者憑據和信用卡就屬於此類資料。根據經驗，如果資料儲存時就必須保護資料，則在傳輸過程中也必須保護資料。</p>
 <div class="section" id="id12">
-<h3>OWASP 建議<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<h3>OWASP 建議<a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h3>
 <p>演示：使用 TLS1.2；使用有強密碼和雜湊；不向瀏覽器發送金鑰或雜湊
 控制器：使用強密碼和雜湊
 模型：要求與伺服器通信時，進行強加密</p>
 </div>
 <div class="section" id="id13">
-<h3>CodeIgniter 實踐<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<h3>CodeIgniter 實踐<a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p>加密儲存 Session 金鑰</p></li>
+<li>加密儲存 Session 金鑰</li>
 </ul>
 </div>
 </div>
 <div class="section" id="a7">
-<h2>A7 缺少功能級存取控制<a class="headerlink" href="#a7" title="Permalink to this headline">¶</a></h2>
+<h2>A7 缺少功能級存取控制<a class="headerlink" href="#a7" title="本標題的永久連結">¶</a></h2>
 <p>敏感的資料通過網路傳輸時必須受到保護。例如使用者憑據和信用卡就屬於此類資料。根據經驗，如果資料儲存時就必須保護資料，則在傳輸過程中也必須保護資料。</p>
 <div class="section" id="id14">
-<h3>OWASP 建議<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<h3>OWASP 建議<a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p>演示：確保 Web 根內沒有非 Web 資料；驗證使用者和角色；發送 CSRF token</p></li>
-<li><p>控制器：驗證使用者和身分；驗證 CSRF token</p></li>
-<li><p>模型：驗證身分</p></li>
+<li>演示：確保 Web 根內沒有非 Web 資料；驗證使用者和角色；發送 CSRF token</li>
+<li>控制器：驗證使用者和身分；驗證 CSRF token</li>
+<li>模型：驗證身分</li>
 </ul>
 </div>
 <div class="section" id="id15">
-<h3>CodeIgniter 實踐<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<h3>CodeIgniter 實踐<a class="headerlink" href="#id15" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p>在應用程式和系統外部有公用資料夾。</p></li>
-<li><p><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供 CSRF 驗證</p></li>
+<li>在應用程式和系統外部有公用資料夾。</li>
+<li><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供 CSRF 驗證</li>
 </ul>
 </div>
 </div>
 <div class="section" id="a8-csrf">
-<h2>A8 跨網站請求偽造 (CSRF)<a class="headerlink" href="#a8-csrf" title="Permalink to this headline">¶</a></h2>
+<h2>A8 跨網站請求偽造 (CSRF)<a class="headerlink" href="#a8-csrf" title="本標題的永久連結">¶</a></h2>
 <p>CSRF 攻擊會迫使在 Web 應用程式中已經驗證身份的終端使用者，執行他們不想要的操作。</p>
 <div class="section" id="id17">
-<h3>OWASP 建議<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<h3>OWASP 建議<a class="headerlink" href="#id17" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p>演示：驗證使用者和身分；發送 CSRF 權杖</p></li>
-<li><p>控制器：驗證使用者和身分；驗證 CSRF 權杖</p></li>
-<li><p>模型：驗證身分</p></li>
+<li>演示：驗證使用者和身分；發送 CSRF 權杖</li>
+<li>控制器：驗證使用者和身分；驗證 CSRF 權杖</li>
+<li>模型：驗證身分</li>
 </ul>
 </div>
 <div class="section" id="id18">
-<h3>CodeIgniter 實踐<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<h3>CodeIgniter 實踐<a class="headerlink" href="#id18" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供 CSRF 驗證</p></li>
+<li><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供 CSRF 驗證</li>
 </ul>
 </div>
 </div>
 <div class="section" id="a9">
-<h2>A9 使用具有已知漏洞的元件<a class="headerlink" href="#a9" title="Permalink to this headline">¶</a></h2>
+<h2>A9 使用具有已知漏洞的元件<a class="headerlink" href="#a9" title="本標題的永久連結">¶</a></h2>
 <p>許多應用程式或函式庫都有已知的漏洞和攻擊策略，可以利用他們來獲得遠端的控制權或資料。</p>
 <div class="section" id="id20">
-<h3>OWASP 建議<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<h3>OWASP 建議<a class="headerlink" href="#id20" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p>避免使用這些元件</p></li>
+<li>避免使用這些元件</li>
 </ul>
 </div>
 <div class="section" id="id21">
-<h3>CodeIgniter 實踐<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<h3>CodeIgniter 實踐<a class="headerlink" href="#id21" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p>合作的第三方函式庫都需要經過審核</p></li>
+<li>合作的第三方函式庫都需要經過審核</li>
 </ul>
 </div>
 </div>
 <div class="section" id="a10">
-<h2>A10 未驗證的重定向和跳轉<a class="headerlink" href="#a10" title="Permalink to this headline">¶</a></h2>
+<h2>A10 未驗證的重定向和跳轉<a class="headerlink" href="#a10" title="本標題的永久連結">¶</a></h2>
 <p>錯誤的業務邏輯或被注入可操作的程式碼可能會不當的重定向使用者。</p>
 <div class="section" id="id22">
-<h3>OWASP 建議<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<h3>OWASP 建議<a class="headerlink" href="#id22" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p>演示：避免使用 URL 重定向；使用隨機間接參考</p></li>
-<li><p>控制器：避免使用 URL 重定向；使用隨機間接參考</p></li>
-<li><p>模型：驗證身分</p></li>
+<li>演示：避免使用 URL 重定向；使用隨機間接參考</li>
+<li>控制器：避免使用 URL 重定向；使用隨機間接參考</li>
+<li>模型：驗證身分</li>
 </ul>
 </div>
 <div class="section" id="id23">
-<h3>CodeIgniter 實踐<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<h3>CodeIgniter 實踐<a class="headerlink" href="#id23" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><p><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供相關功能</p></li>
-<li><p><a class="reference external" href="../libraries/sessions.html">Session 函式庫</a> 提供快閃記憶體資料</p></li>
+<li><a class="reference external" href="../incoming/incomingrequest.html">HTTP 函式庫</a> 提供相關功能</li>
+<li><a class="reference external" href="../libraries/sessions.html">Session 函式庫</a> 提供快閃記憶體資料</li>
 </ul>
 </div>
 </div>
@@ -548,9 +550,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

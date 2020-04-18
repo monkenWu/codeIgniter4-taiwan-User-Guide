@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>檔案系統輔助函數 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>檔案系統輔助函數 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="表單輔助函數" href="form_helper.html" />
     <link rel="prev" title="日期輔助函數" href="date_helper.html" /> 
 </head>
@@ -338,64 +340,68 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>檔案系統輔助函數<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>檔案系統輔助函數<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>檔案系統輔助函數檔案包含可以協助關於目錄工作的功能。</p>
-<div class="contents local topic" id="contents">
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><p><a class="reference internal" href="#loading-this-helper" id="id3">Loading this Helper</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id4">可用的功能：</a></p></li>
+<li><a class="reference internal" href="#loading-this-helper" id="id4">Loading this Helper</a></li>
+<li><a class="reference internal" href="#id3" id="id5">可用的功能：</a></li>
 </ul>
 </div>
 <div class="custom-index container"></div><div class="section" id="loading-this-helper">
-<h2><a class="toc-backref" href="#id3">Loading this Helper</a><a class="headerlink" href="#loading-this-helper" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Loading this Helper</a><a class="headerlink" href="#loading-this-helper" title="本標題的永久連結">¶</a></h2>
 <p>此輔助函數可以利用以下的程式碼載入：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;filesystem&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;filesystem&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id2">
-<h2><a class="toc-backref" href="#id4">可用的功能：</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id5">可用的功能：</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p>以下敘述的功能皆可用：</p>
 <dl class="function">
 <dt id="directory_map">
-<code class="sig-name descname">directory_map</code><span class="sig-paren">(</span><em class="sig-param">$source_dir</em><span class="optional">[</span>, <em class="sig-param">$directory_depth = 0</em><span class="optional">[</span>, <em class="sig-param">$hidden = FALSE</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#directory_map" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$source_dir</strong> (<em>string</em>) – 到來源目錄的路徑</p></li>
-<li><p><strong>$directory_depth</strong> (<em>int</em>) – 需要遍歷的目錄深度（0 = 完全遞迴，1 = 當前路徑，諸如此類）</p></li>
-<li><p><strong>$hidden</strong> (<em>bool</em>) – 是否包含隱藏目錄</p></li>
+<code class="descname">directory_map</code><span class="sig-paren">(</span><em>$source_dir</em><span class="optional">[</span>, <em>$directory_depth = 0</em><span class="optional">[</span>, <em>$hidden = FALSE</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#directory_map" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$source_dir</strong> (<em>string</em>) – 到來源目錄的路徑</li>
+<li><strong>$directory_depth</strong> (<em>int</em>) – 需要遍歷的目錄深度（0 = 完全遞迴，1 = 當前路徑，諸如此類）</li>
+<li><strong>$hidden</strong> (<em>bool</em>) – 是否包含隱藏目錄</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>一個陣列的資料</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>陣列</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">一個陣列的資料</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">陣列</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>範例:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$map</span> <span class="o">=</span> <span class="nx">directory_map</span><span class="p">(</span><span class="s1">&#39;./mydirectory/&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$map</span> <span class="o">=</span> <span class="nx">directory_map</span><span class="p">(</span><span class="s1">&#39;./mydirectory/&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>路徑幾乎永遠都與你主要的 index.php 檔案相關。</p>
+<p class="first admonition-title">備註</p>
+<p class="last">路徑幾乎永遠都與你主要的 index.php 檔案相關。</p>
 </div>
 <p>子資料夾也包含會被映射的檔案所包含的路徑。
 如果你希望能夠控制遞迴的深度，你可以利用第二個參數（integer）來達成。
 深度為一將只會映射出最頂端的路徑:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$map</span> <span class="o">=</span> <span class="nx">directory_map</span><span class="p">(</span><span class="s1">&#39;./mydirectory/&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$map</span> <span class="o">=</span> <span class="nx">directory_map</span><span class="p">(</span><span class="s1">&#39;./mydirectory/&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>在預設情況下，隱藏的檔案將不會被包含在回傳的陣列中。
 如果要複寫此行為，你可以設定第三個參數為 true (boolean):</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$map</span> <span class="o">=</span> <span class="nx">directory_map</span><span class="p">(</span><span class="s1">&#39;./mydirectory/&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$map</span> <span class="o">=</span> <span class="nx">directory_map</span><span class="p">(</span><span class="s1">&#39;./mydirectory/&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>每一個資料夾名稱會因為它所包含的資料被數值化而成為一個陣列索引。
 這裡是一個典型陣列的範例:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">Array</span> <span class="p">(</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">Array</span> <span class="p">(</span>
         <span class="p">[</span><span class="nx">libraries</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="k">Array</span>
                 <span class="p">(</span>
                         <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="nx">benchmark</span><span class="o">.</span><span class="nx">html</span>
@@ -427,25 +433,29 @@
 
 <dl class="function">
 <dt id="write_file">
-<code class="sig-name descname">write_file</code><span class="sig-paren">(</span><em class="sig-param">$path</em>, <em class="sig-param">$data</em><span class="optional">[</span>, <em class="sig-param">$mode = 'wb'</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#write_file" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$path</strong> (<em>string</em>) – 檔案路徑</p></li>
-<li><p><strong>$data</strong> (<em>string</em>) – 欲寫入檔案的資料</p></li>
-<li><p><strong>$mode</strong> (<em>string</em>) – <code class="docutils literal notranslate"><span class="pre">fopen()</span></code> 模式</p></li>
+<code class="descname">write_file</code><span class="sig-paren">(</span><em>$path</em>, <em>$data</em><span class="optional">[</span>, <em>$mode = 'wb'</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#write_file" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$path</strong> (<em>string</em>) – 檔案路徑</li>
+<li><strong>$data</strong> (<em>string</em>) – 欲寫入檔案的資料</li>
+<li><strong>$mode</strong> (<em>string</em>) – <code class="docutils literal notranslate"><span class="pre">fopen()</span></code> 模式</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>TRUE ：若寫入成功， FALSE ：避免出現錯誤</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE ：若寫入成功， FALSE ：避免出現錯誤</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>會將資料寫入路徑中指定的檔案。若是檔案不存在則該功能會新建該檔案。</p>
 <p>範例:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;Some file data&#39;</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;Some file data&#39;</span><span class="p">;</span>
 <span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nx">write_file</span><span class="p">(</span><span class="s1">&#39;./path/to/file.php&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">))</span>
 <span class="p">{</span>
         <span class="k">echo</span> <span class="s1">&#39;Unable to write the file&#39;</span><span class="p">;</span>
@@ -457,125 +467,141 @@
 </pre></div>
 </div>
 <p>你可以依照需求透過第三個參數以設定寫檔模式:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">write_file</span><span class="p">(</span><span class="s1">&#39;./path/to/file.php&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="s1">&#39;r+&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">write_file</span><span class="p">(</span><span class="s1">&#39;./path/to/file.php&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="s1">&#39;r+&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>預設的模式為「 wb 」。更多選項請見 <a class="reference external" href="https://www.php.net/manual/en/function.fopen.php">PHP 使用者導引</a> 。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>為了讓這個功能對一個檔案寫入資料，他的授權必須被設定為可寫入。
+<p class="first admonition-title">備註</p>
+<p class="last">為了讓這個功能對一個檔案寫入資料，他的授權必須被設定為可寫入。
 若是檔案不是已存在的檔案，那麼他所包含的路徑必須是可寫入的。</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>路徑與你的主要網址的 index.php 相關， <strong>並不是</strong> 你的 controller 或 view 檔案。CodeIgniter 使用的是前端的 controller 所以路徑永遠會與主要的網站 index 相關。</p>
+<p class="first admonition-title">備註</p>
+<p class="last">路徑與你的主要網址的 index.php 相關， <strong>並不是</strong> 你的 controller 或 view 檔案。CodeIgniter 使用的是前端的 controller 所以路徑永遠會與主要的網站 index 相關。</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>此函數在寫入檔案的時候會獲得一個獨特的檔案鎖。</p>
+<p class="first admonition-title">備註</p>
+<p class="last">此函數在寫入檔案的時候會獲得一個獨特的檔案鎖。</p>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="delete_files">
-<code class="sig-name descname">delete_files</code><span class="sig-paren">(</span><em class="sig-param">$path</em><span class="optional">[</span>, <em class="sig-param">$del_dir = FALSE</em><span class="optional">[</span>, <em class="sig-param">$htdocs = FALSE</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#delete_files" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$path</strong> (<em>string</em>) – 目標路徑</p></li>
-<li><p><strong>$del_dir</strong> (<em>bool</em>) – 是否同時刪除目錄</p></li>
-<li><p><strong>$htdocs</strong> (<em>bool</em>) – 是否跳過刪除 .htaccess 以及 index 頁面檔案。</p></li>
+<code class="descname">delete_files</code><span class="sig-paren">(</span><em>$path</em><span class="optional">[</span>, <em>$del_dir = FALSE</em><span class="optional">[</span>, <em>$htdocs = FALSE</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#delete_files" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$path</strong> (<em>string</em>) – 目標路徑</li>
+<li><strong>$del_dir</strong> (<em>bool</em>) – 是否同時刪除目錄</li>
+<li><strong>$htdocs</strong> (<em>bool</em>) – 是否跳過刪除 .htaccess 以及 index 頁面檔案。</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>TRUE ：為成功，FALSE ：避免出現錯誤</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE ：為成功，FALSE ：避免出現錯誤</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>刪除提供路徑中包含的全部檔案。</p>
 <p>範例:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">delete_files</span><span class="p">(</span><span class="s1">&#39;./path/to/directory/&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">delete_files</span><span class="p">(</span><span class="s1">&#39;./path/to/directory/&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>如果第二的參數被設定為 TRUE，任何包含在提供根路徑中的任何目錄也會同時被刪除。</p>
 <p>範例:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">delete_files</span><span class="p">(</span><span class="s1">&#39;./path/to/directory/&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">delete_files</span><span class="p">(</span><span class="s1">&#39;./path/to/directory/&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>為了能夠被刪除，該檔案必須為可寫入或是被系統擁有</p>
+<p class="first admonition-title">備註</p>
+<p class="last">為了能夠被刪除，該檔案必須為可寫入或是被系統擁有</p>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="get_filenames">
-<code class="sig-name descname">get_filenames</code><span class="sig-paren">(</span><em class="sig-param">$source_dir</em><span class="optional">[</span>, <em class="sig-param">$include_path = FALSE</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#get_filenames" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$source_dir</strong> (<em>string</em>) – 目標路徑</p></li>
-<li><p><strong>$include_path</strong> (<em>bool</em>) – 是否引入路徑為部分的檔案名稱</p></li>
+<code class="descname">get_filenames</code><span class="sig-paren">(</span><em>$source_dir</em><span class="optional">[</span>, <em>$include_path = FALSE</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#get_filenames" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$source_dir</strong> (<em>string</em>) – 目標路徑</li>
+<li><strong>$include_path</strong> (<em>bool</em>) – 是否引入路徑為部分的檔案名稱</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>一個陣列的檔案名稱</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>array</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">一個陣列的檔案名稱</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">array</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>以伺服器路徑作為輸入並回傳一個包含所有檔案名稱在內的陣列。透過設定第二個參數為 TRUE，這些檔案路徑可以依照需要加進檔案名稱</p>
 <p>範例:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$controllers</span> <span class="o">=</span> <span class="nx">get_filenames</span><span class="p">(</span><span class="nx">APPPATH</span><span class="o">.</span><span class="s1">&#39;controllers/&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$controllers</span> <span class="o">=</span> <span class="nx">get_filenames</span><span class="p">(</span><span class="nx">APPPATH</span><span class="o">.</span><span class="s1">&#39;controllers/&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="get_dir_file_info">
-<code class="sig-name descname">get_dir_file_info</code><span class="sig-paren">(</span><em class="sig-param">$source_dir</em>, <em class="sig-param">$top_level_only</em><span class="sig-paren">)</span><a class="headerlink" href="#get_dir_file_info" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$source_dir</strong> (<em>string</em>) – 目標路徑</p></li>
-<li><p><strong>$top_level_only</strong> (<em>bool</em>) – 是否僅鎖定特定路徑（不包含子目錄）</p></li>
+<code class="descname">get_dir_file_info</code><span class="sig-paren">(</span><em>$source_dir</em>, <em>$top_level_only</em><span class="sig-paren">)</span><a class="headerlink" href="#get_dir_file_info" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$source_dir</strong> (<em>string</em>) – 目標路徑</li>
+<li><strong>$top_level_only</strong> (<em>bool</em>) – 是否僅鎖定特定路徑（不包含子目錄）</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>一個包含提供路徑中內容資訊的陣列</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>array</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">一個包含提供路徑中內容資訊的陣列</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">array</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>讀取特定的路徑並建立一個包含檔案名、檔案大小、日期、以及授權的陣列。
 因為這可以是一個刻意的操作，如果您強迫將第二個參數設定為 FALSE，被包在特定路徑的子資料夾都僅為唯讀。</p>
 <p>範例:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$models_info</span> <span class="o">=</span> <span class="nx">get_dir_file_info</span><span class="p">(</span><span class="nx">APPPATH</span><span class="o">.</span><span class="s1">&#39;models/&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$models_info</span> <span class="o">=</span> <span class="nx">get_dir_file_info</span><span class="p">(</span><span class="nx">APPPATH</span><span class="o">.</span><span class="s1">&#39;models/&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="get_file_info">
-<code class="sig-name descname">get_file_info</code><span class="sig-paren">(</span><em class="sig-param">$file[, $returned_values = ['name', 'server_path', 'size', 'date']]</em><span class="sig-paren">)</span><a class="headerlink" href="#get_file_info" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$file</strong> (<em>string</em>) – 檔案路徑</p></li>
-<li><p><strong>$returned_values</strong> (<em>array|string</em>) – 由陣列或是由逗號隔開的字串來決定回傳何種種類的資訊</p></li>
+<code class="descname">get_file_info</code><span class="sig-paren">(</span><em>$file[, $returned_values = ['name', 'server_path', 'size', 'date']]</em><span class="sig-paren">)</span><a class="headerlink" href="#get_file_info" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$file</strong> (<em>string</em>) – 檔案路徑</li>
+<li><strong>$returned_values</strong> (<em>array|string</em>) – 由陣列或是由逗號隔開的字串來決定回傳何種種類的資訊</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>一個包含特定檔案資訊的陣列或是當失敗的時候回傳 FALSE。</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>array</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">一個包含特定檔案資訊的陣列或是當失敗的時候回傳 FALSE。</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">array</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>給定一個檔案與路徑，回傳（由你決定）該資料的 <em>名稱</em> ， <em>路徑</em> ， <em>檔案大小</em> 與 <em>修改日期</em> 等資訊
 第二個參數允許你明確的宣告你想要回傳甚麼資訊。</p>
 <p>有效的 <code class="docutils literal notranslate"><span class="pre">$returned_values</span></code> 選項為： <cite>名稱</cite>, <cite>檔案大小</cite>, <cite>日期</cite>, <cite>可讀取</cite>, <cite>可寫入</cite>,
@@ -584,69 +610,81 @@
 
 <dl class="function">
 <dt id="symbolic_permissions">
-<code class="sig-name descname">symbolic_permissions</code><span class="sig-paren">(</span><em class="sig-param">$perms</em><span class="sig-paren">)</span><a class="headerlink" href="#symbolic_permissions" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$perms</strong> (<em>int</em>) – 權限</p></li>
+<code class="descname">symbolic_permissions</code><span class="sig-paren">(</span><em>$perms</em><span class="sig-paren">)</span><a class="headerlink" href="#symbolic_permissions" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$perms</strong> (<em>int</em>) – 權限</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>符號表式的授權字串</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">符號表式的授權字串</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>拿取數值化的授權（例如被　<code class="docutils literal notranslate"><span class="pre">fileperms()</span></code> 回傳）並且回傳標準的標點符號的檔案權限</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">symbolic_permissions</span><span class="p">(</span><span class="nb">fileperms</span><span class="p">(</span><span class="s1">&#39;./index.php&#39;</span><span class="p">));</span>  <span class="c1">// -rw-r--r--</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">symbolic_permissions</span><span class="p">(</span><span class="nb">fileperms</span><span class="p">(</span><span class="s1">&#39;./index.php&#39;</span><span class="p">));</span>  <span class="c1">// -rw-r--r--</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="octal_permissions">
-<code class="sig-name descname">octal_permissions</code><span class="sig-paren">(</span><em class="sig-param">$perms</em><span class="sig-paren">)</span><a class="headerlink" href="#octal_permissions" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$perms</strong> (<em>int</em>) – 權限</p></li>
+<code class="descname">octal_permissions</code><span class="sig-paren">(</span><em>$perms</em><span class="sig-paren">)</span><a class="headerlink" href="#octal_permissions" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$perms</strong> (<em>int</em>) – 權限</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>八進位的授權字串</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">八進位的授權字串</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>獲取數值化的授權（例如被　<code class="docutils literal notranslate"><span class="pre">fileperms()</span></code> 回傳）並且回傳三位數的檔案授權八進位符號</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">octal_permissions</span><span class="p">(</span><span class="nb">fileperms</span><span class="p">(</span><span class="s1">&#39;./index.php&#39;</span><span class="p">));</span> <span class="c1">// 644</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">octal_permissions</span><span class="p">(</span><span class="nb">fileperms</span><span class="p">(</span><span class="s1">&#39;./index.php&#39;</span><span class="p">));</span> <span class="c1">// 644</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="set_realpath">
-<code class="sig-name descname">set_realpath</code><span class="sig-paren">(</span><em class="sig-param">$path</em><span class="optional">[</span>, <em class="sig-param">$check_existence = FALSE</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#set_realpath" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$path</strong> (<em>string</em>) – 路徑</p></li>
-<li><p><strong>$check_existence</strong> (<em>bool</em>) – 是否檢查路徑是否真的存在</p></li>
+<code class="descname">set_realpath</code><span class="sig-paren">(</span><em>$path</em><span class="optional">[</span>, <em>$check_existence = FALSE</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#set_realpath" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$path</strong> (<em>string</em>) – 路徑</li>
+<li><strong>$check_existence</strong> (<em>bool</em>) – 是否檢查路徑是否真的存在</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>一個絕對路徑</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">一個絕對路徑</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>這個功能會回傳一個沒有符號的連結或相關的路徑結構的伺服器路徑
 如果路徑不能被分析，自選的第二個參數將會引發一個錯誤。</p>
 <p>範例:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$file</span> <span class="o">=</span> <span class="s1">&#39;/etc/php5/apache2/php.ini&#39;</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$file</span> <span class="o">=</span> <span class="s1">&#39;/etc/php5/apache2/php.ini&#39;</span><span class="p">;</span>
 <span class="k">echo</span> <span class="nx">set_realpath</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span> <span class="c1">// 印出 &#39;/etc/php5/apache2/php.ini&#39;</span>
 
 <span class="nv">$non_existent_file</span> <span class="o">=</span> <span class="s1">&#39;/path/to/non-exist-file.txt&#39;</span><span class="p">;</span>
@@ -686,9 +724,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>建立新聞 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>建立新聞 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="結論" href="conclusion.html" />
     <link rel="prev" title="新聞頁面" href="news_section.html" /> 
 </head>
@@ -338,12 +340,12 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>建立新聞<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>建立新聞<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>現在，你已經知道如何使用 CodeIgniter 從資料庫中讀取資料，但尚未將任何資訊寫入到資料庫中。在本條目，你將擴充之前創建的新聞控制器與模型以完成此功能。</p>
 <div class="section" id="id2">
-<h2>創建表單<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>創建表單<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <p>你需要製作出一個表單，藉由表單的輸入才能將資料存入資料庫。這代表你需要製作一個包含兩個欄位的表單，一個欄位用於標題、一個欄位用於文章內容。你將從模型中的標題派生出這個 slug 。請在 <strong>app/Views/news/create.php</strong> 新建一個包含下列程式碼的視圖。</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;&lt;?=</span> <span class="nx">esc</span><span class="p">(</span><span class="nv">$title</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;&lt;?=</span> <span class="nx">esc</span><span class="p">(</span><span class="nv">$title</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
 
 <span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">\Config\Services</span><span class="o">::</span><span class="na">validation</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">listErrors</span><span class="p">();</span> <span class="cp">?&gt;</span>
 
@@ -362,7 +364,7 @@
 </div>
 <p>你可能會覺得 <code class="docutils literal notranslate"><span class="pre">\Config\Services::validation()-&gt;listErrors()</span></code> 這個函數看起來很陌生。它能用於表單驗證相關的錯誤報告。</p>
 <p>回到你的 <code class="docutils literal notranslate"><span class="pre">News</span></code> 控制器。你將在這裡執行：檢查表單是否已經提交、提交的資料是否通過驗證，這兩項操作。我們使用 <a class="reference internal" href="../libraries/validation.html"><span class="doc">表單驗證</span></a> 程式庫進行驗證。</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">()</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">);</span>
     <span class="nv">$model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NewsModel</span><span class="p">();</span>
@@ -394,15 +396,15 @@
 <p>繼續往下看，你可以看到一個條件式，檢查表單驗證是否成功運行。如果沒有成功，則顯示表單；；如果表單提交後，也通過了所有的規則，就會呼叫模型，把新聞的資料傳遞到模型中。這裡你會看到一個新的函數 url_title() （由 <a class="reference internal" href="../helpers/url_helper.html"><span class="doc">URL 輔助函數</span></a> 提供），它將你傳遞給它的字串使用破折號替代所有的空格，你便可以獲得一個漂亮的 slug ，這非常適合用於創建 URL 。</p>
 <p>在這之後，就會載入一個視圖來顯示成功訊息，新建一個 <strong>app/Views/news/success.php</strong> 檔案並且寫入一些成功訊息。</p>
 <p>你可簡單地這麼寫：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">News</span> <span class="nx">item</span> <span class="nx">created</span> <span class="nx">successfully</span><span class="o">.</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">News</span> <span class="nx">item</span> <span class="nx">created</span> <span class="nx">successfully</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id3">
-<h2>更新模型<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>更新模型<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p>完成了上述工作，剩下的就是將模型給設定好，讓資料可以被正確保存。 <code class="docutils literal notranslate"><span class="pre">save()</span></code> 方法將根據主鍵來判斷是否需要插入訊息，若是這一筆資料已存在便會執行更新。在本例中，我們並沒有傳遞 id 給它，所以它將會插入一筆新的紀錄在 <strong>news</strong> 表。</p>
 <p>但是，在默認的情形向，模型中的插入與更新方法並不會保存任何資料，因為它不知道那些欄位是可以被安全地更新。我們可以編輯模型，在 <code class="docutils literal notranslate"><span class="pre">$allowedFields</span></code> 屬性中宣告可更新地欄位列表。</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">NewsModel</span> <span class="k">extends</span> <span class="nx">Model</span>
@@ -416,9 +418,9 @@
 <p>這個新的屬性現在包含了允許被更新的欄位，注意到我們省略了 <code class="docutils literal notranslate"><span class="pre">id</span></code> 嗎？這是因為你幾乎不需要這樣做，它在資料庫中是一個自動遞增的欄位。這有助於防止 Mass assignment vulnerability 漏洞的發生。如果你的模型正在處理你的時間戳，那麼你也應該將那些時間戳排除在外。</p>
 </div>
 <div class="section" id="id4">
-<h2>路由<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>在你開始在你的 CodeIgniter 應用程式中添加新聞之前，你必須到 <strong>app/Config/Routes.php</strong> 這個設定檔添加額外的規則，這將可以確保 CodeIgniter 將 ‘create’ 視為一個可執行的方法，而不是新聞的 slug 。</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">match</span><span class="p">([</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">],</span> <span class="s1">&#39;news/create&#39;</span><span class="p">,</span> <span class="s1">&#39;News::create&#39;</span><span class="p">);</span>
+<h2>路由<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<p>在你開始在你的 CodeIgniter 應用程式中添加新聞之前，你必須到 <strong>app/Config/Routes.php</strong> 這個設定檔添加額外的規則，這將可以確保 CodeIgniter 將 『create』 視為一個可執行的方法，而不是新聞的 slug 。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">match</span><span class="p">([</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">],</span> <span class="s1">&#39;news/create&#39;</span><span class="p">,</span> <span class="s1">&#39;News::create&#39;</span><span class="p">);</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;news/(:segment)&#39;</span><span class="p">,</span> <span class="s1">&#39;News::view/$1&#39;</span><span class="p">);</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;news&#39;</span><span class="p">,</span> <span class="s1">&#39;News::index&#39;</span><span class="p">);</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;(:any)&#39;</span><span class="p">,</span> <span class="s1">&#39;Pages::view/$1&#39;</span><span class="p">);</span>
@@ -430,7 +432,7 @@
 <img alt="../_images/tutorial9.png" class="align-left" src="../_images/tutorial9.png" />
 </div>
 <div class="section" id="id5">
-<h2>恭喜你<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2>恭喜你<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
 <p>你剛剛完成了你第一個 CodeIgniter4 應用程式！</p>
 <p>左圖顯示的是專案的 <strong>app</strong> 資料夾，你所創建的所有文件顯示成綠色字體。兩個你所修改的設定檔案（資料庫與路由設定檔）並沒有改變顏色。</p>
 </div>
@@ -456,9 +458,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

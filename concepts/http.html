@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>處裡 HTTP 請求 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>處裡 HTTP 請求 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="安全指南" href="security.html" />
     <link rel="prev" title="服務（services）" href="services.html" /> 
 </head>
@@ -338,18 +340,18 @@
            <div itemprop="articleBody">
             
   <div class="section" id="http">
-<h1>處裡 HTTP 請求<a class="headerlink" href="#http" title="Permalink to this headline">¶</a></h1>
+<h1>處裡 HTTP 請求<a class="headerlink" href="#http" title="本標題的永久連結">¶</a></h1>
 <p>為了充分地使用 CodeIgniter，你需要對處理 HTTP 請求和響應的方式有基本的了解。對於所有想要成功的 Web 開發者來說，<strong>必須</strong> 要理解 HTTP 背後的概念。</p>
 <p>本章的第一部分會簡單的的概述 HTTP ，接著我們會討論如何使用 CodeIgniter 來處理 HTTP 請求與響應。</p>
 <div class="section" id="id1">
-<h2>甚麼是 HTTP ?<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>甚麼是 HTTP ?<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h2>
 <p>HTTP 是兩台機器基於文本互相通信的一種協定。當瀏覽器請求頁面時，它會詢問伺服器是否可以獲取該頁面，然後，伺服器會準備好頁面並發送響應回發送請求的瀏覽器。就是這麼簡單，當然可以講得更複雜些，但基本上就是這樣。</p>
 <p>HTTP 是用於描述交換協定的術語。它代表超文本傳輸協定（Hypertext Transfer Protocol）。當你在開發 web 應用程式時，你只需要專注在了解瀏覽器要求了什麼，並如何做出適當的響應。</p>
 <div class="section" id="id2">
-<h3>HTTP 請求<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>HTTP 請求<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h3>
 <p>當使用者端（瀏覽器，手機 APP 等）發送 HTTP 請求時，它會向伺服器發送一則文本訊息然後等待響應。</p>
 <p>這個文本訊息會長得像這樣:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="o">/</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="o">/</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
 <span class="nx">Host</span> <span class="nx">codeigniter</span><span class="o">.</span><span class="nx">com</span>
 <span class="nx">Accept</span><span class="o">:</span> <span class="nx">text</span><span class="o">/</span><span class="nx">html</span>
 <span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="o">:</span> <span class="nx">Chrome</span><span class="o">/</span><span class="mf">46.0</span><span class="o">.</span><span class="mf">2490.80</span>
@@ -359,9 +361,9 @@
 <p>這個請求還包含了許多可選的標頭，這些標頭可以包含各種資訊：例如使用者端希望內容顯示為哪種語言、使用者端接受的格式類型等等。如果你有需要的話，維基百科上有一篇文章，列出了 <a class="reference external" href="https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5">所有的 HTTTP 標頭欄位</a></p>
 </div>
 <div class="section" id="id3">
-<h3>HTTP 響應<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>HTTP 響應<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h3>
 <p>伺服器在收到請求後，你的 web 應用程式會處理這則訊息然後輸出一些結果。伺服器會將你的輸出結果綑綁為響應給使用者端的一部分。服務器對使用者端的響應訊息看起來會像這樣:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="nx">OK</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="nx">OK</span>
 <span class="nx">Server</span><span class="o">:</span> <span class="nx">nginx</span><span class="o">/</span><span class="mf">1.8</span><span class="o">.</span><span class="mi">0</span>
 <span class="nx">Date</span><span class="o">:</span> <span class="nx">Thu</span><span class="p">,</span> <span class="mo">05</span> <span class="nx">Nov</span> <span class="mi">2015</span> <span class="mo">05</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">22</span> <span class="nx">GMT</span>
 <span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">text</span><span class="o">/</span><span class="nx">html</span><span class="p">;</span> <span class="nx">charset</span><span class="o">=</span><span class="nx">UTF</span><span class="o">-</span><span class="mi">8</span>
@@ -375,9 +377,9 @@
 <a class="reference external" href="https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">完整的響應狀態碼列表</a>。（<a class="reference external" href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Status">這裡有 MDN 的中文版狀態碼列表</a>）</p>
 </div>
 <div class="section" id="id5">
-<h3>處理 HTTP 請求和響應<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h3>處理 HTTP 請求和響應<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
 <p>雖然 PHP 提供了原生與 HTTP 請求和響應進行交互的方式，但 CodeIgniter 像大多數框架一樣，將它們抽象化，讓你擁有一個一致、簡單的介面。<a class="reference internal" href="../incoming/incomingrequest.html"><span class="doc">IncomingRequest 類別</span></a> 是 HTTP 請求的物件導向形式。它有著你所需要的一切:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\HTTP\IncomingRequest</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\HTTP\IncomingRequest</span><span class="p">;</span>
 
 <span class="nv">$request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IncomingRequest</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Config\App</span><span class="p">(),</span> <span class="k">new</span> <span class="nx">\CodeIgniter\HTTP\URI</span><span class="p">());</span>
 
@@ -404,11 +406,11 @@
 </div>
 <p>request 類別會在後台為你做很多工作，幫你省心。<code class="docutils literal notranslate"><span class="pre">isAJAX()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">isSecure()</span></code> 函數會自動檢查幾種不同的 method 來確定最後正確的回答。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">isAJAX()</span></code> 方法取決於 <code class="docutils literal notranslate"><span class="pre">X-Requested-With</span></code> 標頭，在某些情況下，預設是不會通過 JavaScript（即 fetch）在 XHR 請求中發送的標頭。請參閱 <a class="reference internal" href="../general/ajax.html"><span class="doc">AJAX 請求</span></a> 部分，瞭解如何避免這個問題。</p>
+<p class="first admonition-title">備註</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">isAJAX()</span></code> 方法取決於 <code class="docutils literal notranslate"><span class="pre">X-Requested-With</span></code> 標頭，在某些情況下，預設是不會通過 JavaScript（即 fetch）在 XHR 請求中發送的標頭。請參閱 <a class="reference internal" href="../general/ajax.html"><span class="doc">AJAX 請求</span></a> 部分，瞭解如何避免這個問題。</p>
 </div>
 <p>CodeIgniter 還提供了 :doc:響應類別 &lt;/outgoing/response&gt;`，它是 HTTP 響應的物件導向形式。它為你提供一種簡單而強大的方法來建構對客戶的響應:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\HTTP\Response</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\HTTP\Response</span><span class="p">;</span>
 
 <span class="nv">$response</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">();</span>
 
@@ -446,9 +448,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

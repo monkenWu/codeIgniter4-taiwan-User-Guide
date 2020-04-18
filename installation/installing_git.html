@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Git 安裝 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>Git 安裝 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="運作你的應用程式" href="running.html" />
     <link rel="prev" title="Composer 安裝" href="installing_composer.html" /> 
 </head>
@@ -338,30 +340,30 @@
            <div itemprop="articleBody">
             
   <div class="section" id="git">
-<h1>Git 安裝<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h1>
+<h1>Git 安裝<a class="headerlink" href="#git" title="本標題的永久連結">¶</a></h1>
 <p>這種開安裝方式 <em>不適合</em> 使用在開發中的專案，但若你想對框架做出貢獻則 <em>適合</em> 此種方式安裝。</p>
 <div class="section" id="id1">
-<h2>安裝<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>安裝<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h2>
 <p>通過以下步驟取得最新版本的框架儲存庫。</p>
 <ul class="simple">
-<li><p>將 <a class="reference external" href="https://github.com/codeigniter4/CodeIgniter4">儲存庫</a> 分叉至你的 github 帳號</p></li>
-<li><p>將 <strong>你所分叉的儲存庫</strong> 克隆至本機</p></li>
+<li>將 <a class="reference external" href="https://github.com/codeigniter4/CodeIgniter4">儲存庫</a> 分叉至你的 github 帳號</li>
+<li>將 <strong>你所分叉的儲存庫</strong> 克隆至本機</li>
 </ul>
 </div>
 <div class="section" id="id3">
-<h2>設定<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>設定<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p>上述的命令將會建立一個「 CodeIgniter4 」資料夾，你可以根據你的需要重新命名。</p>
 <p>你也可以設定一個遠端儲存庫的別名，同步本地儲存庫與遠端儲存庫：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">git</span> <span class="nx">remote</span> <span class="nx">add</span> <span class="nx">upstream</span> <span class="nx">https</span><span class="o">://</span><span class="nx">github</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">codeigniter4</span><span class="o">/</span><span class="nx">CodeIgniter4</span><span class="o">.</span><span class="nx">git</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">git</span> <span class="nx">remote</span> <span class="nx">add</span> <span class="nx">upstream</span> <span class="nx">https</span><span class="o">://</span><span class="nx">github</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">codeigniter4</span><span class="o">/</span><span class="nx">CodeIgniter4</span><span class="o">.</span><span class="nx">git</span>
 </pre></div>
 </div>
 <p>將專案根目錄的 <code class="docutils literal notranslate"><span class="pre">env</span></code> 檔案複製後重新命名為 <code class="docutils literal notranslate"><span class="pre">.env</span></code> 檔案，並將這個檔案加入至 git 忽略檔案（ git-ignored ）中。</p>
 <p>將專案根目錄的 <code class="docutils literal notranslate"><span class="pre">phpunit.xml.dist</span></code> 複製後重新命名為 <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code> 。在你所需要對框架進行單元測試時，你可以對它進行修改。</p>
 </div>
 <div class="section" id="id4">
-<h2>更新<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>更新<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
 <p>使用以下命令進行更新：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">git</span> <span class="nx">checkout</span> <span class="nx">develop</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">git</span> <span class="nx">checkout</span> <span class="nx">develop</span>
 <span class="nx">git</span> <span class="nx">pull</span> <span class="nx">upstream</span> <span class="nx">develop</span>
 <span class="nx">git</span> <span class="nx">push</span> <span class="nx">origin</span> <span class="nx">develop</span>
 </pre></div>
@@ -369,30 +371,30 @@
 <p>當你透過 「 upstream 」進行拉取時，你可能會需要在本地解決合併衝突。</p>
 </div>
 <div class="section" id="id5">
-<h2>優點<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2>優點<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
 <ul class="simple">
-<li><p>取得最新的版本的程式碼庫（未發布）。</p></li>
-<li><p>你可以藉由創建一個新的「 feature 」分支，並為主儲存庫提交一個拉取請求做出貢獻。</p></li>
-<li><p>已為您的儲存庫安裝一個預提交的鉤子，它將會同捆我們使用的編碼規範。</p></li>
+<li>取得最新的版本的程式碼庫（未發布）。</li>
+<li>你可以藉由創建一個新的「 feature 」分支，並為主儲存庫提交一個拉取請求做出貢獻。</li>
+<li>已為您的儲存庫安裝一個預提交的鉤子，它將會同捆我們使用的編碼規範。</li>
 </ul>
 </div>
 <div class="section" id="id6">
-<h2>缺點<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<h2>缺點<a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
 <p>當你在與遠端程式庫進行同步時，你需要親自解決合併衝突。</p>
 <p>在應用程式的開發中你可能不需要這項技術。</p>
 </div>
 <div class="section" id="id7">
-<h2>結構<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<h2>結構<a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
 <p>在執行完上述流程後，這些資料夾將會部署進你的專案中：</p>
 <ul class="simple">
-<li><p>app, public, system, tests, user_guide_src, writable</p></li>
+<li>app, public, system, tests, user_guide_src, writable</li>
 </ul>
 <div class="section" id="id8">
-<h3>安裝多語言系統提示<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h3>安裝多語言系統提示<a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
 <p>如果你想要貢獻系統提示的翻譯，可以分支並克隆 <a class="reference external" href="https://github.com/codeigniter4/translations">translations repository</a> 這個儲存庫。這個儲存庫與 CodeIgniter4 的儲存庫是各自獨立的！</p>
 </div>
 <div class="section" id="id9">
-<h3>安裝編碼規範<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<h3>安裝編碼規範<a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h3>
 <p>這是綁定在儲存庫中的一部份自動安裝的。</p>
 <p>如果你也想在自己的專案中使用它，在你的專案根目錄執行以下指令：</p>
 <p><code class="docutils literal notranslate"><span class="pre">composer</span> <span class="pre">require</span> <span class="pre">codeigniter4/translations</span> <span class="pre">&#64;beta</span></code></p>
@@ -420,9 +422,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

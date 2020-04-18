@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>新聞頁面 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>新聞頁面 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="建立新聞" href="create_news_items.html" />
     <link rel="prev" title="靜態頁面" href="static_pages.html" /> 
 </head>
@@ -338,14 +340,14 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>新聞頁面<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>新聞頁面<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>在上一個條目中，我們撰寫了引用靜態頁面的類別，也介紹了框架的一些基本概念。我們通過新增自訂路由規則獲得更加整潔的 URL 。是時候引入動態內容並且開始操作資料庫了！</p>
 <div class="section" id="id2">
-<h2>建立要使用的資料庫<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>建立要使用的資料庫<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <p>CodeIgniter 假設你使用了所支援資料庫，如 <a class="reference internal" href="../intro/requirements.html"><span class="doc">系統需求</span></a> 所提到的。在本教學中，我們提供了基於 MySQL 資料庫的 SQL 程式碼。我們也假設你有一個用於資料庫管理的軟體（ mysql 、 MySQL Workbench 或 phpMyAdmin ）。</p>
 <p>你需要創建一個這個教學需要使用到的資料庫，然後在 CodeIgniter 設定使用它。</p>
 <p>使用資料庫管理軟體，連接到資料庫並且執行下列 SQL 命令（ MySql ），以及添加一些合適的測試資料。以下提到的將是創建 SQL 資料表所需的語句，但你應該要知道，在熟悉了 CodeIgniter 之後，就可以使用程式設計的方式完成這個操作。你可以閱讀有關於 <a class="reference internal" href="../dbmgmt/migration.html"><span class="doc">遷移</span></a> 與 <a class="reference internal" href="../dbmgmt/seeds.html"><span class="doc">資料填充</span></a> 的資訊，以便於創建更有用的資料庫設定。</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="nx">news</span> <span class="p">(</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="nx">news</span> <span class="p">(</span>
         <span class="nx">id</span> <span class="nx">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="nx">AUTO_INCREMENT</span><span class="p">,</span>
         <span class="nx">title</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
         <span class="nx">slug</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
@@ -357,7 +359,7 @@
 </div>
 <p>註：slug 是在 Web 發布內容中，面相使用者與 SEO 用於友好地識別與描述資源的簡短文字。</p>
 <p>測試資料可能會類似於：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">INSERT</span> <span class="nx">INTO</span> <span class="nx">news</span> <span class="nx">VALUES</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">INSERT</span> <span class="nx">INTO</span> <span class="nx">news</span> <span class="nx">VALUES</span>
 <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;Elvis sighted&#39;</span><span class="p">,</span><span class="s1">&#39;elvis-sighted&#39;</span><span class="p">,</span><span class="s1">&#39;Elvis was sighted at the Podunk internet cafe. It looked like he was writing a CodeIgniter app.&#39;</span><span class="p">),</span>
 <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;Say it isn\&#39;t so!&#39;</span><span class="p">,</span><span class="s1">&#39;say-it-isnt-so&#39;</span><span class="p">,</span><span class="s1">&#39;Scientists conclude that some programmers have a sense of humor.&#39;</span><span class="p">),</span>
 <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;Caffeination, Yes!&#39;</span><span class="p">,</span><span class="s1">&#39;caffeination-yes&#39;</span><span class="p">,</span><span class="s1">&#39;World\&#39;s largest coffee shop open onsite nested coffee shop for staff only.&#39;</span><span class="p">);</span>
@@ -365,9 +367,9 @@
 </div>
 </div>
 <div class="section" id="id3">
-<h2>連接資料庫<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>連接資料庫<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p>請打開在部屬 CodeIgniter 時所創建的環境設定檔 <code class="docutils literal notranslate"><span class="pre">.env</span></code> ，在設定檔中取消資料庫相關設定的註解，並且依據要連入的資料庫進行相關設定。</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">database</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nx">hostname</span> <span class="o">=</span> <span class="nx">localhost</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">database</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nx">hostname</span> <span class="o">=</span> <span class="nx">localhost</span>
 <span class="nx">database</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nx">database</span> <span class="o">=</span> <span class="nx">ci4tutorial</span>
 <span class="nx">database</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nx">username</span> <span class="o">=</span> <span class="nx">root</span>
 <span class="nx">database</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nx">password</span> <span class="o">=</span> <span class="nx">root</span>
@@ -376,10 +378,10 @@
 </div>
 </div>
 <div class="section" id="id4">
-<h2>設定模型<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>設定模型<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
 <p>資料庫查詢不該在控制器中實作，而是在模型中進撰寫，以便日後可以輕鬆地重用它們。模型是資料庫與其他資料儲存媒介，檢索、插入和更新資料的地方。它們讓你能夠對資料進行訪問。</p>
 <p>打開 <strong>app/Models/</strong> 目錄後，新建名為 <strong>NewsModel.php</strong> 且包含下列程式碼的的檔案。在這之前，請確定你已經正確設定了資料庫，就像 <a class="reference internal" href="../database/configuration.html"><span class="doc">這裡</span></a> 所說的。</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
 
@@ -391,7 +393,7 @@
 </div>
 <p>這些程式瑪與前一個條目的控制器程式碼類似，這個新創建的模型繼承了 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Model</span></code> 類別以及載入了資料庫函數庫。與資料庫類別的溝通可以呼叫 <code class="docutils literal notranslate"><span class="pre">$this-&gt;db</span></code> 物件達成。</p>
 <p>現在，資料庫與模型已經設定完畢，你需要一種方法從資料庫獲取所有的新聞內容。因此，我們使用 CodeIgniter <a class="reference internal" href="../database/query_builder.html"><span class="doc">查詢產生器（ Query Builder ）</span></a> 類別，這其中包含著資料庫的抽象層。透過查詢產生器我們可以輕鬆撰寫查詢，並使他們在 <a class="reference internal" href="../intro/requirements.html"><span class="doc">所有支援的資料庫系統</span></a> 穩定工作。模型類別還允許使用查詢產生器輕鬆建立查詢，並提供了一些工具來簡化資料處理的流程。將下列程式碼加入剛才我們創建的模型中。</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">getNews</span><span class="p">(</span><span class="nv">$slug</span> <span class="o">=</span> <span class="k">false</span><span class="p">)</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">getNews</span><span class="p">(</span><span class="nv">$slug</span> <span class="o">=</span> <span class="k">false</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$slug</span> <span class="o">===</span> <span class="k">false</span><span class="p">)</span>
         <span class="p">{</span>
@@ -408,9 +410,9 @@
 <p>此處所使用的兩種方法 <code class="docutils literal notranslate"><span class="pre">findAll()</span></code> 與 <code class="docutils literal notranslate"><span class="pre">first()</span></code> 由 Model 類別提供。它們藉由我們在 <strong>NewsModel</strong> 類別中設定的 <code class="docutils literal notranslate"><span class="pre">$table</span></code> 屬性知道要使用的資料表。它們是輔助方法，使用查詢產生器在當前的資料表上執行命查詢，並且以你所選擇的格式回傳結果陣列。在這個範例中， <code class="docutils literal notranslate"><span class="pre">findAll()</span></code> 回傳一個物件陣列。</p>
 </div>
 <div class="section" id="id5">
-<h2>顯示新聞<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2>顯示新聞<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
 <p>現在，查詢已經撰寫完成，模型應該要綁定在向使用者顯示新聞項目的視圖。這可以在之前創建的 <code class="docutils literal notranslate"><span class="pre">Pages</span></code> 控制器中完成，但為了清楚起見，我們定義一個新的控制器。在 <em>app/Controllers/News.php</em> 路徑上使用以下程式碼創建新的 <code class="docutils literal notranslate"><span class="pre">News</span></code> 控制器檔案。</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">App\Models\NewsModel</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">CodeIgniter\Controller</span><span class="p">;</span>
 
@@ -435,7 +437,7 @@
 <p>看看程式碼，你可能會發現與我們之前建立的文件有相似之處。首先，它繼承了 CodeIgniter 核心類別 <code class="docutils literal notranslate"><span class="pre">Controller</span></code> ，這個類別提供了幾個輔助方法，並且確保你可以使用當前的 <code class="docutils literal notranslate"><span class="pre">Request</span></code> 與 <code class="docutils literal notranslate"><span class="pre">Response</span></code> 物件。以及將運作資訊保存在伺服器的 <code class="docutils literal notranslate"><span class="pre">Logger</span></code> 類別。</p>
 <p>接下來，有兩個方法，一個用於查看所有新聞專案，另一個用於查看特定的新聞專案。 <code class="docutils literal notranslate"><span class="pre">$slug</span></code> 變數在第二個方法中傳遞給模型，而模型也使用 slug 回傳相應的新聞。</p>
 <p>現在，控制器通過我們的模型檢索資料，但尚未顯示任何資料。接下來我們得將這些資料傳遞給視圖。將  <code class="docutils literal notranslate"><span class="pre">index()</span></code> 修改成向下面這樣。</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
 <span class="p">{</span>
         <span class="nv">$model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NewsModel</span><span class="p">();</span>
 
@@ -451,7 +453,7 @@
 </pre></div>
 </div>
 <p>上面的程式碼從模型獲得所有的新聞紀錄後，將它分配給變數。標題的值被宣告在 <code class="docutils literal notranslate"><span class="pre">$data['title']</span></code> 之中，所有資料都會傳送給視圖。現在需要創建一個視圖來呈現新聞畫面，在 <strong>app/Views/news/overview.php</strong> 中創建擁有以下程式碼的檔案。</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;&lt;?=</span> <span class="nv">$title</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;&lt;?=</span> <span class="nv">$title</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
 
 <span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$news</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nb">is_array</span><span class="p">(</span><span class="nv">$news</span><span class="p">))</span> <span class="o">:</span> <span class="cp">?&gt;</span>
 
@@ -477,7 +479,7 @@
 </div>
 <p>在這裡每個專案將會透過迴圈產生並且顯示給使用者。你可以看到我們在 PHP 中撰寫了樣板，並且讓它與 HTML 混合。如果你更喜歡使用 樣板語法，則可以使用 CodeIgniter 的 <a class="reference internal" href="../outgoing/view_parser.html"><span class="doc">視圖器解析器</span></a> 。或置入任何你喜歡的解析器進入 CodeIgniter 。</p>
 <p>新聞概述的畫面已經完成，但顯示單個新聞的頁面我們還沒做完。剛才我們創建建的模型中有個方法可以輕鬆地用於這個需求。你只需要向控制器新增一些程式碼，並且創建新的視圖。讓我們回到 <code class="docutils literal notranslate"><span class="pre">News</span></code> 控制器，並且更新 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法。</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">view</span><span class="p">(</span><span class="nv">$slug</span> <span class="o">=</span> <span class="k">NULL</span><span class="p">)</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">view</span><span class="p">(</span><span class="nv">$slug</span> <span class="o">=</span> <span class="k">NULL</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="nv">$model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NewsModel</span><span class="p">();</span>
 
@@ -497,16 +499,16 @@
 </pre></div>
 </div>
 <p>為了要取得特定的新聞項目，我們得向 <code class="docutils literal notranslate"><span class="pre">getNews()</span></code> 方法傳遞 <code class="docutils literal notranslate"><span class="pre">$slug</span></code> 變數。剩下的工作只剩在 <strong>app/Views/news/view.php</strong> 中創下擁有下列程式碼的視圖。</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 <span class="k">echo</span> <span class="s1">&#39;&lt;h2&gt;&#39;</span><span class="o">.</span><span class="nv">$news</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/h2&gt;&#39;</span><span class="p">;</span>
 <span class="k">echo</span> <span class="nv">$news</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">];</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id6">
-<h2>路由<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<h2>路由<a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
 <p>由於前面創建了萬用字元路由規則，因此你需要額外的路由來查看剛剛創建的控制器。新增以下設定到路由設定檔（ <strong>app/config/routes.php</strong> ），這樣可以確保瀏覽器請求可以送到 <code class="docutils literal notranslate"><span class="pre">News</span></code> 控制器。而不是直達 <code class="docutils literal notranslate"><span class="pre">Pages</span></code> 控制器。第一行路由將會把 slug 傳遞到 <code class="docutils literal notranslate"><span class="pre">News</span></code> 控制器的 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法。</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;news/(:segment)&#39;</span><span class="p">,</span> <span class="s1">&#39;News::view/$1&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;news/(:segment)&#39;</span><span class="p">,</span> <span class="s1">&#39;News::view/$1&#39;</span><span class="p">);</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;news&#39;</span><span class="p">,</span> <span class="s1">&#39;News::index&#39;</span><span class="p">);</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;(:any)&#39;</span><span class="p">,</span> <span class="s1">&#39;Pages::showme/$1&#39;</span><span class="p">);</span>
 </pre></div>
@@ -536,9 +538,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

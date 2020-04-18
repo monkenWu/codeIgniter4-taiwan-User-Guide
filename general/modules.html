@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Code Modules &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>Code Modules &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Managing your Applications" href="managing_apps.html" />
     <link rel="prev" title="AJAX Requests" href="ajax.html" /> 
 </head>
@@ -338,46 +340,44 @@
            <div itemprop="articleBody">
             
   <div class="section" id="code-modules">
-<h1>Code Modules<a class="headerlink" href="#code-modules" title="Permalink to this headline">¶</a></h1>
+<h1>Code Modules<a class="headerlink" href="#code-modules" title="本標題的永久連結">¶</a></h1>
 <p>CodeIgniter supports a form of code modularization to help you create reusable code. Modules are typically
 centered around a specific subject, and can be thought of as mini-applications within your larger application. Any
 of the standard file types within the framework are supported, like controllers, models, views, config files, helpers,
 language files, etc. Modules may contain as few, or as many, of these as you like.</p>
-<div class="contents local topic" id="contents">
+<div class="contents local topic" id="id1">
 <ul class="simple">
-<li><p><a class="reference internal" href="#namespaces" id="id1">Namespaces</a></p></li>
-<li><p><a class="reference internal" href="#auto-discovery" id="id2">Auto-Discovery</a></p>
-<ul>
-<li><p><a class="reference internal" href="#enable-disable-discover" id="id3">Enable/Disable Discover</a></p></li>
-<li><p><a class="reference internal" href="#specify-discovery-items" id="id4">Specify Discovery Items</a></p></li>
-<li><p><a class="reference internal" href="#discovery-and-composer" id="id5">Discovery and Composer</a></p></li>
+<li><a class="reference internal" href="#namespaces" id="id2">Namespaces</a></li>
+<li><a class="reference internal" href="#auto-discovery" id="id3">Auto-Discovery</a><ul>
+<li><a class="reference internal" href="#enable-disable-discover" id="id4">Enable/Disable Discover</a></li>
+<li><a class="reference internal" href="#specify-discovery-items" id="id5">Specify Discovery Items</a></li>
+<li><a class="reference internal" href="#discovery-and-composer" id="id6">Discovery and Composer</a></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#working-with-files" id="id6">Working With Files</a></p>
-<ul>
-<li><p><a class="reference internal" href="#routes" id="id7">Routes</a></p></li>
-<li><p><a class="reference internal" href="#controllers" id="id8">Controllers</a></p></li>
-<li><p><a class="reference internal" href="#config-files" id="id9">Config Files</a></p></li>
-<li><p><a class="reference internal" href="#migrations" id="id10">Migrations</a></p></li>
-<li><p><a class="reference internal" href="#seeds" id="id11">Seeds</a></p></li>
-<li><p><a class="reference internal" href="#helpers" id="id12">Helpers</a></p></li>
-<li><p><a class="reference internal" href="#language-files" id="id13">Language Files</a></p></li>
-<li><p><a class="reference internal" href="#libraries" id="id14">Libraries</a></p></li>
-<li><p><a class="reference internal" href="#models" id="id15">Models</a></p></li>
-<li><p><a class="reference internal" href="#views" id="id16">Views</a></p></li>
+<li><a class="reference internal" href="#working-with-files" id="id7">Working With Files</a><ul>
+<li><a class="reference internal" href="#routes" id="id8">Routes</a></li>
+<li><a class="reference internal" href="#controllers" id="id9">Controllers</a></li>
+<li><a class="reference internal" href="#config-files" id="id10">Config Files</a></li>
+<li><a class="reference internal" href="#migrations" id="id11">Migrations</a></li>
+<li><a class="reference internal" href="#seeds" id="id12">Seeds</a></li>
+<li><a class="reference internal" href="#helpers" id="id13">Helpers</a></li>
+<li><a class="reference internal" href="#language-files" id="id14">Language Files</a></li>
+<li><a class="reference internal" href="#libraries" id="id15">Libraries</a></li>
+<li><a class="reference internal" href="#models" id="id16">Models</a></li>
+<li><a class="reference internal" href="#views" id="id17">Views</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="namespaces">
-<h2><a class="toc-backref" href="#id1">Namespaces</a><a class="headerlink" href="#namespaces" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Namespaces</a><a class="headerlink" href="#namespaces" title="本標題的永久連結">¶</a></h2>
 <p>The core element of the modules functionality comes from the <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">PSR4-compatible autoloading</span></a>
 that CodeIgniter uses. While any code can use the PSR4 autoloader and namespaces, the primary way to take full advantage of
 modules is to namespace your code and add it to <strong>app/Config/Autoload.php</strong>, in the <code class="docutils literal notranslate"><span class="pre">psr4</span></code> section.</p>
 <p>For example, let’s say we want to keep a simple blog module that we can re-use between applications. We might create
 folder with our company name, Acme, to store all of our modules within. We will put it right alongside our <strong>application</strong>
 directory in the main project root:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nx">acme</span>        <span class="c1">// New modules directory</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nx">acme</span>        <span class="c1">// New modules directory</span>
 <span class="o">/</span><span class="nx">application</span>
 <span class="o">/</span><span class="k">public</span>
 <span class="o">/</span><span class="nb">system</span>
@@ -386,7 +386,7 @@ directory in the main project root:</p>
 </pre></div>
 </div>
 <p>Open <strong>app/Config/Autoload.php</strong> and add the <strong>Acme</strong> namespace to the <code class="docutils literal notranslate"><span class="pre">psr4</span></code> array property:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$psr4</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$psr4</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;Config&#39;</span>        <span class="o">=&gt;</span> <span class="nx">APPPATH</span> <span class="o">.</span> <span class="s1">&#39;Config&#39;</span><span class="p">,</span>
     <span class="nx">APP_NAMESPACE</span>   <span class="o">=&gt;</span> <span class="nx">APPPATH</span><span class="p">,</span>                <span class="c1">// For custom namespace</span>
     <span class="s1">&#39;App&#39;</span>           <span class="o">=&gt;</span> <span class="nx">APPPATH</span><span class="p">,</span>                <span class="c1">// To ensure filters, etc still found,</span>
@@ -398,7 +398,7 @@ directory in the main project root:</p>
 takes care of 80% of what is needed for modules to work, so you should be sure to familiarize yourself with namespaces
 and become comfortable with their use. Several file types will be scanned for automatically through all defined namespaces - a crucial ingredient for working with modules.</p>
 <p>A common directory structure within a module will mimic the main application folder:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nx">acme</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nx">acme</span>
     <span class="o">/</span><span class="nx">Blog</span>
         <span class="o">/</span><span class="nx">Config</span>
         <span class="o">/</span><span class="nx">Controllers</span>
@@ -418,69 +418,66 @@ best suits your module, leaving out directories you don’t need, creating new d
 or Repositories, etc.</p>
 </div>
 <div class="section" id="auto-discovery">
-<h2><a class="toc-backref" href="#id2">Auto-Discovery</a><a class="headerlink" href="#auto-discovery" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Auto-Discovery</a><a class="headerlink" href="#auto-discovery" title="本標題的永久連結">¶</a></h2>
 <p>Many times, you will need to specify the full namespace to files you want to include, but CodeIgniter can be
 configured to make integrating modules into your applications simpler by automatically discovering many different
 file types, including:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../extending/events.html"><span class="doc">Events</span></a></p></li>
-<li><p><a class="reference internal" href="configuration.html"><span class="doc">Registrars</span></a></p></li>
-<li><p><a class="reference internal" href="../incoming/routing.html"><span class="doc">Route files</span></a></p></li>
-<li><p><a class="reference internal" href="../concepts/services.html"><span class="doc">Services</span></a></p></li>
+<li><a class="reference internal" href="../extending/events.html"><span class="doc">Events</span></a></li>
+<li><a class="reference internal" href="configuration.html"><span class="doc">Registrars</span></a></li>
+<li><a class="reference internal" href="../incoming/routing.html"><span class="doc">Route files</span></a></li>
+<li><a class="reference internal" href="../concepts/services.html"><span class="doc">Services</span></a></li>
 </ul>
 <p>This is configured in the file <strong>app/Config/Modules.php</strong>.</p>
-<p>The auto-discovery system works by scanning any psr4 namespaces that have been defined within <strong>Config/Autoload.php</strong>
-for familiar directories/files.</p>
-<p>When at the <strong>acme</strong> namespace above, we would need to make one small adjustment to make it so the files could be found:
-each “module” within the namespace would have to have it’s own namespace defined there. <strong>Acme</strong> would be changed
-to <strong>AcmeBlog</strong>. Once your module folder has been defined, the discover process would look for a Routes file, for example,
-at <strong>/acme/Blog/Config/Routes.php</strong>, just as if it was another application.</p>
+<p>The auto-discovery system works by scanning for particular directories and files within psr4 namespaces that have been defined in <strong>Config/Autoload.php</strong>.</p>
+<p>To make auto-discovery work for our <strong>Blog</strong> namespace, we need to make one small adjustment.
+<strong>Acme</strong> needs to be changed to <strong>Acme\Blog</strong> because each 「module」 within the namespace needs to be fully defined. Once your module folder path is defined, the discovery process would look for discoverable items on that path and should, for example, find the routes file at <strong>/acme/Blog/Config/Routes.php</strong>.</p>
 <div class="section" id="enable-disable-discover">
-<h3><a class="toc-backref" href="#id3">Enable/Disable Discover</a><a class="headerlink" href="#enable-disable-discover" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">Enable/Disable Discover</a><a class="headerlink" href="#enable-disable-discover" title="本標題的永久連結">¶</a></h3>
 <p>You can turn on or off all auto-discovery in the system with the <strong>$enabled</strong> class variable. False will disable
 all discovery, optimizing performance, but negating the special capabilities of your modules.</p>
 </div>
 <div class="section" id="specify-discovery-items">
-<h3><a class="toc-backref" href="#id4">Specify Discovery Items</a><a class="headerlink" href="#specify-discovery-items" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Specify Discovery Items</a><a class="headerlink" href="#specify-discovery-items" title="本標題的永久連結">¶</a></h3>
 <p>With the <strong>$activeExplorers</strong> option, you can specify which items are automatically discovered. If the item is not
 present, then no auto-discovery will happen for that item, but the others in the array will still be discovered.</p>
 </div>
 <div class="section" id="discovery-and-composer">
-<h3><a class="toc-backref" href="#id5">Discovery and Composer</a><a class="headerlink" href="#discovery-and-composer" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Discovery and Composer</a><a class="headerlink" href="#discovery-and-composer" title="本標題的永久連結">¶</a></h3>
 <p>Packages that were installed via Composer will also be discovered by default. This only requires that the namespace
 that Composer knows about is a PSR4 namespace. PSR0 namespaces will not be detected.</p>
 <p>If you do not want all of Composer’s known directories to be scanned when locating files, you can turn this off
 by editing the <code class="docutils literal notranslate"><span class="pre">$discoverInComposer</span></code> variable in <code class="docutils literal notranslate"><span class="pre">Config\Modules.php</span></code>:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$discoverInComposer</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$discoverInComposer</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="working-with-files">
-<h2><a class="toc-backref" href="#id6">Working With Files</a><a class="headerlink" href="#working-with-files" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">Working With Files</a><a class="headerlink" href="#working-with-files" title="本標題的永久連結">¶</a></h2>
 <p>This section will take a look at each of the file types (controllers, views, language files, etc) and how they can
 be used within the module. Some of this information is described in more detail in the relevant location of the user
 guide, but is being reproduced here so that it’s easier to grasp how all of the pieces fit together.</p>
 <div class="section" id="routes">
-<h3><a class="toc-backref" href="#id7">Routes</a><a class="headerlink" href="#routes" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">Routes</a><a class="headerlink" href="#routes" title="本標題的永久連結">¶</a></h3>
 <p>By default, <a class="reference internal" href="../incoming/routing.html"><span class="doc">routes</span></a> are automatically scanned for within modules. It can be turned off in
 the <strong>Modules</strong> config file, described above.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Since the files are being included into the current scope, the <code class="docutils literal notranslate"><span class="pre">$routes</span></code> instance is already defined for you.
+<p class="first admonition-title">備註</p>
+<p class="last">Since the files are being included into the current scope, the <code class="docutils literal notranslate"><span class="pre">$routes</span></code> instance is already defined for you.
 It will cause errors if you attempt to redefine that class.</p>
 </div>
 </div>
 <div class="section" id="controllers">
-<h3><a class="toc-backref" href="#id8">Controllers</a><a class="headerlink" href="#controllers" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">Controllers</a><a class="headerlink" href="#controllers" title="本標題的永久連結">¶</a></h3>
 <p>Controllers outside of the main <strong>app/Controllers</strong> directory cannot be automatically routed by URI detection,
 but must be specified within the Routes file itself:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// Routes.php</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Routes.php</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="s1">&#39;Acme\Blog\Controllers\Blog::index&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>To reduce the amount of typing needed here, the <strong>group</strong> routing feature is helpful:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;namespace&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Acme\Blog\Controllers&#39;</span><span class="p">],</span> <span class="k">function</span><span class="p">(</span><span class="nv">$routes</span><span class="p">)</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;namespace&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Acme\Blog\Controllers&#39;</span><span class="p">],</span> <span class="k">function</span><span class="p">(</span><span class="nv">$routes</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;Blog::index&#39;</span><span class="p">);</span>
 <span class="p">});</span>
@@ -488,58 +485,58 @@ but must be specified within the Routes file itself:</p>
 </div>
 </div>
 <div class="section" id="config-files">
-<h3><a class="toc-backref" href="#id9">Config Files</a><a class="headerlink" href="#config-files" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">Config Files</a><a class="headerlink" href="#config-files" title="本標題的永久連結">¶</a></h3>
 <p>No special change is needed when working with configuration files. These are still namespaced classes and loaded
 with the <code class="docutils literal notranslate"><span class="pre">new</span></code> command:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Acme\Blog\Config\Blog</span><span class="p">();</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Acme\Blog\Config\Blog</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Config files are automatically discovered whenever using the <strong>config()</strong> function that is always available.</p>
 </div>
 <div class="section" id="migrations">
-<h3><a class="toc-backref" href="#id10">Migrations</a><a class="headerlink" href="#migrations" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">Migrations</a><a class="headerlink" href="#migrations" title="本標題的永久連結">¶</a></h3>
 <p>Migration files will be automatically discovered within defined namespaces. All migrations found across all
 namespaces will be run every time.</p>
 </div>
 <div class="section" id="seeds">
-<h3><a class="toc-backref" href="#id11">Seeds</a><a class="headerlink" href="#seeds" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">Seeds</a><a class="headerlink" href="#seeds" title="本標題的永久連結">¶</a></h3>
 <p>Seed files can be used from both the CLI and called from within other seed files as long as the full namespace
 is provided. If calling on the CLI, you will need to provide double backslashes:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="k">public</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span> <span class="nx">migrations</span> <span class="nx">seed</span> <span class="nx">Acme\\Blog\\Database\\Seeds\\TestPostSeeder</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="k">public</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span> <span class="nx">migrations</span> <span class="nx">seed</span> <span class="nx">Acme\\Blog\\Database\\Seeds\\TestPostSeeder</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="helpers">
-<h3><a class="toc-backref" href="#id12">Helpers</a><a class="headerlink" href="#helpers" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id13">Helpers</a><a class="headerlink" href="#helpers" title="本標題的永久連結">¶</a></h3>
 <p>Helpers will be located automatically from defined namespaces when using the <code class="docutils literal notranslate"><span class="pre">helper()</span></code> method, as long as it
 is within the namespaces <strong>Helpers</strong> directory:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="language-files">
-<h3><a class="toc-backref" href="#id13">Language Files</a><a class="headerlink" href="#language-files" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">Language Files</a><a class="headerlink" href="#language-files" title="本標題的永久連結">¶</a></h3>
 <p>Language files are located automatically from defined namespaces when using the <code class="docutils literal notranslate"><span class="pre">lang()</span></code> method, as long as the
 file follows the same directory structures as the main application directory.</p>
 </div>
 <div class="section" id="libraries">
-<h3><a class="toc-backref" href="#id14">Libraries</a><a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">Libraries</a><a class="headerlink" href="#libraries" title="本標題的永久連結">¶</a></h3>
 <p>Libraries are always instantiated by their fully-qualified class name, so no special access is provided:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$lib</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Acme\Blog\Libraries\BlogLib</span><span class="p">();</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$lib</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Acme\Blog\Libraries\BlogLib</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="models">
-<h3><a class="toc-backref" href="#id15">Models</a><a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">Models</a><a class="headerlink" href="#models" title="本標題的永久連結">¶</a></h3>
 <p>Models are always instantiated by their fully-qualified class name, so no special access is provided:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Acme\Blog\Models\PostModel</span><span class="p">();</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Acme\Blog\Models\PostModel</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="views">
-<h3><a class="toc-backref" href="#id16">Views</a><a class="headerlink" href="#views" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">Views</a><a class="headerlink" href="#views" title="本標題的永久連結">¶</a></h3>
 <p>Views can be loaded using the class namespace as described in the <a class="reference internal" href="../outgoing/views.html"><span class="doc">views</span></a> documentation:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;Acme\Blog\Views\index&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;Acme\Blog\Views\index&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -566,9 +563,9 @@ file follows the same directory structures as the main application directory.</p
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

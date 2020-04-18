@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>控制器 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>控制器 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="URI Routing" href="routing.html" />
     <link rel="prev" title="Controllers and Routing" href="index.html" /> 
 </head>
@@ -338,41 +340,40 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>控制器<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>控制器<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>控制器是你的應用程式的核心，它們決定了應該如何處理 HTTP 請求。</p>
-<div class="contents local topic" id="contents">
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><p><a class="reference internal" href="#id2" id="id12">什麼是控制器？</a></p></li>
-<li><p><a class="reference internal" href="#hello-world" id="id13">讓我們試一下：Hello World!</a></p></li>
-<li><p><a class="reference internal" href="#id3" id="id14">方法</a></p></li>
-<li><p><a class="reference internal" href="#uri" id="id15">將 URI 區段傳給你的方法</a></p></li>
-<li><p><a class="reference internal" href="#id4" id="id16">定義一個預設控制器</a></p></li>
-<li><p><a class="reference internal" href="#id5" id="id17">呼叫重映射方法</a></p></li>
-<li><p><a class="reference internal" href="#id6" id="id18">私有方法</a></p></li>
-<li><p><a class="reference internal" href="#id7" id="id19">將您的控制器組織成子目錄</a></p></li>
-<li><p><a class="reference internal" href="#id8" id="id20">擁有的屬性</a></p>
-<ul>
-<li><p><a class="reference internal" href="#id9" id="id21">輔助函數</a></p></li>
+<li><a class="reference internal" href="#id3" id="id13">什麼是控制器？</a></li>
+<li><a class="reference internal" href="#hello-world" id="id14">讓我們試一下：Hello World!</a></li>
+<li><a class="reference internal" href="#id4" id="id15">方法</a></li>
+<li><a class="reference internal" href="#uri" id="id16">將 URI 區段傳給你的方法</a></li>
+<li><a class="reference internal" href="#id5" id="id17">定義一個預設控制器</a></li>
+<li><a class="reference internal" href="#id6" id="id18">呼叫重映射方法</a></li>
+<li><a class="reference internal" href="#id7" id="id19">私有方法</a></li>
+<li><a class="reference internal" href="#id8" id="id20">將您的控制器組織成子目錄</a></li>
+<li><a class="reference internal" href="#id9" id="id21">擁有的屬性</a><ul>
+<li><a class="reference internal" href="#id10" id="id22">輔助函數</a></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id10" id="id22">驗證資料</a></p></li>
-<li><p><a class="reference internal" href="#id11" id="id23">就是這樣！</a></p></li>
+<li><a class="reference internal" href="#id11" id="id23">驗證資料</a></li>
+<li><a class="reference internal" href="#id12" id="id24">就是這樣！</a></li>
 </ul>
 </div>
-<div class="section" id="id2">
-<h2><a class="toc-backref" href="#id12">什麼是控制器？</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id13">什麼是控制器？</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p>控制器是一個簡單的類別檔案，它可以使用與 URI 有關的命名方式。</p>
 <p>以這個 URI 為例：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">helloworld</span><span class="o">/</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">helloworld</span><span class="o">/</span>
 </pre></div>
 </div>
 <p>在上面的例子中，CodeIgniter 會嘗試找到一個名為 Helloworld.php 的控制器並載入它。</p>
 <p><strong>當一個控制器的名稱與 URI 的第一個區段匹配時，它將會被加載。</strong></p>
 </div>
 <div class="section" id="hello-world">
-<h2><a class="toc-backref" href="#id13">讓我們試一下：Hello World!</a><a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">讓我們試一下：Hello World!</a><a class="headerlink" href="#hello-world" title="本標題的永久連結">¶</a></h2>
 <p>讓我們創建一個簡單的控制器，這樣你就可以看到它的操作方式。使用你的文本編輯器，創建一個名為 Helloworld.php 的文件，然後把下面的程式碼放在裡面：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Controller</span><span class="p">;</span>
 
@@ -387,23 +388,23 @@
 </div>
 <p>然後將文件保存到你的 <strong>/app/Controllers/</strong> 目錄下。</p>
 <div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>該文件必須命名為 “Helloworld.php”，大寫 “H”。</p>
+<p class="first admonition-title">重要</p>
+<p class="last">該文件必須命名為 「Helloworld.php」，大寫 「H」。</p>
 </div>
 <p>現在用類似於這樣的 URL 訪問你的網站：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">helloworld</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">helloworld</span>
 </pre></div>
 </div>
 <p>如果你做對了，你應該會看到：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">!</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">!</span>
 </pre></div>
 </div>
 <div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>控制器類別的名稱必須以大寫字母開頭，並且只有第一個字符可以是大寫。</p>
+<p class="first admonition-title">重要</p>
+<p class="last">控制器類別的名稱必須以大寫字母開頭，並且只有第一個字符可以是大寫。</p>
 </div>
 <p>這是有效的命名：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Controller</span><span class="p">;</span>
 
@@ -413,7 +414,7 @@
 </pre></div>
 </div>
 <p>這是 <strong>無效</strong> 的命名：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Controller</span><span class="p">;</span>
 
@@ -423,7 +424,7 @@
 </pre></div>
 </div>
 <p>這是 <strong>無效</strong> 的命名：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Controller</span><span class="p">;</span>
 
@@ -434,15 +435,15 @@
 </div>
 <p>另外，一定要確保你的控制器擴展了父控制器類別，這樣它才可以繼承所有的方法。</p>
 </div>
-<div class="section" id="id3">
-<h2><a class="toc-backref" href="#id14">方法</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>在上面的例子中，方法的名稱是 <code class="docutils literal notranslate"><span class="pre">index()</span></code>。如果 URI 的第二個區段是空的，那麼 “index” 方法預設總會被載入。另一種顯示 “Hello World” 消息的方法是這樣的：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">helloworld</span><span class="o">/</span><span class="nx">index</span><span class="o">/</span>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id15">方法</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<p>在上面的例子中，方法的名稱是 <code class="docutils literal notranslate"><span class="pre">index()</span></code>。如果 URI 的第二個區段是空的，那麼 「index」 方法預設總會被載入。另一種顯示 「Hello World」 消息的方法是這樣的：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">helloworld</span><span class="o">/</span><span class="nx">index</span><span class="o">/</span>
 </pre></div>
 </div>
 <p><strong>URI 的第二個區段決定了控制器中的哪個方法會被呼叫。</strong></p>
 <p>讓我們來試一試，為你的控制器中添加一個新方法：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Controller</span><span class="p">;</span>
 
@@ -462,20 +463,20 @@
 </pre></div>
 </div>
 <p>現在載入下面的URL，查看 comment 方法：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">helloworld</span><span class="o">/</span><span class="nx">comment</span><span class="o">/</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">helloworld</span><span class="o">/</span><span class="nx">comment</span><span class="o">/</span>
 </pre></div>
 </div>
 <p>你應該看到你的新內容了。</p>
 </div>
 <div class="section" id="uri">
-<h2><a class="toc-backref" href="#id15">將 URI 區段傳給你的方法</a><a class="headerlink" href="#uri" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">將 URI 區段傳給你的方法</a><a class="headerlink" href="#uri" title="本標題的永久連結">¶</a></h2>
 <p>如果你的 URI 包含兩個以上的區段，它們將會作為參數傳遞給你的方法。</p>
 <p>例如，假設你的 URI 長得是這樣的：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">products</span><span class="o">/</span><span class="nx">shoes</span><span class="o">/</span><span class="nx">sandals</span><span class="o">/</span><span class="mi">123</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">products</span><span class="o">/</span><span class="nx">shoes</span><span class="o">/</span><span class="nx">sandals</span><span class="o">/</span><span class="mi">123</span>
 </pre></div>
 </div>
-<p>URI 的第三個區段和第四個區段（”sandals” 和 “123”）將傳入你的方法：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+<p>URI 的第三個區段和第四個區段（」sandals」 和 「123」）將傳入你的方法：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Controller</span><span class="p">;</span>
 
@@ -491,45 +492,45 @@
 </pre></div>
 </div>
 <div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>如果你使用了 <a class="reference internal" href="routing.html"><span class="doc">URI 路由</span></a>
+<p class="first admonition-title">重要</p>
+<p class="last">如果你使用了 <a class="reference internal" href="routing.html"><span class="doc">URI 路由</span></a>
 功能，傳遞給你的方法的區段，將是重定向的區段。</p>
 </div>
 </div>
-<div class="section" id="id4">
-<h2><a class="toc-backref" href="#id16">定義一個預設控制器</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id17">定義一個預設控制器</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
 <p>CodeIgniter 可以在被告知沒有 URI 時、或是被請求你的網站根網址時，CodeIgniter 會加載一個預設的控制器。讓我們用 Helloworld 控制器來試一下。</p>
 <p>要指定一個預設控制器，請打開你的 <strong>app/Config/Routes.php</strong> 檔案並設定這個變數：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setDefaultController</span><span class="p">(</span><span class="s1">&#39;Helloworld&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setDefaultController</span><span class="p">(</span><span class="s1">&#39;Helloworld&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>其中 ‘Helloworld’ 是你要使用的控制器類別的名稱。</p>
-<p>在 <strong>Routes.php</strong> 下面的 “Route Definitions” 部分的幾行中，將下面這一行註解掉：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;Home::index&#39;</span><span class="p">);</span>
+<p>其中 『Helloworld』 是你要使用的控制器類別的名稱。</p>
+<p>在 <strong>Routes.php</strong> 下面的 「Route Definitions」 部分的幾行中，將下面這一行註解掉：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;Home::index&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>如果你現在瀏覽到你的網站時沒有指定任何的 URI 區段，你會看到 “Hello World” 訊息。</p>
+<p>如果你現在瀏覽到你的網站時沒有指定任何的 URI 區段，你會看到 「Hello World」 訊息。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>這一行 <code class="docutils literal notranslate"><span class="pre">$routes-&gt;get('/',</span> <span class="pre">'Home::index');</span></code> 是你在打造你的產品應用中會想要使用的優化寫法。但為了示範，我們不想使用這個功能。<code class="docutils literal notranslate"><span class="pre">$routes-&gt;get()</span></code> 在 <a class="reference internal" href="routing.html"><span class="doc">URI Routing</span></a> 中會進行解釋。</p>
+<p class="first admonition-title">備註</p>
+<p class="last">這一行 <code class="docutils literal notranslate"><span class="pre">$routes-&gt;get('/',</span> <span class="pre">'Home::index');</span></code> 是你在打造你的產品應用中會想要使用的優化寫法。但為了示範，我們不想使用這個功能。<code class="docutils literal notranslate"><span class="pre">$routes-&gt;get()</span></code> 在 <a class="reference internal" href="routing.html"><span class="doc">URI Routing</span></a> 中會進行解釋。</p>
 </div>
 <p>想了解的更加深入，可以參考 <a class="reference internal" href="routing.html"><span class="doc">URI 路由文件</span></a> 中的「路由設定選項」章節。</p>
 </div>
-<div class="section" id="id5">
-<h2><a class="toc-backref" href="#id17">呼叫重映射方法</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id18">呼叫重映射方法</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
 <p>如上所述，URI 的第二段通常決定了要呼叫控制器中的哪個方法。 CodeIgniter 允許你通過使用 <code class="docutils literal notranslate"><span class="pre">_remap()</span></code> 方法來覆蓋這個行為：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">_remap</span><span class="p">()</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">_remap</span><span class="p">()</span>
 <span class="p">{</span>
         <span class="c1">// Some code here...</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>如果你的控制器包含一個名為 _remap() 的方法，無論你的 URI 包含什麼，它 <strong>都會被呼叫</strong> 。它覆蓋了 URI 正常判斷該呼叫哪個方法的行為，允許你定義自己的路由規則方法。</p>
+<p class="first admonition-title">重要</p>
+<p class="last">如果你的控制器包含一個名為 _remap() 的方法，無論你的 URI 包含什麼，它 <strong>都會被呼叫</strong> 。它覆蓋了 URI 正常判斷該呼叫哪個方法的行為，允許你定義自己的路由規則方法。</p>
 </div>
 <p>被覆蓋的呼叫方法（通常是 URI 的第二段）將作為參數傳遞給 <code class="docutils literal notranslate"><span class="pre">_remap()</span></code> 方法：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">_remap</span><span class="p">(</span><span class="nv">$method</span><span class="p">)</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">_remap</span><span class="p">(</span><span class="nv">$method</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$method</span> <span class="o">===</span> <span class="s1">&#39;some_method&#39;</span><span class="p">)</span>
         <span class="p">{</span>
@@ -544,7 +545,7 @@
 </div>
 <p>方法名稱後的任何額外的字段都會被傳遞到 <code class="docutils literal notranslate"><span class="pre">_remap()</span></code> 中。這些參數可以被傳遞到方法中，來模擬CodeIgniter的預設行為。</p>
 <p>範例：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">_remap</span><span class="p">(</span><span class="nv">$method</span><span class="p">,</span> <span class="o">...</span><span class="nv">$params</span><span class="p">)</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">_remap</span><span class="p">(</span><span class="nv">$method</span><span class="p">,</span> <span class="o">...</span><span class="nv">$params</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="nv">$method</span> <span class="o">=</span> <span class="s1">&#39;process_&#39;</span><span class="o">.</span><span class="nv">$method</span><span class="p">;</span>
         <span class="k">if</span> <span class="p">(</span><span class="nb">method_exists</span><span class="p">(</span><span class="nv">$this</span><span class="p">,</span> <span class="nv">$method</span><span class="p">))</span>
@@ -556,25 +557,25 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id6">
-<h2><a class="toc-backref" href="#id18">私有方法</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id19">私有方法</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
 <p>在某些情況下，你可能希望某些方法不要被公開訪問。為了達到這個目的，只需將方法聲明為私有或保護方法。這樣就可以防止它被 URL 請求送達。舉個例子，如果你為 <cite>Helloworld</cite> 控制器定義了一個像這樣的方法：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">protected</span> <span class="k">function</span> <span class="nf">utility</span><span class="p">()</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">protected</span> <span class="k">function</span> <span class="nf">utility</span><span class="p">()</span>
 <span class="p">{</span>
         <span class="c1">// some code</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>然後嘗試使用以下 URL 來訪問它，他將無法執行：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">helloworld</span><span class="o">/</span><span class="nx">utility</span><span class="o">/</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">helloworld</span><span class="o">/</span><span class="nx">utility</span><span class="o">/</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id7">
-<h2><a class="toc-backref" href="#id19">將您的控制器組織成子目錄</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id20">將您的控制器組織成子目錄</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h2>
 <p>如果你正在構建一個大型的應用程式，你可能會希望將控制器分層組織或結構化為子目錄。CodeIgniter 可以讓你達成這個目的。</p>
 <p>只需在主要的 <em>app/Controllers/</em> 目錄下創建子目錄，然後將你的控制器類別放進去。</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span>        <span class="nx">app</span><span class="o">/</span><span class="nx">Controllers</span><span class="o">/</span><span class="nx">products</span><span class="o">/</span><span class="nx">Shoes</span><span class="o">.</span><span class="nx">php</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span>        <span class="nx">app</span><span class="o">/</span><span class="nx">Controllers</span><span class="o">/</span><span class="nx">products</span><span class="o">/</span><span class="nx">Shoes</span><span class="o">.</span><span class="nx">php</span>
 
 <span class="nx">要呼叫上面的控制器，你的</span> <span class="nx">URI</span> <span class="nx">會看起來像這樣：</span>
 
@@ -583,11 +584,11 @@
         <span class="na">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">products</span><span class="o">/</span><span class="nx">shoes</span><span class="o">/</span><span class="nx">show</span><span class="o">/</span><span class="mi">123</span>
 </pre></div>
 </div>
-<p>你的每個子目錄都可能包含一個預設控制器，如果 URL 裡面 <em>只</em> 包含子目錄，那麼這個控制器就會被呼叫。只需在那裡放一個與你的 <em>app/Config/Routes.php</em> 檔案中指定的 “default_controller” 名稱相匹配的控制器即可。</p>
+<p>你的每個子目錄都可能包含一個預設控制器，如果 URL 裡面 <em>只</em> 包含子目錄，那麼這個控制器就會被呼叫。只需在那裡放一個與你的 <em>app/Config/Routes.php</em> 檔案中指定的 「default_controller」 名稱相匹配的控制器即可。</p>
 <p>CodeIgniter 還允許你使用 <a class="reference internal" href="routing.html"><span class="doc">URI Routing</span></a> 功能重新映射你的URI。</p>
 </div>
-<div class="section" id="id8">
-<h2><a class="toc-backref" href="#id20">擁有的屬性</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id9">
+<h2><a class="toc-backref" href="#id21">擁有的屬性</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h2>
 <p>你創建的每個控制器都應該擴展  <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code> 類別。這個類別提供了幾個功能，所有的控制器都可以使用。</p>
 <p><strong>請求物件</strong></p>
 <p>應用程式的主要的 <a class="reference internal" href="request.html"><span class="doc">請求實體</span></a> 總是可以作為一個類別屬性，<code class="docutils literal notranslate"><span class="pre">$this-&gt;request</span></code>。</p>
@@ -597,27 +598,27 @@
 <p>應用程式的主要的 <a class="reference internal" href="../general/logging.html"><span class="doc">日誌實體</span></a> 總是可以作為一個類別屬性，<code class="docutils literal notranslate"><span class="pre">$this-&gt;logger</span></code>。</p>
 <p><strong>強制 HTTPS</strong></p>
 <p>在所有的控制器中都有一個方便的方法，可以強制使用者通過 HTTPS 來訪問一個方法:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">isSecure</span><span class="p">())</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">isSecure</span><span class="p">())</span>
 <span class="p">{</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">forceHTTPS</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>預設情況下，在支持 HTTP 嚴格傳輸安全頭的現代瀏覽器中，這個呼叫應該強制瀏覽器將非 HTTPS 訪問轉換為 HTTPS 訪問一年。你可以透過傳入持續時間（秒）作為第一個參數來修改：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">isSecure</span><span class="p">())</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">isSecure</span><span class="p">())</span>
 <span class="p">{</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">forceHTTPS</span><span class="p">(</span><span class="mi">31536000</span><span class="p">);</span>    <span class="c1">// 一年</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>有數個 <a class="reference internal" href="../general/common_functions.html"><span class="doc">以時間定義的常數</span></a> 可以讓你使用，像是 YEAR、MONTH 等。</p>
+<p class="first admonition-title">備註</p>
+<p class="last">有數個 <a class="reference internal" href="../general/common_functions.html"><span class="doc">以時間定義的常數</span></a> 可以讓你使用，像是 YEAR、MONTH 等。</p>
 </div>
-<div class="section" id="id9">
-<h3><a class="toc-backref" href="#id21">輔助函數</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id22">輔助函數</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h3>
 <p>你可以定義一個輔助函數的陣列作為類別屬性。每當控制器被載入時，這些輔助函數將自動載入到記憶體中，這樣你就可以在控制器的任何地方使用它們的方法：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">CodeIgniter\Controller</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">MyController</span> <span class="k">extends</span> <span class="nx">Controller</span>
@@ -628,10 +629,10 @@
 </div>
 </div>
 </div>
-<div class="section" id="id10">
-<h2><a class="toc-backref" href="#id22">驗證資料</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id11">
+<h2><a class="toc-backref" href="#id23">驗證資料</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h2>
 <p>為了簡化資料驗證，控制器還提供了一個方便的方法 <code class="docutils literal notranslate"><span class="pre">validate()</span></code>。該方法在第一個參數中接受一個規則陣列，在可選的第二個參數中，接受一個自定義的錯誤信息陣列，如果物件無效，則顯示自定義的錯誤訊息。在內部，這個方法使用控制器的 <strong>$this-&gt;request</strong> 實體來獲取要驗證的資料。<a class="reference internal" href="../libraries/validation.html"><span class="doc">驗證函式庫文件</span></a> 中有關於規則和訊息陣列格式的詳細資訊，以及可用的規則：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">updateUser</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$userID</span><span class="p">)</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">updateUser</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$userID</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">validate</span><span class="p">([</span>
         <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;required|is_unique[users.email,id,</span><span class="si">{</span><span class="nv">$userID</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">,</span>
@@ -648,7 +649,7 @@
 </pre></div>
 </div>
 <p>如果你覺得在設定文件中保留規則更簡單，你可以把$rules數組替換成  <code class="docutils literal notranslate"><span class="pre">Config\Validation.php</span></code> 中定義的組名：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">updateUser</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$userID</span><span class="p">)</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">updateUser</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$userID</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">validate</span><span class="p">(</span><span class="s1">&#39;userRules&#39;</span><span class="p">))</span>
     <span class="p">{</span>
@@ -664,8 +665,8 @@
 <p>驗證也可以在模型中自動處理，但有時在控制器中進行驗證會更方便。具體到哪裡，由你自己決定.
 驗證也可以在模型中自動處理，但有時在控制器中進行驗證會更方便。具體到哪裡，由你自己決定。</p>
 </div>
-<div class="section" id="id11">
-<h2><a class="toc-backref" href="#id23">就是這樣！</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id12">
+<h2><a class="toc-backref" href="#id24">就是這樣！</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h2>
 <p>一言以蔽之，這些就是關於控制器的所有知識。</p>
 </div>
 </div>
@@ -690,9 +691,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>

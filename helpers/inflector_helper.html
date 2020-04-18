@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Inflector 輔助函數 &mdash; CodeIgniter4 4.0.0-rc.4 documentation</title>
+  <title>Inflector 輔助函數 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -23,21 +23,23 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Number 輔助函數" href="number_helper.html" />
     <link rel="prev" title="HTML Helper" href="html_helper.html" /> 
 </head>
@@ -338,272 +340,316 @@
            <div itemprop="articleBody">
             
   <div class="section" id="inflector">
-<h1>Inflector 輔助函數<a class="headerlink" href="#inflector" title="Permalink to this headline">¶</a></h1>
+<h1>Inflector 輔助函數<a class="headerlink" href="#inflector" title="本標題的永久連結">¶</a></h1>
 <p>Inflector 輔助函數檔案包含允許你更改 <strong>英語</strong> 為複數、單數、駝峰式諸類型式的功能</p>
-<div class="contents local topic" id="contents">
+<div class="contents local topic" id="id1">
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id3">載入此輔助函數</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id4">可用的功能</a></p></li>
+<li><a class="reference internal" href="#id2" id="id4">載入此輔助函數</a></li>
+<li><a class="reference internal" href="#id3" id="id5">可用的功能</a></li>
 </ul>
 </div>
-<div class="custom-index container"></div><div class="section" id="id1">
-<h2><a class="toc-backref" href="#id3">載入此輔助函數</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="custom-index container"></div><div class="section" id="id2">
+<h2><a class="toc-backref" href="#id4">載入此輔助函數</a><a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <p>此輔助函數可以利用以下的程式碼載入：</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;inflector&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;inflector&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id2">
-<h2><a class="toc-backref" href="#id4">可用的功能</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id5">可用的功能</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p>以下敘述的功能皆可用：</p>
 <dl class="function">
 <dt id="singular">
-<code class="sig-name descname">singular</code><span class="sig-paren">(</span><em class="sig-param">$string</em><span class="sig-paren">)</span><a class="headerlink" href="#singular" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$string</strong> (<em>string</em>) – 輸入字串</p></li>
+<code class="descname">singular</code><span class="sig-paren">(</span><em>$string</em><span class="sig-paren">)</span><a class="headerlink" href="#singular" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$string</strong> (<em>string</em>) – 輸入字串</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>一個單數詞</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">一個單數詞</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>將複數詞變更為單數詞。例如:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">singular</span><span class="p">(</span><span class="s1">&#39;dogs&#39;</span><span class="p">);</span> <span class="c1">// 印出 &#39;dog&#39;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">singular</span><span class="p">(</span><span class="s1">&#39;dogs&#39;</span><span class="p">);</span> <span class="c1">// 印出 &#39;dog&#39;</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="plural">
-<code class="sig-name descname">plural</code><span class="sig-paren">(</span><em class="sig-param">$string</em><span class="sig-paren">)</span><a class="headerlink" href="#plural" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$string</strong> (<em>string</em>) – 輸入字串</p></li>
+<code class="descname">plural</code><span class="sig-paren">(</span><em>$string</em><span class="sig-paren">)</span><a class="headerlink" href="#plural" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$string</strong> (<em>string</em>) – 輸入字串</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>一個複數字</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">一個複數字</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>將一個單數詞變更為複數詞。例如:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">plural</span><span class="p">(</span><span class="s1">&#39;dog&#39;</span><span class="p">);</span> <span class="c1">// 印出 &#39;dogs&#39;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">plural</span><span class="p">(</span><span class="s1">&#39;dog&#39;</span><span class="p">);</span> <span class="c1">// 印出 &#39;dogs&#39;</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="counted">
-<code class="sig-name descname">counted</code><span class="sig-paren">(</span><em class="sig-param">$count</em>, <em class="sig-param">$string</em><span class="sig-paren">)</span><a class="headerlink" href="#counted" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$count</strong> (<em>int</em>) – 物品的數字</p></li>
-<li><p><strong>$string</strong> (<em>string</em>) – 輸入數字</p></li>
+<code class="descname">counted</code><span class="sig-paren">(</span><em>$count</em>, <em>$string</em><span class="sig-paren">)</span><a class="headerlink" href="#counted" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$count</strong> (<em>int</em>) – 物品的數字</li>
+<li><strong>$string</strong> (<em>string</em>) – 輸入數字</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>一個單數或複數詞語</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">一個單數或複數詞語</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>將一個字詞與它的數量變更為一個詞語。例如:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">counted</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">);</span> <span class="c1">// 印出 &#39;3 dogs&#39;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">counted</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">);</span> <span class="c1">// 印出 &#39;3 dogs&#39;</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="camelize">
-<code class="sig-name descname">camelize</code><span class="sig-paren">(</span><em class="sig-param">$string</em><span class="sig-paren">)</span><a class="headerlink" href="#camelize" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$string</strong> (<em>string</em>) – 輸入字串Input string</p></li>
+<code class="descname">camelize</code><span class="sig-paren">(</span><em>$string</em><span class="sig-paren">)</span><a class="headerlink" href="#camelize" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$string</strong> (<em>string</em>) – 輸入字串Input string</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>駝峰式字串</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">駝峰式字串</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>將一個字串中以空格隔開或是畫底線的詞語合併成為駝峰式。例如:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">camelize</span><span class="p">(</span><span class="s1">&#39;my_dog_spot&#39;</span><span class="p">);</span> <span class="c1">// 印出 &#39;myDogSpot&#39;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">camelize</span><span class="p">(</span><span class="s1">&#39;my_dog_spot&#39;</span><span class="p">);</span> <span class="c1">// 印出 &#39;myDogSpot&#39;</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="pascalize">
-<code class="sig-name descname">pascalize</code><span class="sig-paren">(</span><em class="sig-param">$string</em><span class="sig-paren">)</span><a class="headerlink" href="#pascalize" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$string</strong> (<em>string</em>) – 輸入字串</p></li>
+<code class="descname">pascalize</code><span class="sig-paren">(</span><em>$string</em><span class="sig-paren">)</span><a class="headerlink" href="#pascalize" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$string</strong> (<em>string</em>) – 輸入字串</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Pascal 字串</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">Pascal 字串</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>將一個字串中以空格隔開或是畫底線的詞語合併成 Pascal 型式，意即首字為大寫的駝峰式命名。例如:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">pascalize</span><span class="p">(</span><span class="s1">&#39;my_dog_spot&#39;</span><span class="p">);</span> <span class="c1">// 印出 &#39;MyDogSpot&#39;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">pascalize</span><span class="p">(</span><span class="s1">&#39;my_dog_spot&#39;</span><span class="p">);</span> <span class="c1">// 印出 &#39;MyDogSpot&#39;</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="underscore">
-<code class="sig-name descname">underscore</code><span class="sig-paren">(</span><em class="sig-param">$string</em><span class="sig-paren">)</span><a class="headerlink" href="#underscore" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$string</strong> (<em>string</em>) – 輸入字串</p></li>
+<code class="descname">underscore</code><span class="sig-paren">(</span><em>$string</em><span class="sig-paren">)</span><a class="headerlink" href="#underscore" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$string</strong> (<em>string</em>) – 輸入字串</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>字串包含底線而非空格</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">字串包含底線而非空格</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>選取多個空格隔開的字並改為底線。
 例如:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">underscore</span><span class="p">(</span><span class="s1">&#39;my dog spot&#39;</span><span class="p">);</span> <span class="c1">// 印出 &#39;my_dog_spot&#39;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">underscore</span><span class="p">(</span><span class="s1">&#39;my dog spot&#39;</span><span class="p">);</span> <span class="c1">// 印出 &#39;my_dog_spot&#39;</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="humanize">
-<code class="sig-name descname">humanize</code><span class="sig-paren">(</span><em class="sig-param">$string</em><span class="optional">[</span>, <em class="sig-param">$separator = '_'</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#humanize" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$string</strong> (<em>string</em>) – 輸入字串</p></li>
-<li><p><strong>$separator</strong> (<em>string</em>) – 輸入分隔符號</p></li>
+<code class="descname">humanize</code><span class="sig-paren">(</span><em>$string</em><span class="optional">[</span>, <em>$separator = '_'</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#humanize" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$string</strong> (<em>string</em>) – 輸入字串</li>
+<li><strong>$separator</strong> (<em>string</em>) – 輸入分隔符號</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>人性化的字串</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">人性化的字串</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>選取多個由底線隔開的字並在其中增加空格。每一個詞的第一個字都是大寫的。</p>
 <p>例如:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">humanize</span><span class="p">(</span><span class="s1">&#39;my_dog_spot&#39;</span><span class="p">);</span> <span class="c1">// 印出 &#39;My Dog Spot&#39;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">humanize</span><span class="p">(</span><span class="s1">&#39;my_dog_spot&#39;</span><span class="p">);</span> <span class="c1">// 印出 &#39;My Dog Spot&#39;</span>
 </pre></div>
 </div>
 <p>使用破折號而非底線:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">humanize</span><span class="p">(</span><span class="s1">&#39;my-dog-spot&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">);</span> <span class="c1">// 印出 &#39;My Dog Spot&#39;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">humanize</span><span class="p">(</span><span class="s1">&#39;my-dog-spot&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">);</span> <span class="c1">// 印出 &#39;My Dog Spot&#39;</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="is_pluralizable">
-<code class="sig-name descname">is_pluralizable</code><span class="sig-paren">(</span><em class="sig-param">$word</em><span class="sig-paren">)</span><a class="headerlink" href="#is_pluralizable" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$word</strong> (<em>string</em>) – 輸入字串</p></li>
+<code class="descname">is_pluralizable</code><span class="sig-paren">(</span><em>$word</em><span class="sig-paren">)</span><a class="headerlink" href="#is_pluralizable" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$word</strong> (<em>string</em>) – 輸入字串</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>TRUE：當字詞是可數的 或 FALSE：當字詞不可數</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE：當字詞是可數的 或 FALSE：當字詞不可數</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>確認是否給定的字詞有複數形式。例如:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">is_pluralizable</span><span class="p">(</span><span class="s1">&#39;equipment&#39;</span><span class="p">);</span> <span class="c1">// 回傳 FALSE</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">is_pluralizable</span><span class="p">(</span><span class="s1">&#39;equipment&#39;</span><span class="p">);</span> <span class="c1">// 回傳 FALSE</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="dasherize">
-<code class="sig-name descname">dasherize</code><span class="sig-paren">(</span><em class="sig-param">$string</em><span class="sig-paren">)</span><a class="headerlink" href="#dasherize" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$string</strong> (<em>string</em>) – 輸入字串</p></li>
+<code class="descname">dasherize</code><span class="sig-paren">(</span><em>$string</em><span class="sig-paren">)</span><a class="headerlink" href="#dasherize" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$string</strong> (<em>string</em>) – 輸入字串</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>使用破折號的字串</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">使用破折號的字串</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>在字串中以破折號取代底線。例如:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">dasherize</span><span class="p">(</span><span class="s1">&#39;hello_world&#39;</span><span class="p">);</span> <span class="c1">// 回傳 &#39;hello-world&#39;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">dasherize</span><span class="p">(</span><span class="s1">&#39;hello_world&#39;</span><span class="p">);</span> <span class="c1">// 回傳 &#39;hello-world&#39;</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="ordinal">
-<code class="sig-name descname">ordinal</code><span class="sig-paren">(</span><em class="sig-param">$integer</em><span class="sig-paren">)</span><a class="headerlink" href="#ordinal" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$integer</strong> (<em>int</em>) – 定義後綴的數字</p></li>
+<code class="descname">ordinal</code><span class="sig-paren">(</span><em>$integer</em><span class="sig-paren">)</span><a class="headerlink" href="#ordinal" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$integer</strong> (<em>int</em>) – 定義後綴的數字</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>序號的後綴</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">序號的後綴</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>回傳應該加在數字後面以表示序位的後綴，像是
 1st, 2nd, 3rd, 4th。例如:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">ordinal</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// 回傳 &#39;st&#39;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">ordinal</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// 回傳 &#39;st&#39;</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="ordinalize">
-<code class="sig-name descname">ordinalize</code><span class="sig-paren">(</span><em class="sig-param">$integer</em><span class="sig-paren">)</span><a class="headerlink" href="#ordinalize" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>$integer</strong> (<em>int</em>) – 要排序的整數</p></li>
+<code class="descname">ordinalize</code><span class="sig-paren">(</span><em>$integer</em><span class="sig-paren">)</span><a class="headerlink" href="#ordinalize" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$integer</strong> (<em>int</em>) – 要排序的整數</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>排序過的整數</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">排序過的整數</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>將一個數字字串列轉換為表示序位的序數字串，像是 1st, 2nd, 3rd, 4th。
 例如:</p>
-<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">ordinalize</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// 回傳 &#39;1st&#39;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">ordinalize</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// 回傳 &#39;1st&#39;</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -631,9 +677,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter Foundation
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        Last updated on Apr 14, 2020.
+        最後更新於 2020年04月18日。
       </span>
 
     </p>
