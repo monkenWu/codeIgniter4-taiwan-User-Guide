@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Logging Information &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>記錄日誌資訊 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,7 +40,7 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Error Handling" href="errors.html" />
+    <link rel="next" title="錯誤處理" href="errors.html" />
     <link rel="prev" title="全域函數與常數" href="common_functions.html" /> 
 </head>
 
@@ -135,10 +135,10 @@
 <li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URLs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helpers.html">輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="common_functions.html">全域函數與常數</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Logging Information</a></li>
-<li class="toctree-l2"><a class="reference internal" href="errors.html">Error Handling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="caching.html">Web Page Caching</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ajax.html">AJAX Requests</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">記錄日誌資訊</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">錯誤處理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">網頁快取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ajax.html">AJAX 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modules.html">Code Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="managing_apps.html">Managing your Applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="environments.html">Handling Multiple Environments</a></li>
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">Honeypot Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Dates and Times</a></li>
@@ -322,7 +322,7 @@
         
           <li><a href="index.html">一般主題</a> &raquo;</li>
         
-      <li>Logging Information</li>
+      <li>記錄日誌資訊</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,78 +339,59 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="logging-information">
-<h1>Logging Information<a class="headerlink" href="#logging-information" title="本標題的永久連結">¶</a></h1>
-<div class="contents local topic" id="id1">
+  <div class="section" id="id1">
+<h1>記錄日誌資訊<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#configuration" id="id2">Configuration</a><ul>
-<li><a class="reference internal" href="#using-multiple-log-handlers" id="id3">Using Multiple Log Handlers</a></li>
+<li><a class="reference internal" href="#id3" id="id7">組態設定</a><ul>
+<li><a class="reference internal" href="#id4" id="id8">使用多個日誌處理程序</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#modifying-the-message-with-context" id="id4">Modifying the Message With Context</a></li>
-<li><a class="reference internal" href="#using-third-party-loggers" id="id5">Using Third-Party Loggers</a></li>
-<li><a class="reference internal" href="#loggeraware-trait" id="id6">LoggerAware Trait</a></li>
+<li><a class="reference internal" href="#id5" id="id9">依據語境修改訊息</a></li>
+<li><a class="reference internal" href="#id6" id="id10">使用第三方日誌記錄器</a></li>
+<li><a class="reference internal" href="#loggeraware" id="id11">LoggerAware 特徵機制</a></li>
 </ul>
 </div>
-<p>You can log information to the local log files by using the <code class="docutils literal notranslate"><span class="pre">log_message()</span></code> method. You must supply
-the 「level」 of the error in the first parameter, indicating what type of message it is (debug, error, etc).
-The second parameter is the message itself:</p>
+<p>你可通過使用 <code class="docutils literal notranslate"><span class="pre">log_message()</span></code> 方法將訊息記錄到本地日誌檔案中。你必須在第一個參數中提供錯誤的「級別」，定義這是個怎麼樣的錯誤訊息（ debug 或 error ）。第二個參數則是錯誤訊息本體：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$some_var</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="nx">log_message</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="s1">&#39;Some variable did not contain a value.&#39;</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>There are eight different log levels, matching to the <a class="reference external" href="https://tools.ietf.org/html/rfc5424">RFC 5424</a> levels, and they are as follows:</p>
+<p>共有 8 個不同的日誌級別，源自  <a class="reference external" href="https://tools.ietf.org/html/rfc5424">RFC 5424</a>  中提到的級別，具體說明如下：</p>
 <ul class="simple">
-<li><strong>debug</strong> - Detailed debug information.</li>
-<li><strong>info</strong> - Interesting events in your application, like a user logging in, logging SQL queries, etc.</li>
-<li><strong>notice</strong> - Normal, but significant events in your application.</li>
-<li><strong>warning</strong> - Exceptional occurrences that are not errors, like the use of deprecated APIs, poor use of an API, or other undesirable things that are not necessarily wrong.</li>
-<li><strong>error</strong> - Runtime errors that do not require immediate action but should typically be logged and monitored.</li>
-<li><strong>critical</strong> - Critical conditions, like an application component not available, or an unexpected exception.</li>
-<li><strong>alert</strong> - Action must be taken immediately, like when an entire website is down, the database unavailable, etc.</li>
-<li><strong>emergency</strong> - The system is unusable.</li>
+<li><strong>debug</strong> - 詳細的除錯資訊。</li>
+<li><strong>info</strong> - 在你的應用程式中發生的重大事件，例如：使用者登入或記錄 SQL 查詢等。</li>
+<li><strong>notice</strong> - 你的應用程式運作正常但必須記錄的重要事件。</li>
+<li><strong>warning</strong> - 發生了不屬於錯誤的異常情形，比如說：使用了被淘汰的 API 、不當地使用 API ，或其他不一定是錯誤地不良情況。</li>
+<li><strong>error</strong> - 不需要立即採取行動，但應該要被記錄和監測的執行期間錯誤。</li>
+<li><strong>critical</strong> - 關鍵情況，如應用程式組件無法使用，或是出現意外異常。</li>
+<li><strong>alert</strong> - 必須立即採取行動，比如整個網站癱瘓，或是資料庫無法使用等等。</li>
+<li><strong>emergency</strong> - 系統無法使用。</li>
 </ul>
-<p>The logging system does not provide ways to alert sysadmins or webmasters about these events, they solely log
-the information. For many of the more critical event levels, the logging happens automatically by the
-Error Handler, described above.</p>
-<div class="section" id="configuration">
-<h2><a class="toc-backref" href="#id2">Configuration</a><a class="headerlink" href="#configuration" title="本標題的永久連結">¶</a></h2>
-<p>You can modify which levels are actually logged, as well as assign different Loggers to handle different levels, within
-the <code class="docutils literal notranslate"><span class="pre">/app/Config/Logger.php</span></code> configuration file.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">threshold</span></code> value of the config file determines which levels are logged across your application. If any levels
-are requested to be logged by the application, but the threshold doesn’t allow them to log currently, they will be
-ignored. The simplest method to use is to set this value to the minimum level that you want to have logged. For example,
-if you want to log warning messages, and not information messages, you would set the threshold to <code class="docutils literal notranslate"><span class="pre">5</span></code>. Any log requests with
-a level of 5 or less (which includes runtime errors, system errors, etc) would be logged and info, notices, and debug
-would be ignored:</p>
+<p>日誌記錄系統不提供系統管理員或網站管理員注意這些事件的方法，它只記錄訊息。對於更關鍵的事件級別，日誌記錄將由錯誤處理程序自動觸發，如上所述。</p>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id7">組態設定</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>你可以在 <code class="docutils literal notranslate"><span class="pre">/app/Config/Logger.php</span></code> 設定檔案中修改實際記錄的級別，也可以指定不同的日誌記錄器來處理不同的級別。</p>
+<p>設定檔案的 <code class="docutils literal notranslate"><span class="pre">threshold</span></code> （閥值）決定了整個應用程式該記錄那些級別。如果應用程式請求記錄某個級別，但並不符合閥值，那它將會被忽略。最簡單的方式是將這個數值設定會你需要記錄的最小級別。例如：如果你想記錄 warning 訊息，而不是 information 訊息，你可以將閥值設定為 <code class="docutils literal notranslate"><span class="pre">5</span></code> 。任何級別為 5 或更低的日誌記錄請求（包括運作時錯誤、系統錯誤等）都會被記錄下來，而 info 、 notices 與 debug 將會被忽略。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$threshold</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>A complete list of levels and their corresponding threshold value is in the configuration file for your reference.</p>
-<p>You can pick and choose the specific levels that you would like logged by assigning an array of log level numbers
-to the threshold value:</p>
+<p>完整級別與其對應的閥值列表將在設定文件中供你參考。</p>
+<p>你可以通過賦予閥值一個陣列，並宣告多個日誌級別號碼來選擇你所希望記錄的特定級別：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Log only debug and info type messages</span>
 <span class="k">public</span> <span class="nv">$threshold</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">];</span>
 </pre></div>
 </div>
-<div class="section" id="using-multiple-log-handlers">
-<h3><a class="toc-backref" href="#id3">Using Multiple Log Handlers</a><a class="headerlink" href="#using-multiple-log-handlers" title="本標題的永久連結">¶</a></h3>
-<p>The logging system can support multiple methods of handling logging running at the same time. Each handler can
-be set to handle specific levels and ignore the rest. Currently, two handlers come with a default install:</p>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id8">使用多個日誌處理程序</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
+<p>記錄日誌系統支援多種日誌記錄處理程序同時運作的方法。可以將每個處理程序設定為特定的級別，從而忽略其他處理程序，預設安裝的處理程序有兩種：</p>
 <ul class="simple">
-<li><strong>File Handler</strong> is the default handler and will create a single file for every day locally. This is the
-recommended method of logging.</li>
-<li><strong>ChromeLogger Handler</strong> If you have the <a class="reference external" href="https://craig.is/writing/chrome-logger">ChromeLogger extension</a>
-installed in the Chrome web browser, you can use this handler to display the log information in
-Chrome’s console window.</li>
+<li><strong>檔案處理程序</strong> 是預設的處理程序，將會每天在本地建立一個檔案。這是推薦的記錄方法。</li>
+<li><strong>ChromeLogger 處理程序</strong> 如果你在 Chrome Web 瀏覽器中安裝了 <a class="reference external" href="https://craig.is/writing/chrome-logger">ChromeLogger extension</a> 擴充模組，你可以使用這個處理程序在 Chrome 主控台中顯示日誌訊息。</li>
 </ul>
-<p>The handlers are configured in the main configuration file, in the <code class="docutils literal notranslate"><span class="pre">$handlers</span></code> property, which is simply
-an array of handlers and their configuration. Each handler is specified with the key being the fully
-name-spaced class name. The value will be an array of varying properties, specific to each handler.
-Each handler’s section will have one property in common: <code class="docutils literal notranslate"><span class="pre">handles</span></code>, which is an array of log level
-<em>names</em> that the handler will log information for.</p>
+<p>處理程序是在核心設定檔案中的 <code class="docutils literal notranslate"><span class="pre">$handlers</span></code> 屬性設定的，它只是一個處理程序的陣列與其設定內容。每個處理程序將可以在這個陣列中被指定，「鍵」為以命名空間所構成的類別名稱，「值」將是一個針對每個處理程序的不同屬性的陣列。每個處理程序都會一個供通屬性： <code class="docutils literal notranslate"><span class="pre">handles</span></code> ，這是處理程序將記錄訊息的日誌級別的陣列。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$handlers</span> <span class="o">=</span> <span class="p">[</span>
 
         <span class="c1">//--------------------------------------------------------------------</span>
@@ -426,13 +407,9 @@ Each handler’s section will have one property in common: <code class="docutils
 </div>
 </div>
 </div>
-<div class="section" id="modifying-the-message-with-context">
-<h2><a class="toc-backref" href="#id4">Modifying the Message With Context</a><a class="headerlink" href="#modifying-the-message-with-context" title="本標題的永久連結">¶</a></h2>
-<p>You will often want to modify the details of your message based on the context of the event being logged.
-You might need to log a user id, an IP address, the current POST variables, etc. You can do this by use
-placeholders in your message. Each placeholder must be wrapped in curly braces. In the third parameter,
-you must provide an array of placeholder names (without the braces) and their values. These will be inserted
-into the message string:</p>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id9">依據語境修改訊息</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<p>你可能經常會想根據語境來修改被記錄事件的訊息細節。它們可能是使用者 ID 、 IP 位置，或是目前的 POST 變數等等。你可以利用在訊息中的置換符號來實現。每個置換符號必須使用大括弧包裹起來。在第三個參數中，你必須提供一個鍵值為置換符號名稱的陣列（沒有括號）和他們的值。這些內容將被替換至到訊息字串中：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Generates a message like: User 123 logged into the system from 127.0.0.1</span>
 <span class="nv">$info</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
@@ -442,9 +419,7 @@ into the message string:</p>
 <span class="nx">log_message</span><span class="p">(</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;User {id} logged into the system from {ip_address}&#39;</span><span class="p">,</span> <span class="nv">$info</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>If you want to log an Exception or an Error, you can use the key of 『exception』, and the value being the
-Exception or Error itself. A string will be generated from that object containing the error message, the
-file name and line number. You must still provide the exception placeholder in the message:</p>
+<p>如果你想記錄一個異常或是錯誤，你可以在陣列中宣告一個鍵為「 exception 」值為錯誤本身的成員。這個設定將會從物件中產生一個包含錯誤資訊、檔案名稱和行數的字串。當然，在訊息字串中，你也得提供名為「 exception 」的置換符號：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">try</span>
 <span class="p">{</span>
         <span class="o">...</span> <span class="nx">Something</span> <span class="nx">throws</span> <span class="nx">error</span> <span class="nx">here</span>
@@ -455,59 +430,51 @@ file name and line number. You must still provide the exception placeholder in t
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Several core placeholders exist that will be automatically expanded for you based on the current page request:</p>
+<p>有幾個核心置換符號會根據目前的頁面請求自動為您擴充：</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="24%" />
 <col width="76%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Placeholder</th>
-<th class="head">Inserted value</th>
+<tr class="row-odd"><th class="head">置換符號</th>
+<th class="head">替換值</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>{post_vars}</td>
-<td>$_POST variables</td>
+<td>$_POST 變數</td>
 </tr>
 <tr class="row-odd"><td>{get_vars}</td>
-<td>$_GET variables</td>
+<td>$_GET 變數</td>
 </tr>
 <tr class="row-even"><td>{session_vars}</td>
-<td>$_SESSION variables</td>
+<td>$_SESSION 變數</td>
 </tr>
 <tr class="row-odd"><td>{env}</td>
-<td>Current environment name, i.e. development</td>
+<td>目前的環境名稱，例如：development</td>
 </tr>
 <tr class="row-even"><td>{file}</td>
-<td>The name of file calling the logger</td>
+<td>呼叫日誌記錄器的檔案名稱</td>
 </tr>
 <tr class="row-odd"><td>{line}</td>
-<td>The line in {file} where the logger was called</td>
+<td>在 {file} 中呼叫日誌記錄器的那一行</td>
 </tr>
 <tr class="row-even"><td>{env:foo}</td>
-<td>The value of 『foo』 in $_ENV</td>
+<td>$_ENV 中的 foo 的值</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="using-third-party-loggers">
-<h2><a class="toc-backref" href="#id5">Using Third-Party Loggers</a><a class="headerlink" href="#using-third-party-loggers" title="本標題的永久連結">¶</a></h2>
-<p>You can use any other logger that you might like as long as it extends from either
-<code class="docutils literal notranslate"><span class="pre">Psr\Log\LoggerInterface</span></code> and is <a class="reference external" href="https://www.php-fig.org/psr/psr-3/">PSR3</a> compatible. This means
-that you can easily drop in use for any PSR3-compatible logger, or create your own.</p>
-<p>You must ensure that the third-party logger can be found by the system, by adding it to either
-the <code class="docutils literal notranslate"><span class="pre">/app/Config/Autoload.php</span></code> configuration file, or through another autoloader,
-like Composer. Next, you should modify <code class="docutils literal notranslate"><span class="pre">/app/Config/Services.php</span></code> to point the <code class="docutils literal notranslate"><span class="pre">logger</span></code>
-alias to your new class name.</p>
-<p>Now, any call that is done through the <code class="docutils literal notranslate"><span class="pre">log_message()</span></code> function will use your library instead.</p>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id10">使用第三方日誌記錄器</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
+<p>只要你中意的日誌記錄器繼承至 <code class="docutils literal notranslate"><span class="pre">Psr\Log\LoggerInterface</span></code> 並且相容於 <a class="reference external" href="https://www.php-fig.org/psr/psr-3/">PSR3</a> 規範，你就可以任意地使用它。這意味著，你可以容易地使用 PSR3 相容的日誌記錄器，或者是創建你自己的日誌記錄器。</p>
+<p>將第三方記錄器添加到 <code class="docutils literal notranslate"><span class="pre">/app/Config/Autoload.php</span></code> 這個組態設定文件，或者是通過像是 Composer 的自動加載器，好讓系統可以找到你的第三方日誌記錄器。接下來，你應該要去修改 <code class="docutils literal notranslate"><span class="pre">/app/Config/Services.php</span></code> ，將日誌記錄器的別名指向你的新類別名稱。</p>
+<p>現在，任何通過 <code class="docutils literal notranslate"><span class="pre">log_message()</span></code> 函數進行的呼叫都將使用你的程式庫。</p>
 </div>
-<div class="section" id="loggeraware-trait">
-<h2><a class="toc-backref" href="#id6">LoggerAware Trait</a><a class="headerlink" href="#loggeraware-trait" title="本標題的永久連結">¶</a></h2>
-<p>If you would like to implement your libraries in a framework-agnostic method, you can use
-the <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Log\LoggerAwareTrait</span></code> which implements the <code class="docutils literal notranslate"><span class="pre">setLogger()</span></code> method for you.
-Then, when you use your library under different environments for frameworks, your library should
-still be able to log as it would expect, as long as it can find a PSR3 compatible logger.</p>
+<div class="section" id="loggeraware">
+<h2><a class="toc-backref" href="#id11">LoggerAware 特徵機制</a><a class="headerlink" href="#loggeraware" title="本標題的永久連結">¶</a></h2>
+<p>如果你想使用一個與框架無關的方法實作你的程式庫，你可以使用 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Log\LoggerAwareTrait</span></code> ，它為你實作了 <code class="docutils literal notranslate"><span class="pre">setLogger()</span></code> 方法。當你在不同框架環境下使用你的程式庫時，只要能找到一個與 PSR3 規範相容的日誌記錄器，你的程式庫應該就能按照你的期望的那樣進行記錄。</p>
 </div>
 </div>
 
@@ -519,7 +486,7 @@ still be able to log as it would expect, as long as it can find a PSR3 compatibl
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="errors.html" class="btn btn-neutral float-right" title="Error Handling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="errors.html" class="btn btn-neutral float-right" title="錯誤處理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="common_functions.html" class="btn btn-neutral float-left" title="全域函數與常數" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -533,7 +500,7 @@ still be able to log as it would expect, as long as it can find a PSR3 compatibl
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月18日。
+        最後更新於 2020年04月20日。
       </span>
 
     </p>
