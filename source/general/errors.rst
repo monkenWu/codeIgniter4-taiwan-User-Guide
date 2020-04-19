@@ -105,32 +105,36 @@ CodeIgniter 透過 Exceptions 將錯誤報告建構到你的系統中，包括 `
 設定例外
 ---------------
 
-This exception should be used when the values from the configuration class are invalid, or when the config class
-is not the right type, etc::
+當組態設定類別中的值無效，或者設定類別的類型不對等的情快下，應該使用這個異常：
+
+::
 
 	throw new \CodeIgniter\Exceptions\ConfigException();
 
-This provides an HTTP status code of 500 and an exit code of 3.
+這個異常機會給予你一個 500 HTTP 狀態瑪，以及 3 退出碼 。
 
 資料庫例外
 -----------------
 
-This exception is thrown for database errors, such as when the database connection cannot be created,
-or when it is temporarily lost::
+這個是個針對資料庫錯誤而拋出的異常，比如資料庫無法創建或暫時丟失時，就會拋出這個異常：
+
+::
 
 	throw new \CodeIgniter\Database\Exceptions\DatabaseException();
 
-This provides an HTTP status code of 500 and an exit code of 8.
+這個異常將會給予你一個 500 HTTP 狀態瑪，以及 8 退出碼 。
 
 重新導向例外
 -----------------
 
-This exception is a special case allowing for overriding of all other response routing and
-forcing a redirect to a specific route or URL::
+這是一個特殊狀況的例外，它允許你覆蓋所有響應的路由並強制重新導向到特定的路由或 URL ：
+
+::
 
 	throw new \CodeIgniter\Router\Exceptions\RedirectException($route);
 
-``$route`` may be a named route, relative URI, or a complete URL. You can also supply a
-redirect code to use instead of the default (``302``, "temporary redirect")::
+``$route`` 可以是一個被宣告過的路由名稱、相對的 URL ，或者是完整的 URL 。你也可以給予一個重新導向碼來替換掉默認的 ( ``302`` , "temporary redirect") ：
+
+::
 
 	throw new \CodeIgniter\Router\Exceptions\RedirectException($route, 301);
