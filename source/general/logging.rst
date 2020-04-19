@@ -1,75 +1,64 @@
 ###################
-Logging Information
+記錄日誌資訊
 ###################
 
 .. contents::
     :local:
     :depth: 2
 
-You can log information to the local log files by using the ``log_message()`` method. You must supply
-the "level" of the error in the first parameter, indicating what type of message it is (debug, error, etc).
-The second parameter is the message itself::
+你可通過使用 ``log_message()`` 方法將訊息記錄到本地日誌檔案中。你必須在第一個參數中提供錯誤的「級別」，定義這是個怎麼樣的錯誤訊息（ debug 或 error ）。第二個參數則是錯誤訊息本體：
+
+::
 
 	if ($some_var == '')
 	{
 		log_message('error', 'Some variable did not contain a value.');
 	}
 
-There are eight different log levels, matching to the `RFC 5424 <https://tools.ietf.org/html/rfc5424>`_ levels, and they are as follows:
+共有 8 個不同的日誌級別，源自  `RFC 5424 <https://tools.ietf.org/html/rfc5424>`_  中提到的級別，具體說明如下：
 
-* **debug** - Detailed debug information.
-* **info** - Interesting events in your application, like a user logging in, logging SQL queries, etc.
-* **notice** - Normal, but significant events in your application.
-* **warning** - Exceptional occurrences that are not errors, like the use of deprecated APIs, poor use of an API, or other undesirable things that are not necessarily wrong.
-* **error** - Runtime errors that do not require immediate action but should typically be logged and monitored.
-* **critical** - Critical conditions, like an application component not available, or an unexpected exception.
-* **alert** - Action must be taken immediately, like when an entire website is down, the database unavailable, etc.
-* **emergency** - The system is unusable.
+* **debug** - 詳細的除錯資訊。
+* **info** - 在你的應用程式中發生的重大事件，例如：使用者登入或記錄 SQL 查詢等。 
+* **notice** - 你的應用程式運作正常但必須記錄的重要事件。
+* **warning** - 發生了不屬於錯誤的異常情形，比如說：使用了被淘汰的 API 、不當地使用 API ，或其他不一定是錯誤地不良情況。
+* **error** - 不需要立即採取行動，但應該要被記錄和監測的執行期間錯誤。
+* **critical** - 關鍵情況，如應用程式組件無法使用，或是出現意外異常。
+* **alert** - 必須立即採取行動，比如整個網站癱瘓，或是資料庫無法使用等等。
+* **emergency** - 系統無法使用。
 
-The logging system does not provide ways to alert sysadmins or webmasters about these events, they solely log
-the information. For many of the more critical event levels, the logging happens automatically by the
-Error Handler, described above.
+日誌記錄系統不提供系統管理員或網站管理員注意這些事件的方法，它只記錄訊息。對於更關鍵的事件級別，日誌記錄將由錯誤處理程序自動觸發，如上所述。
 
-Configuration
+組態設定
 =============
 
-You can modify which levels are actually logged, as well as assign different Loggers to handle different levels, within
-the ``/app/Config/Logger.php`` configuration file.
+你可以在 ``/app/Config/Logger.php`` 設定檔案中修改實際記錄的級別，也可以指定不同的日誌記錄器來處理不同的級別。
 
-The ``threshold`` value of the config file determines which levels are logged across your application. If any levels
-are requested to be logged by the application, but the threshold doesn't allow them to log currently, they will be
-ignored. The simplest method to use is to set this value to the minimum level that you want to have logged. For example,
-if you want to log warning messages, and not information messages, you would set the threshold to ``5``. Any log requests with
-a level of 5 or less (which includes runtime errors, system errors, etc) would be logged and info, notices, and debug
-would be ignored::
+設定檔案的 ``threshold`` （閥值）決定了整個應用程式該記錄那些級別。如果應用程式請求記錄某個級別，但並不符合閥值，那它將會被忽略。最簡單的方式是將這個數值設定會你需要記錄的最小級別。例如：如果你想記錄 warning 訊息，而不是 information 訊息，你可以將閥值設定為 ``5`` 。任何級別為 5 或更低的日誌記錄請求（包括運作時錯誤、系統錯誤等）都會被記錄下來，而 info 、 notices 與 debug 將會被忽略。
+
+::
 
 	public $threshold = 5;
 
-A complete list of levels and their corresponding threshold value is in the configuration file for your reference.
+完整級別與其對應的閥值列表將在設定文件中供你參考。
 
-You can pick and choose the specific levels that you would like logged by assigning an array of log level numbers
-to the threshold value::
+你可以通過賦予閥值一個陣列，並宣告多個日誌級別號碼來選擇你所希望記錄的特定級別：
+
+::
 
 	// Log only debug and info type messages
 	public $threshold = [5, 8];
 
-Using Multiple Log Handlers
+使用多個日誌處理程序
 ---------------------------
 
-The logging system can support multiple methods of handling logging running at the same time. Each handler can
-be set to handle specific levels and ignore the rest. Currently, two handlers come with a default install:
+記錄日誌系統支援多種日誌記錄處理程序同時運作的方法。可以將每個處理程序設定為特定的級別，從而忽略其他處理程序，預設安裝的處理程序有兩種：
 
-- **File Handler** is the default handler and will create a single file for every day locally. This is the
-  recommended method of logging.
-- **ChromeLogger Handler** If you have the `ChromeLogger extension <https://craig.is/writing/chrome-logger>`_
-  installed in the Chrome web browser, you can use this handler to display the log information in
-  Chrome's console window.
+- **檔案處理程序** 是預設的處理程序，將會每天在本地建立一個檔案。這是推薦的記錄方法。
 
-The handlers are configured in the main configuration file, in the ``$handlers`` property, which is simply
-an array of handlers and their configuration. Each handler is specified with the key being the fully
-name-spaced class name. The value will be an array of varying properties, specific to each handler.
-Each handler's section will have one property in common: ``handles``, which is an array of log level
-*names* that the handler will log information for.
+- **ChromeLogger 處理程序** 如果你在 Chrome Web 瀏覽器中安裝了 `ChromeLogger extension <https://craig.is/writing/chrome-logger>`_ 擴充模組，你可以使用這個處理程序在 Chrome 主控台中顯示日誌訊息。
+
+處理程序是在核心設定檔案中的 ``$handlers`` 屬性設定的，它只是一個處理程序的陣列與其設定內容。每個處理程序將可以在這個陣列中被指定，「鍵」為以命名空間所構成的類別名稱，「值」將是一個針對每個處理程序的不同屬性的陣列。每個處理程序都會一個供通屬性： ``handles`` ，這是處理程序將記錄訊息的日誌級別的陣列。
+
 ::
 
 	public $handlers = [
@@ -84,14 +73,12 @@ Each handler's section will have one property in common: ``handles``, which is a
 		]
 	];
 
-Modifying the Message With Context
+依據語境修改訊息
 ==================================
 
-You will often want to modify the details of your message based on the context of the event being logged.
-You might need to log a user id, an IP address, the current POST variables, etc. You can do this by use
-placeholders in your message. Each placeholder must be wrapped in curly braces. In the third parameter,
-you must provide an array of placeholder names (without the braces) and their values. These will be inserted
-into the message string::
+你可能經常會想根據語境來修改被記錄事件的訊息細節。它們可能是使用者 ID 、 IP 位置，或是目前的 POST 變數等等。你可以利用在訊息中的置換符號來實現。每個置換符號必須使用大括弧包裹起來。在第三個參數中，你必須提供一個鍵值為置換符號名稱的陣列（沒有括號）和他們的值。這些內容將被替換至到訊息字串中：
+
+::
 
 	// Generates a message like: User 123 logged into the system from 127.0.0.1
 	$info = [
@@ -101,9 +88,9 @@ into the message string::
 
 	log_message('info', 'User {id} logged into the system from {ip_address}', $info);
 
-If you want to log an Exception or an Error, you can use the key of 'exception', and the value being the
-Exception or Error itself. A string will be generated from that object containing the error message, the
-file name and line number. You must still provide the exception placeholder in the message::
+如果你想記錄一個異常或是錯誤，你可以在陣列中宣告一個鍵為「 exception 」值為錯誤本身的成員。這個設定將會從物件中產生一個包含錯誤資訊、檔案名稱和行數的字串。當然，在訊息字串中，你也得提供名為「 exception 」的置換符號：
+
+::
 
 	try
 	{
@@ -114,44 +101,37 @@ file name and line number. You must still provide the exception placeholder in t
 		log_message('error', '[ERROR] {exception}', ['exception' => $e]);
 	}
 
-Several core placeholders exist that will be automatically expanded for you based on the current page request:
+有幾個核心置換符號會根據目前的頁面請求自動為您擴充：
 
 +----------------+---------------------------------------------------+
-| Placeholder    | Inserted value                                    |
+| 置換符號       | 替換值                                            |
 +================+===================================================+
-| {post_vars}    | $_POST variables                                  |
+| {post_vars}    | $_POST 變數                                       |
 +----------------+---------------------------------------------------+
-| {get_vars}     | $_GET variables                                   |
+| {get_vars}     | $_GET 變數                                        |
 +----------------+---------------------------------------------------+
-| {session_vars} | $_SESSION variables                               |
+| {session_vars} | $_SESSION 變數                                    |
 +----------------+---------------------------------------------------+
-| {env}          | Current environment name, i.e. development        |
+| {env}          | 目前的環境名稱，例如：development                 |
 +----------------+---------------------------------------------------+
-| {file}         | The name of file calling the logger               |
+| {file}         | 呼叫日誌記錄器的檔案名稱                          |
 +----------------+---------------------------------------------------+
-| {line}         | The line in {file} where the logger was called    |
+| {line}         | 在 {file} 中呼叫日誌記錄器的那一行                |
 +----------------+---------------------------------------------------+
-| {env:foo}      | The value of 'foo' in $_ENV                       |
+| {env:foo}      | $_ENV 中的 foo 的值                               |
 +----------------+---------------------------------------------------+
 
-Using Third-Party Loggers
+
+使用第三方日誌記錄器
 =========================
 
-You can use any other logger that you might like as long as it extends from either
-``Psr\Log\LoggerInterface`` and is `PSR3 <https://www.php-fig.org/psr/psr-3/>`_ compatible. This means
-that you can easily drop in use for any PSR3-compatible logger, or create your own.
+只要你中意的日誌記錄器繼承至 ``Psr\Log\LoggerInterface`` 並且相容於 `PSR3 <https://www.php-fig.org/psr/psr-3/>`_ 規範，你就可以任意地使用它。這意味著，你可以容易地使用 PSR3 相容的日誌記錄器，或者是創建你自己的日誌記錄器。
 
-You must ensure that the third-party logger can be found by the system, by adding it to either
-the ``/app/Config/Autoload.php`` configuration file, or through another autoloader,
-like Composer. Next, you should modify ``/app/Config/Services.php`` to point the ``logger``
-alias to your new class name.
+將第三方記錄器添加到 ``/app/Config/Autoload.php`` 這個組態設定文件，或者是通過像是 Composer 的自動加載器，好讓系統可以找到你的第三方日誌記錄器。接下來，你應該要去修改 ``/app/Config/Services.php`` ，將日誌記錄器的別名指向你的新類別名稱。
 
-Now, any call that is done through the ``log_message()`` function will use your library instead.
+現在，任何通過 ``log_message()`` 函數進行的呼叫都將使用你的程式庫。
 
-LoggerAware Trait
-=================
+LoggerAware 特徵機制
+===========================
 
-If you would like to implement your libraries in a framework-agnostic method, you can use
-the ``CodeIgniter\Log\LoggerAwareTrait`` which implements the ``setLogger()`` method for you.
-Then, when you use your library under different environments for frameworks, your library should
-still be able to log as it would expect, as long as it can find a PSR3 compatible logger.
+如果你想使用一個與框架無關的方法實作你的程式庫，你可以使用 ``CodeIgniter\Log\LoggerAwareTrait`` ，它為你實作了 ``setLogger()`` 方法。當你在不同框架環境下使用你的程式庫時，只要能找到一個與 PSR3 規範相容的日誌記錄器，你的程式庫應該就能按照你的期望的那樣進行記錄。
