@@ -1,5 +1,5 @@
 ########################
-Generating Query Results
+產生查詢結果
 ########################
 
 There are several ways to generate query results:
@@ -9,14 +9,15 @@ There are several ways to generate query results:
     :depth: 2
 
 *************
-Result Arrays
+結果陣列
 *************
 
 **getResult()**
 
-This method returns the query result as an array of **objects**, or
-**an empty array** on failure. Typically you'll use this in a foreach
-loop, like this::
+這個方法會將查詢結果以 *物件* 陣列或 *空* 陣列(查詢失敗時)回傳。
+一般情況下可以使用foreach迴圈，參考以下範例：
+
+::
 
     $query = $db->query("YOUR QUERY");
 
@@ -27,10 +28,11 @@ loop, like this::
         echo $row->body;
     }
 
-The above method is an alias of ``getResultObject()``.
+上述方法的別名是 ``getResultObject()`` 。
 
-You can pass in the string 'array' if you wish to get your results
-as an array of arrays::
+如果你想要得到多重陣列的查詢結果，你可以在參數中傳送 'array'：
+
+::
 
     $query = $db->query("YOUR QUERY");
 
@@ -41,10 +43,10 @@ as an array of arrays::
         echo $row['body'];
     }
 
-The above usage is an alias of ``getResultArray()``.
+上述方法的別名是 ``getResultArray()`` 。
 
-You can also pass a string to ``getResult()`` which represents a class to
-instantiate for each result object
+你也可以傳送一個字串給 ``getResult()`` ，為每一個物件建立一個類別名稱。
+which represents a class to instantiate for each result object
 
 ::
 
@@ -56,13 +58,14 @@ instantiate for each result object
         echo $user->reverseName(); // or methods defined on the 'User' class
     }
 
-The above method is an alias of ``getCustomResultObject()``.
+上述方法的別名是 ``getCustomResultObject()`` 。
 
 **getResultArray()**
 
-This method returns the query result as a pure array, or an empty
-array when no result is produced. Typically you'll use this in a foreach
-loop, like this::
+這個方法將會回傳純陣列或空陣列(查詢結果為空時)的查詢結果。
+一般情況下可以使用foreach迴圈，參考以下範例：
+
+::
 
     $query = $db->query("YOUR QUERY");
 
@@ -74,14 +77,15 @@ loop, like this::
     }
 
 ***********
-Result Rows
+結果列
 ***********
 
 **getRow()**
 
-This method returns a single result row. If your query has more than
-one row, it returns only the first row. The result is returned as an
-**object**. Here's a usage example::
+這個方法會回傳單筆查詢結果。如果你查詢的資料不只一筆，它只會回傳第一筆資料。
+查詢結果會以 **物件** 的方式回傳。參考以下範例：
+
+::
 
     $query = $db->query("YOUR QUERY");
 
@@ -94,13 +98,15 @@ one row, it returns only the first row. The result is returned as an
         echo $row->body;
     }
 
-If you want a specific row returned you can submit the row number as a
-digit in the first parameter::
+如果你想要回傳特定的第幾筆資料，可以設定第一個參數為你想要的該筆資料：
+
+::
 
 	$row = $query->getRow(5);
 
-You can also add a second String parameter, which is the name of a class
-to instantiate the row with::
+你也可以傳入第二個參數，這個結果物件將被實體化為的類別名稱。
+
+::
 
 	$query = $db->query("SELECT * FROM users LIMIT 1;");
 	$row = $query->getRow(0, 'User');
@@ -110,8 +116,9 @@ to instantiate the row with::
 
 **getRowArray()**
 
-Identical to the above ``row()`` method, except it returns an array.
-Example::
+同等於上述 ``row()`` 方法，不同的是它回傳是陣列。參考以下範例：
+
+::
 
     $query = $db->query("YOUR QUERY");
 
@@ -124,36 +131,32 @@ Example::
         echo $row['body'];
     }
 
-If you want a specific row returned you can submit the row number as a
-digit in the first parameter::
+如果你想要回傳特定的第幾筆資料，可以設定第一個參數為你想要的該筆資料：
+
+::
 
 	$row = $query->getRowArray(5);
 
-In addition, you can walk forward/backwards/first/last through your
-results using these variations:
+除此之外，你可以利用底下方式查詢到 前一筆/下一筆/第一筆/最後一筆 資料：
 
 	| **$row = $query->getFirstRow()**
 	| **$row = $query->getLastRow()**
 	| **$row = $query->getNextRow()**
 	| **$row = $query->getPreviousRow()**
 
-By default they return an object unless you put the word "array" in the
-parameter:
+預設回傳值為物件，除非設定第一個參數為 "array"：
 
 	| **$row = $query->getFirstRow('array')**
 	| **$row = $query->getLastRow('array')**
 	| **$row = $query->getNextRow('array')**
 	| **$row = $query->getPreviousRow('array')**
 
-.. note:: All the methods above will load the whole result into memory
-	(prefetching). Use ``getUnbufferedRow()`` for processing large
-	result sets.
+.. note:: 上述的所有方法都會將結果載入到記憶體(prefetching)中。使用 ``getUnbufferedRow()`` 處理大量的資料集。
 
 **getUnbufferedRow()**
 
-This method returns a single result row without prefetching the whole
-result in memory as ``row()`` does. If your query has more than one row,
-it returns the current row and moves the internal data pointer ahead.
+這個方法會回傳單筆查詢結果，但並不會像 ``row()`` 將所有查詢結果預載到記憶體中。
+如果你的查詢結果超過一筆，它將回傳該筆資料並將內部資料指標移動到下一筆資料。
 
 ::
 
@@ -166,25 +169,26 @@ it returns the current row and moves the internal data pointer ahead.
         echo $row->body;
     }
 
-You can optionally pass 'object' (default) or 'array' in order to specify
-the returned value's type::
+你可以選擇傳入 'object' （預設）或 'array' 來指定回傳的資料型態：
+
+::
 
 	$query->getUnbufferedRow();		    // object
 	$query->getUnbufferedRow('object');	// object
 	$query->getUnbufferedRow('array');	// associative array
 
 *********************
-Custom Result Objects
+客製化查詢結果
 *********************
 
-You can have the results returned as an instance of a custom class instead
-of a ``stdClass`` or array, as the ``getResult()`` and ``getResultArray()``
-methods allow. If the class is not already loaded into memory, the Autoloader
-will attempt to load it. The object will have all values returned from the
-database set as properties. If these have been declared and are non-public
-then you should provide a ``__set()`` method to allow them to be set.
+你可以將查詢結果以自定義類別的實例做回傳，而不是像 ``getResult()`` 和 ``getResultArray()`` ，以stdClass或陣列的方式回傳。
+如果類別沒有載入到記憶體中，Autoloader將會自動載入。
+物件將會把資料庫中回傳的所有變數設定為屬性。
+如果這些變數已經被宣告為非公開，那你應該要提供一個 ``__set()`` 的方法，讓它可以被設定。
 
-Example::
+範例：
+
+::
 
 	class User
 	{
@@ -216,16 +220,17 @@ Example::
 		}
 	}
 
-In addition to the two methods listed below, the following methods also can
-take a class name to return the results as: ``getFirstRow()``, ``getLastRow()``,
-``getNextRow()``, and ``getPreviousRow()``.
+除了以下列出的兩個方法之外，這些方法(例如： ``getFirstRow()``, ``getLastRow()``,
+``getNextRow()``, and ``getPreviousRow()`` )也可以使用類別名稱的方式做回傳查詢結果。
 
 **getCustomResultObject()**
 
-Returns the entire result set as an array of instances of the class requested.
-The only parameter is the name of the class to instantiate.
+以類別的實例之陣列an array of instances of the class requested.，回傳所有查詢結果集。
+唯一要傳入的參數是要做為類別實例的名稱class to instantiate.
 
-Example::
+範例：
+
+::
 
 	$query = $db->query("YOUR QUERY");
 
@@ -240,10 +245,12 @@ Example::
 
 **getCustomRowObject()**
 
-Returns a single row from your query results. The first parameter is the row
-number of the results. The second parameter is the class name to instantiate.
+從查詢結果中回傳單筆資料。第一個參數為要回傳的該筆資料，第二個參數為實例化的類別名稱。
+The second parameter is the class name to instantiate.
 
-Example::
+範例：
+
+::
 
 	$query = $db->query("YOUR QUERY");
 
@@ -255,20 +262,23 @@ Example::
 		echo $row->last_login('Y-m-d');   // access class methods
 	}
 
-You can also use the ``getRow()`` method in exactly the same way.
+你也能以完全相同的方式，使用 ``getRow()`` 這個方法。
 
-Example::
+範例：
+
+::
 
 	$row = $query->getCustomRowObject(0, 'User');
 
 *********************
-Result Helper Methods
+結果輔助方法
 *********************
 
 **getFieldCount()**
 
-The number of FIELDS (columns) returned by the query. Make sure to call
-the method using your query result object::
+回傳查詢後的欄位數量。確保使用查詢結果物件來呼叫這個方法。
+
+::
 
 	$query = $db->query('SELECT * FROM my_table');
 
@@ -276,8 +286,9 @@ the method using your query result object::
 
 **getFieldNames()**
 
-Returns an array with the names of the FIELDS (columns) returned by the query.
-Make sure to call the method using your query result object::
+回傳查詢後的欄位名稱陣列，確保使用查詢結果物件來呼叫這個方法。
+
+::
 
     $query = $db->query('SELECT * FROM my_table');
 
@@ -285,13 +296,13 @@ Make sure to call the method using your query result object::
 
 **freeResult()**
 
-It frees the memory associated with the result and deletes the result
-resource ID. Normally PHP frees its memory automatically at the end of
-script execution. However, if you are running a lot of queries in a
-particular script you might want to free the result after each query
-result has been generated in order to cut down on memory consumption.
+它將會釋放查詢後的記憶體並且刪除資源ID。
+通常PHP會在腳本執行結束後自動釋放記憶體。
+但是，如果你是在特定腳本中運行大量資料的查詢，你可能需要在每次查詢都需要釋放記憶體，以減少記憶體的消耗。
 
-Example::
+範例：
+
+::
 
 	$query = $thisdb->query('SELECT title FROM my_table');
 
@@ -310,23 +321,20 @@ Example::
 
 **dataSeek()**
 
-This method sets the internal pointer for the next result row to be
-fetched. It is only useful in combination with ``getUnbufferedRow()``.
+這個方法是設定下一次查詢的索引。它只會與 ``getUnbufferedRow()`` 結合使用。
 
-It accepts a positive integer value, which defaults to 0 and returns
-TRUE on success or FALSE on failure.
+它容納一個正整數，預設為0，成功回傳TRUE；失敗回傳FALSE。
 
 ::
 
 	$query = $db->query('SELECT `field_name` FROM `table_name`');
-	$query->dataSeek(5); // Skip the first 5 rows
+	$query->dataSeek(5); // 忽略前5筆
 	$row = $query->getUnbufferedRow();
 
-.. note:: Not all database drivers support this feature and will return FALSE.
-	Most notably - you won't be able to use it with PDO.
+.. note:: 並不是所有的資料庫驅動都會支援此方法或回傳FALSE。例如：你不可能在PDO中使用此方法。
 
 ***************
-Class Reference
+物件參考
 ***************
 
 .. php:class:: CodeIgniter\\Database\\BaseResult

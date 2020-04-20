@@ -1,22 +1,21 @@
 ###############
-Database Events
+資料庫事件
 ###############
 
-The Database classes contain a few :doc:`Events </extending/events>` that you can tap into in
-order to learn more about what is happening during the database execution. These events can
-be used to collect data for analysis and reporting. The :doc:`Debug Toolbar </testing/debugging>`
-uses this to collect the queries to display in the Toolbar.
+資料庫類別包含一些 :doc:`事件 </extending/events>`，你可以利用這些事件來了解關於資料庫執行時，正在發生的事情或資訊。
+可以利用這些事件來搜集資訊並做分析和報告。 :doc:`除錯工具 </testing/debugging>` 利用這些事件搜集查詢後的資訊並顯示在工具列上。
 
 ==========
-The Events
+事件
 ==========
 
 **DBQuery**
 
-This event is triggered whenever a new query has been run, whether successful or not. The only parameter is
-a :doc:`Query </database/queries>` instance of the current query. You could use this to display all queries
-in STDOUT, or logging to a file, or even creating tools to do automatic query analysis to help you spot
-potentially missing indexes, slow queries, etc. An example usage might be::
+當執行新的查詢後，無論成功與否，都會觸發這個事件。唯一參數是當前語法的 :doc:`Query </database/queries>` 實例。
+你可以使用這個事件在STDOUT中顯示所有查詢，記錄在文件中，甚至創建工具進行自動查詢分析，幫助你找出可能遺失的索引或查詢速度慢的原因等。
+範例參考如下：
+
+::
 
     // In Config\Events.php
     Events::on('DBQuery', 'CodeIgniter\Debug\Toolbar\Collectors\Database::collect');
