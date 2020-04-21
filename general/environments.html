@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Handling Multiple Environments &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>處理多種環境 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -41,7 +41,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Controllers and Routing" href="../incoming/index.html" />
-    <link rel="prev" title="Managing your Applications" href="managing_apps.html" /> 
+    <link rel="prev" title="管理你的應用程式" href="managing_apps.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -139,9 +139,9 @@
 <li class="toctree-l2"><a class="reference internal" href="errors.html">錯誤處理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html">網頁快取</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ajax.html">AJAX 請求</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules.html">Code Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">Managing your Applications</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Handling Multiple Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">程式碼模組</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">管理你的應用程式</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">處理多種環境</a></li>
 </ul>
 </li>
 </ul>
@@ -322,7 +322,7 @@
         
           <li><a href="index.html">一般主題</a> &raquo;</li>
         
-      <li>Handling Multiple Environments</li>
+      <li>處理多種環境</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,41 +339,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="handling-multiple-environments">
-<h1>Handling Multiple Environments<a class="headerlink" href="#handling-multiple-environments" title="本標題的永久連結">¶</a></h1>
-<p>Developers often desire different system behavior depending on whether
-an application is running in a development or production environment.
-For example, verbose error output is something that would be useful
-while developing an application, but it may also pose a security issue
-when 「live」. In development environments, you might want additional
-tools loaded that you don’t in production environments, etc.</p>
-<div class="section" id="the-environment-constant">
-<h2>The ENVIRONMENT Constant<a class="headerlink" href="#the-environment-constant" title="本標題的永久連結">¶</a></h2>
-<p>By default, CodeIgniter comes with the environment constant set to use
-the value provided in <code class="docutils literal notranslate"><span class="pre">$_SERVER['CI_ENVIRONMENT']</span></code>, otherwise defaulting to
-『production』. This can be set in several ways depending on your server setup.</p>
+  <div class="section" id="id1">
+<h1>處理多種環境<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>開發者通常會希望在開發環境或正式環境中，得到不同的系統行為。例如：在開發應用程式時，錯誤輸出是一件很有用的事情，但在上線環境中可能會帶來安全隱憂。在開發環境中，你可能會希望載入一些正式環境中不會使用的額外的工具。</p>
+<div class="section" id="id2">
+<h2>環境常數<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
+<p>在預設的情形下，CodeIgniter 內建的環境常數將使用 <code class="docutils literal notranslate"><span class="pre">$_SERVER['CI_ENVIRONMENT']</span></code> 提供的值，否則默認為 production（上線模式）。可以根據你的伺服器的性質，設定多種不同的模式。</p>
 <div class="section" id="env">
 <h3>.env<a class="headerlink" href="#env" title="本標題的永久連結">¶</a></h3>
-<p>The simplest method to set the variable is in your <a class="reference internal" href="configuration.html"><span class="doc">.env file</span></a>.</p>
+<p>設定變數最簡單的方式就是使用 <a class="reference internal" href="configuration.html"><span class="doc">.env 檔案</span></a> 。</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">CI_ENVIRONMENT</span> <span class="o">=</span> <span class="s">development</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="apache">
 <h3>Apache<a class="headerlink" href="#apache" title="本標題的永久連結">¶</a></h3>
-<p>This server variable can be set in your <code class="docutils literal notranslate"><span class="pre">.htaccess</span></code> file or Apache
-config using <a class="reference external" href="https://httpd.apache.org/docs/2.2/mod/mod_env.html#setenv">SetEnv</a>.</p>
+<p>這個伺服器變數可以在你的 <code class="docutils literal notranslate"><span class="pre">.htaccess</span></code> 檔案與 Apache <a class="reference external" href="https://httpd.apache.org/docs/2.2/mod/mod_env.html#setenv">設定檔案</a> 中進行設定。</p>
 <div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">SetEnv</span> CI_ENVIRONMENT development
 </pre></div>
 </div>
 </div>
 <div class="section" id="nginx">
 <h3>nginx<a class="headerlink" href="#nginx" title="本標題的永久連結">¶</a></h3>
-<p>Under nginx, you must pass the environment variable through the <code class="docutils literal notranslate"><span class="pre">fastcgi_params</span></code>
-in order for it to show up under the <cite>$_SERVER</cite> variable. This allows it to work on the
-virtual-host level, instead of using <cite>env</cite> to set it for the entire server, though that
-would work fine on a dedicated server. You would then modify your server config to something
-like:</p>
+<p>在 nginx 下，你必須透過 <code class="docutils literal notranslate"><span class="pre">fastcgi_params</span></code> 將環境變數傳遞給 <cite>$_SERVER</cite> 變數。儘管 env 在伺服器上可以正常運作，但它也可以不使用 env 在虛擬主機上工作。你需要修改你的伺服器設定，類似於這樣：</p>
 <div class="highlight-nginx notranslate"><div class="highlight"><pre><span></span><span class="k">server</span> <span class="p">{</span>
     <span class="kn">server_name</span> <span class="s">localhost</span><span class="p">;</span>
     <span class="kn">include</span>     <span class="s">conf/defaults.conf</span><span class="p">;</span>
@@ -386,21 +374,12 @@ like:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Alternative methods are available for nginx and other servers, or you can
-remove this logic entirely and set the constant based on the server’s IP address
-(for instance).</p>
-<p>In addition to affecting some basic framework behavior (see the next
-section), you may use this constant in your own development to
-differentiate between which environment you are running in.</p>
+<p>這個替代方法可以用於 nginx 或其他伺服器，你也可以完全刪除這個邏輯，並根據伺服器的 IP 位置設定常數。</p>
+<p>除了會影響一些基本的框架行為外（請參考下一個條目），你還可以在你自己的開發中專案使用個常數來區分正在運作的環境為何。</p>
 </div>
-<div class="section" id="boot-files">
-<h3>Boot Files<a class="headerlink" href="#boot-files" title="本標題的永久連結">¶</a></h3>
-<p>CodeIgniter requires that a PHP script matching the environment’s name is located
-under <strong>APPPATH/Config/Boot</strong>. These files can contain any customizations that
-you would like to make for your environment, whether it’s updating the error display
-settings, loading additional developer tools, or anything else. These are
-automatically loaded by the system. The following files are already created in
-a fresh install:</p>
+<div class="section" id="id4">
+<h3>引導檔案<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
+<p>CodeIgniter 把與環境名稱相同的 PHP 腳本置於 <strong>APPPATH/Config/Boot</strong> 之下。這些檔案可以包含任何對於環境的自定義設定，無論是更新錯誤顯示設定、載入額外的開發者工具，還是其他的設定，這些檔案都會被系統自動載入。下列文件是在你部屬全新的框架時就創建的：</p>
 <ul class="simple">
 <li>development.php</li>
 <li>production.php</li>
@@ -408,26 +387,16 @@ a fresh install:</p>
 </ul>
 </div>
 </div>
-<div class="section" id="effects-on-default-framework-behavior">
-<h2>Effects On Default Framework Behavior<a class="headerlink" href="#effects-on-default-framework-behavior" title="本標題的永久連結">¶</a></h2>
-<p>There are some places in the CodeIgniter system where the ENVIRONMENT
-constant is used. This section describes how default framework behavior
-is affected.</p>
-<div class="section" id="error-reporting">
-<h3>Error Reporting<a class="headerlink" href="#error-reporting" title="本標題的永久連結">¶</a></h3>
-<p>Setting the ENVIRONMENT constant to a value of 『development』 will cause
-all PHP errors to be rendered to the browser when they occur.
-Conversely, setting the constant to 『production』 will disable all error
-output. Disabling error reporting in production is a
-<a class="reference internal" href="../concepts/security.html"><span class="doc">good security practice</span></a>.</p>
+<div class="section" id="id5">
+<h2>影響預設的框架行為<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<p>在 CodeIgniter 系統中，有一些地方使用了 ENVIRONMENT 常數。本條目將會介紹預設的框架行為是如何受到影響的。</p>
+<div class="section" id="id6">
+<h3>錯誤報告<a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
+<p>將 ENVIRONMENT 常數設定為 development（開發） 會導致所有的 PHP 錯誤在發生時會直接渲染到瀏覽器。反之，將常數設定為 production（正式） 將禁止所有錯誤報告的輸出。在正式環境中禁用錯誤報告是一個良好的 <a class="reference internal" href="../concepts/security.html"><span class="doc">安全實踐</span></a> 。</p>
 </div>
-<div class="section" id="configuration-files">
-<h3>Configuration Files<a class="headerlink" href="#configuration-files" title="本標題的永久連結">¶</a></h3>
-<p>Optionally, you can have CodeIgniter load environment-specific
-configuration files. This may be useful for managing things like
-differing API keys across multiple environments. This is described in
-more detail in the Handling Different Environments section of the
-<a class="reference internal" href="configuration.html"><span class="doc">Working with Configuration Files</span></a> documentation.</p>
+<div class="section" id="id7">
+<h3>組態設定檔案<a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
+<p>另外，你可以讓 CodeIgniter 載入特定環境的組態設定檔案。這非常適合管理不同環境下不同的 API 金鑰。關於這個設定的細節，將在 <a class="reference internal" href="configuration.html"><span class="doc">組態設定檔案</span></a> 使用說明的「處理不同環境」條目中提到。</p>
 </div>
 </div>
 </div>
@@ -443,7 +412,7 @@ more detail in the Handling Different Environments section of the
         <a href="../incoming/index.html" class="btn btn-neutral float-right" title="Controllers and Routing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="managing_apps.html" class="btn btn-neutral float-left" title="Managing your Applications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="managing_apps.html" class="btn btn-neutral float-left" title="管理你的應用程式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -454,7 +423,7 @@ more detail in the Handling Different Environments section of the
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月20日。
+        最後更新於 2020年04月21日。
       </span>
 
     </p>

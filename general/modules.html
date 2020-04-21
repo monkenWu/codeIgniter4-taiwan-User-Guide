@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Code Modules &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>程式碼模組 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,7 +40,7 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Managing your Applications" href="managing_apps.html" />
+    <link rel="next" title="管理你的應用程式" href="managing_apps.html" />
     <link rel="prev" title="AJAX 請求" href="ajax.html" /> 
 </head>
 
@@ -139,9 +139,9 @@
 <li class="toctree-l2"><a class="reference internal" href="errors.html">錯誤處理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html">網頁快取</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ajax.html">AJAX 請求</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Code Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">Managing your Applications</a></li>
-<li class="toctree-l2"><a class="reference internal" href="environments.html">Handling Multiple Environments</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">程式碼模組</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">管理你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html">處理多種環境</a></li>
 </ul>
 </li>
 </ul>
@@ -322,7 +322,7 @@
         
           <li><a href="index.html">一般主題</a> &raquo;</li>
         
-      <li>Code Modules</li>
+      <li>程式碼模組</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,44 +339,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="code-modules">
-<h1>Code Modules<a class="headerlink" href="#code-modules" title="本標題的永久連結">¶</a></h1>
-<p>CodeIgniter supports a form of code modularization to help you create reusable code. Modules are typically
-centered around a specific subject, and can be thought of as mini-applications within your larger application. Any
-of the standard file types within the framework are supported, like controllers, models, views, config files, helpers,
-language files, etc. Modules may contain as few, or as many, of these as you like.</p>
-<div class="contents local topic" id="id1">
+  <div class="section" id="id1">
+<h1>程式碼模組<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>CodeIgniter 支援使用程式碼模組化的方式，幫助你創建具有重用性的程式碼。模組通常是以特定的主題為中心，在你的大型應用程式中它可能是其中的小型應用程式。模組化的撰寫方式在框架中的任何標準檔案類型都有支援，例如：控制器、模型、視圖、設定檔案、輔助函數以及語言檔案等。你可以根據你的需求包含任意數量的模組。</p>
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#namespaces" id="id2">Namespaces</a></li>
-<li><a class="reference internal" href="#auto-discovery" id="id3">Auto-Discovery</a><ul>
-<li><a class="reference internal" href="#enable-disable-discover" id="id4">Enable/Disable Discover</a></li>
-<li><a class="reference internal" href="#specify-discovery-items" id="id5">Specify Discovery Items</a></li>
-<li><a class="reference internal" href="#discovery-and-composer" id="id6">Discovery and Composer</a></li>
+<li><a class="reference internal" href="#id3" id="id18">命名空間</a></li>
+<li><a class="reference internal" href="#id4" id="id19">自動探索</a><ul>
+<li><a class="reference internal" href="#id5" id="id20">啟用或關閉探索</a></li>
+<li><a class="reference internal" href="#id6" id="id21">指定被探索的項目</a></li>
+<li><a class="reference internal" href="#composer" id="id22">Composer 與探索</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#working-with-files" id="id7">Working With Files</a><ul>
-<li><a class="reference internal" href="#routes" id="id8">Routes</a></li>
-<li><a class="reference internal" href="#controllers" id="id9">Controllers</a></li>
-<li><a class="reference internal" href="#config-files" id="id10">Config Files</a></li>
-<li><a class="reference internal" href="#migrations" id="id11">Migrations</a></li>
-<li><a class="reference internal" href="#seeds" id="id12">Seeds</a></li>
-<li><a class="reference internal" href="#helpers" id="id13">Helpers</a></li>
-<li><a class="reference internal" href="#language-files" id="id14">Language Files</a></li>
-<li><a class="reference internal" href="#libraries" id="id15">Libraries</a></li>
-<li><a class="reference internal" href="#models" id="id16">Models</a></li>
-<li><a class="reference internal" href="#views" id="id17">Views</a></li>
+<li><a class="reference internal" href="#id7" id="id23">與檔案協同工作</a><ul>
+<li><a class="reference internal" href="#id8" id="id24">路由</a></li>
+<li><a class="reference internal" href="#id9" id="id25">控制器</a></li>
+<li><a class="reference internal" href="#id10" id="id26">設定檔案</a></li>
+<li><a class="reference internal" href="#id11" id="id27">遷移</a></li>
+<li><a class="reference internal" href="#id12" id="id28">填充</a></li>
+<li><a class="reference internal" href="#id13" id="id29">輔助函數</a></li>
+<li><a class="reference internal" href="#id14" id="id30">語言檔案</a></li>
+<li><a class="reference internal" href="#id15" id="id31">程式庫</a></li>
+<li><a class="reference internal" href="#id16" id="id32">模型</a></li>
+<li><a class="reference internal" href="#id17" id="id33">視圖</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="section" id="namespaces">
-<h2><a class="toc-backref" href="#id2">Namespaces</a><a class="headerlink" href="#namespaces" title="本標題的永久連結">¶</a></h2>
-<p>The core element of the modules functionality comes from the <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">PSR4-compatible autoloading</span></a>
-that CodeIgniter uses. While any code can use the PSR4 autoloader and namespaces, the primary way to take full advantage of
-modules is to namespace your code and add it to <strong>app/Config/Autoload.php</strong>, in the <code class="docutils literal notranslate"><span class="pre">psr4</span></code> section.</p>
-<p>For example, let’s say we want to keep a simple blog module that we can re-use between applications. We might create
-folder with our company name, Acme, to store all of our modules within. We will put it right alongside our <strong>application</strong>
-directory in the main project root:</p>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id18">命名空間</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>模組功能的核心要素來自於 CodeIgniter 使用與 <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">PSR4 相容的自動載入</span></a> 。雖然所有程式碼都可以使用 PSR4 的自動載入器和命名空間，但充分利用模組的主要方法，是在  <strong>app/Config/Autoload.php</strong> 的 <code class="docutils literal notranslate"><span class="pre">psr4</span></code> 的部分添加你的程式碼命名空間。</p>
+<p>例如，我們想保留一個簡單的部落格模組，讓我們可以在不同的應用程式間重複使用。你可以創建一個名為公司名稱 Acme 的資料夾，用於儲存我們的模組。我們將這個資料夾放在專案根目錄的 <strong>應用程式</strong> 目錄旁邊：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nx">acme</span>        <span class="c1">// New modules directory</span>
 <span class="o">/</span><span class="nx">application</span>
 <span class="o">/</span><span class="k">public</span>
@@ -385,7 +378,7 @@ directory in the main project root:</p>
 <span class="o">/</span><span class="nx">writable</span>
 </pre></div>
 </div>
-<p>Open <strong>app/Config/Autoload.php</strong> and add the <strong>Acme</strong> namespace to the <code class="docutils literal notranslate"><span class="pre">psr4</span></code> array property:</p>
+<p>打開 <strong>app/Config/Autoload.php</strong> 後，將 <strong>Acme</strong> 命名空間加入到 <code class="docutils literal notranslate"><span class="pre">psr4</span></code> 陣列屬性中：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$psr4</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;Config&#39;</span>        <span class="o">=&gt;</span> <span class="nx">APPPATH</span> <span class="o">.</span> <span class="s1">&#39;Config&#39;</span><span class="p">,</span>
     <span class="nx">APP_NAMESPACE</span>   <span class="o">=&gt;</span> <span class="nx">APPPATH</span><span class="p">,</span>                <span class="c1">// For custom namespace</span>
@@ -394,10 +387,8 @@ directory in the main project root:</p>
 <span class="p">];</span>
 </pre></div>
 </div>
-<p>Now that this is set up, we can access any file within the <strong>acme</strong> folder through the <code class="docutils literal notranslate"><span class="pre">Acme</span></code> namespace. This alone
-takes care of 80% of what is needed for modules to work, so you should be sure to familiarize yourself with namespaces
-and become comfortable with their use. Several file types will be scanned for automatically through all defined namespaces - a crucial ingredient for working with modules.</p>
-<p>A common directory structure within a module will mimic the main application folder:</p>
+<p>現在，我們可以透過 <code class="docutils literal notranslate"><span class="pre">Acme</span></code> 命名空間造訪 <strong>acme</strong> 資料夾。僅僅是這樣我們就能完成模組所需的 80% 工作，你應該要使用自己熟悉的命名空間並且熟練地使用它們。多個檔案類型將透過所有已經定義的命名空間進行自動掃描，這對於模組的工作要素來說是至關重要的。</p>
+<p>一個模組內的通用資料夾結構將會與主應用程式的資料夾結構相同：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nx">acme</span>
     <span class="o">/</span><span class="nx">Blog</span>
         <span class="o">/</span><span class="nx">Config</span>
@@ -413,70 +404,56 @@ and become comfortable with their use. Several file types will be scanned for au
         <span class="o">/</span><span class="nx">Views</span>
 </pre></div>
 </div>
-<p>Of course, there is nothing forcing you to use this exact structure, and you should organize it in the manner that
-best suits your module, leaving out directories you don’t need, creating new directories for Entities, Interfaces,
-or Repositories, etc.</p>
+<p>當然，沒有誰可以強迫你使用這個結構進行開發，你應該以最適合自己的方式來組織你的模組，省去不需要的目錄。或是，替你的實體、介面或是儲存庫創建新的目錄。</p>
 </div>
-<div class="section" id="auto-discovery">
-<h2><a class="toc-backref" href="#id3">Auto-Discovery</a><a class="headerlink" href="#auto-discovery" title="本標題的永久連結">¶</a></h2>
-<p>Many times, you will need to specify the full namespace to files you want to include, but CodeIgniter can be
-configured to make integrating modules into your applications simpler by automatically discovering many different
-file types, including:</p>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id19">自動探索</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<p>很多時候，你需要替被引入的檔案指定完整的命名空間。但是，你可以透過組態設定將 CodeIgniter 設定成自動探索，讓它找到不同類型的檔案，並將模組集成到你的應用程式中，藉此使集成模組變得更加簡單：</p>
 <ul class="simple">
-<li><a class="reference internal" href="../extending/events.html"><span class="doc">Events</span></a></li>
-<li><a class="reference internal" href="configuration.html"><span class="doc">Registrars</span></a></li>
-<li><a class="reference internal" href="../incoming/routing.html"><span class="doc">Route files</span></a></li>
-<li><a class="reference internal" href="../concepts/services.html"><span class="doc">Services</span></a></li>
+<li><a class="reference internal" href="../extending/events.html"><span class="doc">事件</span></a></li>
+<li><a class="reference internal" href="configuration.html"><span class="doc">註冊器</span></a></li>
+<li><a class="reference internal" href="../incoming/routing.html"><span class="doc">路由檔案</span></a></li>
+<li><a class="reference internal" href="../concepts/services.html"><span class="doc">服務（ services ）</span></a></li>
 </ul>
-<p>This is configured in the file <strong>app/Config/Modules.php</strong>.</p>
-<p>The auto-discovery system works by scanning for particular directories and files within psr4 namespaces that have been defined in <strong>Config/Autoload.php</strong>.</p>
-<p>To make auto-discovery work for our <strong>Blog</strong> namespace, we need to make one small adjustment.
-<strong>Acme</strong> needs to be changed to <strong>Acme\Blog</strong> because each 「module」 within the namespace needs to be fully defined. Once your module folder path is defined, the discovery process would look for discoverable items on that path and should, for example, find the routes file at <strong>/acme/Blog/Config/Routes.php</strong>.</p>
-<div class="section" id="enable-disable-discover">
-<h3><a class="toc-backref" href="#id4">Enable/Disable Discover</a><a class="headerlink" href="#enable-disable-discover" title="本標題的永久連結">¶</a></h3>
-<p>You can turn on or off all auto-discovery in the system with the <strong>$enabled</strong> class variable. False will disable
-all discovery, optimizing performance, but negating the special capabilities of your modules.</p>
+<p>這是在 <strong>app/Config/Modules.php</strong> 檔案中進行設定的。</p>
+<p>自動探索系統的工作原理是掃描 PSR4 命名空間內的特定目錄與檔案，而這些目錄和檔案已經在 <strong>Config/Autoload.php</strong> 中定義了。</p>
+<p>為了讓自動探索系統在我們的 <strong>Blog</strong> 命名空間中工作，我們需要做一個小調整。 <strong>Acme</strong> 需要改成 <strong>Acme\Blog</strong> 因為命名公籤中的每個「模組」都需要完全定義，探索的過程將在這個路徑上尋找可以被探索的項目，例如在： <strong>/acme/Blog/Config/Routes.php</strong> 中找到路由文件。</p>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id20">啟用或關閉探索</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
+<p>你可以使用 <strong>$enabled</strong> 這個類別變數開啟或關閉系統中所有自動探索的功能。 False 將禁用所有探索，優化效能，但模組的特殊功能將被否決。</p>
 </div>
-<div class="section" id="specify-discovery-items">
-<h3><a class="toc-backref" href="#id5">Specify Discovery Items</a><a class="headerlink" href="#specify-discovery-items" title="本標題的永久連結">¶</a></h3>
-<p>With the <strong>$activeExplorers</strong> option, you can specify which items are automatically discovered. If the item is not
-present, then no auto-discovery will happen for that item, but the others in the array will still be discovered.</p>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id21">指定被探索的項目</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
+<p>使用 <strong>$activeExplorers</strong>  選項，你可以指定哪些項目在自動探索的範圍。如果這個項目不存在，那麼這個項目將不會被自動探索，但是陣列中的其他項目仍在探索範圍。</p>
 </div>
-<div class="section" id="discovery-and-composer">
-<h3><a class="toc-backref" href="#id6">Discovery and Composer</a><a class="headerlink" href="#discovery-and-composer" title="本標題的永久連結">¶</a></h3>
-<p>Packages that were installed via Composer will also be discovered by default. This only requires that the namespace
-that Composer knows about is a PSR4 namespace. PSR0 namespaces will not be detected.</p>
-<p>If you do not want all of Composer’s known directories to be scanned when locating files, you can turn this off
-by editing the <code class="docutils literal notranslate"><span class="pre">$discoverInComposer</span></code> variable in <code class="docutils literal notranslate"><span class="pre">Config\Modules.php</span></code>:</p>
+<div class="section" id="composer">
+<h3><a class="toc-backref" href="#id22">Composer 與探索</a><a class="headerlink" href="#composer" title="本標題的永久連結">¶</a></h3>
+<p>透過 Composer 安裝的軟體包也在默認探索的範圍之中，這是因為 Composer 的命名空間是採用 PSR4 規範的。 PSR0 的命名空間就不會被自動探索功能檢測到。</p>
+<p>如果你不希望在定位檔案時掃描所有 Composer 的以知目錄，你可以透過編輯 <code class="docutils literal notranslate"><span class="pre">Config\Modules.php</span></code> 檔案，修改裡頭的 <code class="docutils literal notranslate"><span class="pre">$discoverInComposer</span></code> 變數來關閉這個功能：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$discoverInComposer</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="working-with-files">
-<h2><a class="toc-backref" href="#id7">Working With Files</a><a class="headerlink" href="#working-with-files" title="本標題的永久連結">¶</a></h2>
-<p>This section will take a look at each of the file types (controllers, views, language files, etc) and how they can
-be used within the module. Some of this information is described in more detail in the relevant location of the user
-guide, but is being reproduced here so that it’s easier to grasp how all of the pieces fit together.</p>
-<div class="section" id="routes">
-<h3><a class="toc-backref" href="#id8">Routes</a><a class="headerlink" href="#routes" title="本標題的永久連結">¶</a></h3>
-<p>By default, <a class="reference internal" href="../incoming/routing.html"><span class="doc">routes</span></a> are automatically scanned for within modules. It can be turned off in
-the <strong>Modules</strong> config file, described above.</p>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id23">與檔案協同工作</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
+<p>這個條目將針對每種檔案類型（控制器、視圖、語言檔案等）說明它們應該如何在模組中使用。其中的一些訊息在這份使用文件的相關位置有更詳細的描述，但我們將會在此簡述，以便你更容易地掌握所有部件事如何整合在一起的。</p>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id24">路由</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
+<p>在預設的情形下 <a class="reference internal" href="../incoming/routing.html"><span class="doc">路由</span></a> 會在模組內被自動掃描。他可以在 <strong>Modules</strong> （模組）的設定檔案中關閉。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">Since the files are being included into the current scope, the <code class="docutils literal notranslate"><span class="pre">$routes</span></code> instance is already defined for you.
-It will cause errors if you attempt to redefine that class.</p>
+<p class="last">因為這個檔案被包含在當前的作用域中，所以 <code class="docutils literal notranslate"><span class="pre">$routes</span></code> 實體已經替你自動宣告好了。如果你試圖重新定義這個類別，它將會導致錯誤發生。</p>
 </div>
 </div>
-<div class="section" id="controllers">
-<h3><a class="toc-backref" href="#id9">Controllers</a><a class="headerlink" href="#controllers" title="本標題的永久連結">¶</a></h3>
-<p>Controllers outside of the main <strong>app/Controllers</strong> directory cannot be automatically routed by URI detection,
-but must be specified within the Routes file itself:</p>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id25">控制器</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h3>
+<p>我們不能透過 URI 檢測自動路由到 <strong>app/Controllers</strong> 目錄以外的控制器，所以你必須在路由檔案中進行指定：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Routes.php</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="s1">&#39;Acme\Blog\Controllers\Blog::index&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>To reduce the amount of typing needed here, the <strong>group</strong> routing feature is helpful:</p>
+<p>為了減少這裡需要輸入的數量，<strong>group</strong> 這個路由的特色功能可以輔助你：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;namespace&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Acme\Blog\Controllers&#39;</span><span class="p">],</span> <span class="k">function</span><span class="p">(</span><span class="nv">$routes</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;Blog::index&#39;</span><span class="p">);</span>
@@ -484,58 +461,53 @@ but must be specified within the Routes file itself:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="config-files">
-<h3><a class="toc-backref" href="#id10">Config Files</a><a class="headerlink" href="#config-files" title="本標題的永久連結">¶</a></h3>
-<p>No special change is needed when working with configuration files. These are still namespaced classes and loaded
-with the <code class="docutils literal notranslate"><span class="pre">new</span></code> command:</p>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id26">設定檔案</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h3>
+<p>在處理組態設定檔案時，不需要特別改變它們，這些檔案仍然是命名空間類別，並使用 <code class="docutils literal notranslate"><span class="pre">new</span></code> 保留字進行載入：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Acme\Blog\Config\Blog</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>Config files are automatically discovered whenever using the <strong>config()</strong> function that is always available.</p>
+<p>每當使用了 <strong>config()</strong> 函數時，將會自動探索相關的設定檔案。</p>
 </div>
-<div class="section" id="migrations">
-<h3><a class="toc-backref" href="#id11">Migrations</a><a class="headerlink" href="#migrations" title="本標題的永久連結">¶</a></h3>
-<p>Migration files will be automatically discovered within defined namespaces. All migrations found across all
-namespaces will be run every time.</p>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id27">遷移</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h3>
+<p>在已定義的命名空間內將會自動探索遷移的檔案。它會在每次運作時在所有的命名空間中找到所有的遷移。</p>
 </div>
-<div class="section" id="seeds">
-<h3><a class="toc-backref" href="#id12">Seeds</a><a class="headerlink" href="#seeds" title="本標題的永久連結">¶</a></h3>
-<p>Seed files can be used from both the CLI and called from within other seed files as long as the full namespace
-is provided. If calling on the CLI, you will need to provide double backslashes:</p>
+<div class="section" id="id12">
+<h3><a class="toc-backref" href="#id28">填充</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h3>
+<p>只要提供了完整的命名空間，填充的檔案可以透過 CLI 使用，也可以從其他的填充檔案呼叫，若是你希望在 CLI 中呼叫填充檔案，則需要鍵入雙反斜線：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="k">public</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span> <span class="nx">migrations</span> <span class="nx">seed</span> <span class="nx">Acme\\Blog\\Database\\Seeds\\TestPostSeeder</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="helpers">
-<h3><a class="toc-backref" href="#id13">Helpers</a><a class="headerlink" href="#helpers" title="本標題的永久連結">¶</a></h3>
-<p>Helpers will be located automatically from defined namespaces when using the <code class="docutils literal notranslate"><span class="pre">helper()</span></code> method, as long as it
-is within the namespaces <strong>Helpers</strong> directory:</p>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id29">輔助函數</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h3>
+<p>當使用 <code class="docutils literal notranslate"><span class="pre">helper()</span></code> 方法時，只要是在命名空間 <strong>Helpers</strong> 目錄下的輔助函數，就會從已經定義的命名空間中被自動定位：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="language-files">
-<h3><a class="toc-backref" href="#id14">Language Files</a><a class="headerlink" href="#language-files" title="本標題的永久連結">¶</a></h3>
-<p>Language files are located automatically from defined namespaces when using the <code class="docutils literal notranslate"><span class="pre">lang()</span></code> method, as long as the
-file follows the same directory structures as the main application directory.</p>
+<div class="section" id="id14">
+<h3><a class="toc-backref" href="#id30">語言檔案</a><a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h3>
+<p>當使用了 <code class="docutils literal notranslate"><span class="pre">lang()</span></code> 方法時，只要檔案遵照與主應用程式相同的目錄結構，語言檔案就會從已定義的命名空間中自動定位。</p>
 </div>
-<div class="section" id="libraries">
-<h3><a class="toc-backref" href="#id15">Libraries</a><a class="headerlink" href="#libraries" title="本標題的永久連結">¶</a></h3>
-<p>Libraries are always instantiated by their fully-qualified class name, so no special access is provided:</p>
+<div class="section" id="id15">
+<h3><a class="toc-backref" href="#id31">程式庫</a><a class="headerlink" href="#id15" title="本標題的永久連結">¶</a></h3>
+<p>你得透過完全符合的類別名稱來實體化你的程式庫，所以我們不提供特殊的方式讓你造訪程式庫：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$lib</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Acme\Blog\Libraries\BlogLib</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="models">
-<h3><a class="toc-backref" href="#id16">Models</a><a class="headerlink" href="#models" title="本標題的永久連結">¶</a></h3>
-<p>Models are always instantiated by their fully-qualified class name, so no special access is provided:</p>
+<div class="section" id="id16">
+<h3><a class="toc-backref" href="#id32">模型</a><a class="headerlink" href="#id16" title="本標題的永久連結">¶</a></h3>
+<p>你得透過完全符合的類別名稱來實體化你的模型，所以我們不提供特殊的方式讓你造訪模型：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Acme\Blog\Models\PostModel</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="views">
-<h3><a class="toc-backref" href="#id17">Views</a><a class="headerlink" href="#views" title="本標題的永久連結">¶</a></h3>
-<p>Views can be loaded using the class namespace as described in the <a class="reference internal" href="../outgoing/views.html"><span class="doc">views</span></a> documentation:</p>
+<div class="section" id="id17">
+<h3><a class="toc-backref" href="#id33">視圖</a><a class="headerlink" href="#id17" title="本標題的永久連結">¶</a></h3>
+<p>視圖可以按照 <a class="reference internal" href="../outgoing/views.html"><span class="doc">視圖</span></a> 使用說明中的描述，使用類別命名空間來進行載入：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;Acme\Blog\Views\index&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -551,7 +523,7 @@ file follows the same directory structures as the main application directory.</p
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="managing_apps.html" class="btn btn-neutral float-right" title="Managing your Applications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="managing_apps.html" class="btn btn-neutral float-right" title="管理你的應用程式" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="ajax.html" class="btn btn-neutral float-left" title="AJAX 請求" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -565,7 +537,7 @@ file follows the same directory structures as the main application directory.</p
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月20日。
+        最後更新於 2020年04月21日。
       </span>
 
     </p>
