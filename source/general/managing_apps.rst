@@ -1,59 +1,50 @@
 ##########################
-Managing your Applications
+管理你的應用程式
 ##########################
 
-By default, it is assumed that you only intend to use CodeIgniter to
-manage one application, which you will build in your **application**
-directory. It is possible, however, to have multiple sets of
-applications that share a single CodeIgniter installation, or even to
-rename or relocate your application directory.
+在預設的形況下，你可能只打算使用 CodeIgniter 來管理一個應用程式，並且將它建立在你的 **應用程式** 目錄中。但是，你也可以建構多套應用並且共用一個 CodeIgniter ，甚至可以重新命名或重新定位你的應用程式目錄。
 
-Renaming or Relocating the Application Directory
+重新命名或重新定位應用程式目錄
 ================================================
 
-If you would like to rename your application directory or even move
-it to a different location on your server, other than your project root, open
-your main **app/Config/Paths.php** and set a *full server path* in the
-``$appDirectory`` variable (at about line 38)::
+如果你想重新命名你的應用程式目錄，甚至將它移動到你的伺服器上的其他位置，而不在你的專案根目錄，請打開你的 **app/Config/Paths.php** 檔案，並在 ``$appDirectory`` 變數（大約在第 38 行）中設定一個 *完整的伺服器路徑* ：
+
+::
 
     public $appDirectory = '/path/to/your/application';
 
-You will need to modify two additional files in your project root, so that
-they can find the ``Paths`` configuration file:
+你需要在專案根目錄修改兩個額外的檔案，這樣它們就可以找到 ``Paths`` 這個組態設定檔案：
 
-- ``/spark`` runs command line apps; the path is specified on or about line 36::
+－``/spark`` 運作命令列應用程式；路徑是在 36 行左右宣告的：
+
+::
 
     require 'app/Config/Paths.php';
-    // ^^^ Change this if you move your application folder
+    // ^^^ 如果你移動了你的應用程式資料夾，請修改這個檔案。
 
+- ``/public/index.php`` 是你的網頁應用程式的前端控制器，設定路徑在第 16 行左右：
 
-- ``/public/index.php`` is the front controller for your webapp; the config
-  path is specified on or about line 16::
+::
 
     $pathsPath = FCPATH . '../app/Config/Paths.php';
-    // ^^^ Change this if you move your application folder
+    // ^^^ 如果你移動了你的應用程式資料夾，請修改這個檔案。
 
 
-Running Multiple Applications with one CodeIgniter Installation
+部屬一個 CodeIgniter 並運作多個應用程式 
 ===============================================================
 
-If you would like to share a common CodeIgniter framework installation, to manage
-several different applications, simply put all of the directories located
-inside your application directory into their own (sub)-directory.
+如果你想部屬一個 CodeIgniter 後，利用單個框架來統一管理幾個不同的應用程式，只需要將所有位於你應用程式目錄內的目錄放到這個框架的子目錄中。
 
-For example, let's say you want to create two applications, named "foo"
-and "bar". You could structure your application project directories like this::
+例如：你想創建兩個應用程式，名為 foo 和 bar 。你可以這樣建構你的應用程式專案目錄：
+
+::
 
     foo/app, public, tests and writable
     bar/app/, public, tests and writable
     codeigniter/system and docs
 
-This would have two apps, "foo" and "bar", both having standard application directories
-and a ``public`` folder, and sharing a common codeigniter framework.
+這裡將會有 foo 與 bar 兩個應用程式，兩者都具有標準的應用程式目錄與 ``public`` 資料夾，但它們共用同一個 CodeIgniter 框架。
 
-The ``index.php`` inside each application would refer to its own configuration,
-``.../app/Config/Paths.php``, and the ``$systemDirectory`` variable inside each
-of those would be set to refer to the shared common "system" folder.
+每個應用程式內的 ``index.php`` 都會引用自己的設定，即 ``.../app/Config/Paths.php`` 。而每個應用程式內的 ``$systemDirectory`` 變數會被設定為共用 "system" 資料夾。
 
-If either of the applications had a command-line component, then you would also
-modify ``spark`` inside each application's project folder, as directed above.
+如果有任何一個應用程式擁有命令列組件，那麼你也可以參閱上個的條目提到的方法，在該應用程式的專案資料夾內修改 spark 。
