@@ -14,10 +14,9 @@
 存取模型
 ================
 
-Models are typically stored in the ``app/Models`` directory. They should have a namespace that matches their
-location within the directory, like ``namespace App\Models``.
+模型通常會儲存在 ``app/Models`` 目錄下，通常它們會有一個與它們所在位置相同的命名空間，比如這個命名空間： ``namespace App\Models`` 。
 
-You can access models within your classes by creating a new instance or using the ``model()`` helper function.
+你可以透過創造一個新的實體或是使用 ``model()`` 輔助函數來造訪類別中的模型。
 
 ::
 
@@ -40,22 +39,22 @@ You can access models within your classes by creating a new instance or using th
 CodeIgniter 的 Model
 =======================
 
-CodeIgniter does provide a model class that provides a few nice features, including:
+CodeIgniter 支援了模型類別，它提供了一些很好的功能，包括：
 
-- automatic database connection
-- basic CRUD methods
-- in-model validation
-- automatic pagination
-- and more
+- 自動連接資料庫
+- 基本的 CRUD 方法
+- 模型內驗證
+- 自動分頁
+- 更多更多方法
 
-This class provides a solid base from which to build your own models, allowing you to
-rapidly build out your application's model layer.
+這個類別提供了一個很強鍵的基礎，你可以在這個基礎上建立自己的模型，讓你可以快速地建構出應用程式的模型層。
 
 建立你的模型
 ===================
 
-To take advantage of CodeIgniter's model, you would simply create a new model class
-that extends ``CodeIgniter\Model``::
+若你需要利用 CodeIgniter 的模型，你只需要創建一個新的模型類別，並且使其繼承 ``CodeIgniter\Model`` ：
+
+::
 
         <?php namespace App\Models;
 
@@ -66,17 +65,13 @@ that extends ``CodeIgniter\Model``::
 
 	}
 
-This empty class provides convenient access to the database connection, the Query Builder,
-and a number of additional convenience methods.
+這個空的類別提供了對資料庫連接、查詢生成器，和一些額外的便捷方法的訪問。
 
 連接資料庫
 --------------------------
 
-When the class is first instantiated, if no database connection instance is passed to the constructor,
-it will automatically connect to the default database group, as set in the configuration. You can
-modify which group is used on a per-model basis by adding the DBGroup property to your class.
-This ensures that within the model any references to ``$this->db`` are made through the appropriate
-connection.
+當類別被首次實體化後，如果沒有向建構方法傳遞資料庫的連結實體，那麼它將會自動連接到組態設定中預設的資料庫群組。你可以透過在類別中添加 DBGroup 屬性來修改每個模型會使用到的資料庫設定群組。這樣可以讓模型中任何對 ``$this->db`` 的呼叫引用，都是透過你所設定適合的連接執行。
+
 ::
 
     <?php namespace App\Models;
@@ -88,15 +83,14 @@ connection.
 		protected $DBGroup = 'group_name';
 	}
 
-You would replace "group_name" with the name of a defined database group from the database
-configuration file.
+你可以把 "group_name" 替換成資料庫組態設定檔案中定義的資料庫群組名稱。
 
 設定你的模型
 ----------------------
 
-The model class has a few configuration options that can be set to allow the class' methods
-to work seamlessly for you. The first two are used by all of the CRUD methods to determine
-what table to use and how we can find the required records::
+模型類別有幾個設定選項，可以透過設定這些選項讓「類別」方法無縫地為你工作。前兩個是所有 CRUD 需求都會用到的屬性，決定著我們需要使用什麼資料表，以及如何找到所需的記錄。
+
+::
 
         <?php namespace App\Models;
 
