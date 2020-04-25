@@ -2,53 +2,51 @@
 基準測試
 ############
 
-CodeIgniter provides two separate tools to help you benchmark your code and test different options:
-the Timer and the Iterator. The Timer allows you to easily calculate the time between two points in the
-execution of your script. The Iterator allows you to set up several variations and runs those tests, recording
-performance and memory statistics to help you decide which version is the best.
+CodeIgniter 提供了兩個獨立的工具——計時器與疊代器，來幫助你測試你的程式以及不同的選項。計時器可以讓你輕鬆地計算出腳本執行的過程中，你所設定的兩個點之間的時間。疊代器讓你可以設定數種變化，並運作這些測試，執行效能與記憶體的統計，幫助你決定哪個版本是最好的。
 
-The Timer class is always active, being started from the moment the framework is invoked until right before
-sending the output to the user, enabling a very accurate timing of the entire system execution.
+計時器類別始終處於啟動狀態，從框架被呼叫的那一刻開始，直到將輸出響應給使用者之前，定時器才會停止統計，這使得整個系統執行時間的計算非常地精準。
 
 .. contents::
     :local:
     :depth: 2
 
 ===============
-Using the Timer
+使用計時器
 ===============
 
-With the Timer, you can measure the time between two moments in the execution of your application. This makes
-it simple to measure the performance of different aspects of your application. All measurement is done using
-the ``start()`` and ``stop()`` methods.
+透過計時器，你可以測量應用程式執行的過程中，任意兩個點之間的耗時，這會讓你在測量應用程式於不同方面的性能上變得非常容易。所有的測量都是透過 ``start()`` 與 ``stop()`` 這兩個方法完成。
 
-The ``start()`` methods takes a single parameter: the name of this timer. You can use any string as the name
-of the timer. It is only used for you to reference later to know which measurement is which::
+``start()`` 方法只需要傳入一個參數，你可以使用任何字串作為計時器的名稱。它只是用來讓你參考，知道哪個測量記錄是哪個：
+
+::
 
 	$benchmark = \Config\Services::timer();
 	$benchmark->start('render view');
 
-The ``stop()`` method takes the name of the timer that you want to stop as the only parameter, also::
+``stop()`` 方法則是以你要停止的計時器名稱作為唯一的傳入參數：
+
+::
 
 	$benchmark->stop('render view');
 
-The name is not case-sensitive, but otherwise must match the name you gave it when you started the timer.
+這個名稱不區分大小寫，但必須與啟動計時器時給予的名稱相符。
 
-Alternatively, you can use the :doc:`global function </general/common_functions>` ``timer()`` to start
-and stop timers::
+另外，你也可以使用 :doc:`全域函數 </general/common_functions>` ``timer()`` 來啟動與停止計時器。
 
-	// Start the timer
+::
+
+	// 開始計時器
 	timer('render view');
-	// Stop a running timer,
-	// if one of this name has been started
+	// 如果以這個名子命名的計時器已經啟動
+	// 將停止計時器,
 	timer('render view');
 
-Viewing Your Benchmark Points
+查閱基準測試得分
 =============================
 
-When your application runs, all of the timers that you have set are collected by the Timer class. It does
-not automatically display them, though. You can retrieve all of your timers by calling the ``getTimers()`` method.
-This returns an array of benchmark information, including start, end, and duration::
+當你的應用程式開始運作，你所設定的所有計時器都會被計時器類別蒐集起來，但它不會自動顯示這些計時器。你可以透過呼叫 ``getTimers()`` 方法來調閱所有的計時器。這個方法會回傳一個基準測試訊息的陣列，包括開始、結束與持續時間。 
+
+::
 
 	$timers = $benchmark->getTimers();
 
@@ -61,67 +59,66 @@ This returns an array of benchmark information, including start, end, and durati
 		]
 	]
 
-You can change the precision of the calculated duration by passing in the number of decimal places you want to be shown as
-the only parameter. The default value is 4 numbers behind the decimal point::
+你可以透過傳入你所希望顯示的小數位數作為唯一的參數，用於改變計算出的持續時間的精度。預設值是小數點後四位。
+
+::
 
 	$timers = $benchmark->getTimers(6);
 
-The timers are automatically displayed in the :doc:`Debub Toolbar </testing/debugging>`.
+計時器會自動顯示在 :doc:`除錯工具列 </testing/debugging>` 上。
 
-Displaying Execution Time
+顯示執行時間
 =========================
 
-While the ``getTimers()`` method will give you the raw data for all of the timers in your project, you can retrieve
-the duration of a single timer, in seconds, with the `getElapsedTime()` method. The first parameter is the name of
-the timer to display. The second is the number of decimal places to display. This defaults to 4::
+雖然 ``getTimers()`` 方法會提供專案中所有計時器的原始資料，但你也可以使用 `getElapsedTime()` 方法獲得單個計時器的持續時間，回傳的單位為秒。這個方法的第一個參數為需要顯示的計時器名稱，第二個參數為小數點後的位數，這個參數的預設值為 4 。
+
+::
 
 	echo timer()->getElapsedTime('render view');
 	// Displays: 0.0234
 
 ==================
-Using the Iterator
+使用疊代器
 ==================
 
-The Iterator is a simple tool that is designed to allow you to try out multiple variations on a solution to
-see the speed differences and different memory usage patterns. You can add any number of "tasks" for it to
-run and the class will run the task hundreds or thousands of times to get a clearer picture of performance.
-The results can then be retrieved and used by your script, or displayed as an HTML table.
+疊代器是一個簡單的工具，設計這個工具的目的是為了讓你在一個解決方案上嘗試不同的變化，看看速度差異與不同的記憶體使用模式。你可以加入任意數量的「任務｣讓它運作。類別將會運作著數百或數千次的任務，以計算更準確的效能。最後的結果可以被你查閱，也可以將它輸出為 HTML 表格。
 
-Creating Tasks To Run
+指派欲執行的任務
 =====================
 
-Tasks are defined within Closures. Any output the task creates will be discarded automatically. They are
-added to the Iterator class through the `add()` method. The first parameter is a name you want to refer to
-this test by. The second parameter is the Closure, itself::
+任務是在匿名函數中被定義的，任務所創建的任何輸出都會被自動拋棄。任務透過 ``add()`` 方法加入到疊代器之中。第一個參數是你的測試的名稱，第二個參數才是匿名函數本身。
+
+::
 
 	$iterator = new \CodeIgniter\Benchmark\Iterator();
 
-	// Add a new task
+	// 加入新的任務
 	$iterator->add('single_concat', function()
 		{
 			$str = 'Some basic'.'little'.'string concatenation test.';
 		}
 	);
 
-	// Add another task
+	// 加入另一項任務
 	$iterator->add('double', function($a='little')
 		{
-			$str = "Some basic {$little} string test.";
+			$str = "Some basic {$a} string test.";
 		}
 	);
 
-Running the Tasks
+運作任務
 =================
 
-Once you've added the tasks to run, you can use the ``run()`` method to loop over the tasks many times.
-By default, it will run each task 1000 times. This is probably sufficient for most simple tests. If you need
-to run the tests more times than that, you can pass the number as the first parameter::
+一旦你加入了欲運作的任務，你就可以透過 ``run()`` 方法來多次循環執行這些任務。在預設的情形下，它將對每個任務運作 1000 次。對於大多數的簡單測試來說這已經足夠了，但你若是需要更高的執行次數，你可以把這個數字當作第一個參數傳入至方法中。
 
-	// Run the tests 3000 times.
+::
+
+	// 運作測試 3000 次.
 	$iterator->run(3000);
 
-Once it has run, it will return an HTML table with the results of the test. If you don't want the results
-displayed, you can pass in `false` as the second parameter::
+一旦運作了疊代器，它將會回傳一個包含測試結果的 HTML 表格。如果你不希望將測試結果顯示出來，你可以在第二個參數中傳入 false ：
 
-	// Don't display the results.
+::
+
+	// 不輸出結果到畫面
 	$iterator->run(1000, false);
