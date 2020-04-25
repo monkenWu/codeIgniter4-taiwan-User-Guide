@@ -348,7 +348,7 @@ The second parameter is the class name to instantiate.
 		A wrapper for the ``getResultArray()``, ``getResultObject()``
 		and ``getCustomResultObject()`` methods.
 
-		Usage: see `Result Arrays`_.
+		Usage: see `結果陣列`_.
 
 	.. php:method:: getResultArray()
 
@@ -358,7 +358,7 @@ The second parameter is the class name to instantiate.
 		Returns the query results as an array of rows, where each
 		row is itself an associative array.
 
-		Usage: see `Result Arrays`_.
+		Usage: see `結果陣列`_.
 
 	.. php:method:: getResultObject()
 
@@ -368,7 +368,7 @@ The second parameter is the class name to instantiate.
 		Returns the query results as an array of rows, where each
 		row is an object of type ``stdClass``.
 
-		Usage: see `Result Arrays`_.
+		Usage: see `結果陣列`_.
 
 	.. php:method:: getCustomResultObject($class_name)
 
@@ -389,7 +389,7 @@ The second parameter is the class name to instantiate.
 		A wrapper for the ``getRowArray()``, ``getRowObject()`` and
 		``getCustomRowObject()`` methods.
 
-		Usage: see `Result Rows`_.
+		Usage: see `結果列`_.
 
 	.. php:method:: getUnbufferedRow([$type = 'object'])
 
@@ -400,7 +400,7 @@ The second parameter is the class name to instantiate.
 		Fetches the next result row and returns it in the
 		requested form.
 
-		Usage: see `Result Rows`_.
+		Usage: see `結果列`_.
 
 	.. php:method:: getRowArray([$n = 0])
 
@@ -410,7 +410,7 @@ The second parameter is the class name to instantiate.
 
 		Returns the requested result row as an associative array.
 
-		Usage: see `Result Rows`_.
+		Usage: see `結果列`_.
 
 	.. php:method:: getRowObject([$n = 0])
 
@@ -421,7 +421,7 @@ The second parameter is the class name to instantiate.
 		Returns the requested result row as an object of type
 		``stdClass``.
 
-		Usage: see `Result Rows`_.
+		Usage: see `結果列`_.
 
 	.. php:method:: getCustomRowObject($n, $type)
 
@@ -441,7 +441,7 @@ The second parameter is the class name to instantiate.
 
 		Moves the internal results row pointer to the desired offset.
 
-		Usage: see `Result Helper Methods`_.
+		Usage: see `結果輔助方法`_.
 
 	.. php:method:: setRow($key[, $value = NULL])
 
@@ -490,7 +490,7 @@ The second parameter is the class name to instantiate.
 
 		Returns the number of fields in the result set.
 
-		Usage: see `Result Helper Methods`_.
+		Usage: see `結果輔助方法`_.
 
     .. php:method:: getFieldNames()
 
@@ -514,4 +514,4 @@ The second parameter is the class name to instantiate.
 
 		Frees a result set.
 
-		Usage: see `Result Helper Methods`_.
+		Usage: see `結果輔助方法`_.

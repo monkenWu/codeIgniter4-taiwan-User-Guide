@@ -8,13 +8,13 @@
     :local:
     :depth: 2
 
-*******************
-從結果中得到XML格式
-*******************
+**********************
+從結果中得到 XML 格式
+**********************
 
 **getXMLFromResult()**
 
-這個方法會將查詢結果以xml格式回傳，你可以參考以下：
+這個方法會將查詢結果以 xml 格式回傳，你可以參考以下：
 
 ::
 
@@ -29,8 +29,7 @@
     $util = (new \CodeIgniter\Database\Database())->loadUtils($db);
     echo $util->getXMLFromResult($model->get());
 
-它將會得到以下的xml結果：
-
+它將會得到以下的 xml 結果：
 
 ::
 
