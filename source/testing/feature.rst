@@ -1,22 +1,19 @@
 ####################
-HTTP Feature Testing
+HTTP 特性測試
 ####################
 
-Feature testing allows you to view the results of a single call to your application. This might be returning the
-results of a single web form, hitting an API endpoint, and more. This is handy because it allows you to test the entire
-life-cycle of a single request, ensuring that the routing works, the response is the correct format, analyze the results,
-and more.
+特性測試允許你查驗你的應用程式進行單次呼叫的結果。它可能會回傳一個 Web 表單結果，或者是使用一個 API 端點。這是個很方便的功能，因為它讓你可以在測試的過程中，完整地模擬單個請求的生命週期，因此可以驗證路由是否正常工作、響應格式是否正確以及分析回傳結果等。
 
 .. contents::
     :local:
     :depth: 2
 
-The Test Class
+建立測試用類別
 ==============
 
-Feature testing requires that all of your test classes extend the ``CodeIgniter\Test\FeatureTestCase`` class. Since this
-extends `CIDatabaseTestCase <database.html>`_ you must always ensure that ``parent::setUp()`` and ``parent::tearDown()``
-are called before you take your actions.
+特性測試要求所有欲使用的測試類別都必須繼承 ``CodeIgniter\Test\FeatureTestCase`` 這個類別。由於你所繼承的 FeatureTestCase 類別也繼承了 `CIDatabaseTestCase <database.html>`_ 
+這個類別，所以必須在執行你動作前先呼叫 ``parent::setUp()`` 與 ``parent::tearDown()`` ：
+
 ::
 
     <?php namespace App;
@@ -36,26 +33,25 @@ are called before you take your actions.
         }
     }
 
-Requesting A Page
+發送一個頁面請求
 =================
 
-Essentially, the FeatureTestCase simply allows you to call an endpoint on your application and get the results back.
-to do this, you use the ``call()`` method. The first parameter is the HTTP method to use (most frequently either GET or POST).
-The second parameter is the path on your site to test. The third parameter accepts an array that is used to populate the
-superglobal variables for the HTTP verb you are using. So, a method of **GET** would have the **$_GET** variable
-populated, while a **post** request would have the **$_POST** array populated.
+本質而言， FeatureTestCase 僅僅允許你使用 ``call`` 方法在應用程式上呼叫端點並回傳結果。第一個參數是你所要使用的 HTTP 方法（最常見的是 GET 或 POST ），第二個參數是你所想要測試的網站路徑，第三個參數接受你傳入一個陣列，填充你所使用的 HTTP 動詞在 PHP 下的超全域變數——也就是說，在 **GET** 方法下 **$_GET** 將被填充，在 **POST** 方法下 **$_POST** 將被你填充。
+
 ::
 
-    // Get a simple page
+    // 取得一個簡單頁面
     $result = $this->call('get', site_url());
 
-    // Submit a form
+    // 送出一個表單
     $result = $this->call('post', site_url('contact'), [
         'name' => 'Fred Flintstone',
         'email' => 'flintyfred@example.com'
     ]);
 
-Shorthand methods for each of the HTTP verbs exist to ease typing and make things clearer::
+針對各式 HTTP 動詞也有提供相應的的速記方法，減少打字量之餘也可以使程式碼更加清晰：
+
+::
 
     $this->get($path, $params);
     $this->post($path, $params);
@@ -64,13 +60,14 @@ Shorthand methods for each of the HTTP verbs exist to ease typing and make thing
     $this->delete($path, $params);
     $this->options($path, $params);
 
-.. note:: The $params array does not make sense for every HTTP verb, but is included for consistency.
+.. note:: 並不是對每個 HTTP 動詞都會使用到 $params 陣列，但為了保持程式的一致，我們將預設把 $params 包含在內。
 
-Setting Different Routes
+設定預設路由
 ------------------------
 
-You can use a custom collection of routes by passing an array of "routes" into the ``withRoutes()`` method. This will
-override any existing routes in the system::
+你可以透過傳入一個 routes 陣列至 ``withRoutes()`` 方法，來宣告一個自訂的路由集合。若是宣告了路由內容，將會覆蓋系統中現有的路由設定。
+
+::
 
     $routes = [
        [ 'get', 'users', 'UserController::list' ]
@@ -79,16 +76,13 @@ override any existing routes in the system::
     $result = $this->withRoutes($routes)
         ->get('users');
 
-Each of the "routes" is a 3 element array containing the HTTP verb (or "add" for all),
-the URI to match, and the routing destination.
+每個 routes 是一個包含三個元素的陣列，含有 HTTP 動詞（或是 add ）、指定的 URI 與路由的目的地。
 
-
-Setting Session Values
+設定會談值
 ----------------------
 
-You can set custom session values to use during a single test with the ``withSession()`` method. This takes an array
-of key/value pairs that should exist within the $_SESSION variable when this request is made. This is handy for testing
-authentication and more.
+你可以使用 ``withSession()`` 方法來設定自訂的會談值，以便在測試中使用。這個方法需要傳入一個鍵值陣列，當這個方法被呼叫時，這些鍵值陣列將會對應到 PHP 的 $_SESSION 超全域變數中。這對於測試身份驗證來說很方便。 
+
 ::
 
     $values = [
@@ -98,32 +92,31 @@ authentication and more.
     $result = $this->withSession($values)
         ->get('admin');
 
-Bypassing Events
+繞過事件
 ----------------
 
-Events are handy to use in your application, but can be problematic during testing. Especially events that are used
-to send out emails. You can tell the system to skip any event handling with the ``skipEvents()`` method::
+在你的應用程式中，使用「事件」是非常方便的事情，但在測試中可能會出現問題，尤其是「發送郵件」這種事件。你可以透過 ``skipEvents()`` 方法告訴系統跳過任何事件：
+
+::
 
     $result = $this->skipEvents()
         ->post('users', $userInfo);
 
 
-Testing the Response
+測試響應
 ====================
 
-Once you've performed a ``call()`` and have results, there are a number of new assertions that you can use in your
-tests.
+一旦你執行了 ``call()`` 函數並且獲得了回傳的結果後，你就可以在測試使用一些新的斷言。
 
-.. note:: The Response object is publicly available at ``$result->response``. You can use that instance to perform
-    other assertions against, if needed.
+.. note:: Response 物件在 ``$result->response`` 是公開屬性，如果有其他需要，你也可使用這個實體執行其他斷言。
 
-Checking Response Status
+響應狀態測試
 ------------------------
 
 **isOK()**
 
-Returns a boolean true/false based on whether the response is perceived to be "ok". This is primarily determined by
-a response status code in the 200 or 300's.
+證明這個響應是成功的響應 ，回傳一個布林值 true 或 false 。主要檢查 HTTP 狀態是否在 200 至 300 這個範圍之間。
+
 ::
 
     if ($result->isOK())
@@ -133,14 +126,16 @@ a response status code in the 200 or 300's.
 
 **assertOK()**
 
-This assertion simply uses the **isOK()** method to test a response.
+這個斷言僅使用了 **isOK()** 來測試響應結果。
+
 ::
 
     $this->assertOK();
 
 **isRedirect()**
 
-Returns a boolean true/false based on whether the response is a redirected response.
+判斷響應是否為重新導向，回傳一個布林值 true 或 false 
+
 ::
 
     if ($result->isRedirect())
@@ -150,200 +145,211 @@ Returns a boolean true/false based on whether the response is a redirected respo
 
 **assertRedirect()**
 
-Asserts that the Response is an instance of RedirectResponse.
+斷言這個響應是否是一個「重新導向響應」 的實體。
+
 ::
 
     $this->assertRedirect();
 
 **assertStatus(int $code)**
 
-Asserts that the HTTP status code returned matches $code.
+斷言回傳的 HTTP 狀態碼與傳入的 $code 相符。
+
 ::
 
     $this->assertStatus(403);
 
 
-Session Assertions
+會談斷言
 ------------------
 
 **assertSessionHas(string $key, $value = null)**
 
-Asserts that a value exists in the resulting session. If $value is passed, will also assert that the variable's value
-matches what was specified.
+斷言此時的會話中存在所指定鍵。如果你也傳入了 $value ，也會斷言你所指定的鍵的值是否與傳入的 $value 相符。
+
 ::
 
     $this->assertSessionHas('logged_in', 123);
 
 **assertSessionMissing(string $key)**
 
-Asserts that the resulting session does not include the specified $key.
+斷言目前的會談不包含指定的 $key 。
+
 ::
 
     $this->assertSessionMissin('logged_in');
 
 
-Header Assertions
+標頭斷言
 -----------------
 
 **assertHeader(string $key, $value = null)**
 
-Asserts that a header named **$key** exists in the response. If **$value** is not empty, will also assert that
-the values match.
+斷言響應中存在著一個名為 **$key** 的標頭。如果你也傳入了 **$value** ，也會斷言這個值是相符的。
+
 ::
 
     $this->assertHeader('Content-Type', 'text/html');
 
 **assertHeaderMissing(string $key)**
 
-Asserts that a header name **$key** does not exist in the response.
+斷言響應中不存在著名稱為 **$key** 的標頭。
+
 ::
 
     $this->assertHeader('Accepts');
 
 
 
-Cookie Assertions
+Cookie 斷言
 -----------------
 
 **assertCookie(string $key, $value = null, string $prefix = '')**
 
-Asserts that a cookie named **$key** exists in the response. If **$value** is not empty, will also assert that
-the values match. You can set the cookie prefix, if needed, by passing it in as the third parameter.
+斷言響應中存在著名為 **$key** 的 Cookie ，如果你也傳入了 **$value** ，也會判定這些值是否相符。如果你需要的話，也可以設定 cookie 的前綴，透過傳遞第三個參數作為判斷依據。
+
 ::
 
     $this->assertCookie('foo', 'bar');
 
 **assertCookieMissing(string $key)**
 
-Asserts that a cookie named **$key** does not exist in the response.
+斷言響應中不存在名為 **$key** 的 Cookie 。
+
 ::
 
     $this->assertCookieMissing('ci_session');
 
 **assertCookieExpired(string $key, string $prefix = '')**
 
-Asserts that a cookie named **$key** exists, but has expired. You can set the cookie prefix, if needed, by passing it
-in as the second parameter.
+斷言名為 **$key** 的 Cookie 確實存在，但已經過期了。如果你需要的話，也可以設定 cookie 的前綴，透過傳遞第二個參數作為設定值。
+
 ::
 
     $this->assertCookieExpired('foo');
 
 
-DOM Assertions
+DOM 斷言
 --------------
 
-You can perform tests to see if specific elements/text/etc exist with the body of the response with the following
-assertions.
+你可以利用下列的斷言執行測試，檢閱特定的元素與文字等內容是否存在於響應的 body 之中。
 
 **assertSee(string $search = null, string $element = null)**
 
-Asserts that text/HTML is on the page, either by itself or - more specifically - within
-a tag, as specified by type, class, or id::
+斷言文字與 HTML 存在於在頁面上。這個斷言可以指的是全體文字，或具體成搜索一個標記，例如指定 Clase 、 type 或 id 。
 
-    // Check that "Hello World" is on the page
+::
+
+    // 斷言 Hello World 存在於頁面中
     $this->assertSee('Hello World');
-    // Check that "Hello World" is within an h1 tag
+    // 斷言存在著內容為 Hello World 的 h1 標籤
     $this->assertSee('Hello World', 'h1');
-    // Check that "Hello World" is within an element with the "notice" class
+    // 斷言存在著包含 Hello World 的元素，並且它為 .notice Class 中的成員。
     $this->assertSee('Hello World', '.notice');
-    // Check that "Hello World" is within an element with id of "title"
+    // 斷言存在著包含 Hello World 的元素，並且它的 id 被宣告為 title  。
     $this->assertSee('Hellow World', '#title');
-
 
 **assertDontSee(string $search = null, string $element = null)**
 
-Asserts the exact opposite of the **assertSee()** method::
+斷言的結果與 **assertSee()** 方法完全相反。
 
-    // Checks that "Hello World" does NOT exist on the page
+::
+
+    // 斷言 Hello World 不存在於頁面中
     $results->dontSee('Hello World');
-    // Checks that "Hello World" does NOT exist within any h1 tag
+    // 斷言 Hello World 不存在於任何 h1 標籤中
     $results->dontSee('Hello World', 'h1');
 
 **assertSeeElement(string $search)**
 
-Similar to **assertSee()**, however this only checks for an existing element. It does not check for specific text::
+類似於 **assertSee()** 但它只斷言特定元素是否存在，並不會檢查任何文字內容。
 
-    // Check that an element with class 'notice' exists
+::
+
+    // 斷言 notice Class 在頁面上存在任何成員元素
     $results->seeElement('.notice');
-    // Check that an element with id 'title' exists
+    // 斷言頁面上具有 id 為 title 的元素
     $results->seeElement('#title')
 
 **assertDontSeeElement(string $search)**
 
-Similar to **assertSee()**, however this only checks for an existing element that is missing. It does not check for
-specific text::
+類似於 **assertSee()** ，但它只斷言一個元素是否不存在於頁面，它不檢查特定文字內容。
 
-    // Verify that an element with id 'title' does NOT exist
+::
+
+    // 斷言頁面不存在任何 id 為 title 的元素
     $results->dontSeeElement('#title');
 
 **assertSeeLink(string $text, string $details=null)**
 
-Asserts that an anchor tag is found with matching **$text** as the body of the tag::
+使用 **$text** 來斷言頁面上出現了帶有指定字串的超連接：
 
-    // Check that a link exists with 'Upgrade Account' as the text::
+::
+
+    // 斷言有一個文字為 Upgrade Account 的超連結存在於頁面
     $results->seeLink('Upgrade Account');
-    // Check that a link exists with 'Upgrade Account' as the text, AND a class of 'upsell'
+    // 斷言有一文字為 Upgrade Account 且它正好是 upsell class 成員的超連結
     $results->seeLink('Upgrade Account', '.upsell');
 
 **assertSeeInField(string $field, string $value=null)**
 
-Asserts that an input tag exists with the name and value::
+斷言你所傳入的標籤與內容元素真實存在：
 
-    // Check that an input exists named 'user' with the value 'John Snow'
+::
+
+    // 斷言存在著名為 user 且值為 John Snow 的輸入
     $results->seeInField('user', 'John Snow');
-    // Check a multi-dimensional input
+    // 斷言陣列內的輸入
     $results->seeInField('user[name]', 'John Snow');
 
-
-
-Working With JSON
+使用 JSON 
 -----------------
 
-Responses will frequently contain JSON responses, especially when working with API methods. The following methods
-can help to test the responses.
+響應經常會是 JSON 格式的回傳，特別是在呼叫 API 方法時。以下提供可以幫助你測試響應的方法。
 
 **getJSON()**
 
-This method will return the body of the response as a JSON string::
+這個
 
-    // Response body is this:
+這個方法將以自串的形式回傳響應的 body ：
+
+::
+
+    // 響應 body 像是這樣:
     ['foo' => 'bar']
 
     $json = $result->getJSON();
 
-    // $json is this:
+    // 獲得的 $json 像是這樣:
     {
         "foo": "bar"
     }
-
-.. note:: Be aware that the JSON string will be pretty-printed in the result.
+ 
+.. note:: 需要注意的是， JSON 字串會漂亮地輸出在結果中。
 
 **assertJSONFragment(array $fragment)**
 
-Asserts that $fragment is found within the JSON response. It does not need to match the entire JSON value.
+斷言 $fragment 存在於 JSON 響應中，它不需要符合整個 JSON 值。
 
 ::
 
-    // Response body is this:
+    // 響應 body 像是這樣:
     [
         'config' => ['key-a', 'key-b']
     ]
 
-    // Is true
+    // 將回傳 true
     $this->assertJSONFragment(['config' => ['key-a']);
 
-.. note:: This simply uses phpUnit's own `assertArraySubset() <https://phpunit.readthedocs.io/en/7.2/assertions.html#assertarraysubset>`_
-    method to do the comparison.
+.. note:: 這僅僅是使用了 phpUnit 的 `assertArraySubset() <https://phpunit.readthedocs.io/en/7.2/assertions.html#assertarraysubset>`_ 方法進行比較。
 
 **assertJSONExact($test)**
 
-Similar to **assertJSONFragment()**, but checks the entire JSON response to ensure exact matches.
+類似於 **assertJSONFragment()** 但會檢閱整個 JSON 響應以確保結果精準地符合。
 
-
-Working With XML
+使用 XML
 ----------------
 
 **getXML()**
 
-If your application returns XML, you can retrieve it through this method.
-
+如果你的應用程式會回傳 XML ，你可以使用這個方法檢閱它。

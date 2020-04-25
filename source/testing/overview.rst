@@ -1,70 +1,63 @@
-#######
-Testing
-#######
+#########
+入門
+#########
 
-CodeIgniter has been built to make testing both the framework and your application as simple as possible.
-Support for ``PHPUnit`` is built in, and the framework provides a number of convenient
-helper methods to make testing every aspect of your application as painless as possible.
+CodeIgniter 的建立是為了讓框架測試和應用程式測試盡可能地簡單，它內建了 ``phpUnit`` 的支援，並提供了許多方便的輔助方法，在測試應用程式上將面面俱到且不費吹灰之力。
 
 .. contents::
     :local:
     :depth: 2
 
 *************
-System Set Up
+系統設定
 *************
 
-Installing phpUnit
+安裝 phpUnit
 ==================
 
-CodeIgniter uses `phpUnit <https://phpunit.de/>`__ as the basis for all of its testing. There are two ways to install
-phpUnit to use within your system.
+CodeIgniter 的所有測試功能都基於 `phpUnit <https://phpunit.de/>`__ 。有兩種方式可以安裝 phpUnit 至你的系統中。
 
 Composer
 --------
 
-The recommended method is to install it in your project using `Composer <https://getcomposer.org/>`__. While it's possible
-to install it globally we do not recommend it, since it can cause compatibility issues with other projects on your
-system as time goes on.
+我們推薦你使用 `Composer <https://getcomposer.org/>`__ 安裝在你的專案中。雖然可以全域安裝，但我們不建議你這麼做，因為隨著時間的推移，可能會導致與系統上的其他專案產生相容性問題。
 
-Ensure that you have Composer installed on your system. From the project root (the directory that contains the
-application and system directories) type the following from the command line::
+請確認你的系統上已經安裝了 Composer 。在專案根目錄（包含應用程式和系統目錄的目錄）中，在命令列鍵入以下內容：
+
+::
 
     > composer require --dev phpunit/phpunit
 
-This will install the correct version for your current PHP version. Once that is done, you can run all of the
-tests for this project by typing::
+這將會安裝符合你目前 PHP 版本的 phpUnit 。一旦完成，你就可以透過鍵入這個指令來運作這個專案的所有測試：
+
+::
 
     > ./vendor/bin/phpunit
 
 Phar
 ----
 
-The other option is to download the .phar file from the `phpUnit <https://phpunit.de/getting-started/phpunit-7.html>`__ site.
-This is a standalone file that should be placed within your project root.
-
+另一種方法是從 `phpUnit <https://phpunit.de/getting-started/phpunit-7.html>`__ 官方網站上下載 .phar 檔案。這是一個獨立的檔案，應該放置在你的專案根目錄下。
 
 ************************
-Testing Your Application
+測試你的應用程式
 ************************
 
-PHPUnit Configuration
+PHPUnit 組態設定
 =====================
 
-The framework has a ``phpunit.xml.dist`` file in the project root. This controls unit
-testing of the framework itself. If you provide your own ``phpunit.xml``, it will
-over-ride this.
+框架在專案根目錄下有一個 ``phpunit.xml.dist`` 檔案，這個檔案控制了框架本身的單元測試。如果你需要自訂自己的 ``phpunit.xml`` ，請直接將它覆蓋即可。
 
-Your ``phpunit.xml`` should exclude the ``system`` folder, as well as any ``vendor`` or
-``ThirdParty`` folders, if you are unit testing your application.
+如果你需要對你的應用程式進行單元測試的話，你的 ``phpunit.xml`` 應該排除 ``system`` 資料夾，以及任何 ``vendor`` 或 ``ThirdParty`` 資料夾。
 
-The Test Class
+測試類別
 ==============
 
-In order to take advantage of the additional tools provided, your tests must extend ``CIUnitTestCase``. All tests
-are expected to be located in the **tests/app** directory by default.
+為了利用框架提供的附加工具，你的測試必須繼承 ``CIUnitTestCase`` 。在預設的情形下，所有的測試都應該儲存在 **tests/app** 目錄之中。
 
-To test a new library, **Foo**, you would create a new file at **tests/app/Libraries/FooTest.php**::
+要測試新的程式庫 **Foo** 的話，你需要在 **tests/app/Libraries/FooTest.php** 中創建一個新檔案：
+
+::
 
     <?php namespace App\Libraries;
 
@@ -78,7 +71,9 @@ To test a new library, **Foo**, you would create a new file at **tests/app/Libra
         }
     }
 
-To test one of your models, you might end up with something like this in ``tests/app/Models/OneOfMyModelsTest.php``::
+若是要測試模型的話，你可能會需要一個類似 ``tests/app/Models/OneOfMyModelsTest.php`` 這樣子的檔案：
+
+::
 
     <?php namespace App\Models;
 
@@ -92,23 +87,24 @@ To test one of your models, you might end up with something like this in ``tests
         }
     }
 
+你可以創建任何符合你測試需要或風格的目錄結構。在替測試類別設定命名空間時，請記住， **app** 目錄是 ``App`` 命名空間的根目錄，所以你使用的任何類別都必須有相對於 ``App`` 正確的命名空間。
 
-You can create any directory structure that fits your testing style/needs. When namespacing the test classes,
-remember that the **app** directory is the root of the ``App`` namespace, so any classes you use must
-have the correct namespace relative to ``App``.
+.. note:: 測試類別並不會嚴格要求你的命名空間，但妥善使用命明空間將對確保類別名稱不衝突這件事很有幫助。
 
-.. note:: Namespaces are not strictly required for test classes, but they are helpful to ensure no class names collide.
+如果你需要測試資料庫結果，你必須使用 `CIDatabaseTestClass <database.html>`_ 類別。
 
-When testing database results, you must use the `CIDatabaseTestClass <database.html>`_ class.
-
-Additional Assertions
+額外斷言
 ---------------------
 
-``CIUnitTestCase`` provides additional unit testing assertions that you might find useful.
+``CIUnitTestCase`` 提供了額外的單元測試斷言，你可能會覺得這些功能很有用。
+
+.. note:: （譯者註）斷言（Assertion），是指程式執行過程中，斷定某個時間點一定是某種狀態。換句話說，在斷言的宣告下，你能斷定這個時間點某個變數的絕對值或是有著某種特殊的狀態。
 
 **assertLogged($level, $expectedMessage)**
 
-Ensure that something you expected to be logged actually was::
+你所期望記錄的實際內容是：
+
+::
 
         $config = new LoggerConfig();
         $logger = new Logger($config);
@@ -120,7 +116,9 @@ Ensure that something you expected to be logged actually was::
 
 **assertEventTriggered($eventName)**
 
-Ensure that an event you expected to be triggered actually was::
+你所期望觸發的事件實際上是：
+
+::
 
     Events::on('foo', function($arg) use(&$result) {
         $result = $arg;
@@ -132,7 +130,9 @@ Ensure that an event you expected to be triggered actually was::
 
 **assertHeaderEmitted($header, $ignoreCase=false)**
 
-Ensure that a header or cookie was actually emitted::
+你所期待的標頭或 cookie 實際發出的內容是：
+
+::
 
     $response->setCookie('foo', 'bar');
 
@@ -142,12 +142,13 @@ Ensure that a header or cookie was actually emitted::
 
     $this->assertHeaderEmitted("Set-Cookie: foo=bar");
 
-Note: the test case with this should be `run as a separate process
-in PHPunit <https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess>`_.
+.. note:: 這個測試案例應該在 PHPunit 中作為 `單獨的程序運作 <https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess>`_ 。
 
 **assertHeaderNotEmitted($header, $ignoreCase=false)**
 
-Ensure that a header or cookie was not emitted::
+你所期待沒有發出這個標頭或 cookie ：
+
+::
 
     $response->setCookie('foo', 'bar');
 
@@ -157,42 +158,40 @@ Ensure that a header or cookie was not emitted::
 
     $this->assertHeaderNotEmitted("Set-Cookie: banana");
 
-Note: the test case with this should be `run as a separate process
-in PHPunit <https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess>`_.
+.. note:: 這個測試案例應該在 PHPunit 中作為 `單獨的處理程序運作 <https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess>`_ 。
 
 **assertCloseEnough($expected, $actual, $message='', $tolerance=1)**
 
-For extended execution time testing, tests that the absolute difference
-between expected and actual time is within the prescribed tolerance.::
+對於延長的執行時間測試來說，判斷你所預期時間與實際時間的相差是否在你規定的公差範圍內：
+
+::
 
     $timer = new Timer();
     $timer->start('longjohn', strtotime('-11 minutes'));
     $this->assertCloseEnough(11 * 60, $timer->getElapsedTime('longjohn'));
 
-The above test will allow the actual time to be either 660 or 661 seconds.
+透過上述的設定，可以讓實際時間限制為 660 或 661 秒。
 
 **assertCloseEnoughString($expected, $actual, $message='', $tolerance=1)**
 
-For extended execution time testing, tests that the absolute difference
-between expected and actual time, formatted as strings, is within the prescribed tolerance.::
+對於延長的執行時間測試來說，將你所預期時間與實際時間的相差，在格式化為字串後，判斷是否在你規定的公差範圍內：
+
+::
 
     $timer = new Timer();
     $timer->start('longjohn', strtotime('-11 minutes'));
     $this->assertCloseEnoughString(11 * 60, $timer->getElapsedTime('longjohn'));
 
-The above test will allow the actual time to be either 660 or 661 seconds.
+透過上述的設定，可以讓實際時間限制為 660 或 661 秒。
 
-
-Accessing Protected/Private Properties
+存取保護或私有屬性
 --------------------------------------
 
-When testing, you can use the following setter and getter methods to access protected and private methods and
-properties in the classes that you are testing.
+測試時，可以使用下述提到的 setter 與 getter 方法，來造訪以及測試類別中的 protected （保護）與  private（私有）方法與屬性。
 
 **getPrivateMethodInvoker($instance, $method)**
 
-Enables you to call private methods from outside the class. This returns a function that can be called. The first
-parameter is an instance of the class to test. The second parameter is the name of the method you want to call.
+你可以從類別外呼叫私有方法，這會回傳一個可以被你呼叫的函數。第一個參數是你所要測試的類別的一個實體，第二個參數是你所要呼叫的方法名稱。
 
 ::
 
@@ -207,8 +206,7 @@ parameter is an instance of the class to test. The second parameter is the name 
 
 **getPrivateProperty($instance, $property)**
 
-Retrieves the value of a private/protected class property from an instance of a class. The first parameter is an
-instance of the class to test. The second parameter is the name of the property.
+你可以從一個類別的實體中，檢視一個私有或保護的屬性。第一個參數指的是需要測試的類別的實體，第二個參數是屬性的名稱。
 
 ::
 
@@ -220,8 +218,9 @@ instance of the class to test. The second parameter is the name of the property.
 
 **setPrivateProperty($instance, $property, $value)**
 
-Set a protected value within a class instance. The first parameter is an instance of the class to test. The second
-parameter is the name of the property to set the value of. The third parameter is the value to set it to::
+在某個類別的實體中，設定一個受保護的值。第一個參數指的是需要測試的類別的實體，第二個參數是待宣告值的屬性的名稱，第三個參數是你所要設定的值：
+
+::
 
     // Create an instance of the class to test
     $obj = new Foo();
@@ -231,18 +230,15 @@ parameter is the name of the property to set the value of. The third parameter i
 
     // Do normal testing...
 
-Mocking Services
+服務的模擬測試
 ================
 
-You will often find that you need to mock one of the services defined in **app/Config/Services.php** to limit
-your tests to only the code in question, while simulating various responses from the services. This is especially
-true when testing controllers and other integration testing. The **Services** class provides two methods to make this
-simple: ``injectMock()``, and ``reset()``.
+你可能會發現，你需要模擬 **app/Config/Services.php** 中某個定義好的服務，以限制你對於程式碼的測試範圍，並同時模擬服務的各種響應。在測試控制器和其他整合測試時更是如此。**服務類別** 提供了 ``injectMock()`` 和 ``reset()`` ，這兩個方法用於簡化這個過程。
 
 **injectMock()**
 
-This method allows you to define the exact instance that will be returned by the Services class. You can use this to
-set properties of a service so that it behaves in a certain way, or replace a service with a mocked class.
+這個方法允許你宣告服務類別將會回傳的準確實體。你可以使用這個方法來設定服務的屬性，使得它可以以特定的方式執行任務，或者使用測試模擬類別來替換服務。
+
 ::
 
     public function testSomething()
@@ -255,24 +251,22 @@ set properties of a service so that it behaves in a certain way, or replace a se
         // Do normal testing here....
     }
 
-The first parameter is the service that you are replacing. The name must match the function name in the Services
-class exactly. The second parameter is the instance to replace it with.
+第一個參數是你所要替換的服務，這個名稱必須與服務類別中函數的名稱完全一致。第二個參數是使用一個實體來替換掉它。
 
 **reset()**
 
-Removes all mocked classes from the Services class, bringing it back to its original state.
+使用這個方法刪除了服務類別中的所有服務模擬類別，它將會恢復到原來的狀態。
 
-
-
-Stream Filters
+串流過濾器
 ==============
 
-**CITestStreamFilter** provides an alternate to these helper methods.
+**CITestStreamFilter** 提供了一些輔助函數作為替代方法。
 
-You may need to test things that are difficult to test. Sometimes, capturing a stream, like PHP's own STDOUT, or STDERR,
-might be helpful. The ``CITestStreamFilter`` helps you capture the output from the stream of your choice.
+你可能會需要測試一些難以測試的程式。有時，你需要獲取一個串流，例如 PHP 的 STDOUT 或 STDERR ，這個方法可能會以索幫助。 ``CITestStreamFilter`` 可以輔助你從你自你所選擇的串流獲取輸出。
 
-An example demonstrating this inside one of your test cases::
+以下範例將展示在測試案例中的使用方式：
+
+::
 
     public function setUp()
     {

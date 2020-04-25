@@ -1,20 +1,17 @@
 ###################
-Testing Controllers
+控制器測試
 ###################
 
-Testing your controllers is made convenient with a couple of new helper classes and traits. When testing controllers,
-you can execute the code within a controller, without first running through the entire application bootstrap process.
-Often times, using the `Feature Testing tools <feature.html>`_ will be simpler, but this functionality is here in
-case you need it.
+透過一些新的輔助類別與 trait（特性），將會讓測試控制器變得更加便利。測試控制器時，你可以在控制器內執行程式碼，而不需要先運作整個應用程式 bootstrap （啟動）的過程。大多數時候，使用 `特性測試工具 <feature.html>`_ 會更加簡單，但這個功能將始終存在，以備不時之需。
 
-.. note:: Because the entire framework has not been bootstrapped, there will be times when you cannot test a controller
-    this way.
+.. note:: 因為整個框架沒有經過啟動，所以在某些特殊的狀況，你會無法使用這種方式測試控制器。
 
-The Helper Trait
+使用輔助特性
 ================
 
-You can use either of the base test classes, but you do need to use the ``ControllerTester`` trait
-within your tests::
+你只需要在測試中宣告使用 ``ControllerTester`` 特性，便可以在任何的基礎測試類別中使用它。
+
+::
 
     <?php namespace CodeIgniter;
 
@@ -25,10 +22,9 @@ within your tests::
         use ControllerTester;
     }
 
-Once the trait has been included, you can start setting up the environment, including the request and response classes,
-the request body, URI, and more. You specify the controller to use with the ``controller()`` method, passing in the
-fully qualified class name of your controller. Finally, call the ``execute()`` method with the name of the method
-to run as the parameter::
+一旦包含了這個特性在你的測試類別中，你就可以開始設定環境，包括請求、響應類別、請求 body ，與 URI 等內容。當你用 ``controller()`` 方法指定你所要使用的 controller 時，請傳入該 controller 全稱的類別名稱。最後，使用 ``execute()`` 呼叫你所想要運作的方法名稱。
+
+::
 
     <?php namespace CodeIgniter;
 
@@ -48,29 +44,33 @@ to run as the parameter::
         }
     }
 
-Helper Methods
+輔助方法
 ==============
 
 **controller($class)**
 
-Specifies the class name of the controller to test. The first parameter must be a fully qualified class name
-(i.e. include the namespace)::
+指定你所要測試的控制器類別名稱，第一個參數必須是完全正確的類別名稱（包括命名空間）：
+
+::
 
     $this->controller(\App\Controllers\ForumController::class);
 
 **execute($method)**
 
-Executes the specified method within the controller. The only parameter is the name of the method to run::
+在控制器中執行你所指定的方法，唯一的參數就是你所要運作的方法名稱：
+
+::
 
     $results = $this->controller(\App\Controllers\ForumController::class)
                     ->execute('showCategories');
 
-This returns a new helper class that provides a number of routines for checking the response itself. See below
-for details.
+這將回傳一個新的輔助類別，它本身提供了一些用於檢查響應本身的方法，詳情請繼續閱讀下文。
 
 **withConfig($config)**
 
-Allows you to pass in a modified version of **Config\App.php** to test with different settings::
+允許你透過修改後的 **Config\App.php** 版本來測試不同的設定。
+
+::
 
     $config = new Config\App();
     $config->appTimezone = 'America/Chicago';
@@ -79,11 +79,13 @@ Allows you to pass in a modified version of **Config\App.php** to test with diff
                     ->controller(\App\Controllers\ForumController::class)
                     ->execute('showCategories');
 
-If you do not provide one, the application's App config file will be used.
+如果你沒有提供這個設定，將使用應用程式的 app 設定檔案。
 
 **withRequest($request)**
 
-Allows you to provide an **IncomingRequest** instance tailored to your testing needs::
+這個方法允許你提供一個 **IncomingRequest** 實體來滿足你的測試需求：
+
+::
 
     $request = new CodeIgniter\HTTP\IncomingRequest(new Config\App(), new URI('http://example.com'));
     $request->setLocale($locale);
@@ -92,12 +94,13 @@ Allows you to provide an **IncomingRequest** instance tailored to your testing n
                     ->controller(\App\Controllers\ForumController::class)
                     ->execute('showCategories');
 
-If you do not provide one, a new IncomingRequest instance with the default application values will be passed
-into your controller.
+如果你沒有提供這個實體，那麼將會自動產生一個 IncomingRequest 實體，以及預設的應用程式值傳遞到你的控制器中。
 
 **withResponse($response)**
 
-Allows you to provide a **Response** instance::
+你可以傳遞一個 **Response** 實體給這個方法：
+
+::
 
     $response = new CodeIgniter\HTTP\Response(new Config\App());
 
@@ -105,12 +108,13 @@ Allows you to provide a **Response** instance::
                     ->controller(\App\Controllers\ForumController::class)
                     ->execute('showCategories');
 
-If you do not provide one, a new Response instance with the default application values will be passed
-into your controller.
+如果你沒有提供這個實體，那麼將會自動產生一個 Response 實體，以及預設的應用程式值傳遞到你的控制器中。
 
 **withLogger($logger)**
 
-Allows you to provide a **Logger** instance::
+你可以傳遞 **Logger** 實體至這個方法：
+
+::
 
     $logger = new CodeIgniter\Log\Handlers\FileHandler();
 
@@ -119,25 +123,25 @@ Allows you to provide a **Logger** instance::
                     ->controller(\App\Controllers\ForumController::class)
                     ->execute('showCategories');
 
-If you do not provide one, a new Logger instance with the default configuration values will be passed
-into your controller.
+如果你沒有提供這個實體，那麼將會自動產生一個 Logger 實體，以及預設的組態設定值傳遞到你的控制器中。
 
 **withURI($uri)**
 
-Allows you to provide a new URI that simulates the URL the client was visiting when this controller was run.
-This is helpful if you need to check URI segments within your controller. The only parameter is a string
-representing a valid URI::
+這個方法允許你提供一個新的 URI ，模擬使用者端在運作這個控制器時的 URL 。如果你需要在控制器中檢查 URL 區段的話，這將會是個很有用的功能。這個方法唯一的參數是代表有效 URI 的字串：
+
+::
 
     $results = $this->withURI('http://example.com/forums/categories')
                     ->controller(\App\Controllers\ForumController::class)
                     ->execute('showCategories');
 
-It is a good practice to always provide the URI during testing to avoid surprises.
+為了避免例外發生，在測試的過程中提供 URI 是一個很好的做法。
 
 **withBody($body)**
 
-Allows you to provide a custom body for the request. This can be helpful when testing API controllers where
-you need to set a JSON value as the body. The only parameter is a string that represents the body of the request::
+這個方法允許你提供一個自定義 body 。在測試 API 控制器時，當你需要設定一個 JSON 值作為 body 的時候後，這個功能將會非常有用處。唯一的參數是代表請求主體的字串：
+
+::
 
     $body = json_encode(['foo' => 'bar']);
 
@@ -145,16 +149,16 @@ you need to set a JSON value as the body. The only parameter is a string that re
                     ->controller(\App\Controllers\ForumController::class)
                     ->execute('showCategories');
 
-Checking the Response
+驗證響應
 =====================
 
-When the controller is executed, a new **ControllerResponse** instance will be returned that provides a number
-of helpful methods, as well as direct access to the Request and Response that were generated.
+當控制器被執行完畢時，將會回傳一個新的 **ControllerResponse** 實體，這個實體提供了許多有用的方法，也可以透過呼叫方法產生 Request 與 Response 。
 
 **isOK()**
 
-This provides a simple check that the response would be considered a "successful" response. This primarily checks that
-the HTTP status code is within the 200 or 300 ranges::
+提供你一個簡單的檢查，證明這個響應是成功的響應。主要檢查 HTTP 狀態是否在 200 至 300 這個範圍之間。
+
+::
 
     $results = $this->withBody($body)
                     ->controller(\App\Controllers\ForumController::class)
@@ -167,7 +171,9 @@ the HTTP status code is within the 200 or 300 ranges::
 
 **isRedirect()**
 
-Checks to see if the final response was a redirection of some sort::
+檢查響應是否是重新導向：
+
+::
 
     $results = $this->withBody($body)
                     ->controller(\App\Controllers\ForumController::class)
@@ -180,7 +186,9 @@ Checks to see if the final response was a redirection of some sort::
 
 **request()**
 
-You can access the Request object that was generated with this method::
+你可以透過這個方法產生請求物件：
+
+::
 
     $results = $this->withBody($body)
                     ->controller(\App\Controllers\ForumController::class)
@@ -190,7 +198,9 @@ You can access the Request object that was generated with this method::
 
 **response()**
 
-This allows you access to the response object that was generated, if any::
+你可以透過這個方法產生響應物件（如果存在）：
+
+::
 
     $results = $this->withBody($body)
                     ->controller(\App\Controllers\ForumController::class)
@@ -200,8 +210,9 @@ This allows you access to the response object that was generated, if any::
 
 **getBody()**
 
-You can access the body of the response that would have been sent to the client with the **getBody()** method. This could
-be generated HTML, or a JSON response, etc.::
+你可以透過 **getBody()** 方法造訪響應的 body ，這個響應會被發送到使用者端。這個方法可以產生 HTML 或 JSON 響應。
+
+::
 
     $results = $this->withBody($body)
                     ->controller(\App\Controllers\ForumController::class)
@@ -209,58 +220,67 @@ be generated HTML, or a JSON response, etc.::
 
     $body = $results->getBody();
 
-Response Helper methods
+響應輔助方法
 -----------------------
 
-The response you get back contains a number of helper methods to inspect the HTML output within the response. These
-are useful for using within assertions in your tests.
+你得到的響應包含著一些輔助方法，用於驗證響應中的 HTML 輸出。這些方法對於在測試中宣告斷言時非常有用。
 
-The **see()** method checks the text on the page to see if it exists either by itself, or more specifically within
-a tag, as specified by type, class, or id::
+**see()** 方法將會檢查你所傳入的字串是否存在於頁面本身，你也可以更加具體的描述它，確定他是否是某種標記的描述，例如： tag 、 class 或 id ：
 
-    // Check that "Hello World" is on the page
+::
+
+    // 驗證 Hello World 是否存在於頁面中
     $results->see('Hello World');
-    // Check that "Hello World" is within an h1 tag
+    // 驗證是否有存在著 Hello World 的 h1 標籤
     $results->see('Hello World', 'h1');
-    // Check that "Hello World" is within an element with the "notice" class
+    // 驗證是否有存在著包含 Hello World 的元素，並且它為 .notice Class 中的成員。
     $results->see('Hello World', '.notice');
-    // Check that "Hello World" is within an element with id of "title"
+    // 驗證是否存在著包含 Hello World 的元素，並且它的 id 被宣告為 title  。
     $results->see('Hellow World', '#title');
 
-The **dontSee()** method is the exact opposite::
+而 **dontSee()** 的方法則完全相反於 **see()** 方法：
 
-    // Checks that "Hello World" does NOT exist on the page
+::
+
+    // 驗證 Hello World 不存在於頁面中
     $results->dontSee('Hello World');
-    // Checks that "Hellow World" does NOT exist within any h1 tag
+    // 驗證 Hello World 不存在於任何 h1 標籤中
     $results->dontSee('Hello World', 'h1');
 
-The **seeElement()** and **dontSeeElement()** are very similar to the previous methods, but do not look at the
-values of the elements. Instead, they simply check that the elements exist on the page::
+**seeElement()** 與 **dontSeeElement()** 和前面的方法非常類似，但它並不會去比對元素的值。相反的，它指是檢查頁面上的某個元素是否存在：
 
-    // Check that an element with class 'notice' exists
+::
+
+    // 驗至 notice Class 在頁面上是否有任何成員元素
     $results->seeElement('.notice');
-    // Check that an element with id 'title' exists
+    // 驗證頁面上是否有 id 為 title 的元素
     $results->seeElement('#title')
-    // Verify that an element with id 'title' does NOT exist
+    // 驗證頁面上是否不存在任何 id 為 title 的元素
     $results->dontSeeElement('#title');
 
-You can use **seeLink()** to ensure that a link appears on the page with the specified text::
+你可以使用 **seeLink()** 來確認頁面上出現了某個帶有指定字串的超連接：
 
-    // Check that a link exists with 'Upgrade Account' as the text::
+::
+
+    // 驗證是否有一個文字為 Upgrade Account 的超連結
     $results->seeLink('Upgrade Account');
-    // Check that a link exists with 'Upgrade Account' as the text, AND a class of 'upsell'
+    // 驗證是否有一個文字為 Upgrade Account 且它正好是 upsell class 成員的超連結
     $results->seeLink('Upgrade Account', '.upsell');
 
-The **seeInField()** method checks for any input tags exist with the name and value::
+**seeInField()** 用於驗證你所傳入的標籤與內容元素是否存在：
 
-    // Check that an input exists named 'user' with the value 'John Snow'
+::
+
+    // 驗證是否存在著名為 user 且值為 John Snow 的輸入
     $results->seeInField('user', 'John Snow');
-    // Check a multi-dimensional input
+    // 驗證陣列內的輸入
     $results->seeInField('user[name]', 'John Snow');
 
-Finally, you can check if a checkbox exists and is checked with the **seeCheckboxIsChecked()** method::
+最後，你可以使用 **seeCheckboxIsChecked()** 方法來檢查某個核取方塊是否被選中：
 
-    // Check if checkbox is checked with class of 'foo'
+::
+
+    // 驗證 class 為 foo 的成員核取方塊是否被選中
     $results->seeCheckboxIsChecked('.foo');
-    // Check if checkbox with id of 'bar' is checked
+    // 驗證 id 為 bar 的核取方塊是否被選中
     $results->seeCheckboxIsChecked('#bar');
