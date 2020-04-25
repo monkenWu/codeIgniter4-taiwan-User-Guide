@@ -15,7 +15,7 @@ CodeIgniter 提供一個全功能而且快速的抽像資料庫類別，支援�
     查詢輔助函數 <helpers>
     查詢生成器類別 <query_builder>
     交易 <transactions>
-    取得資料表資訊 <metadata>
+    Meta資料 <metadata>
     自訂函數 <call_function>
     資料庫事件 <events>
     資料庫工具 <utilities>

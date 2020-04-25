@@ -1,40 +1,36 @@
 ####################
-Query Helper Methods
+查詢輔助函數
 ####################
 
-Information From Executing a Query
+取得執行查詢的資訊
 ==================================
 
 **$db->insertID()**
 
-The insert ID number when performing database inserts.
+資料庫執行新增時的新增ID。
 
-.. note:: If using the PDO driver with PostgreSQL, or using the Interbase
-	driver, this function requires a $name parameter, which specifies the
+.. note:: 如果將 PDO 驅動連接 PostgreSQL 或是使用Interbase驅動，這個函式需要 $name 這個參數。用來指定適當的序列來檢查新增ID。which specifies the
 	appropriate sequence to check for the insert id.
 
 **$db->affectedRows()**
 
-Displays the number of affected rows, when doing "write" type queries
-(insert, update, etc.).
+當執行 "寫入" 類型的查詢(新增、更新等等)時，顯示受影響的列數。
 
-.. note:: In MySQL "DELETE FROM TABLE" returns 0 affected rows. The database
-	class has a small hack that allows it to return the correct number of
-	affected rows. By default this hack is enabled but it can be turned off
-	in the database driver file.
+.. note:: 在MySQL中， "DELETE FROM TABLE" 會回傳0個受影響的列數。資料庫類別做了一個小hack，讓它可以回傳正確受影響的列數。在預設下，這個hack是被開啟的，不過也可以從資料庫驅動程式檔案中將它關閉。
 
 **$db->getLastQuery()**
 
-Returns a Query object that represents the last query that was run (the query string, not the result).
+回傳最近一次的查詢物件(查詢字串，不是查詢結果)。
 
-Information About Your Database
+取得資料庫資訊
 ===============================
 
 **$db->countAll()**
 
-Permits you to determine the number of rows in a particular table.
-Submit the table name in the first parameter. This is part of Query Builder.
-Example::
+讓你可以知道一個資料表中資料的列數。第一個參數為資料表名稱。這是查詢生成器的一部分。
+範例：
+
+::
 
 	echo $db->table('my_table')->countAll();
 
@@ -42,13 +38,16 @@ Example::
 
 **$db->getPlatform()**
 
-Outputs the database platform you are running (MySQL, MS SQL, Postgres,
-etc...)::
+輸出你目前在運行的資料庫系統(例如：MySQL、MS SQL、Postgres等等)：
+
+::
 
 	echo $db->getPlatform();
 
 **$db->getVersion()**
 
-Outputs the database version you are running::
+輸出你目前在運行的資料庫版本：
+
+::
 
 	echo $db->getVersion();

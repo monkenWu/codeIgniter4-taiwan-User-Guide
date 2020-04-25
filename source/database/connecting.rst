@@ -1,77 +1,73 @@
 ###########################
-Connecting to your Database
+連接你的資料庫
 ###########################
 
-You can connect to your database by adding this line of code in any
-function where it is needed, or in your class constructor to make the
-database available globally in that class.
+你可以在任何你需要的函式中，加入以下的程式碼來連接資料庫，或是在你的類別建構中宣告一個可用的全域參數。
 
 ::
 
 	$db = \Config\Database::connect();
 
-If the above function does **not** contain any information in the first
-parameter it will connect to the default group specified in your database config
-file. For most people, this is the preferred method of use.
+如果在上述的函式中，第一個參數 *不包含* 任何資訊，它將會以你系統指定的資料庫設定檔設定做連線。對於大多數人而言，這是第一首選方法。
 
-A convenience method exists that is purely a wrapper around the above line
-and is provided for your convenience::
+以下的程式提供一個方便，且純粹是圍繞在上述內容中的方法：
+
+::
 
     $db = db_connect();
 
-Available Parameters
+可用的參數
 --------------------
 
-#. The database group name, a string that must match the config class' property name. Default value is $config->defaultGroup.
-#. TRUE/FALSE (boolean). Whether to return the shared connection (see
-   Connecting to Multiple Databases below).
+#. 資料庫群組名稱，必須是字串且完全符合類別設定的屬性名稱。預設參數為 $config->defaultGroup。
+#. TRUE/FALSE (boolean). 是否回傳分享的連線(查閱以下的多個資料庫連線)
 
-Manually Connecting to a Database
+手動連線到資料庫
 ---------------------------------
 
-The first parameter of this function can **optionally** be used to
-specify a particular database group from your config file. Examples:
+第一個參數是可以 *選擇的* ，從你的設定檔中指定一個特定的資料庫群組。例如：
 
-To choose a specific group from your config file you can do this::
+從你的設定檔中選擇指定的群組，你可以這樣做：
+
+::
 
 	$db = \Config\Database::connect('group_name');
 
-Where group_name is the name of the connection group from your config
-file.
+group_name 是設定檔中，要連線的群組名稱。
 
-Multiple Connections to Same Database
+多個連線到同一個資料庫
 -------------------------------------
 
-By default, the ``connect()`` method will return the same instance of the
-database connection every time. If you need to have a separate connection
-to the same database, send ``false`` as the second parameter::
+預設情況下， ``connect()`` 方法每次都會回傳相同的資料庫連線。如果你需要單獨連線到同一個資料庫，則在第二個參數設定為 ``false`` ：
+
+::
 
 	$db = \Config\Database::connect('group_name', false);
 
-Connecting to Multiple Databases
+連線到多個資料庫
 ================================
 
-If you need to connect to more than one database simultaneously you can
-do so as follows::
+如果你需要同時連線到不只一個資料庫，你可以參考以下的程式碼：
+
+::
 
 	$db1 = \Config\Database::connect('group_one');
 	$db  = \Config\Database::connect('group_two');
 
-Note: Change the words "group_one" and "group_two" to the specific
-group names you are connecting to.
+注意: 將 "group_one" 和 "group_two" 修改成你想要連接的群組名稱。
 
-.. note:: You don't need to create separate database configurations if you
-	only need to use a different database on the same connection. You
-	can switch to a different database when you need to, like this:
+.. note:: 如果你只需要在同一個的連線中使用不同的資料庫，就不需要建立其他的資料庫設定。你可以參考以下程式碼，來切換到不同的資料庫：
 
-	| $db->setDatabase($database2_name);
+::
 
-Connecting with Custom Settings
+	$db->setDatabase($database2_name);
+
+設定客製化的連線
 ===============================
 
-You can pass in an array of database settings instead of a group name to get
-a connection that uses your custom settings. The array passed in must be
-the same format as the groups are defined in the configuration file::
+要使用客製化的連線設定，你需要傳入一個陣列的資料庫設定值，而不是群組名稱。傳入陣列的格式，必須與設定檔中的格式相同。
+
+::
 
     $custom = [
 		'DSN'      => '',
@@ -97,27 +93,22 @@ the same format as the groups are defined in the configuration file::
     $db = \Config\Database::connect($custom);
 
 
-Reconnecting / Keeping the Connection Alive
+重新連線 / 保持有效的連線
 ===========================================
 
-If the database server's idle timeout is exceeded while you're doing
-some heavy PHP lifting (processing an image, for instance), you should
-consider pinging the server by using the reconnect() method before
-sending further queries, which can gracefully keep the connection alive
-or re-establish it.
+如果你正在執行複雜的PHP運算(例如：圖形處理)時，造成資料庫伺服器閒置逾時，
+你應該考慮在執行下一步的查詢前，用reconnect()方法ping伺服器，這可以正常地保持連線或重新建立連線。
 
-.. important:: If you are using MySQLi database driver, the reconnect() method
-	does not ping the server but it closes the connection then connects again.
+.. important:: 如果你使用的是MySQLi，reconnect()這個方法不會ping伺服器，而是會關閉連線並重新連線。
 
 ::
 
 	$db->reconnect();
 
-Manually closing the Connection
+手動關閉資料庫連線
 ===============================
 
-While CodeIgniter intelligently takes care of closing your database
-connections, you can explicitly close the connection.
+雖然CodeIgniter會智慧地幫助你關閉資料庫連線，但是你可以明確地關閉連線。
 
 ::
 

@@ -1,38 +1,38 @@
 #####################
-Custom Function Calls
+呼叫自定義函數
 #####################
 
 $db->callFunction();
 ============================
 
-This function enables you to call PHP database functions that are not
-natively included in CodeIgniter, in a platform-independent manner. For
-example, let's say you want to call the mysql_get_client_info()
-function, which is **not** natively supported by CodeIgniter. You could
-do so like this::
+這個函數使你能以無關平台的方式呼叫CodeIgniter中，原本沒有的PHP資料庫函數。
+例如：假設你要呼叫 mysql_get_client_info() ，但是CodeIgniter並沒有支援該函數。
+所以你可以這樣做：
+
+::
 
 	$db->callFunction('get_client_info');
 
-You must supply the name of the function, **without** the mysql\_
-prefix, in the first parameter. The prefix is added automatically based
-on which database driver is currently being used. This permits you to
-run the same function on different database platforms. Obviously, not all
-function calls are identical between platforms, so there are limits to
-how useful this function can be in terms of portability.
+在第一個參數中你必須放入函數的名稱(不帶有mysql\_ 的字首)。
+字首會根據你現在使用的資料庫驅動自動加上。
+這可以讓你在不同的資料庫系統中，執行相同的函數。
+但是，在資料庫系統之間，並不是所有的函數使用方式都一樣，所以這個函數在移植性方面還是有限制的。
 
-Any parameters needed by the function you are calling will be added to
-the second parameter.
+你使用的函數如果有任何參數，要加在第二個參數上。
 
 ::
 
 	$db->callFunction('some_function', $param1, $param2, etc..);
 
-Often, you will either need to supply a database connection ID or a
-database result ID. The connection ID can be accessed using::
+通常你需要提供資料庫連線ID或資料庫結果ID。連線ID可以使用以下取得：
+
+::
 
 	$db->connID;
 
-The result ID can be accessed from within your result object, like this::
+可以從查詢物件中取得資料庫結果ID，例如：
+
+::
 
 	$query = $db->query("SOME QUERY");
 
