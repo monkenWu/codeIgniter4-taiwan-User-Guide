@@ -1,5 +1,5 @@
 #####################
-Working With Entities
+使用實體類別
 #####################
 
 CodeIgniter supports Entity classes as a first-class citizen in it's database layer, while keeping

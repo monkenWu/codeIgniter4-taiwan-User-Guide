@@ -1,19 +1,17 @@
 #########################
-Using CodeIgniter's Model
+使用 CodeIgniter 的模型
 #########################
 
 .. contents::
     :local:
     :depth: 2
 
-Models
+模型
 ======
 
-Models provide a way to interact with a specific table in your database. They come out of the box with helper
-methods for much of the standard ways you would need to interact with a database table, including finding records,
-updating records, deleting records, and more.
+模型提供一種與資料庫中特定資料表交互的方法，模型也內建輔助方法，讓你在與資料庫資料表交互的過程中有標準的方法可以呼叫，包括查找記錄、更新記錄，刪除記錄等等。
 
-Accessing Models
+存取模型
 ================
 
 Models are typically stored in the ``app/Models`` directory. They should have a namespace that matches their
@@ -39,8 +37,8 @@ You can access models within your classes by creating a new instance or using th
     $userModel = model('UserModel', true, $db);
 
 
-CodeIgniter's Model
-===================
+CodeIgniter 的 Model
+=======================
 
 CodeIgniter does provide a model class that provides a few nice features, including:
 
@@ -53,7 +51,7 @@ CodeIgniter does provide a model class that provides a few nice features, includ
 This class provides a solid base from which to build your own models, allowing you to
 rapidly build out your application's model layer.
 
-Creating Your Model
+建立你的模型
 ===================
 
 To take advantage of CodeIgniter's model, you would simply create a new model class
@@ -71,7 +69,7 @@ that extends ``CodeIgniter\Model``::
 This empty class provides convenient access to the database connection, the Query Builder,
 and a number of additional convenience methods.
 
-Connecting to the Database
+連接資料庫
 --------------------------
 
 When the class is first instantiated, if no database connection instance is passed to the constructor,
@@ -93,7 +91,7 @@ connection.
 You would replace "group_name" with the name of a defined database group from the database
 configuration file.
 
-Configuring Your Model
+設定你的模型
 ----------------------
 
 The model class has a few configuration options that can be set to allow the class' methods
@@ -218,10 +216,10 @@ this model will never validate.
 These arrays allow you to specify callback methods that will be run on the data at the
 time specified in the property name.
 
-Working With Data
+資料作業
 =================
 
-Finding Data
+尋找資料
 ------------
 
 Several functions are provided for doing basic CRUD work on your tables, including find(),
@@ -296,7 +294,7 @@ the next find* methods to return only soft deleted rows::
 	$deletedUsers = $userModel->onlyDeleted()
 	                          ->findAll();
 
-Saving Data
+儲存資料
 -----------
 
 **insert()**
@@ -427,7 +425,7 @@ model's ``save()`` method to inspect the class, grab any public and private prop
 .. note:: If you find yourself working with Entities a lot, CodeIgniter provides a built-in :doc:`Entity class </models/entities>`
 	that provides several handy features that make developing Entities simpler.
 
-Deleting Data
+刪除資料
 -------------
 
 **delete()**
@@ -454,7 +452,7 @@ Cleans out the database table by permanently removing all rows that have 'delete
 
 	$userModel->purgeDeleted();
 
-Validating Data
+驗證資料
 ---------------
 
 For many people, validating data in the model is the preferred way to ensure the data is kept to a single
@@ -540,7 +538,7 @@ and simply set ``$validationRules`` to the name of the validation rule group you
 		protected $validationRules = 'users';
 	}
 
-Retrieving Validation Rules
+檢索驗證規則
 ---------------------------
 
 You can retrieve a model's validation rules by accessing its ``validationRules``
@@ -562,7 +560,7 @@ value an array of fieldnames of interest.::
     // get the rules for only the "city" and "state" fields
     $rules = $model->getValidationRules(['only' => ['city', 'state']]);
 
-Validation Placeholders
+驗證置換符號
 -----------------------
 
 The model provides a simple method to replace parts of your rules based on data that's being passed into it. This
@@ -593,7 +591,7 @@ So it will ignore the row in the database that has ``id=4`` when it verifies the
 This can also be used to create more dynamic rules at runtime, as long as you take care that any dynamic
 keys passed in don't conflict with your form data.
 
-Protecting Fields
+保護欄位
 -----------------
 
 To help protect against Mass Assignment Attacks, the Model class **requires** that you list all of the field names
@@ -611,7 +609,7 @@ testing, migrations, or seeds. In these cases, you can turn the protection on or
 	      ->insert($data)
 	      ->protect(true);
 
-Working With Query Builder
+操作查詢生成器
 --------------------------
 
 You can get access to a shared instance of the Query Builder for that model's database connection any time you
@@ -632,7 +630,7 @@ very elegant use::
 
 			$user_name = $userModel->escape($name);
 
-Runtime Return Type Changes
+轉換回傳型別
 ----------------------------
 
 You can specify the format that data should be returned as when using the find*() methods as the class property,
@@ -658,7 +656,7 @@ Returns data from the next find*() method as standard objects or custom class in
 	// Return as custom class instances
 	$users = $userModel->asObject('User')->where('status', 'active')->findAll();
 
-Processing Large Amounts of Data
+處理大量資料
 --------------------------------
 
 Sometimes, you need to process large amounts of data and would run the risk of running out of memory.
@@ -675,7 +673,7 @@ This is best used during cronjobs, data exports, or other large tasks.
 		// $data is a single row of data.
 	});
 
-Model Events
+模型事件
 ============
 
 There are several points within the model's execution that you can specify multiple callback methods to run.
@@ -683,7 +681,7 @@ These methods can be used to normalize data, hash passwords, save related entiti
 points in the model's execution can be affected, each through a class property: **$beforeInsert**, **$afterInsert**,
 **$beforeUpdate**, **afterUpdate**, **afterFind**, and **afterDelete**.
 
-Defining Callbacks
+定義回呼
 ------------------
 
 You specify the callbacks by first creating a new class method in your model to use. This class will always
@@ -705,7 +703,7 @@ must return the original $data array so other callbacks have the full informatio
 		return $data;
 	}
 
-Specifying Callbacks To Run
+指定要運作的回呼
 ---------------------------
 
 You specify when to run the callbacks by adding the method name to the appropriate class property (beforeInsert, afterUpdate,
@@ -715,7 +713,7 @@ use the same callback in multiple events::
 	protected $beforeInsert = ['hashPassword'];
 	protected $beforeUpdate = ['hashPassword'];
 
-Event Parameters
+事件參數
 ----------------
 
 Since the exact data passed to each callback varies a bit, here are the details on what is in the $data parameter
@@ -753,7 +751,7 @@ afterDelete       Varies by delete* method. See the following:
 ================ =========================================================================================================
 
 
-Manual Model Creation
+創建手動模型
 =====================
 
 You do not need to extend any special class to create a model for your application. All you need is to get an
