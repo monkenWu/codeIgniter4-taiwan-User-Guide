@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Transactions &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>交易 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,7 +40,7 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Database Metadata" href="metadata.html" />
+    <link rel="next" title="資料庫詮釋資料" href="metadata.html" />
     <link rel="prev" title="Query Builder Class" href="query_builder.html" /> 
 </head>
 
@@ -177,14 +177,14 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">資料庫操作</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="examples.html">快速入門: 範例程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="connecting.html">連接資料庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫組態設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">連接你的資料庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="queries.html">執行查詢</a></li>
 <li class="toctree-l2"><a class="reference internal" href="results.html">產生查詢結果</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helpers.html">查詢輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query_builder.html">查詢生成器類別</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">交易</a></li>
-<li class="toctree-l2"><a class="reference internal" href="metadata.html">取得資料表資訊</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">詮釋資料</a></li>
 <li class="toctree-l2"><a class="reference internal" href="call_function.html">自訂函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="events.html">資料庫事件</a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.html">資料庫工具</a></li>
@@ -322,7 +322,7 @@
         
           <li><a href="index.html">資料庫操作</a> &raquo;</li>
         
-      <li>Transactions</li>
+      <li>交易</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,35 +339,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="transactions">
-<h1>Transactions<a class="headerlink" href="#transactions" title="本標題的永久連結">¶</a></h1>
-<p>CodeIgniter’s database abstraction allows you to use transactions with
-databases that support transaction-safe table types. In MySQL, you’ll
-need to be running InnoDB or BDB table types rather than the more common
-MyISAM. Most other database platforms support transactions natively.</p>
-<p>If you are not familiar with transactions we recommend you find a good
-online resource to learn about them for your particular database. The
-information below assumes you have a basic understanding of
-transactions.</p>
-<div class="section" id="codeigniter-s-approach-to-transactions">
-<h2>CodeIgniter’s Approach to Transactions<a class="headerlink" href="#codeigniter-s-approach-to-transactions" title="本標題的永久連結">¶</a></h2>
-<p>CodeIgniter utilizes an approach to transactions that is very similar to
-the process used by the popular database class ADODB. We’ve chosen that
-approach because it greatly simplifies the process of running
-transactions. In most cases, all that is required is two lines of code.</p>
-<p>Traditionally, transactions have required a fair amount of work to
-implement since they demand that you keep track of your queries and
-determine whether to commit or rollback based on the success or failure
-of your queries. This is particularly cumbersome with nested queries. In
-contrast, we’ve implemented a smart transaction system that does all
-this for you automatically (you can also manage your transactions
-manually if you choose to, but there’s really no benefit).</p>
+  <div class="section" id="id1">
+<h1>交易<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>CodeIgniter 透過資料庫抽象化，讓你在可以在支援交易的安全資料表類型的資料庫中使用交易。在 MySQL 中，你需要運行 InnoDB 或 BDB 的資料表類型，而不是更常見的MyISAM。大多數的資料庫系統支援原生的交易功能。</p>
+<p>如果你不熟悉交易，我們建議你在網路上瞭解你所使用的資料庫的交易。以下你的資訊都假設你對交易有一定程度的了解。</p>
+<div class="section" id="codeigniter">
+<h2>CodeIgniter 的交易方式<a class="headerlink" href="#codeigniter" title="本標題的永久連結">¶</a></h2>
+<p>CodeIgniter 使用常見的資料庫類別 ADODB ，它的處理過程非常相似於交易的處理方式。因為它將運作交易的過程簡單化了許多，所以我們選擇這個方式進行處理。在大多數的情況下，你只需要幾行程式碼就能完成交易。</p>
+<p>一般而言，交易需要執行大量的工作，因為它需要你追蹤你的查詢，並根據查詢的成功或失敗來決定要提交或退回。相反地，我們實現了一個聰明的交易系統，該系統可以自動地完成所有操作（你也可以手動管理你的交易，但實際上並沒有比較好）。</p>
 </div>
-<div class="section" id="running-transactions">
-<h2>Running Transactions<a class="headerlink" href="#running-transactions" title="本標題的永久連結">¶</a></h2>
-<p>To run your queries using transactions you will use the
-$this-&gt;db-&gt;transStart() and $this-&gt;db-&gt;transComplete() functions as
-follows:</p>
+<div class="section" id="id2">
+<h2>執行交易<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
+<p>要使用交易執行查詢，你需要使用 $this-&gt;db-&gt;transStart() 和 $this-&gt;db-&gt;transComplete() 兩個函數，參考以下範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">transStart</span><span class="p">();</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;AN SQL QUERY...&#39;</span><span class="p">);</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;ANOTHER QUERY...&#39;</span><span class="p">);</span>
@@ -375,27 +358,19 @@ follows:</p>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">transComplete</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>You can run as many queries as you want between the start/complete
-functions and they will all be committed or rolled back based on the success
-or failure of any given query.</p>
+<p>你可以在開始跟完成函數中執行任意數量的查詢，它們會根據你查詢的成功或失敗來提交或退回。</p>
 </div>
-<div class="section" id="strict-mode">
-<h2>Strict Mode<a class="headerlink" href="#strict-mode" title="本標題的永久連結">¶</a></h2>
-<p>By default, CodeIgniter runs all transactions in Strict Mode. When strict
-mode is enabled, if you are running multiple groups of transactions, if
-one group fails all groups will be rolled back. If strict mode is
-disabled, each group is treated independently, meaning a failure of one
-group will not affect any others.</p>
-<p>Strict Mode can be disabled as follows:</p>
+<div class="section" id="id3">
+<h2>嚴格模式<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>在預設情況下， CodeIgniter 執行所有的交易都是嚴格模式。在嚴格模式下，當你執行多個群組的交易，如果一個群組失敗或錯誤，則全部群組都會退回。如果關閉嚴格模式，每個群組都是獨立的，代表一個群組發生失敗或錯誤並不會影響其他的群組。</p>
+<p>參考以下範例關閉嚴格模式：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">transStrict</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="managing-errors">
-<h2>Managing Errors<a class="headerlink" href="#managing-errors" title="本標題的永久連結">¶</a></h2>
-<p>If you have error reporting enabled in your Config/Database.php file
-you’ll see a standard error message if the commit was unsuccessful. If
-debugging is turned off, you can manage your own errors like this:</p>
+<div class="section" id="id4">
+<h2>錯誤處理<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<p>如果你在 Config/Database.php 中開啟錯誤報告，當你的提交失敗時，你將會看見標準的錯誤訊息。如果除錯模式關閉，則可以管理你的錯誤，如下面的範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">transStart</span><span class="p">();</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;AN SQL QUERY...&#39;</span><span class="p">);</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;ANOTHER QUERY...&#39;</span><span class="p">);</span>
@@ -408,10 +383,9 @@ debugging is turned off, you can manage your own errors like this:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="disabling-transactions">
-<h2>Disabling Transactions<a class="headerlink" href="#disabling-transactions" title="本標題的永久連結">¶</a></h2>
-<p>Transactions are enabled by default. If you would like to disable transactions you
-can do so using $this-&gt;db-&gt;transOff():</p>
+<div class="section" id="id5">
+<h2>禁用交易<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<p>在預設情況下，交易是開啟的。如果你需要關閉交易，你可以使用 $this-&gt;db-&gt;transOff() 來關閉：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">transOff</span><span class="p">();</span>
 
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">transStart</span><span class="p">();</span>
@@ -419,24 +393,21 @@ can do so using $this-&gt;db-&gt;transOff():</p>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">transComplete</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>When transactions are disabled, your queries will be auto-committed, just
-as they are when running queries without transactions.</p>
+<p>當交易被關閉時，你的查詢會自動被提交，就像沒有使用交易時的查詢一樣。</p>
 </div>
-<div class="section" id="test-mode">
-<h2>Test Mode<a class="headerlink" href="#test-mode" title="本標題的永久連結">¶</a></h2>
-<p>You can optionally put the transaction system into 「test mode」, which
-will cause your queries to be rolled back – even if the queries produce
-a valid result. To use test mode simply set the first parameter in the
-$this-&gt;db-&gt;transStart() function to TRUE:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">transStart</span><span class="p">(</span><span class="k">true</span><span class="p">);</span> <span class="c1">// Query will be rolled back</span>
+<div class="section" id="id6">
+<h2>測試模式<a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
+<p>你可以選擇將交易系統轉換成 「測試模式」 ，即使查詢有結果，它也會將查詢退回。
+要使用測試模式，你只需要在 $this-&gt;db-&gt;transStart() 的第一個參數中傳入 TRUE：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">transStart</span><span class="p">(</span><span class="k">true</span><span class="p">);</span> <span class="c1">// 查詢將會退回</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;AN SQL QUERY...&#39;</span><span class="p">);</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">transComplete</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="running-transactions-manually">
-<h2>Running Transactions Manually<a class="headerlink" href="#running-transactions-manually" title="本標題的永久連結">¶</a></h2>
-<p>If you would like to run transactions manually you can do so as follows:</p>
+<div class="section" id="id7">
+<h2>手動執行交易<a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
+<p>如果你想要手動執行交易，參考以下範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">transBegin</span><span class="p">();</span>
 
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;AN SQL QUERY...&#39;</span><span class="p">);</span>
@@ -455,8 +426,7 @@ $this-&gt;db-&gt;transStart() function to TRUE:</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">Make sure to use $this-&gt;db-&gt;transBegin() when running manual
-transactions, <strong>NOT</strong> $this-&gt;db-&gt;transStart().</p>
+<p class="last">手動執行交易，請確認是使用 $this-&gt;db-&gt;transBegin()，而 <strong>不是</strong> $this-&gt;db-&gt;transStart() 。</p>
 </div>
 </div>
 </div>
@@ -469,7 +439,7 @@ transactions, <strong>NOT</strong> $this-&gt;db-&gt;transStart().</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="metadata.html" class="btn btn-neutral float-right" title="Database Metadata" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="metadata.html" class="btn btn-neutral float-right" title="資料庫詮釋資料" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="query_builder.html" class="btn btn-neutral float-left" title="Query Builder Class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -483,7 +453,7 @@ transactions, <strong>NOT</strong> $this-&gt;db-&gt;transStart().</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月25日。
+        最後更新於 2020年04月26日。
       </span>
 
     </p>

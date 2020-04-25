@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Generating Query Results &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>產生查詢結果 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Query Helper Methods" href="helpers.html" />
-    <link rel="prev" title="Queries" href="queries.html" /> 
+    <link rel="next" title="查詢輔助函數" href="helpers.html" />
+    <link rel="prev" title="執行查詢" href="queries.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -177,14 +177,14 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">資料庫操作</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="examples.html">快速入門: 範例程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="connecting.html">連接資料庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫組態設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">連接你的資料庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="queries.html">執行查詢</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">產生查詢結果</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helpers.html">查詢輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query_builder.html">查詢生成器類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transactions.html">交易</a></li>
-<li class="toctree-l2"><a class="reference internal" href="metadata.html">取得資料表資訊</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">詮釋資料</a></li>
 <li class="toctree-l2"><a class="reference internal" href="call_function.html">自訂函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="events.html">資料庫事件</a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.html">資料庫工具</a></li>
@@ -322,7 +322,7 @@
         
           <li><a href="index.html">資料庫操作</a> &raquo;</li>
         
-      <li>Generating Query Results</li>
+      <li>產生查詢結果</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,24 +339,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="generating-query-results">
-<h1>Generating Query Results<a class="headerlink" href="#generating-query-results" title="本標題的永久連結">¶</a></h1>
+  <div class="section" id="id1">
+<h1>產生查詢結果<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>There are several ways to generate query results:</p>
-<div class="contents local topic" id="id1">
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#result-arrays" id="id2">Result Arrays</a></li>
-<li><a class="reference internal" href="#result-rows" id="id3">Result Rows</a></li>
-<li><a class="reference internal" href="#custom-result-objects" id="id4">Custom Result Objects</a></li>
-<li><a class="reference internal" href="#result-helper-methods" id="id5">Result Helper Methods</a></li>
-<li><a class="reference internal" href="#class-reference" id="id6">Class Reference</a></li>
+<li><a class="reference internal" href="#id3" id="id8">結果陣列</a></li>
+<li><a class="reference internal" href="#id4" id="id9">結果列</a></li>
+<li><a class="reference internal" href="#id5" id="id10">客製化查詢結果</a></li>
+<li><a class="reference internal" href="#id6" id="id11">結果輔助方法</a></li>
+<li><a class="reference internal" href="#id7" id="id12">物件參考</a></li>
 </ul>
 </div>
-<div class="section" id="result-arrays">
-<h2><a class="toc-backref" href="#id2">Result Arrays</a><a class="headerlink" href="#result-arrays" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id8">結果陣列</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p><strong>getResult()</strong></p>
-<p>This method returns the query result as an array of <strong>objects</strong>, or
-<strong>an empty array</strong> on failure. Typically you’ll use this in a foreach
-loop, like this:</p>
+<p>這個方法會將查詢結果以 <em>物件</em> 陣列或 <em>空</em> 陣列(查詢失敗時)回傳。
+一般情況下可以使用foreach迴圈，參考以下範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;YOUR QUERY&quot;</span><span class="p">);</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
@@ -367,9 +366,8 @@ loop, like this:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The above method is an alias of <code class="docutils literal notranslate"><span class="pre">getResultObject()</span></code>.</p>
-<p>You can pass in the string 『array』 if you wish to get your results
-as an array of arrays:</p>
+<p>上述方法的別名是 <code class="docutils literal notranslate"><span class="pre">getResultObject()</span></code> 。</p>
+<p>如果你想要得到多重陣列的查詢結果，你可以在參數中傳送 『array』：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;YOUR QUERY&quot;</span><span class="p">);</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">(</span><span class="s1">&#39;array&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
@@ -380,9 +378,9 @@ as an array of arrays:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The above usage is an alias of <code class="docutils literal notranslate"><span class="pre">getResultArray()</span></code>.</p>
-<p>You can also pass a string to <code class="docutils literal notranslate"><span class="pre">getResult()</span></code> which represents a class to
-instantiate for each result object</p>
+<p>上述方法的別名是 <code class="docutils literal notranslate"><span class="pre">getResultArray()</span></code> 。</p>
+<p>你也可以傳送一個字串給 <code class="docutils literal notranslate"><span class="pre">getResult()</span></code> ，為每一個物件建立一個類別名稱。
+which represents a class to instantiate for each result object</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users;&quot;</span><span class="p">);</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nv">$user</span><span class="p">)</span>
@@ -392,11 +390,10 @@ instantiate for each result object</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The above method is an alias of <code class="docutils literal notranslate"><span class="pre">getCustomResultObject()</span></code>.</p>
+<p>上述方法的別名是 <code class="docutils literal notranslate"><span class="pre">getCustomResultObject()</span></code> 。</p>
 <p><strong>getResultArray()</strong></p>
-<p>This method returns the query result as a pure array, or an empty
-array when no result is produced. Typically you’ll use this in a foreach
-loop, like this:</p>
+<p>這個方法將會回傳純陣列或空陣列(查詢結果為空時)的查詢結果。
+一般情況下可以使用foreach迴圈，參考以下範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;YOUR QUERY&quot;</span><span class="p">);</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResultArray</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
@@ -408,12 +405,11 @@ loop, like this:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="result-rows">
-<h2><a class="toc-backref" href="#id3">Result Rows</a><a class="headerlink" href="#result-rows" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id9">結果列</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
 <p><strong>getRow()</strong></p>
-<p>This method returns a single result row. If your query has more than
-one row, it returns only the first row. The result is returned as an
-<strong>object</strong>. Here’s a usage example:</p>
+<p>這個方法會回傳單筆查詢結果。如果你查詢的資料不只一筆，它只會回傳第一筆資料。
+查詢結果會以 <strong>物件</strong> 的方式回傳。參考以下範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;YOUR QUERY&quot;</span><span class="p">);</span>
 
 <span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getRow</span><span class="p">();</span>
@@ -426,13 +422,11 @@ one row, it returns only the first row. The result is returned as an
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>If you want a specific row returned you can submit the row number as a
-digit in the first parameter:</p>
+<p>如果你想要回傳特定的第幾筆資料，可以設定第一個參數為你想要的該筆資料：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getRow</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>You can also add a second String parameter, which is the name of a class
-to instantiate the row with:</p>
+<p>你也可以傳入第二個參數，這個結果物件將被實體化為的類別名稱。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users LIMIT 1;&quot;</span><span class="p">);</span>
 <span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getRow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;User&#39;</span><span class="p">);</span>
 
@@ -441,8 +435,7 @@ to instantiate the row with:</p>
 </pre></div>
 </div>
 <p><strong>getRowArray()</strong></p>
-<p>Identical to the above <code class="docutils literal notranslate"><span class="pre">row()</span></code> method, except it returns an array.
-Example:</p>
+<p>同等於上述 <code class="docutils literal notranslate"><span class="pre">row()</span></code> 方法，不同的是它回傳是陣列。參考以下範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;YOUR QUERY&quot;</span><span class="p">);</span>
 
 <span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getRowArray</span><span class="p">();</span>
@@ -455,13 +448,11 @@ Example:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>If you want a specific row returned you can submit the row number as a
-digit in the first parameter:</p>
+<p>如果你想要回傳特定的第幾筆資料，可以設定第一個參數為你想要的該筆資料：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getRowArray</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>In addition, you can walk forward/backwards/first/last through your
-results using these variations:</p>
+<p>除此之外，你可以利用底下方式查詢到 前一筆/下一筆/第一筆/最後一筆 資料：</p>
 <blockquote>
 <div><div class="line-block">
 <div class="line"><strong>$row = $query-&gt;getFirstRow()</strong></div>
@@ -470,8 +461,7 @@ results using these variations:</p>
 <div class="line"><strong>$row = $query-&gt;getPreviousRow()</strong></div>
 </div>
 </div></blockquote>
-<p>By default they return an object unless you put the word 「array」 in the
-parameter:</p>
+<p>預設回傳值為物件，除非設定第一個參數為 「array」：</p>
 <blockquote>
 <div><div class="line-block">
 <div class="line"><strong>$row = $query-&gt;getFirstRow(『array』)</strong></div>
@@ -482,14 +472,11 @@ parameter:</p>
 </div></blockquote>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">All the methods above will load the whole result into memory
-(prefetching). Use <code class="docutils literal notranslate"><span class="pre">getUnbufferedRow()</span></code> for processing large
-result sets.</p>
+<p class="last">上述的所有方法都會將結果載入到記憶體(prefetching)中。使用 <code class="docutils literal notranslate"><span class="pre">getUnbufferedRow()</span></code> 處理大量的資料集。</p>
 </div>
 <p><strong>getUnbufferedRow()</strong></p>
-<p>This method returns a single result row without prefetching the whole
-result in memory as <code class="docutils literal notranslate"><span class="pre">row()</span></code> does. If your query has more than one row,
-it returns the current row and moves the internal data pointer ahead.</p>
+<p>這個方法會回傳單筆查詢結果，但並不會像 <code class="docutils literal notranslate"><span class="pre">row()</span></code> 將所有查詢結果預載到記憶體中。
+如果你的查詢結果超過一筆，它將回傳該筆資料並將內部資料指標移動到下一筆資料。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;YOUR QUERY&quot;</span><span class="p">);</span>
 
 <span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getUnbufferedRow</span><span class="p">())</span>
@@ -500,23 +487,20 @@ it returns the current row and moves the internal data pointer ahead.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>You can optionally pass 『object』 (default) or 『array』 in order to specify
-the returned value’s type:</p>
+<p>你可以選擇傳入 『object』 （預設）或 『array』 來指定回傳的資料型態：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getUnbufferedRow</span><span class="p">();</span>                 <span class="c1">// object</span>
 <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getUnbufferedRow</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">);</span>     <span class="c1">// object</span>
 <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getUnbufferedRow</span><span class="p">(</span><span class="s1">&#39;array&#39;</span><span class="p">);</span>      <span class="c1">// associative array</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="custom-result-objects">
-<h2><a class="toc-backref" href="#id4">Custom Result Objects</a><a class="headerlink" href="#custom-result-objects" title="本標題的永久連結">¶</a></h2>
-<p>You can have the results returned as an instance of a custom class instead
-of a <code class="docutils literal notranslate"><span class="pre">stdClass</span></code> or array, as the <code class="docutils literal notranslate"><span class="pre">getResult()</span></code> and <code class="docutils literal notranslate"><span class="pre">getResultArray()</span></code>
-methods allow. If the class is not already loaded into memory, the Autoloader
-will attempt to load it. The object will have all values returned from the
-database set as properties. If these have been declared and are non-public
-then you should provide a <code class="docutils literal notranslate"><span class="pre">__set()</span></code> method to allow them to be set.</p>
-<p>Example:</p>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id10">客製化查詢結果</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<p>你可以將查詢結果以自定義類別的實例做回傳，而不是像 <code class="docutils literal notranslate"><span class="pre">getResult()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">getResultArray()</span></code> ，以stdClass或陣列的方式回傳。
+如果類別沒有載入到記憶體中，Autoloader將會自動載入。
+物件將會把資料庫中回傳的所有變數設定為屬性。
+如果這些變數已經被宣告為非公開，那你應該要提供一個 <code class="docutils literal notranslate"><span class="pre">__set()</span></code> 的方法，讓它可以被設定。</p>
+<p>範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span>
 <span class="p">{</span>
         <span class="k">public</span> <span class="nv">$id</span><span class="p">;</span>
@@ -548,13 +532,12 @@ then you should provide a <code class="docutils literal notranslate"><span class
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>In addition to the two methods listed below, the following methods also can
-take a class name to return the results as: <code class="docutils literal notranslate"><span class="pre">getFirstRow()</span></code>, <code class="docutils literal notranslate"><span class="pre">getLastRow()</span></code>,
-<code class="docutils literal notranslate"><span class="pre">getNextRow()</span></code>, and <code class="docutils literal notranslate"><span class="pre">getPreviousRow()</span></code>.</p>
+<p>除了以下列出的兩個方法之外，這些方法(例如： <code class="docutils literal notranslate"><span class="pre">getFirstRow()</span></code>, <code class="docutils literal notranslate"><span class="pre">getLastRow()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">getNextRow()</span></code>, and <code class="docutils literal notranslate"><span class="pre">getPreviousRow()</span></code> )也可以使用類別名稱的方式做回傳查詢結果。</p>
 <p><strong>getCustomResultObject()</strong></p>
-<p>Returns the entire result set as an array of instances of the class requested.
-The only parameter is the name of the class to instantiate.</p>
-<p>Example:</p>
+<p>以類別的實例之陣列an array of instances of the class requested.，回傳所有查詢結果集。
+唯一要傳入的參數是要做為類別實例的名稱class to instantiate.</p>
+<p>範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;YOUR QUERY&quot;</span><span class="p">);</span>
 
 <span class="nv">$rows</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getCustomResultObject</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">);</span>
@@ -568,9 +551,9 @@ The only parameter is the name of the class to instantiate.</p>
 </pre></div>
 </div>
 <p><strong>getCustomRowObject()</strong></p>
-<p>Returns a single row from your query results. The first parameter is the row
-number of the results. The second parameter is the class name to instantiate.</p>
-<p>Example:</p>
+<p>從查詢結果中回傳單筆資料。第一個參數為要回傳的該筆資料，第二個參數為實例化的類別名稱。
+The second parameter is the class name to instantiate.</p>
+<p>範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;YOUR QUERY&quot;</span><span class="p">);</span>
 
 <span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getCustomRowObject</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;User&#39;</span><span class="p">);</span>
@@ -582,37 +565,33 @@ number of the results. The second parameter is the class name to instantiate.</p
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>You can also use the <code class="docutils literal notranslate"><span class="pre">getRow()</span></code> method in exactly the same way.</p>
-<p>Example:</p>
+<p>你也能以完全相同的方式，使用 <code class="docutils literal notranslate"><span class="pre">getRow()</span></code> 這個方法。</p>
+<p>範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getCustomRowObject</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;User&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="result-helper-methods">
-<h2><a class="toc-backref" href="#id5">Result Helper Methods</a><a class="headerlink" href="#result-helper-methods" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id11">結果輔助方法</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
 <p><strong>getFieldCount()</strong></p>
-<p>The number of FIELDS (columns) returned by the query. Make sure to call
-the method using your query result object:</p>
+<p>回傳查詢後的欄位數量。確保使用查詢結果物件來呼叫這個方法。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM my_table&#39;</span><span class="p">);</span>
 
 <span class="k">echo</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getFieldCount</span><span class="p">();</span>
 </pre></div>
 </div>
 <p><strong>getFieldNames()</strong></p>
-<p>Returns an array with the names of the FIELDS (columns) returned by the query.
-Make sure to call the method using your query result object:</p>
+<p>回傳查詢後的欄位名稱陣列，確保使用查詢結果物件來呼叫這個方法。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM my_table&#39;</span><span class="p">);</span>
 
     <span class="k">echo</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getFieldNames</span><span class="p">();</span>
 </pre></div>
 </div>
 <p><strong>freeResult()</strong></p>
-<p>It frees the memory associated with the result and deletes the result
-resource ID. Normally PHP frees its memory automatically at the end of
-script execution. However, if you are running a lot of queries in a
-particular script you might want to free the result after each query
-result has been generated in order to cut down on memory consumption.</p>
-<p>Example:</p>
+<p>它將會釋放查詢後的記憶體並且刪除資源ID。
+通常PHP會在腳本執行結束後自動釋放記憶體。
+但是，如果你是在特定腳本中運行大量資料的查詢，你可能需要在每次查詢都需要釋放記憶體，以減少記憶體的消耗。</p>
+<p>範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$thisdb</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT title FROM my_table&#39;</span><span class="p">);</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
@@ -630,23 +609,20 @@ result has been generated in order to cut down on memory consumption.</p>
 </pre></div>
 </div>
 <p><strong>dataSeek()</strong></p>
-<p>This method sets the internal pointer for the next result row to be
-fetched. It is only useful in combination with <code class="docutils literal notranslate"><span class="pre">getUnbufferedRow()</span></code>.</p>
-<p>It accepts a positive integer value, which defaults to 0 and returns
-TRUE on success or FALSE on failure.</p>
+<p>這個方法是設定下一次查詢的索引。它只會與 <code class="docutils literal notranslate"><span class="pre">getUnbufferedRow()</span></code> 結合使用。</p>
+<p>它容納一個正整數，預設為0，成功回傳TRUE；失敗回傳FALSE。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT `field_name` FROM `table_name`&#39;</span><span class="p">);</span>
-<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">dataSeek</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// Skip the first 5 rows</span>
+<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">dataSeek</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// 忽略前5筆</span>
 <span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getUnbufferedRow</span><span class="p">();</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">Not all database drivers support this feature and will return FALSE.
-Most notably - you won’t be able to use it with PDO.</p>
+<p class="last">並不是所有的資料庫驅動都會支援此方法或回傳FALSE。例如：你不可能在PDO中使用此方法。</p>
 </div>
 </div>
-<div class="section" id="class-reference">
-<h2><a class="toc-backref" href="#id6">Class Reference</a><a class="headerlink" href="#class-reference" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id12">物件參考</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
 <dl class="class">
 <dt>
 <code class="descname">CodeIgniter\Database\BaseResult</code></dt>
@@ -673,7 +649,7 @@ Most notably - you won’t be able to use it with PDO.</p>
 </table>
 <p>A wrapper for the <code class="docutils literal notranslate"><span class="pre">getResultArray()</span></code>, <code class="docutils literal notranslate"><span class="pre">getResultObject()</span></code>
 and <code class="docutils literal notranslate"><span class="pre">getCustomResultObject()</span></code> methods.</p>
-<p>Usage: see <a class="reference internal" href="#result-arrays">Result Arrays</a>.</p>
+<p>Usage: see <a class="reference internal" href="#id3">結果陣列</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -691,7 +667,7 @@ and <code class="docutils literal notranslate"><span class="pre">getCustomResult
 </table>
 <p>Returns the query results as an array of rows, where each
 row is itself an associative array.</p>
-<p>Usage: see <a class="reference internal" href="#result-arrays">Result Arrays</a>.</p>
+<p>Usage: see <a class="reference internal" href="#id3">結果陣列</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -709,7 +685,7 @@ row is itself an associative array.</p>
 </table>
 <p>Returns the query results as an array of rows, where each
 row is an object of type <code class="docutils literal notranslate"><span class="pre">stdClass</span></code>.</p>
-<p>Usage: see <a class="reference internal" href="#result-arrays">Result Arrays</a>.</p>
+<p>Usage: see <a class="reference internal" href="#id3">結果陣列</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -759,7 +735,7 @@ row is an instance of the specified class.</p>
 </table>
 <p>A wrapper for the <code class="docutils literal notranslate"><span class="pre">getRowArray()</span></code>, <code class="docutils literal notranslate"><span class="pre">getRowObject()</span></code> and
 <code class="docutils literal notranslate"><span class="pre">getCustomRowObject()</span></code> methods.</p>
-<p>Usage: see <a class="reference internal" href="#result-rows">Result Rows</a>.</p>
+<p>Usage: see <a class="reference internal" href="#id4">結果列</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -784,7 +760,7 @@ row is an instance of the specified class.</p>
 </table>
 <p>Fetches the next result row and returns it in the
 requested form.</p>
-<p>Usage: see <a class="reference internal" href="#result-rows">Result Rows</a>.</p>
+<p>Usage: see <a class="reference internal" href="#id4">結果列</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -808,7 +784,7 @@ requested form.</p>
 </tbody>
 </table>
 <p>Returns the requested result row as an associative array.</p>
-<p>Usage: see <a class="reference internal" href="#result-rows">Result Rows</a>.</p>
+<p>Usage: see <a class="reference internal" href="#id4">結果列</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -833,7 +809,7 @@ requested form.</p>
 </table>
 <p>Returns the requested result row as an object of type
 <code class="docutils literal notranslate"><span class="pre">stdClass</span></code>.</p>
-<p>Usage: see <a class="reference internal" href="#result-rows">Result Rows</a>.</p>
+<p>Usage: see <a class="reference internal" href="#id4">結果列</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -882,7 +858,7 @@ requested class.</p>
 </tbody>
 </table>
 <p>Moves the internal results row pointer to the desired offset.</p>
-<p>Usage: see <a class="reference internal" href="#result-helper-methods">Result Helper Methods</a>.</p>
+<p>Usage: see <a class="reference internal" href="#id6">結果輔助方法</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1012,7 +988,7 @@ requested class.</p>
 </tbody>
 </table>
 <p>Returns the number of fields in the result set.</p>
-<p>Usage: see <a class="reference internal" href="#result-helper-methods">Result Helper Methods</a>.</p>
+<p>Usage: see <a class="reference internal" href="#id6">結果輔助方法</a>.</p>
 </dd></dl>
 
 </div></blockquote>
@@ -1062,7 +1038,7 @@ field meta-data.</p>
 </tbody>
 </table>
 <p>Frees a result set.</p>
-<p>Usage: see <a class="reference internal" href="#result-helper-methods">Result Helper Methods</a>.</p>
+<p>Usage: see <a class="reference internal" href="#id6">結果輔助方法</a>.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1080,10 +1056,10 @@ field meta-data.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="helpers.html" class="btn btn-neutral float-right" title="Query Helper Methods" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="helpers.html" class="btn btn-neutral float-right" title="查詢輔助函數" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="queries.html" class="btn btn-neutral float-left" title="Queries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="queries.html" class="btn btn-neutral float-left" title="執行查詢" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -1094,7 +1070,7 @@ field meta-data.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月25日。
+        最後更新於 2020年04月26日。
       </span>
 
     </p>

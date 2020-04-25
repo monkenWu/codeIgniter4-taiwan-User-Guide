@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Utilities &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>資料庫工具 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -41,7 +41,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Modeling Data" href="../models/index.html" />
-    <link rel="prev" title="Database Events" href="events.html" /> 
+    <link rel="prev" title="資料庫事件" href="events.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -177,14 +177,14 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">資料庫操作</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="examples.html">快速入門: 範例程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="connecting.html">連接資料庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫組態設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">連接你的資料庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="queries.html">執行查詢</a></li>
 <li class="toctree-l2"><a class="reference internal" href="results.html">產生查詢結果</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helpers.html">查詢輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query_builder.html">查詢生成器類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transactions.html">交易</a></li>
-<li class="toctree-l2"><a class="reference internal" href="metadata.html">取得資料表資訊</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">詮釋資料</a></li>
 <li class="toctree-l2"><a class="reference internal" href="call_function.html">自訂函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="events.html">資料庫事件</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">資料庫工具</a></li>
@@ -322,7 +322,7 @@
         
           <li><a href="index.html">資料庫操作</a> &raquo;</li>
         
-      <li>Utilities</li>
+      <li>資料庫工具</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,18 +339,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="utilities">
-<h1>Utilities<a class="headerlink" href="#utilities" title="本標題的永久連結">¶</a></h1>
-<p>The Database Utility Class contains methods that help you manage your database.</p>
-<div class="contents local topic" id="id1">
+  <div class="section" id="id1">
+<h1>資料庫工具<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>資料庫工具類別包含一系列幫助你管理資料庫的方法。</p>
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#get-xml-from-result" id="id2">Get XML FROM Result</a></li>
+<li><a class="reference internal" href="#xml" id="id3">從結果中得到 XML 格式</a></li>
 </ul>
 </div>
-<div class="section" id="get-xml-from-result">
-<h2><a class="toc-backref" href="#id2">Get XML FROM Result</a><a class="headerlink" href="#get-xml-from-result" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="xml">
+<h2><a class="toc-backref" href="#id3">從結果中得到 XML 格式</a><a class="headerlink" href="#xml" title="本標題的永久連結">¶</a></h2>
 <p><strong>getXMLFromResult()</strong></p>
-<p>This method returns the xml result from database result. You can do like this:</p>
+<p>這個方法會將查詢結果以 xml 格式回傳，你可以參考以下：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$model</span> <span class="o">=</span> <span class="k">new</span> <span class="k">class</span> <span class="nc">extends</span> <span class="nx">\CodeIgniter\Model</span> <span class="p">{</span>
     <span class="k">protected</span> <span class="nv">$table</span>      <span class="o">=</span> <span class="s1">&#39;foo&#39;</span><span class="p">;</span>
     <span class="k">protected</span> <span class="nv">$primaryKey</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span><span class="p">;</span>
@@ -363,7 +363,7 @@
 <span class="k">echo</span> <span class="nv">$util</span><span class="o">-&gt;</span><span class="na">getXMLFromResult</span><span class="p">(</span><span class="nv">$model</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">());</span>
 </pre></div>
 </div>
-<p>and it will get the following xml result:</p>
+<p>它將會得到以下的 xml 結果：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">root</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="nx">element</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="nx">id</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="nx">id</span><span class="o">&gt;</span>
@@ -386,7 +386,7 @@
         <a href="../models/index.html" class="btn btn-neutral float-right" title="Modeling Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="events.html" class="btn btn-neutral float-left" title="Database Events" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="events.html" class="btn btn-neutral float-left" title="資料庫事件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -397,7 +397,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月25日。
+        最後更新於 2020年04月26日。
       </span>
 
     </p>

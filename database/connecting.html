@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Connecting to your Database &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>連接你的資料庫 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Queries" href="queries.html" />
-    <link rel="prev" title="資料庫設定" href="configuration.html" /> 
+    <link rel="next" title="執行查詢" href="queries.html" />
+    <link rel="prev" title="資料庫組態設定" href="configuration.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -177,14 +177,14 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">資料庫操作</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="examples.html">快速入門: 範例程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫設定</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">連接資料庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫組態設定</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">連接你的資料庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="queries.html">執行查詢</a></li>
 <li class="toctree-l2"><a class="reference internal" href="results.html">產生查詢結果</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helpers.html">查詢輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query_builder.html">查詢生成器類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transactions.html">交易</a></li>
-<li class="toctree-l2"><a class="reference internal" href="metadata.html">取得資料表資訊</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">詮釋資料</a></li>
 <li class="toctree-l2"><a class="reference internal" href="call_function.html">自訂函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="events.html">資料庫事件</a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.html">資料庫工具</a></li>
@@ -322,7 +322,7 @@
         
           <li><a href="index.html">資料庫操作</a> &raquo;</li>
         
-      <li>Connecting to your Database</li>
+      <li>連接你的資料庫</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,74 +339,58 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="connecting-to-your-database">
-<h1>Connecting to your Database<a class="headerlink" href="#connecting-to-your-database" title="本標題的永久連結">¶</a></h1>
-<p>You can connect to your database by adding this line of code in any
-function where it is needed, or in your class constructor to make the
-database available globally in that class.</p>
+  <div class="section" id="id1">
+<h1>連接你的資料庫<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>你可以在任何你需要的函數中，加入以下的程式碼來連接資料庫，或是在你的類別建構中宣告一個可用的全域參數。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span> <span class="o">=</span> <span class="nx">\Config\Database</span><span class="o">::</span><span class="na">connect</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>If the above function does <strong>not</strong> contain any information in the first
-parameter it will connect to the default group specified in your database config
-file. For most people, this is the preferred method of use.</p>
-<p>A convenience method exists that is purely a wrapper around the above line
-and is provided for your convenience:</p>
+<p>如果在上述的函數中，第一個參數 <em>不包含</em> 任何資訊，它將會以你系統指定的資料庫設定檔設定做連線。對於大多數人而言，這是第一首選方法。</p>
+<p>以下的程式提供一個方便，且純粹是圍繞在上述內容中的方法：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span> <span class="o">=</span> <span class="nx">db_connect</span><span class="p">();</span>
 </pre></div>
 </div>
-<div class="section" id="available-parameters">
-<h2>Available Parameters<a class="headerlink" href="#available-parameters" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id2">
+<h2>可用的參數<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <ol class="arabic simple">
-<li>The database group name, a string that must match the config class』 property name. Default value is $config-&gt;defaultGroup.</li>
-<li>TRUE/FALSE (boolean). Whether to return the shared connection (see
-Connecting to Multiple Databases below).</li>
+<li>資料庫群組名稱，必須是字串且完全符合類別設定的屬性名稱。預設參數為 $config-&gt;defaultGroup　。</li>
+<li>TRUE/FALSE （boolean）. 是否回傳分享的連線（查閱以下的多個資料庫連線）</li>
 </ol>
 </div>
-<div class="section" id="manually-connecting-to-a-database">
-<h2>Manually Connecting to a Database<a class="headerlink" href="#manually-connecting-to-a-database" title="本標題的永久連結">¶</a></h2>
-<p>The first parameter of this function can <strong>optionally</strong> be used to
-specify a particular database group from your config file. Examples:</p>
-<p>To choose a specific group from your config file you can do this:</p>
+<div class="section" id="id3">
+<h2>手動連線到資料庫<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>第一個參數是可以 <em>選擇的</em> ，從你的設定檔中指定一個特定的資料庫群組。例如：</p>
+<p>從你的設定檔中選擇指定的群組，你可以這樣做：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span> <span class="o">=</span> <span class="nx">\Config\Database</span><span class="o">::</span><span class="na">connect</span><span class="p">(</span><span class="s1">&#39;group_name&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Where group_name is the name of the connection group from your config
-file.</p>
+<p>group_name 是設定檔中，要連線的群組名稱。</p>
 </div>
-<div class="section" id="multiple-connections-to-same-database">
-<h2>Multiple Connections to Same Database<a class="headerlink" href="#multiple-connections-to-same-database" title="本標題的永久連結">¶</a></h2>
-<p>By default, the <code class="docutils literal notranslate"><span class="pre">connect()</span></code> method will return the same instance of the
-database connection every time. If you need to have a separate connection
-to the same database, send <code class="docutils literal notranslate"><span class="pre">false</span></code> as the second parameter:</p>
+<div class="section" id="id4">
+<h2>多個連線到同一個資料庫<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<p>預設情況下， <code class="docutils literal notranslate"><span class="pre">connect()</span></code> 方法每次都會回傳相同的資料庫連線。如果你需要單獨連線到同一個資料庫，則在第二個參數設定為 <code class="docutils literal notranslate"><span class="pre">false</span></code> ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span> <span class="o">=</span> <span class="nx">\Config\Database</span><span class="o">::</span><span class="na">connect</span><span class="p">(</span><span class="s1">&#39;group_name&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="section" id="connecting-to-multiple-databases">
-<h3>Connecting to Multiple Databases<a class="headerlink" href="#connecting-to-multiple-databases" title="本標題的永久連結">¶</a></h3>
-<p>If you need to connect to more than one database simultaneously you can
-do so as follows:</p>
+<div class="section" id="id5">
+<h3>連線到多個資料庫<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
+<p>如果你需要同時連線到不只一個資料庫，你可以參考以下的程式碼：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db1</span> <span class="o">=</span> <span class="nx">\Config\Database</span><span class="o">::</span><span class="na">connect</span><span class="p">(</span><span class="s1">&#39;group_one&#39;</span><span class="p">);</span>
 <span class="nv">$db</span>  <span class="o">=</span> <span class="nx">\Config\Database</span><span class="o">::</span><span class="na">connect</span><span class="p">(</span><span class="s1">&#39;group_two&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Note: Change the words 「group_one」 and 「group_two」 to the specific
-group names you are connecting to.</p>
+<p>注意: 將 「group_one」 和 「group_two」 修改成你想要連接的群組名稱。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p>You don’t need to create separate database configurations if you
-only need to use a different database on the same connection. You
-can switch to a different database when you need to, like this:</p>
-<div class="last line-block">
-<div class="line">$db-&gt;setDatabase($database2_name);</div>
+<p>如果你只需要在同一個的連線中使用不同的資料庫，就不需要建立其他的資料庫設定。你可以參考以下程式碼，來切換到不同的資料庫：</p>
+<div class="last highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">setDatabase</span><span class="p">(</span><span class="nv">$database2_name</span><span class="p">);</span>
+</pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="connecting-with-custom-settings">
-<h3>Connecting with Custom Settings<a class="headerlink" href="#connecting-with-custom-settings" title="本標題的永久連結">¶</a></h3>
-<p>You can pass in an array of database settings instead of a group name to get
-a connection that uses your custom settings. The array passed in must be
-the same format as the groups are defined in the configuration file:</p>
+<div class="section" id="id6">
+<h3>設定客製化的連線<a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
+<p>要使用客製化的連線設定，你需要傳入一個陣列的資料庫設定值，而不是群組名稱。傳入陣列的格式，必須與設定檔中的格式相同。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$custom</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s1">&#39;DSN&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
             <span class="s1">&#39;hostname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
@@ -432,26 +416,20 @@ the same format as the groups are defined in the configuration file:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="reconnecting-keeping-the-connection-alive">
-<h3>Reconnecting / Keeping the Connection Alive<a class="headerlink" href="#reconnecting-keeping-the-connection-alive" title="本標題的永久連結">¶</a></h3>
-<p>If the database server’s idle timeout is exceeded while you’re doing
-some heavy PHP lifting (processing an image, for instance), you should
-consider pinging the server by using the reconnect() method before
-sending further queries, which can gracefully keep the connection alive
-or re-establish it.</p>
+<div class="section" id="id7">
+<h3>重新連線 / 保持有效的連線<a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
+<p>如果你正在執行複雜的PHP運算（例如：圖形處理）時，造成資料庫伺服器閒置逾時，你應該考慮在執行下一步的查詢前，用 reconnect() 方法 ping 伺服器，這可以正常地保持連線或重新建立連線。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last">If you are using MySQLi database driver, the reconnect() method
-does not ping the server but it closes the connection then connects again.</p>
+<p class="last">如果你使用的是 MySQLi ，reconnect() 這個方法不會ping伺服器，而是會關閉連線並重新連線。</p>
 </div>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">reconnect</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="manually-closing-the-connection">
-<h3>Manually closing the Connection<a class="headerlink" href="#manually-closing-the-connection" title="本標題的永久連結">¶</a></h3>
-<p>While CodeIgniter intelligently takes care of closing your database
-connections, you can explicitly close the connection.</p>
+<div class="section" id="id8">
+<h3>手動關閉資料庫連線<a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
+<p>雖然CodeIgniter會智慧地幫助你關閉資料庫連線，但是你可以明確地關閉連線。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -467,10 +445,10 @@ connections, you can explicitly close the connection.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="queries.html" class="btn btn-neutral float-right" title="Queries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="queries.html" class="btn btn-neutral float-right" title="執行查詢" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="configuration.html" class="btn btn-neutral float-left" title="資料庫設定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="configuration.html" class="btn btn-neutral float-left" title="資料庫組態設定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -481,7 +459,7 @@ connections, you can explicitly close the connection.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月25日。
+        最後更新於 2020年04月26日。
       </span>
 
     </p>

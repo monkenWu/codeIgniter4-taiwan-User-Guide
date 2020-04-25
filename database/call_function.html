@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Custom Function Calls &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>呼叫自定函數 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Database Events" href="events.html" />
-    <link rel="prev" title="Database Metadata" href="metadata.html" /> 
+    <link rel="next" title="資料庫事件" href="events.html" />
+    <link rel="prev" title="資料庫詮釋資料" href="metadata.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -177,14 +177,14 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">資料庫操作</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="examples.html">快速入門: 範例程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="connecting.html">連接資料庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫組態設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">連接你的資料庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="queries.html">執行查詢</a></li>
 <li class="toctree-l2"><a class="reference internal" href="results.html">產生查詢結果</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helpers.html">查詢輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query_builder.html">查詢生成器類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transactions.html">交易</a></li>
-<li class="toctree-l2"><a class="reference internal" href="metadata.html">取得資料表資訊</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">詮釋資料</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">自訂函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="events.html">資料庫事件</a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.html">資料庫工具</a></li>
@@ -322,7 +322,7 @@
         
           <li><a href="index.html">資料庫操作</a> &raquo;</li>
         
-      <li>Custom Function Calls</li>
+      <li>呼叫自定函數</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,35 +339,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="custom-function-calls">
-<h1>Custom Function Calls<a class="headerlink" href="#custom-function-calls" title="本標題的永久連結">¶</a></h1>
+  <div class="section" id="id1">
+<h1>呼叫自定函數<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <div class="section" id="db-callfunction">
 <h2>$db-&gt;callFunction();<a class="headerlink" href="#db-callfunction" title="本標題的永久連結">¶</a></h2>
-<p>This function enables you to call PHP database functions that are not
-natively included in CodeIgniter, in a platform-independent manner. For
-example, let’s say you want to call the mysql_get_client_info()
-function, which is <strong>not</strong> natively supported by CodeIgniter. You could
-do so like this:</p>
+<p>這個函數使你能以無關平台的方式呼叫 CodeIgniter 中，沒有實作到的的 PHP 資料庫函數。例如：假設你要呼叫 mysql_get_client_info() ，但是 CodeIgniter 並沒有支援該函數，你就可以這樣做：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">callFunction</span><span class="p">(</span><span class="s1">&#39;get_client_info&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>You must supply the name of the function, <strong>without</strong> the mysql_
-prefix, in the first parameter. The prefix is added automatically based
-on which database driver is currently being used. This permits you to
-run the same function on different database platforms. Obviously, not all
-function calls are identical between platforms, so there are limits to
-how useful this function can be in terms of portability.</p>
-<p>Any parameters needed by the function you are calling will be added to
-the second parameter.</p>
+<p>在第一個參數中你必須放入函數的名稱（不帶有 mysql_ 的字首）。字首會根據你現在使用的資料庫驅動自動加上。這可以讓你在不同的資料庫系統中，執行相同的函數。但是，在資料庫系統之間，並不是所有的函數使用方式都一樣，所以這個函數在移植性方面還是有限制的。</p>
+<p>你使用的函數如果有任何參數，要加在第二個參數上。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">callFunction</span><span class="p">(</span><span class="s1">&#39;some_function&#39;</span><span class="p">,</span> <span class="nv">$param1</span><span class="p">,</span> <span class="nv">$param2</span><span class="p">,</span> <span class="nx">etc</span><span class="o">..</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Often, you will either need to supply a database connection ID or a
-database result ID. The connection ID can be accessed using:</p>
+<p>通常你需要提供資料庫連線 ID 或資料庫結果 ID 。連線 ID 可以使用以下方式取得：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">connID</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>The result ID can be accessed from within your result object, like this:</p>
+<p>可以從查詢物件中取得資料庫結果 ID ，例如：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;SOME QUERY&quot;</span><span class="p">);</span>
 
 <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">resultID</span><span class="p">;</span>
@@ -384,10 +373,10 @@ database result ID. The connection ID can be accessed using:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="events.html" class="btn btn-neutral float-right" title="Database Events" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="events.html" class="btn btn-neutral float-right" title="資料庫事件" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="metadata.html" class="btn btn-neutral float-left" title="Database Metadata" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="metadata.html" class="btn btn-neutral float-left" title="資料庫詮釋資料" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -398,7 +387,7 @@ database result ID. The connection ID can be accessed using:</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月25日。
+        最後更新於 2020年04月26日。
       </span>
 
     </p>

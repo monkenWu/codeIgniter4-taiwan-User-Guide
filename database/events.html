@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Database Events &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>資料庫事件 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Utilities" href="utilities.html" />
-    <link rel="prev" title="Custom Function Calls" href="call_function.html" /> 
+    <link rel="next" title="資料庫工具" href="utilities.html" />
+    <link rel="prev" title="呼叫自定函數" href="call_function.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -177,14 +177,14 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">資料庫操作</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="examples.html">快速入門: 範例程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="connecting.html">連接資料庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫組態設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">連接你的資料庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="queries.html">執行查詢</a></li>
 <li class="toctree-l2"><a class="reference internal" href="results.html">產生查詢結果</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helpers.html">查詢輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query_builder.html">查詢生成器類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transactions.html">交易</a></li>
-<li class="toctree-l2"><a class="reference internal" href="metadata.html">取得資料表資訊</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">詮釋資料</a></li>
 <li class="toctree-l2"><a class="reference internal" href="call_function.html">自訂函數</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">資料庫事件</a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.html">資料庫工具</a></li>
@@ -322,7 +322,7 @@
         
           <li><a href="index.html">資料庫操作</a> &raquo;</li>
         
-      <li>Database Events</li>
+      <li>資料庫事件</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,19 +339,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="database-events">
-<h1>Database Events<a class="headerlink" href="#database-events" title="本標題的永久連結">¶</a></h1>
-<p>The Database classes contain a few <a class="reference internal" href="../extending/events.html"><span class="doc">Events</span></a> that you can tap into in
-order to learn more about what is happening during the database execution. These events can
-be used to collect data for analysis and reporting. The <a class="reference internal" href="../testing/debugging.html"><span class="doc">Debug Toolbar</span></a>
-uses this to collect the queries to display in the Toolbar.</p>
-<div class="section" id="the-events">
-<h2>The Events<a class="headerlink" href="#the-events" title="本標題的永久連結">¶</a></h2>
+  <div class="section" id="id1">
+<h1>資料庫事件<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>資料庫類別包含一些 <a class="reference internal" href="../extending/events.html"><span class="doc">事件</span></a>，你可以利用這些事件來了解關於資料庫執行時，正在發生的事情或資訊。可以利用這些事件來搜集資訊並做分析和報告。 <a class="reference internal" href="../testing/debugging.html"><span class="doc">偵錯與除錯應用程式</span></a> 就是利用這些事件搜集查詢後的資訊並顯示在工具列上。</p>
+<div class="section" id="id2">
+<h2>事件<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <p><strong>DBQuery</strong></p>
-<p>This event is triggered whenever a new query has been run, whether successful or not. The only parameter is
-a <a class="reference internal" href="queries.html"><span class="doc">Query</span></a> instance of the current query. You could use this to display all queries
-in STDOUT, or logging to a file, or even creating tools to do automatic query analysis to help you spot
-potentially missing indexes, slow queries, etc. An example usage might be:</p>
+<p>當執行新的查詢後，無論成功與否，都會觸發這個事件。唯一參數是當前語法的 <a class="reference internal" href="queries.html"><span class="doc">查詢</span></a> 實體。
+你可以使用這個事件在 STDOUT 中顯示所有查詢，記錄在文件中，甚至創建工具進行自動查詢分析，幫助你找出可能遺失的索引或查詢速度慢的原因等。範例參考如下：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// In Config\Events.php</span>
 <span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;DBQuery&#39;</span><span class="p">,</span> <span class="s1">&#39;CodeIgniter\Debug\Toolbar\Collectors\Database::collect&#39;</span><span class="p">);</span>
 
@@ -373,10 +368,10 @@ potentially missing indexes, slow queries, etc. An example usage might be:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="utilities.html" class="btn btn-neutral float-right" title="Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="utilities.html" class="btn btn-neutral float-right" title="資料庫工具" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="call_function.html" class="btn btn-neutral float-left" title="Custom Function Calls" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="call_function.html" class="btn btn-neutral float-left" title="呼叫自定函數" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -387,7 +382,7 @@ potentially missing indexes, slow queries, etc. An example usage might be:</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月25日。
+        最後更新於 2020年04月26日。
       </span>
 
     </p>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Queries &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>執行查詢 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Generating Query Results" href="results.html" />
-    <link rel="prev" title="Connecting to your Database" href="connecting.html" /> 
+    <link rel="next" title="產生查詢結果" href="results.html" />
+    <link rel="prev" title="連接你的資料庫" href="connecting.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -177,14 +177,14 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">資料庫操作</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="examples.html">快速入門: 範例程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="connecting.html">連接資料庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">資料庫組態設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">連接你的資料庫</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">執行查詢</a></li>
 <li class="toctree-l2"><a class="reference internal" href="results.html">產生查詢結果</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helpers.html">查詢輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query_builder.html">查詢生成器類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transactions.html">交易</a></li>
-<li class="toctree-l2"><a class="reference internal" href="metadata.html">取得資料表資訊</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">詮釋資料</a></li>
 <li class="toctree-l2"><a class="reference internal" href="call_function.html">自訂函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="events.html">資料庫事件</a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.html">資料庫工具</a></li>
@@ -322,7 +322,7 @@
         
           <li><a href="index.html">資料庫操作</a> &raquo;</li>
         
-      <li>Queries</li>
+      <li>執行查詢</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,65 +339,53 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="queries">
-<h1>Queries<a class="headerlink" href="#queries" title="本標題的永久連結">¶</a></h1>
-<div class="contents local topic" id="id1">
+  <div class="section" id="id1">
+<h1>執行查詢<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#query-basics" id="id2">Query Basics</a><ul>
-<li><a class="reference internal" href="#regular-queries" id="id3">Regular Queries</a></li>
-<li><a class="reference internal" href="#simplified-queries" id="id4">Simplified Queries</a></li>
+<li><a class="reference internal" href="#id3" id="id18">查詢基礎</a><ul>
+<li><a class="reference internal" href="#id4" id="id19">常規的查詢</a></li>
+<li><a class="reference internal" href="#id5" id="id20">簡單化的查詢</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#working-with-database-prefixes-manually" id="id5">Working with Database prefixes manually</a></li>
-<li><a class="reference internal" href="#protecting-identifiers" id="id6">Protecting identifiers</a></li>
-<li><a class="reference internal" href="#escaping-queries" id="id7">Escaping Queries</a></li>
-<li><a class="reference internal" href="#query-bindings" id="id8">Query Bindings</a><ul>
-<li><a class="reference internal" href="#named-bindings" id="id9">Named Bindings</a></li>
+<li><a class="reference internal" href="#id6" id="id21">手動設定資料庫字首</a></li>
+<li><a class="reference internal" href="#id7" id="id22">保護標識符號</a></li>
+<li><a class="reference internal" href="#id8" id="id23">跳脫查詢</a></li>
+<li><a class="reference internal" href="#id9" id="id24">封裝查詢</a><ul>
+<li><a class="reference internal" href="#id10" id="id25">封裝命名</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#handling-errors" id="id10">Handling Errors</a></li>
-<li><a class="reference internal" href="#prepared-queries" id="id11">Prepared Queries</a><ul>
-<li><a class="reference internal" href="#preparing-the-query" id="id12">Preparing the Query</a></li>
-<li><a class="reference internal" href="#executing-the-query" id="id13">Executing the Query</a></li>
-<li><a class="reference internal" href="#other-methods" id="id14">Other Methods</a></li>
+<li><a class="reference internal" href="#id11" id="id26">錯誤處理</a></li>
+<li><a class="reference internal" href="#id12" id="id27">預備查詢</a><ul>
+<li><a class="reference internal" href="#id13" id="id28">預備查詢</a></li>
+<li><a class="reference internal" href="#id14" id="id29">執行查詢</a></li>
+<li><a class="reference internal" href="#id15" id="id30">其他方法</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#working-with-query-objects" id="id15">Working with Query Objects</a><ul>
-<li><a class="reference internal" href="#the-query-class" id="id16">The Query Class</a></li>
+<li><a class="reference internal" href="#id16" id="id31">操作查詢物件</a><ul>
+<li><a class="reference internal" href="#id17" id="id32">查詢類別</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="section" id="query-basics">
-<h2><a class="toc-backref" href="#id2">Query Basics</a><a class="headerlink" href="#query-basics" title="本標題的永久連結">¶</a></h2>
-<div class="section" id="regular-queries">
-<h3><a class="toc-backref" href="#id3">Regular Queries</a><a class="headerlink" href="#regular-queries" title="本標題的永久連結">¶</a></h3>
-<p>To submit a query, use the <strong>query</strong> function:</p>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id18">查詢基礎</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id19">常規的查詢</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
+<p>可以使用 <strong>query</strong> 來提交查詢：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;YOUR QUERY HERE&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The query() function returns a database result <strong>object</strong> when 「read」
-type queries are run which you can use to <a class="reference internal" href="results.html"><span class="doc">show your
-results</span></a>. When 「write」 type queries are run it simply
-returns TRUE or FALSE depending on success or failure. When retrieving
-data you will typically assign the query to your own variable, like
-this:</p>
+<p>當對資料庫進行 「讀取」 查詢時，query() 函數會以 <em>物件(object)</em> 型態回傳資料庫產生的 <a class="reference internal" href="results.html"><span class="doc">查詢結果</span></a>。當對資料庫進行 「寫入」 查詢時，會依據執行的成功或失敗來回傳TRUE 或 FALSE。
+當對資料庫進行 「檢索」 查詢時，通常使用一個變數來接收查詢的結果，例如：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;YOUR QUERY HERE&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="simplified-queries">
-<h3><a class="toc-backref" href="#id4">Simplified Queries</a><a class="headerlink" href="#simplified-queries" title="本標題的永久連結">¶</a></h3>
-<p>The <strong>simpleQuery</strong> method is a simplified version of the
-$db-&gt;query() method. It DOES
-NOT return a database result set, nor does it set the query timer, or
-compile bind data, or store your query for debugging. It simply lets you
-submit a query. Most users will rarely use this function.</p>
-<p>It returns whatever the database drivers』 「execute」 function returns.
-That typically is TRUE/FALSE on success or failure for write type queries
-such as INSERT, DELETE or UPDATE statements (which is what it really
-should be used for) and a resource/object on success for queries with
-fetchable results.</p>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id20">簡單化的查詢</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
+<p><strong>simpleQuery</strong> 方法是 $db-&gt;query() 的簡化版。它不會回傳資料庫結果集合，不會設定查詢計時器，不會編譯資料，不會儲存你的查詢以便除錯。它只是讓你提交查詢。大多數使用者很少會使用到這個函數。</p>
+<p>它回傳資料庫驅動的 「execute」 函數的回傳的結果。通常在執行類型查詢，如： INSERT 、 DELETE ，或 UPDATE 語法（合適的應用時機），會根據成功或失敗，回傳TRUE/FALSE。對於可獲得結果的查詢，則會回傳一個資源／物件。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">simpleQuery</span><span class="p">(</span><span class="s1">&#39;YOUR QUERY&#39;</span><span class="p">))</span>
 <span class="p">{</span>
         <span class="k">echo</span> <span class="s2">&quot;Success!&quot;</span><span class="p">;</span>
@@ -410,120 +398,95 @@ fetchable results.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">PostgreSQL’s <code class="docutils literal notranslate"><span class="pre">pg_exec()</span></code> function (for example) always
-returns a resource on success even for write type queries.
-So keep that in mind if you’re looking for a boolean value.</p>
+<p class="last">在 PostgreSQL 中，例如： <code class="docutils literal notranslate"><span class="pre">pg_exec()</span></code> 函數在執行查詢成功後，都只會回傳資源，即使是執行類型查詢也是一樣。所以如果你是要找布林值的話，請注意這一點。</p>
 </div>
 </div>
 </div>
-<div class="section" id="working-with-database-prefixes-manually">
-<h2><a class="toc-backref" href="#id5">Working with Database prefixes manually</a><a class="headerlink" href="#working-with-database-prefixes-manually" title="本標題的永久連結">¶</a></h2>
-<p>If you have configured a database prefix and would like to prepend it to
-a table name for use in a native SQL query for example, then you can use
-the following:</p>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id21">手動設定資料庫字首</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
+<p>如果你有設定資料庫字首，並且想要它加入在資料表名稱前，例如當你使用原生SQL，則你可以使用以下的語法：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prefixTable</span><span class="p">(</span><span class="s1">&#39;tablename&#39;</span><span class="p">);</span> <span class="c1">// outputs prefix_tablename</span>
 </pre></div>
 </div>
-<p>If for any reason you would like to change the prefix programmatically
-without needing to create a new connection you can use this method:</p>
+<p>如果你因為某些原因需要修改字首，並不需要建立一個新的連線，可以使用以下方法：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">setPrefix</span><span class="p">(</span><span class="s1">&#39;newprefix&#39;</span><span class="p">);</span>
 <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prefixTable</span><span class="p">(</span><span class="s1">&#39;tablename&#39;</span><span class="p">);</span> <span class="c1">// outputs newprefix_tablename</span>
 </pre></div>
 </div>
-<p>You can get the current prefix any time with this method:</p>
+<p>你可以利用以下方式，隨時取得目前字首：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$DBPrefix</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">getPrefix</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="protecting-identifiers">
-<h2><a class="toc-backref" href="#id6">Protecting identifiers</a><a class="headerlink" href="#protecting-identifiers" title="本標題的永久連結">¶</a></h2>
-<p>In many databases, it is advisable to protect table and field names - for
-example with backticks in MySQL. <strong>Query Builder queries are
-automatically protected</strong>, but if you need to manually protect an
-identifier you can use:</p>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id22">保護標識符號</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
+<p>在許多資料庫中，保護資料表和欄位名稱是重要的。例如：在 MySQL 中使用反引號（backticks）。但是 <strong>查詢生成器會自動保護</strong> ，如果你需要手動保護這些標示符號，可以使用以下的方法：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">protectIdentifiers</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last">Although the Query Builder will try its best to properly
-quote any field and table names that you feed it. Note that it
-is NOT designed to work with arbitrary user input. DO NOT feed it
-with unsanitized user data.</p>
+<p class="last">儘管查詢生成器會盡力地正確使用你所提供的任何欄位和資料表名稱。請注意，它的設計並不是讓使用者任意的輸入。所以請不要輸入未經消毒的資料。</p>
 </div>
-<p>This function will also add a table prefix to your table, assuming you
-have a prefix specified in your database config file. To enable the
-prefixing set TRUE (boolean) via the second parameter:</p>
+<p>假如你的資料庫設定檔中有指定字首，這個函數會在你的資料表前加上字首。你可以設定第二個參數為 TRUE (boolean) 來啟動字首設定：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">protectIdentifiers</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="escaping-queries">
-<h2><a class="toc-backref" href="#id7">Escaping Queries</a><a class="headerlink" href="#escaping-queries" title="本標題的永久連結">¶</a></h2>
-<p>It’s a very good security practice to escape your data before submitting
-it into your database. CodeIgniter has three methods that help you do
-this:</p>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id23">跳脫查詢</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h2>
+<p>在提交資料到資料庫前，先進行資料跳脫，這是一個非常良好的安全習慣。 CodeIgniter 有三種方法可以幫助你做到這一點：</p>
 <ol class="arabic">
-<li><p class="first"><strong>$db-&gt;escape()</strong> This function determines the data type so
-that it can escape only string data. It also automatically adds
-single quotes around the data so you don’t have to:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO table (title) VALUES(&quot;</span><span class="o">.</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;)&quot;</span><span class="p">;</span>
+<li><p class="first"><strong>$db-&gt;escape()</strong> 這個函數根據資料型態來運作，所以它只會對字串型態的資料進行跳脫。它也會自動增加單引號在字串的兩側，所以你不必加上單引號：</p>
+<blockquote>
+<div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO table (title) VALUES(&quot;</span><span class="o">.</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;)&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
+</div></blockquote>
 </li>
-<li><p class="first"><strong>$db-&gt;escapeString()</strong> This function escapes the data passed to
-it, regardless of type. Most of the time you’ll use the above
-function rather than this one. Use the function like this:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO table (title) VALUES(&#39;&quot;</span><span class="o">.</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escapeString</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;&#39;)&quot;</span><span class="p">;</span>
+<li><p class="first"><strong>$db-&gt;escapeString()</strong> 這個函數可以跳脫任何資料型態。在大多數的情況下，你會看到以上的方式，而不是以下的。要使用這樣的功能可以參考以下：</p>
+<blockquote>
+<div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO table (title) VALUES(&#39;&quot;</span><span class="o">.</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escapeString</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;&#39;)&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
+</div></blockquote>
 </li>
-<li><p class="first"><strong>$db-&gt;escapeLikeString()</strong> This method should be used when
-strings are to be used in LIKE conditions so that LIKE wildcards
-(『%』, 『_』) in the string are also properly escaped.</p>
-</li>
-</ol>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$search</span> <span class="o">=</span> <span class="s1">&#39;20% raise&#39;</span><span class="p">;</span>
+<li><p class="first"><strong>$db-&gt;escapeLikeString()</strong> 這個函數被用來使用在 SQL LIKE 的語法當中，像是萬用字元（ % ，_ ）在此函數中也會被跳脫。</p>
+<blockquote>
+<div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$search</span> <span class="o">=</span> <span class="s1">&#39;20% raise&#39;</span><span class="p">;</span>
 <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT id FROM table WHERE column LIKE &#39;%&quot;</span> <span class="o">.</span>
 <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escapeLikeString</span><span class="p">(</span><span class="nv">$search</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;%&#39; ESCAPE &#39;!&#39;&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
+</div></blockquote>
+</li>
+</ol>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last">The <code class="docutils literal notranslate"><span class="pre">escapeLikeString()</span></code> method uses 『!』 (exclamation mark)
-to escape special characters for <em>LIKE</em> conditions. Because this
-method escapes partial strings that you would wrap in quotes
-yourself, it cannot automatically add the <code class="docutils literal notranslate"><span class="pre">ESCAPE</span> <span class="pre">'!'</span></code>
-condition for you, and so you’ll have to manually do that.</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">escapeLikeString()</span></code> 方法使用 「!」 （驚嘆號） 來跳脫 <em>LIKE</em> 條件的特殊字元。因為這個方法可以跳脫部分的字串，你可以自己用引號進行封裝，所以這個方法無法替你自動加入 <code class="docutils literal notranslate"><span class="pre">ESCAPE</span> <span class="pre">'!'</span></code> 的條件，你需要手動加入。</p>
 </div>
 </div>
-<div class="section" id="query-bindings">
-<h2><a class="toc-backref" href="#id8">Query Bindings</a><a class="headerlink" href="#query-bindings" title="本標題的永久連結">¶</a></h2>
-<p>Bindings enable you to simplify your query syntax by letting the system
-put the queries together for you. Consider the following example:</p>
+<div class="section" id="id9">
+<h2><a class="toc-backref" href="#id24">封裝查詢</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h2>
+<p>封裝可以簡化你的查詢語法，讓系統為你的查詢放入資料。請參考以下範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM some_table WHERE id = ? AND status = ? AND author = ?&quot;</span><span class="p">;</span>
 <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;live&#39;</span><span class="p">,</span> <span class="s1">&#39;Rick&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p>The question marks in the query are automatically replaced with the
-values in the array in the second parameter of the query function.</p>
-<p>Binding also work with arrays, which will be transformed to IN sets:</p>
+<p>這些問號會自動取代成查詢函數中的第二個參數的陣列參數值。</p>
+<p>封裝也支援陣列參數，它將轉換成 IN 使用的集合：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM some_table WHERE id IN ? AND status = ? AND author = ?&quot;</span><span class="p">;</span>
 <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">,</span> <span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s1">&#39;live&#39;</span><span class="p">,</span> <span class="s1">&#39;Rick&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p>The resulting query will be:</p>
+<p>封裝轉換後的查詢結果如下</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">SELECT</span> <span class="o">*</span> <span class="nx">FROM</span> <span class="nx">some_table</span> <span class="nx">WHERE</span> <span class="nx">id</span> <span class="nx">IN</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="k">AND</span> <span class="nx">status</span> <span class="o">=</span> <span class="s1">&#39;live&#39;</span> <span class="k">AND</span> <span class="nx">author</span> <span class="o">=</span> <span class="s1">&#39;Rick&#39;</span>
 </pre></div>
 </div>
-<p>The secondary benefit of using binds is that the values are
-automatically escaped producing safer queries.
-You don’t have to remember to manually escape data — the engine does it automatically for you.</p>
-<div class="section" id="named-bindings">
-<h3><a class="toc-backref" href="#id9">Named Bindings</a><a class="headerlink" href="#named-bindings" title="本標題的永久連結">¶</a></h3>
-<p>Instead of using the question mark to mark the location of the bound values,
-you can name the bindings, allowing the keys of the values passed in to match
-placeholders in the query:</p>
+<p>使用封裝的第二個好處是，這些值會自動跳脫，以產生更安全的查詢。你就不需要手動跳脫資料，系統會自動幫你處理。</p>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id25">封裝命名</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h3>
+<p>不使用問號來標記封裝值的位置，你可以使用封裝命名，讓 key 和 value 可以相互對應。並且讓傳遞進來的鍵值陣列的鍵名與查詢中的置換符號相符：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM some_table WHERE id = :id: AND status = :status: AND author = :name:&quot;</span><span class="p">;</span>
 <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">,</span> <span class="p">[</span>
         <span class="s1">&#39;id&#39;</span>     <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
@@ -534,16 +497,14 @@ placeholders in the query:</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">Each name in the query MUST be surrounded by colons.</p>
+<p class="last">每個要封裝的值必須用冒號（:）包起來。</p>
 </div>
 </div>
 </div>
-<div class="section" id="handling-errors">
-<h2><a class="toc-backref" href="#id10">Handling Errors</a><a class="headerlink" href="#handling-errors" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id11">
+<h2><a class="toc-backref" href="#id26">錯誤處理</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h2>
 <p><strong>$db-&gt;error();</strong></p>
-<p>If you need to get the last error that has occurred, the error() method
-will return an array containing its code and message. Here’s a quick
-example:</p>
+<p>如果你需要取得上次查詢後的錯誤訊息，error() 這個方法會回傳一個包含錯誤編號和訊息的陣列，以下是一個簡單的範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">simpleQuery</span><span class="p">(</span><span class="s1">&#39;SELECT `example_field` FROM `example_table`&#39;</span><span class="p">))</span>
 <span class="p">{</span>
         <span class="nv">$error</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">();</span> <span class="c1">// Has keys &#39;code&#39; and &#39;message&#39;</span>
@@ -551,22 +512,12 @@ example:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="prepared-queries">
-<h2><a class="toc-backref" href="#id11">Prepared Queries</a><a class="headerlink" href="#prepared-queries" title="本標題的永久連結">¶</a></h2>
-<p>Most database engines support some form of prepared statements, that allow you to prepare a query once, and then run
-that query multiple times with new sets of data. This eliminates the possibility of SQL injection since the data is
-passed to the database in a different format than the query itself. When you need to run the same query multiple times
-it can be quite a bit faster, too. However, to use it for every query can have major performance hits, since you’re calling
-out to the database twice as often. Since the Query Builder and Database connections already handle escaping the data
-for you, the safety aspect is already taken care of for you. There will be times, though, when you need to ability
-to optimize the query by running a prepared statement, or prepared query.</p>
-<div class="section" id="preparing-the-query">
-<h3><a class="toc-backref" href="#id12">Preparing the Query</a><a class="headerlink" href="#preparing-the-query" title="本標題的永久連結">¶</a></h3>
-<p>This can be easily done with the <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> method. This takes a single parameter, which is a Closure that returns
-a query object. Query objects are automatically generated by any of the 「final」 type queries, including <strong>insert</strong>,
-<strong>update</strong>, <strong>delete</strong>, <strong>replace</strong>, and <strong>get</strong>. This is handled the easiest by using the Query Builder to
-run a query. The query is not actually run, and the values don’t matter since they’re never applied, acting instead
-as placeholders. This returns a PreparedQuery object:</p>
+<div class="section" id="id12">
+<h2><a class="toc-backref" href="#id27">預備查詢</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h2>
+<p>大多數的資料庫引擎，支援某些形式的預備語法，這些語法讓你可以準備一次查詢，然後使用新的資料集進行多次查詢。由於資料是用與查詢本身不同的格式傳送到資料庫，因此消除了SQL注入的可能性。當你需要執行多次相同的查詢，速度也會快很多。然而，對每次的查詢都使用它，會對性能產生重大的影響，因為你要加倍頻繁的呼叫資料庫。由於查詢生成器和資料庫連接已經為你處理了跳脫資料，因此安全方面就不需要特別的擔心。但是，有時候你需要藉由執行預備語法或預備查詢來最佳化查詢。</p>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id28">預備查詢</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h3>
+<p>透過 <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> 方法可以簡單地完成預備。這需要一個會回傳查詢物件的匿名函數作為參數。查詢物件是由任何 「final」 類型查詢自動產生的，包含新增、更新、刪除、取代、取得。使用查詢生成器執行查詢，是最簡單的方式。實際上，該查詢並未執行，而且變數無關緊要，因為它們從未被應用，而是置換符號。這會回傳一個 PreparedQuery 的物件。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$pQuery</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$db</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">return</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">)</span>
@@ -578,8 +529,7 @@ as placeholders. This returns a PreparedQuery object:</p>
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>If you don’t want to use the Query Builder you can create the Query object manually using question marks for
-value placeholders:</p>
+<p>如果你不想使用查詢生成器，則可以使用問號為置換符號的值，手動建立一個查詢物件。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\Database\Query</span><span class="p">;</span>
 
 <span class="nv">$pQuery</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$db</span><span class="p">)</span>
@@ -590,8 +540,7 @@ value placeholders:</p>
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>If the database requires an array of options passed to it during the prepare statement phase you can pass that
-array through in the second parameter:</p>
+<p>在預備語法中，如果你需要傳送一個變數陣列來操作資料庫，你可以在第二個參數傳送這個陣列：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\Database\Query</span><span class="p">;</span>
 
 <span class="nv">$pQuery</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$db</span><span class="p">)</span>
@@ -603,12 +552,9 @@ array through in the second parameter:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="executing-the-query">
-<h3><a class="toc-backref" href="#id13">Executing the Query</a><a class="headerlink" href="#executing-the-query" title="本標題的永久連結">¶</a></h3>
-<p>Once you have a prepared query you can use the <code class="docutils literal notranslate"><span class="pre">execute()</span></code> method to actually run the query. You can pass in as
-many variables as you need in the query parameters. The number of parameters you pass must match the number of
-placeholders in the query. They must also be passed in the same order as the placeholders appear in the original
-query:</p>
+<div class="section" id="id14">
+<h3><a class="toc-backref" href="#id29">執行查詢</a><a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h3>
+<p>當你的預備查詢已經準備好了，你可以使用 <code class="docutils literal notranslate"><span class="pre">execute()</span></code> 方法去執行你的查詢。在語法中，你可以根據你的需求傳送任意多的變數，但是變數的數量比須符合置換符號的數量，且順序也必須與原查詢中一樣。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Prepare the Query</span>
 <span class="nv">$pQuery</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$db</span><span class="p">)</span>
 <span class="p">{</span>
@@ -629,63 +575,52 @@ query:</p>
 <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$pQuery</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$email</span><span class="p">,</span> <span class="nv">$country</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>This returns a standard <a class="reference internal" href="results.html"><span class="doc">result set</span></a>.</p>
+<p>這裡將會回傳一個標準的 <a class="reference internal" href="results.html"><span class="doc">結果集合</span></a> 。</p>
 </div>
-<div class="section" id="other-methods">
-<h3><a class="toc-backref" href="#id14">Other Methods</a><a class="headerlink" href="#other-methods" title="本標題的永久連結">¶</a></h3>
-<p>In addition to these two primary methods, the prepared query object also has the following methods:</p>
-<p><strong>close()</strong></p>
-<p>While PHP does a pretty good job of closing all open statements with the database it’s always a good idea to
-close out the prepared statement when you’re done with it:</p>
+<div class="section" id="id15">
+<h3><a class="toc-backref" href="#id30">其他方法</a><a class="headerlink" href="#id15" title="本標題的永久連結">¶</a></h3>
+<p>除了以上的兩個主要的方法之外，預備查詢物件也有以下幾個方法：</p>
+<p><strong>close()</strong> 儘管PHP在關閉資料庫語法已經做得很好，但是在操作完資料庫後關閉預備語法也是一項重要的工作。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$pQuery</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
 </pre></div>
 </div>
 <p><strong>getQueryString()</strong></p>
-<p>This returns the prepared query as a string.</p>
+<p>這將會回傳一個字串型態的預備語法。</p>
 <p><strong>hasError()</strong></p>
-<p>Returns boolean true/false if the last execute() call created any errors.</p>
+<p>在最後一次 execute() 後如果出現任何錯誤，將會回傳布林型態的 true/false 。</p>
 <p><strong>getErrorCode()</strong>
 <strong>getErrorMessage()</strong></p>
-<p>If any errors were encountered these methods can be used to retrieve the error code and string.</p>
+<p>如果出現任何錯誤，可以使用這兩個方法來檢視錯誤編碼和錯誤訊息。</p>
 </div>
 </div>
-<div class="section" id="working-with-query-objects">
-<h2><a class="toc-backref" href="#id15">Working with Query Objects</a><a class="headerlink" href="#working-with-query-objects" title="本標題的永久連結">¶</a></h2>
-<p>Internally, all queries are processed and stored as instances of
-CodeIgniterDatabaseQuery. This class is responsible for binding
-the parameters, otherwise preparing the query, and storing performance
-data about its query.</p>
+<div class="section" id="id16">
+<h2><a class="toc-backref" href="#id31">操作查詢物件</a><a class="headerlink" href="#id16" title="本標題的永久連結">¶</a></h2>
+<p>在CodeIgniter的內部架構中，所有查詢都會當作為 CodeIgniterDatabaseQuery 的實體進行處理和儲存。這些類別負責繫結變數，否則準備好查詢，並且儲存查詢相關的性能資訊。</p>
 <p><strong>getLastQuery()</strong></p>
-<p>When you just need to retrieve the last Query object, use the
-getLastQuery() method:</p>
+<p>當你需要檢索上次查詢的語法，使用 getLastQuery() 這個方法：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">getLastQuery</span><span class="p">();</span>
 <span class="k">echo</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span><span class="nv">$query</span><span class="p">;</span>
 </pre></div>
 </div>
-<div class="section" id="the-query-class">
-<h3><a class="toc-backref" href="#id16">The Query Class</a><a class="headerlink" href="#the-query-class" title="本標題的永久連結">¶</a></h3>
-<p>Each query object stores several pieces of information about the query itself.
-This is used, in part, by the Timeline feature, but is available for your use
-as well.</p>
+<div class="section" id="id17">
+<h3><a class="toc-backref" href="#id32">查詢類別</a><a class="headerlink" href="#id17" title="本標題的永久連結">¶</a></h3>
+<p>每個查詢物件會儲存查詢相關的一些資訊。在一定程度上這些方法被時間軸功能使用，但你也可以使用。</p>
 <p><strong>getQuery()</strong></p>
-<p>Returns the final query after all processing has happened. This is the exact
-query that was sent to the database:</p>
+<p>在完成所有處理後，回傳最後的查詢。這裡的查詢是確切發送資料庫的查詢。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getQuery</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>This same value can be retrieved by casting the Query object to a string:</p>
+<p>將查詢物件轉換成陣列做相同的查詢。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span><span class="nv">$query</span><span class="p">;</span>
 </pre></div>
 </div>
 <p><strong>getOriginalQuery()</strong></p>
-<p>Returns the raw SQL that was passed into the object. This will not have any
-binds in it, or prefixes swapped out, etc:</p>
+<p>回傳原本的SQL。這不會有任何繫結值或更換字首等等。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getOriginalQuery</span><span class="p">();</span>
 </pre></div>
 </div>
 <p><strong>hasError()</strong></p>
-<p>If an error was encountered during the execution of this query this method
-will return true:</p>
+<p>如果在執行查詢時有發生錯誤，這個方法將將會回傳 true 。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">hasError</span><span class="p">())</span>
 <span class="p">{</span>
         <span class="k">echo</span> <span class="s1">&#39;Code: &#39;</span><span class="o">.</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getErrorCode</span><span class="p">();</span>
@@ -694,8 +629,7 @@ will return true:</p>
 </pre></div>
 </div>
 <p><strong>isWriteType()</strong></p>
-<p>Returns true if the query was determined to be a write-type query (i.e.
-INSERT, UPDATE, DELETE, etc):</p>
+<p>如果查詢被確認為寫入的類別查詢（例如：新增、更新、刪除等等），回傳true。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">isWriteType</span><span class="p">())</span>
 <span class="p">{</span>
         <span class="o">...</span> <span class="k">do</span> <span class="nx">something</span>
@@ -703,19 +637,17 @@ INSERT, UPDATE, DELETE, etc):</p>
 </pre></div>
 </div>
 <p><strong>swapPrefix()</strong></p>
-<p>Replaces one table prefix with another value in the final SQL. The first
-parameter is the original prefix that you want replaced, and the second
-parameter is the value you want it replaced with:</p>
+<p>在最後的SQL中，用一個值替換掉一個資料表的字首。第一個參數為原本的字首，第二個參數為你想要替換的值。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">swapPrefix</span><span class="p">(</span><span class="s1">&#39;ci3_&#39;</span><span class="p">,</span> <span class="s1">&#39;ci4_&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>getStartTime()</strong></p>
-<p>Gets the time the query was executed in seconds with microseconds:</p>
+<p>回傳查詢執行的時間，以微秒（ms）為單位。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$microtime</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getStartTime</span><span class="p">();</span>
 </pre></div>
 </div>
 <p><strong>getDuration()</strong></p>
-<p>Returns a float with the duration of the query in seconds with microseconds:</p>
+<p>回傳查詢持續時間的浮點數，以微秒（ms）為單位。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$microtime</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getDuration</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -731,10 +663,10 @@ parameter is the value you want it replaced with:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="results.html" class="btn btn-neutral float-right" title="Generating Query Results" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="results.html" class="btn btn-neutral float-right" title="產生查詢結果" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="connecting.html" class="btn btn-neutral float-left" title="Connecting to your Database" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="connecting.html" class="btn btn-neutral float-left" title="連接你的資料庫" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -745,7 +677,7 @@ parameter is the value you want it replaced with:</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月25日。
+        最後更新於 2020年04月26日。
       </span>
 
     </p>
