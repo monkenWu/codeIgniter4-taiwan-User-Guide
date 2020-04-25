@@ -1,39 +1,30 @@
 ############
-Transactions
+交易
 ############
 
-CodeIgniter's database abstraction allows you to use transactions with
-databases that support transaction-safe table types. In MySQL, you'll
-need to be running InnoDB or BDB table types rather than the more common
-MyISAM. Most other database platforms support transactions natively.
+CodeIgniter的資料庫抽象化，可以讓你在支援交易安全資料表類型的資料庫使用交易。
+在MySQL中，你需要運行 InnoDB 或 BDB 的資料表類型，而不是更常見的MyISAM。
+大多數的資料庫系統支援原生的交易功能。
 
-If you are not familiar with transactions we recommend you find a good
-online resource to learn about them for your particular database. The
-information below assumes you have a basic understanding of
-transactions.
+如果你不熟悉交易，我們建議你在網路上瞭解針對你使用資料庫的交易。
+以下你的資訊都假設你對交易有一定程度的了解。
 
-CodeIgniter's Approach to Transactions
+CodeIgniter 的交易方式
 ======================================
 
-CodeIgniter utilizes an approach to transactions that is very similar to
-the process used by the popular database class ADODB. We've chosen that
-approach because it greatly simplifies the process of running
-transactions. In most cases, all that is required is two lines of code.
+CodeIgniter使用常見的資料庫類別ADODB，它的處理過程非常相似於交易的處理方式。
+我們選擇這個方式，因為它將運行交易的過程簡單化許多。
+在許多情況下，你只需要幾行程式碼就能完成交易。
 
-Traditionally, transactions have required a fair amount of work to
-implement since they demand that you keep track of your queries and
-determine whether to commit or rollback based on the success or failure
-of your queries. This is particularly cumbersome with nested queries. In
-contrast, we've implemented a smart transaction system that does all
-this for you automatically (you can also manage your transactions
-manually if you choose to, but there's really no benefit).
+一般而言，交易需要執行大量的工作，因為它需要你追蹤你的查詢，並根據查詢的成功或失敗來決定要提交或退回。
+相反地，我們實現了一個聰明的交易系統，該系統可以自動地完成所有操作(你也可以手動管理你的交易，但實際上並沒有比較好)。
 
-Running Transactions
+執行交易
 ====================
 
-To run your queries using transactions you will use the
-$this->db->transStart() and $this->db->transComplete() functions as
-follows::
+要使用交易執行查詢，你需要使用 $this->db->transStart() 和 $this->db->transComplete() 兩個函式，參考以下範例：
+
+::
 
 	$this->db->transStart();
 	$this->db->query('AN SQL QUERY...');
@@ -41,29 +32,28 @@ follows::
 	$this->db->query('AND YET ANOTHER QUERY...');
 	$this->db->transComplete();
 
-You can run as many queries as you want between the start/complete
-functions and they will all be committed or rolled back based on the success
-or failure of any given query.
+你可以在開始跟完成函式中執行任意多數量的查詢，它們會根據你查詢的成功或失敗來提交或退回。
 
-Strict Mode
+嚴格模式
 ===========
 
-By default, CodeIgniter runs all transactions in Strict Mode. When strict
-mode is enabled, if you are running multiple groups of transactions, if
-one group fails all groups will be rolled back. If strict mode is
-disabled, each group is treated independently, meaning a failure of one
-group will not affect any others.
+在預設情況下，CodeIgniter執行所有的交易都是嚴格模式。
+在嚴格模式下，當你執行多個群組的交易，如果一個群組失敗或錯誤，則全部群組都會退回。
+如果關閉嚴格模式，每個群組都是獨立的，代表一個群組發生失敗或錯誤並不會影響其他的群組。
 
-Strict Mode can be disabled as follows::
+參考以下範例關閉嚴格模式：
+
+::
 
 	$this->db->transStrict(false);
 
-Managing Errors
+錯誤處理
 ===============
 
-If you have error reporting enabled in your Config/Database.php file
-you'll see a standard error message if the commit was unsuccessful. If
-debugging is turned off, you can manage your own errors like this::
+如果你在 Config/Database.php 中開啟錯誤報告，當你的提交失敗時，你將會看見標準的錯誤訊息。
+如果除錯模式關閉，則可以管理你的錯誤，如下面的範例：
+
+::
 
 	$this->db->transStart();
 	$this->db->query('AN SQL QUERY...');
@@ -75,11 +65,12 @@ debugging is turned off, you can manage your own errors like this::
 		// generate an error... or use the log_message() function to log your error
 	}
 
-Disabling Transactions
+禁用交易
 ======================
 
-Transactions are enabled by default. If you would like to disable transactions you
-can do so using $this->db->transOff()::
+在預設情況下，交易是開啟的。如果你需要關閉交易，你可以使用 $this->db->transOff() 來關閉：
+
+::
 
 	$this->db->transOff();
 
@@ -87,25 +78,26 @@ can do so using $this->db->transOff()::
 	$this->db->query('AN SQL QUERY...');
 	$this->db->transComplete();
 
-When transactions are disabled, your queries will be auto-committed, just
-as they are when running queries without transactions.
+當交易被關閉時，你的查詢會自動被提交，就像沒有使用交易時的查詢一樣。
 
-Test Mode
+測試模式
 =========
 
-You can optionally put the transaction system into "test mode", which
-will cause your queries to be rolled back -- even if the queries produce
-a valid result. To use test mode simply set the first parameter in the
-$this->db->transStart() function to TRUE::
+你可以選擇將交易系統轉換成 "測試模式" ，即使查詢有結果，它也會將查詢退回。
+要使用測試模式，你只需要在 $this->db->transStart() 的第一個參數中傳入 TRUE：
+
+::
 
 	$this->db->transStart(true); // Query will be rolled back
 	$this->db->query('AN SQL QUERY...');
 	$this->db->transComplete();
 
-Running Transactions Manually
+手動執行交易
 =============================
 
-If you would like to run transactions manually you can do so as follows::
+如果你想要手動執行交易，參考以下範例：
+
+::
 
 	$this->db->transBegin();
 
@@ -122,5 +114,4 @@ If you would like to run transactions manually you can do so as follows::
 		$this->db->transCommit();
 	}
 
-.. note:: Make sure to use $this->db->transBegin() when running manual
-	transactions, **NOT** $this->db->transStart().
+.. note:: 手動執行交易，請確認是使用 $this->db->transBegin()，而 **不是** $this->db->transStart() 。

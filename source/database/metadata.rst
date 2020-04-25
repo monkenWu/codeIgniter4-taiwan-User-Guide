@@ -1,5 +1,5 @@
 #################
-Database Metadata
+資料庫 Meta 資料
 #################
 
 .. contents::
@@ -7,18 +7,19 @@ Database Metadata
     :depth: 2
 
 **************
-Table MetaData
+資料表 Meta 資料
 **************
 
-These functions let you fetch table information.
+這些函式讓你可以提取資料表的資訊。
 
-List the Tables in Your Database
+列出資料庫的資料表
 ================================
 
 **$db->listTables();**
 
-Returns an array containing the names of all the tables in the database
-you are currently connected to. Example::
+回傳一個包含你現在連線的資料庫裡所有資料表名稱。範例：
+
+::
 
 	$tables = $db->listTables();
 
@@ -26,38 +27,39 @@ you are currently connected to. Example::
 	{
 		echo $table;
 	}
-	
-.. note:: Some drivers have additional system tables that are excluded from this return.
 
-Determine If a Table Exists
+.. note:: 有些資料庫內部具有系統的資料表，上述函式並不會回傳這些系統資料表。
+
+確認資料表是否存在
 ===========================
 
 **$db->tableExists();**
 
-Sometimes it's helpful to know whether a particular table exists before
-running an operation on it. Returns a boolean TRUE/FALSE. Usage example::
+有時候在操作前確定特定資料表是否存在是重要的。回傳布林值 TRUE/FALSES。範例：
+
+::
 
 	if ($db->tableExists('table_name'))
 	{
 		// some code...
 	}
 
-.. note:: Replace *table_name* with the name of the table you are looking for.
+.. note:: 將 *table_name* 替換成你想要尋找的資料表名稱。
 
 **************
-Field MetaData
+欄位Meta資料
 **************
 
-List the Fields in a Table
+列出資料表中的欄位
 ==========================
 
 **$db->getFieldNames()**
 
-Returns an array containing the field names. This query can be called
-two ways:
+回傳具有欄位名稱的陣列。這個查詢可以使用以下兩中方是呼叫：
 
-1. You can supply the table name and call it from the $db->
-object::
+1. 你可以傳入資料表名稱，並從 $db->object 中取得欄位名稱。
+
+::
 
 	$fields = $db->getFieldNames('table_name');
 
@@ -66,8 +68,9 @@ object::
 		echo $field;
 	}
 
-2. You can gather the field names associated with any query you run by
-calling the function from your query result object::
+2. 你可以從查詢結果物件中，呼叫該函式得到相關聯查詢的欄位名稱：
+
+::
 
 	$query = $db->query('SELECT * FROM some_table');
 
@@ -76,36 +79,36 @@ calling the function from your query result object::
 		echo $field;
 	}
 
-Determine If a Field is Present in a Table
+確認欄位是否出現在資料表
 ==========================================
 
 **$db->fieldExists()**
 
-Sometimes it's helpful to know whether a particular field exists before
-performing an action. Returns a boolean TRUE/FALSE. Usage example::
+有時候在操作前確定特定欄位是否存在是重要的。回傳布林值 TRUE/FALSES。範例：
+
+::
 
 	if ($db->fieldExists('field_name', 'table_name'))
 	{
 		// some code...
 	}
 
-.. note:: Replace *field_name* with the name of the column you are looking
-	for, and replace *table_name* with the name of the table you are
-	looking for.
+.. note:: 將 *field_name* 替換成你想要尋找的欄位名稱，將 *table_name* 替換成你想要尋找的資料表名稱。
 
-Retrieve Field Metadata
+檢索欄位的 Meta 資料
 =======================
 
 **$db->getFieldData()**
 
-Returns an array of objects containing field information.
+回傳具有欄位資訊的陣列物件。
 
-Sometimes it's helpful to gather the field names or other metadata, like
-the column type, max length, etc.
+有時候收集欄位名稱或其他 Meta 資料是重要的，像是：欄位類型、最大長度等等。
 
-.. note:: Not all databases provide meta-data.
+.. note:: 並不是所有資料庫都有提供 Meta 資料
 
-Usage example::
+使用範例：
+
+::
 
 	$fields = $db->getFieldData('table_name');
 
@@ -117,28 +120,30 @@ Usage example::
 		echo $field->primary_key;
 	}
 
-If you have run a query already you can use the result object instead of
-supplying the table name::
+如果你已經執行查詢，則可以使用結果物件而不是資料表名稱
+
+::
 
 	$query  = $db->query("YOUR QUERY");
 	$fields = $query->fieldData();
 
-The following data is available from this function if supported by your
-database:
+如果你的資料庫有支援，以下的內容是可以從上述函式得到的資訊：
 
 -  name - column name
 -  max_length - maximum length of the column
 -  primary_key - 1 if the column is a primary key
 -  type - the type of the column
 
-List the Indexes in a Table
+列出資料表的索引
 ===========================
 
 **$db->getIndexData()**
 
-Returns an array of objects containing index information.
+回傳具有索引資訊的陣列物件。
 
-Usage example::
+使用範例：
+
+::
 
 	$keys = $db->getIndexData('table_name');
 
@@ -149,15 +154,15 @@ Usage example::
 		echo $key->fields;  // array of field names
 	}
 
-The key types may be unique to the database you are using.
-For instance, MySQL will return one of primary, fulltext, spatial, index or unique
-for each key associated with a table.
+鍵值類型在你使用的資料庫中應該是唯一。例如：MySQL會為每個跟資料表有關聯的鍵值，回傳主鍵、全文索引、空間索引、或唯一索引的其中一種。
 
 **$db->getForeignKeyData()**
 
-Returns an array of objects containing foreign key information.
+回傳一個包含外來鍵資訊的物件陣列
 
-Usage example::
+使用範例：
+
+::
 
 	$keys = $db->getForeignKeyData('table_name');
 
@@ -170,6 +175,4 @@ Usage example::
 		echo $key->foreign_column_name;
 	}
 
-The object fields may be unique to the database you are using. For instance, SQLite3 does
-not return data on column names, but has the additional *sequence* field for compound
-foreign key definitions.
+在你使用的資料庫中，物件欄位可能是唯一的。例如：SQLite3不會回傳欄位名稱，但對複合外來鍵會 *排序* 欄位。
