@@ -1,16 +1,15 @@
 #######
-Testing
+測試
 #######
 
-CodeIgniter ships with a number of tools to help you test and debug your application thoroughly. 
-The following sections should get you quickly testing your applications.
+CodeIgniter 提供許多工具來幫你完整測試與偵錯你的應用程式。下列提到的主題或許可以幫助你快速地測試你的應用程式。
 
 .. toctree::
     :titlesonly:
 
-    Getting Started <overview>
-    Database <database>
-    Controller Testing <controllers>
-    HTTP Testing <feature>
+    入門 <overview>
+    資料庫測試 <database>
+    控制器測試 <controllers>
+    HTTP 測試 <feature>
     benchmark
     debugging

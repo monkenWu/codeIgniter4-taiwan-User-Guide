@@ -1,5 +1,5 @@
 ############
-Benchmarking
+基準測試
 ############
 
 CodeIgniter provides two separate tools to help you benchmark your code and test different options:

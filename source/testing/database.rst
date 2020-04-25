@@ -1,16 +1,17 @@
 =====================
-Testing Your Database
+資料庫測試
 =====================
 
 .. contents::
     :local:
     :depth: 2
 
-The Test Class
-==============
+建立一個測試類別
+===================
 
-In order to take advantage of the built-in database tools that CodeIgniter provides for testing, your
-tests must extend ``CIDatabaseTestCase``::
+為了利用 CodeIgniter 提供的內建資料庫工具進行測試，你的測試類別必須繼承 ``CIDatabaseTestCase`` ：
+
+::
 
     <?php namespace App\Database;
 
@@ -21,9 +22,9 @@ tests must extend ``CIDatabaseTestCase``::
         . . .
     }
 
-Because special functionality executed during the ``setUp()`` and ``tearDown()`` phases, you must ensure
-that you call the parent's methods if you need to use those methods, otherwise you will lose much
-of the functionality described here::
+因為大多數的特殊功能是在 ``setUp()`` 與 ``tearDown()`` 階段執行的，所以你必須確定在使用某些方法前呼叫了父類別的方法，否則你將無法實作這一章所描述的大部分功能：
+
+::
 
     <?php namespace App\Database;
 
@@ -46,29 +47,25 @@ of the functionality described here::
         }
     }
 
-Setting Up a Test Database
+建立一個測試用資料庫
 ==========================
 
-When running database tests, you need to provide a database that can be used during testing. Instead of
-using the PHPUnit built-in database features, the framework provides tools specific to CodeIgniter. The first
-step is to ensure that you have set up a ``tests`` database group in **app/Config/Database.php**.
-This specifies a database connection that is only used while running tests, to keep your other data safe.
+在運作資料庫測試時，需要提供一個可以在測試時使用的資料庫。而測試用資料庫 CodeIgniter 框架提供了特別的工具，你不需要使用 PHPUnit 內建的資料庫功能。第一步，請確認你已經在  **app/Config/Database.php** 設定檔案中設定了一個 ``tests``  測試用資料庫組。你可以透過這個設定指定一個只有在運作測試時才使用的資料庫，以確保你它資料的安全。
 
-If you have multiple developers on your team, you will likely want to keep your credentials stored in
-the **.env** file. To do so, edit the file to ensure the following lines are present and have the
-correct information::
+如果你的團隊中有多個工程師，你可以將屬於你的設定存在 **.env** 檔案中。若想達成這個效果，請編輯檔案並且確認在下面提到的設定確實存在並且擁有正確的資訊：
+
+::
 
     database.tests.dbdriver = 'MySQLi';
     database.tests.username = 'root';
     database.tests.password = '';
     database.tests.database = '';
 
-Migrations and Seeds
+遷移與資料填充
 --------------------
 
-When running tests, you need to ensure that your database has the correct schema set up and that
-it is in a known state for every test. You can use migrations and seeds to set up your database,
-by adding a couple of class properties to your test.
+在運作測試時，你需要確認你的資料庫有正確的 schema （綱目）設定，並且每次測試時都需要確保它處於全知的狀態。你可以透過在測試中添加幾個類別屬性，用於資料庫遷移和資料填充，藉此設定你的資料庫。
+
 ::
 
     <?php namespace App\Database;
@@ -84,39 +81,33 @@ by adding a couple of class properties to your test.
 
 **$refresh**
 
-This boolean value determines whether the database is completely refreshed before every test. If true,
-all migrations are rolled back to version 0, then the database is migrated to the latest available migration.
+這個布林值決定了在每次測時前資料庫是否需要完全初始化，如果為 true ，則所有的遷移都將回歸到 0 版本，資料庫會被遷到你所設定的最新且可用的遷移。
 
 **$seed**
 
-If present and not empty, this specifies the name of a Seed file that is used to populate the database with
-test data prior to every test running.
+如果這個屬性存在且不為 empty （空值），則這個屬性所宣告指定的資料填充檔案，將會在每次運作測試前用於資料庫填充使用。
 
 **$basePath**
 
-By default, CodeIgniter will look in **tests/_support/Database/Seeds** to locate the seeds that it should run during testing.
-You can change this directores by specifying the ``$basePath`` property. This should not include the **seeds** directory,
-but the path to the single directory that holds the sub-directory.
+在預設的情形下， CodeIgniter 將會在 **tests/_support/Database/Seeds** 中查找測試過程中應該執行的資料填充檔案。你可以透過指定 ``$basePath`` 屬性來改變這個預設的目錄。而你所宣告的路徑不應該包括 **seeds** 資料夾，應該包括的是擁有這個子路的單一目錄的路徑。
 
 **$namespace**
 
-By default, CodeIgniter will look in **tests/_support/DatabaseTestMigrations/Database/Migrations** to locate the migrations
-that it should run during testing. You can change this location by specifying a new namespace in the ``$namespace`` properties.
-This should not include the **Database/Migrations** path, just the base namespace.
+在預設的情形下， CodeIgniter 會在 **tests/_support/DatabaseTestMigrations/Database/Migrations** 中查找在測試過程中應該運作的遷移檔案。你可以透過在 ``$namespace`` 屬性中宣告一個新的命名空間來更改這個位置。你所需告的新命名空間不應該包括 **Database/Migrations** 這個路徑，而應該是去除了這些路徑的基本命名空間。
 
-Helper Methods
+輔助方法
 ==============
 
-The **CIDatabaseTestCase** class provides several helper methods to aid in testing your database.
+**CIDatabaseTestCase** 類別提供了幾個輔助方法來幫助你測試你的資料庫。
 
 **seed($name)**
 
-Allows you to manually load a Seed into the database. The only parameter is the name of the seed to run. The seed
-must be present within the path specified in ``$basePath``.
+手動將資料庫填充載入資料庫中。唯一的參數使指你所要運作的資料填充檔案，這個檔案必須存在於 ``$basePath`` 所指定的路徑中。
 
 **dontSeeInDatabase($table, $criteria)**
 
-Asserts that a row with criteria matching the key/value pairs in ``$criteria`` DOES NOT exist in the database.
+假設資料庫中不存在 ``$criteria`` 中所宣告的鍵值陣列所提到的資料。
+
 ::
 
     $criteria = [
@@ -127,7 +118,8 @@ Asserts that a row with criteria matching the key/value pairs in ``$criteria`` D
 
 **seeInDatabase($table, $criteria)**
 
-Asserts that a row with criteria matching the key/value pairs in ``$criteria`` DOES exist in the database.
+假設資料庫中存在著與 ``$criteria`` 所宣告的鍵值陣列相同的一筆資料。
+
 ::
 
     $criteria = [
@@ -138,16 +130,17 @@ Asserts that a row with criteria matching the key/value pairs in ``$criteria`` D
 
 **grabFromDatabase($table, $column, $criteria)**
 
-Returns the value of ``$column`` from the specified table where the row matches ``$criteria``. If more than one
-row is found, it will only test against the first one.
+回傳指定的資料表中 ``$column`` 的值。如果這個值與 ``$criteria`` 提到的相同，則會回傳 ``$column`` 的值。如果這個方法找到了一筆以上的資料，那麼它將只會對第一筆資料進行測試。
+
 ::
+
 
     $username = $this->grabFromDatabase('users', 'username', ['email' => 'joe@example.com']);
 
 **hasInDatabase($table, $data)**
 
-Inserts a new row into the database. This row is removed after the current test runs. ``$data`` is an associative
-array with the data to insert into the table.
+在資料庫中插入一條新的資料，這筆資料將會在測試運作完畢後被刪除。 ``$data`` 是一個鍵值陣列，這其中包含著你需要插入置資料表中資料。
+
 ::
 
     $data = [
@@ -158,11 +151,11 @@ array with the data to insert into the table.
 
 **seeNumRecords($expected, $table, $criteria)**
 
-Asserts that a number of matching rows are found in the database that match ``$criteria``.
+斷言在資料庫中擁有與 ``$criteria`` 相符的資料。
+
 ::
 
     $criteria = [
         'active' => 1
     ];
     $this->seeNumRecords(2, 'users', $criteria);
-
