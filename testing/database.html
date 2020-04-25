@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Testing Your Database &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>資料庫測試 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Testing Controllers" href="controllers.html" />
-    <link rel="prev" title="Testing" href="overview.html" /> 
+    <link rel="next" title="控制器測試" href="controllers.html" />
+    <link rel="prev" title="入門" href="overview.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -246,13 +246,13 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Testing</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="overview.html">Getting Started</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controllers.html">Controller Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Benchmarking</a></li>
-<li class="toctree-l2"><a class="reference internal" href="debugging.html">Debugging Your Application</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">測試</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">入門</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">控制器測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基準測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugging.html">偵錯與除錯應用程式</a></li>
 </ul>
 </li>
 </ul>
@@ -320,9 +320,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Testing</a> &raquo;</li>
+          <li><a href="index.html">測試</a> &raquo;</li>
         
-      <li>Testing Your Database</li>
+      <li>資料庫測試</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,22 +339,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="testing-your-database">
-<h1>Testing Your Database<a class="headerlink" href="#testing-your-database" title="本標題的永久連結">¶</a></h1>
-<div class="contents local topic" id="id1">
+  <div class="section" id="id1">
+<h1>資料庫測試<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#the-test-class" id="id2">The Test Class</a></li>
-<li><a class="reference internal" href="#setting-up-a-test-database" id="id3">Setting Up a Test Database</a><ul>
-<li><a class="reference internal" href="#migrations-and-seeds" id="id4">Migrations and Seeds</a></li>
+<li><a class="reference internal" href="#id3" id="id7">建立一個測試類別</a></li>
+<li><a class="reference internal" href="#id4" id="id8">建立一個測試用資料庫</a><ul>
+<li><a class="reference internal" href="#id5" id="id9">遷移與資料填充</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#helper-methods" id="id5">Helper Methods</a></li>
+<li><a class="reference internal" href="#id6" id="id10">輔助方法</a></li>
 </ul>
 </div>
-<div class="section" id="the-test-class">
-<h2><a class="toc-backref" href="#id2">The Test Class</a><a class="headerlink" href="#the-test-class" title="本標題的永久連結">¶</a></h2>
-<p>In order to take advantage of the built-in database tools that CodeIgniter provides for testing, your
-tests must extend <code class="docutils literal notranslate"><span class="pre">CIDatabaseTestCase</span></code>:</p>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id7">建立一個測試類別</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>為了利用 CodeIgniter 提供的內建資料庫工具進行測試，你的測試類別必須繼承 <code class="docutils literal notranslate"><span class="pre">CIDatabaseTestCase</span></code> ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Database</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Test\CIDatabaseTestCase</span><span class="p">;</span>
@@ -365,9 +364,7 @@ tests must extend <code class="docutils literal notranslate"><span class="pre">C
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Because special functionality executed during the <code class="docutils literal notranslate"><span class="pre">setUp()</span></code> and <code class="docutils literal notranslate"><span class="pre">tearDown()</span></code> phases, you must ensure
-that you call the parent’s methods if you need to use those methods, otherwise you will lose much
-of the functionality described here:</p>
+<p>因為大多數的特殊功能是在 <code class="docutils literal notranslate"><span class="pre">setUp()</span></code> 與 <code class="docutils literal notranslate"><span class="pre">tearDown()</span></code> 階段執行的，所以你必須確定在使用某些方法前呼叫了父類別的方法，否則你將無法實作這一章所描述的大部分功能：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Database</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Test\CIDatabaseTestCase</span><span class="p">;</span>
@@ -391,26 +388,19 @@ of the functionality described here:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="setting-up-a-test-database">
-<h2><a class="toc-backref" href="#id3">Setting Up a Test Database</a><a class="headerlink" href="#setting-up-a-test-database" title="本標題的永久連結">¶</a></h2>
-<p>When running database tests, you need to provide a database that can be used during testing. Instead of
-using the PHPUnit built-in database features, the framework provides tools specific to CodeIgniter. The first
-step is to ensure that you have set up a <code class="docutils literal notranslate"><span class="pre">tests</span></code> database group in <strong>app/Config/Database.php</strong>.
-This specifies a database connection that is only used while running tests, to keep your other data safe.</p>
-<p>If you have multiple developers on your team, you will likely want to keep your credentials stored in
-the <strong>.env</strong> file. To do so, edit the file to ensure the following lines are present and have the
-correct information:</p>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id8">建立一個測試用資料庫</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<p>在運作資料庫測試時，需要提供一個可以在測試時使用的資料庫。而測試用資料庫 CodeIgniter 框架提供了特別的工具，你不需要使用 PHPUnit 內建的資料庫功能。第一步，請確認你已經在  <strong>app/Config/Database.php</strong> 設定檔案中設定了一個 <code class="docutils literal notranslate"><span class="pre">tests</span></code>  測試用資料庫組。你可以透過這個設定指定一個只有在運作測試時才使用的資料庫，以確保你它資料的安全。</p>
+<p>如果你的團隊中有多個工程師，你可以將屬於你的設定存在 <strong>.env</strong> 檔案中。若想達成這個效果，請編輯檔案並且確認在下面提到的設定確實存在並且擁有正確的資訊：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">database</span><span class="o">.</span><span class="nx">tests</span><span class="o">.</span><span class="nx">dbdriver</span> <span class="o">=</span> <span class="s1">&#39;MySQLi&#39;</span><span class="p">;</span>
 <span class="nx">database</span><span class="o">.</span><span class="nx">tests</span><span class="o">.</span><span class="nx">username</span> <span class="o">=</span> <span class="s1">&#39;root&#39;</span><span class="p">;</span>
 <span class="nx">database</span><span class="o">.</span><span class="nx">tests</span><span class="o">.</span><span class="nx">password</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
 <span class="nx">database</span><span class="o">.</span><span class="nx">tests</span><span class="o">.</span><span class="nx">database</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-<div class="section" id="migrations-and-seeds">
-<h3><a class="toc-backref" href="#id4">Migrations and Seeds</a><a class="headerlink" href="#migrations-and-seeds" title="本標題的永久連結">¶</a></h3>
-<p>When running tests, you need to ensure that your database has the correct schema set up and that
-it is in a known state for every test. You can use migrations and seeds to set up your database,
-by adding a couple of class properties to your test.</p>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id9">遷移與資料填充</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
+<p>在運作測試時，你需要確認你的資料庫有正確的 schema （綱目）設定，並且每次測試時都需要確保它處於全知的狀態。你可以透過在測試中添加幾個類別屬性，用於資料庫遷移和資料填充，藉此設定你的資料庫。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Database</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Test\CIDatabaseTestCase</span><span class="p">;</span>
@@ -424,29 +414,22 @@ by adding a couple of class properties to your test.</p>
 </pre></div>
 </div>
 <p><strong>$refresh</strong></p>
-<p>This boolean value determines whether the database is completely refreshed before every test. If true,
-all migrations are rolled back to version 0, then the database is migrated to the latest available migration.</p>
+<p>這個布林值決定了在每次測時前資料庫是否需要完全初始化，如果為 true ，則所有的遷移都將回歸到 0 版本，資料庫會被遷到你所設定的最新且可用的遷移。</p>
 <p><strong>$seed</strong></p>
-<p>If present and not empty, this specifies the name of a Seed file that is used to populate the database with
-test data prior to every test running.</p>
+<p>如果這個屬性存在且不為 empty （空值），則這個屬性所宣告指定的資料填充檔案，將會在每次運作測試前用於資料庫填充使用。</p>
 <p><strong>$basePath</strong></p>
-<p>By default, CodeIgniter will look in <strong>tests/_support/Database/Seeds</strong> to locate the seeds that it should run during testing.
-You can change this directores by specifying the <code class="docutils literal notranslate"><span class="pre">$basePath</span></code> property. This should not include the <strong>seeds</strong> directory,
-but the path to the single directory that holds the sub-directory.</p>
+<p>在預設的情形下， CodeIgniter 將會在 <strong>tests/_support/Database/Seeds</strong> 中查找測試過程中應該執行的資料填充檔案。你可以透過指定 <code class="docutils literal notranslate"><span class="pre">$basePath</span></code> 屬性來改變這個預設的目錄。而你所宣告的路徑不應該包括 <strong>seeds</strong> 資料夾，應該包括的是擁有這個子路的單一目錄的路徑。</p>
 <p><strong>$namespace</strong></p>
-<p>By default, CodeIgniter will look in <strong>tests/_support/DatabaseTestMigrations/Database/Migrations</strong> to locate the migrations
-that it should run during testing. You can change this location by specifying a new namespace in the <code class="docutils literal notranslate"><span class="pre">$namespace</span></code> properties.
-This should not include the <strong>Database/Migrations</strong> path, just the base namespace.</p>
+<p>在預設的情形下， CodeIgniter 會在 <strong>tests/_support/DatabaseTestMigrations/Database/Migrations</strong> 中查找在測試過程中應該運作的遷移檔案。你可以透過在 <code class="docutils literal notranslate"><span class="pre">$namespace</span></code> 屬性中宣告一個新的命名空間來更改這個位置。你所需告的新命名空間不應該包括 <strong>Database/Migrations</strong> 這個路徑，而應該是去除了這些路徑的基本命名空間。</p>
 </div>
 </div>
-<div class="section" id="helper-methods">
-<h2><a class="toc-backref" href="#id5">Helper Methods</a><a class="headerlink" href="#helper-methods" title="本標題的永久連結">¶</a></h2>
-<p>The <strong>CIDatabaseTestCase</strong> class provides several helper methods to aid in testing your database.</p>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id10">輔助方法</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
+<p><strong>CIDatabaseTestCase</strong> 類別提供了幾個輔助方法來幫助你測試你的資料庫。</p>
 <p><strong>seed($name)</strong></p>
-<p>Allows you to manually load a Seed into the database. The only parameter is the name of the seed to run. The seed
-must be present within the path specified in <code class="docutils literal notranslate"><span class="pre">$basePath</span></code>.</p>
+<p>手動將資料庫填充載入資料庫中。唯一的參數使指你所要運作的資料填充檔案，這個檔案必須存在於 <code class="docutils literal notranslate"><span class="pre">$basePath</span></code> 所指定的路徑中。</p>
 <p><strong>dontSeeInDatabase($table, $criteria)</strong></p>
-<p>Asserts that a row with criteria matching the key/value pairs in <code class="docutils literal notranslate"><span class="pre">$criteria</span></code> DOES NOT exist in the database.</p>
+<p>假設資料庫中不存在 <code class="docutils literal notranslate"><span class="pre">$criteria</span></code> 中所宣告的鍵值陣列所提到的資料。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$criteria</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;email&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;joe@example.com&#39;</span><span class="p">,</span>
     <span class="s1">&#39;active&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span>
@@ -455,7 +438,7 @@ must be present within the path specified in <code class="docutils literal notra
 </pre></div>
 </div>
 <p><strong>seeInDatabase($table, $criteria)</strong></p>
-<p>Asserts that a row with criteria matching the key/value pairs in <code class="docutils literal notranslate"><span class="pre">$criteria</span></code> DOES exist in the database.</p>
+<p>假設資料庫中存在著與 <code class="docutils literal notranslate"><span class="pre">$criteria</span></code> 所宣告的鍵值陣列相同的一筆資料。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$criteria</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;email&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;joe@example.com&#39;</span><span class="p">,</span>
     <span class="s1">&#39;active&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span>
@@ -464,14 +447,12 @@ must be present within the path specified in <code class="docutils literal notra
 </pre></div>
 </div>
 <p><strong>grabFromDatabase($table, $column, $criteria)</strong></p>
-<p>Returns the value of <code class="docutils literal notranslate"><span class="pre">$column</span></code> from the specified table where the row matches <code class="docutils literal notranslate"><span class="pre">$criteria</span></code>. If more than one
-row is found, it will only test against the first one.</p>
+<p>回傳指定的資料表中 <code class="docutils literal notranslate"><span class="pre">$column</span></code> 的值。如果這個值與 <code class="docutils literal notranslate"><span class="pre">$criteria</span></code> 提到的相同，則會回傳 <code class="docutils literal notranslate"><span class="pre">$column</span></code> 的值。如果這個方法找到了一筆以上的資料，那麼它將只會對第一筆資料進行測試。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$username</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">grabFromDatabase</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;joe@example.com&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
 <p><strong>hasInDatabase($table, $data)</strong></p>
-<p>Inserts a new row into the database. This row is removed after the current test runs. <code class="docutils literal notranslate"><span class="pre">$data</span></code> is an associative
-array with the data to insert into the table.</p>
+<p>在資料庫中插入一條新的資料，這筆資料將會在測試運作完畢後被刪除。 <code class="docutils literal notranslate"><span class="pre">$data</span></code> 是一個鍵值陣列，這其中包含著你需要插入置資料表中資料。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;joe@example.com&#39;</span><span class="p">,</span>
     <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Joe Cool&#39;</span>
@@ -480,7 +461,7 @@ array with the data to insert into the table.</p>
 </pre></div>
 </div>
 <p><strong>seeNumRecords($expected, $table, $criteria)</strong></p>
-<p>Asserts that a number of matching rows are found in the database that match <code class="docutils literal notranslate"><span class="pre">$criteria</span></code>.</p>
+<p>斷言在資料庫中擁有與 <code class="docutils literal notranslate"><span class="pre">$criteria</span></code> 相符的資料。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$criteria</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;active&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span>
 <span class="p">];</span>
@@ -498,10 +479,10 @@ array with the data to insert into the table.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="controllers.html" class="btn btn-neutral float-right" title="Testing Controllers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="controllers.html" class="btn btn-neutral float-right" title="控制器測試" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="overview.html" class="btn btn-neutral float-left" title="Testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="overview.html" class="btn btn-neutral float-left" title="入門" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -512,7 +493,7 @@ array with the data to insert into the table.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月21日。
+        最後更新於 2020年04月25日。
       </span>
 
     </p>

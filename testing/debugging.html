@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Debugging Your Application &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>偵錯與除錯應用程式 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -41,7 +41,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Command Line Usage" href="../cli/index.html" />
-    <link rel="prev" title="Benchmarking" href="benchmark.html" /> 
+    <link rel="prev" title="基準測試" href="benchmark.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -246,13 +246,13 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Testing</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="overview.html">Getting Started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="database.html">Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controllers.html">Controller Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Benchmarking</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Debugging Your Application</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">測試</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">入門</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">控制器測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基準測試</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">偵錯與除錯應用程式</a></li>
 </ul>
 </li>
 </ul>
@@ -320,9 +320,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Testing</a> &raquo;</li>
+          <li><a href="index.html">測試</a> &raquo;</li>
         
-      <li>Debugging Your Application</li>
+      <li>偵錯與除錯應用程式</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,78 +339,64 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="debugging-your-application">
-<h1>Debugging Your Application<a class="headerlink" href="#debugging-your-application" title="本標題的永久連結">¶</a></h1>
-<div class="contents local topic" id="id1">
+  <div class="section" id="id1">
+<h1>偵錯與除錯應用程式<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#replace-var-dump" id="id2">Replace var_dump</a><ul>
-<li><a class="reference internal" href="#enabling-kint" id="id3">Enabling Kint</a></li>
-<li><a class="reference internal" href="#using-kint" id="id4">Using Kint</a></li>
+<li><a class="reference internal" href="#var-dump" id="id13">替換 var_dump</a><ul>
+<li><a class="reference internal" href="#id3" id="id14">啟用 Kint</a></li>
+<li><a class="reference internal" href="#id4" id="id15">使用 Kint</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#the-debug-toolbar" id="id5">The Debug Toolbar</a><ul>
-<li><a class="reference internal" href="#enabling-the-toolbar" id="id6">Enabling the Toolbar</a></li>
-<li><a class="reference internal" href="#setting-benchmark-points" id="id7">Setting Benchmark Points</a></li>
-<li><a class="reference internal" href="#creating-custom-collectors" id="id8">Creating Custom Collectors</a></li>
+<li><a class="reference internal" href="#id5" id="id16">除錯工具列</a><ul>
+<li><a class="reference internal" href="#id6" id="id17">啟動工具列</a></li>
+<li><a class="reference internal" href="#id8" id="id18">設定基準測試點</a></li>
+<li><a class="reference internal" href="#id9" id="id19">創建自訂蒐集器</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="section" id="replace-var-dump">
-<h2><a class="toc-backref" href="#id2">Replace var_dump</a><a class="headerlink" href="#replace-var-dump" title="本標題的永久連結">¶</a></h2>
-<p>While using XDebug and a good IDE can be indispensable to debug your application, sometimes a quick <code class="docutils literal notranslate"><span class="pre">var_dump()</span></code> is
-all you need. CodeIgniter makes that even better by bundling in the excellent <a class="reference external" href="https://kint-php.github.io/kint/">Kint</a>
-debugging tool for PHP. This goes way beyond your usual tool, providing many alternate pieces of data, like formatting
-timestamps into recognizable dates, showing you hexcodes as colors, display array data like a table for easy reading,
-and much, much more.</p>
-<div class="section" id="enabling-kint">
-<h3><a class="toc-backref" href="#id3">Enabling Kint</a><a class="headerlink" href="#enabling-kint" title="本標題的永久連結">¶</a></h3>
-<p>By default, Kint is enabled in <strong>development</strong> and <strong>testing</strong> environments only. This can be altered by modifying
-the <code class="docutils literal notranslate"><span class="pre">$useKint</span></code> value in the environment configuration section of the main <strong>index.php</strong> file:</p>
+<div class="section" id="var-dump">
+<h2><a class="toc-backref" href="#id13">替換 var_dump</a><a class="headerlink" href="#var-dump" title="本標題的永久連結">¶</a></h2>
+<p>雖然在替你的應用程式除錯上使用 XDebug 與良好的 IDE 是不可或缺的，但有的時候敏捷的 <code class="docutils literal notranslate"><span class="pre">var_dump()</span></code> 可能更適合你。 CodeIgniter 同捆了優秀的 <a class="reference external" href="https://kint-php.github.io/kint/">Kint</a> 偵錯工具，這將使 CodeIgniter 變得更好。 Kint 遠遠超出了你所使用的常用工具，它提供了許多替代資料，比如：將時間戳格式化成可以被識別的日期、將十六進位色碼顯示為顏色，或是讓陣列資料輸出成表格型態使你方便閱讀，等等的眾多功能。</p>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id14">啟用 Kint</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h3>
+<p>在預設的情形下， Kint 僅在 <strong>開發</strong> 與 <strong>測試</strong> 環境下得以開啟。你可以透過修改 index.php 主檔案的環境設定部分中的 <code class="docutils literal notranslate"><span class="pre">$useKint</span></code> 變數來開啟 Kint 。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$useKint</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="using-kint">
-<h3><a class="toc-backref" href="#id4">Using Kint</a><a class="headerlink" href="#using-kint" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id15">使用 Kint</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
 <p><strong>d()</strong></p>
-<p>The <code class="docutils literal notranslate"><span class="pre">d()</span></code> method dumps all of the data it knows about the contents passed as the only parameter to the screen, and
-allows the script to continue executing:</p>
+<p><code class="docutils literal notranslate"><span class="pre">d()</span></code> 方法將會把你所傳入的資料傳遞到螢幕上，並且允許腳本繼續執行。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">d</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>dd()</strong></p>
-<p>This method is identical to <code class="docutils literal notranslate"><span class="pre">d()</span></code>, except that it also <code class="docutils literal notranslate"><span class="pre">dies()</span></code> and no further code is executed this request.</p>
+<p>這個方法與 <code class="docutils literal notranslate"><span class="pre">d()</span></code> 相同，它也同樣等於 <code class="docutils literal notranslate"><span class="pre">dies()</span></code> 。執行完這個行程式，後續的程式碼將不會繼續執行。</p>
 <p><strong>trace()</strong></p>
-<p>This provides a backtrace to the current execution point, with Kint’s own unique spin:</p>
+<p>透過 Kint 獨特的 spin 功能，你可以回朔到當前的執行點：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">trace</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>For more information, see <a class="reference external" href="https://kint-php.github.io/kint//">Kint’s page</a>.</p>
+<p>欲知更多請參閱 <a class="reference external" href="https://kint-php.github.io/kint//">Kint 的 git 頁面</a> 。</p>
 </div>
 </div>
-<div class="section" id="the-debug-toolbar">
-<h2><a class="toc-backref" href="#id5">The Debug Toolbar</a><a class="headerlink" href="#the-debug-toolbar" title="本標題的永久連結">¶</a></h2>
-<p>The Debug Toolbar provides at-a-glance information about the current page request, including benchmark results,
-queries you have run, request and response data, and more. This can all prove very useful during development
-to help you debug and optimize.</p>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id16">除錯工具列</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<p>除錯工具列提供了關於當下所請求的頁面一目瞭然的訊息，包括基準測試的結果、已運作的資料庫查詢、請求，以及響應資料等。這些在你的開發階段都會非常有用，可以幫助你除錯與最佳化。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">The Debug Toolbar is still under construction with several planned features not yet implemented.</p>
+<p class="last">除錯工具列目前仍在開發中，尚有幾個計畫中的功能還未能實現。</p>
 </div>
-<div class="section" id="enabling-the-toolbar">
-<h3><a class="toc-backref" href="#id6">Enabling the Toolbar</a><a class="headerlink" href="#enabling-the-toolbar" title="本標題的永久連結">¶</a></h3>
-<p>The toolbar is enabled by default in any environment <em>except</em> production. It will be shown whenever the
-constant CI_DEBUG is defined and it’s value is positive. This is defined in the boot files (i.e.
-app/Config/Boot/development.php) and can be modified there to determine what environments it shows
-itself in.</p>
-<p>The toolbar itself is displayed as an <a class="reference internal" href="../incoming/filters.html"><span class="doc">After Filter</span></a>. You can stop it from ever
-running by removing it from the <code class="docutils literal notranslate"><span class="pre">$globals</span></code> property of <strong>app/Config/Filters.php</strong>.</p>
-<div class="section" id="choosing-what-to-show">
-<h4>Choosing What to Show<a class="headerlink" href="#choosing-what-to-show" title="本標題的永久連結">¶</a></h4>
-<p>CodeIgniter ships with several Collectors that, as the name implies, collect data to display on the toolbar. You
-can easily make your own to customize the toolbar. To determine which collectors are shown, again head over to
-the <strong>app/Config/Toolbar.php</strong> configuration file:</p>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id17">啟動工具列</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
+<p>在 <em>除了</em> 上線環境外的任何環境，這個工具列都是預設啟動的。只要定義了 CI_DEBUG 常數值為 true ，工具列就會顯示。這個常數是在啟動檔案中宣告的（ app/Config/Boot/development.php ），可以在啟動檔案中宣告它會在甚麼環境下進行顯示。</p>
+<p>工具列本身是以 <a class="reference internal" href="../incoming/filters.html"><span class="doc">後濾器</span></a> 的形式顯示，你可以透過從 <strong>app/Config/Filters.php</strong> 檔案中刪除 <code class="docutils literal notranslate"><span class="pre">$globals</span></code> 這個屬性來阻止它的運作。</p>
+<div class="section" id="id7">
+<h4>選擇顯示內容<a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h4>
+<p>CodeIgniter 內建多個蒐集器，用於蒐集資料並顯示在工具列上頭。你可以輕易地製作自己的工具列來個自訂工具列。要確定哪些蒐集器目前是被顯示的，你可以前往 <strong>app/Config/Toolbar.php</strong> 組態設定檔案：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$collectors</span> <span class="o">=</span> <span class="p">[</span>
         <span class="nx">\CodeIgniter\Debug\Toolbar\Collectors\Timers</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
         <span class="nx">\CodeIgniter\Debug\Toolbar\Collectors\Database</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
@@ -423,38 +409,32 @@ the <strong>app/Config/Toolbar.php</strong> configuration file:</p>
 <span class="p">];</span>
 </pre></div>
 </div>
-<p>Comment out any collectors that you do not want to show. Add custom Collectors here by providing the fully-qualified
-class name. The exact collectors that appear here will affect which tabs are shown, as well as what information is
-shown on the Timeline.</p>
+<p>若是有你不想顯示的蒐集器，註解掉它即可。你可以透過完全符合要求的類別名稱來加入自定義的蒐集器，接著我們將告訴你蒐集器會影響到標籤頁以及時間軸上顯示的訊息是哪些。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">Some tabs, like Database and Logs, will only display when they have content to show. Otherwise, they
-are removed to help out on smaller displays.</p>
+<p class="last">有些標籤頁只在他們具有內容時才會被顯示出來，比如說資料庫與日誌檔案。否則，他們將從螢幕上被隱藏，已換取更多的顯示空間。</p>
 </div>
-<p>The Collectors that ship with CodeIgniter are:</p>
+<p>CodeIgniter 所內建的蒐集器為：</p>
 <ul class="simple">
-<li><strong>Timers</strong> collects all of the benchmark data, both by the system and by your application.</li>
-<li><strong>Database</strong> Displays a list of queries that all database connections have performed, and their execution time.</li>
-<li><strong>Logs</strong> Any information that was logged will be displayed here. In long-running systems, or systems with many items being logged, this can cause memory issues and should be disabled.</li>
-<li><strong>Views</strong> Displays render time for views on the timeline, and shows any data passed to the views on a separate tab.</li>
-<li><strong>Cache</strong> Will display information about cache hits and misses, and execution times.</li>
-<li><strong>Files</strong> displays a list of all files that have been loaded during this request.</li>
-<li><strong>Routes</strong> displays information about the current route and all routes defined in the system.</li>
-<li><strong>Events</strong> displays a list of all events that have been loaded during this request.</li>
+<li><strong>計時器</strong> 蒐集所有基準測試的資料，包括系統以及你的應用程式。</li>
+<li><strong>資料庫</strong> 顯示所有資料庫連接所執行的查詢列表，以及它們所執行的時間。</li>
+<li><strong>日誌</strong> 任何被記錄的訊息都會在這裡顯示，在長期運作或記錄許多項目的系統中，可能會造成記憶體問題，這個功能應該要禁用。</li>
+<li><strong>視圖</strong> 將渲染視圖的時間顯示於時間軸上，並且在單獨的標籤頁中顯示傳遞給視圖的所有資料。</li>
+<li><strong>快取</strong> 將顯示有關快取命中與未命中的訊息，以及執行時間。</li>
+<li><strong>檔案</strong> 顯示在這個請求期間已載入的所有檔案列表。</li>
+<li><strong>路由</strong> 顯示目前的路由和系統中定義的所有路由的相關訊息。</li>
+<li><strong>事件</strong> 顯示在當下的請求期間載入所有事件的列表。</li>
 </ul>
 </div>
 </div>
-<div class="section" id="setting-benchmark-points">
-<h3><a class="toc-backref" href="#id7">Setting Benchmark Points</a><a class="headerlink" href="#setting-benchmark-points" title="本標題的永久連結">¶</a></h3>
-<p>In order for the Profiler to compile and display your benchmark data you must name your mark points using specific syntax.</p>
-<p>Please read the information on setting Benchmark points in the <a class="reference internal" href="benchmark.html"><span class="doc">Benchmark Library</span></a> page.</p>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id18">設定基準測試點</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
+<p>為了讓分析工具編譯和顯示你的基準測試資料，你必須使用特定的語法來命名你的標記點。</p>
+<p>請閱讀 <a class="reference internal" href="benchmark.html"><span class="doc">基準測試程式庫</span></a> 頁面中關於設定基準測試點的資訊。</p>
 </div>
-<div class="section" id="creating-custom-collectors">
-<h3><a class="toc-backref" href="#id8">Creating Custom Collectors</a><a class="headerlink" href="#creating-custom-collectors" title="本標題的永久連結">¶</a></h3>
-<p>Creating custom collectors is a straightforward task. You create a new class, fully-namespaced so that the autoloader
-can locate it, that extends <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Debug\Toolbar\Collectors\BaseCollector</span></code>. This provides a number of methods
-that you can override, and has four required class properties that you must correctly set depending on how you want
-the Collector to work</p>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id19">創建自訂蒐集器</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h3>
+<p>創建自定蒐集器是一個簡單的任務，你得創建一個新的類別，並以完整的命名空間命名，自動載入器才能夠找到它。它繼承了 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Debug\Toolbar\Collectors\BaseCollector</span></code> 類別，這個類別提供了許多你可以置換的方法，你必須根據你預想的工作方式來正確設定這些屬性。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">MyNamespace</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Debug\Toolbar\Collectors\BaseCollector</span><span class="p">;</span>
@@ -471,58 +451,47 @@ the Collector to work</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>$hasTimeline</strong> should be set to <code class="docutils literal notranslate"><span class="pre">true</span></code> for any Collector that wants to display information in the toolbar’s
-timeline. If this is true, you will need to implement the <code class="docutils literal notranslate"><span class="pre">formatTimelineData()</span></code> method to format and return the
-data for display.</p>
-<p><strong>$hasTabContent</strong> should be <code class="docutils literal notranslate"><span class="pre">true</span></code> if the Collector wants to display its own tab with custom content. If this
-is true, you will need to provide a <code class="docutils literal notranslate"><span class="pre">$title</span></code>, implement the <code class="docutils literal notranslate"><span class="pre">display()</span></code> method to render out tab’s contents,
-and might need to implement the <code class="docutils literal notranslate"><span class="pre">getTitleDetails()</span></code> method if you want to display additional information just
-to the right of the tab content’s title.</p>
-<p><strong>$hasVarData</strong> should be <code class="docutils literal notranslate"><span class="pre">true</span></code> if this Collector wants to add additional data to the <code class="docutils literal notranslate"><span class="pre">Vars</span></code> tab. If this
-is true, you will need to implement the <code class="docutils literal notranslate"><span class="pre">getVarData()</span></code> method.</p>
-<p><strong>$title</strong> is displayed on open tabs.</p>
-<div class="section" id="displaying-a-toolbar-tab">
-<h4>Displaying a Toolbar Tab<a class="headerlink" href="#displaying-a-toolbar-tab" title="本標題的永久連結">¶</a></h4>
-<p>To display a toolbar tab you must:</p>
+<p>對於任何想要在工具列的時間軸中顯示訊息的蒐集器， <strong>$hasTimeline</strong>  應該設定為 <code class="docutils literal notranslate"><span class="pre">true</span></code> 。如果為 <code class="docutils literal notranslate"><span class="pre">true</span></code> 則你需要實作 <code class="docutils literal notranslate"><span class="pre">formatTimelineData()</span></code> 方法來格式化並回傳資料進行顯示。</p>
+<p>如果蒐集器想使用自訂的內容並顯示自己的標籤頁，<strong>$hasTabContent</strong> 應該要為 <code class="docutils literal notranslate"><span class="pre">true</span></code> 。你需要提供 <code class="docutils literal notranslate"><span class="pre">$title</span></code> ，實作 <code class="docutils literal notranslate"><span class="pre">display()</span></code> 方法來渲染出標籤的內如容。如果你想在標籤內容的標題右方顯示額外訊息，你可能需要實作出 <code class="docutils literal notranslate"><span class="pre">getTitleDetails()</span></code> 方法。</p>
+<p>如果這個蒐集器想要把額外的資料加入到 <code class="docutils literal notranslate"><span class="pre">Vars</span></code> 標籤中， <strong>$hasVarData</strong> 必須為 <code class="docutils literal notranslate"><span class="pre">true</span></code> 。如果為 true ，則需要實作 <code class="docutils literal notranslate"><span class="pre">getVarData()</span></code> 方法。</p>
+<p><strong>$title</strong> 定義的是顯示在標籤上的標題。</p>
+<div class="section" id="id10">
+<h4>顯示工具列標籤<a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h4>
+<p>若想顯示一個工具列標籤，你必須：</p>
 <ol class="arabic simple">
-<li>Fill in <code class="docutils literal notranslate"><span class="pre">$title</span></code> with the text displayed as both the toolbar title and the tab header.</li>
-<li>Set <code class="docutils literal notranslate"><span class="pre">$hasTabContent</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</li>
-<li>Implement the <code class="docutils literal notranslate"><span class="pre">display()</span></code> method.</li>
-<li>Optionally, implement the <code class="docutils literal notranslate"><span class="pre">getTitleDetails()</span></code> method.</li>
+<li>在 <code class="docutils literal notranslate"><span class="pre">$title</span></code> 中填寫作為工具列標題以及標籤 header 的文字。</li>
+<li>設定 <code class="docutils literal notranslate"><span class="pre">$hasTabContent</span></code> 為 <code class="docutils literal notranslate"><span class="pre">true</span></code> 。</li>
+<li>實作 <code class="docutils literal notranslate"><span class="pre">display()</span></code> 方法。</li>
+<li>實作 <code class="docutils literal notranslate"><span class="pre">getTitleDetails()</span></code> 方法（這是可選的）。</li>
 </ol>
-<p>The <code class="docutils literal notranslate"><span class="pre">display()</span></code> creates the HTML that is displayed within the tab itself. It does not need to worry about
-the title of the tab, as that is automatically handled by the toolbar. It should return a string of HTML.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">getTitleDetails()</span></code> method should return a string that is displayed just to the right of the tab’s title.
-it can be used to provide additional overview information. For example, the Database tab displays the total
-number of queries across all connections, while the Files tab displays the total number of files.</p>
+<p><code class="docutils literal notranslate"><span class="pre">display()</span></code> 創建了在標籤頁中顯示的 HTML 。你不需要擔心標籤頁的標題，因為這是由工具列自動處理的。這個方法應該要回傳一個 HTML 字串。</p>
+<p><code class="docutils literal notranslate"><span class="pre">getTitleDetails()</span></code> 方法應該回傳一個字串，這是顯示在標籤標題右方的字串。例如：資料庫標籤顯示的是所有連接的查詢總數，而檔案標籤顯示的是檔案總數的文字內容。</p>
 </div>
-<div class="section" id="providing-timeline-data">
-<h4>Providing Timeline Data<a class="headerlink" href="#providing-timeline-data" title="本標題的永久連結">¶</a></h4>
-<p>To provide information to be displayed in the Timeline you must:</p>
+<div class="section" id="id11">
+<h4>提供時間軸資料<a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h4>
+<p>若想提供需要在時間軸中顯示的訊息，你必須：</p>
 <ol class="arabic simple">
-<li>Set <code class="docutils literal notranslate"><span class="pre">$hasTimeline</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</li>
-<li>Implement the <code class="docutils literal notranslate"><span class="pre">formatTimelineData()</span></code> method.</li>
+<li>設定 <code class="docutils literal notranslate"><span class="pre">$hasTimeline</span></code> 為 <code class="docutils literal notranslate"><span class="pre">true</span></code> 。</li>
+<li>實作 <code class="docutils literal notranslate"><span class="pre">formatTimelineData()</span></code> 方法。</li>
 </ol>
-<p>The <code class="docutils literal notranslate"><span class="pre">formatTimelineData()</span></code> method must return an array of arrays formatted in a way that the timeline can use
-it to sort it correctly and display the correct information. The inner arrays must include the following information:</p>
+<p><code class="docutils literal notranslate"><span class="pre">formatTimelineData()</span></code> 方法必須回傳一個含有陣列的陣列，其格式化的方式必須使用時間軸可以正確排序的方式記錄，內部陣列必須包含以下資訊：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;name&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>     <span class="c1">// Name displayed on the left of the timeline</span>
-        <span class="s1">&#39;component&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>     <span class="c1">// Name of the Component listed in the middle of timeline</span>
-        <span class="s1">&#39;start&#39;</span>     <span class="o">=&gt;</span> <span class="mf">0.00</span><span class="p">,</span>   <span class="c1">// start time, like microtime(true)</span>
-        <span class="s1">&#39;duration&#39;</span>  <span class="o">=&gt;</span> <span class="mf">0.00</span>    <span class="c1">// duration, like mircrotime(true) - microtime(true)</span>
+        <span class="s1">&#39;name&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>     <span class="c1">// 時間軸左側顯示的名稱</span>
+        <span class="s1">&#39;component&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>     <span class="c1">// 時間軸中間列出的組件名稱</span>
+        <span class="s1">&#39;start&#39;</span>     <span class="o">=&gt;</span> <span class="mf">0.00</span><span class="p">,</span>   <span class="c1">// 開始時間，如： microtime(true)</span>
+        <span class="s1">&#39;duration&#39;</span>  <span class="o">=&gt;</span> <span class="mf">0.00</span>    <span class="c1">// 持續時間，如： mircrotime(true) - microtime(true)</span>
 <span class="p">];</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="providing-vars">
-<h4>Providing Vars<a class="headerlink" href="#providing-vars" title="本標題的永久連結">¶</a></h4>
-<p>To add data to the Vars tab you must:</p>
+<div class="section" id="id12">
+<h4>提供變數<a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h4>
+<p>若想將資料加入到 Vars 標籤中，你必須：</p>
 <ol class="arabic simple">
-<li>Set <code class="docutils literal notranslate"><span class="pre">$hasVarData</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code></li>
-<li>Implement <code class="docutils literal notranslate"><span class="pre">getVarData()</span></code> method.</li>
+<li>設定 <code class="docutils literal notranslate"><span class="pre">$hasVarData</span></code> 為 <code class="docutils literal notranslate"><span class="pre">true</span></code> 。</li>
+<li>實現 <code class="docutils literal notranslate"><span class="pre">getVarData()</span></code> 方法。</li>
 </ol>
-<p>The <code class="docutils literal notranslate"><span class="pre">getVarData()</span></code> method should return an array containing arrays of key/value pairs to display. The name of the
-outer array’s key is the name of the section on the Vars tab:</p>
+<p><code class="docutils literal notranslate"><span class="pre">getVarData()</span></code> 方法應該要回傳一個包含所要顯示的資訊的鍵值陣列，外部陣列的鍵名是 Vars 標籤的部分名稱：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;section 1&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
             <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
@@ -551,7 +520,7 @@ outer array’s key is the name of the section on the Vars tab:</p>
         <a href="../cli/index.html" class="btn btn-neutral float-right" title="Command Line Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="benchmark.html" class="btn btn-neutral float-left" title="Benchmarking" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="benchmark.html" class="btn btn-neutral float-left" title="基準測試" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -562,7 +531,7 @@ outer array’s key is the name of the section on the Vars tab:</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月21日。
+        最後更新於 2020年04月25日。
       </span>
 
     </p>

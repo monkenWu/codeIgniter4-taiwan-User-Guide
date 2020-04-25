@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Testing &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>入門 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Testing Your Database" href="database.html" />
-    <link rel="prev" title="Testing" href="index.html" /> 
+    <link rel="next" title="資料庫測試" href="database.html" />
+    <link rel="prev" title="測試" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -246,13 +246,13 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Testing</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Getting Started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="database.html">Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controllers.html">Controller Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Benchmarking</a></li>
-<li class="toctree-l2"><a class="reference internal" href="debugging.html">Debugging Your Application</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">測試</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">入門</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">控制器測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基準測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugging.html">偵錯與除錯應用程式</a></li>
 </ul>
 </li>
 </ul>
@@ -320,9 +320,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Testing</a> &raquo;</li>
+          <li><a href="index.html">測試</a> &raquo;</li>
         
-      <li>Testing</li>
+      <li>入門</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,70 +339,58 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="testing">
-<h1>Testing<a class="headerlink" href="#testing" title="本標題的永久連結">¶</a></h1>
-<p>CodeIgniter has been built to make testing both the framework and your application as simple as possible.
-Support for <code class="docutils literal notranslate"><span class="pre">PHPUnit</span></code> is built in, and the framework provides a number of convenient
-helper methods to make testing every aspect of your application as painless as possible.</p>
-<div class="contents local topic" id="id1">
+  <div class="section" id="id1">
+<h1>入門<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>CodeIgniter 的建立是為了讓框架測試和應用程式測試盡可能地簡單，它內建了 <code class="docutils literal notranslate"><span class="pre">phpUnit</span></code> 的支援，並提供了許多方便的輔助方法，在測試應用程式上將面面俱到且不費吹灰之力。</p>
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#system-set-up" id="id3">System Set Up</a><ul>
-<li><a class="reference internal" href="#installing-phpunit" id="id4">Installing phpUnit</a></li>
+<li><a class="reference internal" href="#id3" id="id13">系統設定</a><ul>
+<li><a class="reference internal" href="#phpunit" id="id14">安裝 phpUnit</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#testing-your-application" id="id5">Testing Your Application</a><ul>
-<li><a class="reference internal" href="#phpunit-configuration" id="id6">PHPUnit Configuration</a></li>
-<li><a class="reference internal" href="#the-test-class" id="id7">The Test Class</a></li>
-<li><a class="reference internal" href="#mocking-services" id="id8">Mocking Services</a></li>
-<li><a class="reference internal" href="#stream-filters" id="id9">Stream Filters</a></li>
+<li><a class="reference internal" href="#id4" id="id15">測試你的應用程式</a><ul>
+<li><a class="reference internal" href="#id5" id="id16">PHPUnit 組態設定</a></li>
+<li><a class="reference internal" href="#id6" id="id17">測試類別</a></li>
+<li><a class="reference internal" href="#id11" id="id18">服務的模擬測試</a></li>
+<li><a class="reference internal" href="#id12" id="id19">串流過濾器</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="section" id="system-set-up">
-<h2><a class="toc-backref" href="#id3">System Set Up</a><a class="headerlink" href="#system-set-up" title="本標題的永久連結">¶</a></h2>
-<div class="section" id="installing-phpunit">
-<h3><a class="toc-backref" href="#id4">Installing phpUnit</a><a class="headerlink" href="#installing-phpunit" title="本標題的永久連結">¶</a></h3>
-<p>CodeIgniter uses <a class="reference external" href="https://phpunit.de/">phpUnit</a> as the basis for all of its testing. There are two ways to install
-phpUnit to use within your system.</p>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id13">系統設定</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="phpunit">
+<h3><a class="toc-backref" href="#id14">安裝 phpUnit</a><a class="headerlink" href="#phpunit" title="本標題的永久連結">¶</a></h3>
+<p>CodeIgniter 的所有測試功能都基於 <a class="reference external" href="https://phpunit.de/">phpUnit</a> 。有兩種方式可以安裝 phpUnit 至你的系統中。</p>
 <div class="section" id="composer">
 <h4>Composer<a class="headerlink" href="#composer" title="本標題的永久連結">¶</a></h4>
-<p>The recommended method is to install it in your project using <a class="reference external" href="https://getcomposer.org/">Composer</a>. While it’s possible
-to install it globally we do not recommend it, since it can cause compatibility issues with other projects on your
-system as time goes on.</p>
-<p>Ensure that you have Composer installed on your system. From the project root (the directory that contains the
-application and system directories) type the following from the command line:</p>
+<p>我們推薦你使用 <a class="reference external" href="https://getcomposer.org/">Composer</a> 安裝在你的專案中。雖然可以全域安裝，但我們不建議你這麼做，因為隨著時間的推移，可能會導致與系統上的其他專案產生相容性問題。</p>
+<p>請確認你的系統上已經安裝了 Composer 。在專案根目錄（包含應用程式和系統目錄的目錄）中，在命令列鍵入以下內容：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">composer</span> <span class="k">require</span> <span class="o">--</span><span class="nx">dev</span> <span class="nx">phpunit</span><span class="o">/</span><span class="nx">phpunit</span>
 </pre></div>
 </div>
-<p>This will install the correct version for your current PHP version. Once that is done, you can run all of the
-tests for this project by typing:</p>
+<p>這將會安裝符合你目前 PHP 版本的 phpUnit 。一旦完成，你就可以透過鍵入這個指令來運作這個專案的所有測試：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="o">./</span><span class="nx">vendor</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">phpunit</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="phar">
 <h4>Phar<a class="headerlink" href="#phar" title="本標題的永久連結">¶</a></h4>
-<p>The other option is to download the .phar file from the <a class="reference external" href="https://phpunit.de/getting-started/phpunit-7.html">phpUnit</a> site.
-This is a standalone file that should be placed within your project root.</p>
+<p>另一種方法是從 <a class="reference external" href="https://phpunit.de/getting-started/phpunit-7.html">phpUnit</a> 官方網站上下載 .phar 檔案。這是一個獨立的檔案，應該放置在你的專案根目錄下。</p>
 </div>
 </div>
 </div>
-<div class="section" id="testing-your-application">
-<h2><a class="toc-backref" href="#id5">Testing Your Application</a><a class="headerlink" href="#testing-your-application" title="本標題的永久連結">¶</a></h2>
-<div class="section" id="phpunit-configuration">
-<h3><a class="toc-backref" href="#id6">PHPUnit Configuration</a><a class="headerlink" href="#phpunit-configuration" title="本標題的永久連結">¶</a></h3>
-<p>The framework has a <code class="docutils literal notranslate"><span class="pre">phpunit.xml.dist</span></code> file in the project root. This controls unit
-testing of the framework itself. If you provide your own <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code>, it will
-over-ride this.</p>
-<p>Your <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code> should exclude the <code class="docutils literal notranslate"><span class="pre">system</span></code> folder, as well as any <code class="docutils literal notranslate"><span class="pre">vendor</span></code> or
-<code class="docutils literal notranslate"><span class="pre">ThirdParty</span></code> folders, if you are unit testing your application.</p>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id15">測試你的應用程式</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id16">PHPUnit 組態設定</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
+<p>框架在專案根目錄下有一個 <code class="docutils literal notranslate"><span class="pre">phpunit.xml.dist</span></code> 檔案，這個檔案控制了框架本身的單元測試。如果你需要自訂自己的 <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code> ，請直接將它覆蓋即可。</p>
+<p>如果你需要對你的應用程式進行單元測試的話，你的 <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code> 應該排除 <code class="docutils literal notranslate"><span class="pre">system</span></code> 資料夾，以及任何 <code class="docutils literal notranslate"><span class="pre">vendor</span></code> 或 <code class="docutils literal notranslate"><span class="pre">ThirdParty</span></code> 資料夾。</p>
 </div>
-<div class="section" id="the-test-class">
-<h3><a class="toc-backref" href="#id7">The Test Class</a><a class="headerlink" href="#the-test-class" title="本標題的永久連結">¶</a></h3>
-<p>In order to take advantage of the additional tools provided, your tests must extend <code class="docutils literal notranslate"><span class="pre">CIUnitTestCase</span></code>. All tests
-are expected to be located in the <strong>tests/app</strong> directory by default.</p>
-<p>To test a new library, <strong>Foo</strong>, you would create a new file at <strong>tests/app/Libraries/FooTest.php</strong>:</p>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id17">測試類別</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
+<p>為了利用框架提供的附加工具，你的測試必須繼承 <code class="docutils literal notranslate"><span class="pre">CIUnitTestCase</span></code> 。在預設的情形下，所有的測試都應該儲存在 <strong>tests/app</strong> 目錄之中。</p>
+<p>要測試新的程式庫 <strong>Foo</strong> 的話，你需要在 <strong>tests/app/Libraries/FooTest.php</strong> 中創建一個新檔案：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Test\CIUnitTestCase</span><span class="p">;</span>
@@ -416,7 +404,7 @@ are expected to be located in the <strong>tests/app</strong> directory by defaul
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>To test one of your models, you might end up with something like this in <code class="docutils literal notranslate"><span class="pre">tests/app/Models/OneOfMyModelsTest.php</span></code>:</p>
+<p>若是要測試模型的話，你可能會需要一個類似 <code class="docutils literal notranslate"><span class="pre">tests/app/Models/OneOfMyModelsTest.php</span></code> 這樣子的檔案：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Test\CIUnitTestCase</span><span class="p">;</span>
@@ -430,19 +418,21 @@ are expected to be located in the <strong>tests/app</strong> directory by defaul
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>You can create any directory structure that fits your testing style/needs. When namespacing the test classes,
-remember that the <strong>app</strong> directory is the root of the <code class="docutils literal notranslate"><span class="pre">App</span></code> namespace, so any classes you use must
-have the correct namespace relative to <code class="docutils literal notranslate"><span class="pre">App</span></code>.</p>
+<p>你可以創建任何符合你測試需要或風格的目錄結構。在替測試類別設定命名空間時，請記住， <strong>app</strong> 目錄是 <code class="docutils literal notranslate"><span class="pre">App</span></code> 命名空間的根目錄，所以你使用的任何類別都必須有相對於 <code class="docutils literal notranslate"><span class="pre">App</span></code> 正確的命名空間。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">Namespaces are not strictly required for test classes, but they are helpful to ensure no class names collide.</p>
+<p class="last">測試類別並不會嚴格要求你的命名空間，但妥善使用命明空間將對確保類別名稱不衝突這件事很有幫助。</p>
 </div>
-<p>When testing database results, you must use the <a class="reference external" href="database.html">CIDatabaseTestClass</a> class.</p>
-<div class="section" id="additional-assertions">
-<h4>Additional Assertions<a class="headerlink" href="#additional-assertions" title="本標題的永久連結">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">CIUnitTestCase</span></code> provides additional unit testing assertions that you might find useful.</p>
+<p>如果你需要測試資料庫結果，你必須使用 <a class="reference external" href="database.html">CIDatabaseTestClass</a> 類別。</p>
+<div class="section" id="id7">
+<h4>額外斷言<a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">CIUnitTestCase</span></code> 提供了額外的單元測試斷言，你可能會覺得這些功能很有用。</p>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">（譯者註）斷言（Assertion），是指程式執行過程中，斷定某個時間點一定是某種狀態。換句話說，在斷言的宣告下，你能斷定這個時間點某個變數的絕對值或是有著某種特殊的狀態。</p>
+</div>
 <p><strong>assertLogged($level, $expectedMessage)</strong></p>
-<p>Ensure that something you expected to be logged actually was:</p>
+<p>你所期望記錄的實際內容是：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">LoggerConfig</span><span class="p">();</span>
 <span class="nv">$logger</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Logger</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
 
@@ -453,7 +443,7 @@ have the correct namespace relative to <code class="docutils literal notranslate
 </pre></div>
 </div>
 <p><strong>assertEventTriggered($eventName)</strong></p>
-<p>Ensure that an event you expected to be triggered actually was:</p>
+<p>你所期望觸發的事件實際上是：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$arg</span><span class="p">)</span> <span class="k">use</span><span class="p">(</span><span class="o">&amp;</span><span class="nv">$result</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$arg</span><span class="p">;</span>
 <span class="p">});</span>
@@ -464,7 +454,7 @@ have the correct namespace relative to <code class="docutils literal notranslate
 </pre></div>
 </div>
 <p><strong>assertHeaderEmitted($header, $ignoreCase=false)</strong></p>
-<p>Ensure that a header or cookie was actually emitted:</p>
+<p>你所期待的標頭或 cookie 實際發出的內容是：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">setCookie</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
 
 <span class="nb">ob_start</span><span class="p">();</span>
@@ -474,10 +464,12 @@ have the correct namespace relative to <code class="docutils literal notranslate
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHeaderEmitted</span><span class="p">(</span><span class="s2">&quot;Set-Cookie: foo=bar&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Note: the test case with this should be <a class="reference external" href="https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess">run as a separate process
-in PHPunit</a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">這個測試案例應該在 PHPunit 中作為 <a class="reference external" href="https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess">單獨的程序運作</a> 。</p>
+</div>
 <p><strong>assertHeaderNotEmitted($header, $ignoreCase=false)</strong></p>
-<p>Ensure that a header or cookie was not emitted:</p>
+<p>你所期待沒有發出這個標頭或 cookie ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">setCookie</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
 
 <span class="nb">ob_start</span><span class="p">();</span>
@@ -487,34 +479,32 @@ in PHPunit</a>.</p>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHeaderNotEmitted</span><span class="p">(</span><span class="s2">&quot;Set-Cookie: banana&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Note: the test case with this should be <a class="reference external" href="https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess">run as a separate process
-in PHPunit</a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">這個測試案例應該在 PHPunit 中作為 <a class="reference external" href="https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess">單獨的處理程序運作</a> 。</p>
+</div>
 <p><strong>assertCloseEnough($expected, $actual, $message=』』, $tolerance=1)</strong></p>
-<p>For extended execution time testing, tests that the absolute difference
-between expected and actual time is within the prescribed tolerance.:</p>
+<p>對於延長的執行時間測試來說，判斷你所預期時間與實際時間的相差是否在你規定的公差範圍內：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$timer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Timer</span><span class="p">();</span>
 <span class="nv">$timer</span><span class="o">-&gt;</span><span class="na">start</span><span class="p">(</span><span class="s1">&#39;longjohn&#39;</span><span class="p">,</span> <span class="nb">strtotime</span><span class="p">(</span><span class="s1">&#39;-11 minutes&#39;</span><span class="p">));</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertCloseEnough</span><span class="p">(</span><span class="mi">11</span> <span class="o">*</span> <span class="mi">60</span><span class="p">,</span> <span class="nv">$timer</span><span class="o">-&gt;</span><span class="na">getElapsedTime</span><span class="p">(</span><span class="s1">&#39;longjohn&#39;</span><span class="p">));</span>
 </pre></div>
 </div>
-<p>The above test will allow the actual time to be either 660 or 661 seconds.</p>
+<p>透過上述的設定，可以讓實際時間限制為 660 或 661 秒。</p>
 <p><strong>assertCloseEnoughString($expected, $actual, $message=』』, $tolerance=1)</strong></p>
-<p>For extended execution time testing, tests that the absolute difference
-between expected and actual time, formatted as strings, is within the prescribed tolerance.:</p>
+<p>對於延長的執行時間測試來說，將你所預期時間與實際時間的相差，在格式化為字串後，判斷是否在你規定的公差範圍內：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$timer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Timer</span><span class="p">();</span>
 <span class="nv">$timer</span><span class="o">-&gt;</span><span class="na">start</span><span class="p">(</span><span class="s1">&#39;longjohn&#39;</span><span class="p">,</span> <span class="nb">strtotime</span><span class="p">(</span><span class="s1">&#39;-11 minutes&#39;</span><span class="p">));</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertCloseEnoughString</span><span class="p">(</span><span class="mi">11</span> <span class="o">*</span> <span class="mi">60</span><span class="p">,</span> <span class="nv">$timer</span><span class="o">-&gt;</span><span class="na">getElapsedTime</span><span class="p">(</span><span class="s1">&#39;longjohn&#39;</span><span class="p">));</span>
 </pre></div>
 </div>
-<p>The above test will allow the actual time to be either 660 or 661 seconds.</p>
+<p>透過上述的設定，可以讓實際時間限制為 660 或 661 秒。</p>
 </div>
-<div class="section" id="accessing-protected-private-properties">
-<h4>Accessing Protected/Private Properties<a class="headerlink" href="#accessing-protected-private-properties" title="本標題的永久連結">¶</a></h4>
-<p>When testing, you can use the following setter and getter methods to access protected and private methods and
-properties in the classes that you are testing.</p>
+<div class="section" id="id10">
+<h4>存取保護或私有屬性<a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h4>
+<p>測試時，可以使用下述提到的 setter 與 getter 方法，來造訪以及測試類別中的 protected （保護）與  private（私有）方法與屬性。</p>
 <p><strong>getPrivateMethodInvoker($instance, $method)</strong></p>
-<p>Enables you to call private methods from outside the class. This returns a function that can be called. The first
-parameter is an instance of the class to test. The second parameter is the name of the method you want to call.</p>
+<p>你可以從類別外呼叫私有方法，這會回傳一個可以被你呼叫的函數。第一個參數是你所要測試的類別的一個實體，第二個參數是你所要呼叫的方法名稱。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an instance of the class to test</span>
 <span class="nv">$obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
 
@@ -526,8 +516,7 @@ parameter is an instance of the class to test. The second parameter is the name 
 </pre></div>
 </div>
 <p><strong>getPrivateProperty($instance, $property)</strong></p>
-<p>Retrieves the value of a private/protected class property from an instance of a class. The first parameter is an
-instance of the class to test. The second parameter is the name of the property.</p>
+<p>你可以從一個類別的實體中，檢視一個私有或保護的屬性。第一個參數指的是需要測試的類別的實體，第二個參數是屬性的名稱。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an instance of the class to test</span>
 <span class="nv">$obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
 
@@ -536,8 +525,7 @@ instance of the class to test. The second parameter is the name of the property.
 </pre></div>
 </div>
 <p><strong>setPrivateProperty($instance, $property, $value)</strong></p>
-<p>Set a protected value within a class instance. The first parameter is an instance of the class to test. The second
-parameter is the name of the property to set the value of. The third parameter is the value to set it to:</p>
+<p>在某個類別的實體中，設定一個受保護的值。第一個參數指的是需要測試的類別的實體，第二個參數是待宣告值的屬性的名稱，第三個參數是你所要設定的值：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an instance of the class to test</span>
 <span class="nv">$obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
 
@@ -549,15 +537,11 @@ parameter is the name of the property to set the value of. The third parameter i
 </div>
 </div>
 </div>
-<div class="section" id="mocking-services">
-<h3><a class="toc-backref" href="#id8">Mocking Services</a><a class="headerlink" href="#mocking-services" title="本標題的永久連結">¶</a></h3>
-<p>You will often find that you need to mock one of the services defined in <strong>app/Config/Services.php</strong> to limit
-your tests to only the code in question, while simulating various responses from the services. This is especially
-true when testing controllers and other integration testing. The <strong>Services</strong> class provides two methods to make this
-simple: <code class="docutils literal notranslate"><span class="pre">injectMock()</span></code>, and <code class="docutils literal notranslate"><span class="pre">reset()</span></code>.</p>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id18">服務的模擬測試</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h3>
+<p>你可能會發現，你需要模擬 <strong>app/Config/Services.php</strong> 中某個定義好的服務，以限制你對於程式碼的測試範圍，並同時模擬服務的各種響應。在測試控制器和其他整合測試時更是如此。<strong>服務類別</strong> 提供了 <code class="docutils literal notranslate"><span class="pre">injectMock()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">reset()</span></code> ，這兩個方法用於簡化這個過程。</p>
 <p><strong>injectMock()</strong></p>
-<p>This method allows you to define the exact instance that will be returned by the Services class. You can use this to
-set properties of a service so that it behaves in a certain way, or replace a service with a mocked class.</p>
+<p>這個方法允許你宣告服務類別將會回傳的準確實體。你可以使用這個方法來設定服務的屬性，使得它可以以特定的方式執行任務，或者使用測試模擬類別來替換服務。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">testSomething</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="nv">$curlrequest</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getMockBuilder</span><span class="p">(</span><span class="s1">&#39;CodeIgniter\HTTP\CURLRequest&#39;</span><span class="p">)</span>
@@ -569,17 +553,15 @@ set properties of a service so that it behaves in a certain way, or replace a se
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The first parameter is the service that you are replacing. The name must match the function name in the Services
-class exactly. The second parameter is the instance to replace it with.</p>
+<p>第一個參數是你所要替換的服務，這個名稱必須與服務類別中函數的名稱完全一致。第二個參數是使用一個實體來替換掉它。</p>
 <p><strong>reset()</strong></p>
-<p>Removes all mocked classes from the Services class, bringing it back to its original state.</p>
+<p>使用這個方法刪除了服務類別中的所有服務模擬類別，它將會恢復到原來的狀態。</p>
 </div>
-<div class="section" id="stream-filters">
-<h3><a class="toc-backref" href="#id9">Stream Filters</a><a class="headerlink" href="#stream-filters" title="本標題的永久連結">¶</a></h3>
-<p><strong>CITestStreamFilter</strong> provides an alternate to these helper methods.</p>
-<p>You may need to test things that are difficult to test. Sometimes, capturing a stream, like PHP’s own STDOUT, or STDERR,
-might be helpful. The <code class="docutils literal notranslate"><span class="pre">CITestStreamFilter</span></code> helps you capture the output from the stream of your choice.</p>
-<p>An example demonstrating this inside one of your test cases:</p>
+<div class="section" id="id12">
+<h3><a class="toc-backref" href="#id19">串流過濾器</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h3>
+<p><strong>CITestStreamFilter</strong> 提供了一些輔助函數作為替代方法。</p>
+<p>你可能會需要測試一些難以測試的程式。有時，你需要獲取一個串流，例如 PHP 的 STDOUT 或 STDERR ，這個方法可能會以索幫助。 <code class="docutils literal notranslate"><span class="pre">CITestStreamFilter</span></code> 可以輔助你從你自你所選擇的串流獲取輸出。</p>
+<p>以下範例將展示在測試案例中的使用方式：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">setUp</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="nx">CITestStreamFilter</span><span class="o">::</span><span class="nv">$buffer</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
@@ -611,10 +593,10 @@ might be helpful. The <code class="docutils literal notranslate"><span class="pr
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="database.html" class="btn btn-neutral float-right" title="Testing Your Database" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="database.html" class="btn btn-neutral float-right" title="資料庫測試" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="測試" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -625,7 +607,7 @@ might be helpful. The <code class="docutils literal notranslate"><span class="pr
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月21日。
+        最後更新於 2020年04月25日。
       </span>
 
     </p>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Benchmarking &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>基準測試 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Debugging Your Application" href="debugging.html" />
-    <link rel="prev" title="HTTP Feature Testing" href="feature.html" /> 
+    <link rel="next" title="偵錯與除錯應用程式" href="debugging.html" />
+    <link rel="prev" title="HTTP 特性測試" href="feature.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -246,13 +246,13 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Testing</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="overview.html">Getting Started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="database.html">Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controllers.html">Controller Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP Testing</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Benchmarking</a></li>
-<li class="toctree-l2"><a class="reference internal" href="debugging.html">Debugging Your Application</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">測試</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">入門</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">控制器測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">基準測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugging.html">偵錯與除錯應用程式</a></li>
 </ul>
 </li>
 </ul>
@@ -320,9 +320,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Testing</a> &raquo;</li>
+          <li><a href="index.html">測試</a> &raquo;</li>
         
-      <li>Benchmarking</li>
+      <li>基準測試</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,58 +339,48 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="benchmarking">
-<h1>Benchmarking<a class="headerlink" href="#benchmarking" title="本標題的永久連結">¶</a></h1>
-<p>CodeIgniter provides two separate tools to help you benchmark your code and test different options:
-the Timer and the Iterator. The Timer allows you to easily calculate the time between two points in the
-execution of your script. The Iterator allows you to set up several variations and runs those tests, recording
-performance and memory statistics to help you decide which version is the best.</p>
-<p>The Timer class is always active, being started from the moment the framework is invoked until right before
-sending the output to the user, enabling a very accurate timing of the entire system execution.</p>
-<div class="contents local topic" id="id1">
+  <div class="section" id="id1">
+<h1>基準測試<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>CodeIgniter 提供了兩個獨立的工具——計時器與疊代器，來幫助你測試你的程式以及不同的選項。計時器可以讓你輕鬆地計算出腳本執行的過程中，你所設定的兩個點之間的時間。疊代器讓你可以設定數種變化，並運作這些測試，執行效能與記憶體的統計，幫助你決定哪個版本是最好的。</p>
+<p>計時器類別始終處於啟動狀態，從框架被呼叫的那一刻開始，直到將輸出響應給使用者之前，定時器才會停止統計，這使得整個系統執行時間的計算非常地精準。</p>
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#using-the-timer" id="id2">Using the Timer</a><ul>
-<li><a class="reference internal" href="#viewing-your-benchmark-points" id="id3">Viewing Your Benchmark Points</a></li>
-<li><a class="reference internal" href="#displaying-execution-time" id="id4">Displaying Execution Time</a></li>
+<li><a class="reference internal" href="#id3" id="id9">使用計時器</a><ul>
+<li><a class="reference internal" href="#id4" id="id10">查閱基準測試得分</a></li>
+<li><a class="reference internal" href="#id5" id="id11">顯示執行時間</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#using-the-iterator" id="id5">Using the Iterator</a><ul>
-<li><a class="reference internal" href="#creating-tasks-to-run" id="id6">Creating Tasks To Run</a></li>
-<li><a class="reference internal" href="#running-the-tasks" id="id7">Running the Tasks</a></li>
+<li><a class="reference internal" href="#id6" id="id12">使用疊代器</a><ul>
+<li><a class="reference internal" href="#id7" id="id13">指派欲執行的任務</a></li>
+<li><a class="reference internal" href="#id8" id="id14">運作任務</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="section" id="using-the-timer">
-<h2><a class="toc-backref" href="#id2">Using the Timer</a><a class="headerlink" href="#using-the-timer" title="本標題的永久連結">¶</a></h2>
-<p>With the Timer, you can measure the time between two moments in the execution of your application. This makes
-it simple to measure the performance of different aspects of your application. All measurement is done using
-the <code class="docutils literal notranslate"><span class="pre">start()</span></code> and <code class="docutils literal notranslate"><span class="pre">stop()</span></code> methods.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">start()</span></code> methods takes a single parameter: the name of this timer. You can use any string as the name
-of the timer. It is only used for you to reference later to know which measurement is which:</p>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id9">使用計時器</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>透過計時器，你可以測量應用程式執行的過程中，任意兩個點之間的耗時，這會讓你在測量應用程式於不同方面的性能上變得非常容易。所有的測量都是透過 <code class="docutils literal notranslate"><span class="pre">start()</span></code> 與 <code class="docutils literal notranslate"><span class="pre">stop()</span></code> 這兩個方法完成。</p>
+<p><code class="docutils literal notranslate"><span class="pre">start()</span></code> 方法只需要傳入一個參數，你可以使用任何字串作為計時器的名稱。它只是用來讓你參考，知道哪個測量記錄是哪個：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$benchmark</span> <span class="o">=</span> <span class="nx">\Config\Services</span><span class="o">::</span><span class="na">timer</span><span class="p">();</span>
 <span class="nv">$benchmark</span><span class="o">-&gt;</span><span class="na">start</span><span class="p">(</span><span class="s1">&#39;render view&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">stop()</span></code> method takes the name of the timer that you want to stop as the only parameter, also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">stop()</span></code> 方法則是以你要停止的計時器名稱作為唯一的傳入參數：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$benchmark</span><span class="o">-&gt;</span><span class="na">stop</span><span class="p">(</span><span class="s1">&#39;render view&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The name is not case-sensitive, but otherwise must match the name you gave it when you started the timer.</p>
-<p>Alternatively, you can use the <a class="reference internal" href="../general/common_functions.html"><span class="doc">global function</span></a> <code class="docutils literal notranslate"><span class="pre">timer()</span></code> to start
-and stop timers:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Start the timer</span>
+<p>這個名稱不區分大小寫，但必須與啟動計時器時給予的名稱相符。</p>
+<p>另外，你也可以使用 <a class="reference internal" href="../general/common_functions.html"><span class="doc">全域函數</span></a> <code class="docutils literal notranslate"><span class="pre">timer()</span></code> 來啟動與停止計時器。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 開始計時器</span>
 <span class="nx">timer</span><span class="p">(</span><span class="s1">&#39;render view&#39;</span><span class="p">);</span>
-<span class="c1">// Stop a running timer,</span>
-<span class="c1">// if one of this name has been started</span>
+<span class="c1">// 如果以這個名子命名的計時器已經啟動</span>
+<span class="c1">// 將停止計時器,</span>
 <span class="nx">timer</span><span class="p">(</span><span class="s1">&#39;render view&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="section" id="viewing-your-benchmark-points">
-<h3><a class="toc-backref" href="#id3">Viewing Your Benchmark Points</a><a class="headerlink" href="#viewing-your-benchmark-points" title="本標題的永久連結">¶</a></h3>
-<p>When your application runs, all of the timers that you have set are collected by the Timer class. It does
-not automatically display them, though. You can retrieve all of your timers by calling the <code class="docutils literal notranslate"><span class="pre">getTimers()</span></code> method.
-This returns an array of benchmark information, including start, end, and duration:</p>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id10">查閱基準測試得分</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
+<p>當你的應用程式開始運作，你所設定的所有計時器都會被計時器類別蒐集起來，但它不會自動顯示這些計時器。你可以透過呼叫 <code class="docutils literal notranslate"><span class="pre">getTimers()</span></code> 方法來調閱所有的計時器。這個方法會回傳一個基準測試訊息的陣列，包括開始、結束與持續時間。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$timers</span> <span class="o">=</span> <span class="nv">$benchmark</span><span class="o">-&gt;</span><span class="na">getTimers</span><span class="p">();</span>
 
 <span class="c1">// Timers =</span>
@@ -403,65 +393,54 @@ This returns an array of benchmark information, including start, end, and durati
 <span class="p">]</span>
 </pre></div>
 </div>
-<p>You can change the precision of the calculated duration by passing in the number of decimal places you want to be shown as
-the only parameter. The default value is 4 numbers behind the decimal point:</p>
+<p>你可以透過傳入你所希望顯示的小數位數作為唯一的參數，用於改變計算出的持續時間的精度。預設值是小數點後四位。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$timers</span> <span class="o">=</span> <span class="nv">$benchmark</span><span class="o">-&gt;</span><span class="na">getTimers</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The timers are automatically displayed in the <a class="reference internal" href="debugging.html"><span class="doc">Debub Toolbar</span></a>.</p>
+<p>計時器會自動顯示在 <a class="reference internal" href="debugging.html"><span class="doc">除錯工具列</span></a> 上。</p>
 </div>
-<div class="section" id="displaying-execution-time">
-<h3><a class="toc-backref" href="#id4">Displaying Execution Time</a><a class="headerlink" href="#displaying-execution-time" title="本標題的永久連結">¶</a></h3>
-<p>While the <code class="docutils literal notranslate"><span class="pre">getTimers()</span></code> method will give you the raw data for all of the timers in your project, you can retrieve
-the duration of a single timer, in seconds, with the <cite>getElapsedTime()</cite> method. The first parameter is the name of
-the timer to display. The second is the number of decimal places to display. This defaults to 4:</p>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id11">顯示執行時間</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
+<p>雖然 <code class="docutils literal notranslate"><span class="pre">getTimers()</span></code> 方法會提供專案中所有計時器的原始資料，但你也可以使用 <cite>getElapsedTime()</cite> 方法獲得單個計時器的持續時間，回傳的單位為秒。這個方法的第一個參數為需要顯示的計時器名稱，第二個參數為小數點後的位數，這個參數的預設值為 4 。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">timer</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getElapsedTime</span><span class="p">(</span><span class="s1">&#39;render view&#39;</span><span class="p">);</span>
 <span class="c1">// Displays: 0.0234</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="using-the-iterator">
-<h2><a class="toc-backref" href="#id5">Using the Iterator</a><a class="headerlink" href="#using-the-iterator" title="本標題的永久連結">¶</a></h2>
-<p>The Iterator is a simple tool that is designed to allow you to try out multiple variations on a solution to
-see the speed differences and different memory usage patterns. You can add any number of 「tasks」 for it to
-run and the class will run the task hundreds or thousands of times to get a clearer picture of performance.
-The results can then be retrieved and used by your script, or displayed as an HTML table.</p>
-<div class="section" id="creating-tasks-to-run">
-<h3><a class="toc-backref" href="#id6">Creating Tasks To Run</a><a class="headerlink" href="#creating-tasks-to-run" title="本標題的永久連結">¶</a></h3>
-<p>Tasks are defined within Closures. Any output the task creates will be discarded automatically. They are
-added to the Iterator class through the <cite>add()</cite> method. The first parameter is a name you want to refer to
-this test by. The second parameter is the Closure, itself:</p>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id12">使用疊代器</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
+<p>疊代器是一個簡單的工具，設計這個工具的目的是為了讓你在一個解決方案上嘗試不同的變化，看看速度差異與不同的記憶體使用模式。你可以加入任意數量的「任務｣讓它運作。類別將會運作著數百或數千次的任務，以計算更準確的效能。最後的結果可以被你查閱，也可以將它輸出為 HTML 表格。</p>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id13">指派欲執行的任務</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
+<p>任務是在匿名函數中被定義的，任務所創建的任何輸出都會被自動拋棄。任務透過 <code class="docutils literal notranslate"><span class="pre">add()</span></code> 方法加入到疊代器之中。第一個參數是你的測試的名稱，第二個參數才是匿名函數本身。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$iterator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\Benchmark\Iterator</span><span class="p">();</span>
 
-<span class="c1">// Add a new task</span>
+<span class="c1">// 加入新的任務</span>
 <span class="nv">$iterator</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;single_concat&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span>
         <span class="p">{</span>
                 <span class="nv">$str</span> <span class="o">=</span> <span class="s1">&#39;Some basic&#39;</span><span class="o">.</span><span class="s1">&#39;little&#39;</span><span class="o">.</span><span class="s1">&#39;string concatenation test.&#39;</span><span class="p">;</span>
         <span class="p">}</span>
 <span class="p">);</span>
 
-<span class="c1">// Add another task</span>
+<span class="c1">// 加入另一項任務</span>
 <span class="nv">$iterator</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$a</span><span class="o">=</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
         <span class="p">{</span>
-                <span class="nv">$str</span> <span class="o">=</span> <span class="s2">&quot;Some basic </span><span class="si">{</span><span class="nv">$little</span><span class="si">}</span><span class="s2"> string test.&quot;</span><span class="p">;</span>
+                <span class="nv">$str</span> <span class="o">=</span> <span class="s2">&quot;Some basic </span><span class="si">{</span><span class="nv">$a</span><span class="si">}</span><span class="s2"> string test.&quot;</span><span class="p">;</span>
         <span class="p">}</span>
 <span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="running-the-tasks">
-<h3><a class="toc-backref" href="#id7">Running the Tasks</a><a class="headerlink" href="#running-the-tasks" title="本標題的永久連結">¶</a></h3>
-<p>Once you’ve added the tasks to run, you can use the <code class="docutils literal notranslate"><span class="pre">run()</span></code> method to loop over the tasks many times.
-By default, it will run each task 1000 times. This is probably sufficient for most simple tests. If you need
-to run the tests more times than that, you can pass the number as the first parameter:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Run the tests 3000 times.</span>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id14">運作任務</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
+<p>一旦你加入了欲運作的任務，你就可以透過 <code class="docutils literal notranslate"><span class="pre">run()</span></code> 方法來多次循環執行這些任務。在預設的情形下，它將對每個任務運作 1000 次。對於大多數的簡單測試來說這已經足夠了，但你若是需要更高的執行次數，你可以把這個數字當作第一個參數傳入至方法中。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 運作測試 3000 次.</span>
 <span class="nv">$iterator</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Once it has run, it will return an HTML table with the results of the test. If you don’t want the results
-displayed, you can pass in <cite>false</cite> as the second parameter:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Don&#39;t display the results.</span>
+<p>一旦運作了疊代器，它將會回傳一個包含測試結果的 HTML 表格。如果你不希望將測試結果顯示出來，你可以在第二個參數中傳入 false ：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不輸出結果到畫面</span>
 <span class="nv">$iterator</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -477,10 +456,10 @@ displayed, you can pass in <cite>false</cite> as the second parameter:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="debugging.html" class="btn btn-neutral float-right" title="Debugging Your Application" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="debugging.html" class="btn btn-neutral float-right" title="偵錯與除錯應用程式" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="feature.html" class="btn btn-neutral float-left" title="HTTP Feature Testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="feature.html" class="btn btn-neutral float-left" title="HTTP 特性測試" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -491,7 +470,7 @@ displayed, you can pass in <cite>false</cite> as the second parameter:</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月21日。
+        最後更新於 2020年04月25日。
       </span>
 
     </p>
