@@ -7,72 +7,66 @@
     :depth: 2
 
 ================
-Replace var_dump
+替換 var_dump
 ================
 
-While using XDebug and a good IDE can be indispensable to debug your application, sometimes a quick ``var_dump()`` is
-all you need. CodeIgniter makes that even better by bundling in the excellent `Kint <https://kint-php.github.io/kint/>`_
-debugging tool for PHP. This goes way beyond your usual tool, providing many alternate pieces of data, like formatting
-timestamps into recognizable dates, showing you hexcodes as colors, display array data like a table for easy reading,
-and much, much more.
+雖然在替你的應用程式除錯上使用 XDebug 與良好的 IDE 是不可或缺的，但有的時候敏捷的 ``var_dump()`` 可能更適合你。 CodeIgniter 同捆了優秀的 `Kint <https://kint-php.github.io/kint/>`_ 偵錯工具，這將使 CodeIgniter 變得更好。 Kint 遠遠超出了你所使用的常用工具，它提供了許多替代資料，比如：將時間戳格式化成可以被識別的日期、將十六進位色碼顯示為顏色，或是讓陣列資料輸出成表格型態使你方便閱讀，等等的眾多功能。
 
-Enabling Kint
+啟用 Kint
 =============
 
-By default, Kint is enabled in **development** and **testing** environments only. This can be altered by modifying
-the ``$useKint`` value in the environment configuration section of the main **index.php** file::
+在預設的情形下， Kint 僅在 **開發** 與 **測試** 環境下得以開啟。你可以透過修改 index.php 主檔案的環境設定部分中的 ``$useKint`` 變數來開啟 Kint 。
+
+::
 
     $useKint = true;
 
-Using Kint
+使用 Kint
 ==========
 
 **d()**
 
-The ``d()`` method dumps all of the data it knows about the contents passed as the only parameter to the screen, and
-allows the script to continue executing::
+``d()`` 方法將會把你所傳入的資料傳遞到螢幕上，並且允許腳本繼續執行。
+
+::
 
     d($_SERVER);
 
 **dd()**
 
-This method is identical to ``d()``, except that it also ``dies()`` and no further code is executed this request.
+這個方法與 ``d()`` 相同，它也同樣等於 ``dies()`` 。執行完這個行程式，後續的程式碼將不會繼續執行。
 
 **trace()**
 
-This provides a backtrace to the current execution point, with Kint's own unique spin::
+透過 Kint 獨特的 spin 功能，你可以回朔到當前的執行點：
+
+::
 
     trace();
 
-For more information, see `Kint's page <https://kint-php.github.io/kint//>`_.
+欲知更多請參閱 `Kint 的 git 頁面 <https://kint-php.github.io/kint//>`_ 。
 
 =================
-The Debug Toolbar
+除錯工具列
 =================
 
-The Debug Toolbar provides at-a-glance information about the current page request, including benchmark results,
-queries you have run, request and response data, and more. This can all prove very useful during development
-to help you debug and optimize.
+除錯工具列提供了關於當下所請求的頁面一目瞭然的訊息，包括基準測試的結果、已運作的資料庫查詢、請求，以及響應資料等。這些在你的開發階段都會非常有用，可以幫助你除錯與最佳化。
 
-.. note:: The Debug Toolbar is still under construction with several planned features not yet implemented.
+.. note:: 除錯工具列目前仍在開發中，尚有幾個計畫中的功能還未能實現。
 
-Enabling the Toolbar
+啟動工具列
 ====================
 
-The toolbar is enabled by default in any environment *except* production. It will be shown whenever the
-constant CI_DEBUG is defined and it's value is positive. This is defined in the boot files (i.e.
-app/Config/Boot/development.php) and can be modified there to determine what environments it shows
-itself in.
+在 *除了* 上線環境外的任何環境，這個工具列都是預設啟動的。只要定義了 CI_DEBUG 常數值為 true ，工具列就會顯示。這個常數是在啟動檔案中宣告的（ app/Config/Boot/development.php ），可以在啟動檔案中宣告它會在甚麼環境下進行顯示。
 
-The toolbar itself is displayed as an :doc:`After Filter </incoming/filters>`. You can stop it from ever
-running by removing it from the ``$globals`` property of **app/Config/Filters.php**.
+工具列本身是以 :doc:`後濾器 </incoming/filters>` 的形式顯示，你可以透過從 **app/Config/Filters.php** 檔案中刪除 ``$globals`` 這個屬性來阻止它的運作。
 
-Choosing What to Show
+選擇顯示內容
 ---------------------
 
-CodeIgniter ships with several Collectors that, as the name implies, collect data to display on the toolbar. You
-can easily make your own to customize the toolbar. To determine which collectors are shown, again head over to
-the **app/Config/Toolbar.php** configuration file::
+CodeIgniter 內建多個蒐集器，用於蒐集資料並顯示在工具列上頭。你可以輕易地製作自己的工具列來個自訂工具列。要確定哪些蒐集器目前是被顯示的，你可以前往 **app/Config/Toolbar.php** 組態設定檔案：
+
+::
 
 	public $collectors = [
 		\CodeIgniter\Debug\Toolbar\Collectors\Timers::class,
@@ -85,38 +79,33 @@ the **app/Config/Toolbar.php** configuration file::
 		\CodeIgniter\Debug\Toolbar\Collectors\Events::class,
 	];
 
-Comment out any collectors that you do not want to show. Add custom Collectors here by providing the fully-qualified
-class name. The exact collectors that appear here will affect which tabs are shown, as well as what information is
-shown on the Timeline.
+若是有你不想顯示的蒐集器，註解掉它即可。你可以透過完全符合要求的類別名稱來加入自定義的蒐集器，接著我們將告訴你蒐集器會影響到標籤頁以及時間軸上顯示的訊息是哪些。
 
-.. note:: Some tabs, like Database and Logs, will only display when they have content to show. Otherwise, they
-    are removed to help out on smaller displays.
+.. note:: 有些標籤頁只在他們具有內容時才會被顯示出來，比如說資料庫與日誌檔案。否則，他們將從螢幕上被隱藏，已換取更多的顯示空間。
 
-The Collectors that ship with CodeIgniter are:
+CodeIgniter 所內建的蒐集器為：
 
-* **Timers** collects all of the benchmark data, both by the system and by your application.
-* **Database** Displays a list of queries that all database connections have performed, and their execution time.
-* **Logs** Any information that was logged will be displayed here. In long-running systems, or systems with many items being logged, this can cause memory issues and should be disabled.
-* **Views** Displays render time for views on the timeline, and shows any data passed to the views on a separate tab.
-* **Cache** Will display information about cache hits and misses, and execution times.
-* **Files** displays a list of all files that have been loaded during this request.
-* **Routes** displays information about the current route and all routes defined in the system.
-* **Events** displays a list of all events that have been loaded during this request.
+* **計時器** 蒐集所有基準測試的資料，包括系統以及你的應用程式。
+* **資料庫** 顯示所有資料庫連接所執行的查詢列表，以及它們所執行的時間。
+* **日誌** 任何被記錄的訊息都會在這裡顯示，在長期運作或記錄許多項目的系統中，可能會造成記憶體問題，這個功能應該要禁用。
+* **視圖** 將渲染視圖的時間顯示於時間軸上，並且在單獨的標籤頁中顯示傳遞給視圖的所有資料。
+* **快取** 將顯示有關快取命中與未命中的訊息，以及執行時間。
+* **檔案** 顯示在這個請求期間已載入的所有檔案列表。
+* **路由** 顯示目前的路由和系統中定義的所有路由的相關訊息。
+* **事件** 顯示在當下的請求期間載入所有事件的列表。
 
-Setting Benchmark Points
+設定基準測試點
 ========================
 
-In order for the Profiler to compile and display your benchmark data you must name your mark points using specific syntax.
+為了讓分析工具編譯和顯示你的基準測試資料，你必須使用特定的語法來命名你的標記點。
 
-Please read the information on setting Benchmark points in the :doc:`Benchmark Library </testing/benchmark>` page.
+請閱讀 :doc:`基準測試程式庫 </testing/benchmark>` 頁面中關於設定基準測試點的資訊。
 
-Creating Custom Collectors
+創建自訂蒐集器
 ==========================
 
-Creating custom collectors is a straightforward task. You create a new class, fully-namespaced so that the autoloader
-can locate it, that extends ``CodeIgniter\Debug\Toolbar\Collectors\BaseCollector``. This provides a number of methods
-that you can override, and has four required class properties that you must correctly set depending on how you want
-the Collector to work
+創建自定蒐集器是一個簡單的任務，你得創建一個新的類別，並以完整的命名空間命名，自動載入器才能夠找到它。它繼承了 ``CodeIgniter\Debug\Toolbar\Collectors\BaseCollector`` 類別，這個類別提供了許多你可以置換的方法，你必須根據你預想的工作方式來正確設定這些屬性。
+
 ::
 
 	<?php namespace MyNamespace;
@@ -134,65 +123,58 @@ the Collector to work
 		protected $title         = '';
 	}
 
-**$hasTimeline** should be set to ``true`` for any Collector that wants to display information in the toolbar's
-timeline. If this is true, you will need to implement the ``formatTimelineData()`` method to format and return the
-data for display.
+對於任何想要在工具列的時間軸中顯示訊息的蒐集器， **$hasTimeline**  應該設定為 ``true`` 。如果為 ``true`` 則你需要實作 ``formatTimelineData()`` 方法來格式化並回傳資料進行顯示。
 
-**$hasTabContent** should be ``true`` if the Collector wants to display its own tab with custom content. If this
-is true, you will need to provide a ``$title``, implement the ``display()`` method to render out tab's contents,
-and might need to implement the ``getTitleDetails()`` method if you want to display additional information just
-to the right of the tab content's title.
+如果蒐集器想使用自訂的內容並顯示自己的標籤頁，**$hasTabContent** 應該要為 ``true`` 。你需要提供 ``$title`` ，實作 ``display()`` 方法來渲染出標籤的內如容。如果你想在標籤內容的標題右方顯示額外訊息，你可能需要實作出 ``getTitleDetails()`` 方法。
 
-**$hasVarData** should be ``true`` if this Collector wants to add additional data to the ``Vars`` tab. If this
-is true, you will need to implement the ``getVarData()`` method.
+如果這個蒐集器想要把額外的資料加入到 ``Vars`` 標籤中， **$hasVarData** 必須為 ``true`` 。如果為 true ，則需要實作 ``getVarData()`` 方法。
 
-**$title** is displayed on open tabs.
+**$title** 定義的是顯示在標籤上的標題。
 
-Displaying a Toolbar Tab
+顯示工具列標籤
 ------------------------
 
-To display a toolbar tab you must:
+若想顯示一個工具列標籤，你必須：
 
-1. Fill in ``$title`` with the text displayed as both the toolbar title and the tab header.
-2. Set ``$hasTabContent`` to ``true``.
-3. Implement the ``display()`` method.
-4. Optionally, implement the ``getTitleDetails()`` method.
+1. 在 ``$title`` 中填寫作為工具列標題以及標籤 header 的文字。
+2. 設定 ``$hasTabContent`` 為 ``true`` 。
+3. 實作 ``display()`` 方法。
+4. 實作 ``getTitleDetails()`` 方法（這是可選的）。
 
-The ``display()`` creates the HTML that is displayed within the tab itself. It does not need to worry about
-the title of the tab, as that is automatically handled by the toolbar. It should return a string of HTML.
+``display()`` 創建了在標籤頁中顯示的 HTML 。你不需要擔心標籤頁的標題，因為這是由工具列自動處理的。這個方法應該要回傳一個 HTML 字串。
 
-The ``getTitleDetails()`` method should return a string that is displayed just to the right of the tab's title.
-it can be used to provide additional overview information. For example, the Database tab displays the total
-number of queries across all connections, while the Files tab displays the total number of files.
+``getTitleDetails()`` 方法應該回傳一個字串，這是顯示在標籤標題右方的字串。例如：資料庫標籤顯示的是所有連接的查詢總數，而檔案標籤顯示的是檔案總數的文字內容。
 
-Providing Timeline Data
+提供時間軸資料
 -----------------------
 
-To provide information to be displayed in the Timeline you must:
+若想提供需要在時間軸中顯示的訊息，你必須：
 
-1. Set ``$hasTimeline`` to ``true``.
-2. Implement the ``formatTimelineData()`` method.
+1. 設定 ``$hasTimeline`` 為 ``true`` 。
+2. 實作 ``formatTimelineData()`` 方法。
 
-The ``formatTimelineData()`` method must return an array of arrays formatted in a way that the timeline can use
-it to sort it correctly and display the correct information. The inner arrays must include the following information::
+``formatTimelineData()`` 方法必須回傳一個含有陣列的陣列，其格式化的方式必須使用時間軸可以正確排序的方式記錄，內部陣列必須包含以下資訊：
+
+::
 
 	$data[] = [
-		'name'      => '',     // Name displayed on the left of the timeline
-		'component' => '',     // Name of the Component listed in the middle of timeline
-		'start'     => 0.00,   // start time, like microtime(true)
-		'duration'  => 0.00    // duration, like mircrotime(true) - microtime(true)
+		'name'      => '',     // 時間軸左側顯示的名稱
+		'component' => '',     // 時間軸中間列出的組件名稱
+		'start'     => 0.00,   // 開始時間，如： microtime(true)
+		'duration'  => 0.00    // 持續時間，如： mircrotime(true) - microtime(true)
 	];
 
-Providing Vars
+提供變數
 --------------
 
-To add data to the Vars tab you must:
+若想將資料加入到 Vars 標籤中，你必須：
 
-1. Set ``$hasVarData`` to ``true``
-2. Implement ``getVarData()`` method.
+1. 設定 ``$hasVarData`` 為 ``true`` 。
+2. 實現 ``getVarData()`` 方法。
 
-The ``getVarData()`` method should return an array containing arrays of key/value pairs to display. The name of the
-outer array's key is the name of the section on the Vars tab::
+``getVarData()`` 方法應該要回傳一個包含所要顯示的資訊的鍵值陣列，外部陣列的鍵名是 Vars 標籤的部分名稱：
+
+::
 
 	$data = [
 		'section 1' => [
