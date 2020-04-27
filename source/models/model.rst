@@ -107,7 +107,7 @@ CodeIgniter 支援了模型類別，它提供了一些很好的功能，包括�
 		protected $allowedFields = ['name', 'email'];
 
 		protected $useTimestamps = false;
-		protected $createdField  = +'created_at';
+		protected $createdField  = 'created_at';
 		protected $updatedField  = 'updated_at';
 		protected $deletedField  = 'deleted_at';
 
@@ -132,64 +132,41 @@ CodeIgniter 支援了模型類別，它提供了一些很好的功能，包括�
 
 **$useSoftDeletes**
 
-If true, then any delete* method calls will set ``deleted_at`` in the database, instead of
-actually deleting the row. This can preserve data when it might be referenced elsewhere, or
-can maintain a "recycle bin" of objects that can be restored, or even simply preserve it as
-part of a security trail. If true, the find* methods will only return non-deleted rows, unless
-the withDeleted() method is called prior to calling the find* method.
+如果這個值為 true ，那麼任何 delete 方法的呼叫都會在資料庫中修改 ``deleted_at`` 欄位，而不是直接刪除該筆資料。當資料可能在其他地方被引用時，這個功能可以替你將資料保存下來，也可以作為「資源回收桶」，讓被刪除的物件有被還原的可能，甚至你也可以將其保留下來做為未來安全性追蹤的依據。若是資料被設為刪除，你還是想呼叫到這筆資料，則必須在 find() 方法前先呼叫 withDeleted() 方法，否則 find() 方法只會回傳未被刪除的資料。
 
-This requires either a DATETIME or INTEGER field in the database as per the model's
-$dateFormat setting. The default field name is ``deleted_at`` however this name can be
-configured to any name of your choice by using $deletedField property.
+若你要使用這個功能，你需要在資料庫中建立型別為 DATETIME 或 INTEGER 的欄位，其名稱必須在 $dateFormat 成員屬性中定義，這個成員變數的值必須與資料庫的欄位名稱相同。而 $dateFormat 的預設名稱為 ``deleted_at`` 。
 
 **$allowedFields**
 
-This array should be updated with the field names that can be set during save, insert, or
-update methods. Any field names other than these will be discarded. This helps to protect
-against just taking input from a form and throwing it all at the model, resulting in
-potential mass assignment vulnerabilities.
+在這個陣列中被記錄的欄位名稱都將在使用保存、插入，或更新方法期間被允許，而沒有被記錄的欄位名稱將被丟棄。這有助於防止將未處理的表單資訊直接傳遞給模型處理時，導致的自動綁定漏洞。
 
 **$useTimestamps**
 
-This boolean value determines whether the current date is automatically added to all inserts
-and updates. If true, will set the current time in the format specified by $dateFormat. This
-requires that the table have columns named 'created_at' and 'updated_at' in the appropriate
-data type.
+這個屬性的型別為布林，它決定了在執行插入與更新的方法時，是否會自動更新時間戳。如果為 true 將以 $dateFormat 屬性所指定格式，產出目前的時間記錄並存在的固定的欄位中。這個功能需要在資料庫中以適當的型別建立 "created_at" 以及 "updated_at" 欄位。
 
 **$createdField**
 
-Specifies which database field should use for keep data record create timestamp.
-Leave it empty to avoid update it (even useTimestamps is enabled)
+指定使用哪個資料庫欄位來保存資料在創建時的時間戳，請將其留空並避免更新這個欄位（即使啟動了 useTimestamps 功能）。
 
 **$updatedField**
 
-Specifies which database field should use for keep data record update timestamp.
-Leave it empty to avoid update it (even useTimestamps is enabled)
+指定使用哪個資料庫欄位來保存資料在更新時的時間戳，請將其留空並避免更新這個欄位（即使啟動了 useTimestamps 功能）。
 
 **$dateFormat**
 
-This value works with $useTimestamps and $useSoftDeletes to ensure that the correct type of
-date value gets inserted into the database. By default, this creates DATETIME values, but
-valid options are: datetime, date, or int (a PHP timestamp). Using 'useSoftDeletes' or
-'useTimestamps' with an invalid or missing dateFormat will cause an exception.
+這個屬性將與 $useTimestamps 與 $useSoftDeletes 一起運作，確保正確的日期被插入到資料庫中。在預設的情形下，這個值會創建 DATETIME 型別的值，而這個屬性可以設定的選項為： datetime 、date 、int （ PHP 時間戳）。
 
 **$validationRules**
 
-Contains either an array of validation rules as described in :ref:`validation-array`
-or a string containing the name of a validation group, as described in the same section.
-Described in more detail below.
+這個屬性將會是驗證程式庫的 :ref:`validation-array` （如何保存規則）條目中所描述的驗證用陣列，或是驗證群組名稱的字串，下面將會更詳細地闡述。
 
 **$validationMessages**
 
-Contains an array of custom error messages that should be used during validation, as
-described in :ref:`validation-custom-errors`. Described in more detail below.
+你將在這個屬性中儲存，驗證過程中你所設定的 :ref:`validation-custom-errors` （自訂錯誤消息）的陣列，下面將會有更詳細地闡述。
 
 **$skipValidation**
 
-Whether validation should be skipped during all ``inserts`` and ``updates``. The default
-value is false, meaning that data will always attempt to be validated. This is
-primarily used by the ``skipValidation()`` method, but may be changed to ``true`` so
-this model will never validate.
+這個屬性決定在進行 ``更新`` 與 ``插入`` 的過程中，是否會跳過驗證。預設值為 false ，這代表若沒有另外賦予值，模型將始終進行驗證。這個屬性主要由 ``skipValidation()`` 方法使用，你也可以將這個屬性改為 ``true`` ，讓模型永遠不要進行驗證。
 
 **$beforeInsert**
 **$afterInsert**
@@ -198,8 +175,7 @@ this model will never validate.
 **afterFind**
 **afterDelete**
 
-These arrays allow you to specify callback methods that will be run on the data at the
-time specified in the property name.
+這些陣列允許你宣告需要執行的回呼方法，並在你指定的事件發生時執行。
 
 資料作業
 =================
@@ -207,52 +183,61 @@ time specified in the property name.
 尋找資料
 ------------
 
-Several functions are provided for doing basic CRUD work on your tables, including find(),
-insert(), update(), delete() and more.
+在尋找資料方面，模型提供了幾個函數來對資料表進行基礎的 CRUD 工作，包括：find()、insert()、 update()、 delete() 等等。
 
 **find()**
 
-Returns a single row where the primary key matches the value passed in as the first parameter::
+以傳入的主鍵搜索資料，將會回傳一筆符合的資料：
+
+::
 
 	$user = $userModel->find($user_id);
 
-The value is returned in the format specified in $returnType.
+你的查詢將會以 $returnType 指定的資料型別回傳。
 
-You can specify more than one row to return by passing an array of primaryKey values instead
-of just one::
+你可以透過傳入一個以主鍵組成的陣列，來取得多筆資料：
+
+::
 
 	$users = $userModel->find([1,2,3]);
 
-If no parameters are passed in, will return all rows in that model's table, effectively acting
-like findAll(), though less explicit.
+如果沒有傳入任何參數，那麼將會回傳這個模型所指定的資料表中所有的記錄。雖然表示的函數名稱沒有像 findAll() 一樣這麼直覺，但效果是相同的。
 
 **findColumn()**
 
- Returns null or an indexed array of column values::
+回傳 null 或是一個具有索引的欄位結果陣列。
+
+::
 
  	$user = $userModel->findColumn($column_name);
 
- $column_name should be a name of single column else you will get the DataException.
+$column_name 應該要是單個欄位的名稱，若否你則會獲得 DataException 這個例外的拋出。
 
 **findAll()**
 
-Returns all results::
+回傳所有結果。
+
+::
 
 	$users = $userModel->findAll();
 
-This query may be modified by interjecting Query Builder commands as needed prior to calling this method::
+在呼叫這個方法之前，可以根據自己的需求從中間插入查詢生成器的語法，來修改這個查詢。
+
+::
 
 	$users = $userModel->where('active', 1)
 	                   ->findAll();
 
-You can pass in a limit and offset values as the first and second
-parameters, respectively::
+你也可以傳入兩個參數，分別代表偏移與限制。
+
+::
 
 	$users = $userModel->findAll($limit, $offset);
 
 **first()**
 
-Returns the first row in the result set. This is best used in combination with the query builder.
+將一定會回傳第一筆結果，這個功能最好與查詢生成器結合使用。
+
 ::
 
 	$user = $userModel->where('deleted', 0)
@@ -260,8 +245,8 @@ Returns the first row in the result set. This is best used in combination with t
 
 **withDeleted()**
 
-If $useSoftDeletes is true, then the find* methods will not return any rows where 'deleted_at IS NOT NULL'.
-To temporarily override this, you can use the withDeleted() method prior to calling the find* method.
+如果 $useSoftDeletes 為 true ，那麼 find() 方法將會以 "deleted_at IS NOT NULL" 這個條件執行資料庫查詢，不會回傳任何被假性刪除的記錄。當然，你若是需要這筆資料，就要在 find() 方法以前使用這個方法：
+
 ::
 
 	// Only gets non-deleted rows (deleted = 0)
@@ -273,8 +258,9 @@ To temporarily override this, you can use the withDeleted() method prior to call
 
 **onlyDeleted()**
 
-Whereas withDeleted() will return both deleted and not-deleted rows, this method modifies
-the next find* methods to return only soft deleted rows::
+withDeleted() 方法將會回傳已經刪除與未刪除的記錄，而這個方法將會修改下一個生效的 find() 方法，使它只會回傳被假性刪除的資料。
+
+::
 
 	$deletedUsers = $userModel->onlyDeleted()
 	                          ->findAll();
