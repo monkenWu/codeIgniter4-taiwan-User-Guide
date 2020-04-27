@@ -107,7 +107,7 @@ CodeIgniter 支援了模型類別，它提供了一些很好的功能，包括�
 		protected $allowedFields = ['name', 'email'];
 
 		protected $useTimestamps = false;
-		protected $createdField  = 'created_at';
+		protected $createdField  = +'created_at';
 		protected $updatedField  = 'updated_at';
 		protected $deletedField  = 'deleted_at';
 
@@ -118,26 +118,17 @@ CodeIgniter 支援了模型類別，它提供了一些很好的功能，包括�
 
 **$table**
 
-Specifies the database table that this model primarily works with. This only applies to the
-built-in CRUD methods. You are not restricted to using only this table in your own
-queries.
+指定這個模型主要配合的資料表，這只適用於模型內建的 CRUD 方法，並不會限制你在你自己的查詢內一定得用這個表。
 
 **$primaryKey**
 
-This is the name of the column that uniquely identifies the records in this table. This
-does not necessarily have to match the primary key that is specified in the database, but
-is used with methods like ``find()`` to know what column to match the specified value to.
+你所選擇的資料表中資料記錄的唯一識別符號，它不一定要與資料庫中資料表的主鍵欄位相同，而是你在使用像是 ``find()`` 這種方法時，模型可以知道要將指定值以哪個欄位進行搜索。
 
-.. note:: All Models must have a primaryKey specified to allow all of the features to work
-    as expected.
+.. note:: 所有模型必須指定一個 $primaryKey ，以使所有功能可以正常工作。
 
 **$returnType**
 
-The Model's CRUD methods will take a step of work away from you and automatically return
-the resulting data, instead of the Result object. This setting allows you to define
-the type of data that is returned. Valid values are 'array', 'object', or the fully
-qualified name of a class that can be used with the Result object's getCustomResultObject()
-method.
+模型提供的 CRUD 方法將幫助你減少工作量，並自動回傳結果資料，而不適普的的資料庫結果物件。這個設定允許你宣告回傳的資料類型。你可以鍵入 array 或是 object ，或者可以與結果物件的 getCustomResultObject() 方法一起使用完整的類別名稱。
 
 **$useSoftDeletes**
 
