@@ -569,47 +569,48 @@ save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬�
 驗證置換符號
 -----------------------
 
-The model provides a simple method to replace parts of your rules based on data that's being passed into it. This
-sounds fairly obscure but can be especially handy with the ``is_unique`` validation rule. Placeholders are simply
-the name of the field (or array key) that was passed in as $data surrounded by curly brackets. It will be
-replaced by the **value** of the matched incoming field. An example should clarify this::
+模型提供了一個簡單的方法，可以根據你所傳入的資料替換掉規則的一部份。這聽請起來可以會有點艱深晦澀，但在 ``is_unique`` 驗證規則中相當便利。置換符號是以 $data 的形式傳入欄位（或是鍵值陣列）的名稱，這個陣列的 **值** 將會取代在目標字串中被大括弧包圍的相符欄位，這個例子應該可以充分說明這個功能：
+
+::
 
     protected $validationRules = [
         'email' => 'required|valid_email|is_unique[users.email,id,{id}]'
     ];
 
-In this set of rules, it states that the email address should be unique in the database, except for the row
-that has an id matching the placeholder's value. Assuming that the form POST data had the following::
+在這個規則中，它規定除了具有置換符號的值相符的 id 記錄外，電子郵件的位置在資料庫中應該是唯一值，我們假設表單中的 POST 資料具有以下內容：
+
+::
 
     $_POST = [
         'id' => 4,
         'email' => 'foo@example.com'
     ]
 
-then the ``{id}`` placeholder would be replaced with the number **4**, giving this revised rule::
+那麼 ``{id}`` 置換符號將被替換成數字 **4** ，因此被置換成下列的規則：
+
+::
+
 
     protected $validationRules = [
         'email' => 'required|valid_email|is_unique[users.email,id,4]'
     ];
 
-So it will ignore the row in the database that has ``id=4`` when it verifies the email is unique.
+因此，當它所驗證的電子郵件是唯一值，就會忽略 ``id=4`` 的記錄。
 
-This can also be used to create more dynamic rules at runtime, as long as you take care that any dynamic
-keys passed in don't conflict with your form data.
+這也可以用來在驗證的執行期間創建更動態的規則，你只需要注意傳入的動態鍵不要與表單的資料衝突即可。
 
 保護欄位
 -----------------
 
-To help protect against Mass Assignment Attacks, the Model class **requires** that you list all of the field names
-that can be changed during inserts and updates in the ``$allowedFields`` class property. Any data provided
-in addition to these will be removed prior to hitting the database. This is great for ensuring that timestamps,
-or primary keys do not get changed.
+為了防止大規模的自動綁定攻擊，模型類別將 **要求** 你在 ``$allowedFields`` 類別屬性中列出，所有可以在插入和更新時更改的欄位名稱。除了這些之外的任何資料都將在進入資料庫之前被刪除，在保護時間戳或主鍵不被改變這件事情上，這是非常有用處的。
+
 ::
 
 	protected $allowedFields = ['name', 'email', 'address'];
 
-Occasionally, you will find times where you need to be able to change these elements. This is often during
-testing, migrations, or seeds. In these cases, you can turn the protection on or off::
+有時，你會發現你可能需要改變這些元素，這個需求通常會在測試、遷移，或資料填充的期間出現。在這種情形下，你可以開啟或關閉保護。
+
+::
 
 	$model->protect(false)
 	      ->insert($data)
@@ -618,48 +619,53 @@ testing, migrations, or seeds. In these cases, you can turn the protection on or
 操作查詢生成器
 --------------------------
 
-You can get access to a shared instance of the Query Builder for that model's database connection any time you
-need it::
+你可以在任何需要的時候，使用模型資料庫連接所提供的查詢生成器的共享實體。
+
+::
 
 	$builder = $userModel->builder();
 
-This builder is already set up with the model's $table.
+這個生成器已經在模型中的 $table 設定好了。
 
-You can also use Query Builder methods and the Model's CRUD methods in the same chained call, allowing for
-very elegant use::
+你還可以在同一個鏈式呼叫中優雅地混和使用查詢生成器方法與模型提供的 CRUD 方法。
+
+::
 
 	$users = $userModel->where('status', 'active')
 			   ->orderBy('last_login', 'asc')
 			   ->findAll();
 
-.. note:: You can also access the model's database connection seamlessly::
-
-			$user_name = $userModel->escape($name);
+.. note:: 你也可以無縫地造訪模型地資料庫連接：
+	
+	::
+	
+	$user_name = $userModel->escape($name);
 
 轉換回傳型別
 ----------------------------
 
-You can specify the format that data should be returned as when using the find*() methods as the class property,
-$returnType. There may be times that you would like the data back in a different format, though. The Model
-provides methods that allow you to do just that.
+你可以透過模型的類別屬性 $returnType 來指定使用 find() 方法時的回傳資料型別。但有時你可能會希望以不同的格式回傳資料，模型提供了一些方法允許你這麼做。
 
-.. note:: These methods only change the return type for the next find*() method call. After that,
-			it is reset to its default value.
+.. note:: 這些方法只會改變下一次執行 find() 方法呼叫時的回傳型別，之後它將回復為預設值。
 
 **asArray()**
 
-Returns data from the next find*() method as associative arrays::
+下一次的 find() 方法將以鍵值陣列的形式回傳：
+
+::
 
 	$users = $userModel->asArray()->where('status', 'active')->findAll();
 
 **asObject()**
 
-Returns data from the next find*() method as standard objects or custom class intances::
+下一次的 find() 將會把資料轉換為標準物件或自訂類別的實體回傳。
 
-	// Return as standard objects
+::
+
+	// 回傳標準物件
 	$users = $userModel->asObject()->where('status', 'active')->findAll();
 
-	// Return as custom class instances
+	// 回傳自訂類別實體
 	$users = $userModel->asObject('User')->where('status', 'active')->findAll();
 
 處理大量資料
