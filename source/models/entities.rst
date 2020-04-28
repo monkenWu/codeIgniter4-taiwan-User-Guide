@@ -163,39 +163,30 @@ CodeIgniter 支援使用實體類別作為資料庫的第一類物件，同時�
         }
     }
 
-The first thing to notice is the name of the methods we've added. For each one, the class expects the snake_case
-column name to be converted into PascalCase, and prefixed with either ``set`` or ``get``. These methods will then
-be automatically called whenever you set or retrieve the class property using the direct syntax (i.e. $user->email).
-The methods do not need to be public unless you want them accessed from other classes. For example, the ``created_at``
-class property will be accessed through the ``setCreatedAt()`` and ``getCreatedAt()`` methods.
+首先要注意的是我們所新增的方法名稱，對於每個方法，基本實體類別希望你將 snake_case 資料列名稱轉換為 PascalCase ，並以 ``set`` 與 ``get`` 作為前綴。每當你使用了直接語法（例如： $user->email ）設定或檢索類別屬性時，這些方法就會被自動呼叫。這些方法不需要是公開的，除非你想從其他的類別中呼叫它們，例如： ``created_at`` 類別屬性將可以透過 ``setCreatedAt()`` 與 ``getCreatedAt()`` 這兩個方法存取。
 
-.. note:: This only works when trying to access the properties from outside of the class. Any methods internal to the
-    class must call the ``setX()`` and ``getX()`` methods directly.
+.. note:: 上述功能只在試圖從類別外部存取才會起作用，任何類別內部的方法必須直接呼叫 ``setX()`` 以及 ``getX()`` 方法。
 
-In the ``setPassword()`` method we ensure that the password is always hashed.
+在 ``setPassword()`` 方法中，我們能夠保證密碼是被雜湊過的。
 
-In ``setCreatedAt()`` we convert the string we receive from the model into a DateTime object, ensuring that our timezone
-is UTC so we can easily convert the viewer's current timezone. In ``getCreatedAt()``, it converts the time to
-a formatted string in the application's current timezone.
+在 ``setCreatedAt()`` 方法中，我們將從模型中接受到的字串轉換成一個 DateTime 物件，保證我們為 UTC 時區，這樣就能輕易轉換檢視器目前的時區。在 ``getCreatedAt()`` 方法中，它會將時間轉換為應用程式目前時區的格式化字串。
 
-While fairly simple, these examples show that using Entity classes can provide a very flexible way to enforce
-business logic and create objects that are pleasant to use.
+雖然實作的過程很簡單，但透過這些例子則表明，使用實體類別可以提供一個極度靈活的方式來執行商業邏輯，並創建讓人愉悅使用的物件。
 
 ::
 
-    // Auto-hash the password - both do the same thing
+    // 自動雜湊密碼，兩者的作用是相同的
     $user->password = 'my great password';
     $user->setPassword('my great password');
 
 資料映射
 ============
 
-At many points in your career, you will run into situations where the use of an application has changed and the
-original column names in the database no longer make sense. Or you find that your coding style prefers camelCase
-class properties, but your database schema required snake_case names. These situations can be easily handled
-with the Entity class' data mapping features.
+在你的職業生涯中，很多時候你可能會遇到這樣子的狀況：應用程式的用途發生了變化，資料庫中原來的資料列名稱的意義發生改變。或者是，你發現了你的程式碼風格偏向使用駝峰式命名的類別屬性，而你的資料庫卻要求你使用 snake_case （每個單字間以下底線分隔）進行命名。這些時候都可以透過實體類別，輕鬆地進行映射處理。
 
-As an example, imagine you have the simplified User Entity that is used throughout your application::
+透過一個例子來示範，想像一下你有一個簡單的使用者實體，它在整個應用程式中被使用：
+
+::
 
     <?php namespace App\Entities;
 
@@ -213,14 +204,11 @@ As an example, imagine you have the simplified User Entity that is used througho
         ];
     }
 
-Your boss comes to you and says that no one uses usernames anymore, so you're switching to just use emails for login.
-But they do want to personalize the application a bit, so they want you to change the name field to represent a user's
-full name now, not their username like it does currently. To keep things tidy and ensure things continue making sense
-in the database you whip up a migration to rename the `name` field to `full_name` for clarity.
+你的老闆突然告訴你，現在沒有人使用 "usernames" 了啦，我需要你將它改成電子信箱登入。但他還表示，她希望可以對應用程式進行個人化設定，因此他想要你改變名稱欄位的用途，讓 ``name`` 欄位用來表示使用者全名，而不是像以前那樣。為了保持整潔以，並確保這個欄位在資料庫中繼續保持著某種意義，你需要使用資料庫遷移，並將欄位重新命名為 ``full_name`` 。
 
-Ignoring how contrived this example is, we now have two choices on how to fix the User class. We could modify the class
-property from ``$name`` to ``$full_name``, but that would require changes throughout the application. Instead, we can
-simply map the ``full_name`` column in the database to the ``$name`` property, and be done with the Entity changes::
+先別想這個讓人為難的例子，我們現在有兩個選項可以修正使用者類別。我們可以將類別屬性從 ``$name`` 改成 ``$full_name`` ，但這需要修改整個應用程式才行。反之，我們可以簡單地將資料庫中的 ``full_name`` 欄位映射到 ``$name`` 屬性，就可以完成對實體的修改。
+
+::
 
     <?php namespace App\Entities;
 
@@ -242,15 +230,9 @@ simply map the ``full_name`` column in the database to the ``$name`` property, a
         ],
     }
 
-By adding our new database name to the ``$datamap`` array, we can tell the class what class property the database column
-should be accessible through. The key of the array is the name of the column in the database, where the value in the array
-is class property to map it to.
+透過在 ``$datamap`` 陣列中加入我們新的資料庫欄位名稱，等於是告訴類別說：「資料庫中的資料列應該透過甚麼屬性進行存取」。陣列中的鍵是資料庫中的資料列名稱，值則是要它所映射的類別屬性。
 
-In this example, when the model sets the ``full_name`` field on the User class, it actually assigns that value to the
-class' ``$name`` property, so it can be set and retrieved through ``$user->name``. The value will still be accessible
-through the original ``$user->full_name``, also, as this is needed for the model to get the data back out and save it
-to the database. However, ``unset`` and ``isset`` only work on the mapped property, ``$name``, not on the original name,
-``full_name``.
+在這個範例中，當模型在使用者類別上設定 ``full_name`` 欄位時，實際上是將這個值賦值至 ``$name`` 屬性，所以可以透過 ``$user->name`` 來進行存取。這個值仍然可以使用 ``$user->full_name`` 進行存取，因為模型需要透過這個來得到資料並將它儲存在資料庫中。但要注意， ``unset`` 與 ``isset`` 只對映射到的 ``$name`` 屬性起作用，而不是對原始名稱 ``full_name`` 起作用。 
 
 修改器
 ========
@@ -258,11 +240,11 @@ to the database. However, ``unset`` and ``isset`` only work on the mapped proper
 資料修改器
 -------------
 
-By default, the Entity class will convert fields named `created_at`, `updated_at`, or `deleted_at` into
-:doc:`Time </libraries/time>` instances whenever they are set or retrieved. The Time class provides a large number
-of helpful methods in an immutable, localized way.
+在預設的情形下，實體類別將會在設定或檢索時將命名為 `created_at` 、 `updated_at` ， 以及 `deleted_at` 的欄位轉換為 :doc:`時間與日期程式庫 </libraries/time>` 的實體（instances），這個程式庫將以一種不變的、當地語系化的方式提供大量有用的方法。
 
-You can define which properties are automatically converted by adding the name to the **options['dates']** array::
+你可以透過將名稱添加到 **options['dates']** 陣列來定義那些屬性會被自動轉換：
+
+::
 
     <?php namespace App\Entities;
 
@@ -273,29 +255,27 @@ You can define which properties are automatically converted by adding the name t
         protected $dates = ['created_at', 'updated_at', 'deleted_at'];
     }
 
-Now, when any of those properties are set, they will be converted to a Time instance, using the application's
-current timezone, as set in **app/Config/App.php**::
+現在，上述提到的任何一個屬性被你囊括在陣列中，正如 **app/Config/App.php** 設定的那樣，它們將使用應用程式的所在時區，並被轉換成一個時間與日期程式庫的實體：
 
-    $user = new App\Entities\User();
+::
 
-    // Converted to Time instance
+  $user = new App\Entities\User();
+
+    // 轉換為時間實體
     $user->created_at = 'April 15, 2017 10:30:00';
 
-    // Can now use any Time methods:
+    // 現在可以使用任何使間與日期程式庫的方法:
     echo $user->created_at->humanize();
     echo $user->created_at->setTimezone('Europe/London')->toDateString();
 
 型別轉換
 ----------------
 
-You can specify that properties in your Entity should be converted to common data types with the **casts** property.
-This option should be an array where the key is the name of the class property, and the value is the data type it
-should be cast to. Casting only affects when values are read. No conversions happen that affect the permanent value in
-either the entity or the database. Properties can be cast to any of the following data types:
-**integer**, **float**, **double**, **string**, **boolean**, **object**, **array**, **datetime**, and **timestamp**.
-Add a question mark at the beginning of type to mark property as nullable, i.e. **?string**, **?integer**.
+你可以指定在實體中 **成員** 屬性應該強制被轉換成你指定的資料型別，這個選項應該是一個鍵值陣列，其中的鍵是屬性名稱，值是它應該要被強制轉換成的資料型別。強制轉換只在取值時影響，並不會轉換在實體或資料庫中的永久值。屬性可以強制轉換為下列數種資料型別：**integer** 、  **float** 、  **double** 、  **string** 、  **boolean** 、  **object** 、  **array** 、  **datetime** ， 以及 **timestamp**。在屬性前加入問號，可將其標註為 nullable ，例如： **?string** 或 **?integer** 。
+　
+例如：你有一個具有 **is_banned** 屬性的使用者實體，你可以把它轉換為 boolean ：
 
-For example, if you had a User entity with an **is_banned** property, you can cast it as a boolean::
+::
 
     <?php namespace App\Entities;
 
@@ -312,19 +292,18 @@ For example, if you had a User entity with an **is_banned** property, you can ca
 Array/Json 轉換
 ------------------
 
-Array/Json casting is especially useful with fields that store serialized arrays or json in them. When cast as:
+Array/Json 的轉換對於儲存序列化的陣列或 json 欄位相當有用，當轉換為：
 
-* an **array**, they will automatically be unserialized,
-* a **json**, they will automatically be set as an value of json_decode($value, false),
-* a **json-array**, they will automatically be set as an value of json_decode($value, true),
+* **array** ，它們將自動取消序列化。
+* **json** ，它們將自動設定為 json_decode($value,false) 的值。
+* **json-array** ，它們將自動設定為 json_decode($value, true) 的值。
 
-when you read the property's value.
-Unlike the rest of the data types that you can cast properties into, the:
+而讀取屬性的數值時，不像其他的資料型別你可以將屬性投射到：
 
-* **array** cast type will serialize,
-* **json** and **json-array** cast will use json_encode function on
+* **array** 強制型別轉換序列化。
+* **json** 與 **json-array** 強制轉換將在設定時對數值使用 json_encode 函數。
 
-the value whenever the property is set::
+::
 
     <?php namespace App\Entities;
 
@@ -350,8 +329,9 @@ the value whenever the property is set::
 檢查類別屬性是否變更
 -------------------------------
 
-You can check if an Entity attribute has changed since it was created. The only parameter is the name of the
-attribute to check::
+你可以檢查一個實體的屬性在創建後始否發生了變化，這個方法唯一的參數就是你所想檢查的屬性名稱：
+
+::
 
     $user = new User();
     $user->hasChanged('name');      // false
@@ -359,6 +339,8 @@ attribute to check::
     $user->name = 'Fred';
     $user->hasChanged('name');      // true
 
-Or to check the whole entity for changed values omit the parameter::
+或者省略這個參數，將會檢查整個實體是否發生了變化
+
+::
 
     $user->hasChanged();            // true
