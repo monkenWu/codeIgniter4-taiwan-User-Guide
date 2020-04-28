@@ -270,9 +270,9 @@ withDeleted() 方法將會回傳已經刪除與未刪除的記錄，而這個方
 
 **insert()**
 
-An associative array of data is passed into this method as the only parameter to create a new
-row of data in the database. The array's keys must match the name of the columns in a $table, while
-the array's values are the values to save for that key::
+這個方法允許你傳入一個鍵值陣列，使你可以在資料庫中插入一筆新資料。你所傳入的陣列的鍵必須與資料庫的欄位名稱相符，而每個鍵的值則是你所需要儲存的資料。
+
+::
 
 	$data = [
 		'username' => 'darth',
@@ -281,11 +281,30 @@ the array's values are the values to save for that key::
 
 	$userModel->insert($data);
 
+**insertBatch()**
+
+若是你需要一次插入多筆資料進資料庫中，你需要傳入一個包含上一個條目 insert() 使用的陣列的陣列。
+
+::
+
+	$data = [
+		[
+			'username' => 'darth',
+			'email'    => 'd.vader@theempire.com'
+		],
+		[
+			'username' => 'amos',
+			'email'    => 'a.vader@theempire.com'
+		]
+	];
+
+	$userModel->insertBatch($data);
+
 **update()**
 
-Updates an existing record in the database. The first parameter is the $primaryKey of the record to update.
-An associative array of data is passed into this method as the second parameter. The array's keys must match the name
-of the columns in a $table, while the array's values are the values to save for that key::
+更新資料庫的現有記錄，第一個參數是你目標更新資料的 $primaryKey ，而第二個參數則是一個鍵值陣列。陣列的鍵必須與資料表中的欄位名稱相符，而每個鍵的值則是你所要更新的資料。
+
+::
 
 	$data = [
 		'username' => 'darth',
@@ -294,7 +313,9 @@ of the columns in a $table, while the array's values are the values to save for 
 
 	$userModel->update($id, $data);
 
-Multiple records may be updated with a single call by passing an array of primary keys as the first parameter::
+透過傳入一個以主鍵組成的陣列作為第一個參數，可以只用一次呼叫更新多筆記錄。
+
+::
 
     $data = [
 		'active' => 1
@@ -302,8 +323,9 @@ Multiple records may be updated with a single call by passing an array of primar
 
 	$userModel->update([1, 2, 3], $data);
 
-When you need a more flexible solution, you can leave the parameters empty and it functions like the Query Builder's
-update command, with the added benefit of validation, events, etc::
+當你出現一些額外的需求時，你可以把傳入的參數留白，這個方法便會成為查詢生成器的更新指令一樣，讓你可以進行額外的驗證、事件等功能。
+
+::
 
     $userModel
         ->whereIn('id', [1,2,3])
@@ -312,13 +334,14 @@ update command, with the added benefit of validation, events, etc::
 
 **save()**
 
-This is a wrapper around the insert() and update() methods that handle inserting or updating the record
-automatically, based on whether it finds an array key matching the $primaryKey value::
+這個功能它封裝了 insert() 與 update() 兩個方法。它依據在資料表中是否找的到你所傳入的 $primaryKey 主鍵，自動處理你所需要的是插入或是更新。
 
-	// Defined as a model property
+::
+
+	// 定義 model 屬性
 	$primaryKey = 'id';
 
-	// Does an insert()
+	// 執行 insert()
 	$data = [
 		'username' => 'darth',
 		'email'    => 'd.vader@theempire.com'
@@ -326,7 +349,7 @@ automatically, based on whether it finds an array key matching the $primaryKey v
 
 	$userModel->save($data);
 
-	// Performs an update, since the primary key, 'id', is found.
+	// 如果找的到你所傳入的主健，將會執行 update() 
 	$data = [
 		'id'       => 3,
 		'username' => 'darth',
@@ -334,13 +357,9 @@ automatically, based on whether it finds an array key matching the $primaryKey v
 	];
 	$userModel->save($data);
 
-The save method also can make working with custom class result objects much simpler by recognizing a non-simple
-object and grabbing its public and protected values into an array, which is then passed to the appropriate
-insert or update method. This allows you to work with Entity classes in a very clean way. Entity classes are
-simple classes that represent a single instance of an object type, like a user, a blog post, job, etc. This
-class is responsible for maintaining the business logic surrounding the object itself, like formatting
-elements in a certain way, etc. They shouldn't have any idea about how they are saved to the database. At their
-simplest, they might look like this::
+save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬性和保護屬性，然後將它們保存成相應的陣列，傳入到插入或更新的方法中。這種方式允許你使用簡潔的實體類別，它表示的是一個物件類型的單一實體。比如使用者、部落格文章、作業等。這個類別負責維護圍繞著物件本身的商業邏輯，例如：以某種方法格式化元素等。它不應該有任何將資料儲存到資料庫的邏輯，最簡單的使用方式如下所示：
+
+::
 
 	namespace App\Entities;
 
@@ -367,7 +386,9 @@ simplest, they might look like this::
 		}
 	}
 
-A very simple model to work with this might look like::
+一個對應實體類別的最簡模型可能會像這個樣子：
+
+::
 
         use CodeIgniter\Model;
 
@@ -380,58 +401,63 @@ A very simple model to work with this might look like::
 		];
 	}
 
-This model works with data from the ``jobs`` table, and returns all results as an instance of ``App\Entities\Job``.
-When you need to persist that record to the database, you will need to either write custom methods, or use the
-model's ``save()`` method to inspect the class, grab any public and private properties, and save them to the database::
+這個模型使用 ``jobs`` 資料表來運作，並將所有結果以 ``App\Entities\Job`` 的一個實體回傳。當你需要將這個記錄儲存到資料庫時，你需要撰寫自定方法，使用模型提供的 ``save()`` 方法檢查類別、獲取公開屬性與私有屬性並將它們儲存到資料庫中。
 
-	// Retrieve a Job instance
+::
+
+	// 獲取你所指定的 Job 實體
 	$job = $model->find(15);
 
-	// Make some changes
+	// 執行一些改變
 	$job->name = "Foobar";
 
-	// Save the changes
+	// 儲存改變
 	$model->save($job);
 
-.. note:: If you find yourself working with Entities a lot, CodeIgniter provides a built-in :doc:`Entity class </models/entities>`
-	that provides several handy features that make developing Entities simpler.
+.. note:: 如果你發現自己需要使用實體來建構程式，CodeIgniter 提供了一個內建的 :doc:`實體類別 </models/entities>` ，它提供了幾個方便的功能，讓開發實體變得更加簡單。
 
 刪除資料
 -------------
 
 **delete()**
 
-Takes a primary key value as the first parameter and deletes the matching record from the model's table::
+傳入主鍵作為參數，將刪除模型所指定的資料表符合的記錄。
+
+::
 
 	$userModel->delete(12);
 
-If the model's $useSoftDeletes value is true, this will update the row to set ``deleted_at`` to the current
-date and time. You can force a permanent delete by setting the second parameter as true.
+如果模型的 $useSoftDeletes 為 true，則會將作為假性刪除判斷依據的 ``deleted_at`` 欄位寫入當下的日期和時間。你可以在第二個參數傳入 true 來強制執行永久刪除。
 
-An array of primary keys can be passed in as the first parameter to delete multiple records at once::
+傳入以主鍵組成的陣列，可以一次刪除多個記錄。
+
+::
 
     $userModel->delete([1,2,3]);
 
-If no parameters are passed in, will act like the Query Builder's delete method, requiring a where call
-previously::
+如果沒有傳入參數，就會像查詢生成器的刪除方法一樣，在這之前你會需要呼叫 where 相關的查詢生成器函數。
+
+::
 
     $userModel->where('id', 12)->delete();
 
 **purgeDeleted()**
 
-Cleans out the database table by permanently removing all rows that have 'deleted_at IS NOT NULL'. ::
+透過完全清除軟性刪除的記錄來清理資料表（符合 "deleted_at IS NOT NULL" 這個條件）。
+
+::
 
 	$userModel->purgeDeleted();
 
 驗證資料
 ---------------
 
-For many people, validating data in the model is the preferred way to ensure the data is kept to a single
-standard, without duplicating code. The Model class provides a way to automatically have all data validated
-prior to saving to the database with the ``insert()``, ``update()``, or ``save()`` methods.
+對許多人來說，在模型中實作資料驗證，將會是減少程式碼重複的不二方法。模型類別提供在使用 ``insert()`` 、 ``update()`` 、 或 ``save()`` 方法保存在資料庫之前，自動讓所有資料進行驗證。
 
-The first step is to fill out the ``$validationRules`` class property with the fields and rules that should
-be applied. If you have custom error message that you want to use, place them in the ``$validationMessages`` array::
+第一步，你需要在 ``$validationRules`` 這個類別屬性中，宣告需要應用驗證的欄位與規則。如果你想要使用自定的錯誤訊息，請將它們放在
+``$validationMessages`` 陣列。
+
+::
 
 	class UserModel extends Model
 	{
@@ -449,49 +475,55 @@ be applied. If you have custom error message that you want to use, place them in
 		];
 	}
 
-The other way to set the validation message to fields by functions,
+另一種方式是透過函數將驗證訊息設定成欄位。
 
 .. php:function:: setValidationMessage($field, $fieldMessages)
 
-	:param	string	$field
-	:param	array	$fieldMessages
+	:param	string	$field: 欄位名稱
+	:param	array	$fieldMessages: 欄位錯誤訊息
 
-	This function will set the field wise error messages.
+	這個函數將設定欄位的錯誤訊息。
 
-	Usage example::
+	使用範例：
+	
+	::
 
-            $fieldName = 'name';
-            $fieldValidationMessage = array(
-                            'required'   => 'Your name is required here',
-                    );
-            $model->setValidationMessage($fieldName, $fieldValidationMessage);
+		$fieldName = 'name';
+		$fieldValidationMessage = array(
+			'required'   => 'Your name is required here',
+		);
+		$model->setValidationMessage($fieldName, $fieldValidationMessage);
 
 .. php:function:: setValidationMessages($fieldMessages)
 
-	:param	array	$fieldMessages
+	:param array $fieldMessages: 欄位訊息
 
-	This function will set the field messages.
+	這個方法可以設定欄位訊息。
 
-	Usage example::
+	使用範例：
 
-            $fieldValidationMessage = array(
-                    'name' => array(
-                            'required'   => 'Your baby name is missing.',
-                            'min_length' => 'Too short, man!',
-                    ),
-            );
-            $model->setValidationMessages($fieldValidationMessage);
+	::
 
-Now, whenever you call the ``insert()``, ``update()``, or ``save()`` methods, the data will be validated. If it fails,
-the model will return boolean **false**. You can use the ``errors()`` method to retrieve the validation errors::
+		$fieldValidationMessage = array(
+			'name' => array(
+					'required'   => 'Your baby name is missing.',
+					'min_length' => 'Too short, man!',
+			),
+		);
+		$model->setValidationMessages($fieldValidationMessage);
+
+現在，每當你呼叫 ``insert()`` 、 ``update()`` ，或 ``save()`` 方法時，資料將會被自動驗證。如果驗證失敗，模型將會回傳 **false** 。你可以使用 ``error()`` 方法來存取驗證錯誤：
+
+::
 
 	if ($model->save($data) === false)
 	{
 		return view('updateUser', ['errors' => $model->errors()];
 	}
 
-This returns an array with the field names and their associated errors that can be used to either show all of the
-errors at the top of the form, or to display them individually::
+這將回傳一個包含欄位名稱和相關錯誤訊息的陣列，可以用來在表單的頂部顯示所有錯誤，你也可以單獨顯示它們：
+
+::
 
 	<?php if (! empty($errors)) : ?>
 		<div class="alert alert-danger">
@@ -501,8 +533,9 @@ errors at the top of the form, or to display them individually::
 		</div>
 	<?php endif ?>
 
-If you'd rather organize your rules and error messages within the Validation configuration file, you can do that
-and simply set ``$validationRules`` to the name of the validation rule group you created::
+如果你想在組態設定檔案中統一組織驗證用的規則以及錯誤訊息，只需將 ``$validationRules`` 設定為你所創建的規則群組名稱即可，就像這樣做：
+
+::
 
 	class UserModel extends Model
 	{
@@ -512,23 +545,25 @@ and simply set ``$validationRules`` to the name of the validation rule group you
 檢索驗證規則
 ---------------------------
 
-You can retrieve a model's validation rules by accessing its ``validationRules``
-property::
+你可以透過模型的 ``validationRules`` 屬性來檢索模型的驗證規則。
+
+::
 
     $rules = $model->validationRules;
 
-You can also retrieve just a subset of those rules by calling the accessor
-method directly, with options::
+你也可以透過直接呼叫 getValidationRules() 方法，用選項來檢索這些規則的一個子集。
+
+::
 
     $rules = $model->getValidationRules($options);
 
-The ``$options`` parameter is an associative array with one element,
-whose key is either "except" or "only", and which has as its
-value an array of fieldnames of interest.::
+``$options`` 參數是一個鍵值陣列，包含著鍵為 "except" 或 "only" 的元素，這個鍵對應的數值則為你想查閱的欄位名稱陣列。
 
-    // get the rules for all but the "username" field
+::
+
+    // 取得除了 username 欄位以外的所有規則
     $rules = $model->getValidationRules(['except' => ['username']]);
-    // get the rules for only the "city" and "state" fields
+    // 只取得 city 與 state 欄位的規則
     $rules = $model->getValidationRules(['only' => ['city', 'state']]);
 
 驗證置換符號
