@@ -1,5 +1,5 @@
 ################
-Database Seeding
+資料庫填充
 ################
 
 Database seeding is a simple way to add data into your database. It is especially useful during development where
