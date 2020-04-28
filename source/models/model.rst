@@ -20,21 +20,20 @@
 
 ::
 
-    // Create a new class manually
+    // 手動建立新類別
     $userModel = new App\Models\UserModel();
 
-    // Create a new class with the model function
+    // 使用模型函數建立新類別
     $userModel = model('App\Models\UserModel', false);
 
-    // Create a shared instance of the model
+    // 使用模型函數共享模型實體
     $userModel = model('App\Models\UserModel');
 
-    // Create shared instance with a supplied database connection
-    // When no namespace is given, it will search through all namespaces
-    // the system knows about and attempt to located the UserModel class.
+    // 使用你所提供的資料庫連接建立共享實體
+    // 如果沒有傳入命名空間那它將會搜索所有的命名空間
+    // 系統將會嘗試定位 UserModel 類別
     $db = db_connect('custom');
     $userModel = model('UserModel', true, $db);
-
 
 CodeIgniter 的 Model
 =======================
@@ -671,12 +670,10 @@ save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬�
 處理大量資料
 --------------------------------
 
-Sometimes, you need to process large amounts of data and would run the risk of running out of memory.
-To make this simpler, you may use the chunk() method to get smaller chunks of data that you can then
-do your work on. The first parameter is the number of rows to retrieve in a single chunk. The second
-parameter is a Closure that will be called for each row of data.
+有的時候，你可能會需要處理大量的資料，說不定會有記憶體不足的問題。為了簡單化這個問題，你可以使用 chunk() 方法來獲取更小的資料塊，然後再進行工作。第一個參數是單個資料塊中被檢索的行數，第二個參數是一個匿名陣列，它將會呼叫每一行的資料。
 
-This is best used during cronjobs, data exports, or other large tasks.
+這最好在排程工作、資料匯出與其他大型任務中使用。
+
 ::
 
 	$userModel->chunk(100, function ($data)
@@ -688,20 +685,12 @@ This is best used during cronjobs, data exports, or other large tasks.
 模型事件
 ============
 
-There are several points within the model's execution that you can specify multiple callback methods to run.
-These methods can be used to normalize data, hash passwords, save related entities, and much more. The following
-points in the model's execution can be affected, each through a class property: **$beforeInsert**, **$afterInsert**,
-**$beforeUpdate**, **afterUpdate**, **afterFind**, and **afterDelete**.
+在模型的執行的過程中，可以指定幾個時機執行數個回呼函數。這些方法可以用於正規化資料、雜湊密碼，以及儲存相關實體等等。以下提供數種方法來影響不同時機的執行行為：**$beforeInsert** 、 **$afterInsert** 、 **$beforeUpdate** 、 **afterUpdate** 、 **afterFind** 、以及 **afterDelete** 。
 
 定義回呼
 ------------------
 
-You specify the callbacks by first creating a new class method in your model to use. This class will always
-receive a $data array as its only parameter. The exact contents of the $data array will vary between events, but
-will always contain a key named **data** that contains the primary data passed to the original method. In the case
-of the insert* or update* methods, that will be the key/value pairs that are being inserted into the database. The
-main array will also contain the other values passed to the method, and be detailed later. The callback method
-must return the original $data array so other callbacks have the full information.
+首先，我們在模型中會創建一個新的類別方法來定義回呼。這個類別會接受一個 $data 陣列作為它的唯一參數。$data 陣列的確切內容會因事件的不同而相異，但總是會包含一個名為 **data** 的鍵，其中包含著傳遞給原始方法的主要資料——在插入或更新的方法下，這將是會被插入到資料庫的鍵值陣列。主要的陣列內容也會包含傳遞給其他方法的值，待會將會詳細的介紹。所有的回呼方法都必須回傳原始的 $data 陣列，這樣其他的回呼函數才能得到完整的訊息。
 
 ::
 
@@ -718,9 +707,9 @@ must return the original $data array so other callbacks have the full informatio
 指定要運作的回呼
 ---------------------------
 
-You specify when to run the callbacks by adding the method name to the appropriate class property (beforeInsert, afterUpdate,
-etc). Multiple callbacks can be added to a single event and they will be processed one after the other. You can
-use the same callback in multiple events::
+你可以透過將方法名稱添加到相應的類別屬性（ beforeInsert 或 afterUpdate 等），來指定何時該運作哪個回呼。你也可以在一個事件中加入多個回呼，他們將相繼被處理。當然也可以在多個事件中使用同一個回呼。
+
+::
 
 	protected $beforeInsert = ['hashPassword'];
 	protected $beforeUpdate = ['hashPassword'];
@@ -728,47 +717,45 @@ use the same callback in multiple events::
 事件參數
 ----------------
 
-Since the exact data passed to each callback varies a bit, here are the details on what is in the $data parameter
-passed to each event:
+由於傳遞給每個回呼的確切資料存在著一些差異，下面將會詳列傳遞給每個事件的 $data 參數中的詳細內容：
+
+id = 被更新的行的主键。
+data = 被插入的键/值对。如果一个对象或Entity类被传递给insert方法，首先将其转换为数组。
+
 
 ================ =========================================================================================================
-Event            $data contents
+事件             $data 內容
 ================ =========================================================================================================
-beforeInsert      **data** = the key/value pairs that are being inserted. If an object or Entity class is passed to the
-                  insert method, it is first converted to an array.
-afterInsert       **id** = the primary key of the new row, or 0 on failure.
-                  **data** = the key/value pairs being inserted.
-                  **result** = the results of the insert() method used through the Query Builder.
-beforeUpdate      **id** = the primary key of the row being updated.
-                  **data** = the key/value pairs that are being inserted. If an object or Entity class is passed to the
-                  insert method, it is first converted to an array.
-afterUpdate       **id** = the primary key of the row being updated.
-                  **data** = the key/value pairs being updated.
-                  **result** = the results of the update() method used through the Query Builder.
-afterFind         Varies by find* method. See the following:
-- find()          **id** = the primary key of the row being searched for.
-                  **data** = The resulting row of data, or null if no result found.
-- findAll()       **data** = the resulting rows of data, or null if no result found.
-                  **limit** = the number of rows to find.
-                  **offset** = the number of rows to skip during the search.
-- first()         **data** = the resulting row found during the search, or null if none found.
-beforeDelete      Varies by delete* method. See the following:
-- delete()        **id** = primary key of row being deleted.
-                  **purge** = boolean whether soft-delete rows should be hard deleted.
-afterDelete       Varies by delete* method. See the following:
-- delete()        **id** = primary key of row being deleted.
-                  **purge** = boolean whether soft-delete rows should be hard deleted.
-                  **result** = the result of the delete() call on the Query Builder.
-                  **data** = unused.
+beforeInsert      **data** = 即將被插入的鍵值陣列。如果一個物件或是實體類別被傳遞給插入方法，則會先將其轉換成陣列。
+afterInsert       **id** = 新記錄的主鍵，若插入失敗則為 0 。
+                  **data** = 被插入進資料庫的鍵值陣列。
+                  **result** = 透過查詢生成器使用 insert() 方法的結果。
+beforeUpdate      **id** = 被更新的資料的主鍵。
+                  **data** = 即將被更新的鍵值陣列，如果一個物件或實體類別被傳遞給插入方法，首先會先將其轉換成陣列。
+afterUpdate       **id** = 被更新的資料主鍵。
+                  **data** = 更新完成的鍵值陣列。
+                  **result** = 透過查詢生成器使用 update() 方法的結果
+afterFind         將因為 find 方法的不同而相異，請詳閱下方內容：
+- find()          **id** = 被搜索的主鍵。
+                  **data** = 搜索結果的資訊列，若沒有結果則為空。
+- findAll()       **data** = 要查找的資料列數，如果沒有找到結果則為空。
+                  **limit** = 要查找的列數。
+                  **offset** = 搜索過程中要跳過的列數。
+- first()         **data** = 搜索過程中找到的結果列。如果沒找到則為空。
+beforeDelete      將因為 delete 方法的不同而相異，請詳閱下方內容：
+- delete()        **id** = 即將被刪除的主鍵。
+                  **purge** = 布林，是否被完全刪除或假性刪除。
+afterDelete       將因為 delete 方法的不同而相異，請詳閱下方內容：
+- delete()        **id** = 被刪除的主鍵。
+                  **purge** = 布林，是否被完全刪除或假性刪除。
+                  **result** = 查詢生成器呼叫 delete() 的結果。
+                  **data** = 未使用。
 ================ =========================================================================================================
-
 
 創建手動模型
 =====================
 
-You do not need to extend any special class to create a model for your application. All you need is to get an
-instance of the database connection and you're good to go. This allows you to bypass the features CodeIgniter's
-Model gives you out of the box, and create a fully custom experience.
+你不需要繼承任何的特殊類別來替你的應用程式創建一個模型。你只需要得到一個資料庫連接實體即可。這樣你就能繞過 CodeIgniter 的模型替你預先制定的功能，創建一個完全由你定義的手動模型。
 
 ::
 
