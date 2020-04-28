@@ -1,12 +1,11 @@
 #############
-Modeling Data
+資料模型化
 #############
 
-CodeIgniter comes with rich tools for modeling and working
-with your database tables and records.
+CodeIgniter 內建豐富的工具，用於資料庫資料表以及記錄的模型化與作業。
 
 .. toctree::
     :titlesonly:
 
-    Using CodeIgniter's Model <model>
-    Using Entity Classes <entities>
+    使用 CodeIgniter 的模型 <model>
+    使用實體類別 <entities>

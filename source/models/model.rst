@@ -1,63 +1,59 @@
 #########################
-Using CodeIgniter's Model
+使用 CodeIgniter 的模型
 #########################
 
 .. contents::
     :local:
     :depth: 2
 
-Models
+模型
 ======
 
-Models provide a way to interact with a specific table in your database. They come out of the box with helper
-methods for much of the standard ways you would need to interact with a database table, including finding records,
-updating records, deleting records, and more.
+模型提供一種與資料庫中特定資料表交互的方法，模型也內建輔助方法，讓你在與資料庫資料表交互的過程中有標準的方法可以呼叫，包括查找記錄、更新記錄，刪除記錄等等。
 
-Accessing Models
+存取模型
 ================
 
-Models are typically stored in the ``app/Models`` directory. They should have a namespace that matches their
-location within the directory, like ``namespace App\Models``.
+模型通常會儲存在 ``app/Models`` 目錄下，通常它們會有一個與它們所在位置相同的命名空間，比如這個命名空間： ``namespace App\Models`` 。
 
-You can access models within your classes by creating a new instance or using the ``model()`` helper function.
+你可以透過創造一個新的實體或是使用 ``model()`` 輔助函數來造訪類別中的模型。
 
 ::
 
-    // Create a new class manually
+    // 手動建立新類別
     $userModel = new App\Models\UserModel();
 
-    // Create a new class with the model function
+    // 使用模型函數建立新類別
     $userModel = model('App\Models\UserModel', false);
 
-    // Create a shared instance of the model
+    // 使用模型函數共享模型實體
     $userModel = model('App\Models\UserModel');
 
-    // Create shared instance with a supplied database connection
-    // When no namespace is given, it will search through all namespaces
-    // the system knows about and attempt to located the UserModel class.
+    // 使用你所提供的資料庫連接建立共享實體
+    // 如果沒有傳入命名空間那它將會搜索所有的命名空間
+    // 系統將會嘗試定位 UserModel 類別
     $db = db_connect('custom');
     $userModel = model('UserModel', true, $db);
 
+CodeIgniter 的 Model
+=======================
 
-CodeIgniter's Model
+CodeIgniter 支援了模型類別，它提供了一些很好的功能，包括：
+
+- 自動連接資料庫
+- 基本的 CRUD 方法
+- 模型內驗證
+- 自動分頁
+- 更多更多方法
+
+這個類別提供了一個很強鍵的基礎，你可以在這個基礎上建立自己的模型，讓你可以快速地建構出應用程式的模型層。
+
+建立你的模型
 ===================
 
-CodeIgniter does provide a model class that provides a few nice features, including:
+若你需要利用 CodeIgniter 的模型，你只需要創建一個新的模型類別，並且使其繼承 ``CodeIgniter\Model`` ：
 
-- automatic database connection
-- basic CRUD methods
-- in-model validation
-- automatic pagination
-- and more
-
-This class provides a solid base from which to build your own models, allowing you to
-rapidly build out your application's model layer.
-
-Creating Your Model
-===================
-
-To take advantage of CodeIgniter's model, you would simply create a new model class
-that extends ``CodeIgniter\Model``::
+::
 
         <?php namespace App\Models;
 
@@ -68,17 +64,13 @@ that extends ``CodeIgniter\Model``::
 
 	}
 
-This empty class provides convenient access to the database connection, the Query Builder,
-and a number of additional convenience methods.
+這個空的類別提供了對資料庫連接、查詢生成器，和一些額外的便捷方法的訪問。
 
-Connecting to the Database
+連接資料庫
 --------------------------
 
-When the class is first instantiated, if no database connection instance is passed to the constructor,
-it will automatically connect to the default database group, as set in the configuration. You can
-modify which group is used on a per-model basis by adding the DBGroup property to your class.
-This ensures that within the model any references to ``$this->db`` are made through the appropriate
-connection.
+當類別被首次實體化後，如果沒有向建構方法傳遞資料庫的連結實體，那麼它將會自動連接到組態設定中預設的資料庫群組。你可以透過在類別中添加 DBGroup 屬性來修改每個模型會使用到的資料庫設定群組。這樣可以讓模型中任何對 ``$this->db`` 的呼叫引用，都是透過你所設定適合的連接執行。
+
 ::
 
     <?php namespace App\Models;
@@ -90,15 +82,14 @@ connection.
 		protected $DBGroup = 'group_name';
 	}
 
-You would replace "group_name" with the name of a defined database group from the database
-configuration file.
+你可以把 "group_name" 替換成資料庫組態設定檔案中定義的資料庫群組名稱。
 
-Configuring Your Model
+設定你的模型
 ----------------------
 
-The model class has a few configuration options that can be set to allow the class' methods
-to work seamlessly for you. The first two are used by all of the CRUD methods to determine
-what table to use and how we can find the required records::
+模型類別有幾個設定選項，可以透過設定這些選項讓「類別」方法無縫地為你工作。前兩個是所有 CRUD 需求都會用到的屬性，決定著我們需要使用什麼資料表，以及如何找到所需的記錄。
+
+::
 
         <?php namespace App\Models;
 
@@ -126,87 +117,55 @@ what table to use and how we can find the required records::
 
 **$table**
 
-Specifies the database table that this model primarily works with. This only applies to the
-built-in CRUD methods. You are not restricted to using only this table in your own
-queries.
+指定這個模型主要配合的資料表，這只適用於模型內建的 CRUD 方法，並不會限制你在你自己的查詢內一定得用這個表。
 
 **$primaryKey**
 
-This is the name of the column that uniquely identifies the records in this table. This
-does not necessarily have to match the primary key that is specified in the database, but
-is used with methods like ``find()`` to know what column to match the specified value to.
+你所選擇的資料表中資料記錄的唯一識別符號，它不一定要與資料庫中資料表的主鍵欄位相同，而是你在使用像是 ``find()`` 這種方法時，模型可以知道要將指定值以哪個欄位進行搜索。
 
-.. note:: All Models must have a primaryKey specified to allow all of the features to work
-    as expected.
+.. note:: 所有模型必須指定一個 $primaryKey ，以使所有功能可以正常工作。
 
 **$returnType**
 
-The Model's CRUD methods will take a step of work away from you and automatically return
-the resulting data, instead of the Result object. This setting allows you to define
-the type of data that is returned. Valid values are 'array', 'object', or the fully
-qualified name of a class that can be used with the Result object's getCustomResultObject()
-method.
+模型提供的 CRUD 方法將幫助你減少工作量，並自動回傳結果資料，而不適普的的資料庫結果物件。這個設定允許你宣告回傳的資料類型。你可以鍵入 array 或是 object ，或者可以與結果物件的 getCustomResultObject() 方法一起使用完整的類別名稱。
 
 **$useSoftDeletes**
 
-If true, then any delete* method calls will set ``deleted_at`` in the database, instead of
-actually deleting the row. This can preserve data when it might be referenced elsewhere, or
-can maintain a "recycle bin" of objects that can be restored, or even simply preserve it as
-part of a security trail. If true, the find* methods will only return non-deleted rows, unless
-the withDeleted() method is called prior to calling the find* method.
+如果這個值為 true ，那麼任何 delete 方法的呼叫都會在資料庫中修改 ``deleted_at`` 欄位，而不是直接刪除該筆資料。當資料可能在其他地方被引用時，這個功能可以替你將資料保存下來，也可以作為「資源回收桶」，讓被刪除的物件有被還原的可能，甚至你也可以將其保留下來做為未來安全性追蹤的依據。若是資料被設為刪除，你還是想呼叫到這筆資料，則必須在 find() 方法前先呼叫 withDeleted() 方法，否則 find() 方法只會回傳未被刪除的資料。
 
-This requires either a DATETIME or INTEGER field in the database as per the model's
-$dateFormat setting. The default field name is ``deleted_at`` however this name can be
-configured to any name of your choice by using $deletedField property.
+若你要使用這個功能，你需要在資料庫中建立型別為 DATETIME 或 INTEGER 的欄位，其名稱必須在 $dateFormat 成員屬性中定義，這個成員變數的值必須與資料庫的欄位名稱相同。而 $dateFormat 的預設名稱為 ``deleted_at`` 。
 
 **$allowedFields**
 
-This array should be updated with the field names that can be set during save, insert, or
-update methods. Any field names other than these will be discarded. This helps to protect
-against just taking input from a form and throwing it all at the model, resulting in
-potential mass assignment vulnerabilities.
+在這個陣列中被記錄的欄位名稱都將在使用保存、插入，或更新方法期間被允許，而沒有被記錄的欄位名稱將被丟棄。這有助於防止將未處理的表單資訊直接傳遞給模型處理時，導致的自動綁定漏洞。
 
 **$useTimestamps**
 
-This boolean value determines whether the current date is automatically added to all inserts
-and updates. If true, will set the current time in the format specified by $dateFormat. This
-requires that the table have columns named 'created_at' and 'updated_at' in the appropriate
-data type.
+這個屬性的型別為布林，它決定了在執行插入與更新的方法時，是否會自動更新時間戳。如果為 true 將以 $dateFormat 屬性所指定格式，產出目前的時間記錄並存在的固定的欄位中。這個功能需要在資料庫中以適當的型別建立 "created_at" 以及 "updated_at" 欄位。
 
 **$createdField**
 
-Specifies which database field should use for keep data record create timestamp.
-Leave it empty to avoid update it (even useTimestamps is enabled)
+指定使用哪個資料庫欄位來保存資料在創建時的時間戳，請將其留空並避免更新這個欄位（即使啟動了 useTimestamps 功能）。
 
 **$updatedField**
 
-Specifies which database field should use for keep data record update timestamp.
-Leave it empty to avoid update it (even useTimestamps is enabled)
+指定使用哪個資料庫欄位來保存資料在更新時的時間戳，請將其留空並避免更新這個欄位（即使啟動了 useTimestamps 功能）。
 
 **$dateFormat**
 
-This value works with $useTimestamps and $useSoftDeletes to ensure that the correct type of
-date value gets inserted into the database. By default, this creates DATETIME values, but
-valid options are: datetime, date, or int (a PHP timestamp). Using 'useSoftDeletes' or
-'useTimestamps' with an invalid or missing dateFormat will cause an exception.
+這個屬性將與 $useTimestamps 與 $useSoftDeletes 一起運作，確保正確的日期被插入到資料庫中。在預設的情形下，這個值會創建 DATETIME 型別的值，而這個屬性可以設定的選項為： datetime 、date 、int （ PHP 時間戳）。
 
 **$validationRules**
 
-Contains either an array of validation rules as described in :ref:`validation-array`
-or a string containing the name of a validation group, as described in the same section.
-Described in more detail below.
+這個屬性將會是驗證程式庫的 :ref:`validation-array` （如何保存規則）條目中所描述的驗證用陣列，或是驗證群組名稱的字串，下面將會更詳細地闡述。
 
 **$validationMessages**
 
-Contains an array of custom error messages that should be used during validation, as
-described in :ref:`validation-custom-errors`. Described in more detail below.
+你將在這個屬性中儲存，驗證過程中你所設定的 :ref:`validation-custom-errors` （自訂錯誤消息）的陣列，下面將會有更詳細地闡述。
 
 **$skipValidation**
 
-Whether validation should be skipped during all ``inserts`` and ``updates``. The default
-value is false, meaning that data will always attempt to be validated. This is
-primarily used by the ``skipValidation()`` method, but may be changed to ``true`` so
-this model will never validate.
+這個屬性決定在進行 ``更新`` 與 ``插入`` 的過程中，是否會跳過驗證。預設值為 false ，這代表若沒有另外賦予值，模型將始終進行驗證。這個屬性主要由 ``skipValidation()`` 方法使用，你也可以將這個屬性改為 ``true`` ，讓模型永遠不要進行驗證。
 
 **$beforeInsert**
 **$afterInsert**
@@ -215,61 +174,69 @@ this model will never validate.
 **afterFind**
 **afterDelete**
 
-These arrays allow you to specify callback methods that will be run on the data at the
-time specified in the property name.
+這些陣列允許你宣告需要執行的回呼方法，並在你指定的事件發生時執行。
 
-Working With Data
+資料作業
 =================
 
-Finding Data
+尋找資料
 ------------
 
-Several functions are provided for doing basic CRUD work on your tables, including find(),
-insert(), update(), delete() and more.
+在尋找資料方面，模型提供了幾個函數來對資料表進行基礎的 CRUD 工作，包括：find()、insert()、 update()、 delete() 等等。
 
 **find()**
 
-Returns a single row where the primary key matches the value passed in as the first parameter::
+以傳入的主鍵搜索資料，將會回傳一筆符合的資料：
+
+::
 
 	$user = $userModel->find($user_id);
 
-The value is returned in the format specified in $returnType.
+你的查詢將會以 $returnType 指定的資料型別回傳。
 
-You can specify more than one row to return by passing an array of primaryKey values instead
-of just one::
+你可以透過傳入一個以主鍵組成的陣列，來取得多筆資料：
+
+::
 
 	$users = $userModel->find([1,2,3]);
 
-If no parameters are passed in, will return all rows in that model's table, effectively acting
-like findAll(), though less explicit.
+如果沒有傳入任何參數，那麼將會回傳這個模型所指定的資料表中所有的記錄。雖然表示的函數名稱沒有像 findAll() 一樣這麼直覺，但效果是相同的。
 
 **findColumn()**
 
- Returns null or an indexed array of column values::
+回傳 null 或是一個具有索引的欄位結果陣列。
+
+::
 
  	$user = $userModel->findColumn($column_name);
 
- $column_name should be a name of single column else you will get the DataException.
+$column_name 應該要是單個欄位的名稱，若否你則會獲得 DataException 這個例外的拋出。
 
 **findAll()**
 
-Returns all results::
+回傳所有結果。
+
+::
 
 	$users = $userModel->findAll();
 
-This query may be modified by interjecting Query Builder commands as needed prior to calling this method::
+在呼叫這個方法之前，可以根據自己的需求從中間插入查詢生成器的語法，來修改這個查詢。
+
+::
 
 	$users = $userModel->where('active', 1)
 	                   ->findAll();
 
-You can pass in a limit and offset values as the first and second
-parameters, respectively::
+你也可以傳入兩個參數，分別代表偏移與限制。
+
+::
 
 	$users = $userModel->findAll($limit, $offset);
 
 **first()**
 
-Returns the first row in the result set. This is best used in combination with the query builder.
+將一定會回傳第一筆結果，這個功能最好與查詢生成器結合使用。
+
 ::
 
 	$user = $userModel->where('deleted', 0)
@@ -277,8 +244,8 @@ Returns the first row in the result set. This is best used in combination with t
 
 **withDeleted()**
 
-If $useSoftDeletes is true, then the find* methods will not return any rows where 'deleted_at IS NOT NULL'.
-To temporarily override this, you can use the withDeleted() method prior to calling the find* method.
+如果 $useSoftDeletes 為 true ，那麼 find() 方法將會以 "deleted_at IS NOT NULL" 這個條件執行資料庫查詢，不會回傳任何被假性刪除的記錄。當然，你若是需要這筆資料，就要在 find() 方法以前使用這個方法：
+
 ::
 
 	// Only gets non-deleted rows (deleted = 0)
@@ -290,20 +257,21 @@ To temporarily override this, you can use the withDeleted() method prior to call
 
 **onlyDeleted()**
 
-Whereas withDeleted() will return both deleted and not-deleted rows, this method modifies
-the next find* methods to return only soft deleted rows::
+withDeleted() 方法將會回傳已經刪除與未刪除的記錄，而這個方法將會修改下一個生效的 find() 方法，使它只會回傳被假性刪除的資料。
+
+::
 
 	$deletedUsers = $userModel->onlyDeleted()
 	                          ->findAll();
 
-Saving Data
+儲存資料
 -----------
 
 **insert()**
 
-An associative array of data is passed into this method as the only parameter to create a new
-row of data in the database. The array's keys must match the name of the columns in a $table, while
-the array's values are the values to save for that key::
+這個方法允許你傳入一個鍵值陣列，使你可以在資料庫中插入一筆新資料。你所傳入的陣列的鍵必須與資料庫的欄位名稱相符，而每個鍵的值則是你所需要儲存的資料。
+
+::
 
 	$data = [
 		'username' => 'darth',
@@ -312,11 +280,30 @@ the array's values are the values to save for that key::
 
 	$userModel->insert($data);
 
+**insertBatch()**
+
+若是你需要一次插入多筆資料進資料庫中，你需要傳入一個包含上一個條目 insert() 使用的陣列的陣列。
+
+::
+
+	$data = [
+		[
+			'username' => 'darth',
+			'email'    => 'd.vader@theempire.com'
+		],
+		[
+			'username' => 'amos',
+			'email'    => 'a.vader@theempire.com'
+		]
+	];
+
+	$userModel->insertBatch($data);
+
 **update()**
 
-Updates an existing record in the database. The first parameter is the $primaryKey of the record to update.
-An associative array of data is passed into this method as the second parameter. The array's keys must match the name
-of the columns in a $table, while the array's values are the values to save for that key::
+更新資料庫的現有記錄，第一個參數是你目標更新資料的 $primaryKey ，而第二個參數則是一個鍵值陣列。陣列的鍵必須與資料表中的欄位名稱相符，而每個鍵的值則是你所要更新的資料。
+
+::
 
 	$data = [
 		'username' => 'darth',
@@ -325,7 +312,9 @@ of the columns in a $table, while the array's values are the values to save for 
 
 	$userModel->update($id, $data);
 
-Multiple records may be updated with a single call by passing an array of primary keys as the first parameter::
+透過傳入一個以主鍵組成的陣列作為第一個參數，可以只用一次呼叫更新多筆記錄。
+
+::
 
     $data = [
 		'active' => 1
@@ -333,8 +322,9 @@ Multiple records may be updated with a single call by passing an array of primar
 
 	$userModel->update([1, 2, 3], $data);
 
-When you need a more flexible solution, you can leave the parameters empty and it functions like the Query Builder's
-update command, with the added benefit of validation, events, etc::
+當你出現一些額外的需求時，你可以把傳入的參數留白，這個方法便會成為查詢生成器的更新指令一樣，讓你可以進行額外的驗證、事件等功能。
+
+::
 
     $userModel
         ->whereIn('id', [1,2,3])
@@ -343,13 +333,14 @@ update command, with the added benefit of validation, events, etc::
 
 **save()**
 
-This is a wrapper around the insert() and update() methods that handle inserting or updating the record
-automatically, based on whether it finds an array key matching the $primaryKey value::
+這個功能它封裝了 insert() 與 update() 兩個方法。它依據在資料表中是否找的到你所傳入的 $primaryKey 主鍵，自動處理你所需要的是插入或是更新。
 
-	// Defined as a model property
+::
+
+	// 定義 model 屬性
 	$primaryKey = 'id';
 
-	// Does an insert()
+	// 執行 insert()
 	$data = [
 		'username' => 'darth',
 		'email'    => 'd.vader@theempire.com'
@@ -357,7 +348,7 @@ automatically, based on whether it finds an array key matching the $primaryKey v
 
 	$userModel->save($data);
 
-	// Performs an update, since the primary key, 'id', is found.
+	// 如果找的到你所傳入的主健，將會執行 update() 
 	$data = [
 		'id'       => 3,
 		'username' => 'darth',
@@ -365,13 +356,9 @@ automatically, based on whether it finds an array key matching the $primaryKey v
 	];
 	$userModel->save($data);
 
-The save method also can make working with custom class result objects much simpler by recognizing a non-simple
-object and grabbing its public and protected values into an array, which is then passed to the appropriate
-insert or update method. This allows you to work with Entity classes in a very clean way. Entity classes are
-simple classes that represent a single instance of an object type, like a user, a blog post, job, etc. This
-class is responsible for maintaining the business logic surrounding the object itself, like formatting
-elements in a certain way, etc. They shouldn't have any idea about how they are saved to the database. At their
-simplest, they might look like this::
+save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬性和保護屬性，然後將它們保存成相應的陣列，傳入到插入或更新的方法中。這種方式允許你使用簡潔的實體類別，它表示的是一個物件類型的單一實體。比如使用者、部落格文章、作業等。這個類別負責維護圍繞著物件本身的商業邏輯，例如：以某種方法格式化元素等。它不應該有任何將資料儲存到資料庫的邏輯，最簡單的使用方式如下所示：
+
+::
 
 	namespace App\Entities;
 
@@ -398,7 +385,9 @@ simplest, they might look like this::
 		}
 	}
 
-A very simple model to work with this might look like::
+一個對應實體類別的最簡模型可能會像這個樣子：
+
+::
 
         use CodeIgniter\Model;
 
@@ -411,58 +400,63 @@ A very simple model to work with this might look like::
 		];
 	}
 
-This model works with data from the ``jobs`` table, and returns all results as an instance of ``App\Entities\Job``.
-When you need to persist that record to the database, you will need to either write custom methods, or use the
-model's ``save()`` method to inspect the class, grab any public and private properties, and save them to the database::
+這個模型使用 ``jobs`` 資料表來運作，並將所有結果以 ``App\Entities\Job`` 的一個實體回傳。當你需要將這個記錄儲存到資料庫時，你需要撰寫自定方法，使用模型提供的 ``save()`` 方法檢查類別、獲取公開屬性與私有屬性並將它們儲存到資料庫中。
 
-	// Retrieve a Job instance
+::
+
+	// 獲取你所指定的 Job 實體
 	$job = $model->find(15);
 
-	// Make some changes
+	// 執行一些改變
 	$job->name = "Foobar";
 
-	// Save the changes
+	// 儲存改變
 	$model->save($job);
 
-.. note:: If you find yourself working with Entities a lot, CodeIgniter provides a built-in :doc:`Entity class </models/entities>`
-	that provides several handy features that make developing Entities simpler.
+.. note:: 如果你發現自己需要使用實體來建構程式，CodeIgniter 提供了一個內建的 :doc:`實體類別 </models/entities>` ，它提供了幾個方便的功能，讓開發實體變得更加簡單。
 
-Deleting Data
+刪除資料
 -------------
 
 **delete()**
 
-Takes a primary key value as the first parameter and deletes the matching record from the model's table::
+傳入主鍵作為參數，將刪除模型所指定的資料表符合的記錄。
+
+::
 
 	$userModel->delete(12);
 
-If the model's $useSoftDeletes value is true, this will update the row to set ``deleted_at`` to the current
-date and time. You can force a permanent delete by setting the second parameter as true.
+如果模型的 $useSoftDeletes 為 true，則會將作為假性刪除判斷依據的 ``deleted_at`` 欄位寫入當下的日期和時間。你可以在第二個參數傳入 true 來強制執行永久刪除。
 
-An array of primary keys can be passed in as the first parameter to delete multiple records at once::
+傳入以主鍵組成的陣列，可以一次刪除多個記錄。
+
+::
 
     $userModel->delete([1,2,3]);
 
-If no parameters are passed in, will act like the Query Builder's delete method, requiring a where call
-previously::
+如果沒有傳入參數，就會像查詢生成器的刪除方法一樣，在這之前你會需要呼叫 where 相關的查詢生成器函數。
+
+::
 
     $userModel->where('id', 12)->delete();
 
 **purgeDeleted()**
 
-Cleans out the database table by permanently removing all rows that have 'deleted_at IS NOT NULL'. ::
+透過完全清除軟性刪除的記錄來清理資料表（符合 "deleted_at IS NOT NULL" 這個條件）。
+
+::
 
 	$userModel->purgeDeleted();
 
-Validating Data
+驗證資料
 ---------------
 
-For many people, validating data in the model is the preferred way to ensure the data is kept to a single
-standard, without duplicating code. The Model class provides a way to automatically have all data validated
-prior to saving to the database with the ``insert()``, ``update()``, or ``save()`` methods.
+對許多人來說，在模型中實作資料驗證，將會是減少程式碼重複的不二方法。模型類別提供在使用 ``insert()`` 、 ``update()`` 、 或 ``save()`` 方法保存在資料庫之前，自動讓所有資料進行驗證。
 
-The first step is to fill out the ``$validationRules`` class property with the fields and rules that should
-be applied. If you have custom error message that you want to use, place them in the ``$validationMessages`` array::
+第一步，你需要在 ``$validationRules`` 這個類別屬性中，宣告需要應用驗證的欄位與規則。如果你想要使用自定的錯誤訊息，請將它們放在
+``$validationMessages`` 陣列。
+
+::
 
 	class UserModel extends Model
 	{
@@ -480,49 +474,55 @@ be applied. If you have custom error message that you want to use, place them in
 		];
 	}
 
-The other way to set the validation message to fields by functions,
+另一種方式是透過函數將驗證訊息設定成欄位。
 
 .. php:function:: setValidationMessage($field, $fieldMessages)
 
-	:param	string	$field
-	:param	array	$fieldMessages
+	:param	string	$field: 欄位名稱
+	:param	array	$fieldMessages: 欄位錯誤訊息
 
-	This function will set the field wise error messages.
+	這個函數將設定欄位的錯誤訊息。
 
-	Usage example::
+	使用範例：
+	
+	::
 
-            $fieldName = 'name';
-            $fieldValidationMessage = array(
-                            'required'   => 'Your name is required here',
-                    );
-            $model->setValidationMessage($fieldName, $fieldValidationMessage);
+		$fieldName = 'name';
+		$fieldValidationMessage = array(
+			'required'   => 'Your name is required here',
+		);
+		$model->setValidationMessage($fieldName, $fieldValidationMessage);
 
 .. php:function:: setValidationMessages($fieldMessages)
 
-	:param	array	$fieldMessages
+	:param array $fieldMessages: 欄位訊息
 
-	This function will set the field messages.
+	這個方法可以設定欄位訊息。
 
-	Usage example::
+	使用範例：
 
-            $fieldValidationMessage = array(
-                    'name' => array(
-                            'required'   => 'Your baby name is missing.',
-                            'min_length' => 'Too short, man!',
-                    ),
-            );
-            $model->setValidationMessages($fieldValidationMessage);
+	::
 
-Now, whenever you call the ``insert()``, ``update()``, or ``save()`` methods, the data will be validated. If it fails,
-the model will return boolean **false**. You can use the ``errors()`` method to retrieve the validation errors::
+		$fieldValidationMessage = array(
+			'name' => array(
+					'required'   => 'Your baby name is missing.',
+					'min_length' => 'Too short, man!',
+			),
+		);
+		$model->setValidationMessages($fieldValidationMessage);
+
+現在，每當你呼叫 ``insert()`` 、 ``update()`` ，或 ``save()`` 方法時，資料將會被自動驗證。如果驗證失敗，模型將會回傳 **false** 。你可以使用 ``error()`` 方法來存取驗證錯誤：
+
+::
 
 	if ($model->save($data) === false)
 	{
 		return view('updateUser', ['errors' => $model->errors()];
 	}
 
-This returns an array with the field names and their associated errors that can be used to either show all of the
-errors at the top of the form, or to display them individually::
+這將回傳一個包含欄位名稱和相關錯誤訊息的陣列，可以用來在表單的頂部顯示所有錯誤，你也可以單獨顯示它們：
+
+::
 
 	<?php if (! empty($errors)) : ?>
 		<div class="alert alert-danger">
@@ -532,141 +532,148 @@ errors at the top of the form, or to display them individually::
 		</div>
 	<?php endif ?>
 
-If you'd rather organize your rules and error messages within the Validation configuration file, you can do that
-and simply set ``$validationRules`` to the name of the validation rule group you created::
+如果你想在組態設定檔案中統一組織驗證用的規則以及錯誤訊息，只需將 ``$validationRules`` 設定為你所創建的規則群組名稱即可，就像這樣做：
+
+::
 
 	class UserModel extends Model
 	{
 		protected $validationRules = 'users';
 	}
 
-Retrieving Validation Rules
+檢索驗證規則
 ---------------------------
 
-You can retrieve a model's validation rules by accessing its ``validationRules``
-property::
+你可以透過模型的 ``validationRules`` 屬性來檢索模型的驗證規則。
+
+::
 
     $rules = $model->validationRules;
 
-You can also retrieve just a subset of those rules by calling the accessor
-method directly, with options::
+你也可以透過直接呼叫 getValidationRules() 方法，用選項來檢索這些規則的一個子集。
+
+::
 
     $rules = $model->getValidationRules($options);
 
-The ``$options`` parameter is an associative array with one element,
-whose key is either "except" or "only", and which has as its
-value an array of fieldnames of interest.::
+``$options`` 參數是一個鍵值陣列，包含著鍵為 "except" 或 "only" 的元素，這個鍵對應的數值則為你想查閱的欄位名稱陣列。
 
-    // get the rules for all but the "username" field
+::
+
+    // 取得除了 username 欄位以外的所有規則
     $rules = $model->getValidationRules(['except' => ['username']]);
-    // get the rules for only the "city" and "state" fields
+    // 只取得 city 與 state 欄位的規則
     $rules = $model->getValidationRules(['only' => ['city', 'state']]);
 
-Validation Placeholders
+驗證置換符號
 -----------------------
 
-The model provides a simple method to replace parts of your rules based on data that's being passed into it. This
-sounds fairly obscure but can be especially handy with the ``is_unique`` validation rule. Placeholders are simply
-the name of the field (or array key) that was passed in as $data surrounded by curly brackets. It will be
-replaced by the **value** of the matched incoming field. An example should clarify this::
+模型提供了一個簡單的方法，可以根據你所傳入的資料替換掉規則的一部份。這聽請起來可以會有點艱深晦澀，但在 ``is_unique`` 驗證規則中相當便利。置換符號是以 $data 的形式傳入欄位（或是鍵值陣列）的名稱，這個陣列的 **值** 將會取代在目標字串中被大括弧包圍的相符欄位，這個例子應該可以充分說明這個功能：
+
+::
 
     protected $validationRules = [
         'email' => 'required|valid_email|is_unique[users.email,id,{id}]'
     ];
 
-In this set of rules, it states that the email address should be unique in the database, except for the row
-that has an id matching the placeholder's value. Assuming that the form POST data had the following::
+在這個規則中，它規定除了具有置換符號的值相符的 id 記錄外，電子郵件的位置在資料庫中應該是唯一值，我們假設表單中的 POST 資料具有以下內容：
+
+::
 
     $_POST = [
         'id' => 4,
         'email' => 'foo@example.com'
     ]
 
-then the ``{id}`` placeholder would be replaced with the number **4**, giving this revised rule::
+那麼 ``{id}`` 置換符號將被替換成數字 **4** ，因此被置換成下列的規則：
+
+::
+
 
     protected $validationRules = [
         'email' => 'required|valid_email|is_unique[users.email,id,4]'
     ];
 
-So it will ignore the row in the database that has ``id=4`` when it verifies the email is unique.
+因此，當它所驗證的電子郵件是唯一值，就會忽略 ``id=4`` 的記錄。
 
-This can also be used to create more dynamic rules at runtime, as long as you take care that any dynamic
-keys passed in don't conflict with your form data.
+這也可以用來在驗證的執行期間創建更動態的規則，你只需要注意傳入的動態鍵不要與表單的資料衝突即可。
 
-Protecting Fields
+保護欄位
 -----------------
 
-To help protect against Mass Assignment Attacks, the Model class **requires** that you list all of the field names
-that can be changed during inserts and updates in the ``$allowedFields`` class property. Any data provided
-in addition to these will be removed prior to hitting the database. This is great for ensuring that timestamps,
-or primary keys do not get changed.
+為了防止大規模的自動綁定攻擊，模型類別將 **要求** 你在 ``$allowedFields`` 類別屬性中列出，所有可以在插入和更新時更改的欄位名稱。除了這些之外的任何資料都將在進入資料庫之前被刪除，在保護時間戳或主鍵不被改變這件事情上，這是非常有用處的。
+
 ::
 
 	protected $allowedFields = ['name', 'email', 'address'];
 
-Occasionally, you will find times where you need to be able to change these elements. This is often during
-testing, migrations, or seeds. In these cases, you can turn the protection on or off::
+有時，你會發現你可能需要改變這些元素，這個需求通常會在測試、遷移，或資料填充的期間出現。在這種情形下，你可以開啟或關閉保護。
+
+::
 
 	$model->protect(false)
 	      ->insert($data)
 	      ->protect(true);
 
-Working With Query Builder
+操作查詢生成器
 --------------------------
 
-You can get access to a shared instance of the Query Builder for that model's database connection any time you
-need it::
+你可以在任何需要的時候，使用模型資料庫連接所提供的查詢生成器的共享實體。
+
+::
 
 	$builder = $userModel->builder();
 
-This builder is already set up with the model's $table.
+這個生成器已經在模型中的 $table 設定好了。
 
-You can also use Query Builder methods and the Model's CRUD methods in the same chained call, allowing for
-very elegant use::
+你還可以在同一個鏈式呼叫中優雅地混和使用查詢生成器方法與模型提供的 CRUD 方法。
+
+::
 
 	$users = $userModel->where('status', 'active')
 			   ->orderBy('last_login', 'asc')
 			   ->findAll();
 
-.. note:: You can also access the model's database connection seamlessly::
+.. note:: 你也可以無縫地造訪模型地資料庫連接：
+	
+	::
+	
+	$user_name = $userModel->escape($name);
 
-			$user_name = $userModel->escape($name);
-
-Runtime Return Type Changes
+轉換回傳型別
 ----------------------------
 
-You can specify the format that data should be returned as when using the find*() methods as the class property,
-$returnType. There may be times that you would like the data back in a different format, though. The Model
-provides methods that allow you to do just that.
+你可以透過模型的類別屬性 $returnType 來指定使用 find() 方法時的回傳資料型別。但有時你可能會希望以不同的格式回傳資料，模型提供了一些方法允許你這麼做。
 
-.. note:: These methods only change the return type for the next find*() method call. After that,
-			it is reset to its default value.
+.. note:: 這些方法只會改變下一次執行 find() 方法呼叫時的回傳型別，之後它將回復為預設值。
 
 **asArray()**
 
-Returns data from the next find*() method as associative arrays::
+下一次的 find() 方法將以鍵值陣列的形式回傳：
+
+::
 
 	$users = $userModel->asArray()->where('status', 'active')->findAll();
 
 **asObject()**
 
-Returns data from the next find*() method as standard objects or custom class intances::
+下一次的 find() 將會把資料轉換為標準物件或自訂類別的實體回傳。
 
-	// Return as standard objects
+::
+
+	// 回傳標準物件
 	$users = $userModel->asObject()->where('status', 'active')->findAll();
 
-	// Return as custom class instances
+	// 回傳自訂類別實體
 	$users = $userModel->asObject('User')->where('status', 'active')->findAll();
 
-Processing Large Amounts of Data
+處理大量資料
 --------------------------------
 
-Sometimes, you need to process large amounts of data and would run the risk of running out of memory.
-To make this simpler, you may use the chunk() method to get smaller chunks of data that you can then
-do your work on. The first parameter is the number of rows to retrieve in a single chunk. The second
-parameter is a Closure that will be called for each row of data.
+有的時候，你可能會需要處理大量的資料，說不定會有記憶體不足的問題。為了簡單化這個問題，你可以使用 chunk() 方法來獲取更小的資料塊，然後再進行工作。第一個參數是單個資料塊中被檢索的行數，第二個參數是一個匿名陣列，它將會呼叫每一行的資料。
 
-This is best used during cronjobs, data exports, or other large tasks.
+這最好在排程工作、資料匯出與其他大型任務中使用。
+
 ::
 
 	$userModel->chunk(100, function ($data)
@@ -675,23 +682,15 @@ This is best used during cronjobs, data exports, or other large tasks.
 		// $data is a single row of data.
 	});
 
-Model Events
+模型事件
 ============
 
-There are several points within the model's execution that you can specify multiple callback methods to run.
-These methods can be used to normalize data, hash passwords, save related entities, and much more. The following
-points in the model's execution can be affected, each through a class property: **$beforeInsert**, **$afterInsert**,
-**$beforeUpdate**, **afterUpdate**, **afterFind**, and **afterDelete**.
+在模型的執行的過程中，可以指定幾個時機執行數個回呼函數。這些方法可以用於正規化資料、雜湊密碼，以及儲存相關實體等等。以下提供數種方法來影響不同時機的執行行為：**$beforeInsert** 、 **$afterInsert** 、 **$beforeUpdate** 、 **afterUpdate** 、 **afterFind** 、以及 **afterDelete** 。
 
-Defining Callbacks
+定義回呼
 ------------------
 
-You specify the callbacks by first creating a new class method in your model to use. This class will always
-receive a $data array as its only parameter. The exact contents of the $data array will vary between events, but
-will always contain a key named **data** that contains the primary data passed to the original method. In the case
-of the insert* or update* methods, that will be the key/value pairs that are being inserted into the database. The
-main array will also contain the other values passed to the method, and be detailed later. The callback method
-must return the original $data array so other callbacks have the full information.
+首先，我們在模型中會創建一個新的類別方法來定義回呼。這個類別會接受一個 $data 陣列作為它的唯一參數。$data 陣列的確切內容會因事件的不同而相異，但總是會包含一個名為 **data** 的鍵，其中包含著傳遞給原始方法的主要資料——在插入或更新的方法下，這將是會被插入到資料庫的鍵值陣列。主要的陣列內容也會包含傳遞給其他方法的值，待會將會詳細的介紹。所有的回呼方法都必須回傳原始的 $data 陣列，這樣其他的回呼函數才能得到完整的訊息。
 
 ::
 
@@ -705,60 +704,58 @@ must return the original $data array so other callbacks have the full informatio
 		return $data;
 	}
 
-Specifying Callbacks To Run
+指定要運作的回呼
 ---------------------------
 
-You specify when to run the callbacks by adding the method name to the appropriate class property (beforeInsert, afterUpdate,
-etc). Multiple callbacks can be added to a single event and they will be processed one after the other. You can
-use the same callback in multiple events::
+你可以透過將方法名稱添加到相應的類別屬性（ beforeInsert 或 afterUpdate 等），來指定何時該運作哪個回呼。你也可以在一個事件中加入多個回呼，他們將相繼被處理。當然也可以在多個事件中使用同一個回呼。
+
+::
 
 	protected $beforeInsert = ['hashPassword'];
 	protected $beforeUpdate = ['hashPassword'];
 
-Event Parameters
+事件參數
 ----------------
 
-Since the exact data passed to each callback varies a bit, here are the details on what is in the $data parameter
-passed to each event:
+由於傳遞給每個回呼的確切資料存在著一些差異，下面將會詳列傳遞給每個事件的 $data 參數中的詳細內容：
 
-================ =========================================================================================================
-Event            $data contents
-================ =========================================================================================================
-beforeInsert      **data** = the key/value pairs that are being inserted. If an object or Entity class is passed to the
-                  insert method, it is first converted to an array.
-afterInsert       **id** = the primary key of the new row, or 0 on failure.
-                  **data** = the key/value pairs being inserted.
-                  **result** = the results of the insert() method used through the Query Builder.
-beforeUpdate      **id** = the primary key of the row being updated.
-                  **data** = the key/value pairs that are being inserted. If an object or Entity class is passed to the
-                  insert method, it is first converted to an array.
-afterUpdate       **id** = the primary key of the row being updated.
-                  **data** = the key/value pairs being updated.
-                  **result** = the results of the update() method used through the Query Builder.
-afterFind         Varies by find* method. See the following:
-- find()          **id** = the primary key of the row being searched for.
-                  **data** = The resulting row of data, or null if no result found.
-- findAll()       **data** = the resulting rows of data, or null if no result found.
-                  **limit** = the number of rows to find.
-                  **offset** = the number of rows to skip during the search.
-- first()         **data** = the resulting row found during the search, or null if none found.
-beforeDelete      Varies by delete* method. See the following:
-- delete()        **id** = primary key of row being deleted.
-                  **purge** = boolean whether soft-delete rows should be hard deleted.
-afterDelete       Varies by delete* method. See the following:
-- delete()        **id** = primary key of row being deleted.
-                  **purge** = boolean whether soft-delete rows should be hard deleted.
-                  **result** = the result of the delete() call on the Query Builder.
-                  **data** = unused.
-================ =========================================================================================================
+id = 被更新的行的主键。
+data = 被插入的键/值对。如果一个对象或Entity类被传递给insert方法，首先将其转换为数组。
 
 
-Manual Model Creation
+================ =========================================================================================================
+事件             $data 內容
+================ =========================================================================================================
+beforeInsert      **data** = 即將被插入的鍵值陣列。如果一個物件或是實體類別被傳遞給插入方法，則會先將其轉換成陣列。
+afterInsert       **id** = 新記錄的主鍵，若插入失敗則為 0 。
+                  **data** = 被插入進資料庫的鍵值陣列。
+                  **result** = 透過查詢生成器使用 insert() 方法的結果。
+beforeUpdate      **id** = 被更新的資料的主鍵。
+                  **data** = 即將被更新的鍵值陣列，如果一個物件或實體類別被傳遞給插入方法，首先會先將其轉換成陣列。
+afterUpdate       **id** = 被更新的資料主鍵。
+                  **data** = 更新完成的鍵值陣列。
+                  **result** = 透過查詢生成器使用 update() 方法的結果
+afterFind         將因為 find 方法的不同而相異，請詳閱下方內容：
+- find()          **id** = 被搜索的主鍵。
+                  **data** = 搜索結果的資訊列，若沒有結果則為空。
+- findAll()       **data** = 要查找的資料列數，如果沒有找到結果則為空。
+                  **limit** = 要查找的列數。
+                  **offset** = 搜索過程中要跳過的列數。
+- first()         **data** = 搜索過程中找到的結果列。如果沒找到則為空。
+beforeDelete      將因為 delete 方法的不同而相異，請詳閱下方內容：
+- delete()        **id** = 即將被刪除的主鍵。
+                  **purge** = 布林，是否被完全刪除或假性刪除。
+afterDelete       將因為 delete 方法的不同而相異，請詳閱下方內容：
+- delete()        **id** = 被刪除的主鍵。
+                  **purge** = 布林，是否被完全刪除或假性刪除。
+                  **result** = 查詢生成器呼叫 delete() 的結果。
+                  **data** = 未使用。
+================ =========================================================================================================
+
+創建手動模型
 =====================
 
-You do not need to extend any special class to create a model for your application. All you need is to get an
-instance of the database connection and you're good to go. This allows you to bypass the features CodeIgniter's
-Model gives you out of the box, and create a fully custom experience.
+你不需要繼承任何的特殊類別來替你的應用程式創建一個模型。你只需要得到一個資料庫連接實體即可。這樣你就能繞過 CodeIgniter 的模型替你預先制定的功能，創建一個完全由你定義的手動模型。
 
 ::
 
