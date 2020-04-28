@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using CodeIgniter’s Model &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>使用 CodeIgniter 的模型 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Working With Entities" href="entities.html" />
-    <link rel="prev" title="Modeling Data" href="index.html" /> 
+    <link rel="next" title="使用實體類別" href="entities.html" />
+    <link rel="prev" title="資料模型化" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -192,9 +192,9 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modeling Data</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Using CodeIgniter's Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entities.html">Using Entity Classes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">資料模型化</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">使用 CodeIgniter 的模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">使用實體類別</a></li>
 </ul>
 </li>
 </ul>
@@ -320,9 +320,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Modeling Data</a> &raquo;</li>
+          <li><a href="index.html">資料模型化</a> &raquo;</li>
         
-      <li>Using CodeIgniter’s Model</li>
+      <li>使用 CodeIgniter 的模型</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,85 +339,80 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="using-codeigniter-s-model">
-<h1>Using CodeIgniter’s Model<a class="headerlink" href="#using-codeigniter-s-model" title="本標題的永久連結">¶</a></h1>
+  <div class="section" id="codeigniter">
+<h1>使用 CodeIgniter 的模型<a class="headerlink" href="#codeigniter" title="本標題的永久連結">¶</a></h1>
 <div class="contents local topic" id="id1">
 <ul class="simple">
-<li><a class="reference internal" href="#models" id="id2">Models</a></li>
-<li><a class="reference internal" href="#accessing-models" id="id3">Accessing Models</a></li>
-<li><a class="reference internal" href="#codeigniter-s-model" id="id4">CodeIgniter’s Model</a></li>
-<li><a class="reference internal" href="#creating-your-model" id="id5">Creating Your Model</a><ul>
-<li><a class="reference internal" href="#connecting-to-the-database" id="id6">Connecting to the Database</a></li>
-<li><a class="reference internal" href="#configuring-your-model" id="id7">Configuring Your Model</a></li>
+<li><a class="reference internal" href="#id2" id="id23">模型</a></li>
+<li><a class="reference internal" href="#id3" id="id24">存取模型</a></li>
+<li><a class="reference internal" href="#codeigniter-model" id="id25">CodeIgniter 的 Model</a></li>
+<li><a class="reference internal" href="#id4" id="id26">建立你的模型</a><ul>
+<li><a class="reference internal" href="#id5" id="id27">連接資料庫</a></li>
+<li><a class="reference internal" href="#id6" id="id28">設定你的模型</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#working-with-data" id="id8">Working With Data</a><ul>
-<li><a class="reference internal" href="#finding-data" id="id9">Finding Data</a></li>
-<li><a class="reference internal" href="#saving-data" id="id10">Saving Data</a></li>
-<li><a class="reference internal" href="#deleting-data" id="id11">Deleting Data</a></li>
-<li><a class="reference internal" href="#validating-data" id="id12">Validating Data</a></li>
-<li><a class="reference internal" href="#retrieving-validation-rules" id="id13">Retrieving Validation Rules</a></li>
-<li><a class="reference internal" href="#validation-placeholders" id="id14">Validation Placeholders</a></li>
-<li><a class="reference internal" href="#protecting-fields" id="id15">Protecting Fields</a></li>
-<li><a class="reference internal" href="#working-with-query-builder" id="id16">Working With Query Builder</a></li>
-<li><a class="reference internal" href="#runtime-return-type-changes" id="id17">Runtime Return Type Changes</a></li>
-<li><a class="reference internal" href="#processing-large-amounts-of-data" id="id18">Processing Large Amounts of Data</a></li>
+<li><a class="reference internal" href="#id7" id="id29">資料作業</a><ul>
+<li><a class="reference internal" href="#id8" id="id30">尋找資料</a></li>
+<li><a class="reference internal" href="#id9" id="id31">儲存資料</a></li>
+<li><a class="reference internal" href="#id10" id="id32">刪除資料</a></li>
+<li><a class="reference internal" href="#id11" id="id33">驗證資料</a></li>
+<li><a class="reference internal" href="#id12" id="id34">檢索驗證規則</a></li>
+<li><a class="reference internal" href="#id13" id="id35">驗證置換符號</a></li>
+<li><a class="reference internal" href="#id14" id="id36">保護欄位</a></li>
+<li><a class="reference internal" href="#id15" id="id37">操作查詢生成器</a></li>
+<li><a class="reference internal" href="#id16" id="id38">轉換回傳型別</a></li>
+<li><a class="reference internal" href="#id17" id="id39">處理大量資料</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#model-events" id="id19">Model Events</a><ul>
-<li><a class="reference internal" href="#defining-callbacks" id="id20">Defining Callbacks</a></li>
-<li><a class="reference internal" href="#specifying-callbacks-to-run" id="id21">Specifying Callbacks To Run</a></li>
-<li><a class="reference internal" href="#event-parameters" id="id22">Event Parameters</a></li>
+<li><a class="reference internal" href="#id18" id="id40">模型事件</a><ul>
+<li><a class="reference internal" href="#id19" id="id41">定義回呼</a></li>
+<li><a class="reference internal" href="#id20" id="id42">指定要運作的回呼</a></li>
+<li><a class="reference internal" href="#id21" id="id43">事件參數</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#manual-model-creation" id="id23">Manual Model Creation</a></li>
+<li><a class="reference internal" href="#id22" id="id44">創建手動模型</a></li>
 </ul>
 </div>
-<div class="section" id="models">
-<h2><a class="toc-backref" href="#id2">Models</a><a class="headerlink" href="#models" title="本標題的永久連結">¶</a></h2>
-<p>Models provide a way to interact with a specific table in your database. They come out of the box with helper
-methods for much of the standard ways you would need to interact with a database table, including finding records,
-updating records, deleting records, and more.</p>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id23">模型</a><a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
+<p>模型提供一種與資料庫中特定資料表交互的方法，模型也內建輔助方法，讓你在與資料庫資料表交互的過程中有標準的方法可以呼叫，包括查找記錄、更新記錄，刪除記錄等等。</p>
 </div>
-<div class="section" id="accessing-models">
-<h2><a class="toc-backref" href="#id3">Accessing Models</a><a class="headerlink" href="#accessing-models" title="本標題的永久連結">¶</a></h2>
-<p>Models are typically stored in the <code class="docutils literal notranslate"><span class="pre">app/Models</span></code> directory. They should have a namespace that matches their
-location within the directory, like <code class="docutils literal notranslate"><span class="pre">namespace</span> <span class="pre">App\Models</span></code>.</p>
-<p>You can access models within your classes by creating a new instance or using the <code class="docutils literal notranslate"><span class="pre">model()</span></code> helper function.</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create a new class manually</span>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id24">存取模型</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>模型通常會儲存在 <code class="docutils literal notranslate"><span class="pre">app/Models</span></code> 目錄下，通常它們會有一個與它們所在位置相同的命名空間，比如這個命名空間： <code class="docutils literal notranslate"><span class="pre">namespace</span> <span class="pre">App\Models</span></code> 。</p>
+<p>你可以透過創造一個新的實體或是使用 <code class="docutils literal notranslate"><span class="pre">model()</span></code> 輔助函數來造訪類別中的模型。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 手動建立新類別</span>
 <span class="nv">$userModel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">App\Models\UserModel</span><span class="p">();</span>
 
-<span class="c1">// Create a new class with the model function</span>
+<span class="c1">// 使用模型函數建立新類別</span>
 <span class="nv">$userModel</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;App\Models\UserModel&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
 
-<span class="c1">// Create a shared instance of the model</span>
+<span class="c1">// 使用模型函數共享模型實體</span>
 <span class="nv">$userModel</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;App\Models\UserModel&#39;</span><span class="p">);</span>
 
-<span class="c1">// Create shared instance with a supplied database connection</span>
-<span class="c1">// When no namespace is given, it will search through all namespaces</span>
-<span class="c1">// the system knows about and attempt to located the UserModel class.</span>
+<span class="c1">// 使用你所提供的資料庫連接建立共享實體</span>
+<span class="c1">// 如果沒有傳入命名空間那它將會搜索所有的命名空間</span>
+<span class="c1">// 系統將會嘗試定位 UserModel 類別</span>
 <span class="nv">$db</span> <span class="o">=</span> <span class="nx">db_connect</span><span class="p">(</span><span class="s1">&#39;custom&#39;</span><span class="p">);</span>
 <span class="nv">$userModel</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="nv">$db</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="codeigniter-s-model">
-<h2><a class="toc-backref" href="#id4">CodeIgniter’s Model</a><a class="headerlink" href="#codeigniter-s-model" title="本標題的永久連結">¶</a></h2>
-<p>CodeIgniter does provide a model class that provides a few nice features, including:</p>
+<div class="section" id="codeigniter-model">
+<h2><a class="toc-backref" href="#id25">CodeIgniter 的 Model</a><a class="headerlink" href="#codeigniter-model" title="本標題的永久連結">¶</a></h2>
+<p>CodeIgniter 支援了模型類別，它提供了一些很好的功能，包括：</p>
 <ul class="simple">
-<li>automatic database connection</li>
-<li>basic CRUD methods</li>
-<li>in-model validation</li>
-<li>automatic pagination</li>
-<li>and more</li>
+<li>自動連接資料庫</li>
+<li>基本的 CRUD 方法</li>
+<li>模型內驗證</li>
+<li>自動分頁</li>
+<li>更多更多方法</li>
 </ul>
-<p>This class provides a solid base from which to build your own models, allowing you to
-rapidly build out your application’s model layer.</p>
+<p>這個類別提供了一個很強鍵的基礎，你可以在這個基礎上建立自己的模型，讓你可以快速地建構出應用程式的模型層。</p>
 </div>
-<div class="section" id="creating-your-model">
-<h2><a class="toc-backref" href="#id5">Creating Your Model</a><a class="headerlink" href="#creating-your-model" title="本標題的永久連結">¶</a></h2>
-<p>To take advantage of CodeIgniter’s model, you would simply create a new model class
-that extends <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Model</span></code>:</p>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id26">建立你的模型</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<p>若你需要利用 CodeIgniter 的模型，你只需要創建一個新的模型類別，並且使其繼承 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Model</span></code> ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
@@ -428,15 +423,10 @@ that extends <code class="docutils literal notranslate"><span class="pre">CodeIg
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This empty class provides convenient access to the database connection, the Query Builder,
-and a number of additional convenience methods.</p>
-<div class="section" id="connecting-to-the-database">
-<h3><a class="toc-backref" href="#id6">Connecting to the Database</a><a class="headerlink" href="#connecting-to-the-database" title="本標題的永久連結">¶</a></h3>
-<p>When the class is first instantiated, if no database connection instance is passed to the constructor,
-it will automatically connect to the default database group, as set in the configuration. You can
-modify which group is used on a per-model basis by adding the DBGroup property to your class.
-This ensures that within the model any references to <code class="docutils literal notranslate"><span class="pre">$this-&gt;db</span></code> are made through the appropriate
-connection.</p>
+<p>這個空的類別提供了對資料庫連接、查詢生成器，和一些額外的便捷方法的訪問。</p>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id27">連接資料庫</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
+<p>當類別被首次實體化後，如果沒有向建構方法傳遞資料庫的連結實體，那麼它將會自動連接到組態設定中預設的資料庫群組。你可以透過在類別中添加 DBGroup 屬性來修改每個模型會使用到的資料庫設定群組。這樣可以讓模型中任何對 <code class="docutils literal notranslate"><span class="pre">$this-&gt;db</span></code> 的呼叫引用，都是透過你所設定適合的連接執行。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
@@ -447,14 +437,11 @@ connection.</p>
     <span class="p">}</span>
 </pre></div>
 </div>
-<p>You would replace 「group_name」 with the name of a defined database group from the database
-configuration file.</p>
+<p>你可以把 「group_name」 替換成資料庫組態設定檔案中定義的資料庫群組名稱。</p>
 </div>
-<div class="section" id="configuring-your-model">
-<h3><a class="toc-backref" href="#id7">Configuring Your Model</a><a class="headerlink" href="#configuring-your-model" title="本標題的永久連結">¶</a></h3>
-<p>The model class has a few configuration options that can be set to allow the class』 methods
-to work seamlessly for you. The first two are used by all of the CRUD methods to determine
-what table to use and how we can find the required records:</p>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id28">設定你的模型</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
+<p>模型類別有幾個設定選項，可以透過設定這些選項讓「類別」方法無縫地為你工作。前兩個是所有 CRUD 需求都會用到的屬性，決定著我們需要使用什麼資料表，以及如何找到所需的記錄。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
@@ -481,127 +468,87 @@ what table to use and how we can find the required records:</p>
 </pre></div>
 </div>
 <p><strong>$table</strong></p>
-<p>Specifies the database table that this model primarily works with. This only applies to the
-built-in CRUD methods. You are not restricted to using only this table in your own
-queries.</p>
+<p>指定這個模型主要配合的資料表，這只適用於模型內建的 CRUD 方法，並不會限制你在你自己的查詢內一定得用這個表。</p>
 <p><strong>$primaryKey</strong></p>
-<p>This is the name of the column that uniquely identifies the records in this table. This
-does not necessarily have to match the primary key that is specified in the database, but
-is used with methods like <code class="docutils literal notranslate"><span class="pre">find()</span></code> to know what column to match the specified value to.</p>
+<p>你所選擇的資料表中資料記錄的唯一識別符號，它不一定要與資料庫中資料表的主鍵欄位相同，而是你在使用像是 <code class="docutils literal notranslate"><span class="pre">find()</span></code> 這種方法時，模型可以知道要將指定值以哪個欄位進行搜索。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">All Models must have a primaryKey specified to allow all of the features to work
-as expected.</p>
+<p class="last">所有模型必須指定一個 $primaryKey ，以使所有功能可以正常工作。</p>
 </div>
 <p><strong>$returnType</strong></p>
-<p>The Model’s CRUD methods will take a step of work away from you and automatically return
-the resulting data, instead of the Result object. This setting allows you to define
-the type of data that is returned. Valid values are 『array』, 『object』, or the fully
-qualified name of a class that can be used with the Result object’s getCustomResultObject()
-method.</p>
+<p>模型提供的 CRUD 方法將幫助你減少工作量，並自動回傳結果資料，而不適普的的資料庫結果物件。這個設定允許你宣告回傳的資料類型。你可以鍵入 array 或是 object ，或者可以與結果物件的 getCustomResultObject() 方法一起使用完整的類別名稱。</p>
 <p><strong>$useSoftDeletes</strong></p>
-<p>If true, then any delete* method calls will set <code class="docutils literal notranslate"><span class="pre">deleted_at</span></code> in the database, instead of
-actually deleting the row. This can preserve data when it might be referenced elsewhere, or
-can maintain a 「recycle bin」 of objects that can be restored, or even simply preserve it as
-part of a security trail. If true, the find* methods will only return non-deleted rows, unless
-the withDeleted() method is called prior to calling the find* method.</p>
-<p>This requires either a DATETIME or INTEGER field in the database as per the model’s
-$dateFormat setting. The default field name is <code class="docutils literal notranslate"><span class="pre">deleted_at</span></code> however this name can be
-configured to any name of your choice by using $deletedField property.</p>
+<p>如果這個值為 true ，那麼任何 delete 方法的呼叫都會在資料庫中修改 <code class="docutils literal notranslate"><span class="pre">deleted_at</span></code> 欄位，而不是直接刪除該筆資料。當資料可能在其他地方被引用時，這個功能可以替你將資料保存下來，也可以作為「資源回收桶」，讓被刪除的物件有被還原的可能，甚至你也可以將其保留下來做為未來安全性追蹤的依據。若是資料被設為刪除，你還是想呼叫到這筆資料，則必須在 find() 方法前先呼叫 withDeleted() 方法，否則 find() 方法只會回傳未被刪除的資料。</p>
+<p>若你要使用這個功能，你需要在資料庫中建立型別為 DATETIME 或 INTEGER 的欄位，其名稱必須在 $dateFormat 成員屬性中定義，這個成員變數的值必須與資料庫的欄位名稱相同。而 $dateFormat 的預設名稱為 <code class="docutils literal notranslate"><span class="pre">deleted_at</span></code> 。</p>
 <p><strong>$allowedFields</strong></p>
-<p>This array should be updated with the field names that can be set during save, insert, or
-update methods. Any field names other than these will be discarded. This helps to protect
-against just taking input from a form and throwing it all at the model, resulting in
-potential mass assignment vulnerabilities.</p>
+<p>在這個陣列中被記錄的欄位名稱都將在使用保存、插入，或更新方法期間被允許，而沒有被記錄的欄位名稱將被丟棄。這有助於防止將未處理的表單資訊直接傳遞給模型處理時，導致的自動綁定漏洞。</p>
 <p><strong>$useTimestamps</strong></p>
-<p>This boolean value determines whether the current date is automatically added to all inserts
-and updates. If true, will set the current time in the format specified by $dateFormat. This
-requires that the table have columns named 『created_at』 and 『updated_at』 in the appropriate
-data type.</p>
+<p>這個屬性的型別為布林，它決定了在執行插入與更新的方法時，是否會自動更新時間戳。如果為 true 將以 $dateFormat 屬性所指定格式，產出目前的時間記錄並存在的固定的欄位中。這個功能需要在資料庫中以適當的型別建立 「created_at」 以及 「updated_at」 欄位。</p>
 <p><strong>$createdField</strong></p>
-<p>Specifies which database field should use for keep data record create timestamp.
-Leave it empty to avoid update it (even useTimestamps is enabled)</p>
+<p>指定使用哪個資料庫欄位來保存資料在創建時的時間戳，請將其留空並避免更新這個欄位（即使啟動了 useTimestamps 功能）。</p>
 <p><strong>$updatedField</strong></p>
-<p>Specifies which database field should use for keep data record update timestamp.
-Leave it empty to avoid update it (even useTimestamps is enabled)</p>
+<p>指定使用哪個資料庫欄位來保存資料在更新時的時間戳，請將其留空並避免更新這個欄位（即使啟動了 useTimestamps 功能）。</p>
 <p><strong>$dateFormat</strong></p>
-<p>This value works with $useTimestamps and $useSoftDeletes to ensure that the correct type of
-date value gets inserted into the database. By default, this creates DATETIME values, but
-valid options are: datetime, date, or int (a PHP timestamp). Using 『useSoftDeletes』 or
-『useTimestamps』 with an invalid or missing dateFormat will cause an exception.</p>
+<p>這個屬性將與 $useTimestamps 與 $useSoftDeletes 一起運作，確保正確的日期被插入到資料庫中。在預設的情形下，這個值會創建 DATETIME 型別的值，而這個屬性可以設定的選項為： datetime 、date 、int （ PHP 時間戳）。</p>
 <p><strong>$validationRules</strong></p>
-<p>Contains either an array of validation rules as described in <a class="reference internal" href="../libraries/validation.html#validation-array"><span class="std std-ref">How to save your rules</span></a>
-or a string containing the name of a validation group, as described in the same section.
-Described in more detail below.</p>
+<p>這個屬性將會是驗證程式庫的 <a class="reference internal" href="../libraries/validation.html#validation-array"><span class="std std-ref">How to save your rules</span></a> （如何保存規則）條目中所描述的驗證用陣列，或是驗證群組名稱的字串，下面將會更詳細地闡述。</p>
 <p><strong>$validationMessages</strong></p>
-<p>Contains an array of custom error messages that should be used during validation, as
-described in <a class="reference internal" href="../libraries/validation.html#validation-custom-errors"><span class="std std-ref">Setting Custom Error Messages</span></a>. Described in more detail below.</p>
+<p>你將在這個屬性中儲存，驗證過程中你所設定的 <a class="reference internal" href="../libraries/validation.html#validation-custom-errors"><span class="std std-ref">Setting Custom Error Messages</span></a> （自訂錯誤消息）的陣列，下面將會有更詳細地闡述。</p>
 <p><strong>$skipValidation</strong></p>
-<p>Whether validation should be skipped during all <code class="docutils literal notranslate"><span class="pre">inserts</span></code> and <code class="docutils literal notranslate"><span class="pre">updates</span></code>. The default
-value is false, meaning that data will always attempt to be validated. This is
-primarily used by the <code class="docutils literal notranslate"><span class="pre">skipValidation()</span></code> method, but may be changed to <code class="docutils literal notranslate"><span class="pre">true</span></code> so
-this model will never validate.</p>
+<p>這個屬性決定在進行 <code class="docutils literal notranslate"><span class="pre">更新</span></code> 與 <code class="docutils literal notranslate"><span class="pre">插入</span></code> 的過程中，是否會跳過驗證。預設值為 false ，這代表若沒有另外賦予值，模型將始終進行驗證。這個屬性主要由 <code class="docutils literal notranslate"><span class="pre">skipValidation()</span></code> 方法使用，你也可以將這個屬性改為 <code class="docutils literal notranslate"><span class="pre">true</span></code> ，讓模型永遠不要進行驗證。</p>
 <p><strong>$beforeInsert</strong>
 <strong>$afterInsert</strong>
 <strong>$beforeUpdate</strong>
 <strong>$afterUpdate</strong>
 <strong>afterFind</strong>
 <strong>afterDelete</strong></p>
-<p>These arrays allow you to specify callback methods that will be run on the data at the
-time specified in the property name.</p>
+<p>這些陣列允許你宣告需要執行的回呼方法，並在你指定的事件發生時執行。</p>
 </div>
 </div>
-<div class="section" id="working-with-data">
-<h2><a class="toc-backref" href="#id8">Working With Data</a><a class="headerlink" href="#working-with-data" title="本標題的永久連結">¶</a></h2>
-<div class="section" id="finding-data">
-<h3><a class="toc-backref" href="#id9">Finding Data</a><a class="headerlink" href="#finding-data" title="本標題的永久連結">¶</a></h3>
-<p>Several functions are provided for doing basic CRUD work on your tables, including find(),
-insert(), update(), delete() and more.</p>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id29">資料作業</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id30">尋找資料</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
+<p>在尋找資料方面，模型提供了幾個函數來對資料表進行基礎的 CRUD 工作，包括：find()、insert()、 update()、 delete() 等等。</p>
 <p><strong>find()</strong></p>
-<p>Returns a single row where the primary key matches the value passed in as the first parameter:</p>
+<p>以傳入的主鍵搜索資料，將會回傳一筆符合的資料：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$user</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$user_id</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The value is returned in the format specified in $returnType.</p>
-<p>You can specify more than one row to return by passing an array of primaryKey values instead
-of just one:</p>
+<p>你的查詢將會以 $returnType 指定的資料型別回傳。</p>
+<p>你可以透過傳入一個以主鍵組成的陣列，來取得多筆資料：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p>If no parameters are passed in, will return all rows in that model’s table, effectively acting
-like findAll(), though less explicit.</p>
+<p>如果沒有傳入任何參數，那麼將會回傳這個模型所指定的資料表中所有的記錄。雖然表示的函數名稱沒有像 findAll() 一樣這麼直覺，但效果是相同的。</p>
 <p><strong>findColumn()</strong></p>
-<blockquote>
-<div><p>Returns null or an indexed array of column values:</p>
+<p>回傳 null 或是一個具有索引的欄位結果陣列。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$user</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">findColumn</span><span class="p">(</span><span class="nv">$column_name</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>$column_name should be a name of single column else you will get the DataException.</p>
-</div></blockquote>
+<p>$column_name 應該要是單個欄位的名稱，若否你則會獲得 DataException 這個例外的拋出。</p>
 <p><strong>findAll()</strong></p>
-<p>Returns all results:</p>
+<p>回傳所有結果。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>This query may be modified by interjecting Query Builder commands as needed prior to calling this method:</p>
+<p>在呼叫這個方法之前，可以根據自己的需求從中間插入查詢生成器的語法，來修改這個查詢。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
                    <span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>You can pass in a limit and offset values as the first and second
-parameters, respectively:</p>
+<p>你也可以傳入兩個參數，分別代表偏移與限制。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">(</span><span class="nv">$limit</span><span class="p">,</span> <span class="nv">$offset</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>first()</strong></p>
-<p>Returns the first row in the result set. This is best used in combination with the query builder.</p>
+<p>將一定會回傳第一筆結果，這個功能最好與查詢生成器結合使用。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$user</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;deleted&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
                   <span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
 </pre></div>
 </div>
 <p><strong>withDeleted()</strong></p>
-<p>If $useSoftDeletes is true, then the find* methods will not return any rows where 『deleted_at IS NOT NULL』.
-To temporarily override this, you can use the withDeleted() method prior to calling the find* method.</p>
+<p>如果 $useSoftDeletes 為 true ，那麼 find() 方法將會以 「deleted_at IS NOT NULL」 這個條件執行資料庫查詢，不會回傳任何被假性刪除的記錄。當然，你若是需要這筆資料，就要在 find() 方法以前使用這個方法：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Only gets non-deleted rows (deleted = 0)</span>
 <span class="nv">$activeUsers</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
 
@@ -611,19 +558,16 @@ To temporarily override this, you can use the withDeleted() method prior to call
 </pre></div>
 </div>
 <p><strong>onlyDeleted()</strong></p>
-<p>Whereas withDeleted() will return both deleted and not-deleted rows, this method modifies
-the next find* methods to return only soft deleted rows:</p>
+<p>withDeleted() 方法將會回傳已經刪除與未刪除的記錄，而這個方法將會修改下一個生效的 find() 方法，使它只會回傳被假性刪除的資料。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$deletedUsers</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">onlyDeleted</span><span class="p">()</span>
                           <span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="saving-data">
-<h3><a class="toc-backref" href="#id10">Saving Data</a><a class="headerlink" href="#saving-data" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id31">儲存資料</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h3>
 <p><strong>insert()</strong></p>
-<p>An associative array of data is passed into this method as the only parameter to create a new
-row of data in the database. The array’s keys must match the name of the columns in a $table, while
-the array’s values are the values to save for that key:</p>
+<p>這個方法允許你傳入一個鍵值陣列，使你可以在資料庫中插入一筆新資料。你所傳入的陣列的鍵必須與資料庫的欄位名稱相符，而每個鍵的值則是你所需要儲存的資料。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
         <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span>
@@ -632,10 +576,24 @@ the array’s values are the values to save for that key:</p>
 <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
 </pre></div>
 </div>
+<p><strong>insertBatch()</strong></p>
+<p>若是你需要一次插入多筆資料進資料庫中，你需要傳入一個包含上一個條目 insert() 使用的陣列的陣列。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span>
+                <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span>
+        <span class="p">],</span>
+        <span class="p">[</span>
+                <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;amos&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;a.vader@theempire.com&#39;</span>
+        <span class="p">]</span>
+<span class="p">];</span>
+
+<span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">insertBatch</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
 <p><strong>update()</strong></p>
-<p>Updates an existing record in the database. The first parameter is the $primaryKey of the record to update.
-An associative array of data is passed into this method as the second parameter. The array’s keys must match the name
-of the columns in a $table, while the array’s values are the values to save for that key:</p>
+<p>更新資料庫的現有記錄，第一個參數是你目標更新資料的 $primaryKey ，而第二個參數則是一個鍵值陣列。陣列的鍵必須與資料表中的欄位名稱相符，而每個鍵的值則是你所要更新的資料。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
         <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span>
@@ -644,7 +602,7 @@ of the columns in a $table, while the array’s values are the values to save fo
 <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Multiple records may be updated with a single call by passing an array of primary keys as the first parameter:</p>
+<p>透過傳入一個以主鍵組成的陣列作為第一個參數，可以只用一次呼叫更新多筆記錄。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s1">&#39;active&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span>
     <span class="p">];</span>
@@ -652,8 +610,7 @@ of the columns in a $table, while the array’s values are the values to save fo
     <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="nv">$data</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>When you need a more flexible solution, you can leave the parameters empty and it functions like the Query Builder’s
-update command, with the added benefit of validation, events, etc:</p>
+<p>當你出現一些額外的需求時，你可以把傳入的參數留白，這個方法便會成為查詢生成器的更新指令一樣，讓你可以進行額外的驗證、事件等功能。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$userModel</span>
     <span class="o">-&gt;</span><span class="na">whereIn</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
     <span class="o">-&gt;</span><span class="na">set</span><span class="p">([</span><span class="s1">&#39;active&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">])</span>
@@ -661,12 +618,11 @@ update command, with the added benefit of validation, events, etc:</p>
 </pre></div>
 </div>
 <p><strong>save()</strong></p>
-<p>This is a wrapper around the insert() and update() methods that handle inserting or updating the record
-automatically, based on whether it finds an array key matching the $primaryKey value:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Defined as a model property</span>
+<p>這個功能它封裝了 insert() 與 update() 兩個方法。它依據在資料表中是否找的到你所傳入的 $primaryKey 主鍵，自動處理你所需要的是插入或是更新。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 定義 model 屬性</span>
 <span class="nv">$primaryKey</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span><span class="p">;</span>
 
-<span class="c1">// Does an insert()</span>
+<span class="c1">// 執行 insert()</span>
 <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
         <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span>
@@ -674,7 +630,7 @@ automatically, based on whether it finds an array key matching the $primaryKey v
 
 <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
 
-<span class="c1">// Performs an update, since the primary key, &#39;id&#39;, is found.</span>
+<span class="c1">// 如果找的到你所傳入的主健，將會執行 update()</span>
 <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;id&#39;</span>       <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
         <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
@@ -683,13 +639,7 @@ automatically, based on whether it finds an array key matching the $primaryKey v
 <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The save method also can make working with custom class result objects much simpler by recognizing a non-simple
-object and grabbing its public and protected values into an array, which is then passed to the appropriate
-insert or update method. This allows you to work with Entity classes in a very clean way. Entity classes are
-simple classes that represent a single instance of an object type, like a user, a blog post, job, etc. This
-class is responsible for maintaining the business logic surrounding the object itself, like formatting
-elements in a certain way, etc. They shouldn’t have any idea about how they are saved to the database. At their
-simplest, they might look like this:</p>
+<p>save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬性和保護屬性，然後將它們保存成相應的陣列，傳入到插入或更新的方法中。這種方式允許你使用簡潔的實體類別，它表示的是一個物件類型的單一實體。比如使用者、部落格文章、作業等。這個類別負責維護圍繞著物件本身的商業邏輯，例如：以某種方法格式化元素等。它不應該有任何將資料儲存到資料庫的邏輯，最簡單的使用方式如下所示：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">Job</span>
@@ -716,7 +666,7 @@ simplest, they might look like this:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>A very simple model to work with this might look like:</p>
+<p>一個對應實體類別的最簡模型可能會像這個樣子：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">JobModel</span> <span class="k">extends</span> <span class="nx">Model</span>
@@ -729,56 +679,49 @@ simplest, they might look like this:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This model works with data from the <code class="docutils literal notranslate"><span class="pre">jobs</span></code> table, and returns all results as an instance of <code class="docutils literal notranslate"><span class="pre">App\Entities\Job</span></code>.
-When you need to persist that record to the database, you will need to either write custom methods, or use the
-model’s <code class="docutils literal notranslate"><span class="pre">save()</span></code> method to inspect the class, grab any public and private properties, and save them to the database:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Retrieve a Job instance</span>
+<p>這個模型使用 <code class="docutils literal notranslate"><span class="pre">jobs</span></code> 資料表來運作，並將所有結果以 <code class="docutils literal notranslate"><span class="pre">App\Entities\Job</span></code> 的一個實體回傳。當你需要將這個記錄儲存到資料庫時，你需要撰寫自定方法，使用模型提供的 <code class="docutils literal notranslate"><span class="pre">save()</span></code> 方法檢查類別、獲取公開屬性與私有屬性並將它們儲存到資料庫中。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 獲取你所指定的 Job 實體</span>
 <span class="nv">$job</span> <span class="o">=</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
 
-<span class="c1">// Make some changes</span>
+<span class="c1">// 執行一些改變</span>
 <span class="nv">$job</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s2">&quot;Foobar&quot;</span><span class="p">;</span>
 
-<span class="c1">// Save the changes</span>
+<span class="c1">// 儲存改變</span>
 <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$job</span><span class="p">);</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">If you find yourself working with Entities a lot, CodeIgniter provides a built-in <a class="reference internal" href="entities.html"><span class="doc">Entity class</span></a>
-that provides several handy features that make developing Entities simpler.</p>
+<p class="last">如果你發現自己需要使用實體來建構程式，CodeIgniter 提供了一個內建的 <a class="reference internal" href="entities.html"><span class="doc">實體類別</span></a> ，它提供了幾個方便的功能，讓開發實體變得更加簡單。</p>
 </div>
 </div>
-<div class="section" id="deleting-data">
-<h3><a class="toc-backref" href="#id11">Deleting Data</a><a class="headerlink" href="#deleting-data" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id32">刪除資料</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h3>
 <p><strong>delete()</strong></p>
-<p>Takes a primary key value as the first parameter and deletes the matching record from the model’s table:</p>
+<p>傳入主鍵作為參數，將刪除模型所指定的資料表符合的記錄。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>If the model’s $useSoftDeletes value is true, this will update the row to set <code class="docutils literal notranslate"><span class="pre">deleted_at</span></code> to the current
-date and time. You can force a permanent delete by setting the second parameter as true.</p>
-<p>An array of primary keys can be passed in as the first parameter to delete multiple records at once:</p>
+<p>如果模型的 $useSoftDeletes 為 true，則會將作為假性刪除判斷依據的 <code class="docutils literal notranslate"><span class="pre">deleted_at</span></code> 欄位寫入當下的日期和時間。你可以在第二個參數傳入 true 來強制執行永久刪除。</p>
+<p>傳入以主鍵組成的陣列，可以一次刪除多個記錄。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p>If no parameters are passed in, will act like the Query Builder’s delete method, requiring a where call
-previously:</p>
+<p>如果沒有傳入參數，就會像查詢生成器的刪除方法一樣，在這之前你會需要呼叫 where 相關的查詢生成器函數。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
 </pre></div>
 </div>
 <p><strong>purgeDeleted()</strong></p>
-<p>Cleans out the database table by permanently removing all rows that have 『deleted_at IS NOT NULL』.</p>
+<p>透過完全清除軟性刪除的記錄來清理資料表（符合 「deleted_at IS NOT NULL」 這個條件）。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">purgeDeleted</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="validating-data">
-<h3><a class="toc-backref" href="#id12">Validating Data</a><a class="headerlink" href="#validating-data" title="本標題的永久連結">¶</a></h3>
-<p>For many people, validating data in the model is the preferred way to ensure the data is kept to a single
-standard, without duplicating code. The Model class provides a way to automatically have all data validated
-prior to saving to the database with the <code class="docutils literal notranslate"><span class="pre">insert()</span></code>, <code class="docutils literal notranslate"><span class="pre">update()</span></code>, or <code class="docutils literal notranslate"><span class="pre">save()</span></code> methods.</p>
-<p>The first step is to fill out the <code class="docutils literal notranslate"><span class="pre">$validationRules</span></code> class property with the fields and rules that should
-be applied. If you have custom error message that you want to use, place them in the <code class="docutils literal notranslate"><span class="pre">$validationMessages</span></code> array:</p>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id33">驗證資料</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h3>
+<p>對許多人來說，在模型中實作資料驗證，將會是減少程式碼重複的不二方法。模型類別提供在使用 <code class="docutils literal notranslate"><span class="pre">insert()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">update()</span></code> 、 或 <code class="docutils literal notranslate"><span class="pre">save()</span></code> 方法保存在資料庫之前，自動讓所有資料進行驗證。</p>
+<p>第一步，你需要在 <code class="docutils literal notranslate"><span class="pre">$validationRules</span></code> 這個類別屬性中，宣告需要應用驗證的欄位與規則。如果你想要使用自定的錯誤訊息，請將它們放在
+<code class="docutils literal notranslate"><span class="pre">$validationMessages</span></code> 陣列。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UserModel</span> <span class="k">extends</span> <span class="nx">Model</span>
 <span class="p">{</span>
         <span class="k">protected</span> <span class="nv">$validationRules</span>    <span class="o">=</span> <span class="p">[</span>
@@ -796,18 +739,28 @@ be applied. If you have custom error message that you want to use, place them in
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The other way to set the validation message to fields by functions,</p>
+<p>另一種方式是透過函數將驗證訊息設定成欄位。</p>
 <dl class="function">
 <dt id="setValidationMessage">
 <code class="descname">setValidationMessage</code><span class="sig-paren">(</span><em>$field</em>, <em>$fieldMessages</em><span class="sig-paren">)</span><a class="headerlink" href="#setValidationMessage" title="本定義的永久連結">¶</a></dt>
-<dd><p>:param  string  $field
-:param  array   $fieldMessages</p>
-<p>This function will set the field wise error messages.</p>
-<p>Usage example:</p>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first last simple">
+<li><strong>$field</strong> (<em>string</em>) – 欄位名稱</li>
+<li><strong>$fieldMessages</strong> (<em>array</em>) – 欄位錯誤訊息</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>這個函數將設定欄位的錯誤訊息。</p>
+<p>使用範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$fieldName</span> <span class="o">=</span> <span class="s1">&#39;name&#39;</span><span class="p">;</span>
 <span class="nv">$fieldValidationMessage</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
-                <span class="s1">&#39;required&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;Your name is required here&#39;</span><span class="p">,</span>
-        <span class="p">);</span>
+        <span class="s1">&#39;required&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;Your name is required here&#39;</span><span class="p">,</span>
+<span class="p">);</span>
 <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">setValidationMessage</span><span class="p">(</span><span class="nv">$fieldName</span><span class="p">,</span> <span class="nv">$fieldValidationMessage</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -816,13 +769,23 @@ be applied. If you have custom error message that you want to use, place them in
 <dl class="function">
 <dt id="setValidationMessages">
 <code class="descname">setValidationMessages</code><span class="sig-paren">(</span><em>$fieldMessages</em><span class="sig-paren">)</span><a class="headerlink" href="#setValidationMessages" title="本定義的永久連結">¶</a></dt>
-<dd><p>:param  array   $fieldMessages</p>
-<p>This function will set the field messages.</p>
-<p>Usage example:</p>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first last simple">
+<li><strong>$fieldMessages</strong> (<em>array</em>) – 欄位訊息</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>這個方法可以設定欄位訊息。</p>
+<p>使用範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$fieldValidationMessage</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
         <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-                <span class="s1">&#39;required&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;Your baby name is missing.&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;min_length&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Too short, man!&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;required&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;Your baby name is missing.&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;min_length&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Too short, man!&#39;</span><span class="p">,</span>
         <span class="p">),</span>
 <span class="p">);</span>
 <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">setValidationMessages</span><span class="p">(</span><span class="nv">$fieldValidationMessage</span><span class="p">);</span>
@@ -830,16 +793,14 @@ be applied. If you have custom error message that you want to use, place them in
 </div>
 </dd></dl>
 
-<p>Now, whenever you call the <code class="docutils literal notranslate"><span class="pre">insert()</span></code>, <code class="docutils literal notranslate"><span class="pre">update()</span></code>, or <code class="docutils literal notranslate"><span class="pre">save()</span></code> methods, the data will be validated. If it fails,
-the model will return boolean <strong>false</strong>. You can use the <code class="docutils literal notranslate"><span class="pre">errors()</span></code> method to retrieve the validation errors:</p>
+<p>現在，每當你呼叫 <code class="docutils literal notranslate"><span class="pre">insert()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">update()</span></code> ，或 <code class="docutils literal notranslate"><span class="pre">save()</span></code> 方法時，資料將會被自動驗證。如果驗證失敗，模型將會回傳 <strong>false</strong> 。你可以使用 <code class="docutils literal notranslate"><span class="pre">error()</span></code> 方法來存取驗證錯誤：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$model</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="o">===</span> <span class="k">false</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;updateUser&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;errors&#39;</span> <span class="o">=&gt;</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">errors</span><span class="p">()];</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This returns an array with the field names and their associated errors that can be used to either show all of the
-errors at the top of the form, or to display them individually:</p>
+<p>這將回傳一個包含欄位名稱和相關錯誤訊息的陣列，可以用來在表單的頂部顯示所有錯誤，你也可以單獨顯示它們：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$errors</span><span class="p">))</span> <span class="o">:</span> <span class="cp">?&gt;</span>
         <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;alert alert-danger&quot;</span><span class="p">&gt;</span>
         <span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$errors</span> <span class="k">as</span> <span class="nv">$field</span> <span class="o">=&gt;</span> <span class="nv">$error</span><span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span>
@@ -849,8 +810,7 @@ errors at the top of the form, or to display them individually:</p>
 <span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
 </pre></div>
 </div>
-<p>If you’d rather organize your rules and error messages within the Validation configuration file, you can do that
-and simply set <code class="docutils literal notranslate"><span class="pre">$validationRules</span></code> to the name of the validation rule group you created:</p>
+<p>如果你想在組態設定檔案中統一組織驗證用的規則以及錯誤訊息，只需將 <code class="docutils literal notranslate"><span class="pre">$validationRules</span></code> 設定為你所創建的規則群組名稱即可，就像這樣做：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UserModel</span> <span class="k">extends</span> <span class="nx">Model</span>
 <span class="p">{</span>
         <span class="k">protected</span> <span class="nv">$validationRules</span> <span class="o">=</span> <span class="s1">&#39;users&#39;</span><span class="p">;</span>
@@ -858,84 +818,69 @@ and simply set <code class="docutils literal notranslate"><span class="pre">$val
 </pre></div>
 </div>
 </div>
-<div class="section" id="retrieving-validation-rules">
-<h3><a class="toc-backref" href="#id13">Retrieving Validation Rules</a><a class="headerlink" href="#retrieving-validation-rules" title="本標題的永久連結">¶</a></h3>
-<p>You can retrieve a model’s validation rules by accessing its <code class="docutils literal notranslate"><span class="pre">validationRules</span></code>
-property:</p>
+<div class="section" id="id12">
+<h3><a class="toc-backref" href="#id34">檢索驗證規則</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h3>
+<p>你可以透過模型的 <code class="docutils literal notranslate"><span class="pre">validationRules</span></code> 屬性來檢索模型的驗證規則。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$rules</span> <span class="o">=</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">validationRules</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>You can also retrieve just a subset of those rules by calling the accessor
-method directly, with options:</p>
+<p>你也可以透過直接呼叫 getValidationRules() 方法，用選項來檢索這些規則的一個子集。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$rules</span> <span class="o">=</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">getValidationRules</span><span class="p">(</span><span class="nv">$options</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">$options</span></code> parameter is an associative array with one element,
-whose key is either 「except」 or 「only」, and which has as its
-value an array of fieldnames of interest.:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// get the rules for all but the &quot;username&quot; field</span>
+<p><code class="docutils literal notranslate"><span class="pre">$options</span></code> 參數是一個鍵值陣列，包含著鍵為 「except」 或 「only」 的元素，這個鍵對應的數值則為你想查閱的欄位名稱陣列。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 取得除了 username 欄位以外的所有規則</span>
 <span class="nv">$rules</span> <span class="o">=</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">getValidationRules</span><span class="p">([</span><span class="s1">&#39;except&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]]);</span>
-<span class="c1">// get the rules for only the &quot;city&quot; and &quot;state&quot; fields</span>
+<span class="c1">// 只取得 city 與 state 欄位的規則</span>
 <span class="nv">$rules</span> <span class="o">=</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">getValidationRules</span><span class="p">([</span><span class="s1">&#39;only&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">]]);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="validation-placeholders">
-<h3><a class="toc-backref" href="#id14">Validation Placeholders</a><a class="headerlink" href="#validation-placeholders" title="本標題的永久連結">¶</a></h3>
-<p>The model provides a simple method to replace parts of your rules based on data that’s being passed into it. This
-sounds fairly obscure but can be especially handy with the <code class="docutils literal notranslate"><span class="pre">is_unique</span></code> validation rule. Placeholders are simply
-the name of the field (or array key) that was passed in as $data surrounded by curly brackets. It will be
-replaced by the <strong>value</strong> of the matched incoming field. An example should clarify this:</p>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id35">驗證置換符號</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h3>
+<p>模型提供了一個簡單的方法，可以根據你所傳入的資料替換掉規則的一部份。這聽請起來可以會有點艱深晦澀，但在 <code class="docutils literal notranslate"><span class="pre">is_unique</span></code> 驗證規則中相當便利。置換符號是以 $data 的形式傳入欄位（或是鍵值陣列）的名稱，這個陣列的 <strong>值</strong> 將會取代在目標字串中被大括弧包圍的相符欄位，這個例子應該可以充分說明這個功能：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">protected</span> <span class="nv">$validationRules</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required|valid_email|is_unique[users.email,id,{id}]&#39;</span>
 <span class="p">];</span>
 </pre></div>
 </div>
-<p>In this set of rules, it states that the email address should be unique in the database, except for the row
-that has an id matching the placeholder’s value. Assuming that the form POST data had the following:</p>
+<p>在這個規則中，它規定除了具有置換符號的值相符的 id 記錄外，電子郵件的位置在資料庫中應該是唯一值，我們假設表單中的 POST 資料具有以下內容：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$_POST</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">4</span><span class="p">,</span>
     <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;foo@example.com&#39;</span>
 <span class="p">]</span>
 </pre></div>
 </div>
-<p>then the <code class="docutils literal notranslate"><span class="pre">{id}</span></code> placeholder would be replaced with the number <strong>4</strong>, giving this revised rule:</p>
+<p>那麼 <code class="docutils literal notranslate"><span class="pre">{id}</span></code> 置換符號將被替換成數字 <strong>4</strong> ，因此被置換成下列的規則：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">protected</span> <span class="nv">$validationRules</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required|valid_email|is_unique[users.email,id,4]&#39;</span>
 <span class="p">];</span>
 </pre></div>
 </div>
-<p>So it will ignore the row in the database that has <code class="docutils literal notranslate"><span class="pre">id=4</span></code> when it verifies the email is unique.</p>
-<p>This can also be used to create more dynamic rules at runtime, as long as you take care that any dynamic
-keys passed in don’t conflict with your form data.</p>
+<p>因此，當它所驗證的電子郵件是唯一值，就會忽略 <code class="docutils literal notranslate"><span class="pre">id=4</span></code> 的記錄。</p>
+<p>這也可以用來在驗證的執行期間創建更動態的規則，你只需要注意傳入的動態鍵不要與表單的資料衝突即可。</p>
 </div>
-<div class="section" id="protecting-fields">
-<h3><a class="toc-backref" href="#id15">Protecting Fields</a><a class="headerlink" href="#protecting-fields" title="本標題的永久連結">¶</a></h3>
-<p>To help protect against Mass Assignment Attacks, the Model class <strong>requires</strong> that you list all of the field names
-that can be changed during inserts and updates in the <code class="docutils literal notranslate"><span class="pre">$allowedFields</span></code> class property. Any data provided
-in addition to these will be removed prior to hitting the database. This is great for ensuring that timestamps,
-or primary keys do not get changed.</p>
+<div class="section" id="id14">
+<h3><a class="toc-backref" href="#id36">保護欄位</a><a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h3>
+<p>為了防止大規模的自動綁定攻擊，模型類別將 <strong>要求</strong> 你在 <code class="docutils literal notranslate"><span class="pre">$allowedFields</span></code> 類別屬性中列出，所有可以在插入和更新時更改的欄位名稱。除了這些之外的任何資料都將在進入資料庫之前被刪除，在保護時間戳或主鍵不被改變這件事情上，這是非常有用處的。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">protected</span> <span class="nv">$allowedFields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;address&#39;</span><span class="p">];</span>
 </pre></div>
 </div>
-<p>Occasionally, you will find times where you need to be able to change these elements. This is often during
-testing, migrations, or seeds. In these cases, you can turn the protection on or off:</p>
+<p>有時，你會發現你可能需要改變這些元素，這個需求通常會在測試、遷移，或資料填充的期間出現。在這種情形下，你可以開啟或關閉保護。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$model</span><span class="o">-&gt;</span><span class="na">protect</span><span class="p">(</span><span class="k">false</span><span class="p">)</span>
       <span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span>
       <span class="o">-&gt;</span><span class="na">protect</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="working-with-query-builder">
-<h3><a class="toc-backref" href="#id16">Working With Query Builder</a><a class="headerlink" href="#working-with-query-builder" title="本標題的永久連結">¶</a></h3>
-<p>You can get access to a shared instance of the Query Builder for that model’s database connection any time you
-need it:</p>
+<div class="section" id="id15">
+<h3><a class="toc-backref" href="#id37">操作查詢生成器</a><a class="headerlink" href="#id15" title="本標題的永久連結">¶</a></h3>
+<p>你可以在任何需要的時候，使用模型資料庫連接所提供的查詢生成器的共享實體。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$builder</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">builder</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>This builder is already set up with the model’s $table.</p>
-<p>You can also use Query Builder methods and the Model’s CRUD methods in the same chained call, allowing for
-very elegant use:</p>
+<p>這個生成器已經在模型中的 $table 設定好了。</p>
+<p>你還可以在同一個鏈式呼叫中優雅地混和使用查詢生成器方法與模型提供的 CRUD 方法。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">)</span>
                    <span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="s1">&#39;last_login&#39;</span><span class="p">,</span> <span class="s1">&#39;asc&#39;</span><span class="p">)</span>
                    <span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
@@ -943,44 +888,38 @@ very elegant use:</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p>You can also access the model’s database connection seamlessly:</p>
+<p>你也可以無縫地造訪模型地資料庫連接：</p>
 <div class="last highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$user_name</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="runtime-return-type-changes">
-<h3><a class="toc-backref" href="#id17">Runtime Return Type Changes</a><a class="headerlink" href="#runtime-return-type-changes" title="本標題的永久連結">¶</a></h3>
-<p>You can specify the format that data should be returned as when using the find*() methods as the class property,
-$returnType. There may be times that you would like the data back in a different format, though. The Model
-provides methods that allow you to do just that.</p>
+<div class="section" id="id16">
+<h3><a class="toc-backref" href="#id38">轉換回傳型別</a><a class="headerlink" href="#id16" title="本標題的永久連結">¶</a></h3>
+<p>你可以透過模型的類別屬性 $returnType 來指定使用 find() 方法時的回傳資料型別。但有時你可能會希望以不同的格式回傳資料，模型提供了一些方法允許你這麼做。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">These methods only change the return type for the next find*() method call. After that,
-it is reset to its default value.</p>
+<p class="last">這些方法只會改變下一次執行 find() 方法呼叫時的回傳型別，之後它將回復為預設值。</p>
 </div>
 <p><strong>asArray()</strong></p>
-<p>Returns data from the next find*() method as associative arrays:</p>
+<p>下一次的 find() 方法將以鍵值陣列的形式回傳：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">asArray</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
 </pre></div>
 </div>
 <p><strong>asObject()</strong></p>
-<p>Returns data from the next find*() method as standard objects or custom class intances:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return as standard objects</span>
+<p>下一次的 find() 將會把資料轉換為標準物件或自訂類別的實體回傳。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 回傳標準物件</span>
 <span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">asObject</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
 
-<span class="c1">// Return as custom class instances</span>
+<span class="c1">// 回傳自訂類別實體</span>
 <span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">asObject</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="processing-large-amounts-of-data">
-<h3><a class="toc-backref" href="#id18">Processing Large Amounts of Data</a><a class="headerlink" href="#processing-large-amounts-of-data" title="本標題的永久連結">¶</a></h3>
-<p>Sometimes, you need to process large amounts of data and would run the risk of running out of memory.
-To make this simpler, you may use the chunk() method to get smaller chunks of data that you can then
-do your work on. The first parameter is the number of rows to retrieve in a single chunk. The second
-parameter is a Closure that will be called for each row of data.</p>
-<p>This is best used during cronjobs, data exports, or other large tasks.</p>
+<div class="section" id="id17">
+<h3><a class="toc-backref" href="#id39">處理大量資料</a><a class="headerlink" href="#id17" title="本標題的永久連結">¶</a></h3>
+<p>有的時候，你可能會需要處理大量的資料，說不定會有記憶體不足的問題。為了簡單化這個問題，你可以使用 chunk() 方法來獲取更小的資料塊，然後再進行工作。第一個參數是單個資料塊中被檢索的行數，第二個參數是一個匿名陣列，它將會呼叫每一行的資料。</p>
+<p>這最好在排程工作、資料匯出與其他大型任務中使用。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">chunk</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$data</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="c1">// do something.</span>
@@ -990,20 +929,12 @@ parameter is a Closure that will be called for each row of data.</p>
 </div>
 </div>
 </div>
-<div class="section" id="model-events">
-<h2><a class="toc-backref" href="#id19">Model Events</a><a class="headerlink" href="#model-events" title="本標題的永久連結">¶</a></h2>
-<p>There are several points within the model’s execution that you can specify multiple callback methods to run.
-These methods can be used to normalize data, hash passwords, save related entities, and much more. The following
-points in the model’s execution can be affected, each through a class property: <strong>$beforeInsert</strong>, <strong>$afterInsert</strong>,
-<strong>$beforeUpdate</strong>, <strong>afterUpdate</strong>, <strong>afterFind</strong>, and <strong>afterDelete</strong>.</p>
-<div class="section" id="defining-callbacks">
-<h3><a class="toc-backref" href="#id20">Defining Callbacks</a><a class="headerlink" href="#defining-callbacks" title="本標題的永久連結">¶</a></h3>
-<p>You specify the callbacks by first creating a new class method in your model to use. This class will always
-receive a $data array as its only parameter. The exact contents of the $data array will vary between events, but
-will always contain a key named <strong>data</strong> that contains the primary data passed to the original method. In the case
-of the insert* or update* methods, that will be the key/value pairs that are being inserted into the database. The
-main array will also contain the other values passed to the method, and be detailed later. The callback method
-must return the original $data array so other callbacks have the full information.</p>
+<div class="section" id="id18">
+<h2><a class="toc-backref" href="#id40">模型事件</a><a class="headerlink" href="#id18" title="本標題的永久連結">¶</a></h2>
+<p>在模型的執行的過程中，可以指定幾個時機執行數個回呼函數。這些方法可以用於正規化資料、雜湊密碼，以及儲存相關實體等等。以下提供數種方法來影響不同時機的執行行為：<strong>$beforeInsert</strong> 、 <strong>$afterInsert</strong> 、 <strong>$beforeUpdate</strong> 、 <strong>afterUpdate</strong> 、 <strong>afterFind</strong> 、以及 <strong>afterDelete</strong> 。</p>
+<div class="section" id="id19">
+<h3><a class="toc-backref" href="#id41">定義回呼</a><a class="headerlink" href="#id19" title="本標題的永久連結">¶</a></h3>
+<p>首先，我們在模型中會創建一個新的類別方法來定義回呼。這個類別會接受一個 $data 陣列作為它的唯一參數。$data 陣列的確切內容會因事件的不同而相異，但總是會包含一個名為 <strong>data</strong> 的鍵，其中包含著傳遞給原始方法的主要資料——在插入或更新的方法下，這將是會被插入到資料庫的鍵值陣列。主要的陣列內容也會包含傳遞給其他方法的值，待會將會詳細的介紹。所有的回呼方法都必須回傳原始的 $data 陣列，這樣其他的回呼函數才能得到完整的訊息。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">protected</span> <span class="k">function</span> <span class="nf">hashPassword</span><span class="p">(</span><span class="k">array</span> <span class="nv">$data</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">])</span> <span class="k">return</span> <span class="nv">$data</span><span class="p">;</span>
@@ -1016,105 +947,100 @@ must return the original $data array so other callbacks have the full informatio
 </pre></div>
 </div>
 </div>
-<div class="section" id="specifying-callbacks-to-run">
-<h3><a class="toc-backref" href="#id21">Specifying Callbacks To Run</a><a class="headerlink" href="#specifying-callbacks-to-run" title="本標題的永久連結">¶</a></h3>
-<p>You specify when to run the callbacks by adding the method name to the appropriate class property (beforeInsert, afterUpdate,
-etc). Multiple callbacks can be added to a single event and they will be processed one after the other. You can
-use the same callback in multiple events:</p>
+<div class="section" id="id20">
+<h3><a class="toc-backref" href="#id42">指定要運作的回呼</a><a class="headerlink" href="#id20" title="本標題的永久連結">¶</a></h3>
+<p>你可以透過將方法名稱添加到相應的類別屬性（ beforeInsert 或 afterUpdate 等），來指定何時該運作哪個回呼。你也可以在一個事件中加入多個回呼，他們將相繼被處理。當然也可以在多個事件中使用同一個回呼。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">protected</span> <span class="nv">$beforeInsert</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hashPassword&#39;</span><span class="p">];</span>
 <span class="k">protected</span> <span class="nv">$beforeUpdate</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hashPassword&#39;</span><span class="p">];</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="event-parameters">
-<h3><a class="toc-backref" href="#id22">Event Parameters</a><a class="headerlink" href="#event-parameters" title="本標題的永久連結">¶</a></h3>
-<p>Since the exact data passed to each callback varies a bit, here are the details on what is in the $data parameter
-passed to each event:</p>
+<div class="section" id="id21">
+<h3><a class="toc-backref" href="#id43">事件參數</a><a class="headerlink" href="#id21" title="本標題的永久連結">¶</a></h3>
+<p>由於傳遞給每個回呼的確切資料存在著一些差異，下面將會詳列傳遞給每個事件的 $data 參數中的詳細內容：</p>
+<p>id = 被更新的行的主键。
+data = 被插入的键/值对。如果一个对象或Entity类被传递给insert方法，首先将其转换为数组。</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="13%" />
 <col width="87%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Event</th>
-<th class="head">$data contents</th>
+<tr class="row-odd"><th class="head">事件</th>
+<th class="head">$data 內容</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>beforeInsert</td>
-<td><strong>data</strong> = the key/value pairs that are being inserted. If an object or Entity class is passed to the
-insert method, it is first converted to an array.</td>
+<td><strong>data</strong> = 即將被插入的鍵值陣列。如果一個物件或是實體類別被傳遞給插入方法，則會先將其轉換成陣列。</td>
 </tr>
 <tr class="row-odd"><td>afterInsert</td>
-<td><strong>id</strong> = the primary key of the new row, or 0 on failure.
-<strong>data</strong> = the key/value pairs being inserted.
-<strong>result</strong> = the results of the insert() method used through the Query Builder.</td>
+<td><strong>id</strong> = 新記錄的主鍵，若插入失敗則為 0 。
+<strong>data</strong> = 被插入進資料庫的鍵值陣列。
+<strong>result</strong> = 透過查詢生成器使用 insert() 方法的結果。</td>
 </tr>
 <tr class="row-even"><td>beforeUpdate</td>
-<td><strong>id</strong> = the primary key of the row being updated.
-<strong>data</strong> = the key/value pairs that are being inserted. If an object or Entity class is passed to the
-insert method, it is first converted to an array.</td>
+<td><strong>id</strong> = 被更新的資料的主鍵。
+<strong>data</strong> = 即將被更新的鍵值陣列，如果一個物件或實體類別被傳遞給插入方法，首先會先將其轉換成陣列。</td>
 </tr>
 <tr class="row-odd"><td>afterUpdate</td>
-<td><strong>id</strong> = the primary key of the row being updated.
-<strong>data</strong> = the key/value pairs being updated.
-<strong>result</strong> = the results of the update() method used through the Query Builder.</td>
+<td><strong>id</strong> = 被更新的資料主鍵。
+<strong>data</strong> = 更新完成的鍵值陣列。
+<strong>result</strong> = 透過查詢生成器使用 update() 方法的結果</td>
 </tr>
 <tr class="row-even"><td>afterFind</td>
-<td>Varies by find* method. See the following:</td>
+<td>將因為 find 方法的不同而相異，請詳閱下方內容：</td>
 </tr>
 <tr class="row-odd"><td><ul class="first last simple">
 <li>find()</li>
 </ul>
 </td>
-<td><strong>id</strong> = the primary key of the row being searched for.
-<strong>data</strong> = The resulting row of data, or null if no result found.</td>
+<td><strong>id</strong> = 被搜索的主鍵。
+<strong>data</strong> = 搜索結果的資訊列，若沒有結果則為空。</td>
 </tr>
 <tr class="row-even"><td><ul class="first last simple">
 <li>findAll()</li>
 </ul>
 </td>
-<td><strong>data</strong> = the resulting rows of data, or null if no result found.
-<strong>limit</strong> = the number of rows to find.
-<strong>offset</strong> = the number of rows to skip during the search.</td>
+<td><strong>data</strong> = 要查找的資料列數，如果沒有找到結果則為空。
+<strong>limit</strong> = 要查找的列數。
+<strong>offset</strong> = 搜索過程中要跳過的列數。</td>
 </tr>
 <tr class="row-odd"><td><ul class="first last simple">
 <li>first()</li>
 </ul>
 </td>
-<td><strong>data</strong> = the resulting row found during the search, or null if none found.</td>
+<td><strong>data</strong> = 搜索過程中找到的結果列。如果沒找到則為空。</td>
 </tr>
 <tr class="row-even"><td>beforeDelete</td>
-<td>Varies by delete* method. See the following:</td>
+<td>將因為 delete 方法的不同而相異，請詳閱下方內容：</td>
 </tr>
 <tr class="row-odd"><td><ul class="first last simple">
 <li>delete()</li>
 </ul>
 </td>
-<td><strong>id</strong> = primary key of row being deleted.
-<strong>purge</strong> = boolean whether soft-delete rows should be hard deleted.</td>
+<td><strong>id</strong> = 即將被刪除的主鍵。
+<strong>purge</strong> = 布林，是否被完全刪除或假性刪除。</td>
 </tr>
 <tr class="row-even"><td>afterDelete</td>
-<td>Varies by delete* method. See the following:</td>
+<td>將因為 delete 方法的不同而相異，請詳閱下方內容：</td>
 </tr>
 <tr class="row-odd"><td><ul class="first last simple">
 <li>delete()</li>
 </ul>
 </td>
-<td><strong>id</strong> = primary key of row being deleted.
-<strong>purge</strong> = boolean whether soft-delete rows should be hard deleted.
-<strong>result</strong> = the result of the delete() call on the Query Builder.
-<strong>data</strong> = unused.</td>
+<td><strong>id</strong> = 被刪除的主鍵。
+<strong>purge</strong> = 布林，是否被完全刪除或假性刪除。
+<strong>result</strong> = 查詢生成器呼叫 delete() 的結果。
+<strong>data</strong> = 未使用。</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div class="section" id="manual-model-creation">
-<h2><a class="toc-backref" href="#id23">Manual Model Creation</a><a class="headerlink" href="#manual-model-creation" title="本標題的永久連結">¶</a></h2>
-<p>You do not need to extend any special class to create a model for your application. All you need is to get an
-instance of the database connection and you’re good to go. This allows you to bypass the features CodeIgniter’s
-Model gives you out of the box, and create a fully custom experience.</p>
+<div class="section" id="id22">
+<h2><a class="toc-backref" href="#id44">創建手動模型</a><a class="headerlink" href="#id22" title="本標題的永久連結">¶</a></h2>
+<p>你不需要繼承任何的特殊類別來替你的應用程式創建一個模型。你只需要得到一個資料庫連接實體即可。這樣你就能繞過 CodeIgniter 的模型替你預先制定的功能，創建一個完全由你定義的手動模型。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
 
     <span class="k">use</span> <span class="nx">CodeIgniter\Database\ConnectionInterface</span><span class="p">;</span>
@@ -1141,10 +1067,10 @@ Model gives you out of the box, and create a fully custom experience.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="entities.html" class="btn btn-neutral float-right" title="Working With Entities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="entities.html" class="btn btn-neutral float-right" title="使用實體類別" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Modeling Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="資料模型化" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -1155,7 +1081,7 @@ Model gives you out of the box, and create a fully custom experience.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月26日。
+        最後更新於 2020年04月28日。
       </span>
 
     </p>
