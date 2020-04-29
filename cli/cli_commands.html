@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Custom CLI Commands &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>自訂命令列介面指令 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="CLI Library" href="cli_library.html" />
-    <link rel="prev" title="Running via the Command Line" href="cli.html" /> 
+    <link rel="next" title="命令列程式庫" href="cli_library.html" />
+    <link rel="prev" title="透過命命列運作" href="cli.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -257,11 +257,11 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Command Line Usage</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="cli.html">Running via the Command Line</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Custom CLI Commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli_library.html">CLI Library</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli_request.html">CLIRequest Class</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">使用命令列介面</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cli.html">透過命命列運作</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">自訂命令列介面指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli_library.html">命令列程式庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli_request.html">CLI 請求類別</a></li>
 </ul>
 </li>
 </ul>
@@ -273,6 +273,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">Extending the Controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">Authentication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">Contributing to CodeIgniter</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../translation/index.html">CodeIgniter4 文件翻譯</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../translation/glossary.html">詞彙對照表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../translation/members.html">翻譯貢獻者</a></li>
 </ul>
 </li>
 </ul>
@@ -320,9 +327,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Command Line Usage</a> &raquo;</li>
+          <li><a href="index.html">使用命令列介面</a> &raquo;</li>
         
-      <li>Custom CLI Commands</li>
+      <li>自訂命令列介面指令</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,86 +346,92 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="custom-cli-commands">
-<h1>Custom CLI Commands<a class="headerlink" href="#custom-cli-commands" title="本標題的永久連結">¶</a></h1>
-<p>While the ability to use cli commands like any other route is convenient, you might find times where you
-need a little something different. That’s where CLI Commands come in. They are simple classes that do not
-need to have routes defined for, making them perfect for building tools that developers can use to make
-their jobs simpler, whether by handling migrations or database seeding, checking cronjob status, or even
-building out custom code generators for your company.</p>
-<div class="contents local topic" id="id1">
+  <div class="section" id="id1">
+<h1>自訂命令列介面指令<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>雖然像其他路由一樣使用命令列指令很方便，但你可以會發現有的時候你需要一些不同的東西，命令列指令說不定就可以幫助到你。它們是一些簡單的類別，不需要定義路由，這使得它們非常適合用於建構工具。開發者可以透過它處理資料庫遷移、資料庫填充、檢查排程工作狀態，甚至是替公司建構出自訂的程式碼生成器來簡化工作。</p>
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#running-commands" id="id2">Running Commands</a></li>
-<li><a class="reference internal" href="#using-help-command" id="id3">Using Help Command</a></li>
-<li><a class="reference internal" href="#creating-new-commands" id="id4">Creating New Commands</a><ul>
-<li><a class="reference internal" href="#file-location" id="id5">File Location</a></li>
-<li><a class="reference internal" href="#an-example-command" id="id6">An Example Command</a></li>
+<li><a class="reference internal" href="#id3" id="id8">運作指令</a></li>
+<li><a class="reference internal" href="#id4" id="id9">使用提示指令</a></li>
+<li><a class="reference internal" href="#id5" id="id10">建立新的指令</a><ul>
+<li><a class="reference internal" href="#id6" id="id11">檔案位置</a></li>
+<li><a class="reference internal" href="#id7" id="id12">範例指令</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#basecommand" id="id7">BaseCommand</a></li>
+<li><a class="reference internal" href="#basecommand" id="id13">BaseCommand 類別</a></li>
 </ul>
 </div>
-<div class="section" id="running-commands">
-<h2><a class="toc-backref" href="#id2">Running Commands</a><a class="headerlink" href="#running-commands" title="本標題的永久連結">¶</a></h2>
-<p>Commands are run from the command line, in the root directory. The same one that holds the <strong>/app</strong>
-and <strong>/system</strong> directories. A custom script, <strong>spark</strong> has been provided that is used to run any of the
-cli commands:</p>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id8">運作指令</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>定位在根目錄下（就是擁有 <strong>/app</strong> 與 <strong>/system</strong> 的那個目錄），指令就能在命令列中運作。 CodeIgniter 已經提供了一個內建腳本 <strong>spark</strong> ，可以用於執行命令列指令：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span>
 </pre></div>
 </div>
-<p>When called without specifying a command, a simple help page is displayed that also provides a list of
-available commands. You should pass the name of the command as the first argument to run that command:</p>
+<p>當你不指定任何指令時，會顯示一個簡單的提示資訊，並提供一個可用的指令列表，你應該以指令的名稱作為第一參數來運作你想使用的指令：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">migrate</span>
 </pre></div>
 </div>
-<p>Some commands take additional arguments, which should be provided directly after the command, separated by spaces:</p>
+<p>有些時候指令需要額外的參數，這些參數應該直接在指令後用空格隔開：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">db</span><span class="o">:</span><span class="nx">seed</span> <span class="nx">DevUserSeeder</span>
 </pre></div>
 </div>
-<p>For all of the commands CodeIgniter provides, if you do not provide the required arguments, you will be prompted
-for the information it needs to run correctly:</p>
+<p>對於 CodeIgniter 所提供的指令，如果你沒有鍵入它所需要的參數，你將會被提示正確運作指令應該需要的要求：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">migrate</span><span class="o">:</span><span class="nx">version</span>
 <span class="o">&gt;</span> <span class="nx">Version</span><span class="o">?</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="using-help-command">
-<h2><a class="toc-backref" href="#id3">Using Help Command</a><a class="headerlink" href="#using-help-command" title="本標題的永久連結">¶</a></h2>
-<p>You can get help about any CLI command using the help command as follows:</p>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id9">使用提示指令</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<p>你可以使用下列的提示指令來獲得在命令列介面中任何指令的提示資訊：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">help</span> <span class="nx">db</span><span class="o">:</span><span class="nx">seed</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="creating-new-commands">
-<h2><a class="toc-backref" href="#id4">Creating New Commands</a><a class="headerlink" href="#creating-new-commands" title="本標題的永久連結">¶</a></h2>
-<p>You can very easily create new commands to use in your own development. Each class must be in its own file,
-and must extend <code class="docutils literal notranslate"><span class="pre">CodeIgniter\CLI\BaseCommand</span></code>, and implement the <code class="docutils literal notranslate"><span class="pre">run()</span></code> method.</p>
-<p>The following properties should be used in order to get listed in CLI commands and to add help functionality to your command:</p>
-<ul class="simple">
-<li>($group): a string to describe the group the command is lumped under when listing commands. For example (Database)</li>
-<li>($name): a string to describe the command’s name. For example (migrate:create)</li>
-<li>($description): a string to describe the command. For example (Creates a new migration file.)</li>
-<li>($usage): a string to describe the command usage. For example (migrate:create [migration_name] [Options])</li>
-<li>($arguments): an array of strings to describe each command argument. For example (『migration_name』 =&gt; 『The migration file name』)</li>
-<li>($options): an array of strings to describe each command option. For example (『-n』 =&gt; 『Set migration namespace』)</li>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id10">建立新的指令</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<p>若是你在開發中需要，那麼建立新的指令真的非常容易。每個新的指令都必須繼承 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\CLI\BaseCommand</span></code> 類別，並且實作 <code class="docutils literal notranslate"><span class="pre">run()</span></code> 方法。</p>
+<p>你應該要在你的新指令類別檔案中實現下列屬性，以及這些指令的使用方式，這樣它就能在命令列指令列表中出現：</p>
+<ul>
+<li><p class="first">（$group）: 字串，用來描述該指令在指令表中被歸類的群組。例如：資料庫 Database 。</p>
+</li>
+<li><p class="first">（$name）:  描述指令名稱的字串，例如： migrate:create 。</p>
+</li>
+<li><p class="first">（$description）: 簡單描述指令效果的字串，例如：建立一個新的遷移檔案。</p>
+</li>
+<li><p class="first">（$usage）: 描述指令使用方式的字串，例如： migrate:create [migration_name] [Options] 。</p>
+</li>
+<li><p class="first">（$arguments）: 描述每個指令參數的鍵值陣列，例如：</p>
+<blockquote>
+<div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$arguments</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;migration_name&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The migration file name&quot;</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">（$options）: 描述每個指令選項的鍵值陣列，例如：</p>
+<blockquote>
+<div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$options</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;-n&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Set migration namespace&quot;</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
 </ul>
-<p><strong>Help description will be automatically generated according to the above parameters.</strong></p>
-<div class="section" id="file-location">
-<h3><a class="toc-backref" href="#id5">File Location</a><a class="headerlink" href="#file-location" title="本標題的永久連結">¶</a></h3>
-<p>Commands must be stored within a directory named <strong>Commands</strong>. However, that directory can be located anywhere
-that the <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">Autoloader</span></a> can locate it. This could be in <strong>/app/Commands</strong>, or
-a directory that you keep commands in to use in all of your project development, like <strong>Acme/Commands</strong>.</p>
+<p><strong>提示列表或提示指令所顯示的內容將會從上述的屬性中產出。</strong></p>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id11">檔案位置</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
+<p>你的指令檔案必須儲存在一個名為 <strong>Commands</strong> 的資料夾下，但是這個資料夾可以位於 <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">自動載入器</span></a> 可以找的到的任何地方。這個目錄可以位於 <strong>/app/Commands</strong> ，也位於專案開發資料夾中你所自訂的目錄，比如說： <strong>Acme/Commands</strong> 。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">When the commands are executed, the full CodeIgniter cli environment has been loaded, making it
-possible to get environment information, path information, and to use any of the tools you would use when making a Controller.</p>
+<p class="last">當指令被執行時，完整的 CodeIgniter 命令列環境將被載入，這樣就可以獲得環境訊息、路徑訊息，以及任何在製作控制器時你所使用的工具。</p>
 </div>
 </div>
-<div class="section" id="an-example-command">
-<h3><a class="toc-backref" href="#id6">An Example Command</a><a class="headerlink" href="#an-example-command" title="本標題的永久連結">¶</a></h3>
-<p>Let’s step through an example command whose only function is to report basic information about the application
-itself, for demonstration purposes. Start by creating a new file at <strong>/app/Commands/AppInfo.php</strong>. It
-should contain the following code:</p>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id12">範例指令</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
+<p>讓我們透過一個示範指令來演示功能。這個指令唯一的作用是產出應用程式本身的基本資訊報告。首先，先至 <strong>/app/Commands/AppInfo.php</strong> 創建一個含有以下程式碼的檔案：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Commands</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\CLI\BaseCommand</span><span class="p">;</span>
@@ -437,29 +450,21 @@ should contain the following code:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>If you run the <strong>list</strong> command, you will see the new command listed under its own <code class="docutils literal notranslate"><span class="pre">demo</span></code> group. If you take
-a close look, you should see how this works fairly easily. The <code class="docutils literal notranslate"><span class="pre">$group</span></code> property simply tells it how to organize
-this command with all of the other commands that exist, telling it what heading to list it under.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">$name</span></code> property is the name this command can be called by. The only requirement is that it must not contain
-a space, and all characters must be valid on the command line itself. By convention, though, commands are lowercase,
-with further grouping of commands being done by using a colon with the command name itself. This helps keep
-multiple commands from having naming collisions.</p>
-<p>The final property, <code class="docutils literal notranslate"><span class="pre">$description</span></code> is a short string that is displayed in the <strong>list</strong> command and should describe
-what the command does.</p>
+<p>如果以下了 <strong>list</strong> 指令，你會看到新的指令已經被列在 <code class="docutils literal notranslate"><span class="pre">demo</span></code> 群組下，仔細地瞧瞧，你應該會發現這十分容易。 <code class="docutils literal notranslate"><span class="pre">$group</span></code> 屬性的作用是將這個指令與其它指令組織起來，告訴你它應該被列在哪個群組底下。</p>
+<p>而 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 則是這個指令可以被呼叫的名稱，唯一的要求就是不可以含有空格，並且所有字元必須在命令列中有效。不過，按照慣例，指令應該都要是小寫的，在指令名稱中使用冒號進行更進一步的分組，這有助於防止指令名稱的衝突 。</p>
+<p>最後的屬性 <code class="docutils literal notranslate"><span class="pre">$description</span></code> 則是一個簡單的字串，將在指令 <strong>列表</strong> 中顯示，它應該要能好好地描述指令的效果。</p>
 <div class="section" id="run">
 <h4>run()<a class="headerlink" href="#run" title="本標題的永久連結">¶</a></h4>
-<p>The <code class="docutils literal notranslate"><span class="pre">run()</span></code> method is the method that is called when the command is being run. The <code class="docutils literal notranslate"><span class="pre">$params</span></code> array is a list of
-any cli arguments after the command name for your use. If the cli string was:</p>
+<p><code class="docutils literal notranslate"><span class="pre">run()</span></code> 方法是運作指令時會呼叫的方法，<code class="docutils literal notranslate"><span class="pre">$params</span></code> 陣列是指令名稱後可以接著使用的參數列表：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">foo</span> <span class="nx">bar</span> <span class="nx">baz</span>
 </pre></div>
 </div>
-<p>Then <strong>foo</strong> is the command name, and the <code class="docutils literal notranslate"><span class="pre">$params</span></code> array would be:</p>
+<p>那麼 <strong>foo</strong> 就是指令的名稱， <code class="docutils literal notranslate"><span class="pre">$params</span></code> 陣列則是：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$params</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">];</span>
 </pre></div>
 </div>
-<p>This can also be accessed through the <a class="reference internal" href="cli_library.html"><span class="doc">CLI</span></a> library, but this already has your command removed
-from the string. These parameters can be used to customize how your scripts behave.</p>
-<p>Our demo command might have a <code class="docutils literal notranslate"><span class="pre">run</span></code> method something like:</p>
+<p>你也可以透過 <a class="reference internal" href="cli_library.html"><span class="doc">命令列程式庫</span></a> 存取，但 $params 已經替你從使用者輸入的字串中提煉出了已經定義好的參數，你可以透過 $params 中記錄的參數自訂腳本的行為。</p>
+<p>我們的演示用指令有一個 <code class="docutils literal notranslate"><span class="pre">run</span></code> 方法，就像這樣：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">run</span><span class="p">(</span><span class="k">array</span> <span class="nv">$params</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="nx">CLI</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;PHP Version: &#39;</span><span class="o">.</span> <span class="nx">CLI</span><span class="o">::</span><span class="na">color</span><span class="p">(</span><span class="nb">phpversion</span><span class="p">(),</span> <span class="s1">&#39;yellow&#39;</span><span class="p">));</span>
@@ -475,10 +480,8 @@ from the string. These parameters can be used to customize how your scripts beha
 </div>
 </div>
 <div class="section" id="basecommand">
-<h2><a class="toc-backref" href="#id7">BaseCommand</a><a class="headerlink" href="#basecommand" title="本標題的永久連結">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">BaseCommand</span></code> class that all commands must extend have a couple of helpful utility methods that you should
-be familiar with when creating your own commands. It also has a <a class="reference internal" href="../general/logging.html"><span class="doc">Logger</span></a> available at
-<strong>$this-&gt;logger</strong>.</p>
+<h2><a class="toc-backref" href="#id13">BaseCommand 類別</a><a class="headerlink" href="#basecommand" title="本標題的永久連結">¶</a></h2>
+<p>所有的指令都必須繼承 <code class="docutils literal notranslate"><span class="pre">BaseCommand</span></code> 類別，這個類別有幾個食用的方法，在創建自己的指令時你應該要熟悉這些方法。這個類別也有一個 <a class="reference internal" href="../general/logging.html"><span class="doc">日誌記錄器</span></a> ，你可以透過 <strong>$this-&gt;logger</strong> 呼叫它。</p>
 <dl class="class">
 <dt>
 <code class="descname">CodeIgniter\CLI\BaseCommand</code></dt>
@@ -490,14 +493,14 @@ be familiar with when creating your own commands. It also has a <a class="refere
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first last simple">
-<li><strong>$command</strong> (<em>string</em>) – The name of another command to call.</li>
-<li><strong>$params</strong> (<em>array</em>) – Additional cli arguments to make available to that command.</li>
+<li><strong>$command</strong> (<em>string</em>) – 另一個要呼叫的指令名稱</li>
+<li><strong>$params</strong> (<em>array</em>) – 向這個指令提供額外的參數。</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>This method allows you to run other commands during the execution of your current command:</p>
+<p>這個方法允許你在執行當前指令時呼叫其他指令：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">call</span><span class="p">(</span><span class="s1">&#39;command_one&#39;</span><span class="p">);</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">call</span><span class="p">(</span><span class="s1">&#39;command_two&#39;</span><span class="p">,</span> <span class="nv">$params</span><span class="p">);</span>
 </pre></div>
@@ -512,13 +515,13 @@ be familiar with when creating your own commands. It also has a <a class="refere
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first last simple">
-<li><strong>$e</strong> (<em>Exception</em>) – The exception to use for error reporting.</li>
+<li><strong>$e</strong> (<em>Exception</em>) – 用於錯誤報告的例外拋出。</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>A convenience method to maintain a consistent and clear error output to the cli:</p>
+<p>一種便捷的方法，保值一致且清晰的錯誤輸出給命令列介面：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">try</span>
 <span class="p">{</span>
     <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
@@ -534,7 +537,7 @@ be familiar with when creating your own commands. It also has a <a class="refere
 <dl class="method">
 <dt id="showHelp">
 <code class="descname">showHelp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#showHelp" title="本定義的永久連結">¶</a></dt>
-<dd><p>A method to show command help: (usage,arguments,description,options)</p>
+<dd><p>一個顯示指令提示的方法：（用法、參數、描述，和選項）</p>
 </dd></dl>
 
 <dl class="method">
@@ -545,21 +548,21 @@ be familiar with when creating your own commands. It also has a <a class="refere
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first last simple">
-<li><strong>$array</strong> (<em>array</em>) – The  $key =&gt; $value array.</li>
-<li><strong>$pad</strong> (<em>integer</em>) – The pad spaces.</li>
+<li><strong>$array</strong> (<em>array</em>) – 鍵值陣列</li>
+<li><strong>$pad</strong> (<em>integer</em>) – 填充空間</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>A method to calculate padding for $key =&gt; $value array output. The padding can be used to output a will formatted table in CLI:</p>
+<p>計算鍵值陣列輸出的內距的方法。這個內距可以用來在命令列介面中輸出一個格式化的表格：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$pad</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getPad</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">options</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">options</span> <span class="k">as</span> <span class="nv">$option</span> <span class="o">=&gt;</span> <span class="nv">$description</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="nx">CLI</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="nv">$tab</span> <span class="o">.</span> <span class="nx">CLI</span><span class="o">::</span><span class="na">color</span><span class="p">(</span><span class="nb">str_pad</span><span class="p">(</span><span class="nv">$option</span><span class="p">,</span> <span class="nv">$pad</span><span class="p">),</span> <span class="s1">&#39;green&#39;</span><span class="p">)</span> <span class="o">.</span> <span class="nv">$description</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="c1">// Output will be</span>
+<span class="c1">// 輸出就像這樣</span>
 <span class="o">-</span><span class="nx">n</span>                  <span class="nx">Set</span> <span class="nx">migration</span> <span class="k">namespace</span>
 <span class="o">-</span><span class="nx">r</span>                  <span class="nx">override</span> <span class="nb">file</span>
 </pre></div>
@@ -579,10 +582,10 @@ be familiar with when creating your own commands. It also has a <a class="refere
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="cli_library.html" class="btn btn-neutral float-right" title="CLI Library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="cli_library.html" class="btn btn-neutral float-right" title="命令列程式庫" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="cli.html" class="btn btn-neutral float-left" title="Running via the Command Line" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="cli.html" class="btn btn-neutral float-left" title="透過命命列運作" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -593,7 +596,7 @@ be familiar with when creating your own commands. It also has a <a class="refere
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月29日。
+        最後更新於 2020年04月30日。
       </span>
 
     </p>

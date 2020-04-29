@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CLI Library &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>命令列程式庫 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="CLIRequest Class" href="cli_request.html" />
-    <link rel="prev" title="Custom CLI Commands" href="cli_commands.html" /> 
+    <link rel="next" title="CLI 請求類別" href="cli_request.html" />
+    <link rel="prev" title="自訂命令列介面指令" href="cli_commands.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -257,11 +257,11 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Command Line Usage</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="cli.html">Running via the Command Line</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli_commands.html">Custom CLI Commands</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">CLI Library</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli_request.html">CLIRequest Class</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">使用命令列介面</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">命令列程式庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli_request.html">CLI 請求類別</a></li>
 </ul>
 </li>
 </ul>
@@ -273,6 +273,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">Extending the Controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">Authentication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">Contributing to CodeIgniter</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../translation/index.html">CodeIgniter4 文件翻譯</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../translation/glossary.html">詞彙對照表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../translation/members.html">翻譯貢獻者</a></li>
 </ul>
 </li>
 </ul>
@@ -320,9 +327,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Command Line Usage</a> &raquo;</li>
+          <li><a href="index.html">使用命令列介面</a> &raquo;</li>
         
-      <li>CLI Library</li>
+      <li>命令列程式庫</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,27 +346,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="cli-library">
-<h1>CLI Library<a class="headerlink" href="#cli-library" title="本標題的永久連結">¶</a></h1>
-<p>CodeIgniter’s CLI library makes creating interactive command-line scripts simple, including:</p>
+  <div class="section" id="id1">
+<h1>命令列程式庫<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>CodeIgniter 的命令列程式庫使創建交互式命令列腳本變得簡單，它包括：</p>
 <ul class="simple">
-<li>Prompting the user for more information</li>
-<li>Writing multi-colored text the terminal</li>
+<li>提示使用者更多資訊</li>
+<li>使你撰寫的文字在終端機中色彩斑斕</li>
 <li>Beeping (be nice!)</li>
-<li>Showing progress bars during long tasks</li>
-<li>Wrapping long text lines to fit the window.</li>
+<li>在長時間的任務中顯示進度條</li>
+<li>自動替長文字換行，以符合視窗大小</li>
 </ul>
-<div class="contents local topic" id="id1">
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#initializing-the-class" id="id2">Initializing the Class</a></li>
-<li><a class="reference internal" href="#getting-input-from-the-user" id="id3">Getting Input from the User</a></li>
-<li><a class="reference internal" href="#providing-feedback" id="id4">Providing Feedback</a></li>
+<li><a class="reference internal" href="#id3" id="id6">初始化類別</a></li>
+<li><a class="reference internal" href="#id4" id="id7">取得使用者輸入</a></li>
+<li><a class="reference internal" href="#id5" id="id8">提供回饋</a></li>
 </ul>
 </div>
-<div class="section" id="initializing-the-class">
-<h2><a class="toc-backref" href="#id2">Initializing the Class</a><a class="headerlink" href="#initializing-the-class" title="本標題的永久連結">¶</a></h2>
-<p>You do not need to create an instance of the CLI library, since all of it’s methods are static. Instead, you simply
-need to ensure your controller can locate it via a <code class="docutils literal notranslate"><span class="pre">use</span></code> statement above your class:</p>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id6">初始化類別</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>你不宣要建立一個命令列程式庫的實體，因為它所有的方法都是靜態的，你只需要在你的控制器上方使用 <code class="docutils literal notranslate"><span class="pre">use</span></code> 語句來引入它即可。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\CLI\CLI</span><span class="p">;</span>
@@ -370,85 +376,76 @@ need to ensure your controller can locate it via a <code class="docutils literal
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The class is automatically initialized when the file is loaded the first time.</p>
+<p>當你第一次載入檔案時，類別會自動初始化。</p>
 </div>
-<div class="section" id="getting-input-from-the-user">
-<h2><a class="toc-backref" href="#id3">Getting Input from the User</a><a class="headerlink" href="#getting-input-from-the-user" title="本標題的永久連結">¶</a></h2>
-<p>Sometimes you need to ask the user for more information. They might not have provided optional command-line
-arguments, or the script may have encountered an existing file and needs confirmation before overwriting. This is
-handled with the <code class="docutils literal notranslate"><span class="pre">prompt()</span></code> method.</p>
-<p>You can provide a question by passing it in as the first parameter:</p>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id7">取得使用者輸入</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<p>有時，你會需要向使用者詢問更多的訊息，原因可能是，他們沒有提供指令需要的必要參數，或者是腳本在寫入檔案前發現檔案已存在，需要在覆寫前確認——這些需求都可以使用 <code class="docutils literal notranslate"><span class="pre">prompt()</span></code> 方法來處理。</p>
+<p>你可以透過傳入問題字串作為第一個參數：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$color</span> <span class="o">=</span> <span class="nx">CLI</span><span class="o">::</span><span class="na">prompt</span><span class="p">(</span><span class="s1">&#39;What is your favorite color?&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>You can provide a default answer that will be used if the user just hits enter by passing the default in the
-second parameter:</p>
+<p>你可以提供一個預設的答案，如果使用者在傳遞第二個參數的過程中採用預設值來輸入，那麼將使用你所提供的答案：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$color</span> <span class="o">=</span> <span class="nx">CLI</span><span class="o">::</span><span class="na">prompt</span><span class="p">(</span><span class="s1">&#39;What is your favorite color?&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>You can restrict the acceptable answers by passing in an array of allowed answers as the second parameter:</p>
+<p>你可以透過在第二個參數中傳入一個允許的答案陣列來限制你可以接受的回答：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$overwrite</span> <span class="o">=</span> <span class="nx">CLI</span><span class="o">::</span><span class="na">prompt</span><span class="p">(</span><span class="s1">&#39;File exists. Overwrite?&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;n&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p>Finally, you can pass validation rules to the answer input as the third parameter:</p>
+<p>最後，你可以將你的驗證規則作為第三個參數傳入：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$email</span> <span class="o">=</span> <span class="nx">CLI</span><span class="o">::</span><span class="na">prompt</span><span class="p">(</span><span class="s1">&#39;What is your email?&#39;</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;required|valid_email&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="providing-feedback">
-<h2><a class="toc-backref" href="#id4">Providing Feedback</a><a class="headerlink" href="#providing-feedback" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id8">提供回饋</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
 <p><strong>write()</strong></p>
-<p>Several methods are provided for you to provide feedback to your users. This can be as simple as a single status update
-or a complex table of information that wraps to the user’s terminal window. At the core of this is the <code class="docutils literal notranslate"><span class="pre">write()</span></code>
-method which takes the string to output as the first parameter:</p>
+<p>我們為你提供了幾種方法來向使用者輸出回饋訊息，這可以是簡單的單一狀態更新，也可以是一個複雜的訊息表格，這些需求都可以完整的輸出到使用者的終端機視窗。其中，最核心的方法就屬 <code class="docutils literal notranslate"><span class="pre">write()</span></code> 方法了，它把需要輸出的字串作為第一個被傳入的參數：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CLI</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;The rain in Spain falls mainly on the plains.&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>You can change the color of the text by passing in a color name as the second parameter:</p>
+<p>你可以透過傳入一個顏色的名稱來做為第二個參數，這可以改變文字的顏色：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CLI</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;File created.&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>This could be used to differentiate messages by status, or create 『headers』 by using a different color. You can
-even set background colors by passing the color name in as the third parameter:</p>
+<p>這可以用來區分訊息的狀態，或者用不同的顏色來創建頁眉，你甚至可以透過在第三個參數中傳入顏色的名稱來設定背景顏色：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CLI</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;File overwritten.&#39;</span><span class="p">,</span> <span class="s1">&#39;light_red&#39;</span><span class="p">,</span> <span class="s1">&#39;dark_gray&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The following foreground colors are available:</p>
-<ul class="simple">
-<li>black</li>
-<li>dark_gray</li>
-<li>blue</li>
-<li>dark_blue</li>
-<li>light_blue</li>
-<li>green</li>
-<li>light_green</li>
-<li>cyan</li>
-<li>light_cyan</li>
-<li>red</li>
-<li>light_red</li>
-<li>purple</li>
-<li>light_purple</li>
-<li>light_yellow</li>
-<li>yellow</li>
-<li>light_gray</li>
-<li>white</li>
-</ul>
-<p>And a smaller number are available as background colors:</p>
-<ul class="simple">
-<li>black</li>
-<li>blue</li>
-<li>green</li>
-<li>cyan</li>
-<li>red</li>
-<li>yellow</li>
-<li>light_gray</li>
-<li>magenta</li>
-</ul>
+<p>以下為可以使用的顏色：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">black</span>
+<span class="nx">dark_gray</span>
+<span class="nx">blue</span>
+<span class="nx">dark_blue</span>
+<span class="nx">light_blue</span>
+<span class="nx">green</span>
+<span class="nx">light_green</span>
+<span class="nx">cyan</span>
+<span class="nx">light_cyan</span>
+<span class="nx">red</span>
+<span class="nx">light_red</span>
+<span class="nx">purple</span>
+<span class="nx">light_purple</span>
+<span class="nx">light_yellow</span>
+<span class="nx">yellow</span>
+<span class="nx">light_gray</span>
+<span class="nx">white</span>
+</pre></div>
+</div>
+<p>以下為可以使用的背景顏色：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">black</span>
+<span class="nx">blue</span>
+<span class="nx">green</span>
+<span class="nx">cyan</span>
+<span class="nx">red</span>
+<span class="nx">yellow</span>
+<span class="nx">light_gray</span>
+<span class="nx">magenta</span>
+</pre></div>
+</div>
 <p><strong>print()</strong></p>
-<p>Print functions identically to the <code class="docutils literal notranslate"><span class="pre">write()</span></code> method, except that it does not force a newline either before or after.
-Instead it prints it to the screen wherever the cursor is currently. This allows you to print multiple items all on
-the same line, from different calls. This is especially helpful when you want to show a status, do something, then
-print 「Done」 on the same line:</p>
+<p>print()　函數與　<code class="docutils literal notranslate"><span class="pre">write()</span></code>　函數相同，使是它不強制在前後加上換行。相反的，它會將內容輸出到螢幕上游標的位置。這使得你可以在同一行中輸出多個項目，並從不同的呼叫中持續輸出。當你想顯示一些狀態、做一些事情，然後在同一列中輸出 「Done」 時，這個方法特別有用：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="nx">CLI</span><span class="o">::</span><span class="na">print</span><span class="p">(</span><span class="nv">$i</span><span class="p">);</span>
@@ -456,45 +453,30 @@ print 「Done」 on the same line:</p>
 </pre></div>
 </div>
 <p><strong>color()</strong></p>
-<p>While the <code class="docutils literal notranslate"><span class="pre">write()</span></code> command will write a single line to the terminal, ending it with a EOL character, you can
-use the <code class="docutils literal notranslate"><span class="pre">color()</span></code> method to make a string fragment that can be used in the same way, except that it will not force
-an EOL after printing. This allows you to create multiple outputs on the same row. Or, more commonly, you can use
-it inside of a <code class="docutils literal notranslate"><span class="pre">write()</span></code> method to create a string of a different color inside:</p>
+<p>雖然 <code class="docutils literal notranslate"><span class="pre">write()</span></code> 指令會把一行字輸出到終端機上，並以 EOL 符號結束，但你也可以用 <code class="docutils literal notranslate"><span class="pre">color()</span></code> 方法製作一個字串片段，這時就不會強制執行 EOL 。這樣你就可以在同一列上創建多個輸出。或者，你可以在 <code class="docutils literal notranslate"><span class="pre">write()</span></code> 內部使用 <code class="docutils literal notranslate"><span class="pre">color()</span></code> 方法，就能輸出一個不同顏色的字串了：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CLI</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s2">&quot;fileA </span><span class="se">\t</span><span class="s2">&quot;</span><span class="o">.</span> <span class="nx">CLI</span><span class="o">::</span><span class="na">color</span><span class="p">(</span><span class="s1">&#39;/path/to/file&#39;</span><span class="p">,</span> <span class="s1">&#39;white&#39;</span><span class="p">),</span> <span class="s1">&#39;yellow&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>This example would write a single line to the window, with <code class="docutils literal notranslate"><span class="pre">fileA</span></code> in yellow, followed by a tab, and then
-<code class="docutils literal notranslate"><span class="pre">/path/to/file</span></code> in white text.</p>
+<p>這個例子會在視窗寫入一行文字， <code class="docutils literal notranslate"><span class="pre">fileA</span></code> 是黃色的，然後 <code class="docutils literal notranslate"><span class="pre">/path/to/file</span></code> 是白色的。</p>
 <p><strong>error()</strong></p>
-<p>If you need to output errors, you should use the appropriately named <code class="docutils literal notranslate"><span class="pre">error()</span></code> method. This writes light-red text
-to STDERR, instead of STDOUT, like <code class="docutils literal notranslate"><span class="pre">write()</span></code> and <code class="docutils literal notranslate"><span class="pre">color()</span></code> do. This can be useful if you have scripts watching
-for errors so they don’t have to sift through all of the information, only the actual error messages. You use it
-exactly as you would the <code class="docutils literal notranslate"><span class="pre">write()</span></code> method:</p>
+<p>如果你需要輸出錯誤，你應該使用有著錯誤語意的 <code class="docutils literal notranslate"><span class="pre">error()</span></code> 方法。這個方法會與 <code class="docutils literal notranslate"><span class="pre">write()</span></code> 以及 <code class="docutils literal notranslate"><span class="pre">color()</span></code> 一樣，將淺紅色的文字寫到 STDERR 而不是 STDOUT 。如果你的腳本正在監視錯誤，那麼這個方法將會十分有用，因為這樣他們就不用去篩選所有的訊息，只需要篩選實際的錯誤訊息。你可以像使用 <code class="docutils literal notranslate"><span class="pre">write()</span></code> 方法一樣使用它：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CLI</span><span class="o">::</span><span class="na">error</span><span class="p">(</span><span class="s1">&#39;Cannot write to file: &#39;</span> <span class="o">.</span> <span class="nv">$file</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>wrap()</strong></p>
-<p>This command will take a string, start printing it on the current line, and wrap it to a set length on new lines.
-This might be useful when displaying a list of options with descriptions that you want to wrap in the current
-window and not go off screen:</p>
+<p>這個指令將會把字串在當前的行上輸出，然後將其換行到新的行上設定長度。當顯示一個帶有著描述選項的列表時，這個功能會很有用，因為你一定會想讓訊息乖乖地待在視窗中，而不是超出螢幕大小：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CLI</span><span class="o">::</span><span class="na">color</span><span class="p">(</span><span class="s2">&quot;task1</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">);</span>
 <span class="nx">CLI</span><span class="o">::</span><span class="na">wrap</span><span class="p">(</span><span class="s2">&quot;Some long description goes here that might be longer than the current window.&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>By default, the string will wrap at the terminal width. Windows currently doesn’t provide a way to determine
-the window size, so we default to 80 characters. If you want to restrict the width to something shorter that
-you can be pretty sure fits within the window, pass the maximum line-length as the second parameter. This
-will break the string at the nearest word barrier so that words are not broken.</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Wrap the text at max 20 characters wide</span>
+<p>在預設的情形下，字串將在終端機的實際寬度下換行。 Windows 目前並沒有提供確定視窗大小的方法，所以我們將預設為單行 80 個字元。如果要將寬度限制為較短的寬度，以便確定符合視窗的話，則可以將最大長度作為第二個參數傳入方法。這將在最接近長度邊緣的單字進行換行，避免單字被切一半這件事發生：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 限制單行文字為最大 20 字寬</span>
 <span class="nx">CLI</span><span class="o">::</span><span class="na">wrap</span><span class="p">(</span><span class="nv">$description</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>You may find that you want a column on the left of titles, files, or tasks, while you want a column of text
-on the right with their descriptions. By default, this will wrap back to the left edge of the window, which
-doesn’t allow things to line up in columns. In cases like this, you can pass in a number of spaces to pad
-every line after the first line, so that you will have a crisp column edge on the left:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Determine the maximum length of all titles</span>
-<span class="c1">// to determine the width of the left column</span>
+<p>你可能會有標題、檔案名稱、工作名稱記錄在左側，並且右側有包含其說明文字的需求。在預設的情形下，右方文字的換行將會回到視窗的左側，將沒辦法允許你這麼排版。在這種情況下，你可以傳入多個空格，在第一行之後填充每一行，這樣你就能在左方獲得清晰的邊緣列：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 決定所有標題長度</span>
+<span class="c1">// 以確定左欄的寬度</span>
 <span class="nv">$maxlen</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">array_map</span><span class="p">(</span><span class="s1">&#39;strlen&#39;</span><span class="p">,</span> <span class="nv">$titles</span><span class="p">));</span>
 
 <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;=</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$titles</span><span class="p">);</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
@@ -510,7 +492,7 @@ every line after the first line, so that you will have a crisp column edge on th
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Would create something like this:</p>
+<p>會建立起下列內容：</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>task1a     Lorem Ipsum is simply dummy
            text of the printing and typesetting
            industry.
@@ -519,27 +501,22 @@ task1abc   Lorem Ipsum has been the industry&#39;s
 </pre></div>
 </div>
 <p><strong>newLine()</strong></p>
-<p>The <code class="docutils literal notranslate"><span class="pre">newLine()</span></code> method displays a blank line to the user. It does not take any parameters:</p>
+<p><code class="docutils literal notranslate"><span class="pre">newLine()</span></code> 方法將向使用者輸出空行，它並不接受任何參數的傳入：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CLI</span><span class="o">::</span><span class="na">newLine</span><span class="p">();</span>
 </pre></div>
 </div>
 <p><strong>clearScreen()</strong></p>
-<p>You can clear the current terminal window with the <code class="docutils literal notranslate"><span class="pre">clearScreen()</span></code> method. In most versions of Windows, this will
-simply insert 40 blank lines since Windows doesn’t support this feature. Windows 10 bash integration should change
-this:</p>
+<p>你可以使用 <code class="docutils literal notranslate"><span class="pre">clearScreen()</span></code> 方法清除目前視窗內的內容，在大多數版本的 Windows 內，這將簡單地插入 40 行的空行，因為 Windows 不支援這個功能。但 Windows10 的 bash 集成將可以改變這一點：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CLI</span><span class="o">::</span><span class="na">clearScreen</span><span class="p">();</span>
 </pre></div>
 </div>
 <p><strong>showProgress()</strong></p>
-<p>If you have a long-running task that you would like to keep the user updated with the progress, you can use the
-<code class="docutils literal notranslate"><span class="pre">showProgress()</span></code> method which displays something like the following:</p>
+<p>如果你有一個長期運作的任務，你想讓使用者了解最新的進度，你可以使用 <code class="docutils literal notranslate"><span class="pre">showProgress()</span></code> 方法來表示進度，這個方法顯示的內容如下：</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[####......] 40% Complete
 </pre></div>
 </div>
-<p>This block is animated in place for a very nice effect.</p>
-<p>To use it, pass in the current step as the first parameter, and the total number of steps as the second parameter.
-The percent complete and the length of the display will be determined based on that number. When you are done,
-pass <code class="docutils literal notranslate"><span class="pre">false</span></code> as the first parameter and the progress bar will be removed.</p>
+<p>這個進度方塊的動畫效果非常好。</p>
+<p>要使用它的話，請在第一個參數中輸入目前的步驟，並將總步驟數當成第二個參數傳入。完成的百分比以及顯示的長度將根據這兩個數字決定。完成後，傳入 false 進度條就會被刪除。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$totalSteps</span> <span class="o">=</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$tasks</span><span class="p">);</span>
 <span class="nv">$currStep</span>   <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 
@@ -572,15 +549,14 @@ pass <code class="docutils literal notranslate"><span class="pre">false</span></
 </pre></div>
 </div>
 <p><strong>wait()</strong></p>
-<p>Waits a certain number of seconds, optionally showing a wait message and
-waiting for a key press.</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// wait for specified interval, with countdown displayed</span>
+<p>等待一定的秒數，可以選擇等待訊息以及等待按鍵。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 將會等待你所指定的時間，並顯示倒數計時</span>
 <span class="nx">CLI</span><span class="o">::</span><span class="na">wait</span><span class="p">(</span><span class="nv">$seconds</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
 
-<span class="c1">// show continuation message and wait for input</span>
+<span class="c1">// 繼續顯示訊息，等待輸入</span>
 <span class="nx">CLI</span><span class="o">::</span><span class="na">wait</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
 
-<span class="c1">// wait for specified interval</span>
+<span class="c1">// 等待你所指定的時間</span>
 <span class="nx">CLI</span><span class="o">::</span><span class="na">wait</span><span class="p">(</span><span class="nv">$seconds</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -595,10 +571,10 @@ waiting for a key press.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="cli_request.html" class="btn btn-neutral float-right" title="CLIRequest Class" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="cli_request.html" class="btn btn-neutral float-right" title="CLI 請求類別" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="cli_commands.html" class="btn btn-neutral float-left" title="Custom CLI Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="cli_commands.html" class="btn btn-neutral float-left" title="自訂命令列介面指令" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -609,7 +585,7 @@ waiting for a key press.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月29日。
+        最後更新於 2020年04月30日。
       </span>
 
     </p>

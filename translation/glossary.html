@@ -1,0 +1,1488 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>詞彙對照表 &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
+    <link rel="next" title="翻譯貢獻者" href="members.html" />
+    <link rel="prev" title="CodeIgniter4 文件翻譯" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DD4814" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ci-logo-text.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">歡迎加入 CodeIgniter4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">歡迎加入 CodeIgniter4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">系統需求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">貢獻</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 規範</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_git.html">Git 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">建構第一個應用程式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">靜態頁面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">新聞頁面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">建立新聞</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">結論</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 概觀</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">應用程式結構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">一般主題</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">組態設定檔案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">全域函數與常數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">記錄日誌資訊</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">錯誤處理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">網頁快取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 請求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">程式碼模組</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">處理多種環境</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">Content Negotiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP Method Spoofing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful Resource Handling</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">Building Responses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">View Cells</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">View Renderer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">View Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">View Parser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML Table Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API Response Trait</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">Localization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">資料庫操作</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">快速入門: 範例程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">資料庫組態設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">連接你的資料庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">執行查詢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">產生查詢結果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查詢輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查詢生成器類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">交易</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">詮釋資料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自訂函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">資料庫事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">資料庫工具</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">資料模型化</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">使用 CodeIgniter 的模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">使用實體類別</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">資料庫管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">資料庫操控與資料庫建構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">資料庫遷移</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">資料庫填充</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">Encryption Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">Honeypot Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Dates and Times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">Working with Uploaded Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">Working with URIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">Validation</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">測試</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">入門</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">Extending CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">Creating Core System Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">Replacing Common Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">Extending the Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">Contributing to CodeIgniter</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CodeIgniter4 文件翻譯</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">詞彙對照表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="members.html">翻譯貢獻者</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter4</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">CodeIgniter4 文件翻譯</a> &raquo;</li>
+        
+      <li>詞彙對照表</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>詞彙對照表<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>在 Codeigniter4 文件中，我們統一使用的對照表來同步專業名詞的譯名，這份對照表將按分類記錄。</p>
+<div class="contents local topic" id="id2">
+<ul class="simple">
+<li><a class="reference internal" href="#id3" id="id18">基本專業名詞</a></li>
+<li><a class="reference internal" href="#id4" id="id19">手冊相關</a></li>
+<li><a class="reference internal" href="#id5" id="id20">資料庫相關</a></li>
+<li><a class="reference internal" href="#id6" id="id21">資料庫管理相關</a></li>
+<li><a class="reference internal" href="#id7" id="id22">組態設定相關</a></li>
+<li><a class="reference internal" href="#id8" id="id23">控制器相關</a></li>
+<li><a class="reference internal" href="#id9" id="id24">日誌相關</a></li>
+<li><a class="reference internal" href="#id10" id="id25">模型相關</a></li>
+<li><a class="reference internal" href="#id11" id="id26">輔助函數相關</a></li>
+<li><a class="reference internal" href="#id12" id="id27">視圖相關</a></li>
+<li><a class="reference internal" href="#git" id="id28">GIT 相關</a></li>
+<li><a class="reference internal" href="#id13" id="id29">程式庫相關</a></li>
+<li><a class="reference internal" href="#id14" id="id30">程式碼模組相關</a></li>
+<li><a class="reference internal" href="#id15" id="id31">安裝相關</a></li>
+<li><a class="reference internal" href="#http" id="id32">HTTP 相關</a></li>
+<li><a class="reference internal" href="#id16" id="id33">測試相關</a></li>
+<li><a class="reference internal" href="#id17" id="id34">命令列相關</a></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id18">基本專業名詞</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="51%" />
+<col width="49%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Autoload</td>
+<td>自動載入</td>
+</tr>
+<tr class="row-odd"><td>Autoloader</td>
+<td>自動載入器</td>
+</tr>
+<tr class="row-even"><td>application</td>
+<td>應用程式</td>
+</tr>
+<tr class="row-odd"><td>algorithm</td>
+<td>演算法</td>
+</tr>
+<tr class="row-even"><td>argument</td>
+<td>引數</td>
+</tr>
+<tr class="row-odd"><td>array</td>
+<td>陣列</td>
+</tr>
+<tr class="row-even"><td>key/value array</td>
+<td>鍵值陣列</td>
+</tr>
+<tr class="row-odd"><td>associative array</td>
+<td>關聯陣列 或 鍵值陣列</td>
+</tr>
+<tr class="row-even"><td>asynchronous</td>
+<td>非同步</td>
+</tr>
+<tr class="row-odd"><td>binding</td>
+<td>繫結</td>
+</tr>
+<tr class="row-even"><td>bit</td>
+<td>位元</td>
+</tr>
+<tr class="row-odd"><td>boolean</td>
+<td>布林</td>
+</tr>
+<tr class="row-even"><td>byte</td>
+<td>位元組</td>
+</tr>
+<tr class="row-odd"><td>cache</td>
+<td>快取</td>
+</tr>
+<tr class="row-even"><td>call</td>
+<td>呼叫</td>
+</tr>
+<tr class="row-odd"><td>callback</td>
+<td>回呼</td>
+</tr>
+<tr class="row-even"><td>class</td>
+<td>類別</td>
+</tr>
+<tr class="row-odd"><td>Closures</td>
+<td>匿名函數</td>
+</tr>
+<tr class="row-even"><td>command line</td>
+<td>命令列</td>
+</tr>
+<tr class="row-odd"><td>context</td>
+<td>語境、情境</td>
+</tr>
+<tr class="row-even"><td>constructor</td>
+<td>建構</td>
+</tr>
+<tr class="row-odd"><td>components</td>
+<td>組件</td>
+</tr>
+<tr class="row-even"><td>design patterns</td>
+<td>設計模式</td>
+</tr>
+<tr class="row-odd"><td>data</td>
+<td>資料</td>
+</tr>
+<tr class="row-even"><td>debug</td>
+<td>除錯</td>
+</tr>
+<tr class="row-odd"><td>deploy</td>
+<td>部屬</td>
+</tr>
+<tr class="row-even"><td>declaration</td>
+<td>宣告</td>
+</tr>
+<tr class="row-odd"><td>default</td>
+<td>預設</td>
+</tr>
+<tr class="row-even"><td>destructor</td>
+<td>解構</td>
+</tr>
+<tr class="row-odd"><td>document</td>
+<td>文件</td>
+</tr>
+<tr class="row-even"><td>exception</td>
+<td>例外</td>
+</tr>
+<tr class="row-odd"><td>export</td>
+<td>匯出</td>
+</tr>
+<tr class="row-even"><td>extension</td>
+<td>擴充、擴充模組</td>
+</tr>
+<tr class="row-odd"><td>flash message</td>
+<td>即時訊息</td>
+</tr>
+<tr class="row-even"><td>field</td>
+<td>欄位</td>
+</tr>
+<tr class="row-odd"><td>file</td>
+<td>檔案</td>
+</tr>
+<tr class="row-even"><td>function</td>
+<td>函數</td>
+</tr>
+<tr class="row-odd"><td>global</td>
+<td>全域</td>
+</tr>
+<tr class="row-even"><td>identifier</td>
+<td>識別符號</td>
+</tr>
+<tr class="row-odd"><td>implement</td>
+<td>實作</td>
+</tr>
+<tr class="row-even"><td>import</td>
+<td>匯入</td>
+</tr>
+<tr class="row-odd"><td>inline</td>
+<td>行內</td>
+</tr>
+<tr class="row-even"><td>instance</td>
+<td>實體</td>
+</tr>
+<tr class="row-odd"><td>local</td>
+<td>區域</td>
+</tr>
+<tr class="row-even"><td>loop</td>
+<td>迴圈</td>
+</tr>
+<tr class="row-odd"><td>load</td>
+<td>載入</td>
+</tr>
+<tr class="row-even"><td>menu</td>
+<td>選單、功能表</td>
+</tr>
+<tr class="row-odd"><td>message</td>
+<td>訊息</td>
+</tr>
+<tr class="row-even"><td>model-view-controller</td>
+<td>模型、視圖、控制器</td>
+</tr>
+<tr class="row-odd"><td>module</td>
+<td>模組</td>
+</tr>
+<tr class="row-even"><td>object</td>
+<td>物件</td>
+</tr>
+<tr class="row-odd"><td>operator</td>
+<td>運算子</td>
+</tr>
+<tr class="row-even"><td>overflow</td>
+<td>溢位</td>
+</tr>
+<tr class="row-odd"><td>overload</td>
+<td>多載</td>
+</tr>
+<tr class="row-even"><td>override</td>
+<td>覆寫</td>
+</tr>
+<tr class="row-odd"><td>path</td>
+<td>路徑</td>
+</tr>
+<tr class="row-even"><td>project root</td>
+<td>根目錄</td>
+</tr>
+<tr class="row-odd"><td>parameter</td>
+<td>參數</td>
+</tr>
+<tr class="row-even"><td>pattern</td>
+<td>樣式</td>
+</tr>
+<tr class="row-odd"><td>pointer</td>
+<td>指標</td>
+</tr>
+<tr class="row-even"><td>procedure</td>
+<td>程序、程序式</td>
+</tr>
+<tr class="row-odd"><td>preferences</td>
+<td>喜好設定</td>
+</tr>
+<tr class="row-even"><td>performance</td>
+<td>效能</td>
+</tr>
+<tr class="row-odd"><td>process</td>
+<td>處理程序</td>
+</tr>
+<tr class="row-even"><td>program</td>
+<td>程式</td>
+</tr>
+<tr class="row-odd"><td>project</td>
+<td>專案</td>
+</tr>
+<tr class="row-even"><td>package</td>
+<td>軟體包</td>
+</tr>
+<tr class="row-odd"><td>redirect</td>
+<td>重新導向</td>
+</tr>
+<tr class="row-even"><td>return</td>
+<td>回傳</td>
+</tr>
+<tr class="row-odd"><td>source code</td>
+<td>原始碼</td>
+</tr>
+<tr class="row-even"><td>string</td>
+<td>字串</td>
+</tr>
+<tr class="row-odd"><td>synchronous</td>
+<td>同步</td>
+</tr>
+<tr class="row-even"><td>server</td>
+<td>伺服器</td>
+</tr>
+<tr class="row-odd"><td>throw</td>
+<td>拋出</td>
+</tr>
+<tr class="row-even"><td>token</td>
+<td>令牌</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td>型別</td>
+</tr>
+<tr class="row-even"><td>variable</td>
+<td>變數</td>
+</tr>
+<tr class="row-odd"><td>recursion</td>
+<td>遞迴</td>
+</tr>
+<tr class="row-even"><td>interface</td>
+<td>介面</td>
+</tr>
+<tr class="row-odd"><td>refreshes</td>
+<td>更新</td>
+</tr>
+<tr class="row-even"><td>trait</td>
+<td>特性</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id19">手冊相關</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="54%" />
+<col width="46%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>section</td>
+<td>條目</td>
+</tr>
+<tr class="row-odd"><td>User Guide</td>
+<td>使用手冊</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id20">資料庫相關</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="56%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>query builder</td>
+<td>查詢生成器</td>
+</tr>
+<tr class="row-odd"><td>query</td>
+<td>查詢</td>
+</tr>
+<tr class="row-even"><td>database</td>
+<td>資料庫</td>
+</tr>
+<tr class="row-odd"><td>table</td>
+<td>資料表</td>
+</tr>
+<tr class="row-even"><td>like</td>
+<td>模糊查詢</td>
+</tr>
+<tr class="row-odd"><td>transaction</td>
+<td>交易</td>
+</tr>
+<tr class="row-even"><td>field</td>
+<td>欄位</td>
+</tr>
+<tr class="row-odd"><td>normalization</td>
+<td>正規化</td>
+</tr>
+<tr class="row-even"><td>result</td>
+<td>結果</td>
+</tr>
+<tr class="row-odd"><td>schema</td>
+<td>綱目</td>
+</tr>
+<tr class="row-even"><td>rollback</td>
+<td>退回</td>
+</tr>
+<tr class="row-odd"><td>meta data</td>
+<td>詮釋資料</td>
+</tr>
+<tr class="row-even"><td>database group</td>
+<td>資料庫群組</td>
+</tr>
+<tr class="row-odd"><td>column</td>
+<td>欄位</td>
+</tr>
+<tr class="row-even"><td>Record</td>
+<td>記錄</td>
+</tr>
+<tr class="row-odd"><td>field</td>
+<td>欄位</td>
+</tr>
+<tr class="row-even"><td>insert</td>
+<td>插入</td>
+</tr>
+<tr class="row-odd"><td>update</td>
+<td>更新</td>
+</tr>
+<tr class="row-even"><td>save</td>
+<td>保存</td>
+</tr>
+<tr class="row-odd"><td>limit</td>
+<td>偏移</td>
+</tr>
+<tr class="row-even"><td>offset</td>
+<td>限制</td>
+</tr>
+<tr class="row-odd"><td>Foreign Key</td>
+<td>外來鍵</td>
+</tr>
+<tr class="row-even"><td>primary key</td>
+<td>主鍵</td>
+</tr>
+<tr class="row-odd"><td>unique key</td>
+<td>唯一鍵</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id21">資料庫管理相關</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="51%" />
+<col width="49%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Database migrations</td>
+<td>資料庫遷移</td>
+</tr>
+<tr class="row-odd"><td>Database seeds</td>
+<td>資料庫填充</td>
+</tr>
+<tr class="row-even"><td>Database Forge</td>
+<td>資料庫建構</td>
+</tr>
+<tr class="row-odd"><td>method chaining</td>
+<td>方法鏈</td>
+</tr>
+<tr class="row-even"><td>Seeders</td>
+<td>填充器、資料填充器</td>
+</tr>
+<tr class="row-odd"><td>Nesting</td>
+<td>巢套</td>
+</tr>
+<tr class="row-even"><td>batches</td>
+<td>批次</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id22">組態設定相關</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="61%" />
+<col width="39%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>config</td>
+<td>設定</td>
+</tr>
+<tr class="row-odd"><td>configuration</td>
+<td>組態、組態設定</td>
+</tr>
+<tr class="row-even"><td>environment variable</td>
+<td>環境變數</td>
+</tr>
+<tr class="row-odd"><td>Registrars</td>
+<td>註冊器</td>
+</tr>
+<tr class="row-even"><td>run</td>
+<td>運作</td>
+</tr>
+<tr class="row-odd"><td>production</td>
+<td>正式、正式環境</td>
+</tr>
+<tr class="row-even"><td>development</td>
+<td>開發、開發環境</td>
+</tr>
+<tr class="row-odd"><td>Local Development Server</td>
+<td>本地開發伺服器</td>
+</tr>
+<tr class="row-even"><td>front controller</td>
+<td>前端控制器</td>
+</tr>
+<tr class="row-odd"><td>Boot Files</td>
+<td>引導檔案</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id23">控制器相關</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>controller</td>
+<td>控制器</td>
+</tr>
+<tr class="row-odd"><td>route</td>
+<td>路由</td>
+</tr>
+<tr class="row-even"><td>redirect</td>
+<td>重新導向</td>
+</tr>
+<tr class="row-odd"><td>Segments</td>
+<td>區段</td>
+</tr>
+<tr class="row-even"><td>After Filter</td>
+<td>後濾器</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id9">
+<h2><a class="toc-backref" href="#id24">日誌相關</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="56%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>log</td>
+<td>日誌</td>
+</tr>
+<tr class="row-odd"><td>Log Handlers</td>
+<td>日誌處理程序</td>
+</tr>
+<tr class="row-even"><td>Logger</td>
+<td>日誌記錄器</td>
+</tr>
+<tr class="row-odd"><td>logfile</td>
+<td>日誌檔案</td>
+</tr>
+<tr class="row-even"><td>Logging</td>
+<td>記錄</td>
+</tr>
+<tr class="row-odd"><td>level</td>
+<td>級別</td>
+</tr>
+<tr class="row-even"><td>Event logs</td>
+<td>事件日誌</td>
+</tr>
+<tr class="row-odd"><td>transaction log</td>
+<td>交易日誌</td>
+</tr>
+<tr class="row-even"><td>message log</td>
+<td>訊息日誌</td>
+</tr>
+<tr class="row-odd"><td>error threshold</td>
+<td>錯誤閥值</td>
+</tr>
+<tr class="row-even"><td>trait</td>
+<td>特徵機制</td>
+</tr>
+<tr class="row-odd"><td>placeholder</td>
+<td>置換符號</td>
+</tr>
+<tr class="row-even"><td>Exception</td>
+<td>例外</td>
+</tr>
+<tr class="row-odd"><td>HTTP status code</td>
+<td>HTTP 狀態碼</td>
+</tr>
+<tr class="row-even"><td>exit code</td>
+<td>退出碼</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id10">
+<h2><a class="toc-backref" href="#id25">模型相關</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="67%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Modeling Data</td>
+<td>資料模型化</td>
+</tr>
+<tr class="row-odd"><td>entity</td>
+<td>實體</td>
+</tr>
+<tr class="row-even"><td>Validating</td>
+<td>驗證</td>
+</tr>
+<tr class="row-odd"><td>accessing</td>
+<td>存取</td>
+</tr>
+<tr class="row-even"><td>Retrieving</td>
+<td>檢索</td>
+</tr>
+<tr class="row-odd"><td>Rules</td>
+<td>規則</td>
+</tr>
+<tr class="row-even"><td>placeholder</td>
+<td>置換符號</td>
+</tr>
+<tr class="row-odd"><td>Protecting</td>
+<td>保護</td>
+</tr>
+<tr class="row-even"><td>Runtime</td>
+<td>運行時間</td>
+</tr>
+<tr class="row-odd"><td>mass assignment vulnerability</td>
+<td>自動綁定漏洞</td>
+</tr>
+<tr class="row-even"><td>Soft Deletes</td>
+<td>假性刪除</td>
+</tr>
+<tr class="row-odd"><td>chain call</td>
+<td>鏈式呼叫</td>
+</tr>
+<tr class="row-even"><td>cronjobs</td>
+<td>排程工作</td>
+</tr>
+<tr class="row-odd"><td>Filling Properties Quickly</td>
+<td>快速填充屬性</td>
+</tr>
+<tr class="row-even"><td>Business Logic</td>
+<td>商業邏輯</td>
+</tr>
+<tr class="row-odd"><td>Mutators</td>
+<td>修改器</td>
+</tr>
+<tr class="row-even"><td>First-class object</td>
+<td>第一類物件</td>
+</tr>
+<tr class="row-odd"><td>Repository pattern</td>
+<td>儲存庫模式</td>
+</tr>
+<tr class="row-even"><td>rapid prototyping</td>
+<td>快速雛形</td>
+</tr>
+<tr class="row-odd"><td>special methods</td>
+<td>特殊方法</td>
+</tr>
+<tr class="row-even"><td>direct syntax</td>
+<td>直接語法</td>
+</tr>
+<tr class="row-odd"><td>viewer</td>
+<td>檢視器</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id11">
+<h2><a class="toc-backref" href="#id26">輔助函數相關</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="49%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>helper</td>
+<td>輔助函數</td>
+</tr>
+<tr class="row-odd"><td>Array Helper</td>
+<td>陣列輔助函數</td>
+</tr>
+<tr class="row-even"><td>Cookie Helper</td>
+<td>Cookie 輔助函數</td>
+</tr>
+<tr class="row-odd"><td>Date Helper</td>
+<td>日期輔助函數</td>
+</tr>
+<tr class="row-even"><td>Filesystem Helper</td>
+<td>檔案系統輔助函數</td>
+</tr>
+<tr class="row-odd"><td>Form Helper</td>
+<td>表單輔助函數</td>
+</tr>
+<tr class="row-even"><td>HTML Helper</td>
+<td>HTML 輔助函數</td>
+</tr>
+<tr class="row-odd"><td>Inflector Helper</td>
+<td>Inflector 輔助函數</td>
+</tr>
+<tr class="row-even"><td>Number Helper</td>
+<td>Number 輔助函數</td>
+</tr>
+<tr class="row-odd"><td>Security Helper</td>
+<td>安全性輔助函數</td>
+</tr>
+<tr class="row-even"><td>Text Helper</td>
+<td>文字輔助函數</td>
+</tr>
+<tr class="row-odd"><td>URL Helper</td>
+<td>URL 輔助函數</td>
+</tr>
+<tr class="row-even"><td>XML Helper</td>
+<td>XML 輔助函數</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id12">
+<h2><a class="toc-backref" href="#id27">視圖相關</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="58%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>view</td>
+<td>視圖</td>
+</tr>
+<tr class="row-odd"><td>template</td>
+<td>樣板</td>
+</tr>
+<tr class="row-even"><td>template parser</td>
+<td>樣板解釋器</td>
+</tr>
+<tr class="row-odd"><td>header</td>
+<td>頁眉</td>
+</tr>
+<tr class="row-even"><td>footer</td>
+<td>頁腳</td>
+</tr>
+<tr class="row-odd"><td>Render</td>
+<td>渲染</td>
+</tr>
+<tr class="row-even"><td>Renderer</td>
+<td>渲染器</td>
+</tr>
+<tr class="row-odd"><td>Layouts</td>
+<td>佈局</td>
+</tr>
+<tr class="row-even"><td>Parser</td>
+<td>解釋器</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="git">
+<h2><a class="toc-backref" href="#id28">GIT 相關</a><a class="headerlink" href="#git" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="54%" />
+<col width="46%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>repository</td>
+<td>儲存庫</td>
+</tr>
+<tr class="row-odd"><td>push</td>
+<td>提交</td>
+</tr>
+<tr class="row-even"><td>pull</td>
+<td>拉取</td>
+</tr>
+<tr class="row-odd"><td>merge</td>
+<td>合併</td>
+</tr>
+<tr class="row-even"><td>clone</td>
+<td>克隆</td>
+</tr>
+<tr class="row-odd"><td>branch</td>
+<td>分支</td>
+</tr>
+<tr class="row-even"><td>fork</td>
+<td>分叉</td>
+</tr>
+<tr class="row-odd"><td>pull request</td>
+<td>拉取請求</td>
+</tr>
+<tr class="row-even"><td>alias</td>
+<td>別名</td>
+</tr>
+<tr class="row-odd"><td>git-ignored</td>
+<td>git 忽略檔案</td>
+</tr>
+<tr class="row-even"><td>codebase</td>
+<td>程式碼庫</td>
+</tr>
+<tr class="row-odd"><td>pre-commit hook</td>
+<td>預提交鉤子</td>
+</tr>
+<tr class="row-even"><td>coding-standard</td>
+<td>編碼規範</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id13">
+<h2><a class="toc-backref" href="#id29">程式庫相關</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="65%" />
+<col width="35%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>library</td>
+<td>程式庫</td>
+</tr>
+<tr class="row-odd"><td>Caching Driver</td>
+<td>快取驅動</td>
+</tr>
+<tr class="row-even"><td>CURL Request Class</td>
+<td>CURL 請求類別</td>
+</tr>
+<tr class="row-odd"><td>Email Class</td>
+<td>電子郵件類別</td>
+</tr>
+<tr class="row-even"><td>Encryption Service</td>
+<td>加密服務</td>
+</tr>
+<tr class="row-odd"><td>Working with Files</td>
+<td>檔案操作</td>
+</tr>
+<tr class="row-even"><td>Honeypot Class</td>
+<td>誘捕系統類別</td>
+</tr>
+<tr class="row-odd"><td>Image Manipulation Class</td>
+<td>圖片操作類別</td>
+</tr>
+<tr class="row-even"><td>Pagination</td>
+<td>分頁</td>
+</tr>
+<tr class="row-odd"><td>Security Class</td>
+<td>安全性類別</td>
+</tr>
+<tr class="row-even"><td>Session Library</td>
+<td>會談程式庫</td>
+</tr>
+<tr class="row-odd"><td>Throttler</td>
+<td>節流器</td>
+</tr>
+<tr class="row-even"><td>Dates and Times</td>
+<td>時間與日期</td>
+</tr>
+<tr class="row-odd"><td>Typography</td>
+<td>排版</td>
+</tr>
+<tr class="row-even"><td>Working with Uploaded Files</td>
+<td>上傳檔案操作</td>
+</tr>
+<tr class="row-odd"><td>Working with URIs</td>
+<td>URI 操作</td>
+</tr>
+<tr class="row-even"><td>User Agent Class</td>
+<td>使用者代理</td>
+</tr>
+<tr class="row-odd"><td>Validation</td>
+<td>驗證</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id14">
+<h2><a class="toc-backref" href="#id30">程式碼模組相關</a><a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="56%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>code modules</td>
+<td>程式碼模組</td>
+</tr>
+<tr class="row-odd"><td>Auto-Discovery</td>
+<td>自動探索</td>
+</tr>
+<tr class="row-even"><td>Discovery</td>
+<td>探索</td>
+</tr>
+<tr class="row-odd"><td>include</td>
+<td>引入</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id15">
+<h2><a class="toc-backref" href="#id31">安裝相關</a><a class="headerlink" href="#id15" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="57%" />
+<col width="43%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>App Starter</td>
+<td>穩定版本</td>
+</tr>
+<tr class="row-odd"><td>Latest Dev</td>
+<td>最新版本</td>
+</tr>
+<tr class="row-even"><td>Installation</td>
+<td>安裝</td>
+</tr>
+<tr class="row-odd"><td>dependencies</td>
+<td>依賴</td>
+</tr>
+<tr class="row-even"><td>scripts</td>
+<td>腳本</td>
+</tr>
+<tr class="row-odd"><td>bundle</td>
+<td>同捆</td>
+</tr>
+<tr class="row-even"><td>Upgrading</td>
+<td>升級</td>
+</tr>
+<tr class="row-odd"><td>Structure</td>
+<td>結構</td>
+</tr>
+<tr class="row-even"><td>superobject</td>
+<td>超級物件</td>
+</tr>
+<tr class="row-odd"><td>built-in</td>
+<td>內建</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="http">
+<h2><a class="toc-backref" href="#id32">HTTP 相關</a><a class="headerlink" href="#http" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="56%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Requests</td>
+<td>請求</td>
+</tr>
+<tr class="row-odd"><td>responses</td>
+<td>響應</td>
+</tr>
+<tr class="row-even"><td>headers</td>
+<td>標頭</td>
+</tr>
+<tr class="row-odd"><td>status code</td>
+<td>狀態碼</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id16">
+<h2><a class="toc-backref" href="#id33">測試相關</a><a class="headerlink" href="#id16" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="57%" />
+<col width="43%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Testing</td>
+<td>測試</td>
+</tr>
+<tr class="row-odd"><td>Benchmark</td>
+<td>基準測試</td>
+</tr>
+<tr class="row-even"><td>debugging</td>
+<td>偵錯與除錯</td>
+</tr>
+<tr class="row-odd"><td>Additional Assertions</td>
+<td>額外斷言</td>
+</tr>
+<tr class="row-even"><td>Mocking Services</td>
+<td>測試模擬服務</td>
+</tr>
+<tr class="row-odd"><td>Stream Filters</td>
+<td>串流過濾器</td>
+</tr>
+<tr class="row-even"><td>test case</td>
+<td>測試案例</td>
+</tr>
+<tr class="row-odd"><td>integration testing</td>
+<td>整合測試</td>
+</tr>
+<tr class="row-even"><td>Feature Testing tools</td>
+<td>特性測試工具</td>
+</tr>
+<tr class="row-odd"><td>bootstrap</td>
+<td>啟動</td>
+</tr>
+<tr class="row-even"><td>Helper Methods</td>
+<td>輔助方法</td>
+</tr>
+<tr class="row-odd"><td>Helper Trait</td>
+<td>輔助特性</td>
+</tr>
+<tr class="row-even"><td>shorthand methods</td>
+<td>速記方法</td>
+</tr>
+<tr class="row-odd"><td>Timer</td>
+<td>計時器</td>
+</tr>
+<tr class="row-even"><td>iterator</td>
+<td>疊代器</td>
+</tr>
+<tr class="row-odd"><td>Tasks</td>
+<td>任務</td>
+</tr>
+<tr class="row-even"><td>Collectors</td>
+<td>蒐集器</td>
+</tr>
+<tr class="row-odd"><td>cache hits/misses</td>
+<td>快取命中/未命中</td>
+</tr>
+<tr class="row-even"><td>Profiler</td>
+<td>分析工具</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id17">
+<h2><a class="toc-backref" href="#id34">命令列相關</a><a class="headerlink" href="#id17" title="本標題的永久連結">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="43%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">英文</th>
+<th class="head">統一譯名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Commands</td>
+<td>測試</td>
+</tr>
+<tr class="row-odd"><td>CLI</td>
+<td>命令列、命令列介面</td>
+</tr>
+<tr class="row-even"><td>cron-jobs</td>
+<td>排程工作</td>
+</tr>
+<tr class="row-odd"><td>prune cache</td>
+<td>修剪快取</td>
+</tr>
+<tr class="row-even"><td>Terminal</td>
+<td>終端機</td>
+</tr>
+<tr class="row-odd"><td>help command</td>
+<td>提示指令</td>
+</tr>
+<tr class="row-even"><td>accessor</td>
+<td>存取器</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="members.html" class="btn btn-neutral float-right" title="翻譯貢獻者" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="CodeIgniter4 文件翻譯" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
+      <span class="lastupdated">
+        最後更新於 2020年04月30日。
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
