@@ -1,42 +1,34 @@
 ############################
-Running via the Command Line
+透過命命列運作
 ############################
 
-As well as calling an application's :doc:`Controllers </incoming/controllers>`
-via the URL in a browser they can also be loaded via the command-line
-interface (CLI).
+除了透過瀏覽器中以 URL 呼叫應用程式的 :doc:`控制器 </incoming/controllers>` 外，你還可以透過命令列介面（ CLI ）來載入它們。
 
 .. contents::
     :local:
     :depth: 2
 
-What is the CLI?
+什麼是命令列介面
 ================
 
-The command-line interface is a text-based method of interacting with
-computers. For more information, check the `Wikipedia
-article <https://en.wikipedia.org/wiki/Command-line_interface>`_.
+命令列介面是一種基於文字與電腦交互的方式，更多資訊可以查看 `維基百科 <https://zh.wikipedia.org/wiki/%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%95%8C%E9%9D%A2>`_ 。 
 
-Why run via the command-line?
+為何需要透過命令列介面運作
 =============================
 
-There are many reasons for running CodeIgniter from the command-line,
-but they are not always obvious.
+從命令列介面運作 CodeIgniter 的原因有很多，雖然它們並不是這麼顯而易見。
 
--  Run your cron-jobs without needing to use *wget* or *curl*.
--  Make your cron-jobs inaccessible from being loaded in the URL by
-   checking the return value of :php:func:`is_cli()`.
--  Make interactive "tasks" that can do things like set permissions,
-   prune cache folders, run backups, etc.
--  Integrate with other applications in other languages. For example, a
-   random C++ script could call one command and run code in your models!
+-  運作你的排程工作，不需要使用 *wget*  或 *curl* 。
+-  透過檢查 :php:func:`is_cli()` 的回傳值，使你的排程工作無法在 URL 中載入。
+-  製作交互式的任務，可以做一些特別的事情，比如：權限設定、修剪快取，以及運作備份等。
+-  與其他語言進行整合，例如： 一個隨意的 C++ 腳本可以呼叫一個命令，然後在你的模型中運作這個程式碼。
 
-Let's try it: Hello World!
+讓我們試試： Hello World!
 ==========================
 
-Let's create a simple controller so you can see it in action. Using your
-text editor, create a file called Tools.php, and put the following code
-in it::
+讓我們建立一個簡單的控制器，這樣你就可以看到操作的過程。使用你的文字編輯器，建立一個名為 Tools.php 的檔案，並在其中寫入以下程式碼：
+
+::
 
 	<?php namespace App\Controllers;
 
@@ -50,59 +42,54 @@ in it::
 		}
 	}
 
-Then save the file to your **app/Controllers/** directory.
+接著，把這個檔案儲存在你的 **app/Controllers/** 目錄底下。
 
-Now normally you would visit your site using a URL similar to this::
+通常你會使用這樣的 URL 造訪你的網站：
+
+::
 
 	example.com/index.php/tools/message/to
 
-Instead, we are going to open Terminal in Mac/Linux or go to Run > "cmd"
-in Windows and navigate to our CodeIgniter project's web root.
+但現在，我們打開 Mac/Linux 的 Terminal ，或者在 Windows 中打開 cmd ，然後定位至 CodeIgniter 的專案根目錄。
 
 .. code-block:: bash
 
 	$ cd /path/to/project/public
 	$ php index.php tools message
 
-If you did it right, you should see *Hello World!* printed.
+如果你做得沒錯，你應該會看到螢幕上出現 *Hello World!* 的訊息。
 
 .. code-block:: bash
 
 	$ php index.php tools message "John Smith"
 
-Here we are passing it an argument in the same way that URL parameters
-work. "John Smith" is passed as an argument and output is::
+在這裡，我們使用與 URL 一樣的方式傳遞一個參數， "John Smith" 就會作為參數傳入到控制器方法中，你得輸出就會變為：
+
+::
 
 	Hello John Smith!
 
-That's the basics!
+基本知識
 ==================
 
-That, in a nutshell, is all there is to know about controllers on the
-command line. Remember that this is just a normal controller, so routing
-and ``_remap()`` works fine.
+總而言之，這就是命令列中關於控制器的所有知識。記住，這只是一個普通的控制器，所以路由以及 ``_remap()`` 都能夠正常工作。
 
-However, CodeIgniter provides additional tools to make creating CLI-accessible
-scripts even more pleasant, include CLI-only routing, and a library that helps
-you with CLI-only tools.
+然而， CodeIgniter 提供了額外的工具，讓你可以更加愉快地建立命令列介面。包括只限於命令列的路由以及幫助你開發該路由工具的程式庫。
 
-CLI-Only Routing
-----------------
+只限於命令列的路由
+-------------------
 
-In your **Routes.php** file you can create routes that are only accessible from
-the CLI as easily as you would create any other route. Instead of using the ``get()``,
-``post()``, or similar method, you would use the ``cli()`` method. Everything else
-works exactly like a normal route definition::
+在你的 **Routes.php** 檔案中，你可以像創建其他路由一樣，新增只有命令列介面可以存取的路由。你可以使用 ``cli()`` 方法取代 ``get()`` 或是 ``post()`` 方法，剩下的就和普通的路由定義完全一樣。
+
+::
 
     $routes->cli('tools/message/(:segment)', 'Tools::message/$1');
 
-For more information, see the :doc:`Routes </incoming/routing>` page.
+更多路由相關資訊，請詳閱 :doc:`路由 </incoming/routing>` 頁面。
 
-The CLI Library
+命令列程式庫
 ---------------
 
-The CLI library makes working with the CLI interface simple.
-It provides easy ways to output text in multiple colors to the terminal window. It also
-allows you to prompt a user for information, making it easy to build flexible, smart tools.
+命令列程式庫讓你更簡單地使用 CLI 介面，它提供了彩色文字輸出到終端機畫面的簡單方法，更可以允許你向使用者提示訊息，使你能夠輕鬆建立靈活且智慧的工具。
 
-See the :doc:`CLI Library </cli/cli_library>` page for detailed information.
+更多詳情請見 :doc:`命令列程式庫 </cli/cli_library>` 頁面。

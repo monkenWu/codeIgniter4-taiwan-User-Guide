@@ -114,3 +114,12 @@ CodeIgniter4 使用手冊
 
         license
         changelogs/index
+
+***************
+正體中文化
+***************
+
+.. toctree::
+	:titlesonly:
+
+	translation/index
