@@ -2,17 +2,9 @@
 資料庫遷移
 ###################
 
-Migrations are a convenient way for you to alter your database in a
-structured and organized manner. You could edit fragments of SQL by hand
-but you would then be responsible for telling other developers that they
-need to go and run them. You would also have to keep track of which changes
-need to be run against the production machines next time you deploy.
+遷移是一種方便的管理模式，你可以有條不紊地改變你地資料庫。你當然可以手動編輯 SQL 片段，但你還得告訴開發人員們要記得運作這些片段。再下一次部屬時，你還得追蹤在正式伺服器上需要運作這些片段。
 
-The database table **migration** tracks which migrations have already been
-run so all you have to do is make sure your migrations are in place and
-call ``$migration->latest()`` to bring the database up to the most recent
-state. You can also use ``$migration->setNamespace(null)->progess()`` to
-include migrations from all namespaces.
+資料庫資料表 **遷移** 會追蹤那些資料遷移已經成功運作過了，你只要確定你的遷移已經到設定完畢，然後呼叫 ``$migration->latest()`` 將資料庫更新到最新的狀態。你也可以使用 ``$migration->setNamespace(null)->progess()`` 來包還所有命名空間中的遷移項目。
 
 .. contents::
   :local:
@@ -22,17 +14,12 @@ include migrations from all namespaces.
   <div class="custom-index container"></div>
 
 ********************
-Migration file names
+遷移檔案的命名方式
 ********************
 
-Each Migration is run in numeric order forward or backwards depending on the
-method taken. Each migration is numbered using the timestamp when the migration
-was created, in **YYYYMMDDHHIISS** format (e.g. **20121031100537**). This
-helps prevent numbering conflicts when working in a team environment.
+每個遷移都是按照數字順序向前或向後運作，每個遷移都會使用創建遷移時的時間戳進行編號，格式為 **YYYYMMDDHHIISS** （例如： **20121031100537** ）。這有助於防止在團隊開發中發生編號衝突。
 
-Prefix your migration files with the migration number followed by an underscore
-and a descriptive name for the migration. The year, month, and date can be separated
-from each other by dashes, underscores, or not at all. For example:
+遷移檔案的前綴是遷移的編號，在下底後緊接著是具有一定描述性的遷移名稱。年份、月份以及日期可以使用破折號、下底線，或者完全不使用，就像：
 
 * 20121031100537_add_blog.php
 * 2012-10-31-100538_alter_blog_track_views.php
@@ -40,12 +27,11 @@ from each other by dashes, underscores, or not at all. For example:
 
 
 ******************
-Create a Migration
+新建一個遷移檔案
 ******************
 
-This will be the first migration for a new site which has a blog. All
-migrations go in the **app/Database/Migrations/** directory and have names such
-as *20121031100537_add_blog.php*.
+這是一個新網站的第一次遷移，它具有一個部落格系統。所有的遷移都在 **app/Database/Migrations/** 目錄下，名稱可能是 *20121031100537_add_blog.php* 。
+
 ::
 
 	<?php namespace App\Database\Migrations;
@@ -80,18 +66,14 @@ as *20121031100537_add_blog.php*.
 		}
 	}
 
-The database connection and the database Forge class are both available to you through
-``$this->db`` and ``$this->forge``, respectively.
+資料庫連接以及資料庫建構類別都可以透過 ``$this->db`` 以及 ``$this->forge`` 分別被你取用。
 
-Alternatively, you can use a command-line call to generate a skeleton migration file. See
-below for more details.
+另外，你也可以使用命令列介面來產生一個骨架檔案，更多詳情請繼續閱讀下文。
 
-Foreign Keys
+外來鍵
 ============
 
-When your tables include Foreign Keys, migrations can often cause problems as you attempt to drop tables and columns.
-To temporarily bypass the foreign key checks while running migrations, use the ``disableForeignKeyChecks()`` and
-``enableForeignKeyChecks()`` methods on the database connection.
+當你的資料表具有外來鍵的特性時，在試圖刪除資料表或資料列等動作，遷移經常會出現問題。要在運作遷移時暫時繞過外來鍵的檢查，請在資料庫連接上使用 ``disableForeignKeyChecks()`` 以及 ``enableForeignKeyChecks()`` 方法。
 
 ::
 
@@ -99,21 +81,17 @@ To temporarily bypass the foreign key checks while running migrations, use the `
     {
         $this->db->disableForeignKeyChecks();
 
-        // Migration rules would go here...
+        // 在這之間寫入你的遷移規則
 
         $this->db->enableForeignKeyChecks();
     }
 
-Database Groups
+資料庫群組
 ===============
 
-A migration will only be run against a single database group. If you have multiple groups defined in
-**app/Config/Database.php**, then it will run against the ``$defaultGroup`` as specified
-in that same configuration file. There may be times when you need different schemas for different
-database groups. Perhaps you have one database that is used for all general site information, while
-another database is used for mission critical data. You can ensure that migrations are run only
-against the proper group by setting the ``$DBGroup`` property on your migration. This name must
-match the name of the database group exactly::
+遷移將只針對一個資料庫群組運作，如果你在 **app/Config/Database.php** 中定義了多個群組，那麼它將預設在組態設定檔案中指定的 ``$defaultGroup`` 上運作。或許有時，你需要不同資料庫的不同模式，你擁有一個資料庫用於記錄一般的站點訊息，而另一個資料庫用於任務關鍵資料的存取，你可以透過在遷移時設定 ``$DBGroup`` 來確保遷移只針對正確的資料庫群組運作，當然，這個名稱必須與資料庫群組的名稱完全一致。
+
+::
 
     <?php namespace App\Database\Migrations;
 
@@ -126,30 +104,26 @@ match the name of the database group exactly::
         public function down() { . . . }
     }
 
-Namespaces
+命名空間
 ==========
 
-The migration library can automatically scan all namespaces you have defined within
-**app/Config/Autoload.php** or loaded from an external source like Composer, using
-the ``$psr4`` property for matching directory names. It will include all migrations
-it finds in Database/Migrations.
+資料遷移程式庫會自動掃描你在 **app/Config/Autoload.php** 中指定的所有命名空間，或者是從外部來源（如： Composer ）載入命名空間，它使用 ``$psr4`` 屬性找到相符的命名空間，並且將包括在 **Database/Migrations** 下找到的所有遷移。
 
-Each namespace has it's own version sequence, this will help you upgrade and downgrade each module (namespace) without affecting other namespaces.
+每個命名空間都會有屬於自己的版本序列，這將幫助你升級降級每個模組（命名空間），而不影響到其他命名空間。
 
-For example, assume that we have the following namespaces defined in our Autoload
-configuration file::
+例如：我們假設自動載入組態設定檔案中定義了以下命名空間。
+
+::
 
 	$psr4 = [
 		'App'       => APPPATH,
 		'MyCompany' => ROOTPATH.'MyCompany'
 	];
 
-This will look for any migrations located at both **APPPATH/Database/Migrations** and
-**ROOTPATH/MyCompany/Database/Migrations**. This makes it simple to include migrations in your
-re-usable, modular code suites.
+這將查找位於 **APPPATH/Database/Migrations** 以及 **ROOTPATH/MyCompany/Database/Migrations** 這兩個路徑的所有遷移，這使得在可重用的模組化程式碼套件中，加入遷移檔案變得更加簡單。
 
 *************
-Usage Example
+使用範例
 *************
 
 In this example some simple code is placed in **app/Controllers/Migrate.php**
@@ -177,7 +151,7 @@ to update the schema::
 	}
 
 *******************
-Command-Line Tools
+命令列工具
 *******************
 CodeIgniter ships with several :doc:`commands </cli/cli_commands>` that are available from the command line to help
 you work with migrations. These tools are not required to use migrations but might make things easier for those of you
@@ -254,13 +228,13 @@ You can use (create) with the following options:
 - (-n) to choose namespace, otherwise (App) namespace will be used.
 
 *********************
-Migration Preferences
+遷移參考
 *********************
 
 The following is a table of all the config options for migrations, available in **app/Config/Migrations.php**.
 
 ========================== ====================== ========================== =============================================================
-Preference                 Default                Options                    Description
+偏好                       預設                   選項                       描述
 ========================== ====================== ========================== =============================================================
 **enabled**                TRUE                   TRUE / FALSE               Enable or disable migrations.
 **table**                  migrations             None                       The table name for storing the schema version number.
@@ -268,7 +242,7 @@ Preference                 Default                Options                    Des
 ========================== ====================== ========================== =============================================================
 
 ***************
-Class Reference
+類別參考
 ***************
 
 .. php:class:: CodeIgniter\\Database\\MigrationRunner
