@@ -1,8 +1,8 @@
 ##################
-Command Line Usage
+使用命令列介面
 ##################
 
-CodeIgniter 4 can also be used with command line programs.
+CodeIgniter4 也可以有提供命令列模式。
 
 .. toctree::
     :titlesonly:

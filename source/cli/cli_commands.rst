@@ -1,84 +1,95 @@
 ###################
-Custom CLI Commands
+自訂命令列介面指令
 ###################
 
-While the ability to use cli commands like any other route is convenient, you might find times where you
-need a little something different. That's where CLI Commands come in. They are simple classes that do not
-need to have routes defined for, making them perfect for building tools that developers can use to make
-their jobs simpler, whether by handling migrations or database seeding, checking cronjob status, or even
-building out custom code generators for your company.
+雖然像其他路由一樣使用命令列指令很方便，但你可以會發現有的時候你需要一些不同的東西，命令列指令說不定就可以幫助到你。它們是一些簡單的類別，不需要定義路由，這使得它們非常適合用於建構工具。開發者可以透過它處理資料庫遷移、資料庫填充、檢查排程工作狀態，甚至是替公司建構出自訂的程式碼生成器來簡化工作。
 
 .. contents::
     :local:
     :depth: 2
 
 ****************
-Running Commands
+運作指令
 ****************
 
-Commands are run from the command line, in the root directory. The same one that holds the **/app**
-and **/system** directories. A custom script, **spark** has been provided that is used to run any of the
-cli commands::
+定位在根目錄下（就是擁有 **/app** 與 **/system** 的那個目錄），指令就能在命令列中運作。 CodeIgniter 已經提供了一個內建腳本 **spark** ，可以用於執行命令列指令： 
+
+::
 
     > php spark
 
-When called without specifying a command, a simple help page is displayed that also provides a list of
-available commands. You should pass the name of the command as the first argument to run that command::
+當你不指定任何指令時，會顯示一個簡單的提示資訊，並提供一個可用的指令列表，你應該以指令的名稱作為第一參數來運作你想使用的指令：
+
+::
 
     > php spark migrate
 
-Some commands take additional arguments, which should be provided directly after the command, separated by spaces::
+有些時候指令需要額外的參數，這些參數應該直接在指令後用空格隔開：
+
+::
 
     > php spark db:seed DevUserSeeder
 
-For all of the commands CodeIgniter provides, if you do not provide the required arguments, you will be prompted
-for the information it needs to run correctly::
+對於 CodeIgniter 所提供的指令，如果你沒有鍵入它所需要的參數，你將會被提示正確運作指令應該需要的要求：
+
+::
 
     > php spark migrate:version
     > Version?
 
 ******************
-Using Help Command
+使用提示指令
 ******************
 
-You can get help about any CLI command using the help command as follows::
+你可以使用下列的提示指令來獲得在命令列介面中任何指令的提示資訊：
+
+::
 
     > php spark help db:seed
 
 *********************
-Creating New Commands
+建立新的指令
 *********************
 
-You can very easily create new commands to use in your own development. Each class must be in its own file,
-and must extend ``CodeIgniter\CLI\BaseCommand``, and implement the ``run()`` method.
+若是你在開發中需要，那麼建立新的指令真的非常容易。每個新的指令都必須繼承 ``CodeIgniter\CLI\BaseCommand`` 類別，並且實作 ``run()`` 方法。
 
-The following properties should be used in order to get listed in CLI commands and to add help functionality to your command:
+你應該要在你的新指令類別檔案中實現下列屬性，以及這些指令的使用方式，這樣它就能在命令列指令列表中出現：
 
-* ($group): a string to describe the group the command is lumped under when listing commands. For example (Database)
-* ($name): a string to describe the command's name. For example (migrate:create)
-* ($description): a string to describe the command. For example (Creates a new migration file.)
-* ($usage): a string to describe the command usage. For example (migrate:create [migration_name] [Options])
-* ($arguments): an array of strings to describe each command argument. For example ('migration_name' => 'The migration file name')
-* ($options): an array of strings to describe each command option. For example ('-n' => 'Set migration namespace')
+* （$group）: 字串，用來描述該指令在指令表中被歸類的群組。例如：資料庫 Database 。
+* （$name）:  描述指令名稱的字串，例如： migrate:create 。
+* （$description）: 簡單描述指令效果的字串，例如：建立一個新的遷移檔案。
+* （$usage）: 描述指令使用方式的字串，例如： migrate:create [migration_name] [Options] 。
+* （$arguments）: 描述每個指令參數的鍵值陣列，例如：
 
-**Help description will be automatically generated according to the above parameters.**
+    ::
 
-File Location
+        $arguments = [
+            "migration_name" => "The migration file name"
+        ];
+
+* （$options）: 描述每個指令選項的鍵值陣列，例如：
+
+    ::
+
+        $options = [
+            "-n" => "Set migration namespace"
+        ];
+
+**提示列表或提示指令所顯示的內容將會從上述的屬性中產出。**
+
+檔案位置
 =============
 
-Commands must be stored within a directory named **Commands**. However, that directory can be located anywhere
-that the :doc:`Autoloader </concepts/autoloader>` can locate it. This could be in **/app/Commands**, or
-a directory that you keep commands in to use in all of your project development, like **Acme/Commands**.
+你的指令檔案必須儲存在一個名為 **Commands** 的資料夾下，但是這個資料夾可以位於 :doc:`自動載入器 </concepts/autoloader>` 可以找的到的任何地方。這個目錄可以位於 **/app/Commands** ，也位於專案開發資料夾中你所自訂的目錄，比如說： **Acme/Commands** 。
 
-.. note:: When the commands are executed, the full CodeIgniter cli environment has been loaded, making it
- possible to get environment information, path information, and to use any of the tools you would use when making a Controller.
+.. note:: 當指令被執行時，完整的 CodeIgniter 命令列環境將被載入，這樣就可以獲得環境訊息、路徑訊息，以及任何在製作控制器時你所使用的工具。
 
-An Example Command
+範例指令
 ==================
 
-Let's step through an example command whose only function is to report basic information about the application
-itself, for demonstration purposes. Start by creating a new file at **/app/Commands/AppInfo.php**. It
-should contain the following code::
+讓我們透過一個示範指令來演示功能。這個指令唯一的作用是產出應用程式本身的基本資訊報告。首先，先至 **/app/Commands/AppInfo.php** 創建一個含有以下程式碼的檔案：
+
+::
 
     <?php namespace App\Commands;
 
@@ -97,34 +108,32 @@ should contain the following code::
         }
     }
 
-If you run the **list** command, you will see the new command listed under its own ``demo`` group. If you take
-a close look, you should see how this works fairly easily. The ``$group`` property simply tells it how to organize
-this command with all of the other commands that exist, telling it what heading to list it under.
+如果以下了 **list** 指令，你會看到新的指令已經被列在 ``demo`` 群組下，仔細地瞧瞧，你應該會發現這十分容易。 ``$group`` 屬性的作用是將這個指令與其它指令組織起來，告訴你它應該被列在哪個群組底下。
 
-The ``$name`` property is the name this command can be called by. The only requirement is that it must not contain
-a space, and all characters must be valid on the command line itself. By convention, though, commands are lowercase,
-with further grouping of commands being done by using a colon with the command name itself. This helps keep
-multiple commands from having naming collisions.
+而 ``$name`` 則是這個指令可以被呼叫的名稱，唯一的要求就是不可以含有空格，並且所有字元必須在命令列中有效。不過，按照慣例，指令應該都要是小寫的，在指令名稱中使用冒號進行更進一步的分組，這有助於防止指令名稱的衝突 。
 
-The final property, ``$description`` is a short string that is displayed in the **list** command and should describe
-what the command does.
+最後的屬性 ``$description`` 則是一個簡單的字串，將在指令 **列表** 中顯示，它應該要能好好地描述指令的效果。
 
 run()
 -----
 
-The ``run()`` method is the method that is called when the command is being run. The ``$params`` array is a list of
-any cli arguments after the command name for your use. If the cli string was::
+``run()`` 方法是運作指令時會呼叫的方法，``$params`` 陣列是指令名稱後可以接著使用的參數列表：
+
+::
 
     > php spark foo bar baz
 
-Then **foo** is the command name, and the ``$params`` array would be::
+那麼 **foo** 就是指令的名稱， ``$params`` 陣列則是：
+
+::
 
     $params = ['bar', 'baz'];
 
-This can also be accessed through the :doc:`CLI </cli/cli_library>` library, but this already has your command removed
-from the string. These parameters can be used to customize how your scripts behave.
+你也可以透過 :doc:`命令列程式庫 </cli/cli_library>` 存取，但 $params 已經替你從使用者輸入的字串中提煉出了已經定義好的參數，你可以透過 $params 中記錄的參數自訂腳本的行為。
 
-Our demo command might have a ``run`` method something like::
+我們的演示用指令有一個 ``run`` 方法，就像這樣：
+
+::
 
     public function run(array $params)
     {
@@ -136,31 +145,33 @@ Our demo command might have a ``run`` method something like::
         CLI::write('Included files: '. CLI::color(count(get_included_files()), 'yellow'));
     }
 
-***********
-BaseCommand
-***********
+*****************
+BaseCommand 類別
+*****************
 
-The ``BaseCommand`` class that all commands must extend have a couple of helpful utility methods that you should
-be familiar with when creating your own commands. It also has a :doc:`Logger </general/logging>` available at
-**$this->logger**.
+所有的指令都必須繼承 ``BaseCommand`` 類別，這個類別有幾個食用的方法，在創建自己的指令時你應該要熟悉這些方法。這個類別也有一個 :doc:`日誌記錄器 </general/logging>` ，你可以透過 **$this->logger** 呼叫它。
 
 .. php:class:: CodeIgniter\\CLI\\BaseCommand
 
     .. php:method:: call(string $command[, array $params=[] ])
 
-        :param string $command: The name of another command to call.
-        :param array $params: Additional cli arguments to make available to that command.
+        :param string $command: 另一個要呼叫的指令名稱
+        :param array $params: 向這個指令提供額外的參數。
 
-        This method allows you to run other commands during the execution of your current command::
+        這個方法允許你在執行當前指令時呼叫其他指令：
+
+        ::
 
         $this->call('command_one');
         $this->call('command_two', $params);
 
     .. php:method:: showError(\Exception $e)
 
-        :param Exception $e: The exception to use for error reporting.
+        :param Exception $e: 用於錯誤報告的例外拋出。
 
-        A convenience method to maintain a consistent and clear error output to the cli::
+        一種便捷的方法，保值一致且清晰的錯誤輸出給命令列介面：
+
+        ::
 
             try
             {
@@ -173,14 +184,16 @@ be familiar with when creating your own commands. It also has a :doc:`Logger </g
 
     .. php:method:: showHelp()
 
-        A method to show command help: (usage,arguments,description,options)
+        一個顯示指令提示的方法：（用法、參數、描述，和選項）
 
     .. php:method:: getPad($array, $pad)
 
-        :param array    $array: The  $key => $value array.
-        :param integer  $pad: The pad spaces.
+        :param array    $array: 鍵值陣列
+        :param integer  $pad: 填充空間
 
-        A method to calculate padding for $key => $value array output. The padding can be used to output a will formatted table in CLI::
+        計算鍵值陣列輸出的內距的方法。這個內距可以用來在命令列介面中輸出一個格式化的表格：
+
+        ::
 
             $pad = $this->getPad($this->options, 6);
             foreach ($this->options as $option => $description)
@@ -188,6 +201,6 @@ be familiar with when creating your own commands. It also has a :doc:`Logger </g
                     CLI::write($tab . CLI::color(str_pad($option, $pad), 'green') . $description, 'yellow');
             }
 
-            // Output will be
+            // 輸出就像這樣
             -n                  Set migration namespace
             -r                  override file
