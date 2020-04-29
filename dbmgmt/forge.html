@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Database Forge Class &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>資料庫建構類別 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Database Migrations" href="migration.html" />
-    <link rel="prev" title="Managing Databases" href="index.html" /> 
+    <link rel="next" title="資料庫遷移" href="migration.html" />
+    <link rel="prev" title="資料庫管理" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -199,10 +199,10 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Managing Databases</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Database Manipulation with Database Forge</a></li>
-<li class="toctree-l2"><a class="reference internal" href="migration.html">Database Migrations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="seeds.html">Database Seeding</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">資料庫管理</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">資料庫操控與資料庫建構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">資料庫遷移</a></li>
+<li class="toctree-l2"><a class="reference internal" href="seeds.html">資料庫填充</a></li>
 </ul>
 </li>
 </ul>
@@ -320,9 +320,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Managing Databases</a> &raquo;</li>
+          <li><a href="index.html">資料庫管理</a> &raquo;</li>
         
-      <li>Database Forge Class</li>
+      <li>資料庫建構類別</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,73 +339,66 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="database-forge-class">
-<h1>Database Forge Class<a class="headerlink" href="#database-forge-class" title="本標題的永久連結">¶</a></h1>
-<p>The Database Forge Class contains methods that help you manage your
-database.</p>
-<div class="contents local topic" id="id1">
+  <div class="section" id="id1">
+<h1>資料庫建構類別<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>資料庫建構類別將包含幫助你管理資料庫的方法。</p>
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#initializing-the-forge-class" id="id2">Initializing the Forge Class</a></li>
-<li><a class="reference internal" href="#creating-and-dropping-databases" id="id3">Creating and Dropping Databases</a></li>
-<li><a class="reference internal" href="#creating-and-dropping-tables" id="id4">Creating and Dropping Tables</a><ul>
-<li><a class="reference internal" href="#adding-fields" id="id5">Adding fields</a></li>
-<li><a class="reference internal" href="#adding-keys" id="id6">Adding Keys</a></li>
-<li><a class="reference internal" href="#adding-foreign-keys" id="id7">Adding Foreign Keys</a></li>
-<li><a class="reference internal" href="#creating-a-table" id="id8">Creating a table</a></li>
-<li><a class="reference internal" href="#dropping-a-table" id="id9">Dropping a table</a></li>
-<li><a class="reference internal" href="#dropping-a-foreign-key" id="id10">Dropping a Foreign Key</a></li>
-<li><a class="reference internal" href="#renaming-a-table" id="id11">Renaming a table</a></li>
+<li><a class="reference internal" href="#id3" id="id19">初始化資料庫建構類別</a></li>
+<li><a class="reference internal" href="#id4" id="id20">新建與棄用資料庫</a></li>
+<li><a class="reference internal" href="#id5" id="id21">新建與棄用資料表</a><ul>
+<li><a class="reference internal" href="#id6" id="id22">新增欄位</a></li>
+<li><a class="reference internal" href="#id8" id="id23">新增資料庫鍵</a></li>
+<li><a class="reference internal" href="#id9" id="id24">新增外來鍵</a></li>
+<li><a class="reference internal" href="#id10" id="id25">新建資料表</a></li>
+<li><a class="reference internal" href="#id11" id="id26">棄用資料表</a></li>
+<li><a class="reference internal" href="#id12" id="id27">棄用外來鍵</a></li>
+<li><a class="reference internal" href="#id13" id="id28">重新命名資料表</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#modifying-tables" id="id12">Modifying Tables</a><ul>
-<li><a class="reference internal" href="#adding-a-column-to-a-table" id="id13">Adding a Column to a Table</a></li>
-<li><a class="reference internal" href="#dropping-columns-from-a-table" id="id14">Dropping Columns From a Table</a></li>
-<li><a class="reference internal" href="#modifying-a-column-in-a-table" id="id15">Modifying a Column in a Table</a></li>
+<li><a class="reference internal" href="#id14" id="id29">修改資料表</a><ul>
+<li><a class="reference internal" href="#id15" id="id30">新增一個資料表欄位</a></li>
+<li><a class="reference internal" href="#id16" id="id31">棄用一個資料表欄位</a></li>
+<li><a class="reference internal" href="#id17" id="id32">修改資料表欄位</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#class-reference" id="id16">Class Reference</a></li>
+<li><a class="reference internal" href="#id18" id="id33">類別參考</a></li>
 </ul>
 </div>
-<div class="section" id="initializing-the-forge-class">
-<h2><a class="toc-backref" href="#id2">Initializing the Forge Class</a><a class="headerlink" href="#initializing-the-forge-class" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id19">初始化資料庫建構類別</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last">In order to initialize the Forge class, your database
-driver must already be running, since the forge class relies on it.</p>
+<p class="last">為了初始化 資料庫建構類別，你的資料庫驅動必須是正常運作的狀態，因為 資料庫建構類別將倚賴於它。</p>
 </div>
-<p>Load the Forge Class as follows:</p>
+<p>依照以下方法載入資料庫建構類別：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span> <span class="o">=</span> <span class="nx">\Config\Database</span><span class="o">::</span><span class="na">forge</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>You can also pass another database group name to the DB Forge loader, in case
-the database you want to manage isn’t the default one:</p>
+<p>你可將另外的資料庫群組名稱傳給資料庫建構載入器，預防你要管理的資料庫並不是你的預設資料庫：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">myforge</span> <span class="o">=</span> <span class="nx">\Config\Database</span><span class="o">::</span><span class="na">forge</span><span class="p">(</span><span class="s1">&#39;other_db&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>In the above example, we’re passing the name of a different database group
-to connect to as the first parameter.</p>
+<p>在上述範例，我們傳入了一個不同的資料庫群組名稱作為參數來連接資料庫。</p>
 </div>
-<div class="section" id="creating-and-dropping-databases">
-<h2><a class="toc-backref" href="#id3">Creating and Dropping Databases</a><a class="headerlink" href="#creating-and-dropping-databases" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id20">新建與棄用資料庫</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
 <p><strong>$forge-&gt;createDatabase(『db_name』)</strong></p>
-<p>Permits you to create the database specified in the first parameter.
-Returns TRUE/FALSE based on success or failure:</p>
+<p>允許你傳入資料庫名稱來新建資料庫，根據成功與否回傳 TRUE 或 FALSE ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createDatabase</span><span class="p">(</span><span class="s1">&#39;my_db&#39;</span><span class="p">))</span>
 <span class="p">{</span>
         <span class="k">echo</span> <span class="s1">&#39;Database created!&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>An optional second parameter set to TRUE will add IF EXISTS statement
-or will check if a database exists before create it (depending on DBMS).</p>
+<p>第二個可選參數若設定為 TRUE ，將會在查詢中加入 IF EXISTS 語法，或者在新建資料庫之前檢查資料庫是否已經存在（取決於 DBMS ）。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createDatabase</span><span class="p">(</span><span class="s1">&#39;my_db&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
 <span class="c1">// gives CREATE DATABASE IF NOT EXISTS my_db</span>
 <span class="c1">// or will check if a database exists</span>
 </pre></div>
 </div>
 <p><strong>$forge-&gt;dropDatabase(『db_name』)</strong></p>
-<p>Permits you to drop the database specified in the first parameter.
-Returns TRUE/FALSE based on success or failure:</p>
+<p>允許你傳入資料庫名稱並棄用這個資料庫，根據成功與否回傳 TRUE 或 FALSE ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropDatabase</span><span class="p">(</span><span class="s1">&#39;my_db&#39;</span><span class="p">))</span>
 <span class="p">{</span>
         <span class="k">echo</span> <span class="s1">&#39;Database deleted!&#39;</span><span class="p">;</span>
@@ -413,36 +406,28 @@ Returns TRUE/FALSE based on success or failure:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="creating-and-dropping-tables">
-<h2><a class="toc-backref" href="#id4">Creating and Dropping Tables</a><a class="headerlink" href="#creating-and-dropping-tables" title="本標題的永久連結">¶</a></h2>
-<p>There are several things you may wish to do when creating tables. Add
-fields, add keys to the table, alter columns. CodeIgniter provides a
-mechanism for this.</p>
-<div class="section" id="adding-fields">
-<h3><a class="toc-backref" href="#id5">Adding fields</a><a class="headerlink" href="#adding-fields" title="本標題的永久連結">¶</a></h3>
-<p>Fields are normally created via an associative array. Within the array, you must
-include a 『type』 key that relates to the datatype of the field. For
-example, INT, VARCHAR, TEXT, etc. Many datatypes (for example VARCHAR)
-also require a 『constraint』 key.</p>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id21">新建與棄用資料表</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<p>在建立資料表時，你可能有幾件需要做到的事。加入欄位、宣告主鍵、改變資料列。對於這個需求，CodeIgniter 提出了一種機制。</p>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id22">新增欄位</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
+<p>欄位通常是透過鍵值陣列建立的，在這個鍵值陣列中你必須包含一個與這個欄位相關的資料類型 「type」 鍵，例如：INT 、 VARCHAR ，以及 TEXT 等。許多資料型別（例如 VARCHAR ），會需要定義 「constraint」 鍵，約束它的最大資料長度。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;users&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
                 <span class="s1">&#39;type&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;VARCHAR&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;constraint&#39;</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
         <span class="p">],</span>
 <span class="p">];</span>
-<span class="c1">// will translate to &quot;users VARCHAR(100)&quot; when the field is added.</span>
+<span class="c1">// 將轉化為 &quot;users VARCHAR(100)&quot;</span>
 </pre></div>
 </div>
-<p>Additionally, the following key/values can be used:</p>
+<p>除此之外，還可以使用以下的鍵值進行定義：</p>
 <ul class="simple">
-<li>unsigned/true : to generate 「UNSIGNED」 in the field definition.</li>
-<li>default/value : to generate a default value in the field definition.</li>
-<li>null/true : to generate 「NULL」 in the field definition. Without this,
-the field will default to 「NOT NULL」.</li>
-<li>auto_increment/true : generates an auto_increment flag on the
-field. Note that the field type must be a type that supports this,
-such as integer.</li>
-<li>unique/true : to generate a unique key for the field definition.</li>
+<li>unsigned/true : 在欄位定義中產生 「UNSIGNED」 。</li>
+<li>default/value : 在欄位中定義產生一個預設值。</li>
+<li>null/true : 在欄位中定義產生 「NULL」 ，若沒有這個設定將會預設為 「NOT NULL」 。</li>
+<li>auto_increment/true : 將欄位設定為自動遞增。請注意，你所設定欄位型別必須職員這個功能，例如 integer 。</li>
+<li>unique/true : 替欄位定義產生一個唯一鍵。</li>
 </ul>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;id&#39;</span>          <span class="o">=&gt;</span> <span class="p">[</span>
@@ -473,192 +458,171 @@ such as integer.</li>
 <span class="p">];</span>
 </pre></div>
 </div>
-<p>After the fields have been defined, they can be added using
-<code class="docutils literal notranslate"><span class="pre">$forge-&gt;addField($fields);</span></code> followed by a call to the
-<code class="docutils literal notranslate"><span class="pre">createTable()</span></code> method.</p>
+<p>定義好欄位後，可以使用 <code class="docutils literal notranslate"><span class="pre">$forge-&gt;addField($fields);</span></code> 方法，然後呼叫 <code class="docutils literal notranslate"><span class="pre">createTable()</span></code> 方法執行新增欄位的動作。</p>
 <p><strong>$forge-&gt;addField()</strong></p>
-<p>The add fields method will accept the above array.</p>
-<div class="section" id="passing-strings-as-fields">
-<h4>Passing strings as fields<a class="headerlink" href="#passing-strings-as-fields" title="本標題的永久連結">¶</a></h4>
-<p>If you know exactly how you want a field to be created, you can pass the
-string into the field definitions with addField()</p>
+<p>你將可以把上述的陣列傳入到這個方法中。</p>
+<div class="section" id="id7">
+<h4>將字串作為欄位傳遞<a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h4>
+<p>如果你清楚地知道要如何創建一個欄位，你就可以將 SQL 字串傳入 addField() 方法。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addField</span><span class="p">(</span><span class="s2">&quot;label varchar(100) NOT NULL DEFAULT &#39;default label&#39;&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">Passing raw strings as fields cannot be followed by <code class="docutils literal notranslate"><span class="pre">addKey()</span></code> calls on those fields.</p>
+<p class="last">若你傳入了 SQL 字串後作為欄位設定，就不能再繼續呼叫 <code class="docutils literal notranslate"><span class="pre">addKey()</span></code> 方法。</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">Multiple calls to addField() are cumulative.</p>
+<p class="last">在呼叫 createTable() 之前，多次的 addField() 呼叫將會累積你所定義的動作。</p>
 </div>
 </div>
-<div class="section" id="creating-an-id-field">
-<h4>Creating an id field<a class="headerlink" href="#creating-an-id-field" title="本標題的永久連結">¶</a></h4>
-<p>There is a special exception for creating id fields. A field with type
-id will automatically be assigned as an INT(9) auto_incrementing
-Primary Key.</p>
+<div class="section" id="id">
+<h4>新建一個 id 欄位<a class="headerlink" href="#id" title="本標題的永久連結">¶</a></h4>
+<p>在建立 id 欄位時會有一個特殊的例外。具有 id 名稱的欄位將自動被設定為 INT(9) 且自動遞增主鍵。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addField</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
 <span class="c1">// gives id INT(9) NOT NULL AUTO_INCREMENT</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="adding-keys">
-<h3><a class="toc-backref" href="#id6">Adding Keys</a><a class="headerlink" href="#adding-keys" title="本標題的永久連結">¶</a></h3>
-<p>Generally speaking, you’ll want your table to have Keys. This is
-accomplished with $forge-&gt;addKey(『field』). The optional second
-parameter set to TRUE will make it a primary key and the third
-parameter set to TRUE will make it a unique key. Note that addKey()
-must be followed by a call to createTable().</p>
-<p>Multiple column non-primary keys must be sent as an array. Sample output
-below is for MySQL.</p>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id23">新增資料庫鍵</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
+<p>一般來說，你的資料表會有一個主鍵，這可以透過 $forge-&gt;addKey(『field』) 來實作。這個方法有第二的可選參數，將它設定為 TRUE 時，它將會是主鍵；當它的第三個可選參數被設定為 TRUE 時，它則會成為唯一鍵。注意：在呼叫 addKey() 後必須呼叫 createTable() 。</p>
+<p>多資料欄位且非主鍵的話必須以陣列的形式傳送，下面是 MySQL 的輸出範例。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addKey</span><span class="p">(</span><span class="s1">&#39;blog_id&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
-<span class="c1">// gives PRIMARY KEY `blog_id` (`blog_id`)</span>
+<span class="c1">// 給予 PRIMARY KEY `blog_id` (`blog_id`)</span>
 
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addKey</span><span class="p">(</span><span class="s1">&#39;blog_id&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addKey</span><span class="p">(</span><span class="s1">&#39;site_id&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
-<span class="c1">// gives PRIMARY KEY `blog_id_site_id` (`blog_id`, `site_id`)</span>
+<span class="c1">// 給予 PRIMARY KEY `blog_id_site_id` (`blog_id`, `site_id`)</span>
 
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addKey</span><span class="p">(</span><span class="s1">&#39;blog_name&#39;</span><span class="p">);</span>
-<span class="c1">// gives KEY `blog_name` (`blog_name`)</span>
+<span class="c1">// 給予 KEY `blog_name` (`blog_name`)</span>
 
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addKey</span><span class="p">([</span><span class="s1">&#39;blog_name&#39;</span><span class="p">,</span> <span class="s1">&#39;blog_label&#39;</span><span class="p">]);</span>
-<span class="c1">// gives KEY `blog_name_blog_label` (`blog_name`, `blog_label`)</span>
+<span class="c1">// 給予 KEY `blog_name_blog_label` (`blog_name`, `blog_label`)</span>
 
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addKey</span><span class="p">([</span><span class="s1">&#39;blog_id&#39;</span><span class="p">,</span> <span class="s1">&#39;uri&#39;</span><span class="p">],</span> <span class="k">FALSE</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
-<span class="c1">// gives UNIQUE KEY `blog_id_uri` (`blog_id`, `uri`)</span>
+<span class="c1">// 給予 UNIQUE KEY `blog_id_uri` (`blog_id`, `uri`)</span>
 </pre></div>
 </div>
-<p>To make code reading more objective it is also possible to add primary
-and unique keys with specific methods:</p>
+<p>為了使程式碼更容易閱讀，還可以使用特定的方法加入主鍵與唯一鍵：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addPrimaryKey</span><span class="p">(</span><span class="s1">&#39;blog_id&#39;</span><span class="p">);</span>
-<span class="c1">// gives PRIMARY KEY `blog_id` (`blog_id`)</span>
+<span class="c1">// 給予 PRIMARY KEY `blog_id` (`blog_id`)</span>
 
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addUniqueKey</span><span class="p">([</span><span class="s1">&#39;blog_id&#39;</span><span class="p">,</span> <span class="s1">&#39;uri&#39;</span><span class="p">]);</span>
-<span class="c1">// gives UNIQUE KEY `blog_id_uri` (`blog_id`, `uri`)</span>
+<span class="c1">// 給予 UNIQUE KEY `blog_id_uri` (`blog_id`, `uri`)</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="adding-foreign-keys">
-<h3><a class="toc-backref" href="#id7">Adding Foreign Keys</a><a class="headerlink" href="#adding-foreign-keys" title="本標題的永久連結">¶</a></h3>
-<p>Foreign Keys help to enforce relationships and actions across your tables. For tables that support Foreign Keys,
-you may add them directly in forge:</p>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id24">新增外來鍵</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h3>
+<p>外來鍵有助於資料表的關聯操作，對於需要使用外來鍵的資料表，你可以直接在資料庫建構類別中加入外來鍵：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addForeignKey</span><span class="p">(</span><span class="s1">&#39;users_id&#39;</span><span class="p">,</span><span class="s1">&#39;users&#39;</span><span class="p">,</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
-<span class="c1">// gives CONSTRAINT `TABLENAME_users_foreign` FOREIGN KEY(`users_id`) REFERENCES `users`(`id`)</span>
+<span class="c1">// 給予 CONSTRAINT `TABLENAME_users_foreign` FOREIGN KEY(`users_id`) REFERENCES `users`(`id`)</span>
 </pre></div>
 </div>
-<p>You can specify the desired action for the 「on delete」 and 「on update」 properties of the constraint:</p>
+<p>你可以額外約束  「on delete」 與 「on update」 屬性：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addForeignKey</span><span class="p">(</span><span class="s1">&#39;users_id&#39;</span><span class="p">,</span><span class="s1">&#39;users&#39;</span><span class="p">,</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;CASCADE&#39;</span><span class="p">,</span><span class="s1">&#39;CASCADE&#39;</span><span class="p">);</span>
-<span class="c1">// gives CONSTRAINT `TABLENAME_users_foreign` FOREIGN KEY(`users_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE</span>
+<span class="c1">// 給予 CONSTRAINT `TABLENAME_users_foreign` FOREIGN KEY(`users_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="creating-a-table">
-<h3><a class="toc-backref" href="#id8">Creating a table</a><a class="headerlink" href="#creating-a-table" title="本標題的永久連結">¶</a></h3>
-<p>After fields and keys have been declared, you can create a new table
-with</p>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id25">新建資料表</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h3>
+<p>在宣告了欄位與外來鍵之後，你就可以新建一個資料表了：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">);</span>
-<span class="c1">// gives CREATE TABLE table_name</span>
+<span class="c1">// 給予 CREATE TABLE table_name</span>
 </pre></div>
 </div>
-<p>An optional second parameter set to TRUE adds an 「IF NOT EXISTS」 clause
-into the definition</p>
+<p>將可選的第二參數傳入 TRUE ，將在查詢中增加 「IF NOT EXISTS」 子句：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
-<span class="c1">// gives CREATE TABLE IF NOT EXISTS table_name</span>
+<span class="c1">// 給予 CREATE TABLE IF NOT EXISTS table_name</span>
 </pre></div>
 </div>
-<p>You could also pass optional table attributes, such as MySQL’s <code class="docutils literal notranslate"><span class="pre">ENGINE</span></code>:</p>
+<p>你也可以傳遞可選的資料表屬性，比如 MySQL 的 <code class="docutils literal notranslate"><span class="pre">ENGINE</span></code> ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$attributes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ENGINE&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;InnoDB&#39;</span><span class="p">];</span>
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">,</span> <span class="nv">$attributes</span><span class="p">);</span>
-<span class="c1">// produces: CREATE TABLE `table_name` (...) ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci</span>
+<span class="c1">// 生成: CREATE TABLE `table_name` (...) ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">Unless you specify the <code class="docutils literal notranslate"><span class="pre">CHARACTER</span> <span class="pre">SET</span></code> and/or <code class="docutils literal notranslate"><span class="pre">COLLATE</span></code> attributes,
-<code class="docutils literal notranslate"><span class="pre">createTable()</span></code> will always add them with your configured <em>charset</em>
-and <em>DBCollat</em> values, as long as they are not empty (MySQL only).</p>
+<p class="last">除非你指定了 <code class="docutils literal notranslate"><span class="pre">CHARACTER</span> <span class="pre">SET</span></code> 和/或 <code class="docutils literal notranslate"><span class="pre">COLLATE</span></code> 屬性，否則 <code class="docutils literal notranslate"><span class="pre">createTable()</span></code> 將永遠使用你設定的 <em>charset</em> 以及 <em>DBCollat</em>  的值來新增，只要它們不為空（僅限用於 MySql）。</p>
 </div>
 </div>
-<div class="section" id="dropping-a-table">
-<h3><a class="toc-backref" href="#id9">Dropping a table</a><a class="headerlink" href="#dropping-a-table" title="本標題的永久連結">¶</a></h3>
-<p>Execute a DROP TABLE statement and optionally add an IF EXISTS clause.</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Produces: DROP TABLE table_name</span>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id26">棄用資料表</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h3>
+<p>執行 DROP TABLE 語句，可選是否使用 IF EXISTS 子句。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 生成: DROP TABLE table_name</span>
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">);</span>
 
-<span class="c1">// Produces: DROP TABLE IF EXISTS table_name</span>
+<span class="c1">// 生成: DROP TABLE IF EXISTS table_name</span>
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span><span class="k">TRUE</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="dropping-a-foreign-key">
-<h3><a class="toc-backref" href="#id10">Dropping a Foreign Key</a><a class="headerlink" href="#dropping-a-foreign-key" title="本標題的永久連結">¶</a></h3>
-<p>Execute a DROP FOREIGN KEY.</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Produces: ALTER TABLE &#39;tablename&#39; DROP FOREIGN KEY &#39;users_foreign&#39;</span>
+<div class="section" id="id12">
+<h3><a class="toc-backref" href="#id27">棄用外來鍵</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h3>
+<p>執行 DROP FOREIGN KEY 語句。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 生成: ALTER TABLE &#39;tablename&#39; DROP FOREIGN KEY &#39;users_foreign&#39;</span>
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropForeignKey</span><span class="p">(</span><span class="s1">&#39;tablename&#39;</span><span class="p">,</span><span class="s1">&#39;users_foreign&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="renaming-a-table">
-<h3><a class="toc-backref" href="#id11">Renaming a table</a><a class="headerlink" href="#renaming-a-table" title="本標題的永久連結">¶</a></h3>
-<p>Executes a TABLE rename</p>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id28">重新命名資料表</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h3>
+<p>執行 TABLE 重新命名語句。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">renameTable</span><span class="p">(</span><span class="s1">&#39;old_table_name&#39;</span><span class="p">,</span> <span class="s1">&#39;new_table_name&#39;</span><span class="p">);</span>
-<span class="c1">// gives ALTER TABLE old_table_name RENAME TO new_table_name</span>
+<span class="c1">// 給予 ALTER TABLE old_table_name RENAME TO new_table_name</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="modifying-tables">
-<h2><a class="toc-backref" href="#id12">Modifying Tables</a><a class="headerlink" href="#modifying-tables" title="本標題的永久連結">¶</a></h2>
-<div class="section" id="adding-a-column-to-a-table">
-<h3><a class="toc-backref" href="#id13">Adding a Column to a Table</a><a class="headerlink" href="#adding-a-column-to-a-table" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="id14">
+<h2><a class="toc-backref" href="#id29">修改資料表</a><a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id15">
+<h3><a class="toc-backref" href="#id30">新增一個資料表欄位</a><a class="headerlink" href="#id15" title="本標題的永久連結">¶</a></h3>
 <p><strong>$forge-&gt;addColumn()</strong></p>
-<p>The <code class="docutils literal notranslate"><span class="pre">addColumn()</span></code> method is used to modify an existing table. It
-accepts the same field array as above, and can be used for an unlimited
-number of additional fields.</p>
+<p><code class="docutils literal notranslate"><span class="pre">addColumn()</span></code> 方法用於修改一個現有的資料表，它接受與上述相同的欄位陣列，並可以用於不限量的附加欄位。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;preferences&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">]</span>
 <span class="p">];</span>
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="nv">$fields</span><span class="p">);</span>
-<span class="c1">// Executes: ALTER TABLE table_name ADD preferences TEXT</span>
+<span class="c1">// 執行: ALTER TABLE table_name ADD preferences TEXT</span>
 </pre></div>
 </div>
-<p>If you are using MySQL or CUBIRD, then you can take advantage of their
-AFTER and FIRST clauses to position the new column.</p>
-<p>Examples:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Will place the new column after the `another_field` column:</span>
+<p>如果你使用的是 MySQL 或 CUBIRD ，你可以會利用他們的 AFTER 或 FIRST 子句來定位新的資料欄位。</p>
+<p>例如：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 將把新的資料列放在 `another_field` 資料列之後:</span>
 <span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;preferences&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">,</span> <span class="s1">&#39;after&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;another_field&#39;</span><span class="p">]</span>
 <span class="p">];</span>
 
-<span class="c1">// Will place the new column at the start of the table definition:</span>
+<span class="c1">// 將把新的資料列定義在起始處:</span>
 <span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;preferences&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">,</span> <span class="s1">&#39;first&#39;</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">]</span>
 <span class="p">];</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="dropping-columns-from-a-table">
-<h3><a class="toc-backref" href="#id14">Dropping Columns From a Table</a><a class="headerlink" href="#dropping-columns-from-a-table" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="id16">
+<h3><a class="toc-backref" href="#id31">棄用一個資料表欄位</a><a class="headerlink" href="#id16" title="本標題的永久連結">¶</a></h3>
 <p><strong>$forge-&gt;dropColumn()</strong></p>
-<p>Used to remove a column from a table.</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="s1">&#39;column_to_drop&#39;</span><span class="p">);</span> <span class="c1">// to drop one single column</span>
+<p>用來刪除資料表中的資料列。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="s1">&#39;column_to_drop&#39;</span><span class="p">);</span> <span class="c1">// 刪除單一資料列</span>
 </pre></div>
 </div>
-<p>Used to remove multiple columns from a table.</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="s1">&#39;column_1,column_2&#39;</span><span class="p">);</span> <span class="c1">// by proving comma separated column names</span>
-<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;column_1&#39;</span><span class="p">,</span> <span class="s1">&#39;column_2&#39;</span><span class="p">]);</span> <span class="c1">// by proving array of column names</span>
+<p>用來刪除資料表中的多個資料列。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="s1">&#39;column_1,column_2&#39;</span><span class="p">);</span> <span class="c1">// 透過逗號分割名稱</span>
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;column_1&#39;</span><span class="p">,</span> <span class="s1">&#39;column_2&#39;</span><span class="p">]);</span> <span class="c1">// 透過陣列傳遞名稱</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="modifying-a-column-in-a-table">
-<h3><a class="toc-backref" href="#id15">Modifying a Column in a Table</a><a class="headerlink" href="#modifying-a-column-in-a-table" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="id17">
+<h3><a class="toc-backref" href="#id32">修改資料表欄位</a><a class="headerlink" href="#id17" title="本標題的永久連結">¶</a></h3>
 <p><strong>$forge-&gt;modifyColumn()</strong></p>
-<p>The usage of this method is identical to <code class="docutils literal notranslate"><span class="pre">addColumn()</span></code>, except it
-alters an existing column rather than adding a new one. In order to
-change the name, you can add a 「name」 key into the field defining array.</p>
+<p>這個方法的使用方式與 <code class="docutils literal notranslate"><span class="pre">addColumn()</span></code> 相同，它只是改變了一個現有的資料欄位，而不是增價一個新的資料欄位。為了改變名稱，可以在欄位定義的陣列中新增一個 「name」 鍵。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;old_name&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
                 <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;new_name&#39;</span><span class="p">,</span>
@@ -666,13 +630,13 @@ change the name, you can add a 「name」 key into the field defining array.</p>
         <span class="p">],</span>
 <span class="p">];</span>
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">modifyColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="nv">$fields</span><span class="p">);</span>
-<span class="c1">// gives ALTER TABLE table_name CHANGE old_name new_name TEXT</span>
+<span class="c1">// 給予 ALTER TABLE table_name CHANGE old_name new_name TEXT</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="class-reference">
-<h2><a class="toc-backref" href="#id16">Class Reference</a><a class="headerlink" href="#class-reference" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id18">
+<h2><a class="toc-backref" href="#id33">類別參考</a><a class="headerlink" href="#id18" title="本標題的永久連結">¶</a></h2>
 <dl class="class">
 <dt>
 <code class="descname">CodeIgniter\Database\Forge</code></dt>
@@ -684,12 +648,12 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$table</strong> (<em>string</em>) – Table name to add the column to</li>
-<li><strong>$field</strong> (<em>array</em>) – Column definition(s)</li>
+<li><strong>$table</strong> (<em>string</em>) – 欲新增資料列的資料表名稱</li>
+<li><strong>$field</strong> (<em>array</em>) – 資料欄位定義</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE on success, FALSE on failure</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE 為成功， FALSE 為失敗</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">bool</p>
@@ -697,7 +661,7 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 </tr>
 </tbody>
 </table>
-<p>Adds a column to a table. Usage:  See <a class="reference internal" href="#adding-a-column-to-a-table">Adding a Column to a Table</a>.</p>
+<p>在資料表內新增資料列。 使用方式：請見 <a class="reference internal" href="#id15">新增一個資料表欄位</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -708,11 +672,11 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$field</strong> (<em>array</em>) – Field definition to add</li>
+<li><strong>$field</strong> (<em>array</em>) – 要加入的欄位定義。</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">CodeIgniterDatabaseForge instance (method chaining)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">CodeIgniterDatabaseForge 實體（方法鏈）</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniterDatabaseForge</p>
@@ -720,7 +684,7 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 </tr>
 </tbody>
 </table>
-<p>Adds a field to the set that will be used to create a table. Usage:  See <a class="reference internal" href="#adding-fields">Adding fields</a>.</p>
+<p>將欄位添加到用於創建資料表的集合中。　使用方式：請見 <a class="reference internal" href="#id6">新增欄位</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -731,13 +695,13 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$key</strong> (<em>mixed</em>) – Name of a key field or an array of fields</li>
-<li><strong>$primary</strong> (<em>bool</em>) – Set to TRUE if it should be a primary key or a regular one</li>
-<li><strong>$unique</strong> (<em>bool</em>) – Set to TRUE if it should be a unique key or a regular one</li>
+<li><strong>$key</strong> (<em>mixed</em>) – 欄位鍵名或欄位陣列</li>
+<li><strong>$primary</strong> (<em>bool</em>) – 為 TRUE 與否判斷是主鍵或普通鍵</li>
+<li><strong>$unique</strong> (<em>bool</em>) – 為 TRUE 與否判斷是唯一鍵或普通鍵</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">CodeIgniterDatabaseForge instance (method chaining)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">CodeIgniterDatabaseForge 實體（方法鏈）</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniterDatabaseForge</p>
@@ -745,7 +709,7 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 </tr>
 </tbody>
 </table>
-<p>Adds a key to the set that will be used to create a table. Usage:  See <a class="reference internal" href="#adding-keys">Adding Keys</a>.</p>
+<p>將資料庫鍵新增到用於創建資料表的集合中。 使用方式：請見 <a class="reference internal" href="#id8">新增資料庫鍵</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -756,11 +720,11 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$key</strong> (<em>mixed</em>) – Name of a key field or an array of fields</li>
+<li><strong>$key</strong> (<em>mixed</em>) – 欄位鍵名或欄位陣列</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">CodeIgniterDatabaseForge instance (method chaining)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">CodeIgniterDatabaseForge 實體（方法鏈）</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniterDatabaseForge</p>
@@ -768,7 +732,7 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 </tr>
 </tbody>
 </table>
-<p>Adds a primary key to the set that will be used to create a table. Usage:  See <a class="reference internal" href="#adding-keys">Adding Keys</a>.</p>
+<p>將主鍵新增到用於創建資料表的集合中。 使用方式：請見 <a class="reference internal" href="#id8">新增資料庫鍵</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -779,11 +743,11 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$key</strong> (<em>mixed</em>) – Name of a key field or an array of fields</li>
+<li><strong>$key</strong> (<em>mixed</em>) – 欄位鍵名或欄位陣列</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">CodeIgniterDatabaseForge instance (method chaining)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">CodeIgniterDatabaseForge 實體（方法鏈）</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniterDatabaseForge</p>
@@ -791,7 +755,7 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 </tr>
 </tbody>
 </table>
-<p>Adds a unique key to the set that will be used to create a table. Usage:  See <a class="reference internal" href="#adding-keys">Adding Keys</a>.</p>
+<p>將唯一鍵新增到用於創建資料表的集合中。 使用方式：請見 <a class="reference internal" href="#id8">新增資料庫鍵</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -802,12 +766,12 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$db_name</strong> (<em>string</em>) – Name of the database to create</li>
-<li><strong>$ifNotExists</strong> (<em>string</em>) – Set to TRUE to add an 『IF NOT EXISTS』 clause or check if database exists</li>
+<li><strong>$db_name</strong> (<em>string</em>) – 欲新增的資料庫名稱</li>
+<li><strong>$ifNotExists</strong> (<em>string</em>) – 為 true 將可以添加用於檢查資料庫是否存在的 「IF NOT EXISTS」 子句。</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE on success, FALSE on failure</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE 為成功， FALSE 為失敗</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">bool</p>
@@ -815,7 +779,7 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 </tr>
 </tbody>
 </table>
-<p>Creates a new database. Usage:  See <a class="reference internal" href="#creating-and-dropping-databases">Creating and Dropping Databases</a>.</p>
+<p>新增一個新的資料庫。 使用方式：請見 <a class="reference internal" href="#id4">新建與棄用資料庫</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -826,13 +790,13 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$table</strong> (<em>string</em>) – Name of the table to create</li>
-<li><strong>$if_not_exists</strong> (<em>string</em>) – Set to TRUE to add an 『IF NOT EXISTS』 clause</li>
-<li><strong>$attributes</strong> (<em>string</em>) – An associative array of table attributes</li>
+<li><strong>$table</strong> (<em>string</em>) – 欲建立的資料表名稱</li>
+<li><strong>$if_not_exists</strong> (<em>string</em>) – 為 true 將添加 『IF NOT EXISTS』 子句</li>
+<li><strong>$attributes</strong> (<em>string</em>) – 資料表屬性的鍵值陣列</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">Query object on success, FALSE on failure</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">查詢生成器物件為成功， FALSE 為失敗</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">mixed</p>
@@ -840,7 +804,7 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 </tr>
 </tbody>
 </table>
-<p>Creates a new table. Usage:  See <a class="reference internal" href="#creating-a-table">Creating a table</a>.</p>
+<p>新增一個新的資料表。 使用方式：請見 <a class="reference internal" href="#id10">新建資料表</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -851,12 +815,12 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$table</strong> (<em>string</em>) – Table name</li>
-<li><strong>$column_names</strong> (<em>mixed</em>) – Comma-delimited string or an array of column names</li>
+<li><strong>$table</strong> (<em>string</em>) – 資料表名稱</li>
+<li><strong>$column_names</strong> (<em>mixed</em>) – 逗號分隔的字串或欄位名稱組成的陣列</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE on success, FALSE on failure</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE 為成功， FALSE 為失敗</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">bool</p>
@@ -864,7 +828,7 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 </tr>
 </tbody>
 </table>
-<p>Drops single or multiple columns from a table. Usage:  See <a class="reference internal" href="#dropping-columns-from-a-table">Dropping Columns From a Table</a>.</p>
+<p>棄用一個或多個資料表欄位。 使用方式：請見 <a class="reference internal" href="#id16">棄用一個資料表欄位</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -875,11 +839,11 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$dbName</strong> (<em>string</em>) – Name of the database to drop</li>
+<li><strong>$dbName</strong> (<em>string</em>) – 欲棄用的資料庫名稱</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE on success, FALSE on failure</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE 為成功， FALSE 為失敗</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">bool</p>
@@ -887,7 +851,7 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 </tr>
 </tbody>
 </table>
-<p>Drops a database. Usage:  See <a class="reference internal" href="#creating-and-dropping-databases">Creating and Dropping Databases</a>.</p>
+<p>棄用資料庫。 使用方式：請見 <a class="reference internal" href="#id4">新建與棄用資料庫</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -898,12 +862,12 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$table</strong> (<em>string</em>) – Name of the table to drop</li>
-<li><strong>$if_exists</strong> (<em>string</em>) – Set to TRUE to add an 『IF EXISTS』 clause</li>
+<li><strong>$table</strong> (<em>string</em>) – 欲器用的資料表名稱</li>
+<li><strong>$if_exists</strong> (<em>string</em>) – 為 TRUE 則加入 『IF EXISTS』 子句</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE on success, FALSE on failure</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE 為成功， FALSE 為失敗</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">bool</p>
@@ -911,7 +875,7 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 </tr>
 </tbody>
 </table>
-<p>Drops a table. Usage:  See <a class="reference internal" href="#dropping-a-table">Dropping a table</a>.</p>
+<p>棄用資料表。 使用方式：請見 <a class="reference internal" href="#id11">棄用資料表</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -922,12 +886,12 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$table</strong> (<em>string</em>) – Table name</li>
-<li><strong>$field</strong> (<em>array</em>) – Column definition(s)</li>
+<li><strong>$table</strong> (<em>string</em>) – 資料表名稱</li>
+<li><strong>$field</strong> (<em>array</em>) – 自訂資料欄位</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE on success, FALSE on failure</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE 為成功， FALSE 為失敗</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">bool</p>
@@ -935,7 +899,7 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 </tr>
 </tbody>
 </table>
-<p>Modifies a table column. Usage:  See <a class="reference internal" href="#modifying-a-column-in-a-table">Modifying a Column in a Table</a>.</p>
+<p>修改資料庫欄位。 使用方式：請見 <a class="reference internal" href="#id17">修改資料表欄位</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -946,12 +910,12 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$table</strong> (<em>string</em>) – Current of the table</li>
-<li><strong>$new_table_name</strong> (<em>string</em>) – New name of the table</li>
+<li><strong>$table</strong> (<em>string</em>) – 目前的資料表名稱</li>
+<li><strong>$new_table_name</strong> (<em>string</em>) – 新的資料表名稱</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">Query object on success, FALSE on failure</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">查詢生成器物件為成功， FALSE 為失敗</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">mixed</p>
@@ -959,7 +923,7 @@ change the name, you can add a 「name」 key into the field defining array.</p>
 </tr>
 </tbody>
 </table>
-<p>Renames a table. Usage:  See <a class="reference internal" href="#renaming-a-table">Renaming a table</a>.</p>
+<p>重新命名資料表。 使用方式：請見 <a class="reference internal" href="#id13">重新命名資料表</a>.</p>
 </dd></dl>
 
 </dd></dl>
@@ -975,10 +939,10 @@ change the name, you can add a 「name」 key into the field defining array.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="migration.html" class="btn btn-neutral float-right" title="Database Migrations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="migration.html" class="btn btn-neutral float-right" title="資料庫遷移" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Managing Databases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="資料庫管理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -989,7 +953,7 @@ change the name, you can add a 「name」 key into the field defining array.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月28日。
+        最後更新於 2020年04月29日。
       </span>
 
     </p>

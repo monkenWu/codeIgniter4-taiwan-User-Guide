@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Database Seeding &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>資料庫填充 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -41,7 +41,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Library Reference" href="../libraries/index.html" />
-    <link rel="prev" title="Database Migrations" href="migration.html" /> 
+    <link rel="prev" title="資料庫遷移" href="migration.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -199,10 +199,10 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Managing Databases</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="forge.html">Database Manipulation with Database Forge</a></li>
-<li class="toctree-l2"><a class="reference internal" href="migration.html">Database Migrations</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Database Seeding</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">資料庫管理</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="forge.html">資料庫操控與資料庫建構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">資料庫遷移</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">資料庫填充</a></li>
 </ul>
 </li>
 </ul>
@@ -320,9 +320,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Managing Databases</a> &raquo;</li>
+          <li><a href="index.html">資料庫管理</a> &raquo;</li>
         
-      <li>Database Seeding</li>
+      <li>資料庫填充</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -339,16 +339,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="database-seeding">
-<h1>Database Seeding<a class="headerlink" href="#database-seeding" title="本標題的永久連結">¶</a></h1>
-<p>Database seeding is a simple way to add data into your database. It is especially useful during development where
-you need to populate the database with sample data that you can develop against, but it is not limited to that.
-Seeds can contain static data that you don’t want to include in a migration, like countries, or geo-coding tables,
-event or setting information, and more.</p>
-<p>Database seeds are simple classes that must have a <strong>run()</strong> method, and extend <strong>CodeIgniterDatabaseSeeder</strong>.
-Within the <strong>run()</strong> the class can create any form of data that it needs to. It has access to the database
-connection and the forge through <code class="docutils literal notranslate"><span class="pre">$this-&gt;db</span></code> and <code class="docutils literal notranslate"><span class="pre">$this-&gt;forge</span></code>, respectively. Seed files must be
-stored within the <strong>app/Database/Seeds</strong> directory. The name of the file must match the name of the class.</p>
+  <div class="section" id="id1">
+<h1>資料庫填充<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>資料庫填充是一種將現有資料添加到資料庫的簡單方法，它在開發的過程中非常有用。當你需要以測試資料填充資料庫，並以這個資料作為開發依據時，此功能極為有效。但它的效果不亞於此，資料庫填充可以包含一些你不想包含在資料遷移中的靜態資料，例如：國家、地理編碼表、事件，或設定訊息等等。</p>
+<p>資料庫填充是個簡單的類別，必須有一個 <strong>run()</strong> 方法，並繼承 <strong>CodeIgniterDatabaseSeeder</strong> 。在 <strong>run()</strong> 方法中，這個類別可以創建各種形式或你所需要的資料。你可以透過 <code class="docutils literal notranslate"><span class="pre">$this-&gt;db</span></code> 與 <code class="docutils literal notranslate"><span class="pre">$this-&gt;forge</span></code> 分別存取資料庫和連結資料庫建構。資料庫填充檔案必須儲存在 <strong>app/Database/Seeds</strong> 目錄底下，文件名稱需與類別名稱相同。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Database\Seeds</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">SimpleSeeder</span> <span class="k">extends</span> <span class="nx">\CodeIgniter\Database\Seeder</span>
@@ -360,21 +354,20 @@ stored within the <strong>app/Database/Seeds</strong> directory. The name of the
                         <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;darth@theempire.com&#39;</span>
                 <span class="p">];</span>
 
-                <span class="c1">// Simple Queries</span>
+                <span class="c1">// 簡單查詢</span>
                 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;INSERT INTO users (username, email) VALUES(:username:, :email:)&quot;</span><span class="p">,</span>
                         <span class="nv">$data</span>
                 <span class="p">);</span>
 
-                <span class="c1">// Using Query Builder</span>
+                <span class="c1">// 使用查詢生成器</span>
                 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
         <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="section" id="nesting-seeders">
-<h2>Nesting Seeders<a class="headerlink" href="#nesting-seeders" title="本標題的永久連結">¶</a></h2>
-<p>Seeders can call other seeders, with the <strong>call()</strong> method. This allows you to easily organize a central seeder,
-but organize the tasks into separate seeder files:</p>
+<div class="section" id="id2">
+<h2>巢套填充器<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
+<p>資料填充器可以使用 <strong>call()</strong> 方法互相呼叫，這樣就能輕鬆建立一個執行中心且任務各自獨立的填充器組織。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Database\Seeds</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">TestSeeder</span> <span class="k">extends</span> <span class="nx">\CodeIgniter\Database\Seeder</span>
@@ -388,8 +381,7 @@ but organize the tasks into separate seeder files:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>You can also use a fully-qualified class name in the <strong>call()</strong> method, allowing you to keep your seeders
-anywhere the autoloader can find them. This is great for more modular code bases:</p>
+<p>你還可以在透過在 <strong>call()</strong> 方法中使用完整的命名空間類別名稱，這樣你就可以利用自動載入器找到任何地方的資料填充器，這對於多模組化的程式專案是一大福音。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">run</span><span class="p">()</span>
 <span class="p">{</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">call</span><span class="p">(</span><span class="s1">&#39;UserSeeder&#39;</span><span class="p">);</span>
@@ -398,17 +390,16 @@ anywhere the autoloader can find them. This is great for more modular code bases
 </pre></div>
 </div>
 </div>
-<div class="section" id="using-seeders">
-<h2>Using Seeders<a class="headerlink" href="#using-seeders" title="本標題的永久連結">¶</a></h2>
-<p>You can grab a copy of the main seeder through the database config class:</p>
+<div class="section" id="id3">
+<h2>使用填充器<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>你可以透過資料庫設定類別取得資料填充器的實體：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$seeder</span> <span class="o">=</span> <span class="nx">\Config\Database</span><span class="o">::</span><span class="na">seeder</span><span class="p">();</span>
 <span class="nv">$seeder</span><span class="o">-&gt;</span><span class="na">call</span><span class="p">(</span><span class="s1">&#39;TestSeeder&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="section" id="command-line-seeding">
-<h3>Command Line Seeding<a class="headerlink" href="#command-line-seeding" title="本標題的永久連結">¶</a></h3>
-<p>You can also seed data from the command line, as part of the Migrations CLI tools, if you don’t want to create
-a dedicated controller:</p>
+<div class="section" id="id4">
+<h3>以命令列執行填充<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
+<p>如果你不想建立一個專門的控制器處理資料填充的需求，也可以使用命令列執行資料填充，它是 CLI 中遷移工具的一部份：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">db</span><span class="o">:</span><span class="nx">seed</span> <span class="nx">TestSeeder</span>
 </pre></div>
 </div>
@@ -427,7 +418,7 @@ a dedicated controller:</p>
         <a href="../libraries/index.html" class="btn btn-neutral float-right" title="Library Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="migration.html" class="btn btn-neutral float-left" title="Database Migrations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="migration.html" class="btn btn-neutral float-left" title="資料庫遷移" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -438,7 +429,7 @@ a dedicated controller:</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月28日。
+        最後更新於 2020年04月29日。
       </span>
 
     </p>
