@@ -1,10 +1,10 @@
 ************************
-Extending the Controller
+擴充控制器
 ************************
 
-CodeIgniter's core Controller should not be changed, but a default class extension is provided for you at
-**app/Controllers/BaseController.php**. Any new controllers you make should extend ``BaseController`` to take
-advantage of preloaded components and any additional functionality you provide::
+CodeIgniter 的核心控制器不應該被改變，但是在 **app/Controllers/BaseController.php** 中，我們為你提供了一個預設的控制器擴充類別。你所製作的任何控制器都應該繼承 ``BaseController`` 來利用預載組件以及你提供的任何額外功能：
+
+::
 
 	<?php namespace App\Controllers;
 	
@@ -14,42 +14,40 @@ advantage of preloaded components and any additional functionality you provide::
 	
 	}
 
-Preloading Components
+預載組件
 =====================
 
-The base controller is a great place to load any helpers, models, libraries, services, etc. that you intend to
-use every time your project runs. Helpers should be added to the pre-defined ``$helpers`` array. For example, if
-you want the HTML and Text helpers universally available::
+基本控制器是一個好地方，可以在每次專案運作時載入任何輔助函數、模型、程式庫，以及服務等。輔助函數應該被加入到預先定義好的 ``$helpers`` 陣列中。例如：你想讓 HTML 以及文字輔助函數普遍可用：
+
+::
 
 	protected $helpers = ['html', 'text'];
 
-Any other components to load or data to process should be added to the constructor ``initController()``. For
-example, if your project uses the Session Library heavily you may want to initiate it here::
+任何需要載入的組件或需要處理的資料都應該加入到建構函數 ``initController()`` 中。例如：你的專案大量使用到會談程式庫，你可以會需要在這裡啟動它：
+
+::
 
 	public function initController(...)
 	{
-		// Do Not Edit This Line
+		// 請不要編輯這行
 		parent::initController($request, $response, $logger);
 		
 		$this->session = \Config\Services::session();
 	}
 
-Additional Methods
+新增方法
 ==================
 
-The base controller is not routable (system config routes it to 404 Page Not Found). As an added security
-measure **all** new methods you create should be declared as ``protected`` or ``private`` and only be accessed through the
-controllers you create that extend ``BaseController``.
+基本控制器是不允許被路由的（系統設定將其路由導向至 404 找不到頁面）。作為撰寫程式的安全實現，你所創建的 **所有** 新方法都應該宣告為 ``保護`` 或 ``私有`` ，並且只能透過繼承 BaseController 類別的控制器才能存取。
 
-Other Options
+其他選項
 =============
 
-You may find that you need more than one base controller. You can create new base controllers as long as any other controllers that you make extend the correct base. For example, if your project
-has an involved public interface and a simple administrative portal you may want to extend ``BaseController`` to
-the public controllers and make ``AdminController`` for any administrative controllers.
+你可能會發現你需要一個或以上的基本控制器，你可以為你的需求創建基本控制器，只要你創建的其他控制器繼承了正確的基本控制器，就可以創建新的基本控制器。例如：你的專案有一個涉及到公開的介面和一個簡單的管理入口，你可能會希望將公開的介面繼承 ``BaseController`` ，並且將任何與管理功能相關的控制器繼承 ``AdminController`` 類別。
 
-If you do not want to use the base controller you may bypass it by having your controllers extend the system
-Controller instead::
+如果你不想使用基本控制器，你可以透過讓你的控制器繼承系統控制器來繞過它：
+
+::
 
 	class Home extends \CodeIgniter\Controller
 	{

@@ -1,35 +1,29 @@
-Events
+事件
 #####################################
 
-CodeIgniter's Events feature provides a means to tap into and modify the inner workings of the framework without hacking
-core files. When CodeIgniter runs it follows a specific execution process. There may be instances, however, when you'd
-like to cause some action to take place at a particular stage in the execution process. For example, you might want to run
-a script right before your controllers get loaded, or right after, or you might want to trigger one of your own scripts
-in some other location.
+CodeIgniter 的事件功能提供一種方法，可以在不侵入核心檔案的情形下，進入和修改框架內部的工作。當 CodeIgniter 運作時，它會遵循著一定的執行順序，然而在某些情況下，你可能會想在執行過程的特定階段執行一些動作。例如：你需要在載入控制器的前後執行自己撰寫的腳本，亦或是你想在其他地方觸發自己的腳本。
 
-Events work on a *publish/subscribe* pattern, where an event, is triggered at some point during the script execution.
-Other scripts can "subscribe" to that event by registering with the Events class to let it know they want to perform an
-action when that event is triggered.
+事件採用 *發布/訂用* 模式運作，在腳本執行的過程中某個時刻會觸發一個事件，其他腳本就可以透過事件類別來 "訂用" 這個事件，讓它知道自己觸發該事件前會執行一些動作。
 
-Enabling Events
+事件賦能
 ===============
 
-Events are always enabled, and are available globally.
+事件始終處於可以使用的狀態，並且全域可用。
 
-Defining an Event
+定義一個事件
 =================
 
-Most events are defined within the **app/Config/Events.php** file. You can subscribe an action to an event with
-the Events class' ``on()`` method. The first parameter is the name of the event to subscribe to. The second parameter is
-a callable that will be run when that event is triggered::
+大部分的事件是在 **app/Config/Events.php** 檔案中定義，你可以利用事件類別的 ``on()`` 方法訂用到某個事件。第一個參數需傳入要訂用事件名稱，第二個參數是觸發該事件時將執行呼叫的參數：
+
+::
 
 	use CodeIgniter\Events\Events;
 
 	Events::on('pre_system', ['MyClass', 'MyFunction']);
 
-In this example, whenever the **pre_controller** event is executed, an instance of ``MyClass`` is created and the
-``MyFunction`` method is run. Note that the second parameter can be *any* form of
-`callable <https://www.php.net/manual/en/function.is-callable.php>`_ that PHP recognizes::
+在這個例子中，每當 **pre_controller** 事件被執行時， ``MyClass`` 將被創建實體，並運作 ``MyFunction`` 方法。請注意，第二個參數需要讓 PHP 識別並且 `可以被呼叫 <https://www.php.net/manual/en/function.is-callable.php>`_ ：
+
+::
 
 	// Call a standalone function
 	Events::on('pre_system', 'some_function');
@@ -47,37 +41,39 @@ In this example, whenever the **pre_controller** event is executed, an instance 
 		. . .
 	});
 
-Setting Priorities
+設定屬性
 ------------------
 
-Since multiple methods can be subscribed to a single event, you will need a way to define in what order those methods
-are called. You can do this by passing a priority value as the third parameter of the ``on()`` method. Lower values
-are executed first, with a value of 1 having the highest priority, and there being no limit on the lower values::
+由於許多方法都可以被訂用到同一個事件中，所以你還需要一個方法定義這些方法被呼叫的順序。你可以透過傳入一個優先級作為 ``on()`` 方法的第三個參數實現這個功能。數值較低者則會先被執行，1 為最高優先級，並且較低的值沒有任何限制：
+
+::
 
     Events::on('post_controller_constructor', 'some_function', 25);
 
-Any subscribers with the same priority will be executed in the order they were defined.
+任何具有相同優先級的訂用者都將會按照宣告生效的順序執行。
 
-Three constants are defined for your use, that set some helpful ranges on the values. You are not required to use these
-but you might find they aid readability::
+我們事先宣告了三個常數可以供你使用，這些常數設定了一些範圍，你可不使用這些常數，但它們將會幫助你增加程式碼的可讀性：
+
+::
 
 	define('EVENT_PRIORITY_LOW', 200);
 	define('EVENT_PRIORITY_NORMAL', 100);
 	define('EVENT_PRIORITY_HIGH', 10);
 
-Once sorted, all subscribers are executed in order. If any subscriber returns a boolean false value, then execution of
-the subscribers will stop.
+一旦排序後，所有的訂用者都會按照順序執行，如果任何訂用者回傳了一個布林 false ，那麼訂用者的執行將會暫停。
 
-Publishing your own Events
+發布自己的活動
 ==========================
 
-The Events library makes it simple for you to create events in your own code, also. To use this feature, you would simply
-need to call the ``trigger()`` method on the **Events** class with the name of the event::
+事件程式庫讓你可以簡單地創建事件。若需要使用這個功能，只需要在 **Events** 中呼叫 ``trigger()`` 方法即可：
+
+::
 
 	\CodeIgniter\Events\Events::trigger('some_event');
 
-You can pass any number of arguments to the subscribers by adding them as additional parameters. Subscribers will be
-given the arguments in the same order as defined::
+你可以透過加入任何數量的參數作為附加參數傳遞給訂用者，訂用者將按照宣告的順序取得這些參數：
+
+::
 
 	\CodeIgniter\Events\Events::trigger('some_events', $foo, $bar, $baz);
 
@@ -85,26 +81,26 @@ given the arguments in the same order as defined::
 		...
 	});
 
-Simulating Events
+模擬事件
 =================
 
-During testing, you might not want the events to actually fire, as sending out hundreds of emails a day is both slow
-and counter-productive. You can tell the Events class to only simulate running the events with the ``simulate()`` method.
-When **true**, all events will be skipped over during the trigger method. Everything else will work as normal, though.
+在測試的過程中，你可能不會希望事件真的被啟動了，例如：因為每天發送幾百封電子郵件既慢又會產生反效果。你可以告訴事件類別使用 ``simulate()`` 方法來模擬事件的運作。當它為 **true** 時，所有事件都將在觸發方法期間跳過，不過其它功能都會照常運作。
 
 ::
 
     Events::simulate(true);
 
-You can stop simulation by passing false::
+你可以透過傳入 false 停止模擬：
+
+::
 
     Events::simulate(false);
 
-Event Points
+事件點
 ============
 
-The following is a list of available event points within the CodeIgniter core code:
+以下將列出 CodeIgniter 的核心程式碼中可以使用的事件點：
 
-* **pre_system** Called very early during system execution. Only the benchmark and events class have been loaded at this point. No routing or other processes have happened.
-* **post_controller_constructor** Called immediately after your controller is instantiated, but prior to any method calls happening.
-* **post_system** Called after the final rendered page is sent to the browser, at the end of system execution after the finalized data is sent to the browser.
+* **pre_system** 在系統執行初期就被呼叫，此時僅載入了基本類別以及事件類別，未執行路由或其他進程。
+* **post_controller_constructor** 在控制器被實體化後及任何方法被呼叫前，立即呼叫。
+* **post_system** 在最終渲染的頁面被發送到瀏覽器後、在系統執行結束後，在最終化的資料被發送到瀏覽器後呼叫。

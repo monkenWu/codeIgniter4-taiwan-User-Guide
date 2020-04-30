@@ -1,13 +1,8 @@
 **************************
-Replacing Common Functions
+替換常用功能
 **************************
 
-There are quite a few functions necessary to CodeIgniter that need to be loaded early for use in the core classes and
-thus cannot be placed into a helper. While most users will never have any need to do this, but the option to replace
-these functions does exist for those who would like to significantly alter the CodeIgniter core. In the ``App\``
-directory there is a file ``Common.php``, and any functions defined in there will take precedence over the versions
-found in ``system/Common.php``. This is also an opportunity to create globally-available functions you intend to
-use throughout the framework.
+CodeIgniter 有許多必要的函數需要提前在入到核心類別中使用，因此不能放在輔助函數中。雖然大多數的開發者永遠不會想要改變這些，但對於想要修改 CodeIgniter 核心的工程師來說，就有了替換掉這些函數的選擇。在 ``App\`` 目錄下有一個 ``Common.php`` 檔案，在個檔案中定義的函數都會優先於 ``system/Common.php`` 中的函數被宣告。透過這個機制，你便可以打造在整個框架中可以使用的全域函數。
 
-.. note:: Messing with a core system class has a lot of implications, so make sure you know what you are doing before
-    attempting it.
+.. note:: 搞亂核心系統類別將會有很多影響，所以在嘗試這件事情之前，要確定你知道自己在做什麼。
+
