@@ -1,31 +1,30 @@
 ###################################
-Alternate PHP Syntax for View Files
+用於視圖檔案的 PHP 語法
 ###################################
 
-If you do not utilize a templating engine to simplify output,
-you'll be using pure PHP in your
-View files. To minimize the PHP code in these files, and to make it
-easier to identify the code blocks it is recommended that you use PHPs
-alternative syntax for control structures and short tag echo statements.
-If you are not familiar with this syntax, it allows you to eliminate the
-braces from your code, and eliminate "echo" statements.
+如果你沒有利用樣板引擎來簡化輸出，你將可以在 View 檔案中使用純 PHP 進行渲染。為了盡量減少這些檔案中的 PHP 程式碼，並讓它成為更容易被識別的區塊，建議你使用 PHP 替代語法來簡化控制結構以及 echo 語句。
 
-Alternative Echos
+替代 Echo
 =================
 
-Normally to echo, or print out a variable you would do this::
+通常的情況下，如果你需要使用 echo 或者是輸出一個變數，你可能會這麼做：
+
+::
 
 	<?php echo $variable; ?>
 
-With the alternative syntax you can instead do it this way::
+使用替代語法，你就能這麼簡化它：
+
+::
 
 	<?= $variable ?>
 
-Alternative Control Structures
+替代控制結構
 ==============================
 
-Controls structures, like if, for, foreach, and while can be written in
-a simplified format as well. Here is an example using ``foreach``::
+在控制結構中，如：if 、for 、foreach ，以及 while ，也可以使用簡化的方式撰寫，我們來舉個 ``foreach`` 的簡化範例：
+
+::
 
 	<ul>
 
@@ -37,14 +36,13 @@ a simplified format as well. Here is an example using ``foreach``::
 
 	</ul>
 
-Notice that there are no braces. Instead, the end brace is replaced with
-``endforeach``. Each of the control structures listed above has a similar
-closing syntax: ``endif``, ``endfor``, ``endforeach``, and ``endwhile``
+注意，簡化語法將省略大括弧。相反的，結構語句後頭緊接著的括弧被話成了冒號與 ``endforeach`` 。上面所列出的控制結構都有相應的結束於法： ``endif`` 、 ``endfor`` 、 ``endforeach`` ，以及 ``endwhile`` 。
 
-Also notice that instead of using a semicolon after each structure
-(except the last one), there is a colon. This is important!
+另外，請注意在每個控制結構之後（除了最後一個結構以外）不要使用分號結束，要使用冒號，這一點非常重要！
 
-Here is another example, using ``if``/``elseif``/``else``. Notice the colons::
+這裡再舉個　``if``/``elseif``/``else``　的例子，請注意分號的使用方式：
+
+::
 
 	<?php if ($username === 'sally') : ?>
 

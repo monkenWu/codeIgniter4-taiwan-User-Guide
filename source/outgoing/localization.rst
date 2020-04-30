@@ -1,5 +1,5 @@
 ############
-Localization
+本土化
 ############
 
 .. contents::

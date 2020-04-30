@@ -1,5 +1,5 @@
 ##################
-API Response Trait
+API 響應特性
 ##################
 
 Much of modern PHP development requires building API's, whether simply to provide data for a javascript-heavy
