@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Events &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>事件 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Extending the Controller" href="basecontroller.html" />
-    <link rel="prev" title="Replacing Common Functions" href="common.html" /> 
+    <link rel="next" title="擴充控制器" href="basecontroller.html" />
+    <link rel="prev" title="替換常用功能" href="common.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -266,13 +266,13 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Extending CodeIgniter</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="core_classes.html">Creating Core System Classes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common.html">Replacing Common Functions</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Events</a></li>
-<li class="toctree-l2"><a class="reference internal" href="basecontroller.html">Extending the Controller</a></li>
-<li class="toctree-l2"><a class="reference internal" href="authentication.html">Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing to CodeIgniter</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">擴充 CodeIgniter</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">建立核心系統類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html">替換常用功能</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basecontroller.html">擴充控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html">認證方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">為 CodeIgniter 貢獻</a></li>
 </ul>
 </li>
 </ul>
@@ -327,9 +327,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Extending CodeIgniter</a> &raquo;</li>
+          <li><a href="index.html">擴充 CodeIgniter</a> &raquo;</li>
         
-      <li>Events</li>
+      <li>事件</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -346,33 +346,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="events">
-<h1>Events<a class="headerlink" href="#events" title="本標題的永久連結">¶</a></h1>
-<p>CodeIgniter’s Events feature provides a means to tap into and modify the inner workings of the framework without hacking
-core files. When CodeIgniter runs it follows a specific execution process. There may be instances, however, when you’d
-like to cause some action to take place at a particular stage in the execution process. For example, you might want to run
-a script right before your controllers get loaded, or right after, or you might want to trigger one of your own scripts
-in some other location.</p>
-<p>Events work on a <em>publish/subscribe</em> pattern, where an event, is triggered at some point during the script execution.
-Other scripts can 「subscribe」 to that event by registering with the Events class to let it know they want to perform an
-action when that event is triggered.</p>
-<div class="section" id="enabling-events">
-<h2>Enabling Events<a class="headerlink" href="#enabling-events" title="本標題的永久連結">¶</a></h2>
-<p>Events are always enabled, and are available globally.</p>
+  <div class="section" id="id1">
+<h1>事件<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>CodeIgniter 的事件功能提供一種方法，可以在不侵入核心檔案的情形下，進入和修改框架內部的工作。當 CodeIgniter 運作時，它會遵循著一定的執行順序，然而在某些情況下，你可能會想在執行過程的特定階段執行一些動作。例如：你需要在載入控制器的前後執行自己撰寫的腳本，亦或是你想在其他地方觸發自己的腳本。</p>
+<p>事件採用 <em>發布/訂用</em> 模式運作，在腳本執行的過程中某個時刻會觸發一個事件，其他腳本就可以透過事件類別來 「訂用」 這個事件，讓它知道自己觸發該事件前會執行一些動作。</p>
+<div class="section" id="id2">
+<h2>事件賦能<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
+<p>事件始終處於可以使用的狀態，並且全域可用。</p>
 </div>
-<div class="section" id="defining-an-event">
-<h2>Defining an Event<a class="headerlink" href="#defining-an-event" title="本標題的永久連結">¶</a></h2>
-<p>Most events are defined within the <strong>app/Config/Events.php</strong> file. You can subscribe an action to an event with
-the Events class』 <code class="docutils literal notranslate"><span class="pre">on()</span></code> method. The first parameter is the name of the event to subscribe to. The second parameter is
-a callable that will be run when that event is triggered:</p>
+<div class="section" id="id3">
+<h2>定義一個事件<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>大部分的事件是在 <strong>app/Config/Events.php</strong> 檔案中定義，你可以利用事件類別的 <code class="docutils literal notranslate"><span class="pre">on()</span></code> 方法訂用到某個事件。第一個參數需傳入要訂用事件名稱，第二個參數是觸發該事件時將執行呼叫的參數：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\Events\Events</span><span class="p">;</span>
 
 <span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;pre_system&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;MyClass&#39;</span><span class="p">,</span> <span class="s1">&#39;MyFunction&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p>In this example, whenever the <strong>pre_controller</strong> event is executed, an instance of <code class="docutils literal notranslate"><span class="pre">MyClass</span></code> is created and the
-<code class="docutils literal notranslate"><span class="pre">MyFunction</span></code> method is run. Note that the second parameter can be <em>any</em> form of
-<a class="reference external" href="https://www.php.net/manual/en/function.is-callable.php">callable</a> that PHP recognizes:</p>
+<p>在這個例子中，每當 <strong>pre_controller</strong> 事件被執行時， <code class="docutils literal notranslate"><span class="pre">MyClass</span></code> 將被創建實體，並運作 <code class="docutils literal notranslate"><span class="pre">MyFunction</span></code> 方法。請注意，第二個參數需要讓 PHP 識別並且 <a class="reference external" href="https://www.php.net/manual/en/function.is-callable.php">可以被呼叫</a> ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Call a standalone function</span>
 <span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;pre_system&#39;</span><span class="p">,</span> <span class="s1">&#39;some_function&#39;</span><span class="p">);</span>
 
@@ -390,35 +380,29 @@ a callable that will be run when that event is triggered:</p>
 <span class="p">});</span>
 </pre></div>
 </div>
-<div class="section" id="setting-priorities">
-<h3>Setting Priorities<a class="headerlink" href="#setting-priorities" title="本標題的永久連結">¶</a></h3>
-<p>Since multiple methods can be subscribed to a single event, you will need a way to define in what order those methods
-are called. You can do this by passing a priority value as the third parameter of the <code class="docutils literal notranslate"><span class="pre">on()</span></code> method. Lower values
-are executed first, with a value of 1 having the highest priority, and there being no limit on the lower values:</p>
+<div class="section" id="id5">
+<h3>設定屬性<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
+<p>由於許多方法都可以被訂用到同一個事件中，所以你還需要一個方法定義這些方法被呼叫的順序。你可以透過傳入一個優先級作為 <code class="docutils literal notranslate"><span class="pre">on()</span></code> 方法的第三個參數實現這個功能。數值較低者則會先被執行，1 為最高優先級，並且較低的值沒有任何限制：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;post_controller_constructor&#39;</span><span class="p">,</span> <span class="s1">&#39;some_function&#39;</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Any subscribers with the same priority will be executed in the order they were defined.</p>
-<p>Three constants are defined for your use, that set some helpful ranges on the values. You are not required to use these
-but you might find they aid readability:</p>
+<p>任何具有相同優先級的訂用者都將會按照宣告生效的順序執行。</p>
+<p>我們事先宣告了三個常數可以供你使用，這些常數設定了一些範圍，你可不使用這些常數，但它們將會幫助你增加程式碼的可讀性：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nb">define</span><span class="p">(</span><span class="s1">&#39;EVENT_PRIORITY_LOW&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;EVENT_PRIORITY_NORMAL&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;EVENT_PRIORITY_HIGH&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Once sorted, all subscribers are executed in order. If any subscriber returns a boolean false value, then execution of
-the subscribers will stop.</p>
+<p>一旦排序後，所有的訂用者都會按照順序執行，如果任何訂用者回傳了一個布林 false ，那麼訂用者的執行將會暫停。</p>
 </div>
 </div>
-<div class="section" id="publishing-your-own-events">
-<h2>Publishing your own Events<a class="headerlink" href="#publishing-your-own-events" title="本標題的永久連結">¶</a></h2>
-<p>The Events library makes it simple for you to create events in your own code, also. To use this feature, you would simply
-need to call the <code class="docutils literal notranslate"><span class="pre">trigger()</span></code> method on the <strong>Events</strong> class with the name of the event:</p>
+<div class="section" id="id6">
+<h2>發布自己的活動<a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
+<p>事件程式庫讓你可以簡單地創建事件。若需要使用這個功能，只需要在 <strong>Events</strong> 中呼叫 <code class="docutils literal notranslate"><span class="pre">trigger()</span></code> 方法即可：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">\CodeIgniter\Events\Events</span><span class="o">::</span><span class="na">trigger</span><span class="p">(</span><span class="s1">&#39;some_event&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>You can pass any number of arguments to the subscribers by adding them as additional parameters. Subscribers will be
-given the arguments in the same order as defined:</p>
+<p>你可以透過加入任何數量的參數作為附加參數傳遞給訂用者，訂用者將按照宣告的順序取得這些參數：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">\CodeIgniter\Events\Events</span><span class="o">::</span><span class="na">trigger</span><span class="p">(</span><span class="s1">&#39;some_events&#39;</span><span class="p">,</span> <span class="nv">$foo</span><span class="p">,</span> <span class="nv">$bar</span><span class="p">,</span> <span class="nv">$baz</span><span class="p">);</span>
 
 <span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;some_event&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$foo</span><span class="p">,</span> <span class="nv">$bar</span><span class="p">,</span> <span class="nv">$baz</span><span class="p">)</span> <span class="p">{</span>
@@ -427,26 +411,24 @@ given the arguments in the same order as defined:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="simulating-events">
-<h2>Simulating Events<a class="headerlink" href="#simulating-events" title="本標題的永久連結">¶</a></h2>
-<p>During testing, you might not want the events to actually fire, as sending out hundreds of emails a day is both slow
-and counter-productive. You can tell the Events class to only simulate running the events with the <code class="docutils literal notranslate"><span class="pre">simulate()</span></code> method.
-When <strong>true</strong>, all events will be skipped over during the trigger method. Everything else will work as normal, though.</p>
+<div class="section" id="id7">
+<h2>模擬事件<a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
+<p>在測試的過程中，你可能不會希望事件真的被啟動了，例如：因為每天發送幾百封電子郵件既慢又會產生反效果。你可以告訴事件類別使用 <code class="docutils literal notranslate"><span class="pre">simulate()</span></code> 方法來模擬事件的運作。當它為 <strong>true</strong> 時，所有事件都將在觸發方法期間跳過，不過其它功能都會照常運作。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="o">::</span><span class="na">simulate</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>You can stop simulation by passing false:</p>
+<p>你可以透過傳入 false 停止模擬：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="o">::</span><span class="na">simulate</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="event-points">
-<h2>Event Points<a class="headerlink" href="#event-points" title="本標題的永久連結">¶</a></h2>
-<p>The following is a list of available event points within the CodeIgniter core code:</p>
+<div class="section" id="id8">
+<h2>事件點<a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h2>
+<p>以下將列出 CodeIgniter 的核心程式碼中可以使用的事件點：</p>
 <ul class="simple">
-<li><strong>pre_system</strong> Called very early during system execution. Only the benchmark and events class have been loaded at this point. No routing or other processes have happened.</li>
-<li><strong>post_controller_constructor</strong> Called immediately after your controller is instantiated, but prior to any method calls happening.</li>
-<li><strong>post_system</strong> Called after the final rendered page is sent to the browser, at the end of system execution after the finalized data is sent to the browser.</li>
+<li><strong>pre_system</strong> 在系統執行初期就被呼叫，此時僅載入了基本類別以及事件類別，未執行路由或其他進程。</li>
+<li><strong>post_controller_constructor</strong> 在控制器被實體化後及任何方法被呼叫前，立即呼叫。</li>
+<li><strong>post_system</strong> 在最終渲染的頁面被發送到瀏覽器後、在系統執行結束後，在最終化的資料被發送到瀏覽器後呼叫。</li>
 </ul>
 </div>
 </div>
@@ -459,10 +441,10 @@ When <strong>true</strong>, all events will be skipped over during the trigger m
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="basecontroller.html" class="btn btn-neutral float-right" title="Extending the Controller" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="basecontroller.html" class="btn btn-neutral float-right" title="擴充控制器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="common.html" class="btn btn-neutral float-left" title="Replacing Common Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="common.html" class="btn btn-neutral float-left" title="替換常用功能" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

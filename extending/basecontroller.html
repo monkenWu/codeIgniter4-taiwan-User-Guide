@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Extending the Controller &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>擴充控制器 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Authentication" href="authentication.html" />
-    <link rel="prev" title="Events" href="events.html" /> 
+    <link rel="next" title="認證方式" href="authentication.html" />
+    <link rel="prev" title="事件" href="events.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -266,13 +266,13 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Extending CodeIgniter</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="core_classes.html">Creating Core System Classes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common.html">Replacing Common Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="events.html">Events</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Extending the Controller</a></li>
-<li class="toctree-l2"><a class="reference internal" href="authentication.html">Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing to CodeIgniter</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">擴充 CodeIgniter</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">建立核心系統類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html">替換常用功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html">事件</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">擴充控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html">認證方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">為 CodeIgniter 貢獻</a></li>
 </ul>
 </li>
 </ul>
@@ -327,9 +327,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Extending CodeIgniter</a> &raquo;</li>
+          <li><a href="index.html">擴充 CodeIgniter</a> &raquo;</li>
         
-      <li>Extending the Controller</li>
+      <li>擴充控制器</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -346,11 +346,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="extending-the-controller">
-<h1>Extending the Controller<a class="headerlink" href="#extending-the-controller" title="本標題的永久連結">¶</a></h1>
-<p>CodeIgniter’s core Controller should not be changed, but a default class extension is provided for you at
-<strong>app/Controllers/BaseController.php</strong>. Any new controllers you make should extend <code class="docutils literal notranslate"><span class="pre">BaseController</span></code> to take
-advantage of preloaded components and any additional functionality you provide:</p>
+  <div class="section" id="id1">
+<h1>擴充控制器<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>CodeIgniter 的核心控制器不應該被改變，但是在 <strong>app/Controllers/BaseController.php</strong> 中，我們為你提供了一個預設的控制器擴充類別。你所製作的任何控制器都應該繼承 <code class="docutils literal notranslate"><span class="pre">BaseController</span></code> 來利用預載組件以及你提供的任何額外功能：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Controller</span><span class="p">;</span>
@@ -360,19 +358,16 @@ advantage of preloaded components and any additional functionality you provide:<
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="section" id="preloading-components">
-<h2>Preloading Components<a class="headerlink" href="#preloading-components" title="本標題的永久連結">¶</a></h2>
-<p>The base controller is a great place to load any helpers, models, libraries, services, etc. that you intend to
-use every time your project runs. Helpers should be added to the pre-defined <code class="docutils literal notranslate"><span class="pre">$helpers</span></code> array. For example, if
-you want the HTML and Text helpers universally available:</p>
+<div class="section" id="id2">
+<h2>預載組件<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
+<p>基本控制器是一個好地方，可以在每次專案運作時載入任何輔助函數、模型、程式庫，以及服務等。輔助函數應該被加入到預先定義好的 <code class="docutils literal notranslate"><span class="pre">$helpers</span></code> 陣列中。例如：你想讓 HTML 以及文字輔助函數普遍可用：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">protected</span> <span class="nv">$helpers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">];</span>
 </pre></div>
 </div>
-<p>Any other components to load or data to process should be added to the constructor <code class="docutils literal notranslate"><span class="pre">initController()</span></code>. For
-example, if your project uses the Session Library heavily you may want to initiate it here:</p>
+<p>任何需要載入的組件或需要處理的資料都應該加入到建構函數 <code class="docutils literal notranslate"><span class="pre">initController()</span></code> 中。例如：你的專案大量使用到會談程式庫，你可以會需要在這裡啟動它：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">initController</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="p">{</span>
-        <span class="c1">// Do Not Edit This Line</span>
+        <span class="c1">// 請不要編輯這行</span>
         <span class="k">parent</span><span class="o">::</span><span class="na">initController</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">,</span> <span class="nv">$logger</span><span class="p">);</span>
 
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span> <span class="o">=</span> <span class="nx">\Config\Services</span><span class="o">::</span><span class="na">session</span><span class="p">();</span>
@@ -380,19 +375,14 @@ example, if your project uses the Session Library heavily you may want to initia
 </pre></div>
 </div>
 </div>
-<div class="section" id="additional-methods">
-<h2>Additional Methods<a class="headerlink" href="#additional-methods" title="本標題的永久連結">¶</a></h2>
-<p>The base controller is not routable (system config routes it to 404 Page Not Found). As an added security
-measure <strong>all</strong> new methods you create should be declared as <code class="docutils literal notranslate"><span class="pre">protected</span></code> or <code class="docutils literal notranslate"><span class="pre">private</span></code> and only be accessed through the
-controllers you create that extend <code class="docutils literal notranslate"><span class="pre">BaseController</span></code>.</p>
+<div class="section" id="id3">
+<h2>新增方法<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>基本控制器是不允許被路由的（系統設定將其路由導向至 404 找不到頁面）。作為撰寫程式的安全實現，你所創建的 <strong>所有</strong> 新方法都應該宣告為 <code class="docutils literal notranslate"><span class="pre">保護</span></code> 或 <code class="docutils literal notranslate"><span class="pre">私有</span></code> ，並且只能透過繼承 BaseController 類別的控制器才能存取。</p>
 </div>
-<div class="section" id="other-options">
-<h2>Other Options<a class="headerlink" href="#other-options" title="本標題的永久連結">¶</a></h2>
-<p>You may find that you need more than one base controller. You can create new base controllers as long as any other controllers that you make extend the correct base. For example, if your project
-has an involved public interface and a simple administrative portal you may want to extend <code class="docutils literal notranslate"><span class="pre">BaseController</span></code> to
-the public controllers and make <code class="docutils literal notranslate"><span class="pre">AdminController</span></code> for any administrative controllers.</p>
-<p>If you do not want to use the base controller you may bypass it by having your controllers extend the system
-Controller instead:</p>
+<div class="section" id="id4">
+<h2>其他選項<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<p>你可能會發現你需要一個或以上的基本控制器，你可以為你的需求創建基本控制器，只要你創建的其他控制器繼承了正確的基本控制器，就可以創建新的基本控制器。例如：你的專案有一個涉及到公開的介面和一個簡單的管理入口，你可能會希望將公開的介面繼承 <code class="docutils literal notranslate"><span class="pre">BaseController</span></code> ，並且將任何與管理功能相關的控制器繼承 <code class="docutils literal notranslate"><span class="pre">AdminController</span></code> 類別。</p>
+<p>如果你不想使用基本控制器，你可以透過讓你的控制器繼承系統控制器來繞過它：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Home</span> <span class="k">extends</span> <span class="nx">\CodeIgniter\Controller</span>
 <span class="p">{</span>
 
@@ -410,10 +400,10 @@ Controller instead:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="authentication.html" class="btn btn-neutral float-right" title="Authentication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="authentication.html" class="btn btn-neutral float-right" title="認證方式" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="events.html" class="btn btn-neutral float-left" title="Events" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="events.html" class="btn btn-neutral float-left" title="事件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

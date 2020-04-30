@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Authentication &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>認證方式 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Contributing to CodeIgniter" href="contributing.html" />
-    <link rel="prev" title="Extending the Controller" href="basecontroller.html" /> 
+    <link rel="next" title="為 CodeIgniter 貢獻" href="contributing.html" />
+    <link rel="prev" title="擴充控制器" href="basecontroller.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -266,13 +266,13 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Extending CodeIgniter</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="core_classes.html">Creating Core System Classes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common.html">Replacing Common Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="events.html">Events</a></li>
-<li class="toctree-l2"><a class="reference internal" href="basecontroller.html">Extending the Controller</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing to CodeIgniter</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">擴充 CodeIgniter</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">建立核心系統類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html">替換常用功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html">事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basecontroller.html">擴充控制器</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">認證方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">為 CodeIgniter 貢獻</a></li>
 </ul>
 </li>
 </ul>
@@ -327,9 +327,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Extending CodeIgniter</a> &raquo;</li>
+          <li><a href="index.html">擴充 CodeIgniter</a> &raquo;</li>
         
-      <li>Authentication</li>
+      <li>認證方式</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -346,17 +346,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="authentication">
-<h1>Authentication<a class="headerlink" href="#authentication" title="本標題的永久連結">¶</a></h1>
-<p>CodeIgniter intentionally does not provide an internal authentication or authorization class. There are a number
-of great third-party modules that provide these services, as well as resources in the community for writing
-your own. The following are recommended guidelines to encourage consistency among developers of
-modules, projects, and the framework itself.</p>
-<div class="section" id="recommendations">
-<h2>Recommendations<a class="headerlink" href="#recommendations" title="本標題的永久連結">¶</a></h2>
+  <div class="section" id="id1">
+<h1>認證方式<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>CodeIgniter 刻意不提供內建的認證或授權相關類別，因為已經有很多優秀的第三方模組可以提供這類服務。社群內也有許多資源可以輔助你撰寫屬於自己的功能，以下是推薦的實作方法，鼓勵模組、專案以及框架本身的開發者可以保持一致。</p>
+<div class="section" id="id2">
+<h2>建議指南<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <ul class="simple">
-<li>Modules that handle login and logout operations should trigger the <code class="docutils literal notranslate"><span class="pre">login</span></code> and <code class="docutils literal notranslate"><span class="pre">logout</span></code> Events when successful</li>
-<li>Modules that define a 「current user」 should define the function <code class="docutils literal notranslate"><span class="pre">user_id()</span></code> to return the user’s unique identifier, or <code class="docutils literal notranslate"><span class="pre">null</span></code> for 「no current user」</li>
+<li>處理登入以及登出的操作應該在成功時觸發相應的 <code class="docutils literal notranslate"><span class="pre">login</span></code> 與 <code class="docutils literal notranslate"><span class="pre">logout</span></code> 事件。</li>
+<li>定義 「目前使用者」 的模組應該定義函數 <code class="docutils literal notranslate"><span class="pre">user_id()</span></code> 來回傳使用者的唯一識別符號，對於 「目前沒有使用者」 登入應該回傳 <code class="docutils literal notranslate"><span class="pre">null</span></code> 。</li>
 </ul>
 </div>
 </div>
@@ -369,10 +366,10 @@ modules, projects, and the framework itself.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing to CodeIgniter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="contributing.html" class="btn btn-neutral float-right" title="為 CodeIgniter 貢獻" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="basecontroller.html" class="btn btn-neutral float-left" title="Extending the Controller" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="basecontroller.html" class="btn btn-neutral float-left" title="擴充控制器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

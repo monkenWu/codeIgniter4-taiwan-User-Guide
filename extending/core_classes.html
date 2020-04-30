@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Creating Core System Classes &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>建立核心系統類別 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Replacing Common Functions" href="common.html" />
-    <link rel="prev" title="Extending CodeIgniter" href="index.html" /> 
+    <link rel="next" title="替換常用功能" href="common.html" />
+    <link rel="prev" title="擴充 CodeIgniter" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -266,13 +266,13 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Extending CodeIgniter</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Creating Core System Classes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common.html">Replacing Common Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="events.html">Events</a></li>
-<li class="toctree-l2"><a class="reference internal" href="basecontroller.html">Extending the Controller</a></li>
-<li class="toctree-l2"><a class="reference internal" href="authentication.html">Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing to CodeIgniter</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">擴充 CodeIgniter</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">建立核心系統類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html">替換常用功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html">事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basecontroller.html">擴充控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html">認證方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">為 CodeIgniter 貢獻</a></li>
 </ul>
 </li>
 </ul>
@@ -327,9 +327,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Extending CodeIgniter</a> &raquo;</li>
+          <li><a href="index.html">擴充 CodeIgniter</a> &raquo;</li>
         
-      <li>Creating Core System Classes</li>
+      <li>建立核心系統類別</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -346,21 +346,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="creating-core-system-classes">
-<h1>Creating Core System Classes<a class="headerlink" href="#creating-core-system-classes" title="本標題的永久連結">¶</a></h1>
-<p>Every time CodeIgniter runs there are several base classes that are initialized automatically as part of the core
-framework. It is possible, however, to swap any of the core system classes with your own version or even just extend
-the core versions.</p>
-<p><strong>Most users will never have any need to do this, but the option to replace or extend them does exist for those
-who would like to significantly alter the CodeIgniter core.</strong></p>
+  <div class="section" id="id1">
+<h1>建立核心系統類別<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>每當 CodeIgniter 運作時，都會有幾個基本類別作為核心框架的一部份，自動地初始化。但是，你可以使用自己的版本來替換掉任何一個核心的系統類別，甚至可以繼承後擴充核心版本。</p>
+<p><strong>大多數的使用者永遠不需要這麼做，但對於想顯著改變 CodeIgniter 核心的使用者，可以選擇替換或擴充它們。</strong></p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">Messing with a core system class has a lot of implications, so make sure you know what you are doing before
-attempting it.</p>
+<p class="last">搞亂核心系統類別將會有很多影響，所以在嘗試這件事情之前，要確定你知道自己在做什麼。</p>
 </div>
-<div class="section" id="system-class-list">
-<h2>System Class List<a class="headerlink" href="#system-class-list" title="本標題的永久連結">¶</a></h2>
-<p>The following is a list of the core system files that are invoked every time CodeIgniter runs:</p>
+<div class="section" id="id2">
+<h2>系統類別列表<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
+<p>以下是每次 CodeIgniter 在運作時呼叫的系統檔案列表</p>
 <ul class="simple">
 <li>Config\Services</li>
 <li>CodeIgniter\Autoloader\Autoloader</li>
@@ -385,13 +381,10 @@ attempting it.</p>
 <li>CodeIgniter\View\Escaper</li>
 </ul>
 </div>
-<div class="section" id="replacing-core-classes">
-<h2>Replacing Core Classes<a class="headerlink" href="#replacing-core-classes" title="本標題的永久連結">¶</a></h2>
-<p>To use one of your own system classes instead of a default one, ensure that the <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">Autoloader</span></a>
-can find your class, that your new class extends the appropriate interface, and modify the appropriate
-<a class="reference internal" href="../concepts/services.html"><span class="doc">Service</span></a> to load your class in place of the core class.</p>
-<p>For example, if you have a new <code class="docutils literal notranslate"><span class="pre">App\Libraries\RouteCollection</span></code> class that you would like to use in place of
-the core system class, you would create your class like this:</p>
+<div class="section" id="id3">
+<h2>替換核心類別<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>要使用自己的系統類別來替代掉默認的系統類別，請確定 <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">Autoloader</span></a> 可以找得到你的類別，以及你的新類別實作了相應的介面，並修改 <a class="reference internal" href="../concepts/services.html"><span class="doc">Service</span></a> 來載入你的類別替換掉核心類別。</p>
+<p>例如，你有一個新的 <code class="docutils literal notranslate"><span class="pre">App\Libraries\RouteCollection</span></code> 類別，你想用它來替換掉系統核心類別，你就可這樣創建你的類別：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Router\RouteCollectionInterface</span><span class="p">;</span>
@@ -402,7 +395,7 @@ the core system class, you would create your class like this:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Then  you would modify the <code class="docutils literal notranslate"><span class="pre">routes</span></code> service to load your class instead:</p>
+<p>然後，你得修改 <code class="docutils literal notranslate"><span class="pre">routes</span></code> 服務，改成載入你的類別：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">routes</span><span class="p">(</span><span class="nx">bool</span> <span class="nv">$getShared</span> <span class="o">=</span> <span class="k">true</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$getShared</span><span class="p">)</span>
@@ -415,15 +408,13 @@ the core system class, you would create your class like this:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="extending-core-classes">
-<h2>Extending Core Classes<a class="headerlink" href="#extending-core-classes" title="本標題的永久連結">¶</a></h2>
-<p>If all you need to is add some functionality to an existing library - perhaps add a method or two - then it’s overkill
-to recreate the entire library. In this case, it’s better to simply extend the class. Extending the class is nearly
-identical to replacing a class with one exception:</p>
+<div class="section" id="id4">
+<h2>擴充核心系統類別<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<p>如果你只需要在現有的程式庫中添加一些功能（也許是一兩個方法），那麼重新撰寫整個程式庫有點矯枉過正了。在這種情形下，最簡單的方法就是擴充類別，擴充類別與替換類別幾乎一模一樣，只有一個例外：</p>
 <ul class="simple">
-<li>The class declaration must extend the parent class.</li>
+<li>類別必須繼承父類別。</li>
 </ul>
-<p>For example, to extend the native RouteCollection class, you would declare your class with:</p>
+<p>舉個例子，要擴充原生的 RouteCollection 類別，你得這麼做：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Router\RouteCollection</span><span class="p">;</span>
@@ -434,7 +425,7 @@ identical to replacing a class with one exception:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>If you need to use a constructor in your class make sure you extend the parent constructor:</p>
+<p>如果你需要在你的類別中使用建構函數，請確定你同時運作了父類別的擴充函數：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Router\RouteCollection</span> <span class="k">as</span> <span class="nx">BaseRouteCollection</span><span class="p">;</span>
@@ -448,8 +439,7 @@ identical to replacing a class with one exception:</p>
  <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>Tip:</strong>  Any functions in your class that are named identically to the methods in the parent class will be used
-instead of the native ones (this is known as “method overriding”). This allows you to substantially alter the CodeIgniter core.</p>
+<p><strong>Tip ：</strong> 在你的類別中，任何與父類別相同的函數都將被使用，而不會使用原生的函數，這就是所謂的方法覆寫，你可以利用這種方式大幅度地修改 CodeIgniter 的核心。</p>
 </div>
 </div>
 
@@ -461,10 +451,10 @@ instead of the native ones (this is known as “method overriding”). This allo
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="common.html" class="btn btn-neutral float-right" title="Replacing Common Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="common.html" class="btn btn-neutral float-right" title="替換常用功能" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Extending CodeIgniter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="擴充 CodeIgniter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

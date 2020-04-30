@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Replacing Common Functions &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>替換常用功能 &mdash; CodeIgniter4 4.0.2 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Events" href="events.html" />
-    <link rel="prev" title="Creating Core System Classes" href="core_classes.html" /> 
+    <link rel="next" title="事件" href="events.html" />
+    <link rel="prev" title="建立核心系統類別" href="core_classes.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -266,13 +266,13 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Extending CodeIgniter</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="core_classes.html">Creating Core System Classes</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Replacing Common Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="events.html">Events</a></li>
-<li class="toctree-l2"><a class="reference internal" href="basecontroller.html">Extending the Controller</a></li>
-<li class="toctree-l2"><a class="reference internal" href="authentication.html">Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing to CodeIgniter</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">擴充 CodeIgniter</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">建立核心系統類別</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">替換常用功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html">事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basecontroller.html">擴充控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html">認證方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">為 CodeIgniter 貢獻</a></li>
 </ul>
 </li>
 </ul>
@@ -327,9 +327,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Extending CodeIgniter</a> &raquo;</li>
+          <li><a href="index.html">擴充 CodeIgniter</a> &raquo;</li>
         
-      <li>Replacing Common Functions</li>
+      <li>替換常用功能</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -346,18 +346,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="replacing-common-functions">
-<h1>Replacing Common Functions<a class="headerlink" href="#replacing-common-functions" title="本標題的永久連結">¶</a></h1>
-<p>There are quite a few functions necessary to CodeIgniter that need to be loaded early for use in the core classes and
-thus cannot be placed into a helper. While most users will never have any need to do this, but the option to replace
-these functions does exist for those who would like to significantly alter the CodeIgniter core. In the <code class="docutils literal notranslate"><span class="pre">App\</span></code>
-directory there is a file <code class="docutils literal notranslate"><span class="pre">Common.php</span></code>, and any functions defined in there will take precedence over the versions
-found in <code class="docutils literal notranslate"><span class="pre">system/Common.php</span></code>. This is also an opportunity to create globally-available functions you intend to
-use throughout the framework.</p>
+  <div class="section" id="id1">
+<h1>替換常用功能<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>CodeIgniter 有許多必要的函數需要提前在入到核心類別中使用，因此不能放在輔助函數中。雖然大多數的開發者永遠不會想要改變這些，但對於想要修改 CodeIgniter 核心的工程師來說，就有了替換掉這些函數的選擇。在 <code class="docutils literal notranslate"><span class="pre">App\</span></code> 目錄下有一個 <code class="docutils literal notranslate"><span class="pre">Common.php</span></code> 檔案，在個檔案中定義的函數都會優先於 <code class="docutils literal notranslate"><span class="pre">system/Common.php</span></code> 中的函數被宣告。透過這個機制，你便可以打造在整個框架中可以使用的全域函數。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">Messing with a core system class has a lot of implications, so make sure you know what you are doing before
-attempting it.</p>
+<p class="last">搞亂核心系統類別將會有很多影響，所以在嘗試這件事情之前，要確定你知道自己在做什麼。</p>
 </div>
 </div>
 
@@ -369,10 +363,10 @@ attempting it.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="events.html" class="btn btn-neutral float-right" title="Events" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="events.html" class="btn btn-neutral float-right" title="事件" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="core_classes.html" class="btn btn-neutral float-left" title="Creating Core System Classes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="core_classes.html" class="btn btn-neutral float-left" title="建立核心系統類別" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
