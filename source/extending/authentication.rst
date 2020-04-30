@@ -1,13 +1,10 @@
-Authentication 
+認證方式 
 #####################################
 
-CodeIgniter intentionally does not provide an internal authentication or authorization class. There are a number
-of great third-party modules that provide these services, as well as resources in the community for writing
-your own. The following are recommended guidelines to encourage consistency among developers of
-modules, projects, and the framework itself.
+CodeIgniter 刻意不提供內建的認證或授權相關類別，因為已經有很多優秀的第三方模組可以提供這類服務。社群內也有許多資源可以輔助你撰寫屬於自己的功能，以下是推薦的實作方法，鼓勵模組、專案以及框架本身的開發者可以保持一致。
 
-Recommendations
+建議指南
 ===============
 
-* Modules that handle login and logout operations should trigger the ``login`` and ``logout`` Events when successful
-* Modules that define a "current user" should define the function ``user_id()`` to return the user's unique identifier, or ``null`` for "no current user"
+* 處理登入以及登出的操作應該在成功時觸發相應的 ``login`` 與 ``logout`` 事件。
+* 定義 "目前使用者" 的模組應該定義函數 ``user_id()`` 來回傳使用者的唯一識別符號，對於 "目前沒有使用者" 登入應該回傳 ``null`` 。

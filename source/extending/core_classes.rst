@@ -1,21 +1,17 @@
 ****************************
-Creating Core System Classes
+建立核心系統類別
 ****************************
 
-Every time CodeIgniter runs there are several base classes that are initialized automatically as part of the core
-framework. It is possible, however, to swap any of the core system classes with your own version or even just extend
-the core versions.
+每當 CodeIgniter 運作時，都會有幾個基本類別作為核心框架的一部份，自動地初始化。但是，你可以使用自己的版本來替換掉任何一個核心的系統類別，甚至可以繼承後擴充核心版本。
 
-**Most users will never have any need to do this, but the option to replace or extend them does exist for those
-who would like to significantly alter the CodeIgniter core.**
+**大多數的使用者永遠不需要這麼做，但對於想顯著改變 CodeIgniter 核心的使用者，可以選擇替換或擴充它們。**
 
-.. note:: Messing with a core system class has a lot of implications, so make sure you know what you are doing before
-    attempting it.
+.. note:: 搞亂核心系統類別將會有很多影響，所以在嘗試這件事情之前，要確定你知道自己在做什麼。
 
-System Class List
+系統類別列表
 =================
 
-The following is a list of the core system files that are invoked every time CodeIgniter runs:
+以下是每次 CodeIgniter 在運作時呼叫的系統檔案列表
 
 * Config\\Services
 * CodeIgniter\\Autoloader\\Autoloader
@@ -39,15 +35,14 @@ The following is a list of the core system files that are invoked every time Cod
 * CodeIgniter\\View\\View
 * CodeIgniter\\View\\Escaper
 
-Replacing Core Classes
+替換核心類別
 ======================
 
-To use one of your own system classes instead of a default one, ensure that the :doc:`Autoloader <../concepts/autoloader>`
-can find your class, that your new class extends the appropriate interface, and modify the appropriate
-:doc:`Service <../concepts/services>` to load your class in place of the core class.
+要使用自己的系統類別來替代掉默認的系統類別，請確定 :doc:`Autoloader <../concepts/autoloader>` 可以找得到你的類別，以及你的新類別實作了相應的介面，並修改 :doc:`Service <../concepts/services>` 來載入你的類別替換掉核心類別。
 
-For example, if you have a new ``App\Libraries\RouteCollection`` class that you would like to use in place of
-the core system class, you would create your class like this::
+例如，你有一個新的 ``App\Libraries\RouteCollection`` 類別，你想用它來替換掉系統核心類別，你就可這樣創建你的類別：
+
+::
 
     <?php namespace App\Libraries;
 
@@ -58,7 +53,9 @@ the core system class, you would create your class like this::
 
     }
 
-Then  you would modify the ``routes`` service to load your class instead::
+然後，你得修改 ``routes`` 服務，改成載入你的類別：
+
+::
 
 	public static function routes(bool $getShared = true)
 	{
@@ -70,16 +67,16 @@ Then  you would modify the ``routes`` service to load your class instead::
 		return new RouteCollection(static::locator(), config('Modules'));
 	}
 
-Extending Core Classes
+擴充核心系統類別
 ======================
 
-If all you need to is add some functionality to an existing library - perhaps add a method or two - then it's overkill
-to recreate the entire library. In this case, it's better to simply extend the class. Extending the class is nearly
-identical to replacing a class with one exception:
+如果你只需要在現有的程式庫中添加一些功能（也許是一兩個方法），那麼重新撰寫整個程式庫有點矯枉過正了。在這種情形下，最簡單的方法就是擴充類別，擴充類別與替換類別幾乎一模一樣，只有一個例外：
 
-* The class declaration must extend the parent class.
+* 類別必須繼承父類別。
 
-For example, to extend the native RouteCollection class, you would declare your class with::
+舉個例子，要擴充原生的 RouteCollection 類別，你得這麼做：
+
+::
 
     <?php namespace App\Libraries;
 
@@ -90,7 +87,9 @@ For example, to extend the native RouteCollection class, you would declare your 
 
     }
 
-If you need to use a constructor in your class make sure you extend the parent constructor::
+如果你需要在你的類別中使用建構函數，請確定你同時運作了父類別的擴充函數：
+
+::
 
     <?php namespace App\Libraries;
 
@@ -104,5 +103,4 @@ If you need to use a constructor in your class make sure you extend the parent c
          }
      }
 
-**Tip:**  Any functions in your class that are named identically to the methods in the parent class will be used
-instead of the native ones (this is known as “method overriding”). This allows you to substantially alter the CodeIgniter core.
+**Tip ：** 在你的類別中，任何與父類別相同的函數都將被使用，而不會使用原生的函數，這就是所謂的方法覆寫，你可以利用這種方式大幅度地修改 CodeIgniter 的核心。
