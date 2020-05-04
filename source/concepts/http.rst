@@ -53,15 +53,18 @@ HTTP 響應
 
 	use CodeIgniter\HTTP\IncomingRequest;
 
-	$request = new IncomingRequest(new \Config\App(), new \CodeIgniter\HTTP\URI());
+	$request = service('request');
 
 	// the URI being requested (i.e. /about)
 	$request->uri->getPath();
 
 	// Retrieve $_GET and $_POST variables
-	$request->getVar('foo');
 	$request->getGet('foo');
 	$request->getPost('foo');
+
+	// Retrieve from $_REQUEST which should include
+	// both $_GET and $_POST contents
+	$request->getVar('foo');
 
 	// Retrieve JSON from AJAX calls
 	$request->getJSON();
@@ -79,11 +82,13 @@ request 類別會在後台為你做很多工作，幫你省心。``isAJAX()`` �
 
 .. note:: ``isAJAX()`` 方法取決於 ``X-Requested-With`` 標頭，在某些情況下，預設是不會通過 JavaScript（即 fetch）在 XHR 請求中發送的標頭。請參閱 :doc:`AJAX 請求 </general/ajax>` 部分，瞭解如何避免這個問題。
 
-CodeIgniter 還提供了 :doc:響應類別 </outgoing/response>`，它是 HTTP 響應的物件導向形式。它為你提供一種簡單而強大的方法來建構對客戶的響應::
+CodeIgniter 還提供了 :doc:`響應類別 </outgoing/response>`，它是 HTTP 響應的物件導向形式。它為你提供一種簡單而強大的方法來建構對客戶的響應：
+
+::
 
   use CodeIgniter\HTTP\Response;
 
-  $response = new Response();
+  $response = service('response');
 
   $response->setStatusCode(Response::HTTP_OK);
   $response->setBody($output);

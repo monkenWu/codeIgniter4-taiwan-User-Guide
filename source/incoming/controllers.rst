@@ -101,6 +101,19 @@
 
 另外，一定要確保你的控制器擴展了父控制器類別，這樣它才可以繼承所有的方法。
 
+.. note::
+    The system will attempt to match the URI against Controllers by matching each segment against
+    folders/files in APPPATH/Controllers, when a match wasn't found against defined routes.
+    That's why your folders/files MUST start with a capital letter and the rest MUST be lowercase.
+    If you want another naming convention you need to manually define it using the
+    :doc:`URI Routing <routing>` feature.
+
+    Here is an example based on PSR-4: Autoloader::
+
+        \<NamespaceName>(\<SubNamespaceNames>)*\<ClassName>
+
+        $routes->get('helloworld', 'App\Controllers\HelloWorld::index');
+
 方法
 =======
 
@@ -271,7 +284,9 @@ $routes->get('/', 'Home::index');
 
 只需在主要的 *app/Controllers/* 目錄下創建子目錄，然後將你的控制器類別放進去。
 
-.. 使用此功能時，URI的第一段必須要指定資料夾。例如，假設你有一個控制器位於這裡：
+.. important:: Folder names MUST start with an uppercase letter and ONLY the first character can be uppercase.
+
+.. note:: 使用此功能時，URI的第一段必須要指定資料夾。例如，假設你有一個控制器位於這裡：
 
 ::
 	

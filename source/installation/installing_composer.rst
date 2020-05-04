@@ -179,6 +179,6 @@ Composer 安裝
 
 在你的專案根目錄執行以下指令： ::
 
-    composer require codeigniter4/translations @beta
+    composer require codeigniter4/translations
 
 每當你執行 ``composer update`` 後，多語言的系統提示也將隨著框架一同升級。

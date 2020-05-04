@@ -21,7 +21,7 @@
 ::
 
     // 手動建立新類別
-    $userModel = new App\Models\UserModel();
+    $userModel = new \App\Models\UserModel();
 
     // 使用模型函數建立新類別
     $userModel = model('App\Models\UserModel', false);
@@ -488,9 +488,9 @@ save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬�
 	::
 
 		$fieldName = 'name';
-		$fieldValidationMessage = array(
+		$fieldValidationMessage = [
 			'required'   => 'Your name is required here',
-		);
+		];
 		$model->setValidationMessage($fieldName, $fieldValidationMessage);
 
 .. php:function:: setValidationMessages($fieldMessages)
@@ -503,12 +503,12 @@ save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬�
 
 	::
 
-		$fieldValidationMessage = array(
-			'name' => array(
-					'required'   => 'Your baby name is missing.',
-					'min_length' => 'Too short, man!',
-			),
-		);
+		$fieldValidationMessage = [
+			'name' => [
+				'required'   => 'Your baby name is missing.',
+				'min_length' => 'Too short, man!',
+			],
+		];
 		$model->setValidationMessages($fieldValidationMessage);
 
 現在，每當你呼叫 ``insert()`` 、 ``update()`` ，或 ``save()`` 方法時，資料將會被自動驗證。如果驗證失敗，模型將會回傳 **false** 。你可以使用 ``error()`` 方法來存取驗證錯誤：

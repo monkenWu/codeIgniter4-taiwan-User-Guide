@@ -6,14 +6,12 @@ CodeIgniter4可以通過多種方式安裝：手動安裝、 `Composer <https://
 
 - 如果你希望以 CodeIgniter3 聞名的：「下載後直接運作」這種安裝方式，請選擇手動安裝。
 - 如果你的專案預期會使用多種不同的程式庫，並打算透過 PHP Composer 進行管理，那麼我們建議你使用 Composer 部屬 CodeIgniter4 環境。
-- 如果你想對 CodeIgniter4 做出貢獻，那麼 Git 安裝會是最適合你的方式。
 
 .. toctree::
     :titlesonly:
-
+    
     installing_manual
     installing_composer
-    installing_git
     running
     upgrading
     troubleshooting

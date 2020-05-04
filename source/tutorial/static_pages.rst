@@ -165,3 +165,5 @@ CodeIgniter 將從上至下依序讀取路由規則，並將請求導向至第�
 
 .. image:: ../images/tutorial1.png
     :align: center
+
+.. note:: 當手動指定路由時，建議在 Routes.php 檔案中設定 ``$routes->setAutoRoute(false);`` 禁用自動路由。這樣可以確保只有你定義的路由可以被造訪。

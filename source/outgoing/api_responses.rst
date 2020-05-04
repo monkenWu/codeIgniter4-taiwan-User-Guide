@@ -74,7 +74,10 @@ API 響應特性
 * 如果 $data 是一個字串，那麼它將會被視為 HTML 發送為使用者端
 * **如果 $data 是一個陣列，它將會嘗試與客戶端所要求的類型進行內容協商，默認為 JSON**
     如果在 Config\API.php 沒有指定其他的屬性，則以 ``$supportedResponseFormats`` 屬性為主。
-    
+* If $data is an array, it will be formatted according to the controller's ``$this->format`` value. If that is empty
+    it will try to negotiate the content type with what the client asked for, defaulting to JSON
+    if nothing else has been specified within Config\API.php, the ``$supportedResponseFormats`` property.
+
 若要定義所使用的屬性輸出格式器，請編輯 **Config/Format.php** 檔案。其中的 ``$supportedResponseFormats`` 屬性包含著一系列的 mime 類型，你的應用程式可以自動地格式化響應類型。在預設的情形下，系統會自動格式化 XML 與 JSON 響應：
 
 ::
@@ -83,6 +86,7 @@ API 響應特性
             'application/json',
             'application/xml'
         ];
+
 
 This is the array that is used during :doc:`Content Negotiation </incoming/content_negotiation>` to determine which
 type of response to return. If no matches are found between what the client requested and what you support, the first
@@ -101,8 +105,19 @@ So, if your request asks for JSON formatted data in an **Accept** header, the da
 ``respond*`` or ``fail*`` methods will be formatted by the **CodeIgniter\\API\\JSONFormatter** class. The resulting
 JSON data will be sent back to the client.
 
-類別參考
+Class Reference
 ***************
+.. php:method:: setResponseFormat($format)
+
+    :param string $format The type of response to return, either ``json`` or ``xml``
+
+    This defines the format to be used when formatting arrays in responses. If you provide a ``null`` value for
+    ``$format``, it will be automatically determined through content negotiation.
+
+::
+
+    return $this->setResponseFormat('json')->respond(['error' => false]);
+
 
 .. php:method:: respond($data[, $statusCode=200[, $message='']])
 
@@ -185,13 +200,13 @@ JSON data will be sent back to the client.
     :param string $message: A custom "reason" message to return.
     :returns: The value of the Response object's send() method.
 
-    Sets the appropriate status code to use when a command was successfully executed by the server but there is no 
+    Sets the appropriate status code to use when a command was successfully executed by the server but there is no
     meaningful reply to send back to the client, typically 204.
 
     ::
 
 	    sleep(1);
-	    return $this->respondNoContent();        
+	    return $this->respondNoContent();
 
 .. php:method:: failUnauthorized(string $description = 'Unauthorized'[, string $code=null[, string $message = '']])
 
