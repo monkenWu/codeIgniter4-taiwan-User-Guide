@@ -1,5 +1,5 @@
 ==============
-HTTP Responses
+HTTP 響應
 ==============
 
 The Response class extends the :doc:`HTTP Message Class </incoming/message>` with methods only appropriate for

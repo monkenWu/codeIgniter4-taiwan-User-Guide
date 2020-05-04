@@ -1,23 +1,21 @@
 ##################
-API Response Trait
+API 響應特性
 ##################
 
-Much of modern PHP development requires building API's, whether simply to provide data for a javascript-heavy
-single page application, or as a standalone product. CodeIgniter provides an API Response trait that can be
-used with any controller to make common response types simple, with no need to remember which HTTP status code
-should be returned for which response types.
+很多現代化 PHP 開發需要建立 API ，無論是為單一頁面應用程式（ SPA ）提供資料，還是做為一個獨立的產品，都需要建立 API 。 CodeIgniter 提供一個 API 響應的特性，可以和任何控制器一起使用，讓你簡單地建立常見的響應類型，不需要記住 HTTP 狀態代碼或應該回傳哪些響應類型。
 
 .. contents::
     :local:
     :depth: 2
 
 *************
-Example Usage
+使用範例
 *************
 
-The following example shows a common usage pattern within your controllers.
+下方的範例將表現一種控制器的常見使用模式：
 
 ::
+
 
     <?php namespace App\Controllers;
 
@@ -37,53 +35,58 @@ The following example shows a common usage pattern within your controllers.
         }
     }
 
-In this example, an HTTP status code of 201 is returned, with the generic status message, 'Created'. Methods
-exist for the most common use cases::
+在這個範例中，回傳一個 201 HTTP 狀態碼為，並帶有一般的狀態訊息： "Created" ，對於常見的需求，都有相應的方法可以使用：
 
-    // Generic response method
+::
+
+    // 一般響應
     respond($data, 200);
-    // Generic failure response
+    // 故障響應
     fail($errors, 400);
-    // Item created response
+    // 項目已建立成功
     respondCreated($data);
-    // Item successfully deleted
+    // 項目已刪除成功
     respondDeleted($data);
-    // Command executed by no response required
+    // 命令已執行，無須響應
     respondNoContent($message);
-    // Client isn't authorized
+    // 使用者無權限
     failUnauthorized($description);
-    // Forbidden action
+    // 禁止使用
     failForbidden($description);
-    // Resource Not Found
+    // 找不到資源
     failNotFound($description);
-    // Data did not validate
+    // 資料未通過驗證
     failValidationError($description);
-    // Resource already exists
+    // 資源已經存在
     failResourceExists($description);
-    // Resource previously deleted
+    // 資源已經被刪除
     failResourceGone($description);
-    // Client made too many requests
+    // 使用者提出過多請求
     failTooManyRequests($description);
 
 ***********************
-Handling Response Types
+處理響應類型
 ***********************
 
-When you pass your data in any of these methods, they will determine the data type to format the results as based on
-the following criteria:
+當你透過下列任何一種方法傳遞資料時，他們將會根據以下條件來決定結果會被格式化為何種資料型別：
 
-* If $data is a string, it will be treated as HTML to send back to the client.
-* If $data is an array, it will try to negotiate the content type with what the client asked for, defaulting to JSON
+
+* 如果 $data 是一個字串，那麼它將會被視為 HTML 發送為使用者端
+* **如果 $data 是一個陣列，它將會嘗試與客戶端所要求的類型進行內容協商，默認為 JSON**
+    如果在 Config\API.php 沒有指定其他的屬性，則以 ``$supportedResponseFormats`` 屬性為主。
+* If $data is an array, it will be formatted according to the controller's ``$this->format`` value. If that is empty
+    it will try to negotiate the content type with what the client asked for, defaulting to JSON
     if nothing else has been specified within Config\API.php, the ``$supportedResponseFormats`` property.
 
-To define the formatter that is used, edit **Config/Format.php**. The ``$supportedResponseFormats`` contains a list of
-mime types that your application can automatically format the response for. By default, the system knows how to
-format both XML and JSON responses::
+若要定義所使用的屬性輸出格式器，請編輯 **Config/Format.php** 檔案。其中的 ``$supportedResponseFormats`` 屬性包含著一系列的 mime 類型，你的應用程式可以自動地格式化響應類型。在預設的情形下，系統會自動格式化 XML 與 JSON 響應：
+
+::
 
         public $supportedResponseFormats = [
             'application/json',
             'application/xml'
         ];
+
 
 This is the array that is used during :doc:`Content Negotiation </incoming/content_negotiation>` to determine which
 type of response to return. If no matches are found between what the client requested and what you support, the first
@@ -104,6 +107,17 @@ JSON data will be sent back to the client.
 
 Class Reference
 ***************
+.. php:method:: setResponseFormat($format)
+
+    :param string $format The type of response to return, either ``json`` or ``xml``
+
+    This defines the format to be used when formatting arrays in responses. If you provide a ``null`` value for
+    ``$format``, it will be automatically determined through content negotiation.
+
+::
+
+    return $this->setResponseFormat('json')->respond(['error' => false]);
+
 
 .. php:method:: respond($data[, $statusCode=200[, $message='']])
 
@@ -186,13 +200,13 @@ Class Reference
     :param string $message: A custom "reason" message to return.
     :returns: The value of the Response object's send() method.
 
-    Sets the appropriate status code to use when a command was successfully executed by the server but there is no 
+    Sets the appropriate status code to use when a command was successfully executed by the server but there is no
     meaningful reply to send back to the client, typically 204.
 
     ::
 
 	    sleep(1);
-	    return $this->respondNoContent();        
+	    return $this->respondNoContent();
 
 .. php:method:: failUnauthorized(string $description = 'Unauthorized'[, string $code=null[, string $message = '']])
 

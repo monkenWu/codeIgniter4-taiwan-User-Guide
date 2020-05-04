@@ -26,14 +26,15 @@
 
 ::
 
-	// Creating a new object with config function
-	$config = config('Pager', false);
-
 	// Get shared instance with config function
 	$config = config('Pager');
 
 	// Access config class with namespace
 	$config = config( 'Config\\Pager' );
+
+    // Creating a new object with config function
+	$config = config('Pager', false);
+
 
 所有「組態設定物件」的屬性都是公開的，所以你可以像其他屬性一樣訪問設定檔：
 

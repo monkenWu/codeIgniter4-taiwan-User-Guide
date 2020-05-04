@@ -37,11 +37,21 @@
 
 例如：你想創建兩個應用程式，名為 foo 和 bar 。你可以這樣建構你的應用程式專案目錄：
 
-::
+.. code-block:: text
 
-    foo/app, public, tests and writable
-    bar/app/, public, tests and writable
-    codeigniter/system and docs
+    /foo
+        /app
+        /public
+        /tests
+        /writable
+    /bar
+        /app
+        /public
+        /tests
+        /writable
+    /codeigniter
+        /system
+        /docs
 
 這裡將會有 foo 與 bar 兩個應用程式，兩者都具有標準的應用程式目錄與 ``public`` 資料夾，但它們共用同一個 CodeIgniter 框架。
 

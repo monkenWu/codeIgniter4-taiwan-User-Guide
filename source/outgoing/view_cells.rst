@@ -1,5 +1,5 @@
 ##########
-View Cells
+視圖單元
 ##########
 
 View Cells allow you to insert HTML that is generated outside of your controller. It simply calls the specified

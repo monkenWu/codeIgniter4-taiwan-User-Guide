@@ -1,5 +1,5 @@
 ################
-HTML Table Class
+HTML 表格類別
 ################
 
 The Table Class provides methods that enable you to auto-generate HTML

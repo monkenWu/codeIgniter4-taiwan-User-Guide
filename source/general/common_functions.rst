@@ -74,6 +74,15 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 
 	更多資訊，請參閱 :doc:`Localization </outgoing/localization>` 頁面。
 
+.. php:function:: model($name [, $getShared = true [, &$conn = null ]])
+
+    :param string                   $name:
+    :param boolean                  $getShared:
+    :param ConnectionInterface|null $conn:
+    :returns: More simple way of getting model instances
+    :rtype: mixed
+
+
 .. php:function:: old( $key[, $default = null, [, $escape = 'html' ]] )
 
 	:param string $key: 需要檢查的舊表單資料。
@@ -151,8 +160,27 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 
 	更多詳情，請閱讀 :doc:`視圖 </outgoing/views>` 頁面。
 
+.. php:function:: view_cell ( $library [, $params = null [, $ttl = 0 [, $cacheName = null]]] )
+
+    :param string      $library:
+    :param null        $params:
+    :param integer     $ttl:
+    :param string|null $cacheName:
+    :returns: View cells are used within views to insert HTML chunks that are managed by other classes.
+    :rtype: string
+
+    For more details, see the :doc:`View Cells </outgoing/view_cells>` page.
+
+
 其他功能
 =======================
+
+.. php:function:: app_timezone ()
+
+    :returns: The timezone the application has been set to display dates in.
+    :rtype: string
+
+    Returns the timezone the application has been set to display dates in.
 
 .. php:function:: csrf_token ()
 
@@ -205,10 +233,22 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 
 	檢查目前是否通過 HTTPS 造訪該頁面。如果是，將不動作。若否，則該使用者將會以 HTTPS 的形式被重新導向到當前 URL 。將會設定 HTTP Strict-Transport-Security 標頭，它將讓現代瀏覽器自動把 $duration 的所有 HTTP 請求修改為 HTTPS 請求。
 
+.. php:function:: function_usable ( $function_name )
+
+    :param string $function_name: Function to check for
+    :returns: TRUE if the function exists and is safe to call, FALSE otherwise.
+    :rtype: bool
+
 .. php:function:: is_cli ()
 
 	:returns: 如果該腳本是從命令列中執行，則回傳 TRUE 否則回傳 FALSE 。
 	:rtype: bool
+
+.. php:function:: is_really_writable ( $file )
+
+    :param string $file: The filename being checked.
+    :returns: TRUE if you can write to the file, FALSE otherwise.
+    :rtype: bool
 
 .. php:function:: log_message ($level, $message [, $context])
 
@@ -303,6 +343,14 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 	:rtype: mixed
 
 	與上面描述的 **service()** 函數相同，但呼叫這個函數每次都會回傳一個新的類別實體，而 **service** 每次的回傳則是相同的實體。
+
+.. php:function:: slash_item ( $item )
+
+    :param string $item: Config item name
+    :returns: The configuration item or NULL if the item doesn't exist
+    :rtype:  string|null
+
+    Fetch a config file item with slash appended (if not empty)
 
 .. php:function:: stringify_attributes ( $attributes [, $js] )
 
