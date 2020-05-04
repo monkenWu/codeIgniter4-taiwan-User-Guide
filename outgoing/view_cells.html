@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>View Cells &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>視圖單元 &mdash; CodeIgniter4 4.0.3 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="View Renderer" href="view_renderer.html" />
-    <link rel="prev" title="Views" href="views.html" /> 
+    <link rel="next" title="視圖渲染" href="view_renderer.html" />
+    <link rel="prev" title="視圖" href="views.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -98,7 +98,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_git.html">Git 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
@@ -160,17 +159,17 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Building Responses</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="views.html">Views</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">View Cells</a></li>
-<li class="toctree-l2"><a class="reference internal" href="view_renderer.html">View Renderer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="view_layouts.html">View Layouts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="view_parser.html">View Parser</a></li>
-<li class="toctree-l2"><a class="reference internal" href="table.html">HTML Table Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="response.html">HTTP Responses</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api_responses.html">API Response Trait</a></li>
-<li class="toctree-l2"><a class="reference internal" href="localization.html">Localization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">建構響應</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="views.html">視圖</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">視圖單元</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_renderer.html">視圖渲染</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_layouts.html">視圖布局</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_parser.html">視圖解釋器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="response.html">HTTP 響應</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_responses.html">API 響應特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="localization.html">本土化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">用於視圖檔案的 PHP 語法</a></li>
 </ul>
 </li>
 </ul>
@@ -327,9 +326,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Building Responses</a> &raquo;</li>
+          <li><a href="index.html">建構響應</a> &raquo;</li>
         
-      <li>View Cells</li>
+      <li>視圖單元</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -346,8 +345,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="view-cells">
-<h1>View Cells<a class="headerlink" href="#view-cells" title="本標題的永久連結">¶</a></h1>
+  <div class="section" id="id1">
+<h1>視圖單元<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>View Cells allow you to insert HTML that is generated outside of your controller. It simply calls the specified
 class and method, which must return a string of valid HTML. This method could be in any callable method, found in any class
 that the autoloader can locate. The only restriction is that the class can not have any constructor parameters.
@@ -419,10 +418,10 @@ as the fourth parameter:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="view_renderer.html" class="btn btn-neutral float-right" title="View Renderer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="view_renderer.html" class="btn btn-neutral float-right" title="視圖渲染" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="views.html" class="btn btn-neutral float-left" title="Views" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="views.html" class="btn btn-neutral float-left" title="視圖" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -433,7 +432,7 @@ as the fourth parameter:</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月30日。
+        最後更新於 2020年05月04日。
       </span>
 
     </p>

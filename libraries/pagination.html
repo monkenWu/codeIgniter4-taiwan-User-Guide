@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Pagination &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>Pagination &mdash; CodeIgniter4 4.0.3 說明文件</title>
   
 
   
@@ -98,7 +98,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_git.html">Git 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
@@ -160,17 +159,17 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">Building Responses</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">Views</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">View Cells</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">View Renderer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">View Layouts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">View Parser</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML Table Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP Responses</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API Response Trait</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">Localization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">建構響應</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">視圖</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">視圖單元</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">視圖渲染</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">視圖布局</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">視圖解釋器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 表格類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 響應</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 響應特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">本土化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">用於視圖檔案的 PHP 語法</a></li>
 </ul>
 </li>
 </ul>
@@ -396,6 +395,8 @@ that and assign it to the $pager variable in the view.</p>
 </div>
 <p>And that’s all it takes. The Pager class will render First and Last page links, as well as Next and Previous links
 for any pages more than two pages on either side of the current page.</p>
+<p>It is important to be aware that the library pattern for Next and Previous is different from what is used in the traditional way of paging results.</p>
+<p>Next and Previous here is linked to the group of links to be displayed in the pagination structure, and not to the next or previous page of records.</p>
 <p>If you prefer a simpler output, you can use the <code class="docutils literal notranslate"><span class="pre">simpleLinks()</span></code> method, which only uses 「Older」 and 「Newer」 links,
 instead of the details pagination links:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?=</span> <span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">simpleLinks</span><span class="p">()</span> <span class="cp">?&gt;</span>
@@ -428,6 +429,29 @@ methods to keep the data separate:</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="setting-page-manually">
+<h3>Setting Page Manually<a class="headerlink" href="#setting-page-manually" title="本標題的永久連結">¶</a></h3>
+<p>If you need to specify which page of results to return you can specify the page as the 3rd argument. This can be
+handy when you have a different manner than the default $_GET varibable to control which page to show.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$userModel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\App\Models\UserModel</span><span class="p">();</span>
+<span class="nv">$page</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+<span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;group1&#39;</span><span class="p">,</span> <span class="nv">$page</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="specifying-the-uri-segment-for-page">
+<h3>Specifying the URI Segment for Page<a class="headerlink" href="#specifying-the-uri-segment-for-page" title="本標題的永久連結">¶</a></h3>
+<p>It is also possible to use a URI segment for the page number, instead of the page query parameter. Simply specify the
+segment number to use as the fourth argument. URIs generated by the pager would then look
+like <em>https://domain.tld/model/[pageNumber]</em> instead of <em>https://domain.tld/model?page=[pageNumber]</em>.:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">::</span>
+</pre></div>
+</div>
+<blockquote>
+<div>$users = $userModel-&gt;paginate(10, 『group1』, null, 3);</div></blockquote>
+<p>Please note: <code class="docutils literal notranslate"><span class="pre">$segment</span></code> value cannot be greater than the number of URI segments plus 1.</p>
+</div>
 <div class="section" id="manual-pagination">
 <h3>Manual Pagination<a class="headerlink" href="#manual-pagination" title="本標題的永久連結">¶</a></h3>
 <p>You may find times where you just need to create pagination based on known data. You can create links manually
@@ -442,7 +466,8 @@ sections.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?=</span> <span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">makeLinks</span><span class="p">(</span><span class="nv">$page</span><span class="p">,</span> <span class="nv">$perPage</span><span class="p">,</span> <span class="nv">$total</span><span class="p">,</span> <span class="s1">&#39;template_name&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span>
 </pre></div>
 </div>
-<p>It is also possible to use a URI segment for the page number, instead of the page query parameter. Simply specify the segment number to use as the fifth parameter to <code class="docutils literal notranslate"><span class="pre">makeLinks()</span></code>. URIs generated by the pager would then look like <em>https://domain.tld/model/[pageNumber]</em> instead of <em>https://domain.tld/model?page=[pageNumber]</em>.:</p>
+<p>It is also possible to use a URI segment for the page number, instead of the page query parameter, as described in
+the previous section. Specify the segment number to use as the fifth parameter to <code class="docutils literal notranslate"><span class="pre">makeLinks()</span></code>.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?=</span> <span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">makeLinks</span><span class="p">(</span><span class="nv">$page</span><span class="p">,</span> <span class="nv">$perPage</span><span class="p">,</span> <span class="nv">$total</span><span class="p">,</span> <span class="s1">&#39;template_name&#39;</span><span class="p">,</span> <span class="nv">$segment</span><span class="p">)</span> <span class="cp">?&gt;</span>
 </pre></div>
 </div>
@@ -527,13 +552,13 @@ usefulness. It is easiest to demonstrate creating a new view by showing you the 
     <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pagination&quot;</span><span class="p">&gt;</span>
     <span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">hasPrevious</span><span class="p">())</span> <span class="o">:</span> <span class="cp">?&gt;</span>
         <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">getFirst</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;First&quot;</span><span class="p">&gt;</span>
-                <span class="p">&lt;</span><span class="nt">span</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span>First<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">getFirst</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Pager.first&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">span</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Pager.first&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
             <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
         <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">getPrevious</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;Previous&quot;</span><span class="p">&gt;</span>
-                <span class="p">&lt;</span><span class="nt">span</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span><span class="ni">&amp;laquo;</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">getPrevious</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Pager.previous&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">span</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Pager.previous&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
             <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
         <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
     <span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
@@ -548,13 +573,13 @@ usefulness. It is easiest to demonstrate creating a new view by showing you the 
 
     <span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">hasNext</span><span class="p">())</span> <span class="o">:</span> <span class="cp">?&gt;</span>
         <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">getNext</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;Previous&quot;</span><span class="p">&gt;</span>
-                <span class="p">&lt;</span><span class="nt">span</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span><span class="ni">&amp;raquo;</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">getNext</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Pager.next&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">span</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Pager.next&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
             <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
         <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">getLast</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;Last&quot;</span><span class="p">&gt;</span>
-                <span class="p">&lt;</span><span class="nt">span</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span>Last<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">getLast</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Pager.last&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">span</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Pager.last&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
             <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
         <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
     <span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
@@ -587,6 +612,53 @@ title, which is just the number, and a boolean that tells whether the link is th
 <span class="p">];</span>
 </pre></div>
 </div>
+<p>In the code presented for the standard pagination structure, the methods <code class="docutils literal notranslate"><span class="pre">getPrevious()</span></code> and <code class="docutils literal notranslate"><span class="pre">getNext()</span></code> are used to obtain the links to the previous and next pagination groups respectively.</p>
+<p>If you want to use the pagination structure where prev and next will be links to the previous and next pages based on the current page, just replace the <code class="docutils literal notranslate"><span class="pre">getPrevious()</span></code> and <code class="docutils literal notranslate"><span class="pre">getNext()</span></code> methods with <code class="docutils literal notranslate"><span class="pre">getPreviousPage()</span></code> and <code class="docutils literal notranslate"><span class="pre">getNextPage()</span></code>, and the methods <code class="docutils literal notranslate"><span class="pre">hasPrevious()</span></code> and <code class="docutils literal notranslate"><span class="pre">hasNext()</span></code> by <code class="docutils literal notranslate"><span class="pre">hasPreviousPage()</span></code> and <code class="docutils literal notranslate"><span class="pre">hasNextPage()</span></code> respectively.</p>
+<p>See following an example with these changes:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">nav</span> <span class="nx">aria</span><span class="o">-</span><span class="nx">label</span><span class="o">=</span><span class="s2">&quot;&lt;?= lang(&#39;Pager.pageNavigation&#39;) ?&gt;&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">ul</span> <span class="nx">class</span><span class="o">=</span><span class="s2">&quot;pagination&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">hasPreviousPage</span><span class="p">())</span> <span class="o">:</span> <span class="cp">?&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">getFirst</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Pager.first&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Pager.first&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">getPreviousPage</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Pager.previous&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Pager.previous&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
+
+        <span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">links</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$link</span><span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span> <span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$link</span><span class="p">[</span><span class="s1">&#39;active&#39;</span><span class="p">]</span> <span class="o">?</span> <span class="s1">&#39;class=&quot;active&quot;&#39;</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span> <span class="cp">?&gt;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$link</span><span class="p">[</span><span class="s1">&#39;uri&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="s">&quot;</span><span class="p">&gt;</span>
+                    <span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$link</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
+
+        <span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">hasNextPage</span><span class="p">())</span> <span class="o">:</span> <span class="cp">?&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">getNextPage</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Pager.next&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Pager.next&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$pager</span><span class="o">-&gt;</span><span class="na">getLast</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Pager.last&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Pager.last&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><strong>hasPreviousPage()</strong> &amp; <strong>hasNextPage()</strong></p>
+<p>This method returns a boolean true if there are links to a page before and after, respectively, the current page being displayed.</p>
+<p>Their difference to <code class="docutils literal notranslate"><span class="pre">hasPrevious()</span></code> and <code class="docutils literal notranslate"><span class="pre">hasNext()</span></code> is that they are based on the current page while <code class="docutils literal notranslate"><span class="pre">hasPrevious()</span></code> and <code class="docutils literal notranslate"><span class="pre">hasNext()</span></code> are based on the set of links to be displayed before and after the current page based on the value passed in <code class="docutils literal notranslate"><span class="pre">setSurroundCount</span></code>.</p>
+<p><strong>getPreviousPage()</strong> &amp; <strong>getNextPage()</strong></p>
+<p>These methods return a URL for the previous and next pages in relation to the current page being displayed, unlike <code class="docutils literal notranslate"><span class="pre">getPrevious()</span></code> and <code class="docutils literal notranslate"><span class="pre">getNext()</span></code> that return the URL for the previous or next pages of results on either side of the numbered links. See the previous paragraph for a full explanation.</p>
 </div>
 </div>
 </div>
@@ -613,7 +685,7 @@ title, which is just the number, and a boolean that tells whether the link is th
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月30日。
+        最後更新於 2020年05月04日。
       </span>
 
     </p>

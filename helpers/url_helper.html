@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>URL Helper &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>URL Helper &mdash; CodeIgniter4 4.0.3 說明文件</title>
   
 
   
@@ -98,7 +98,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_git.html">Git 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
@@ -160,17 +159,17 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">Building Responses</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">Views</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">View Cells</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">View Renderer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">View Layouts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">View Parser</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML Table Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP Responses</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API Response Trait</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">Localization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">建構響應</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">視圖</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">視圖單元</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">視圖渲染</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">視圖布局</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">視圖解釋器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 表格類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 響應</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 響應特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">本土化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">用於視圖檔案的 PHP 語法</a></li>
 </ul>
 </li>
 </ul>
@@ -437,14 +436,14 @@ We use this for unit testing the framework itself.</p>
 the <em>indexPage</em> being appended.</p>
 <p>Also like <a class="reference internal" href="#site_url" title="site_url"><code class="xref php php-func docutils literal notranslate"><span class="pre">site_url()</span></code></a>, you can supply segments as a string or
 an array. Here is a string example:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">base_url</span><span class="p">(</span><span class="s2">&quot;blog/post/123&quot;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">base_url</span><span class="p">(</span><span class="s1">&#39;blog/post/123&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The above example would return something like:
 <em>http://example.com/blog/post/123</em></p>
 <p>This is useful because unlike <a class="reference internal" href="#site_url" title="site_url"><code class="xref php php-func docutils literal notranslate"><span class="pre">site_url()</span></code></a>, you can supply a
 string to a file, such as an image or stylesheet. For example:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">base_url</span><span class="p">(</span><span class="s2">&quot;images/icons/edit.png&quot;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">base_url</span><span class="p">(</span><span class="s1">&#39;images/icons/edit.png&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>This would give you something like:
@@ -466,7 +465,7 @@ string to a file, such as an image or stylesheet. For example:</p>
 <tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">The current URL</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string|URI</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string|\CodeIgniter\HTTP\URI</p>
 </td>
 </tr>
 </tbody>
@@ -475,8 +474,10 @@ string to a file, such as an image or stylesheet. For example:</p>
 viewed.</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">Calling this function is the same as doing this::
-base_url(uri_string());</p>
+<p>Calling this function is the same as doing this:</p>
+<div class="last highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">base_url</span><span class="p">(</span><span class="nx">uri_string</span><span class="p">());</span>
+</pre></div>
+</div>
 </div>
 </dd></dl>
 
@@ -495,7 +496,7 @@ base_url(uri_string());</p>
 <tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">The URL the user was previously on</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string|URI</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string|mixed|\CodeIgniter\HTTP\URI</p>
 </td>
 </tr>
 </tbody>
@@ -539,14 +540,14 @@ For example, if your URL was this:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$altConfig</strong> (<em>ConfigApp</em>) – Alternate configuration to use</li>
+<li><strong>$altConfig</strong> (<em>\Config\App</em>) – Alternate configuration to use</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">『index_page』 value</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">mixed</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
 </td>
 </tr>
 </tbody>
@@ -573,7 +574,7 @@ We use this for unit testing the framework itself.</p>
 <li><strong>$uri</strong> (<em>mixed</em>) – URI string or array of URI segments</li>
 <li><strong>$title</strong> (<em>string</em>) – Anchor title</li>
 <li><strong>$attributes</strong> (<em>mixed</em>) – HTML attributes</li>
-<li><strong>$altConfig</strong> (<em>ConfigApp</em>) – Alternate configuration to use</li>
+<li><strong>$altConfig</strong> (<em>\Config\App</em>) – Alternate configuration to use</li>
 </ul>
 </td>
 </tr>
@@ -633,7 +634,7 @@ We use this for unit testing the framework itself.</p>
 <li><strong>$uri</strong> (<em>string</em>) – URI string</li>
 <li><strong>$title</strong> (<em>string</em>) – Anchor title</li>
 <li><strong>$attributes</strong> (<em>mixed</em>) – HTML attributes</li>
-<li><strong>$altConfig</strong> (<em>ConfigApp</em>) – Alternate configuration to use</li>
+<li><strong>$altConfig</strong> (<em>\Config\App</em>) – Alternate configuration to use</li>
 </ul>
 </td>
 </tr>
@@ -652,19 +653,23 @@ If the third parameter is not set it will simply open a new window with
 your own browser settings.</p>
 <p>Here is an example with attributes:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$atts</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;width&#39;</span>       <span class="o">=&gt;</span> <span class="mi">800</span><span class="p">,</span>
-        <span class="s1">&#39;height&#39;</span>      <span class="o">=&gt;</span> <span class="mi">600</span><span class="p">,</span>
-        <span class="s1">&#39;scrollbars&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;yes&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;status&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;yes&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;resizable&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;yes&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;screenx&#39;</span>     <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s1">&#39;screeny&#39;</span>     <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s1">&#39;window_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;_blank&#39;</span>
+    <span class="s1">&#39;width&#39;</span>       <span class="o">=&gt;</span> <span class="mi">800</span><span class="p">,</span>
+    <span class="s1">&#39;height&#39;</span>      <span class="o">=&gt;</span> <span class="mi">600</span><span class="p">,</span>
+    <span class="s1">&#39;scrollbars&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;yes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;status&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;yes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;resizable&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;yes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;screenx&#39;</span>     <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;screeny&#39;</span>     <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;window_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;_blank&#39;</span>
 <span class="p">];</span>
 
 <span class="k">echo</span> <span class="nx">anchor_popup</span><span class="p">(</span><span class="s1">&#39;news/local/123&#39;</span><span class="p">,</span> <span class="s1">&#39;Click Me!&#39;</span><span class="p">,</span> <span class="nv">$atts</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>As above, you may specify an alternate configuration.
+You may find the alternate configuration useful if generating links for a
+different site than yours, which contains different configuration preferences.
+We use this for unit testing the framework itself.</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
 <p>The above attributes are the function defaults so you only need to
@@ -686,10 +691,6 @@ method, which accepts either a window name or a window target.</p>
 <p class="last">Any other attribute than the listed above will be parsed as an
 HTML attribute to the anchor tag.</p>
 </div>
-<p>As above, you may specify an alternate configuration.
-You may find the alternate configuration useful if generating links for a
-different site than yours, which contains different configuration preferences.
-We use this for unit testing the framework itself.</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
 <p class="last">Attributes passed into the anchor_popup function are automatically escaped to protected against XSS attacks.</p>
@@ -820,8 +821,8 @@ The value can be TRUE or FALSE (boolean):</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
 <li><strong>$str</strong> (<em>string</em>) – Input string</li>
-<li><strong>$separator</strong> (<em>string</em>) – Word separator</li>
-<li><strong>$lowercase</strong> (<em>bool</em>) – Whether to transform the output string to lower-case</li>
+<li><strong>$separator</strong> (<em>string</em>) – Word separator (usually 『-『 or 『_』)</li>
+<li><strong>$lowercase</strong> (<em>bool</em>) – Whether to transform the output string to lowercase</li>
 </ul>
 </td>
 </tr>
@@ -845,7 +846,7 @@ title of your entries in the URL. Example:</p>
 are used. Preferred options are: <strong>-</strong> (dash) or <strong>_</strong> (underscore).</p>
 <p>Example:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$title</span>     <span class="o">=</span> <span class="s2">&quot;What&#39;s wrong with CSS?&quot;</span><span class="p">;</span>
-<span class="nv">$url_title</span> <span class="o">=</span> <span class="nx">url_title</span><span class="p">(</span><span class="nv">$title</span><span class="p">,</span> <span class="s1">&#39;underscore&#39;</span><span class="p">);</span>
+<span class="nv">$url_title</span> <span class="o">=</span> <span class="nx">url_title</span><span class="p">(</span><span class="nv">$title</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">);</span>
 <span class="c1">// Produces: Whats_wrong_with_CSS</span>
 </pre></div>
 </div>
@@ -853,8 +854,8 @@ are used. Preferred options are: <strong>-</strong> (dash) or <strong>_</strong>
 forced. By default they are not. Options are boolean TRUE/FALSE.</p>
 <p>Example:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$title</span>     <span class="o">=</span> <span class="s2">&quot;What&#39;s wrong with CSS?&quot;</span><span class="p">;</span>
-<span class="nv">$url_title</span> <span class="o">=</span> <span class="nx">url_title</span><span class="p">(</span><span class="nv">$title</span><span class="p">,</span> <span class="s1">&#39;underscore&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
-<span class="c1">// Produces: whats_wrong_with_css</span>
+<span class="nv">$url_title</span> <span class="o">=</span> <span class="nx">url_title</span><span class="p">(</span><span class="nv">$title</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+<span class="c1">// Produces: whats-wrong-with-css</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -912,7 +913,7 @@ is missing from a URL.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月30日。
+        最後更新於 2020年05月04日。
       </span>
 
     </p>

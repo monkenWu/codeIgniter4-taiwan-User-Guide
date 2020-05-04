@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>建立新聞 &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>建立新聞 &mdash; CodeIgniter4 4.0.3 說明文件</title>
   
 
   
@@ -98,7 +98,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_git.html">Git 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
@@ -160,17 +159,17 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">Building Responses</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">Views</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">View Cells</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">View Renderer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">View Layouts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">View Parser</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML Table Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP Responses</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API Response Trait</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">Localization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">建構響應</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">視圖</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">視圖單元</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">視圖渲染</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">視圖布局</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">視圖解釋器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 表格類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 響應</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 響應特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">本土化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">用於視圖檔案的 PHP 語法</a></li>
 </ul>
 </li>
 </ul>
@@ -356,7 +355,8 @@
 
 <span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">\Config\Services</span><span class="o">::</span><span class="na">validation</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">listErrors</span><span class="p">();</span> <span class="cp">?&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/news/create&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/news/create&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
+    <span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">csrf_field</span><span class="p">()</span> <span class="cp">?&gt;</span>
 
     <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;title&quot;</span><span class="p">&gt;</span>Title<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;input&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;title&quot;</span> <span class="p">/&gt;&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
@@ -369,7 +369,7 @@
 <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>你可能會覺得 <code class="docutils literal notranslate"><span class="pre">\Config\Services::validation()-&gt;listErrors()</span></code> 這個函數看起來很陌生。它能用於表單驗證相關的錯誤報告。</p>
+<p>你可能會覺得 <code class="docutils literal notranslate"><span class="pre">\Config\Services::validation()-&gt;listErrors()</span></code> 這個函數看起來很陌生。它能用於表單驗證相關的錯誤報告。而 <code class="docutils literal notranslate"><span class="pre">csrf_field()</span></code> 函數創建了一個帶有 CSRF 令牌的隱藏輸入框，有助於你預防一些常見的攻擊。</p>
 <p>回到你的 <code class="docutils literal notranslate"><span class="pre">News</span></code> 控制器。你將在這裡執行：檢查表單是否已經提交、提交的資料是否通過驗證，這兩項操作。我們使用 <a class="reference internal" href="../libraries/validation.html"><span class="doc">表單驗證</span></a> 程式庫進行驗證。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">()</span>
 <span class="p">{</span>
@@ -467,7 +467,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月30日。
+        最後更新於 2020年05月04日。
       </span>
 
     </p>

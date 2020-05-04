@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>靜態頁面 &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>靜態頁面 &mdash; CodeIgniter4 4.0.3 說明文件</title>
   
 
   
@@ -98,7 +98,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_git.html">Git 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
@@ -160,17 +159,17 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">Building Responses</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">Views</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">View Cells</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">View Renderer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">View Layouts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">View Parser</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML Table Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP Responses</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API Response Trait</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">Localization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">建構響應</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">視圖</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">視圖單元</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">視圖渲染</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">視圖布局</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">視圖解釋器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 表格類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 響應</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 響應特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">本土化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">用於視圖檔案的 PHP 語法</a></li>
 </ul>
 </li>
 </ul>
@@ -468,6 +467,10 @@
 <p>現在造訪 <code class="docutils literal notranslate"><span class="pre">home</span></code> 。它是不是正確將路由導向至控制器中的 <code class="docutils literal notranslate"><span class="pre">showme()</span></code> 方法呢？做得好！</p>
 <p>你應該可以看到類似於以下內容的畫面:</p>
 <img alt="../_images/tutorial1.png" class="align-center" src="../_images/tutorial1.png" />
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">當手動指定路由時，建議在 Routes.php 檔案中設定 <code class="docutils literal notranslate"><span class="pre">$routes-&gt;setAutoRoute(false);</span></code> 禁用自動路由。這樣可以確保只有你定義的路由可以被造訪。</p>
+</div>
 </div>
 </div>
 
@@ -493,7 +496,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月30日。
+        最後更新於 2020年05月04日。
       </span>
 
     </p>

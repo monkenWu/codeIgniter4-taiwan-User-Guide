@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Alternate PHP Syntax for View Files &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>用於視圖檔案的 PHP 語法 &mdash; CodeIgniter4 4.0.3 說明文件</title>
   
 
   
@@ -41,7 +41,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="資料庫操作" href="../database/index.html" />
-    <link rel="prev" title="Localization" href="localization.html" /> 
+    <link rel="prev" title="本土化" href="localization.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -98,7 +98,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_git.html">Git 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
@@ -160,17 +159,17 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Building Responses</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="views.html">Views</a></li>
-<li class="toctree-l2"><a class="reference internal" href="view_cells.html">View Cells</a></li>
-<li class="toctree-l2"><a class="reference internal" href="view_renderer.html">View Renderer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="view_layouts.html">View Layouts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="view_parser.html">View Parser</a></li>
-<li class="toctree-l2"><a class="reference internal" href="table.html">HTML Table Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="response.html">HTTP Responses</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api_responses.html">API Response Trait</a></li>
-<li class="toctree-l2"><a class="reference internal" href="localization.html">Localization</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Alternate PHP Syntax for View Files</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">建構響應</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="views.html">視圖</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_cells.html">視圖單元</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_renderer.html">視圖渲染</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_layouts.html">視圖布局</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_parser.html">視圖解釋器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="response.html">HTTP 響應</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_responses.html">API 響應特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="localization.html">本土化</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">用於視圖檔案的 PHP 語法</a></li>
 </ul>
 </li>
 </ul>
@@ -327,9 +326,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Building Responses</a> &raquo;</li>
+          <li><a href="index.html">建構響應</a> &raquo;</li>
         
-      <li>Alternate PHP Syntax for View Files</li>
+      <li>用於視圖檔案的 PHP 語法</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -346,30 +345,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="alternate-php-syntax-for-view-files">
-<h1>Alternate PHP Syntax for View Files<a class="headerlink" href="#alternate-php-syntax-for-view-files" title="本標題的永久連結">¶</a></h1>
-<p>If you do not utilize a templating engine to simplify output,
-you’ll be using pure PHP in your
-View files. To minimize the PHP code in these files, and to make it
-easier to identify the code blocks it is recommended that you use PHPs
-alternative syntax for control structures and short tag echo statements.
-If you are not familiar with this syntax, it allows you to eliminate the
-braces from your code, and eliminate 「echo」 statements.</p>
-<div class="section" id="alternative-echos">
-<h2>Alternative Echos<a class="headerlink" href="#alternative-echos" title="本標題的永久連結">¶</a></h2>
-<p>Normally to echo, or print out a variable you would do this:</p>
+  <div class="section" id="php">
+<h1>用於視圖檔案的 PHP 語法<a class="headerlink" href="#php" title="本標題的永久連結">¶</a></h1>
+<p>如果你沒有利用樣板引擎來簡化輸出，你將可以在 View 檔案中使用純 PHP 進行渲染。為了盡量減少這些檔案中的 PHP 程式碼，並讓它成為更容易被識別的區塊，建議你使用 PHP 替代語法來簡化控制結構以及 echo 語句。</p>
+<div class="section" id="echo">
+<h2>替代 Echo<a class="headerlink" href="#echo" title="本標題的永久連結">¶</a></h2>
+<p>通常的情況下，如果你需要使用 echo 或者是輸出一個變數，你可能會這麼做：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nv">$variable</span><span class="p">;</span> <span class="cp">?&gt;</span>
 </pre></div>
 </div>
-<p>With the alternative syntax you can instead do it this way:</p>
+<p>使用替代語法，你就能這麼簡化它：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?=</span> <span class="nv">$variable</span> <span class="cp">?&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="alternative-control-structures">
-<h2>Alternative Control Structures<a class="headerlink" href="#alternative-control-structures" title="本標題的永久連結">¶</a></h2>
-<p>Controls structures, like if, for, foreach, and while can be written in
-a simplified format as well. Here is an example using <code class="docutils literal notranslate"><span class="pre">foreach</span></code>:</p>
+<div class="section" id="id1">
+<h2>替代控制結構<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h2>
+<p>在控制結構中，如：if 、for 、foreach ，以及 while ，也可以使用簡化的方式撰寫，我們來舉個 <code class="docutils literal notranslate"><span class="pre">foreach</span></code> 的簡化範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
 
 <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$todo</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span>
@@ -381,12 +373,9 @@ a simplified format as well. Here is an example using <code class="docutils lite
 <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>Notice that there are no braces. Instead, the end brace is replaced with
-<code class="docutils literal notranslate"><span class="pre">endforeach</span></code>. Each of the control structures listed above has a similar
-closing syntax: <code class="docutils literal notranslate"><span class="pre">endif</span></code>, <code class="docutils literal notranslate"><span class="pre">endfor</span></code>, <code class="docutils literal notranslate"><span class="pre">endforeach</span></code>, and <code class="docutils literal notranslate"><span class="pre">endwhile</span></code></p>
-<p>Also notice that instead of using a semicolon after each structure
-(except the last one), there is a colon. This is important!</p>
-<p>Here is another example, using <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elseif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code>. Notice the colons:</p>
+<p>注意，簡化語法將省略大括弧。相反的，結構語句後頭緊接著的括弧被話成了冒號與 <code class="docutils literal notranslate"><span class="pre">endforeach</span></code> 。上面所列出的控制結構都有相應的結束於法： <code class="docutils literal notranslate"><span class="pre">endif</span></code> 、 <code class="docutils literal notranslate"><span class="pre">endfor</span></code> 、 <code class="docutils literal notranslate"><span class="pre">endforeach</span></code> ，以及 <code class="docutils literal notranslate"><span class="pre">endwhile</span></code> 。</p>
+<p>另外，請注意在每個控制結構之後（除了最後一個結構以外）不要使用分號結束，要使用冒號，這一點非常重要！</p>
+<p>這裡再舉個　<code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elseif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code>　的例子，請注意分號的使用方式：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$username</span> <span class="o">===</span> <span class="s1">&#39;sally&#39;</span><span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span>
 
         <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Hi Sally<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
@@ -416,7 +405,7 @@ closing syntax: <code class="docutils literal notranslate"><span class="pre">end
         <a href="../database/index.html" class="btn btn-neutral float-right" title="資料庫操作" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="localization.html" class="btn btn-neutral float-left" title="Localization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="localization.html" class="btn btn-neutral float-left" title="本土化" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -427,7 +416,7 @@ closing syntax: <code class="docutils literal notranslate"><span class="pre">end
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月30日。
+        最後更新於 2020年05月04日。
       </span>
 
     </p>

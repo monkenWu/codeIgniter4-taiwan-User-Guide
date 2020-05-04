@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>控制器 &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>控制器 &mdash; CodeIgniter4 4.0.3 說明文件</title>
   
 
   
@@ -98,7 +98,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_git.html">Git 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
@@ -160,17 +159,17 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">Building Responses</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">Views</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">View Cells</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">View Renderer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">View Layouts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">View Parser</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML Table Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP Responses</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API Response Trait</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">Localization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">建構響應</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">視圖</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">視圖單元</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">視圖渲染</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">視圖布局</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">視圖解釋器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 表格類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 響應</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 響應特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">本土化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">用於視圖檔案的 PHP 語法</a></li>
 </ul>
 </li>
 </ul>
@@ -441,6 +440,20 @@
 </pre></div>
 </div>
 <p>另外，一定要確保你的控制器擴展了父控制器類別，這樣它才可以繼承所有的方法。</p>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p>The system will attempt to match the URI against Controllers by matching each segment against
+folders/files in APPPATH/Controllers, when a match wasn’t found against defined routes.
+That’s why your folders/files MUST start with a capital letter and the rest MUST be lowercase.
+If you want another naming convention you need to manually define it using the
+<a class="reference internal" href="routing.html"><span class="doc">URI Routing</span></a> feature.</p>
+<p>Here is an example based on PSR-4: Autoloader:</p>
+<div class="last highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">\</span><span class="o">&lt;</span><span class="nx">NamespaceName</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">\</span><span class="o">&lt;</span><span class="nx">SubNamespaceNames</span><span class="o">&gt;</span><span class="p">)</span><span class="o">*</span><span class="nx">\</span><span class="o">&lt;</span><span class="nx">ClassName</span><span class="o">&gt;</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;helloworld&#39;</span><span class="p">,</span> <span class="s1">&#39;App\Controllers\HelloWorld::index&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="id4">
 <h2><a class="toc-backref" href="#id15">方法</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
@@ -582,6 +595,14 @@
 <h2><a class="toc-backref" href="#id20">將您的控制器組織成子目錄</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h2>
 <p>如果你正在構建一個大型的應用程式，你可能會希望將控制器分層組織或結構化為子目錄。CodeIgniter 可以讓你達成這個目的。</p>
 <p>只需在主要的 <em>app/Controllers/</em> 目錄下創建子目錄，然後將你的控制器類別放進去。</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">Folder names MUST start with an uppercase letter and ONLY the first character can be uppercase.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">使用此功能時，URI的第一段必須要指定資料夾。例如，假設你有一個控制器位於這裡：</p>
+</div>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span>        <span class="nx">app</span><span class="o">/</span><span class="nx">Controllers</span><span class="o">/</span><span class="nx">products</span><span class="o">/</span><span class="nx">Shoes</span><span class="o">.</span><span class="nx">php</span>
 
 <span class="nx">要呼叫上面的控制器，你的</span> <span class="nx">URI</span> <span class="nx">會看起來像這樣：</span>
@@ -700,7 +721,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月30日。
+        最後更新於 2020年05月04日。
       </span>
 
     </p>

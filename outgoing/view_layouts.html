@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>View Layouts &mdash; CodeIgniter4 4.0.2 說明文件</title>
+  <title>視圖布局 &mdash; CodeIgniter4 4.0.3 說明文件</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="View Parser" href="view_parser.html" />
-    <link rel="prev" title="View Renderer" href="view_renderer.html" /> 
+    <link rel="next" title="視圖解釋器" href="view_parser.html" />
+    <link rel="prev" title="視圖渲染" href="view_renderer.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -98,7 +98,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_git.html">Git 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
@@ -160,17 +159,17 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Building Responses</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="views.html">Views</a></li>
-<li class="toctree-l2"><a class="reference internal" href="view_cells.html">View Cells</a></li>
-<li class="toctree-l2"><a class="reference internal" href="view_renderer.html">View Renderer</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">View Layouts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="view_parser.html">View Parser</a></li>
-<li class="toctree-l2"><a class="reference internal" href="table.html">HTML Table Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="response.html">HTTP Responses</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api_responses.html">API Response Trait</a></li>
-<li class="toctree-l2"><a class="reference internal" href="localization.html">Localization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">建構響應</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="views.html">視圖</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_cells.html">視圖單元</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_renderer.html">視圖渲染</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">視圖布局</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_parser.html">視圖解釋器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="response.html">HTTP 響應</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_responses.html">API 響應特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="localization.html">本土化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">用於視圖檔案的 PHP 語法</a></li>
 </ul>
 </li>
 </ul>
@@ -327,9 +326,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Building Responses</a> &raquo;</li>
+          <li><a href="index.html">建構響應</a> &raquo;</li>
         
-      <li>View Layouts</li>
+      <li>視圖布局</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -346,14 +345,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="view-layouts">
-<h1>View Layouts<a class="headerlink" href="#view-layouts" title="本標題的永久連結">¶</a></h1>
-<div class="contents local topic" id="id1">
+  <div class="section" id="id1">
+<h1>視圖布局<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#creating-a-layout" id="id2">Creating A Layout</a></li>
-<li><a class="reference internal" href="#using-layouts-in-views" id="id3">Using Layouts in Views</a></li>
-<li><a class="reference internal" href="#rendering-the-view" id="id4">Rendering the View</a></li>
-<li><a class="reference internal" href="#including-view-partials" id="id5">Including View Partials</a></li>
+<li><a class="reference internal" href="#creating-a-layout" id="id3">Creating A Layout</a></li>
+<li><a class="reference internal" href="#using-layouts-in-views" id="id4">Using Layouts in Views</a></li>
+<li><a class="reference internal" href="#rendering-the-view" id="id5">Rendering the View</a></li>
+<li><a class="reference internal" href="#including-view-partials" id="id6">Including View Partials</a></li>
 </ul>
 </div>
 <p>CodeIgniter supports a simple, yet very flexible, layout system that makes it simple to use one or more
@@ -362,7 +361,7 @@ any view being rendered. You could create different layouts to support one-colum
 blog archive pages, and more. Layouts are never directly rendered. Instead, you render a view, which
 specifies the layout that it wants to extend.</p>
 <div class="section" id="creating-a-layout">
-<h2><a class="toc-backref" href="#id2">Creating A Layout</a><a class="headerlink" href="#creating-a-layout" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Creating A Layout</a><a class="headerlink" href="#creating-a-layout" title="本標題的永久連結">¶</a></h2>
 <p>Layouts are views like any other. The only difference is their intended usage. Layouts are the only view
 files that would make use of the <code class="docutils literal notranslate"><span class="pre">renderSection()</span></code> method. This method acts as a placeholder for content.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;!</span><span class="nx">doctype</span> <span class="nx">html</span><span class="o">&gt;</span>
@@ -380,7 +379,7 @@ files that would make use of the <code class="docutils literal notranslate"><spa
 what to name the content section.</p>
 </div>
 <div class="section" id="using-layouts-in-views">
-<h2><a class="toc-backref" href="#id3">Using Layouts in Views</a><a class="headerlink" href="#using-layouts-in-views" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Using Layouts in Views</a><a class="headerlink" href="#using-layouts-in-views" title="本標題的永久連結">¶</a></h2>
 <p>Whenever a view wants to be inserted into a layout, it must use the <code class="docutils literal notranslate"><span class="pre">extend()</span></code> method at the top of the file:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">extend</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span>
 </pre></div>
@@ -404,7 +403,7 @@ matches the section name exists.:</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">endSection()</span></code> does not need the section name. It automatically knows which one to close.</p>
 </div>
 <div class="section" id="rendering-the-view">
-<h2><a class="toc-backref" href="#id4">Rendering the View</a><a class="headerlink" href="#rendering-the-view" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Rendering the View</a><a class="headerlink" href="#rendering-the-view" title="本標題的永久連結">¶</a></h2>
 <p>Rendering the view and it’s layout is done exactly as any other view would be displayed within a controller:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
 <span class="p">{</span>
@@ -415,7 +414,7 @@ matches the section name exists.:</p>
 <p>The renderer is smart enough to detect whether the view should be rendered on its own, or if it needs a layout.</p>
 </div>
 <div class="section" id="including-view-partials">
-<h2><a class="toc-backref" href="#id5">Including View Partials</a><a class="headerlink" href="#including-view-partials" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">Including View Partials</a><a class="headerlink" href="#including-view-partials" title="本標題的永久連結">¶</a></h2>
 <p>View partials are view files that do not extend any layout. They typically include content that can be reused from
 view to view. When using view layouts you must use <code class="docutils literal notranslate"><span class="pre">$this-&gt;include()</span></code> to include any view partials.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">extend</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span>
@@ -440,10 +439,10 @@ cache directives, etc.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="view_parser.html" class="btn btn-neutral float-right" title="View Parser" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="view_parser.html" class="btn btn-neutral float-right" title="視圖解釋器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="view_renderer.html" class="btn btn-neutral float-left" title="View Renderer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="view_renderer.html" class="btn btn-neutral float-left" title="視圖渲染" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -454,7 +453,7 @@ cache directives, etc.</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年04月30日。
+        最後更新於 2020年05月04日。
       </span>
 
     </p>
