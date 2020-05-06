@@ -1,46 +1,38 @@
-Request Class
+Request 類別
 ****************************************************
 
-The request class is an object-oriented representation of an HTTP request. This is meant to
-work for both incoming, such as a request to the application from a browser, and outgoing requests,
-like would be used to send a request from the application to a third-party application. This class
-provides the common functionality they both need, but both cases have custom classes that extend
-from the Request class to add specific functionality.
+請求類別是 HTTP 請求的物件導向表現形式。這意味著它可以用於傳入請求（例如來自瀏覽器的請求），以及發出請求，（例如從應用程式發到第三方應用程式）。
+這個類別提供了它們共同需要的功能，但是這兩者也都有各自繼承 Request 類別，然後分別添加特定的功能。
 
-See the documentation for the :doc:`IncomingRequest Class </incoming/incomingrequest>` and
-:doc:`CURLRequest Class </libraries/curlrequest>` for more usage details.
+想了解更多請到 :doc:`IncomingRequest 類別 </incoming/incomingrequest>` 和
+:doc:`CURLRequest 類別 </libraries/curlrequest>` 。
 
-Class Reference
+類別參考
 ============================================================
 
 .. php:class:: CodeIgniter\\HTTP\\Request
 
     .. php:method:: getIPAddress()
 
-        :returns: The user's IP Address, if it can be detected, or null. If the IP address
-                    is not a valid IP address, then will return 0.0.0.0
+        :returns: 可以偵測到的使用者的 IP 地址，否則為 NULL ，如果 IP 地址無效，則返回 0.0.0.0
         :rtype:   string
 
-        Returns the IP address for the current user. If the IP address is not valid, the method
-        will return '0.0.0.0'::
+        可以偵測到的使用者的 IP 地址，否則為 NULL ，如果 IP 地址無效，則返回 0.0.0.0::
 
             echo $request->getIPAddress();
 
-        .. important:: This method takes into account the ``App->proxyIPs`` setting and will
-            return the reported HTTP_X_FORWARDED_FOR, HTTP_CLIENT_IP, HTTP_X_CLIENT_IP, or
-            HTTP_X_CLUSTER_CLIENT_IP address for the allowed IP address.
-
+        .. important:: 此方法會根據 ``App->proxyIPs`` 的設定，來返回 HTTP_X_FORWARDED_FOR、 HTTP_CLIENT_IP、HTTP_X_CLIENT_IP 或H TTP_X_CLUSTER_CLIENT_IP。
+            
     .. php:method:: isValidIP($ip[, $which = ''])
 
-        :param    string $ip: IP address
-        :param    string $which: IP protocol ('ipv4' or 'ipv6')
-        :returns: true if the address is valid, false if not
+        :param    string $ip: IP 地址
+        :param    string $which: IP 協議 ('ipv4' 或是 'ipv6')
+        :returns: IP 有效返回 true，否則返回 false
         :rtype:   bool
 
-        Takes an IP address as input and returns true or false (boolean) depending
-        on whether it is valid or not.
+        傳入一個 IP 地址，根據 IP 是否有效返回 true 或 false。
 
-        .. note:: The $request->getIPAddress() method above automatically validates the IP address.
+        .. note:: $request->getIPAddress() 自動檢測 IP 地址是否有效。
 
             ::
 
@@ -53,17 +45,15 @@ Class Reference
                     echo 'Valid';
                 }
 
-        Accepts an optional second string parameter of 'ipv4' or 'ipv6' to specify
-        an IP format. The default checks for both formats.
+        第二個參數可選，可以為 'ipv4' 或 'ipv6'，預設這兩種格式皆會檢查。
 
     .. php:method:: getMethod([$upper = FALSE])
 
-        :param bool $upper: Whether to return the request method name in upper or lower case
-        :returns: HTTP request method
+        :param bool $upper: 以大寫還是小寫回傳方法名，TRUE 表示大寫
+        :returns: HTTP 請求方法
         :rtype: string
 
-        Returns the ``$_SERVER['REQUEST_METHOD']``, with the option to set it
-        in uppercase or lowercase.
+        回傳 ``$_SERVER['REQUEST_METHOD']``，並且轉換字母到指定大寫或小寫。
         ::
 
             echo $request->getMethod(TRUE); // Outputs: POST
@@ -72,64 +62,59 @@ Class Reference
 
     .. php:method:: setMethod($method)
 
-        :param string $upper: Sets the request method. Used when spoofing the request.
-        :returns: HTTP request method
+        :param string $upper: 設定請求得方法，用於偽裝請求。
+        :returns: HTTP 請求方法
         :rtype: Request
 
     .. php:method:: getServer([$index = null[, $filter = null[, $flags = null]]])
 
-        :param    mixed     $index: Value name
-        :param    int       $filter: The type of filter to apply. A list of filters can be found `here <https://www.php.net/manual/en/filter.filters.php>`__.
-        :param    int|array $flags: Flags to apply. A list of flags can be found `here <https://www.php.net/manual/en/filter.filters.flags.php>`__.
-        :returns: $_SERVER item value if found, NULL if not
+        :param    mixed     $index: 變數名稱
+        :param    int       $filter: 要使用的過濾器類型，完整列表 `見此 <https://www.php.net/manual/en/filter.filters.php>`__.
+        :param    int|array $flags: 要使用的過濾器的 ID，完整列表 `見此 <https://www.php.net/manual/en/filter.filters.flags.php>`__.
+        :returns: $_SERVER 值，如果不存在則返回 NULL。
         :rtype:   mixed
 
-        This method is identical to the ``post()``, ``get()`` and ``cookie()`` methods from the
-        :doc:`IncomingRequest Class </incoming/incomingrequest>`, only it fetches getServer data (``$_SERVER``)::
+        該方法與 :doc:`IncomingRequest 類別 </incoming/incomingrequest>` 中的 ``post()``、``get()`` 和 ``cookie()`` 方法相同。只是它只獲取 getServer 的資料 (``$_SERVER``)::
 
             $request->getServer('some_data');
 
-        To return an array of multiple ``$_SERVER`` values, pass all the required keys
-        as an array.
+        要回傳多個 ``$_SERVER`` 值的陣列，請將所有的鍵值以陣列傳遞。
         ::
 
             $require->getServer(['SERVER_PROTOCOL', 'REQUEST_URI']);
 
     .. php:method:: getEnv([$index = null[, $filter = null[, $flags = null]]])
 
-        :param    mixed     $index: Value name
-        :param    int       $filter: The type of filter to apply. A list of filters can be found `here <https://www.php.net/manual/en/filter.filters.php>`__.
-        :param    int|array $flags: Flags to apply. A list of flags can be found `here <https://www.php.net/manual/en/filter.filters.flags.php>`__.
-        :returns: $_ENV item value if found, NULL if not
+        :param    mixed     $index: 變數名稱
+        :param    int       $filter: 要使用的過濾器類型，完整列表 `見此 <https://www.php.net/manual/en/filter.filters.php>`__.
+        :param    int|array $flags: 要使用的過濾器的 ID，完整列表 `見此 <https://www.php.net/manual/en/filter.filters.flags.php>`__.
+        :returns: $_ENV 值，如果不存在則返回 NULL。
         :rtype:   mixed
 
-        This method is identical to the ``post()``, ``get()`` and ``cookie()`` methods from the
-        :doc:`IncomingRequest Class </incoming/incomingrequest>`, only it fetches getEnv data (``$_ENV``)::
+         該方法與 :doc:`IncomingRequest 類別 </incoming/incomingrequest>` 中的 ``post()``、``get()`` 和 ``cookie()`` 方法相同。只是它只獲取 getEnv 的資料 (``$_ENV``)::
 
             $request->getEnv('some_data');
 
-        To return an array of multiple ``$_ENV`` values, pass all the required keys
-        as an array.
+        要回傳多個 ``$_ENV`` 值的陣列，請將所有的需要的鍵值以陣列傳遞。
         ::
 
             $require->getEnv(['CI_ENVIRONMENT', 'S3_BUCKET']);
 
     .. php:method:: setGlobal($method, $value)
 
-        :param    string $method: Method name
-        :param    mixed  $value:  Data to be added
-        :returns: HTTP request method
+        :param    string $method: 方法名稱
+        :param    mixed  $value:  需要被加入的資料
+        :returns: HTTP 請求方法
         :rtype:	Request
 
-        Allows manually setting the value of PHP global, like $_GET, $_POST, etc.
+        允許手動設定 PHP 全域的值，如 $_GET、$_POST 等。
 
     .. php:method:: fetchGlobal($method [, $index = null[, $filter = null[, $flags = null]]])
 
-        :param    string    $method: Input filter constant
-        :param    mixed     $index: Value name
-        :param    int       $filter: The type of filter to apply. A list of filters can be found `here <https://www.php.net/manual/en/filter.filters.php>`__.
-        :param    int|array $flags: Flags to apply. A list of flags can be found `here <https://www.php.net/manual/en/filter.filters.flags.php>`__.
+        :param    string    $method: 輸入過濾器常數
+        :param    mixed     $index: 值的名稱
+        :param    int       $filter: 要使用的過濾器類型，完整列表 `見此 <https://www.php.net/manual/en/filter.filters.php>`__.
+        :param    int|array $flags: 要使用的過濾器的 ID，完整列表 `見此 <https://www.php.net/manual/en/filter.filters.flags.php>`__.
         :rtype:   mixed
 
-        Fetches one or more items from a global, like cookies, get, post, etc.
-        Can optionally filter the input when you retrieve it by passing in a filter.
+        從全域中獲取一個或多個物件，如 cookie、get、post 等，可以選擇在檢索時通過過濾器對輸入進行過濾。
