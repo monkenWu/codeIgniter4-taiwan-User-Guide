@@ -341,177 +341,167 @@ The second parameter is the class name to instantiate.
 
 	.. php:method:: getResult([$type = 'object'])
 
-		:param	string	$type: Type of requested results - array, object, or class name
-		:returns:	Array containing the fetched rows
+		:param	string	$type: 請求結果的類型 - 陣列、物件或類別名稱
+		:returns:	含有請求結果的陣列
 		:rtype:	array
 
-		A wrapper for the ``getResultArray()``, ``getResultObject()``
-		and ``getCustomResultObject()`` methods.
+		為 ``getResultArray()`` 、 ``getResultObject()`` 和 ``getCustomResultObject()`` 方法的包裝。
 
-		Usage: see `結果陣列`_.
+		詳細用法: `結果陣列`_
 
 	.. php:method:: getResultArray()
 
-		:returns:	Array containing the fetched rows
+		:returns:	含有請求結果的陣列
 		:rtype:	array
 
-		Returns the query results as an array of rows, where each
-		row is itself an associative array.
+		將查詢結果以陣列的方式回傳，陣列中的每個列都是一個關聯陣列。
 
-		Usage: see `結果陣列`_.
+		詳細用法: `結果陣列`_
 
 	.. php:method:: getResultObject()
 
-		:returns:	Array containing the fetched rows
+		:returns:	含有請求結果的陣列
 		:rtype:	array
 
-		Returns the query results as an array of rows, where each
-		row is an object of type ``stdClass``.
+		將查詢結果以陣列的方式回傳，陣列中的每個列都是 ``stdClass`` 的物件。
 
-		Usage: see `結果陣列`_.
+		詳細用法: `結果陣列`_
 
 	.. php:method:: getCustomResultObject($class_name)
 
-		:param	string	$class_name: Class name for the resulting rows
-		:returns:	Array containing the fetched rows
+		:param	string	$class_name: 查詢結果列的類別名稱
+		:returns:	含有請求結果的陣列
 		:rtype:	array
 
-		Returns the query results as an array of rows, where each
-		row is an instance of the specified class.
+		將查詢結果以陣列的方式回傳，陣列中的每個列都是所指定類別的實例。
 
 	.. php:method:: getRow([$n = 0[, $type = 'object']])
 
-		:param	int	$n: Index of the query results row to be returned
-		:param	string	$type: Type of the requested result - array, object, or class name
-		:returns:	The requested row or NULL if it doesn't exist
+		:param	int	$n: 要回傳的查詢結果的索引
+		:param	string	$type: 請求結果的類型 - 陣列、物件或類別名稱
+		:returns:	請求的列，如果不存在，則為 NULL
 		:rtype:	mixed
 
-		A wrapper for the ``getRowArray()``, ``getRowObject()`` and
-		``getCustomRowObject()`` methods.
+		為 ``getRowArray()`` 、 ``getRowObject()`` 和 ``getCustomRowObject()`` 方法的包裝。
 
-		Usage: see `結果列`_.
+		詳細用法: `結果陣列`_
 
 	.. php:method:: getUnbufferedRow([$type = 'object'])
 
-		:param	string	$type: Type of the requested result - array, object, or class name
-		:returns:	Next row from the result set or NULL if it doesn't exist
+		:param	string	$type: 請求結果的類型 - 陣列、物件或類別名稱
+		:returns:	從查詢結果集合回傳下一筆的列，如果不存在，則為 NULL
 		:rtype:	mixed
 
-		Fetches the next result row and returns it in the
-		requested form.
+		取得下一筆查詢結果的列，並以請求的形式回傳。
 
-		Usage: see `結果列`_.
+		詳細用法: `結果陣列`_
 
 	.. php:method:: getRowArray([$n = 0])
 
-		:param	int	$n: Index of the query results row to be returned
-		:returns:	The requested row or NULL if it doesn't exist
+		:param	int	$n: 要回傳的查詢結果的索引
+		:returns:	請求的列，如果不存在，則為 NULL
 		:rtype:	array
 
-		Returns the requested result row as an associative array.
+		以關聯陣列的方式回傳請求的結果列。
 
-		Usage: see `結果列`_.
+		詳細用法: `結果陣列`_
 
 	.. php:method:: getRowObject([$n = 0])
 
-		:param	int	$n: Index of the query results row to be returned
-                :returns:	The requested row or NULL if it doesn't exist
+		:param	int	$n: 要回傳的查詢結果的索引
+                :returns:	請求的列，如果不存在，則為 NULL
 		:rtype:	stdClass
 
-		Returns the requested result row as an object of type
-		``stdClass``.
+		以 ``stdClass`` 的物件方式回傳請求的結果列。
 
-		Usage: see `結果列`_.
+		詳細用法: `結果陣列`_
 
 	.. php:method:: getCustomRowObject($n, $type)
 
-		:param	int	$n: Index of the results row to return
-		:param	string	$class_name: Class name for the resulting row
-		:returns:	The requested row or NULL if it doesn't exist
+		:param	int	$n: 要回傳的查詢結果的索引
+		:param	string	$class_name: 查詢結果列的類別名稱
+		:returns:	請求的列，如果不存在，則為 NULL
 		:rtype:	$type
 
-		Returns the requested result row as an instance of the
-		requested class.
+		以所請求類別的實例回傳請求的結果列。
 
 	.. php:method:: dataSeek([$n = 0])
 
-		:param	int	$n: Index of the results row to be returned next
-		:returns:	TRUE on success, FALSE on failure
+		:param	int	$n: 下一個要回傳的結果列的索引
+		:returns:	TRUE 代表成功，FALSE 代表失敗
 		:rtype:	bool
 
-		Moves the internal results row pointer to the desired offset.
+		將內部結果列指針移動到所需要的偏移量。
 
-		Usage: see `結果輔助方法`_.
+		詳細用法: `結果輔助方法`_
 
 	.. php:method:: setRow($key[, $value = NULL])
 
-		:param	mixed	$key: Column name or array of key/value pairs
-		:param	mixed	$value: Value to assign to the column, $key is a single field name
+		:param	mixed	$key: 欄位名稱或鍵值陣列
+		:param	mixed	$value: 要分配給欄位的值， $key 是一個單一欄位的名稱
 		:rtype:	void
 
-		Assigns a value to a particular column.
+		分配數值給特定的欄位
 
 	.. php:method:: getNextRow([$type = 'object'])
 
-		:param	string	$type: Type of the requested result - array, object, or class name
-		:returns:	Next row of result set, or NULL if it doesn't exist
+		:param	string	$type: 請求結果的類型 - 陣列、物件或類別名稱
+		:returns:	查詢結果集合的下一筆列，如果不存在，則為 NULL
 		:rtype:	mixed
 
-		Returns the next row from the result set.
+		回傳查詢結果集合的下一筆列
 
 	.. php:method:: getPreviousRow([$type = 'object'])
 
-		:param	string	$type: Type of the requested result - array, object, or class name
-		:returns:	Previous row of result set, or NULL if it doesn't exist
+		:param	string	$type: 請求結果的類型 - 陣列、物件或類別名稱
+		:returns:	查詢結果集合的上一筆列，如果不存在，則為 NULL
 		:rtype:	mixed
 
-		Returns the previous row from the result set.
+		回傳查詢結果集合的上一筆列
 
 	.. php:method:: getFirstRow([$type = 'object'])
 
-		:param	string	$type: Type of the requested result - array, object, or class name
-		:returns:	First row of result set, or NULL if it doesn't exist
+		:param	string	$type: 請求結果的類型 - 陣列、物件或類別名稱
+		:returns:	查詢結果集合的第一筆列，如果不存在，則為 NULL
 		:rtype:	mixed
 
-		Returns the first row from the result set.
+		回傳查詢結果集合的第一筆列
 
 	.. php:method:: getLastRow([$type = 'object'])
 
-		:param	string	$type: Type of the requested result - array, object, or class name
-		:returns:	Last row of result set, or NULL if it doesn't exist
+		:param	string	$type: 請求結果的類型 - 陣列、物件或類別名稱
+		:returns:	查詢結果集合的最後一筆列，如果不存在，則為 NULL
 		:rtype:	mixed
 
-		Returns the last row from the result set.
+		回傳查詢結果集合的最後一筆列
 
 	.. php:method:: getFieldCount()
 
-		:returns:	Number of fields in the result set
+		:returns:	查詢結果集合中欄位的數量
 		:rtype:	int
 
-		Returns the number of fields in the result set.
+		回傳查詢結果集合中欄位的數量
 
-		Usage: see `結果輔助方法`_.
+		詳細用法: `結果輔助方法`__
 
     .. php:method:: getFieldNames()
 
-		:returns:	Array of column names
+		:returns:	欄位名稱的陣列
 		:rtype:	array
 
-		Returns an array containing the field names in the
-		result set.
+		回傳查詢結果集合中欄位名稱的陣列
 
 	.. php:method:: getFieldData()
 
-		:returns:	Array containing field meta-data
+		:returns:	詮釋資料欄位的陣列
 		:rtype:	array
 
-		Generates an array of ``stdClass`` objects containing
-		field meta-data.
+		產生包含詮釋資料欄位的 ``stdClass`` 物件陣列
 
 	.. php:method:: freeResult()
 
 		:rtype:	void
 
-		Frees a result set.
+		釋放查詢結果集合
 
-		Usage: see `結果輔助方法`_.
+		詳細用法: `結果輔助方法`_
