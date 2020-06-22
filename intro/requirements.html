@@ -150,11 +150,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP Messages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">Content Negotiation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP Method Spoofing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful Resource Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">內容協商</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 類型偽裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">處理 RESTful 請求資源</a></li>
 </ul>
 </li>
 </ul>
@@ -210,9 +210,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">Encryption Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">Honeypot Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
@@ -355,22 +355,22 @@
 <p>大部分的Web應用程式都需要資料庫，目前支援的資料庫如下：</p>
 <blockquote>
 <div><ul class="simple">
-<li>MySQL (5.1+) 通過 <em>MySQLi</em> 驅動。</li>
-<li>PostgreSQL 通過 <em>Postgre</em> 驅動。</li>
-<li>SQLite3 通過 <em>SQLite3</em> 驅動。</li>
+<li>MySQL (5.1+) 透過 <em>MySQLi</em> 驅動。</li>
+<li>PostgreSQL 透過 <em>Postgre</em> 驅動。</li>
+<li>SQLite3 透過 <em>SQLite3</em> 驅動。</li>
 </ul>
 </div></blockquote>
 <p>並不是所有的驅動都在CodeIgniter4進行了轉換或重構。以下將列出特別的項目：</p>
 <blockquote>
 <div><ul class="simple">
-<li>MySQL (5.1+) 通過 <em>pdo</em> 驅動。</li>
-<li>Oracle 通過 <em>oci8</em> 以及 <em>pdo</em> 驅動。</li>
-<li>PostgreSQL 通過　<em>pdo</em> 驅動。</li>
-<li>MS SQL 通過 <em>mssql</em>、<em>sqlsrv</em> (適用於　2005 或更高的版本)，以及 <em>pdo</em> 驅動。</li>
-<li>SQLite 通過 <em>sqlite</em> (version 2) 以及 <em>pdo</em> 驅動。</li>
-<li>CUBRID 通過 <em>cubrid</em> 以及 <em>pdo</em> 驅動。</li>
-<li>Interbase/Firebird 通過 <em>ibase</em> 以及 <em>pdo</em> 驅動。</li>
-<li>ODBC 通過 <em>odbc</em> 以及 <em>pdo</em> 驅動 （您必須知道ODBC實際上是一個抽象層）。</li>
+<li>MySQL (5.1+) 透過 <em>pdo</em> 驅動。</li>
+<li>Oracle 透過 <em>oci8</em> 以及 <em>pdo</em> 驅動。</li>
+<li>PostgreSQL 透過　<em>pdo</em> 驅動。</li>
+<li>MS SQL 透過 <em>mssql</em>、<em>sqlsrv</em> (適用於　2005 或更高的版本)，以及 <em>pdo</em> 驅動。</li>
+<li>SQLite 透過 <em>sqlite</em> (version 2) 以及 <em>pdo</em> 驅動。</li>
+<li>CUBRID 透過 <em>cubrid</em> 以及 <em>pdo</em> 驅動。</li>
+<li>Interbase/Firebird 透過 <em>ibase</em> 以及 <em>pdo</em> 驅動。</li>
+<li>ODBC 透過 <em>odbc</em> 以及 <em>pdo</em> 驅動 （您必須知道ODBC實際上是一個抽象層）。</li>
 </ul>
 </div></blockquote>
 </div>
@@ -397,7 +397,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年05月04日。
+        最後更新於 2020年06月23日。
       </span>
 
     </p>

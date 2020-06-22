@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Honeypot Class &mdash; CodeIgniter4 4.0.3 說明文件</title>
+  <title>誘捕系統類別 &mdash; CodeIgniter4 4.0.3 說明文件</title>
   
 
   
@@ -150,11 +150,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP Messages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">Content Negotiation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP Method Spoofing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful Resource Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">內容協商</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 類型偽裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">處理 RESTful 請求資源</a></li>
 </ul>
 </li>
 </ul>
@@ -210,9 +210,9 @@
 <li class="toctree-l2"><a class="reference internal" href="caching.html">Caching Driver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="email.html">Email Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="encryption.html">Encryption Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="files.html">Working with Files</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Honeypot Class</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="security.html">安全性類別</a></li>
@@ -328,7 +328,7 @@
         
           <li><a href="index.html">Library Reference</a> &raquo;</li>
         
-      <li>Honeypot Class</li>
+      <li>誘捕系統類別</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -345,22 +345,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="honeypot-class">
-<h1>Honeypot Class<a class="headerlink" href="#honeypot-class" title="本標題的永久連結">¶</a></h1>
-<p>The Honeypot Class makes it possible to determine when a Bot makes a request to a CodeIgniter4 application,
-if it’s enabled in <code class="docutils literal notranslate"><span class="pre">Application\Config\Filters.php</span></code> file. This is done by attaching form fields to any form,
-and this form field is hidden from a human but accessible to a Bot. When data is entered into the field, it’s
-assumed the request is coming from a Bot, and you can throw a <code class="docutils literal notranslate"><span class="pre">HoneypotException</span></code>.</p>
-<div class="contents local topic" id="id1">
+  <div class="section" id="id1">
+<h1>誘捕系統類別<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>如果已開啟在 <code class="docutils literal notranslate"><span class="pre">Application\Config\Filters.php</span></code> 的檔案，誘捕系統類別就可以確定機器人何時發請求到 CodeIgniter4 的應用程式。這可以透過將表單欄位附加到所有表單來完成
+，並且這個欄位是被人們藏起來但可以被機器人查看到。當資料被輸入進這個欄位時，就可以假設這個請求是來自機器人，你就可以拋出一個 <code class="docutils literal notranslate"><span class="pre">HoneypotException</span></code>。</p>
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#enabling-honeypot" id="id2">Enabling Honeypot</a></li>
-<li><a class="reference internal" href="#customizing-honeypot" id="id3">Customizing Honeypot</a></li>
+<li><a class="reference internal" href="#id3" id="id5">啟用誘捕系統類別</a></li>
+<li><a class="reference internal" href="#id4" id="id6">自定義誘捕系統類別</a></li>
 </ul>
 </div>
-<div class="section" id="enabling-honeypot">
-<h2><a class="toc-backref" href="#id2">Enabling Honeypot</a><a class="headerlink" href="#enabling-honeypot" title="本標題的永久連結">¶</a></h2>
-<p>To enable a Honeypot, changes have to be made to the <code class="docutils literal notranslate"><span class="pre">app/Config/Filters.php</span></code>. Just uncomment honeypot
-from the <code class="docutils literal notranslate"><span class="pre">$globals</span></code> array, like…:</p>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id5">啟用誘捕系統類別</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>啟用誘捕系統類別，必須對 <code class="docutils literal notranslate"><span class="pre">app/Config/Filters.php</span></code> 進行更改。只需要取消啟用誘捕系統類別來自 <code class="docutils literal notranslate"><span class="pre">$globals</span></code> 陣列的註解，像是：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$globals</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;before&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
             <span class="s1">&#39;honeypot&#39;</span>
@@ -373,19 +370,17 @@ from the <code class="docutils literal notranslate"><span class="pre">$globals</
     <span class="p">];</span>
 </pre></div>
 </div>
-<p>A sample Honeypot filter is bundled, as <code class="docutils literal notranslate"><span class="pre">system/Filters/Honeypot.php</span></code>.
-If it is not suitable, make your own at <code class="docutils literal notranslate"><span class="pre">app/Filters/Honeypot.php</span></code>,
-and modify the <code class="docutils literal notranslate"><span class="pre">$aliases</span></code> in the configuration appropriately.</p>
+<p>一個啟用誘捕系統類別的過濾器的樣本是同捆的，像是  <code class="docutils literal notranslate"><span class="pre">system/Filters/Honeypot.php</span></code> ，如果並不適當，更改你的 <code class="docutils literal notranslate"><span class="pre">app/Filters/Honeypot.php</span></code>
+，並且在適當的設定下更改 <code class="docutils literal notranslate"><span class="pre">$aliases</span></code> 。</p>
 </div>
-<div class="section" id="customizing-honeypot">
-<h2><a class="toc-backref" href="#id3">Customizing Honeypot</a><a class="headerlink" href="#customizing-honeypot" title="本標題的永久連結">¶</a></h2>
-<p>Honeypot can be customized. The fields below can be set either in
-<code class="docutils literal notranslate"><span class="pre">app/Config/Honeypot.php</span></code> or in <code class="docutils literal notranslate"><span class="pre">.env</span></code>.</p>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id6">自定義誘捕系統類別</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<p>誘捕系統類別是可以被自定義的。可以在 <code class="docutils literal notranslate"><span class="pre">app/Config/Honeypot.php</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">.env</span></code> 中設定。</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">hidden</span></code> - true|false to control visibility of the honeypot field; default is <code class="docutils literal notranslate"><span class="pre">true</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">label</span></code> - HTML label for the honeypot field, default is 『Fill This Field』</li>
-<li><code class="docutils literal notranslate"><span class="pre">name</span></code> - name of the HTML form field used for the template; default is 『honeypot』</li>
-<li><code class="docutils literal notranslate"><span class="pre">template</span></code> - form field template used for the honeypot; default is 『&lt;label&gt;{label}&lt;/label&gt;&lt;input type=」text」 name=」{name}」 value=」」/&gt;』</li>
+<li><code class="docutils literal notranslate"><span class="pre">hidden</span></code> - 使用 true|false 來控制是否能看見誘捕系統類別的欄位；預設為 <code class="docutils literal notranslate"><span class="pre">true</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">label</span></code> - 誘捕系統類別的欄位的 HTML label，預設為 『Fill This Field』</li>
+<li><code class="docutils literal notranslate"><span class="pre">name</span></code> - 用來命名 HTML 表單欄位的樣板；預設為 『honeypot』</li>
+<li><code class="docutils literal notranslate"><span class="pre">template</span></code> - 來自被用來使用誘捕系統類別的欄位樣板；預設為 『&lt;label&gt;{label}&lt;/label&gt;&lt;input type=」text」 name=」{name}」 value=」」/&gt;』</li>
 </ul>
 </div>
 </div>
@@ -412,7 +407,7 @@ and modify the <code class="docutils literal notranslate"><span class="pre">$ali
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年05月04日。
+        最後更新於 2020年06月23日。
       </span>
 
     </p>

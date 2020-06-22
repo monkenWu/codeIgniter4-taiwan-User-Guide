@@ -150,11 +150,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP Messages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">Content Negotiation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP Method Spoofing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful Resource Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">內容協商</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 類型偽裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">處理 RESTful 請求資源</a></li>
 </ul>
 </li>
 </ul>
@@ -210,9 +210,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">Encryption Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">Honeypot Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
@@ -369,19 +369,19 @@
 </pre></div>
 </div>
 <p>這滿有用的，但如果你想要在這裡使用別的 Timer 類別，而他有著預設所沒有的功能。為此，你必須尋找散落在應用程式中所有已使用 Timer 類別的位置，這是耗時又耗力的，於是 服務 可以派上用場了。</p>
-<p>我們讓中心類別為我們創建實體，而不是自己創建。這個類別非常的簡單，它只包含了每個我們想要用作 services 的類別的方法。該方法通常會返回該類別的共用實體，任何依賴項都藉由它來維護。然後，我們來試試用這種方式創建 Timer 實體:</p>
+<p>我們讓中心類別為我們創建實體，而不是自己創建。這個類別非常的簡單，它只包含了每個我們想要用作 services 的類別的方法。該方法通常會回傳該類別的共用實體，任何依賴項都藉由它來維護。然後，我們來試試用這種方式創建 Timer 實體:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$timer</span> <span class="o">=</span> <span class="nx">\Config\Services</span><span class="o">::</span><span class="na">timer</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>當你需要更改應用設定時，可以修改服務設定檔，接著無須任何操作，整個應用程式都會自動響應。現在，你可以利用這個特性輕鬆使用任何新方法，非常簡單且可靠。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">建議僅在控制器內創建服務。其他檔案（如模型和程式庫）應將依賴項傳遞到建構函數或通過 setter 方法創建。</p>
+<p class="last">建議僅在控制器內創建服務。其他檔案（如模型和程式庫）應將依賴項傳遞到建構函數或透過 setter 方法創建。</p>
 </div>
 <div class="section" id="id3">
 <h3><a class="toc-backref" href="#id9">便利功能</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h3>
 <p>我們提供了兩個隨時可用的方便功能來獲取 services。</p>
-<p>第一個是 <code class="docutils literal notranslate"><span class="pre">service()</span></code> ，返回請求服務的新實體。唯一必需輸入的引數是服務的名稱。這與服務檔中的方法名稱，都會返回類別的 SHARED 實體相同，因此多次調用函數應該都會返回相同的實體:</p>
+<p>第一個是 <code class="docutils literal notranslate"><span class="pre">service()</span></code> ，回傳請求服務的新實體。唯一必需輸入的引數是服務的名稱。這與服務檔中的方法名稱，都會回傳類別的 SHARED 實體相同，因此多次調用函數應該都會回傳相同的實體:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$logger</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;logger&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -389,7 +389,7 @@
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$renderer</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;renderer&#39;</span><span class="p">,</span> <span class="nx">APPPATH</span><span class="o">.</span><span class="s1">&#39;views/&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>第二個函數 <code class="docutils literal notranslate"><span class="pre">single_service()</span></code> 的工作方式類似：<code class="docutils literal notranslate"><span class="pre">service()</span></code> ，但是他是返回類別的新實體:</p>
+<p>第二個函數 <code class="docutils literal notranslate"><span class="pre">single_service()</span></code> 的工作方式類似：<code class="docutils literal notranslate"><span class="pre">service()</span></code> ，但是他是回傳類別的新實體:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$logger</span> <span class="o">=</span> <span class="nx">single_service</span><span class="p">(</span><span class="s1">&#39;logger&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -473,7 +473,7 @@
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">如果多個服務檔具有相同的方法名稱，則會返回第一個找到的檔案的實體。</p>
+<p class="last">如果多個服務檔具有相同的方法名稱，則會回傳第一個找到的檔案的實體。</p>
 </div>
 </div>
 </div>
@@ -501,7 +501,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年05月04日。
+        最後更新於 2020年06月23日。
       </span>
 
     </p>

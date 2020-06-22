@@ -150,11 +150,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP Messages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">Content Negotiation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP Method Spoofing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful Resource Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">內容協商</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 類型偽裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">處理 RESTful 請求資源</a></li>
 </ul>
 </li>
 </ul>
@@ -210,9 +210,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">Encryption Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">Honeypot Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
@@ -348,17 +348,17 @@
   <div class="section" id="id1">
 <h1>自動載入檔案<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>每個應用程式都在不同的位置包含有大量的類別檔案，像是框架有為了實現核心功能的類別，而你的應用可能又會擁有大量的程式庫、模型以及其他實體檔案，甚至你也可能需要第三方的類別庫來供專案使用。記錄每個單獨檔案的路徑，並寫死在一系列的 <code class="docutils literal notranslate"><span class="pre">requires()</span></code> 在檔案中，這是一件非常令人頭痛且容易出錯的事情。這就是為什麼需要自動載入器。</p>
-<p>CodeIgniter 提供了一個非常靈活且極少需要配置的自動載入器。它可以定位單個非命名空間標註的類別、符合 <a class="reference external" href="http://www.php-fig.org/psr/psr-4/">PSR4</a> 的命名空間規範目錄加載結構的類別，甚至可以在常規目錄下定位類別檔案（例如 Controller、Model等）。</p>
+<p>CodeIgniter 提供了一個非常靈活且極少需要設定的自動載入器。它可以定位單個非命名空間標註的類別、符合 <a class="reference external" href="http://www.php-fig.org/psr/psr-4/">PSR4</a> 的命名空間規範目錄加載結構的類別，甚至可以在常規目錄下定位類別檔案（例如 Controller、Model等）。</p>
 <p>為了提升效能，CodeIgniter的核心組件已被添加到類別映射檔案中。</p>
-<p>自動載入器可以獨立運行，但如果你需要的話，也可以和其他自動載入器協同運行，例如 <a class="reference external" href="https://getcomposer.org">Composer</a> 或者是你自己的自定義載入器。因為它們都是通過 <a class="reference external" href="http://php.net/manual/en/function.spl-autoload-register.php">spl_autoload_register</a> 來註冊運行的，所以可以依次運行，互不干擾。</p>
-<p>自動載入器總是處於激活狀態，在框架開始運行時通過 <code class="docutils literal notranslate"><span class="pre">spl_autoload_register()</span></code> 進行註冊。</p>
+<p>自動載入器可以獨立運行，但如果你需要的話，也可以和其他自動載入器協同運行，例如 <a class="reference external" href="https://getcomposer.org">Composer</a> 或者是你自己的自定義載入器。因為它們都是透過 <a class="reference external" href="http://php.net/manual/en/function.spl-autoload-register.php">spl_autoload_register</a> 來註冊運行的，所以可以依次運行，互不干擾。</p>
+<p>自動載入器總是處於激活狀態，在框架開始運行時透過 <code class="docutils literal notranslate"><span class="pre">spl_autoload_register()</span></code> 進行註冊。</p>
 <div class="section" id="id2">
 <h2>設定<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <p>初始設定是在 <strong>/app/Config/Autoload.php</strong> 檔案中進行。該檔案包含兩個的主要陣列，一個用於類別映射圖，一個用於符合 PSR-4 的命名空間規範。</p>
 </div>
 <div class="section" id="id3">
 <h2>命名空間<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
-<p>我們建議，通過在應用程式檔案中創建一個或多個命名空間來管理你的類別。而這一點，對於業務邏輯相關聯的類別、實體類別等也是最為重要的。設定檔案中的 <code class="docutils literal notranslate"><span class="pre">psr4</span></code> 陣列，允許你將命名空間和對應的類別所存在的目錄進行映射:</p>
+<p>我們建議，透過在應用程式檔案中創建一個或多個命名空間來管理你的類別。而這一點，對於業務邏輯相關聯的類別、實體類別等也是最為重要的。設定檔案中的 <code class="docutils literal notranslate"><span class="pre">psr4</span></code> 陣列，允許你將命名空間和對應的類別所存在的目錄進行映射:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$psr4</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;App&#39;</span>         <span class="o">=&gt;</span> <span class="nx">APPPATH</span><span class="p">,</span>
         <span class="s1">&#39;CodeIgniter&#39;</span> <span class="o">=&gt;</span> <span class="nx">SYSTEMPATH</span><span class="p">,</span>
@@ -378,7 +378,7 @@
 </div>
 <div class="section" id="id4">
 <h2>類別映射圖<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
-<p>類別映射圖是 CodeIgniter 用來榨乾系統最後一分性能的手段，通過不額外調用 <code class="docutils literal notranslate"><span class="pre">is_file()</span></code> 查詢檔案系統來實現。即使第三方程式庫並沒有命名空間，你也可以利用類別映射圖來連接他們:</p>
+<p>類別映射圖是 CodeIgniter 用來榨乾系統最後一分性能的手段，透過不額外調用 <code class="docutils literal notranslate"><span class="pre">is_file()</span></code> 查詢檔案系統來實現。即使第三方程式庫並沒有命名空間，你也可以利用類別映射圖來連接他們:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$classmap</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;Markdown&#39;</span> <span class="o">=&gt;</span> <span class="nx">APPPATH</span> <span class="o">.</span><span class="s1">&#39;third_party/markdown.php&#39;</span>
 <span class="p">];</span>
@@ -423,7 +423,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年05月04日。
+        最後更新於 2020年06月23日。
       </span>
 
     </p>

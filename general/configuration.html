@@ -150,11 +150,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP Messages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">Content Negotiation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP Method Spoofing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful Resource Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">內容協商</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 類型偽裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">處理 RESTful 請求資源</a></li>
 </ul>
 </li>
 </ul>
@@ -210,9 +210,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">Encryption Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">Honeypot Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
@@ -365,16 +365,16 @@
 </div>
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id12">使用組態設定檔案</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
-<p>你可以通過幾種不同的方式來訪問類別的組態設定檔案。</p>
+<p>你可以透過幾種不同的方式來訪問類別的組態設定檔案。</p>
 <ul class="simple">
-<li>通過使用 <code class="docutils literal notranslate"><span class="pre">new</span></code> 保留字來創建一個實體：</li>
+<li>透過使用 <code class="docutils literal notranslate"><span class="pre">new</span></code> 保留字來創建一個實體：</li>
 </ul>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Creating new configuration object by hand</span>
 <span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Config\Pager</span><span class="p">();</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li>通過 <code class="docutils literal notranslate"><span class="pre">config()</span></code> 函數：</li>
+<li>透過 <code class="docutils literal notranslate"><span class="pre">config()</span></code> 函數：</li>
 </ul>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span>    <span class="c1">// Get shared instance with config function</span>
     <span class="nv">$config</span> <span class="o">=</span> <span class="nx">config</span><span class="p">(</span><span class="s1">&#39;Pager&#39;</span><span class="p">);</span>
@@ -394,7 +394,7 @@
 </div>
 <p>如果沒有提供命名空間，它將在所有已定義的命名空間與 <strong>/app/Config/</strong> 中尋找檔案。</p>
 <p>所有 CodeIgniter 的組態設定檔案都以 <code class="docutils literal notranslate"><span class="pre">Config</span></code> 作為命名空間。在你的應用程式中使用這個命名空間將可以獲得最好的效能，因為它知道在哪裡可以找到這些檔案。</p>
-<p>你可以通過使用不同的命名空間，將組態設定檔案放在任何你想要的資料夾中。這樣，你就可以把組態設定檔案放在正式伺服器上，且不可通過 web 造訪的資料夾中，同時將其保存在 <strong>/app</strong> 下，以便在開發的過程可以輕鬆訪問。</p>
+<p>你可以透過使用不同的命名空間，將組態設定檔案放在任何你想要的資料夾中。這樣，你就可以把組態設定檔案放在正式伺服器上，且不可透過 web 造訪的資料夾中，同時將其保存在 <strong>/app</strong> 下，以便在開發的過程可以輕鬆訪問。</p>
 </div>
 <div class="section" id="id4">
 <h2><a class="toc-backref" href="#id13">創建組態設定檔案</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
@@ -420,7 +420,7 @@
 </div>
 <div class="section" id="codeigniter">
 <h2><a class="toc-backref" href="#id15">環境變數與 CodeIgniter</a><a class="headerlink" href="#codeigniter" title="本標題的永久連結">¶</a></h2>
-<p>CodeIgniter 通過使用「點 env」檔實現環境變數，這使得設定環境變數變得簡單又不用費功夫。「點 env」檔這個說法來自於 CodeIgniter 環境變數檔案的名稱，它指的是「 .env 」。</p>
+<p>CodeIgniter 透過使用「點 env」檔實現環境變數，這使得設定環境變數變得簡單又不用費功夫。「點 env」檔這個說法來自於 CodeIgniter 環境變數檔案的名稱，它指的是「 .env 」。</p>
 <p>CodeIgniter 希望你將 <strong>.env</strong> 檔案置於根目錄下，緊鄰 <code class="docutils literal notranslate"><span class="pre">system</span></code> 與 <code class="docutils literal notranslate"><span class="pre">app</span></code> 目錄。在 CodeIgniter 中，有一個用於環境變數的樣板文件，它位於根目錄下，名為 <strong>env</strong> （注意！這個檔案的開頭並沒有 <strong>點</strong> ）。它內涵所有你的專案可能會使用到的變數集合，這些變數已經被分配了空值、虛值或默認值。你可以藉由將這個檔案重新命名成 <strong>.env</strong> 或將這個檔案複製一份命名成 <strong>.env</strong> 使它開始作用。這個檔案將會作為你的應用程式的起點。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
@@ -550,7 +550,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>通過上面的範例，當 <cite>MySalesConfig</cite> 被實體化時，它最終會宣告這兩個屬性，但 <cite>$target</cite> 屬性的值會被覆蓋，因為它把 <cite>RegionalSalesModel</cite> 視為「註冊器」，由此產生這樣子的組態設定屬性：</p>
+<p>透過上面的範例，當 <cite>MySalesConfig</cite> 被實體化時，它最終會宣告這兩個屬性，但 <cite>$target</cite> 屬性的值會被覆蓋，因為它把 <cite>RegionalSalesModel</cite> 視為「註冊器」，由此產生這樣子的組態設定屬性：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$target</span>   <span class="o">=</span> <span class="mi">45</span><span class="p">;</span>
 <span class="nv">$campaign</span> <span class="o">=</span> <span class="s2">&quot;Winter Wonderland&quot;</span><span class="p">;</span>
 </pre></div>
@@ -580,7 +580,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年05月04日。
+        最後更新於 2020年06月23日。
       </span>
 
     </p>

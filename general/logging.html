@@ -150,11 +150,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP Messages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">Content Negotiation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP Method Spoofing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful Resource Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">內容協商</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 類型偽裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">處理 RESTful 請求資源</a></li>
 </ul>
 </li>
 </ul>
@@ -210,9 +210,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">Encryption Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">Honeypot Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
@@ -358,7 +358,7 @@
 <li><a class="reference internal" href="#loggeraware" id="id11">LoggerAware 特徵機制</a></li>
 </ul>
 </div>
-<p>你可通過使用 <code class="docutils literal notranslate"><span class="pre">log_message()</span></code> 方法將訊息記錄到本地日誌檔案中。你必須在第一個參數中提供錯誤的「級別」，定義這是個怎麼樣的錯誤訊息（ debug 或 error ）。第二個參數則是錯誤訊息本體：</p>
+<p>你可透過使用 <code class="docutils literal notranslate"><span class="pre">log_message()</span></code> 方法將訊息記錄到本地日誌檔案中。你必須在第一個參數中提供錯誤的「級別」，定義這是個怎麼樣的錯誤訊息（ debug 或 error ）。第二個參數則是錯誤訊息本體：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$some_var</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="nx">log_message</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="s1">&#39;Some variable did not contain a value.&#39;</span><span class="p">);</span>
@@ -412,7 +412,7 @@
 </pre></div>
 </div>
 <p>完整級別與其對應的閥值列表將在設定文件中供你參考。</p>
-<p>你可以通過賦予閥值一個陣列，並宣告多個日誌級別號碼來選擇你所希望記錄的特定級別：</p>
+<p>你可以透過賦予閥值一個陣列，並宣告多個日誌級別號碼來選擇你所希望記錄的特定級別：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Log only debug and info type messages</span>
 <span class="k">public</span> <span class="nv">$threshold</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">];</span>
 </pre></div>
@@ -502,8 +502,8 @@
 <div class="section" id="id6">
 <h2><a class="toc-backref" href="#id10">使用第三方日誌記錄器</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
 <p>只要你中意的日誌記錄器繼承至 <code class="docutils literal notranslate"><span class="pre">Psr\Log\LoggerInterface</span></code> 並且相容於 <a class="reference external" href="https://www.php-fig.org/psr/psr-3/">PSR3</a> 規範，你就可以任意地使用它。這意味著，你可以容易地使用 PSR3 相容的日誌記錄器，或者是創建你自己的日誌記錄器。</p>
-<p>將第三方記錄器添加到 <code class="docutils literal notranslate"><span class="pre">/app/Config/Autoload.php</span></code> 這個組態設定文件，或者是通過像是 Composer 的自動加載器，好讓系統可以找到你的第三方日誌記錄器。接下來，你應該要去修改 <code class="docutils literal notranslate"><span class="pre">/app/Config/Services.php</span></code> ，將日誌記錄器的別名指向你的新類別名稱。</p>
-<p>現在，任何通過 <code class="docutils literal notranslate"><span class="pre">log_message()</span></code> 函數進行的呼叫都將使用你的程式庫。</p>
+<p>將第三方記錄器添加到 <code class="docutils literal notranslate"><span class="pre">/app/Config/Autoload.php</span></code> 這個組態設定文件，或者是透過像是 Composer 的自動加載器，好讓系統可以找到你的第三方日誌記錄器。接下來，你應該要去修改 <code class="docutils literal notranslate"><span class="pre">/app/Config/Services.php</span></code> ，將日誌記錄器的別名指向你的新類別名稱。</p>
+<p>現在，任何透過 <code class="docutils literal notranslate"><span class="pre">log_message()</span></code> 函數進行的呼叫都將使用你的程式庫。</p>
 </div>
 <div class="section" id="loggeraware">
 <h2><a class="toc-backref" href="#id11">LoggerAware 特徵機制</a><a class="headerlink" href="#loggeraware" title="本標題的永久連結">¶</a></h2>
@@ -533,7 +533,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年05月04日。
+        最後更新於 2020年06月23日。
       </span>
 
     </p>

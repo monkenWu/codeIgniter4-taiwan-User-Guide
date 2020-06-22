@@ -150,11 +150,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP Messages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">Content Negotiation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP Method Spoofing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful Resource Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">內容協商</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 類型偽裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">處理 RESTful 請求資源</a></li>
 </ul>
 </li>
 </ul>
@@ -210,9 +210,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">Encryption Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">Honeypot Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
@@ -347,7 +347,7 @@
             
   <div class="section" id="id1">
 <h1>新聞頁面<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
-<p>在上一個條目中，我們撰寫了引用靜態頁面的類別，也介紹了框架的一些基本概念。我們通過新增自訂路由規則獲得更加整潔的 URL 。是時候引入動態內容並且開始操作資料庫了！</p>
+<p>在上一個條目中，我們撰寫了引用靜態頁面的類別，也介紹了框架的一些基本概念。我們透過新增自訂路由規則獲得更加整潔的 URL 。是時候引入動態內容並且開始操作資料庫了！</p>
 <div class="section" id="id2">
 <h2>建立要使用的資料庫<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <p>CodeIgniter 假設你使用了所支援資料庫，如 <a class="reference internal" href="../intro/requirements.html"><span class="doc">系統需求</span></a> 所提到的。在本教學中，我們提供了基於 MySQL 資料庫的 SQL 程式碼。我們也假設你有一個用於資料庫管理的軟體（ mysql 、 MySQL Workbench 或 phpMyAdmin ）。</p>
@@ -442,7 +442,7 @@
 </div>
 <p>看看程式碼，你可能會發現與我們之前建立的文件有相似之處。首先，它繼承了 CodeIgniter 核心類別 <code class="docutils literal notranslate"><span class="pre">Controller</span></code> ，這個類別提供了幾個輔助方法，並且確保你可以使用當前的 <code class="docutils literal notranslate"><span class="pre">Request</span></code> 與 <code class="docutils literal notranslate"><span class="pre">Response</span></code> 物件。以及將運作資訊保存在伺服器的 <code class="docutils literal notranslate"><span class="pre">Logger</span></code> 類別。</p>
 <p>接下來，有兩個方法，一個用於查看所有新聞專案，另一個用於查看特定的新聞專案。 <code class="docutils literal notranslate"><span class="pre">$slug</span></code> 變數在第二個方法中傳遞給模型，而模型也使用 slug 回傳相應的新聞。</p>
-<p>現在，控制器通過我們的模型檢索資料，但尚未顯示任何資料。接下來我們得將這些資料傳遞給視圖。將  <code class="docutils literal notranslate"><span class="pre">index()</span></code> 修改成向下面這樣。</p>
+<p>現在，控制器透過我們的模型檢索資料，但尚未顯示任何資料。接下來我們得將這些資料傳遞給視圖。將  <code class="docutils literal notranslate"><span class="pre">index()</span></code> 修改成向下面這樣。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
 <span class="p">{</span>
         <span class="nv">$model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NewsModel</span><span class="p">();</span>
@@ -546,7 +546,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年05月04日。
+        最後更新於 2020年06月23日。
       </span>
 
     </p>

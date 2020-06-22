@@ -150,11 +150,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP Messages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">Content Negotiation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP Method Spoofing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful Resource Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">內容協商</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 類型偽裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">處理 RESTful 請求資源</a></li>
 </ul>
 </li>
 </ul>
@@ -210,9 +210,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">Encryption Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">Honeypot Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
@@ -347,7 +347,7 @@
             
   <div class="section" id="id1">
 <h1>模型、視圖與控制器<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
-<p>當創建一個應用程式的時候，我們需要有一種便捷且可以簡易組織代碼的架構。和很多 web 框架類似， CodeIgniter 框架也使用了模型、視圖以及控制器的架構，即 MVC 模式。這種方式可以將資料、畫面和流程等部分，分別作為單獨的組件存放在我們的應用程式中。需要特別注意的是，可能每個人會對某個組件所擔任的角色有不同的看法，那麼，下面我們就通過這個文檔來說明這些組件所擔任的角色，如果你有不同的想法，你可以依照你的需求自由決定如何使用這些組件。</p>
+<p>當創建一個應用程式的時候，我們需要有一種便捷且可以簡易組織代碼的架構。和很多 web 框架類似， CodeIgniter 框架也使用了模型、視圖以及控制器的架構，即 MVC 模式。這種方式可以將資料、畫面和流程等部分，分別作為單獨的組件存放在我們的應用程式中。需要特別注意的是，可能每個人會對某個組件所擔任的角色有不同的看法，那麼，下面我們就透過這個文檔來說明這些組件所擔任的角色，如果你有不同的想法，你可以依照你的需求自由決定如何使用這些組件。</p>
 <p><strong>模型</strong> 主要用來管理應用程式的資料，以及幫助應用程式執行特殊的業務規則。</p>
 <p><strong>視圖</strong> 是一個幾乎不具邏輯的簡單的檔案，只負責展示資料給使用者。</p>
 <p><strong>控制器</strong> 主要扮演著程式碼黏著劑的角色，主要在視圖（或使用者的畫面）和資料儲存區之間來回的處理並整合資料。</p>
@@ -357,10 +357,10 @@
 <h2>組件<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <div class="section" id="id3">
 <h3>視圖<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h3>
-<p>視圖 是最簡單的檔案，通常是一個 HTML 檔案加入少量的 PHP 程式碼。視圖中的 PHP 程式碼應該盡量保持簡單，一般只是顯示一個變數的內容，或者通過循環語句將物件的資料展示在表格中。</p>
-<p>視圖從控制器中獲取資料並展示，控制器利用變數將資料發送給 視圖，並可以將其通過簡單的 <code class="docutils literal notranslate"><span class="pre">echo</span></code> 指令將資料展示出來。你也可以在一個視圖中再插入視圖，這樣可以很簡單的在每個頁面上展示出通用的頁眉和頁腳。</p>
-<p>視圖類型的檔案通常存放在 <strong>/app/Views</strong> 資料夾中，但如果在創建檔案時不按照一定的規則創建的話，會顯得我們的程式碼雜亂無章。 CodeIgniter 框架雖然沒有任何的硬性規定，但依照經驗我們會在 <strong>Views</strong> 資料夾中為每一個控制器創建一個資料夾。然後通過方法名來命名視圖。這樣之後會比較好找。
-例如：User’s profile（用戶配置） ，可能會在一個名為 <code class="docutils literal notranslate"><span class="pre">User</span></code> 的 控制器 中顯示，並且方法的名稱為 <code class="docutils literal notranslate"><span class="pre">profile</span></code>，並可以將這個 視圖 檔案保存在 <strong>/app/Views/User/Profile.php</strong> 這個路徑下。</p>
+<p>視圖 是最簡單的檔案，通常是一個 HTML 檔案加入少量的 PHP 程式碼。視圖中的 PHP 程式碼應該盡量保持簡單，一般只是顯示一個變數的內容，或者透過循環語句將物件的資料展示在表格中。</p>
+<p>視圖從控制器中獲取資料並展示，控制器利用變數將資料發送給 視圖，並可以將其透過簡單的 <code class="docutils literal notranslate"><span class="pre">echo</span></code> 指令將資料展示出來。你也可以在一個視圖中再插入視圖，這樣可以很簡單的在每個頁面上展示出通用的頁眉和頁腳。</p>
+<p>視圖類型的檔案通常存放在 <strong>/app/Views</strong> 資料夾中，但如果在創建檔案時不按照一定的規則創建的話，會顯得我們的程式碼雜亂無章。 CodeIgniter 框架雖然沒有任何的硬性規定，但依照經驗我們會在 <strong>Views</strong> 資料夾中為每一個控制器創建一個資料夾。然後透過方法名來命名視圖。這樣之後會比較好找。
+例如：User’s profile（使用者設定） ，可能會在一個名為 <code class="docutils literal notranslate"><span class="pre">User</span></code> 的 控制器 中顯示，並且方法的名稱為 <code class="docutils literal notranslate"><span class="pre">profile</span></code>，並可以將這個 視圖 檔案保存在 <strong>/app/Views/User/Profile.php</strong> 這個路徑下。</p>
 <p>建議將這種組織程式碼的方式養成一個良好的習慣。可能有些時候，你有一些其他的需求需要以其他方式來組織程式碼，沒關係，只要 CodeIgniter 框架可以找到這個檔案，那就可以顯示它的畫面。</p>
 <p><a class="reference internal" href="../outgoing/views.html"><span class="doc">想更深入地了解視圖</span></a></p>
 </div>
@@ -403,7 +403,7 @@
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年05月04日。
+        最後更新於 2020年06月23日。
       </span>
 
     </p>

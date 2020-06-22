@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Content Negotiation &mdash; CodeIgniter4 4.0.3 說明文件</title>
+  <title>內容協商 &mdash; CodeIgniter4 4.0.3 說明文件</title>
   
 
   
@@ -40,7 +40,7 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="HTTP Method Spoofing" href="methodspoofing.html" />
+    <link rel="next" title="HTTP 類型偽裝" href="methodspoofing.html" />
     <link rel="prev" title="IncomingRequest Class" href="incomingrequest.html" /> 
 </head>
 
@@ -150,11 +150,11 @@
 <li class="toctree-l2"><a class="reference internal" href="routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="filters.html">Controller Filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="message.html">HTTP Messages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="request.html">Request Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="request.html">Request 類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="incomingrequest.html">IncomingRequest Class</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Content Negotiation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="methodspoofing.html">HTTP Method Spoofing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="restful.html">RESTful Resource Handling</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">內容協商</a></li>
+<li class="toctree-l2"><a class="reference internal" href="methodspoofing.html">HTTP 類型偽裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restful.html">處理 RESTful 請求資源</a></li>
 </ul>
 </li>
 </ul>
@@ -210,9 +210,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">Encryption Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">Honeypot Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
@@ -328,7 +328,7 @@
         
           <li><a href="index.html">Controllers and Routing</a> &raquo;</li>
         
-      <li>Content Negotiation</li>
+      <li>內容協商</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -345,46 +345,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="content-negotiation">
-<h1>Content Negotiation<a class="headerlink" href="#content-negotiation" title="本標題的永久連結">¶</a></h1>
-<p>Content negotiation is a way to determine what type of content to return to the client based on what the client
-can handle, and what the server can handle. This can be used to determine whether the client is wanting HTML or JSON
-returned, whether the image should be returned as a jpg or png, what type of compression is supported and more. This
-is done by analyzing four different headers which can each support multiple value options, each with their own priority.
-Trying to match this up manually can be pretty challenging. CodeIgniter provides the <code class="docutils literal notranslate"><span class="pre">Negotiator</span></code> class that
-can handle this for you.</p>
-<div class="section" id="loading-the-class">
-<h2>Loading the Class<a class="headerlink" href="#loading-the-class" title="本標題的永久連結">¶</a></h2>
-<p>You can load an instance of the class manually through the Service class:</p>
+  <div class="section" id="id1">
+<h1>內容協商<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p>內容協商是一種用來根據使用者端和伺服器端可處理的資源類型，來決定回傳給客戶端哪種類型的內容的機制。該機制可用來決定客戶端是想要 HTML 還是想要 JSON ，一個圖片是應該以 JPG 還是以 PNG 格式回傳，或者支持哪種類型的壓縮方法等。這些決策是透過分析四個不同的請求頭，而這些請求頭里支持多個帶有優先級的值選項。手動對這些值選項進行優先級配對通常是比較傷腦的，因此 CodeIgniter 提供了 Negotiator 來處理以上的過程。</p>
+<div class="section" id="id2">
+<h2>載入類別<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
+<p>你可以透過 Service 類別來手動載入一個該類別的實體:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$negotiate</span> <span class="o">=</span> <span class="nx">\Config\Services</span><span class="o">::</span><span class="na">negotiator</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>This will grab the current request instance and automatically inject it into the Negotiator class.</p>
-<p>This class does not need to be loaded on it’s own. Instead, it can be accessed through this request’s <code class="docutils literal notranslate"><span class="pre">IncomingRequest</span></code>
-instance. While you cannot access it directly this way, you can easily access all of methods through the <code class="docutils literal notranslate"><span class="pre">negotiate()</span></code>
-method:</p>
+<p>以上操作會獲取所有的請求實體並自動將其注入到 Negotiator （協商，下同）類別中。</p>
+<p>該類別並不需要主動載入。而是透過請求的 <code class="docutils literal notranslate"><span class="pre">IncomingRequest</span></code> 實體來進行訪問。儘管你並不能透過這一過程直接訪問該實體，但你可以透過 <code class="docutils literal notranslate"><span class="pre">negotiate()</span></code> 方法來輕鬆的呼叫它的所有方法:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">negotiate</span><span class="p">(</span><span class="s1">&#39;media&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p>When accessed this way, the first parameter is the type of content you’re trying to find a match for, while the
-second is an array of supported values.</p>
+<p>當透過該方法訪問實體時，第一個參數是你需要匹配內容的類型，第二個是所支持的類型值構成的陣列。</p>
 </div>
-<div class="section" id="negotiating">
-<h2>Negotiating<a class="headerlink" href="#negotiating" title="本標題的永久連結">¶</a></h2>
-<p>In this section, we will discuss the 4 types of content that can be negotiated and show how that would look using
-both of the methods described above to access the negotiator.</p>
-<div class="section" id="media">
-<h3>Media<a class="headerlink" href="#media" title="本標題的永久連結">¶</a></h3>
-<p>The first aspect to look at is handling 『media』 negotiations. These are provided by the <code class="docutils literal notranslate"><span class="pre">Accept</span></code> header and
-is one of the most complex headers available. A common example is the client telling the server what format it
-wants the data in. This is especially common in API’s. For example, a client might request JSON formatted data
-from an API endpoint:</p>
+<div class="section" id="id3">
+<h2>協商<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>本節中，我們將討論四種可以用來協商的類型，並展示如何透過上述兩種方法來進行內容協商。</p>
+<div class="section" id="id4">
+<h3>媒體<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
+<p>第一層首先要看的就是「媒體」協商。該協商方式是透過 Accept 請求頭進行的，並且是可用的請求頭中最為複雜的類型之一。一個常見的例子就是使用者端告訴伺服器端其所需要的資料格式，而這種操作在 API 中最為常見。例如，一個使用者端可能從一個 API 端點請求以 JSON 編碼的資料:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="o">/</span><span class="nx">foo</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
 <span class="nx">Accept</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
 </pre></div>
 </div>
-<p>The server now needs to provide a list of what type of content it can provide. In this example, the API might
-be able to return data as raw HTML, JSON, or XML. This list should be provided in order of preference:</p>
+<p>該伺服器需要提供一個支持該內容類型的列表。在這個例子中，API 可能需要回傳像原生 HTML ，JSON 或者是 XML 格式的資料。而該列表應根據使用者端偏好的順序回傳:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$supported</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
     <span class="s1">&#39;text/html&#39;</span><span class="p">,</span>
@@ -392,71 +379,62 @@ be able to return data as raw HTML, JSON, or XML. This list should be provided i
 <span class="p">];</span>
 
 <span class="nv">$format</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">negotiate</span><span class="p">(</span><span class="s1">&#39;media&#39;</span><span class="p">,</span> <span class="nv">$supported</span><span class="p">);</span>
-<span class="c1">// or</span>
+<span class="c1">// 或是</span>
 <span class="nv">$format</span> <span class="o">=</span> <span class="nv">$negotiate</span><span class="o">-&gt;</span><span class="na">media</span><span class="p">(</span><span class="nv">$supported</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>In this case, both the client and the server can agree on formatting the data as JSON so 『json』 is returned from
-the negotiate method. By default, if no match is found, the first element in the $supported array would be returned.
-In some cases, though, you might need to enforce the format to be a strict match. If you pass <code class="docutils literal notranslate"><span class="pre">true</span></code> as the
-final value, it will return an empty string if no match is found:</p>
+<p>在這個例子中，使用者端和伺服器端的協商一致，將資料以 JSON 的格式回傳，因此 『json』 就會從協商方法中回傳。預設情況下，如果沒有配對到，在 $support 陣列中的第一個元素就會被回傳。儘管在某些情況下，你可能會強制要求伺服器端嚴格得匹配格式。因此如果你將 <code class="docutils literal notranslate"><span class="pre">true</span></code> 作為最後的參數傳入時，在配對不到時就會回傳空字串:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$format</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">negotiate</span><span class="p">(</span><span class="s1">&#39;media&#39;</span><span class="p">,</span> <span class="nv">$supported</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
 <span class="c1">// or</span>
 <span class="nv">$format</span> <span class="o">=</span> <span class="nv">$negotiate</span><span class="o">-&gt;</span><span class="na">media</span><span class="p">(</span><span class="nv">$supported</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="language">
-<h3>Language<a class="headerlink" href="#language" title="本標題的永久連結">¶</a></h3>
-<p>Another common usage is to determine the language the content should be served in. If you are running only a single
-language site, this obviously isn’t going to make much difference, but any site that can offer up multiple translations
-of content will find this useful, since the browser will typically send the preferred language along in the <code class="docutils literal notranslate"><span class="pre">Accept-Language</span></code>
-header:</p>
+<div class="section" id="id5">
+<h3>語言<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
+<p>另一個常見的用法就是決定回傳內容的語言。如果你執行的是一個單語言網站，該功能顯然並沒有什麼影響。但是如果對於那些提供多語言內容的網站來說，該功能就會變得非常有用，基於瀏覽器將通常會在 <code class="docutils literal notranslate"><span class="pre">Accept-Language</span></code> 請求頭中發送偏好的語言類型:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="o">/</span><span class="nx">foo</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
 <span class="nx">Accept</span><span class="o">-</span><span class="nx">Language</span><span class="o">:</span> <span class="nx">fr</span><span class="p">;</span> <span class="nx">q</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="nx">en</span><span class="p">;</span> <span class="nx">q</span><span class="o">=</span><span class="mf">0.5</span>
 </pre></div>
 </div>
-<p>In this example, the browser would prefer French, with a second choice of English. If your website supports English
-and German you would do something like:</p>
+<p>在這個例子中，瀏覽器偏好法語，並次偏好英語。如果你的網站支持英語或德語，那麼你就會如下操作:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$supported</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;en&#39;</span><span class="p">,</span>
     <span class="s1">&#39;de&#39;</span>
 <span class="p">];</span>
 
 <span class="nv">$lang</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">negotiate</span><span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="nv">$supported</span><span class="p">);</span>
-<span class="c1">// or</span>
+<span class="c1">// 或是</span>
 <span class="nv">$lang</span> <span class="o">=</span> <span class="nv">$negotiate</span><span class="o">-&gt;</span><span class="na">language</span><span class="p">(</span><span class="nv">$supported</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>In this example, 『en』 would be returned as the current language. If no match is found, it will return the first element
-in the $supported array, so that should always be the preferred language.</p>
+<p>本例中，en 將作為當前語言回傳。如果沒有產生配對，就會回傳 $supported 陣列的第一個元素，因此該元素將會一直作為偏好語言。</p>
 </div>
-<div class="section" id="encoding">
-<h3>Encoding<a class="headerlink" href="#encoding" title="本標題的永久連結">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">Accept-Encoding</span></code> header contains the character sets the client prefers to receive, and is used to
-specify the type of compression the client supports:</p>
+<div class="section" id="id6">
+<h3>編碼<a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Accept-Encoding</span></code> 請求頭包含了使用者端所期望接收到的字符集，用於確定使用者端支持哪種類型的壓縮方式:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="o">/</span><span class="nx">foo</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
 <span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="o">:</span> <span class="nx">compress</span><span class="p">,</span> <span class="nx">gzip</span>
 </pre></div>
 </div>
-<p>Your web server will define what types of compression you can use. Some, like Apache, only support <strong>gzip</strong>:</p>
+<p>你的 web 伺服器將會定義可以使用的壓縮類型。某些伺服器，例如 Apache ,只支持了 <strong>gzip</strong>:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$type</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">negotiate</span><span class="p">(</span><span class="s1">&#39;encoding&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;gzip&#39;</span><span class="p">]);</span>
-<span class="c1">// or</span>
+<span class="c1">// 或是</span>
 <span class="nv">$type</span> <span class="o">=</span> <span class="nv">$negotiate</span><span class="o">-&gt;</span><span class="na">encoding</span><span class="p">([</span><span class="s1">&#39;gzip&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p>See more at <a class="reference external" href="https://en.wikipedia.org/wiki/HTTP_compression">Wikipedia</a>.</p>
+<p>想了解更多的話，請查閱 <a class="reference external" href="https://en.wikipedia.org/wiki/HTTP_compression">維基百科</a>.</p>
 </div>
-<div class="section" id="character-set">
-<h3>Character Set<a class="headerlink" href="#character-set" title="本標題的永久連結">¶</a></h3>
-<p>The desired character set is passed through the <code class="docutils literal notranslate"><span class="pre">Accept-Charset</span></code> header:</p>
+<div class="section" id="id8">
+<h3>字符集<a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
+<p>所期待的字符集類型會透過 <code class="docutils literal notranslate"><span class="pre">Accept-Charset</span></code> 請求頭來傳值:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="o">/</span><span class="nx">foo</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
 <span class="nx">Accept</span><span class="o">-</span><span class="nx">Charset</span><span class="o">:</span> <span class="nx">utf</span><span class="o">-</span><span class="mi">16</span><span class="p">,</span> <span class="nx">utf</span><span class="o">-</span><span class="mi">8</span>
 </pre></div>
 </div>
-<p>By default, if no matches are found, <strong>utf-8</strong> will be returned:</p>
+<p>預設情況下，如果沒有配對到的話就會回傳 <strong>utf-8</strong>:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$charset</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">negotiate</span><span class="p">(</span><span class="s1">&#39;charset&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;utf-8&#39;</span><span class="p">]);</span>
-<span class="c1">// or</span>
+<span class="c1">// 或是</span>
 <span class="nv">$charset</span> <span class="o">=</span> <span class="nv">$negotiate</span><span class="o">-&gt;</span><span class="na">charset</span><span class="p">([</span><span class="s1">&#39;utf-8&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
@@ -472,7 +450,7 @@ specify the type of compression the client supports:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="methodspoofing.html" class="btn btn-neutral float-right" title="HTTP Method Spoofing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="methodspoofing.html" class="btn btn-neutral float-right" title="HTTP 類型偽裝" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="incomingrequest.html" class="btn btn-neutral float-left" title="IncomingRequest Class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -486,7 +464,7 @@ specify the type of compression the client supports:</p>
     <p>
         &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年05月04日。
+        最後更新於 2020年06月23日。
       </span>
 
     </p>
