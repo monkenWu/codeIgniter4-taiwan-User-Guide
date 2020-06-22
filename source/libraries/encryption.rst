@@ -1,33 +1,25 @@
 ##################
-Encryption Service
+加密服務
 ##################
 
-.. important:: DO NOT use this or any other *encryption* library for
-	password storage! Passwords must be *hashed* instead, and you
-	should do that through PHP's `Password Hashing extension
-	<https://www.php.net/password>`_.
+.. important:: 千萬不要使用這個或其他加密程式庫來做密碼的儲存！密碼必須被雜湊加密，並且你應該通過 PHP 的
+	`Password Hashing extension <https://www.php.net/password>`_ 來做這件事。
 
-The Encryption Service provides two-way symmetric (secret key) data encryption.
-The service will instantiate and/or initialize an
-encryption **handler** to suit your parameters as explained below.
+這個加密服務提供雙向對稱資料加密（秘密金鑰）。這個服務將實體化和／或初始化一個加密一個 **處理程序** 以適應你的參數，如下所述。
 
-Encryption Service handlers must implement CodeIgniter's simple ``EncrypterInterface``.
-Using an appropriate PHP cryptographic extension or third-party library may require
-additional software is installed on your server and/or might need to be explicitly
-enabled in your instance of PHP.
+加密服務處理程序必須實作出 CodeIgniter 的樣本 ``EncrypterInterface``。使用一個適當的 PHP 延伸密碼或者第三方程式庫可能會需要你的服務器安裝額外軟體和／或可能
+需要明確地在你的PHP實體做啟用。
 
-The following PHP extensions are currently supported:
+當前支援以下 PHP　擴充模組：
 
 - `OpenSSL <https://www.php.net/openssl>`_
 
-This is not a full cryptographic solution. If you need more capabilities, for example,
-public-key encryption, we suggest you consider direct use of OpenSSL or
-one of the other `Cryptography Extensions <https://www.php.net/manual/en/refs.crypto.php>`_.
-A more comprehensive package like `Halite <https://github.com/paragonie/halite>`_
-(an O-O package built on libsodium) is another possibility.
+這不是完整的密碼解決方案。如果你需要更多功能，像是：公鑰加密，我們建議你考慮直接使用 OpenSSL 或另一個 `Cryptography Extensions <https://www.php.net/manual/en/refs.crypto.php>`_。
+更全面的軟體包，像是 `Halite <https://github.com/paragonie/halite>`_ 
+（基於libsodium構建的O-O軟體包）也是另一種可能性。
 
-.. note:: Support for the ``MCrypt`` extension has been dropped, as that has
-    been deprecated as of PHP 7.2.
+.. note:: 由於已經移除了對 ``MCrypt`` 擴充模組的支援，所以從從 PHP 7.2 開始不建議使用。
+
 
 .. contents::
   :local:
@@ -39,16 +31,16 @@ A more comprehensive package like `Halite <https://github.com/paragonie/halite>`
 .. _usage:
 
 ****************************
-Using the Encryption Library
+使用加密服務
 ****************************
 
-Like all services in CodeIgniter, it can be loaded via ``Config\Services``::
+像是 CodeIgniter 其他服務，他可以通過 ``Config\Services`` 被載入
+::
 
     $encrypter = \Config\Services::encrypter();
 
-Assuming you have set your starting key (see :ref:`configuration`),
-encrypting and decrypting data is simple - pass the appropriate string to ``encrypt()``
-and/or ``decrypt()`` methods::
+假若你已經設置你的開始金鑰 （參考 :ref:`configuration`），加密以及解密資料很簡單 - 將適當的字串傳遞給 ``encrypt()`` 和／或 ``decrypt()`` 方法
+::
 
 	$plainText = 'This is a plain-text message!';
 	$ciphertext = $encrypter->encrypt($plainText);
@@ -56,30 +48,26 @@ and/or ``decrypt()`` methods::
 	// Outputs: This is a plain-text message!
 	echo $encrypter->decrypt($ciphertext);
 
-And that's it! The Encryption library will do everything necessary
-for the whole process to be cryptographically secure out-of-the-box.
-You don't need to worry about it.
+就這麼簡單！加密程式庫將完成每一個所有必要的工作為整個過程提供開箱及用的加密安全性，你不必擔心。
 
 .. _configuration:
 
-Configuring the Library
+設置程式庫
 =======================
 
-The example above uses the configuration settings found in ``app/Config/Encryption.php``.
+上面的範例使用在 ``app/Config/Encryption.php`` 。
 
-There are only two settings:
+這裡只有兩個設定:
 
 ======== ===============================================
-Option   Possible values (default in parentheses)
+選項      可能的值 (括號中為默認值)
 ======== ===============================================
 key      Encryption key starter
 driver   Preferred handler (OpenSSL)
 ======== ===============================================
 
-You can replace the config file's settings by passing a configuration
-object of your own to the ``Services`` call. The ``$config`` variable must be
-an instance of either the `Config\\Encryption` class or an object
-that extends `CodeIgniter\\Config\\BaseConfig`.
+你可以通過傳遞你自己對 ``Services`` 的呼叫來替換設置文件的設置。
+這個 ``config`` 變數必須是 `Config\\Encryption` 類別的實體或是 `CodeIgniter\\Config\\BaseConfig` 的延伸模組。
 ::
 
     $config         = new Config\Encryption();
@@ -89,41 +77,36 @@ that extends `CodeIgniter\\Config\\BaseConfig`.
     $encrypter = \Config\Services::encrypter($config);
 
 
-Default Behavior
+預設行為
 ================
 
-By default, the Encryption Library uses the OpenSSL handler. That handler encrypts using
-the AES-256-CTR algorithm, your configured *key*, and SHA512 HMAC authentication.
+默認情況下，加密程式庫使用OpenSSL的處理程序。該加密處理程序使用 AES-256-CTR 演算法，你配置的 *key* 和 SHA512 HMAC 身分驗證。
 
-Setting Your Encryption Key
+設置你的加密金鑰
 ===========================
 
-Your encryption key **must** be as long as the encryption algorithm in use allows.
-For AES-256, that's 256 bits or 32 bytes (characters) long.
+你的加密金要 **必須** 在使用中的加密演算法允許的範圍內。
+像是 AES-256 ，要在 256 個 bits 或者 32 bytes （字元）內。
 
-The key should be as random as possible, and it **must not** be a regular text string,
-nor the output of a hashing function, etc. To create a proper key,
-you can use the Encryption library's ``createKey()`` method.
+金鑰應盡可能的隨機，並且 **不得** 為常規本文字串，也不輸出雜湊函數等。要創造適當的金鑰，你可以使用加密程式庫內的 ``createKey()`` 方法。
 ::
 
 	// $key will be assigned a 32-byte (256-bit) random key
 	$key = Encryption::createKey(32);
 
-The key can be stored in *app/Config/Encryption.php*, or you can design
-a storage mechanism of your own and pass the key dynamically when encrypting/decrypting.
+金鑰可以被儲存在 *app/Config/Encryption.php* ，或你可以設計自己的儲存機制，並在加密／解密時動態傳遞金鑰。
 
-To save your key to your *app/Config/Encryption.php*, open the file
-and set::
+要將保存到 *app/Config/Encryption.php* ，請打開你的檔案並設置
+::
 
 	public $key = 'YOUR KEY';
 
-Encoding Keys or Results
+編碼金鑰或結果
 ------------------------
 
-You'll notice that the ``createKey()`` method outputs binary data, which
-is hard to deal with (i.e. a copy-paste may damage it), so you may use
-``bin2hex()``, ``hex2bin()`` or Base64-encoding to work with the key in
-a more friendly manner. For example::
+你會注意到 ``createKey()`` 方法輸出一個複製貼上可能會損壞的難處理二進位的資料，所以你可以使用 ``bin2hex()`` ， ``hex2bin()`` 或 Base64 編碼來更方便的使用金鑰，
+像是
+::
 
 	// Get a hex-encoded representation of the key:
 	$encoded = bin2hex(Encryption::createKey(32));
@@ -132,44 +115,38 @@ a more friendly manner. For example::
 	// so that it is still passed as binary to the library:
 	$key = hex2bin(<your hex-encoded key>);
 
-You might find the same technique useful for the results
-of encryption::
+你可能會發現到相同的技術也可以使用在多個加密結果
+::
 
 	// Encrypt some text & make the results text
 	$encoded = base64_encode($encrypter->encrypt($plaintext));
 
-Encryption Handler Notes
+加密程序說明
 ========================
 
-OpenSSL Notes
+OpenSSL
 -------------
 
-The `OpenSSL <https://www.php.net/openssl>`_ extension has been a standard part of PHP for a long time.
+長期以來， `OpenSSL <https://www.php.net/openssl>`_ 擴充套件一直是 PHP 標準的一部分。
 
-CodeIgniter's OpenSSL handler uses the AES-256-CTR cipher.
+CodeIgniter 的 OpenSSL 處理程序就是使用 AES-256-CTR 加密。
 
-The *key* your configuration provides is used to derive two other keys, one for
-encryption and one for authentication. This is achieved by way of a technique known
-as an `HMAC-based Key Derivation Function <https://en.wikipedia.org/wiki/HKDF>`_ (HKDF).
+你配置提供的 *key* 用來得到另外兩組，一組用於加密則另一組用來認證。
+這通過已知技術 `HMAC-based Key Derivation Function <https://en.wikipedia.org/wiki/HKDF>`_ （HKDF） 來實現作為基於 HMAC 的金鑰產生函數。
 
-Message Length
+訊息長度
 ==============
+一個加密的資串通常長於原本的純文本字符串（取決於密碼）。
 
-An encrypted string is usually longer than the original, plain-text string (depending on the cipher).
+這受密碼演算法本身，初始化向量（IV）以及 HMAC 演算法的影響。此外，加密訊息也經過 Base64 編碼，因此無論使用甚麼字符都可以安全的儲存以及傳輸。
 
-This is influenced by the cipher algorithm itself, the initialization vector (IV)
-prepended to the cipher-text, and the HMAC authentication message that is also prepended.
-Furthermore, the encrypted message is also Base64-encoded so that it is safe
-for storage and transmission regardless of the character-set in use.
+選擇資料儲存機制時，請留意這個資訊。
+像是：Cookies 只能保存 4K 的訊息。
 
-Keep this information in mind when selecting your data storage mechanism.
-Cookies, for example, can only hold 4K of information.
-
-Using the Encryption Service Directly
+使用加密服務
 =====================================
 
-Instead of (or in addition to) using ``Services`` as described in :ref:`usage`,
-you can create an "Encrypter" directly, or change the settings of an existing instance.
+代替（或除了）使用 :ref:`usage` 中所描述得 ``Services`` ，你可以直接創造一個 "Encrypter" ，或者更改現有實體的設置。
 ::
 
     // create an Encrypter instance
@@ -178,58 +155,54 @@ you can create an "Encrypter" directly, or change the settings of an existing in
     // reconfigure an instance with different settings
     $encrypter = $encryption->initialize($config);
 
-Remember, that ``$config`` must me an instance of either a `Config\Encryption` class
-or an object that extends `CodeIgniter\Config\BaseConfig`.
+記住， ``$config`` 必須是 `Config\Encryption` 類別的實體或擴展 `CodeIgniter\Config\BaseConfig` 。
 
 
 ***************
-Class Reference
+類別參考
 ***************
 
 .. php:class:: CodeIgniter\\Encryption\\Encryption
 
 	.. php:staticmethod:: createKey($length)
 
-		:param	int	$length: Output length
-		:returns:	A pseudo-random cryptographic key with the specified length, or FALSE on failure
+		:param	int	$length: 輸出長度
+		:returns:	具有指定長度的偽隨機密碼密鑰，失敗則為FALSE
 		:rtype:	string
 
-		Creates a cryptographic key by fetching random data from
-		the operating system's sources (i.e. /dev/urandom).
+		通過作業系統來源中獲取隨機數據來創建加密金鑰（i.e. /dev/urandom）。
 
 
 	.. php:method:: initialize($config)
 
-		:param	BaseConfig	$config: Configuration parameters
+		:param	BaseConfig	$config: 配置參數
 		:returns:	CodeIgniter\\Encryption\\EncrypterInterface instance
 		:rtype:	CodeIgniter\\Encryption\\EncrypterInterface
 		:throws:	CodeIgniter\\Encryption\\Exceptions\\EncryptionException
 
-		Initializes (configures) the library to use different settings.
+		初始化（配置）程式庫來使用不同的配置。
 
-		Example::
+		範例::
 
 			$encrypter = $encryption->initialize(['cipher' => '3des']);
 
-		Please refer to the :ref:`configuration` section for detailed info.
+		請參考 :ref:`configuration` 部分詳細的訊息。
 
 .. php:interface:: CodeIgniter\\Encryption\\EncrypterInterface
 
 	.. php:method:: encrypt($data, $params = null)
 
-		:param	string	$data: Data to encrypt
-		:param		$params: Configuration parameters (key)
-		:returns:	Encrypted data or FALSE on failure
+		:param	string	$data: 數據加密
+		:param		$params: 配置參數（金鑰）
+		:returns:	加密資料或失敗時為FALSE
 		:rtype:	string
 		:throws:	CodeIgniter\\Encryption\\Exceptions\\EncryptionException
 
-		Encrypts the input data and returns its ciphertext.
+		加密輸入數據並返回加密後的資料。
 
-                If you pass parameters as the second argument, the ``key`` element
-                will be used as the starting key for this operation if ``$params``
-                is an array; or the starting key may be passed as a string.
+                如果您將參數作為第二個參數傳遞，如果 ``$params`` 是陣列，則 ``key`` 元素將是此操作的開始鍵；或者起始鍵可以作為字串傳遞。
 
-		Examples::
+		範例::
 
 			$ciphertext = $encrypter->encrypt('My secret message');
 			$ciphertext = $encrypter->encrypt('My secret message', ['key' => 'New secret key']);
@@ -237,20 +210,17 @@ Class Reference
 
 	.. php:method:: decrypt($data, $params = null)
 
-		:param	string	$data: Data to decrypt
-		:param		$params: Configuration parameters (key)
-		:returns:	Decrypted data or FALSE on failure
+		:param	string	$data: 要解密的資料
+		:param		$params: 配置參數（金鑰）
+		:returns:	解密資料或失敗時為FALSE
 		:rtype:	string
 		:throws:	CodeIgniter\\Encryption\\Exceptions\\EncryptionException
 
-		Decrypts the input data and returns it in plain-text.
+		解密輸入資料並返回解密後的資料。
 
-                If you pass parameters as the second argument, the ``key`` element
-                will be used as the starting key for this operation if ``$params``
-                is an array; or the starting key may be passed as a string.
+                如果您將參數作為第二個參數傳遞，如果 ``$params`` 是陣列，則 ``key`` 元素將是此操作的開始鍵；或者起始鍵可以作為字串傳遞。
 
-
-		Examples::
+		範例::
 
 			echo $encrypter->decrypt($ciphertext);
 			echo $encrypter->decrypt($ciphertext, ['key' => 'New secret key']);
