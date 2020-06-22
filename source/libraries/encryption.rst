@@ -2,7 +2,7 @@
 加密服務
 ##################
 
-.. important:: 千萬不要使用這個或其他加密程式庫來做密碼的儲存！密碼必須被雜湊加密，並且你應該通過 PHP 的
+.. important:: 千萬不要使用這個或其他加密程式庫來做密碼的儲存！密碼必須被雜湊加密，並且你應該透過 PHP 的
 	`Password Hashing extension <https://www.php.net/password>`_ 來做這件事。
 
 這個加密服務提供雙向對稱資料加密（秘密金鑰）。這個服務將實體化和／或初始化一個加密一個 **處理程序** 以適應你的參數，如下所述。
@@ -34,7 +34,7 @@
 使用加密服務
 ****************************
 
-像是 CodeIgniter 其他服務，他可以通過 ``Config\Services`` 被載入
+像是 CodeIgniter 其他服務，他可以透過 ``Config\Services`` 被載入
 ::
 
     $encrypter = \Config\Services::encrypter();
@@ -66,7 +66,7 @@ key      Encryption key starter
 driver   Preferred handler (OpenSSL)
 ======== ===============================================
 
-你可以通過傳遞你自己對 ``Services`` 的呼叫來替換設置文件的設置。
+你可以透過傳遞你自己對 ``Services`` 的呼叫來替換設置文件的設置。
 這個 ``config`` 變數必須是 `Config\\Encryption` 類別的實體或是 `CodeIgniter\\Config\\BaseConfig` 的延伸模組。
 ::
 
@@ -80,7 +80,7 @@ driver   Preferred handler (OpenSSL)
 預設行為
 ================
 
-默認情況下，加密程式庫使用OpenSSL的處理程序。該加密處理程序使用 AES-256-CTR 演算法，你配置的 *key* 和 SHA512 HMAC 身分驗證。
+默認情況下，加密程式庫使用OpenSSL的處理程序。該加密處理程序使用 AES-256-CTR 演算法，你設定的 *key* 和 SHA512 HMAC 身分驗證。
 
 設置你的加密金鑰
 ===========================
@@ -131,8 +131,8 @@ OpenSSL
 
 CodeIgniter 的 OpenSSL 處理程序就是使用 AES-256-CTR 加密。
 
-你配置提供的 *key* 用來得到另外兩組，一組用於加密則另一組用來認證。
-這通過已知技術 `HMAC-based Key Derivation Function <https://en.wikipedia.org/wiki/HKDF>`_ （HKDF） 來實現作為基於 HMAC 的金鑰產生函數。
+你所設定提供的 *key* 用來得到另外兩組，一組用於加密則另一組用來認證。
+這透過已知技術 `HMAC-based Key Derivation Function <https://en.wikipedia.org/wiki/HKDF>`_ （HKDF） 來實現作為基於 HMAC 的金鑰產生函數。
 
 訊息長度
 ==============
@@ -170,17 +170,17 @@ CodeIgniter 的 OpenSSL 處理程序就是使用 AES-256-CTR 加密。
 		:returns:	具有指定長度的偽隨機密碼密鑰，失敗則為FALSE
 		:rtype:	string
 
-		通過作業系統來源中獲取隨機數據來創建加密金鑰（i.e. /dev/urandom）。
+		透過作業系統來源中獲取隨機數據來創建加密金鑰（i.e. /dev/urandom）。
 
 
 	.. php:method:: initialize($config)
 
-		:param	BaseConfig	$config: 配置參數
+		:param	BaseConfig	$config: 設定參數
 		:returns:	CodeIgniter\\Encryption\\EncrypterInterface instance
 		:rtype:	CodeIgniter\\Encryption\\EncrypterInterface
 		:throws:	CodeIgniter\\Encryption\\Exceptions\\EncryptionException
 
-		初始化（配置）程式庫來使用不同的配置。
+		初始化（設定）程式庫來使用不同的設定。
 
 		範例::
 
@@ -193,12 +193,12 @@ CodeIgniter 的 OpenSSL 處理程序就是使用 AES-256-CTR 加密。
 	.. php:method:: encrypt($data, $params = null)
 
 		:param	string	$data: 數據加密
-		:param		$params: 配置參數（金鑰）
+		:param		$params: 設定參數（金鑰）
 		:returns:	加密資料或失敗時為FALSE
 		:rtype:	string
 		:throws:	CodeIgniter\\Encryption\\Exceptions\\EncryptionException
 
-		加密輸入數據並返回加密後的資料。
+		加密輸入數據並回傳加密後的資料。
 
                 如果您將參數作為第二個參數傳遞，如果 ``$params`` 是陣列，則 ``key`` 元素將是此操作的開始鍵；或者起始鍵可以作為字串傳遞。
 
@@ -211,12 +211,12 @@ CodeIgniter 的 OpenSSL 處理程序就是使用 AES-256-CTR 加密。
 	.. php:method:: decrypt($data, $params = null)
 
 		:param	string	$data: 要解密的資料
-		:param		$params: 配置參數（金鑰）
+		:param		$params: 設定參數（金鑰）
 		:returns:	解密資料或失敗時為FALSE
 		:rtype:	string
 		:throws:	CodeIgniter\\Encryption\\Exceptions\\EncryptionException
 
-		解密輸入資料並返回解密後的資料。
+		解密輸入資料並回傳解密後的資料。
 
                 如果您將參數作為第二個參數傳遞，如果 ``$params`` 是陣列，則 ``key`` 元素將是此操作的開始鍵；或者起始鍵可以作為字串傳遞。
 

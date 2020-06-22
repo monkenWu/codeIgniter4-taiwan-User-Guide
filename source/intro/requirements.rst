@@ -12,18 +12,18 @@
 
 大部分的Web應用程式都需要資料庫，目前支援的資料庫如下：
 
-  - MySQL (5.1+) 通過 *MySQLi* 驅動。
-  - PostgreSQL 通過 *Postgre* 驅動。
-  - SQLite3 通過 *SQLite3* 驅動。
+  - MySQL (5.1+) 透過 *MySQLi* 驅動。
+  - PostgreSQL 透過 *Postgre* 驅動。
+  - SQLite3 透過 *SQLite3* 驅動。
 
 並不是所有的驅動都在CodeIgniter4進行了轉換或重構。以下將列出特別的項目：
 
-  - MySQL (5.1+) 通過 *pdo* 驅動。
-  - Oracle 通過 *oci8* 以及 *pdo* 驅動。
-  - PostgreSQL 通過　*pdo* 驅動。
-  - MS SQL 通過 *mssql*、*sqlsrv* (適用於　2005 或更高的版本)，以及 *pdo* 驅動。
-  - SQLite 通過 *sqlite* (version 2) 以及 *pdo* 驅動。
-  - CUBRID 通過 *cubrid* 以及 *pdo* 驅動。
-  - Interbase/Firebird 通過 *ibase* 以及 *pdo* 驅動。
-  - ODBC 通過 *odbc* 以及 *pdo* 驅動 （您必須知道ODBC實際上是一個抽象層）。
+  - MySQL (5.1+) 透過 *pdo* 驅動。
+  - Oracle 透過 *oci8* 以及 *pdo* 驅動。
+  - PostgreSQL 透過　*pdo* 驅動。
+  - MS SQL 透過 *mssql*、*sqlsrv* (適用於　2005 或更高的版本)，以及 *pdo* 驅動。
+  - SQLite 透過 *sqlite* (version 2) 以及 *pdo* 驅動。
+  - CUBRID 透過 *cubrid* 以及 *pdo* 驅動。
+  - Interbase/Firebird 透過 *ibase* 以及 *pdo* 驅動。
+  - ODBC 透過 *odbc* 以及 *pdo* 驅動 （您必須知道ODBC實際上是一個抽象層）。
 

@@ -14,23 +14,23 @@ Request 類別
 
     .. php:method:: getIPAddress()
 
-        :returns: 可以偵測到的使用者的 IP 地址，否則為 NULL ，如果 IP 地址無效，則返回 0.0.0.0
+        :returns: 可以偵測到的使用者的 IP 地址，否則為 NULL ，如果 IP 地址無效，則回傳 0.0.0.0
         :rtype:   string
 
-        可以偵測到的使用者的 IP 地址，否則為 NULL ，如果 IP 地址無效，則返回 0.0.0.0::
+        可以偵測到的使用者的 IP 地址，否則為 NULL ，如果 IP 地址無效，則回傳 0.0.0.0::
 
             echo $request->getIPAddress();
 
-        .. important:: 此方法會根據 ``App->proxyIPs`` 的設定，來返回 HTTP_X_FORWARDED_FOR、 HTTP_CLIENT_IP、HTTP_X_CLIENT_IP 或H TTP_X_CLUSTER_CLIENT_IP。
+        .. important:: 此方法會根據 ``App->proxyIPs`` 的設定，來回傳 HTTP_X_FORWARDED_FOR、 HTTP_CLIENT_IP、HTTP_X_CLIENT_IP 或H TTP_X_CLUSTER_CLIENT_IP。
             
     .. php:method:: isValidIP($ip[, $which = ''])
 
         :param    string $ip: IP 地址
         :param    string $which: IP 協議 ('ipv4' 或是 'ipv6')
-        :returns: IP 有效返回 true，否則返回 false
+        :returns: IP 有效回傳 true，否則回傳 false
         :rtype:   bool
 
-        傳入一個 IP 地址，根據 IP 是否有效返回 true 或 false。
+        傳入一個 IP 地址，根據 IP 是否有效回傳 true 或 false。
 
         .. note:: $request->getIPAddress() 自動檢測 IP 地址是否有效。
 
@@ -71,7 +71,7 @@ Request 類別
         :param    mixed     $index: 變數名稱
         :param    int       $filter: 要使用的過濾器類型，完整列表 `見此 <https://www.php.net/manual/en/filter.filters.php>`__.
         :param    int|array $flags: 要使用的過濾器的 ID，完整列表 `見此 <https://www.php.net/manual/en/filter.filters.flags.php>`__.
-        :returns: $_SERVER 值，如果不存在則返回 NULL。
+        :returns: $_SERVER 值，如果不存在則回傳 NULL。
         :rtype:   mixed
 
         該方法與 :doc:`IncomingRequest 類別 </incoming/incomingrequest>` 中的 ``post()``、``get()`` 和 ``cookie()`` 方法相同。只是它只獲取 getServer 的資料 (``$_SERVER``)::
@@ -88,7 +88,7 @@ Request 類別
         :param    mixed     $index: 變數名稱
         :param    int       $filter: 要使用的過濾器類型，完整列表 `見此 <https://www.php.net/manual/en/filter.filters.php>`__.
         :param    int|array $flags: 要使用的過濾器的 ID，完整列表 `見此 <https://www.php.net/manual/en/filter.filters.flags.php>`__.
-        :returns: $_ENV 值，如果不存在則返回 NULL。
+        :returns: $_ENV 值，如果不存在則回傳 NULL。
         :rtype:   mixed
 
          該方法與 :doc:`IncomingRequest 類別 </incoming/incomingrequest>` 中的 ``post()``、``get()`` 和 ``cookie()`` 方法相同。只是它只獲取 getEnv 的資料 (``$_ENV``)::
@@ -117,4 +117,4 @@ Request 類別
         :param    int|array $flags: 要使用的過濾器的 ID，完整列表 `見此 <https://www.php.net/manual/en/filter.filters.flags.php>`__.
         :rtype:   mixed
 
-        從全域中獲取一個或多個物件，如 cookie、get、post 等，可以選擇在檢索時通過過濾器對輸入進行過濾。
+        從全域中獲取一個或多個物件，如 cookie、get、post 等，可以選擇在檢索時透過過濾器對輸入進行過濾。

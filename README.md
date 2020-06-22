@@ -38,7 +38,7 @@ CodeIgniter 使用手冊基於 Sphinx 進行撰寫，它可以管理文檔並且
 
 #### Python
 
-Sphinx 需要 Python3.5+ ，如果你的作業系統是 MacOS 或是 Ubuntu ，則內建了 Python 。你可以通過 Terminal 確認你的版本：
+Sphinx 需要 Python3.5+ ，如果你的作業系統是 MacOS 或是 Ubuntu ，則內建了 Python 。你可以透過 Terminal 確認你的版本：
 
 ```
 python --version

@@ -132,7 +132,7 @@ Composer 安裝
 
     composer require codeigniter4/framework
 
-與前兩個 Composer 安裝方法相同，你可以通過「 --no-dev 」引數，省略安裝 phpunit 及其 Composer 依賴，
+與前兩個 Composer 安裝方法相同，你可以透過「 --no-dev 」引數，省略安裝 phpunit 及其 Composer 依賴，
 
 安裝
 -------------------------------------------------------

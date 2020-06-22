@@ -86,7 +86,7 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 .. php:function:: old( $key[, $default = null, [, $escape = 'html' ]] )
 
 	:param string $key: 需要檢查的舊表單資料。
-	:param mixed  $default: 如果 $key 不存在，則返回默認值。
+	:param mixed  $default: 如果 $key 不存在，則回傳默認值。
 	:param mixed  $escape: `轉譯 <#esc>`_ 內容或使用 false 禁用。
 	:returns: 定義 key 的值，或者使用默認值。
 	:rtype: mixed
@@ -231,7 +231,7 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 	:param  RequestInterface $request: 目前 Request 物件的實體。
 	:param  ResponseInterface $response: 目前 Response 物件的實體。
 
-	檢查目前是否通過 HTTPS 造訪該頁面。如果是，將不動作。若否，則該使用者將會以 HTTPS 的形式被重新導向到當前 URL 。將會設定 HTTP Strict-Transport-Security 標頭，它將讓現代瀏覽器自動把 $duration 的所有 HTTP 請求修改為 HTTPS 請求。
+	檢查目前是否透過 HTTPS 造訪該頁面。如果是，將不動作。若否，則該使用者將會以 HTTPS 的形式被重新導向到當前 URL 。將會設定 HTTP Strict-Transport-Security 標頭，它將讓現代瀏覽器自動把 $duration 的所有 HTTP 請求修改為 HTTPS 請求。
 
 .. php:function:: function_usable ( $function_name )
 

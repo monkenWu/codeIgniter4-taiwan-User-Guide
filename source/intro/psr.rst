@@ -2,7 +2,7 @@
 PSR 規範
 **************
 
-`PHP-FIG <http://www.php-fig.org/>`_ 創立於 2009 年，通過統一的介面標準以及程式碼風格標準，提升框架與程式間的協同工作能力（ Interoperability ）。縱使 CodeIgniter 不是 FIG 的成員，但我們還是有相同的目標也採納了許多實作建議。這份文檔所列出的是我們在框架中所遵守的 PSR 規範以及如何實現。
+`PHP-FIG <http://www.php-fig.org/>`_ 創立於 2009 年，透過統一的介面標準以及程式碼風格標準，提升框架與程式間的協同工作能力（ Interoperability ）。縱使 CodeIgniter 不是 FIG 的成員，但我們還是有相同的目標也採納了許多實作建議。這份文檔所列出的是我們在框架中所遵守的 PSR 規範以及如何實現。
 
 **PSR-1 ：基本程式寫作標準（ Basic Coding Standard ）**
 

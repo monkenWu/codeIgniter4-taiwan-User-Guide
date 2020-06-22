@@ -209,14 +209,14 @@ $routes->get('/', 'Home::index');
 
 如果你現在瀏覽到你的網站時沒有指定任何的 URI 區段，你會看到 "Hello World" 訊息。
 
-.. note:: 這一行 ``$routes->get('/', 'Home::index');`` 是你在打造你的產品應用中會想要使用的優化寫法。但為了示範，我們不想使用這個功能。``$routes->get()`` 在 :doc:`URI Routing <routing>` 中會進行解釋。
+.. note:: 這一行 ``$routes->get('/', 'Home::index');`` 是你在打造你的產品應用中會想要使用的最佳化寫法。但為了示範，我們不想使用這個功能。``$routes->get()`` 在 :doc:`URI Routing <routing>` 中會進行解釋。
 
 想了解的更加深入，可以參考 :doc:`URI 路由文件 <routing>` 中的「路由設定選項」章節。
 
 呼叫重映射方法
 ======================
 
-如上所述，URI 的第二段通常決定了要呼叫控制器中的哪個方法。 CodeIgniter 允許你通過使用 ``_remap()`` 方法來覆蓋這個行為：
+如上所述，URI 的第二段通常決定了要呼叫控制器中的哪個方法。 CodeIgniter 允許你透過使用 ``_remap()`` 方法來覆蓋這個行為：
 
 ::
 
@@ -321,7 +321,7 @@ CodeIgniter 還允許你使用 :doc:`URI Routing <routing>` 功能重新映射�
 
 **強制 HTTPS**
 
-在所有的控制器中都有一個方便的方法，可以強制使用者通過 HTTPS 來訪問一個方法::
+在所有的控制器中都有一個方便的方法，可以強制使用者透過 HTTPS 來訪問一個方法::
 
 	if (! $this->request->isSecure())
 	{
@@ -376,7 +376,7 @@ CodeIgniter 還允許你使用 :doc:`URI Routing <routing>` 功能重新映射�
         // do something here if successful...
     }
 
-如果你覺得在設定文件中保留規則更簡單，你可以把$rules數組替換成  ``Config\Validation.php`` 中定義的組名：
+如果你覺得在設定文件中保留規則更簡單，你可以把 $rules 陣列替換成  ``Config\Validation.php`` 中定義的組名：
 
 ::
 
@@ -393,7 +393,6 @@ CodeIgniter 還允許你使用 :doc:`URI Routing <routing>` 功能重新映射�
     }
 
 驗證也可以在模型中自動處理，但有時在控制器中進行驗證會更方便。具體到哪裡，由你自己決定.
-驗證也可以在模型中自動處理，但有時在控制器中進行驗證會更方便。具體到哪裡，由你自己決定。
 
 就是這樣！
 ==========

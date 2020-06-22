@@ -2,7 +2,7 @@
 產生查詢結果
 ########################
 
-There are several ways to generate query results:
+有幾種方法可以產生查詢結果：
 
 .. contents::
     :local:
@@ -181,7 +181,7 @@ which represents a class to instantiate for each result object
 客製化查詢結果
 *********************
 
-你可以將查詢結果以自定義類別的實例做回傳，而不是像 ``getResult()`` 和 ``getResultArray()`` ，以stdClass或陣列的方式回傳。
+你可以將查詢結果以自定義類別的實體做回傳，而不是像 ``getResult()`` 和 ``getResultArray()`` ，以stdClass或陣列的方式回傳。
 如果類別沒有載入到記憶體中，Autoloader將會自動載入。
 物件將會把資料庫中回傳的所有變數設定為屬性。
 如果這些變數已經被宣告為非公開，那你應該要提供一個 ``__set()`` 的方法，讓它可以被設定。
@@ -225,8 +225,8 @@ which represents a class to instantiate for each result object
 
 **getCustomResultObject()**
 
-以類別的實例之陣列an array of instances of the class requested.，回傳所有查詢結果集。
-唯一要傳入的參數是要做為類別實例的名稱class to instantiate.
+以類別的實體之陣列an array of instances of the class requested.，回傳所有查詢結果集。
+唯一要傳入的參數是要做為類別實體的名稱class to instantiate.
 
 範例：
 
@@ -245,7 +245,7 @@ which represents a class to instantiate for each result object
 
 **getCustomRowObject()**
 
-從查詢結果中回傳單筆資料。第一個參數為要回傳的該筆資料，第二個參數為實例化的類別名稱。
+從查詢結果中回傳單筆資料。第一個參數為要回傳的該筆資料，第二個參數為實體化的類別名稱。
 The second parameter is the class name to instantiate.
 
 範例：
@@ -373,7 +373,7 @@ The second parameter is the class name to instantiate.
 		:returns:	含有請求結果的陣列
 		:rtype:	array
 
-		將查詢結果以陣列的方式回傳，陣列中的每個列都是所指定類別的實例。
+		將查詢結果以陣列的方式回傳，陣列中的每個列都是所指定類別的實體。
 
 	.. php:method:: getRow([$n = 0[, $type = 'object']])
 
@@ -423,7 +423,7 @@ The second parameter is the class name to instantiate.
 		:returns:	請求的列，如果不存在，則為 NULL
 		:rtype:	$type
 
-		以所請求類別的實例回傳請求的結果列。
+		以所請求類別的實體回傳請求的結果列。
 
 	.. php:method:: dataSeek([$n = 0])
 
