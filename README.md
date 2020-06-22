@@ -1,7 +1,9 @@
 # codeIgniter4-taiwan-User-Guide
 CodeIgniter 4 Traditional Chinese(Taiwan) User Guide - codeigniter4 繁體中文(台灣)使用手冊翻譯計畫
 
-[查閱最新使用手冊](https://monkenwu.github.io/codeIgniter4-taiwan-User-Guide/)
+[Codeigniter台灣站](https://codeigniter.tw)
+
+[Codeigniter4 正式手冊](https://codeigniter.tw/user_guide/index.html)
 
 [查閱最新翻譯認領清單](https://github.com/monkenWu/codeIgniter4-taiwan-User-Guide/wiki/%E7%BF%BB%E8%AD%AF%E8%AA%8D%E9%A0%98%E6%B8%85%E5%96%AE)
 
