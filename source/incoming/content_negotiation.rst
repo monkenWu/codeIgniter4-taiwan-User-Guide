@@ -1,53 +1,40 @@
 *******************
-Content Negotiation
+內容協商
 *******************
 
-Content negotiation is a way to determine what type of content to return to the client based on what the client
-can handle, and what the server can handle. This can be used to determine whether the client is wanting HTML or JSON
-returned, whether the image should be returned as a jpg or png, what type of compression is supported and more. This
-is done by analyzing four different headers which can each support multiple value options, each with their own priority.
-Trying to match this up manually can be pretty challenging. CodeIgniter provides the ``Negotiator`` class that
-can handle this for you.
+內容協商是一種用來根據使用者端和伺服器端可處理的資源類型，來決定回傳給客戶端哪種類型的內容的機制。該機制可用來決定客戶端是想要 HTML 還是想要 JSON ，一個圖片是應該以 JPG 還是以 PNG 格式回傳，或者支持哪種類型的壓縮方法等。這些決策是通過分析四個不同的請求頭，而這些請求頭里支持多個帶有優先級的值選項。手動對這些值選項進行優先級配對通常是比較傷腦的，因此 CodeIgniter 提供了 Negotiator 來處理以上的過程。
 
 =================
-Loading the Class
+載入類別
 =================
 
-You can load an instance of the class manually through the Service class::
+你可以通過 Service 類別來手動載入一個該類別的實體::
 
     $negotiate = \Config\Services::negotiator();
 
-This will grab the current request instance and automatically inject it into the Negotiator class.
+以上操作會獲取所有的請求實體並自動將其注入到 Negotiator （協商，下同）類別中。
 
-This class does not need to be loaded on it's own. Instead, it can be accessed through this request's ``IncomingRequest``
-instance. While you cannot access it directly this way, you can easily access all of methods through the ``negotiate()``
-method::
+該類別並不需要主動載入。而是通過請求的 ``IncomingRequest`` 實體來進行訪問。儘管你並不能通過這一過程直接訪問該實體，但你可以通過 ``negotiate()`` 方法來輕鬆的呼叫它的所有方法::
 
     $request->negotiate('media', ['foo', 'bar']);
 
-When accessed this way, the first parameter is the type of content you're trying to find a match for, while the
-second is an array of supported values.
+當通過該方法訪問實體時，第一個參數是你需要匹配內容的類型，第二個是所支持的類型值構成的陣列。
 
 ===========
-Negotiating
+協商
 ===========
 
-In this section, we will discuss the 4 types of content that can be negotiated and show how that would look using
-both of the methods described above to access the negotiator.
+本節中，我們將討論四種可以用來協商的類型，並展示如何通過上述兩種方法來進行內容協商。
 
-Media
+媒體
 =====
 
-The first aspect to look at is handling 'media' negotiations. These are provided by the ``Accept`` header and
-is one of the most complex headers available. A common example is the client telling the server what format it
-wants the data in. This is especially common in API's. For example, a client might request JSON formatted data
-from an API endpoint::
+第一層首先要看的就是「媒體」協商。該協商方式是通過 Accept 請求頭進行的，並且是可用的請求頭中最為複雜的類型之一。一個常見的例子就是使用者端告訴伺服器端其所需要的資料格式，而這種操作在 API 中最為常見。例如，一個使用者端可能從一個 API 端點請求以 JSON 編碼的資料::
 
     GET /foo HTTP/1.1
     Accept: application/json
 
-The server now needs to provide a list of what type of content it can provide. In this example, the API might
-be able to return data as raw HTML, JSON, or XML. This list should be provided in order of preference::
+該伺服器需要提供一個支持該內容類型的列表。在這個例子中，API 可能需要回傳像原生 HTML ，JSON 或者是 XML 格式的資料。而該列表應根據使用者端偏好的順序回傳::
 
     $supported = [
         'application/json',
@@ -56,31 +43,24 @@ be able to return data as raw HTML, JSON, or XML. This list should be provided i
     ];
 
     $format = $request->negotiate('media', $supported);
-    // or
+    // 或是
     $format = $negotiate->media($supported);
 
-In this case, both the client and the server can agree on formatting the data as JSON so 'json' is returned from
-the negotiate method. By default, if no match is found, the first element in the $supported array would be returned.
-In some cases, though, you might need to enforce the format to be a strict match. If you pass ``true`` as the
-final value, it will return an empty string if no match is found::
+在這個例子中，使用者端和伺服器端的協商一致，將資料以 JSON 的格式回傳，因此 'json' 就會從協商方法中回傳。預設情況下，如果沒有配對到，在 $support 陣列中的第一個元素就會被回傳。儘管在某些情況下，你可能會強制要求伺服器端嚴格得匹配格式。因此如果你將 ``true`` 作為最後的參數傳入時，在配對不到時就會回傳空字串::
 
     $format = $request->negotiate('media', $supported, true);
     // or
     $format = $negotiate->media($supported, true);
 
-Language
+語言
 ========
 
-Another common usage is to determine the language the content should be served in. If you are running only a single
-language site, this obviously isn't going to make much difference, but any site that can offer up multiple translations
-of content will find this useful, since the browser will typically send the preferred language along in the ``Accept-Language``
-header::
+另一個常見的用法就是決定回傳內容的語言。如果你執行的是一個單語言網站，該功能顯然並沒有什麼影響。但是如果對於那些提供多語言內容的網站來說，該功能就會變得非常有用，基於瀏覽器將通常會在 ``Accept-Language`` 請求頭中發送偏好的語言類型::
 
     GET /foo HTTP/1.1
     Accept-Language: fr; q=1.0, en; q=0.5
 
-In this example, the browser would prefer French, with a second choice of English. If your website supports English
-and German you would do something like::
+在這個例子中，瀏覽器偏好法語，並次偏好英語。如果你的網站支持英語或德語，那麼你就會如下操作::
 
     $supported = [
         'en',
@@ -88,39 +68,37 @@ and German you would do something like::
     ];
 
     $lang = $request->negotiate('language', $supported);
-    // or
+    // 或是
     $lang = $negotiate->language($supported);
 
-In this example, 'en' would be returned as the current language. If no match is found, it will return the first element
-in the $supported array, so that should always be the preferred language.
+本例中，en 將作為當前語言回傳。如果沒有產生配對，就會回傳 $supported 陣列的第一個元素，因此該元素將會一直作為偏好語言。
 
-Encoding
+編碼
 ========
 
-The ``Accept-Encoding`` header contains the character sets the client prefers to receive, and is used to
-specify the type of compression the client supports::
+``Accept-Encoding`` 請求頭包含了使用者端所期望接收到的字符集，用於確定使用者端支持哪種類型的壓縮方式::
 
     GET /foo HTTP/1.1
     Accept-Encoding: compress, gzip
 
-Your web server will define what types of compression you can use. Some, like Apache, only support **gzip**::
+你的 web 伺服器將會定義可以使用的壓縮類型。某些伺服器，例如 Apache ,只支持了 **gzip**::
 
     $type = $request->negotiate('encoding', ['gzip']);
-    // or
+    // 或是
     $type = $negotiate->encoding(['gzip']);
 
-See more at `Wikipedia <https://en.wikipedia.org/wiki/HTTP_compression>`_.
+想了解更多的話，請查閱 `維基百科 <https://en.wikipedia.org/wiki/HTTP_compression>`_.
 
-Character Set
+字符集
 =============
 
-The desired character set is passed through the ``Accept-Charset`` header::
+所期待的字符集類型會通過 ``Accept-Charset`` 請求頭來傳值::
 
     GET /foo HTTP/1.1
     Accept-Charset: utf-16, utf-8
 
-By default, if no matches are found, **utf-8** will be returned::
+預設情況下，如果沒有配對到的話就會回傳 **utf-8**::
 
     $charset = $request->negotiate('charset', ['utf-8']);
-    // or
+    // 或是
     $charset = $negotiate->charset(['utf-8']);

@@ -1,23 +1,17 @@
 ====================
-HTTP Method Spoofing
+HTTP 類型偽裝
 ====================
 
-When working with HTML forms you can only use GET or POST HTTP verbs. In most cases, this is just fine. However, to
-support REST-ful routing you need to support other, more correct, verbs, like DELETE or PUT. Since the browsers
-don't support this, CodeIgniter provides you with a way to spoof the method that is being used. This allows you to
-make a POST request, but tell the application that it should be treated as a different request type.
+當處理 HTML 表單時，你只可以使用 GET 或 POST 這兩個 HTTP 動詞。在大多數情況下，這種情況是沒有問題的。然而為了支持 REST-ful 格式的路由， 你需要支持其他更為正確的路由動詞。例如 DELETE 或 PUT。由於瀏覽器不支持這種方式，CodeIgniter 提供了一種方法來偽裝請求的類型。這種方法允許你發起一個 POST 請求，但是告訴程式這個請求應該被作為另一個請求類型來處理。
 
-To spoof the method, a hidden input is added to the form with the name of ``_method``. It's value is the HTTP verb
-that you want the request to be::
+為了偽裝請求類型，一個名為 ``_method`` 的隱藏輸入欄位需要被添加到表單中。這個欄位的值應當是你希望發送的請求類型::
 
     <form action="" method="post">
         <input type="hidden" name="_method" value="PUT" />
     </form>
 
-This form is converted into a PUT request and is a true PUT request as far as the routing and the IncomingRequest
-class are concerned.
+這個表單就會被轉化成一個 ​​PUT 請求，並且只要路由和 IncomingRequest 類別能識別的話，這就是一個真正的 PUT 請求。
 
-The form that you are using must be a POST request. GET requests cannot be spoofed.
+你所使用的表單必須得是一個 POST 請求，GET 請求無法被偽裝。
 
-.. note:: Be sure to check your web server's configuration as some servers do not support all HTTP verbs
-    with the default configuration, and must have additional packages enabled to work.
+.. note:: 請確認你的 Web 伺服器的設定，因為有些伺服器預設沒有支持所有的 HTTP 動詞，所以必須添加一些額外的套件來開啟這項功能。
