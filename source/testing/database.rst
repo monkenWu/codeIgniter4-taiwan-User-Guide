@@ -79,6 +79,18 @@
         protected $basePath = 'path/to/database/files';
     }
 
+**$migrate**
+
+This boolean value determines whether the database migration runs before test.
+By default, the database is always migrated to the latest available state as defined by ``$namespace``.
+If false, migration never runs. If you want to disable migration, set false.
+
+**$migrateOnce**
+
+This boolean value determines whether the database migration runs only once. If you want
+to run migration once before the first test, set true. If not present or false, migration
+runs before each test.
+
 **$refresh**
 
 這個布林值決定了在每次測時前資料庫是否需要完全初始化，如果為 true ，則所有的遷移都將回歸到 0 版本，資料庫會被遷到你所設定的最新且可用的遷移。
@@ -86,6 +98,12 @@
 **$seed**
 
 如果這個屬性存在且不為 empty （空值），則這個屬性所宣告指定的資料填充檔案，將會在每次運作測試前用於資料庫填充使用。
+
+**$seedOnce**
+
+This boolean value determines whether the database seeding runs only once. If you want
+to run database seeding once before the first test, set true. If not present or false, database seeding
+runs before each test.
 
 **$basePath**
 
@@ -99,6 +117,14 @@
 ==============
 
 **CIDatabaseTestCase** 類別提供了幾個輔助方法來幫助你測試你的資料庫。
+
+**regressDatabase()**
+
+Called during ``$refresh`` described above, this method is available if you need to reset the database manually.
+
+**migrateDatabase()**
+
+Called during ``setUp``, this method is available if you need to run migrations manually.
 
 **seed($name)**
 
