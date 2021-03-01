@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>表單輔助函數 &mdash; CodeIgniter4 4.0.3 說明文件</title>
+  <title>表單輔助函數 &mdash; CodeIgniter4 4.1.1 說明文件</title>
   
 
   
@@ -28,6 +28,7 @@
         <script type="text/javascript" src="../_static/doctools.js"></script>
         <script type="text/javascript" src="../_static/language_data.js"></script>
         <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/js/carbon.js"></script>
         <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -96,13 +97,10 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
 </ul>
@@ -123,6 +121,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -218,7 +217,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Dates and Times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">Working with Uploaded Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">Working with URIs</a></li>
@@ -238,6 +237,7 @@
 <li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="number_helper.html">Number 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="security_helper.html">安全性輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_helper.html">Test Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="url_helper.html">URL Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML 輔助函數</a></li>
@@ -248,6 +248,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">測試</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">入門</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
@@ -259,6 +260,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -351,7 +353,7 @@
 <div class="contents local topic" id="id2">
 <ul class="simple">
 <li><a class="reference internal" href="#id3" id="id6">載入此輔助函數</a></li>
-<li><a class="reference internal" href="#id4" id="id7">脫離領域的值</a></li>
+<li><a class="reference internal" href="#id4" id="id7">脫離領欄位的值</a></li>
 <li><a class="reference internal" href="#id5" id="id8">可用的功能</a></li>
 </ul>
 </div>
@@ -363,7 +365,7 @@
 </div>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id7">脫離領域的值</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">脫離領欄位的值</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
 <p>你或許需要使用 HTML 與像是引用的字元在你的型式元素中。
 為了安全的實作，你會需要使用
 <a class="reference internal" href="../general/common_functions.html"><span class="doc">common function</span></a>
@@ -398,7 +400,7 @@ form 的值會被自動脫離，因此你沒有必要呼叫此函式。只有你
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
 <li><strong>$action</strong> (<em>string</em>) – Form 動作／目標 URI 字串</li>
 <li><strong>$attributes</strong> (<em>mixed</em>) – HTML 屬性，是一個陣列或跳脫的字串</li>
-<li><strong>$hidden</strong> (<em>array</em>) – 一個隱藏域的定義陣列</li>
+<li><strong>$hidden</strong> (<em>array</em>) – 一個隱藏欄位的定義陣列</li>
 </ul>
 </td>
 </tr>
@@ -438,7 +440,7 @@ form 的值會被自動脫離，因此你沒有必要呼叫此函式。只有你
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">form</span> <span class="nx">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span> <span class="nx">accept</span><span class="o">-</span><span class="nx">charset</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span> <span class="nx">action</span><span class="o">=</span><span class="s2">&quot;http://example.com/index.php/email/send&quot;</span> <span class="nx">class</span><span class="o">=</span><span class="s2">&quot;email&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;myform&quot;</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>如果 CSRF 過濾器是開啟的，<cite>form_open()</cite> 將會在 form 的最一開始產生 CSRF 域。你可以透過將 csrf_id 作為其中一個 $attribute 陣列傳送進 form 以指定這個域的ID:</p>
+<p>如果 CSRF 過濾器是開啟的，<cite>form_open()</cite> 將會在 form 的最一開始產生 CSRF 欄位。你可以透過將 csrf_id 作為其中一個 $attribute 陣列傳送進 form 以指定這個欄位的ID:</p>
 <blockquote>
 <div>form_open(『/u/sign-up』, [『csrf_id』 =&gt; 『my-id』]);</div></blockquote>
 <p>它將會回傳:</p>
@@ -446,9 +448,9 @@ form 的值會被自動脫離，因此你沒有必要呼叫此函式。只有你
 <div>&lt;form action=」/u/sign-up」 method=」post」 accept-charset=」utf-8」&gt;
 &lt;input type=」hidden」 id=」my-id」 name=」csrf_field」 value=」964ede6e0ae8a680f7b8eab69136717d」 /&gt;</div></blockquote>
 </div></blockquote>
-<p><strong>增加隱藏的輸入域</strong></p>
+<p><strong>增加隱藏的輸入欄位</strong></p>
 <blockquote>
-<div><p>隱藏的輸入域可以藉由傳送一個關聯的陣列到第三個參數以增加，項是這樣:</p>
+<div><p>隱藏的輸入欄位可以藉由傳送一個關聯的陣列到第三個參數以增加，項是這樣:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$hidden</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;member_id&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;234&#39;</span><span class="p">];</span>
 <span class="k">echo</span> <span class="nx">form_open</span><span class="p">(</span><span class="s1">&#39;email/send&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nv">$hidden</span><span class="p">);</span>
 </pre></div>
@@ -473,7 +475,7 @@ form 的值會被自動脫離，因此你沒有必要呼叫此函式。只有你
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
 <li><strong>$action</strong> (<em>string</em>) – Form 動作／目標 URI 字串</li>
 <li><strong>$attributes</strong> (<em>mixed</em>) – HTML 屬性，是一個陣列或跳脫的字串</li>
-<li><strong>$hidden</strong> (<em>array</em>) – 一個隱藏域的定義陣列</li>
+<li><strong>$hidden</strong> (<em>array</em>) – 一個隱藏欄位的定義陣列</li>
 </ul>
 </td>
 </tr>
@@ -1365,9 +1367,9 @@ class instead of the generic helper function.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
+        &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年06月23日。
+        最後更新於 2021年03月02日。
       </span>
 
     </p>

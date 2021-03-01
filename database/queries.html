@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>執行查詢 &mdash; CodeIgniter4 4.0.3 說明文件</title>
+  <title>執行查詢 &mdash; CodeIgniter4 4.1.1 說明文件</title>
   
 
   
@@ -28,6 +28,7 @@
         <script type="text/javascript" src="../_static/doctools.js"></script>
         <script type="text/javascript" src="../_static/language_data.js"></script>
         <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/js/carbon.js"></script>
         <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -96,13 +97,10 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
 </ul>
@@ -123,6 +121,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -218,7 +217,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Dates and Times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">Working with Uploaded Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">Working with URIs</a></li>
@@ -238,6 +237,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">Test Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
@@ -248,6 +248,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">測試</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">入門</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
@@ -259,6 +260,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -382,7 +384,7 @@
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;YOUR QUERY HERE&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>當對資料庫進行 「讀取」 查詢時，query() 函數會以 <em>物件(object)</em> 型態回傳資料庫產生的 <a class="reference internal" href="results.html"><span class="doc">查詢結果</span></a>。當對資料庫進行 「寫入」 查詢時，會依據執行的成功或失敗來回傳TRUE 或 FALSE。
+<p>當對資料庫進行 「讀取」 查詢時，<code class="docutils literal notranslate"><span class="pre">query()</span></code> 函數會以 <strong>物件</strong> 型態回傳資料庫產生的 <a class="reference internal" href="results.html"><span class="doc">查詢結果</span></a>。當對資料庫進行 「寫入」 查詢時，會依據執行的成功或失敗來回傳TRUE 或 FALSE。
 當對資料庫進行 「檢索」 查詢時，通常使用一個變數來接收查詢的結果，例如：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;YOUR QUERY HERE&#39;</span><span class="p">);</span>
 </pre></div>
@@ -390,7 +392,7 @@
 </div>
 <div class="section" id="id5">
 <h3><a class="toc-backref" href="#id20">簡單化的查詢</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
-<p><strong>simpleQuery</strong> 方法是 $db-&gt;query() 的簡化版。它不會回傳資料庫結果集合，不會設定查詢計時器，不會編譯資料，不會儲存你的查詢以便除錯。它只是讓你提交查詢。大多數使用者很少會使用到這個函數。</p>
+<p><strong>simpleQuery</strong> 方法是 <code class="docutils literal notranslate"><span class="pre">$db-&gt;query()</span></code> 的簡化版。它不會回傳資料庫結果集合，不會設定查詢計時器，不會編譯資料，不會儲存你的查詢以便除錯。它只是讓你提交查詢。大多數使用者很少會使用到這個函數。</p>
 <p>它回傳資料庫驅動的 「execute」 函數的回傳的結果。通常在執行類型查詢，如： INSERT 、 DELETE ，或 UPDATE 語法（合適的應用時機），會根據成功或失敗，回傳TRUE/FALSE。對於可獲得結果的查詢，則會回傳一個資源／物件。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">simpleQuery</span><span class="p">(</span><span class="s1">&#39;YOUR QUERY&#39;</span><span class="p">))</span>
 <span class="p">{</span>
@@ -520,7 +522,7 @@
 </div>
 <div class="section" id="id12">
 <h2><a class="toc-backref" href="#id27">預備查詢</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h2>
-<p>大多數的資料庫引擎，支援某些形式的預備語法，這些語法讓你可以準備一次查詢，然後使用新的資料集進行多次查詢。由於資料是用與查詢本身不同的格式傳送到資料庫，因此消除了SQL注入的可能性。當你需要執行多次相同的查詢，速度也會快很多。然而，對每次的查詢都使用它，會對性能產生重大的影響，因為你要加倍頻繁的呼叫資料庫。由於查詢生成器和資料庫連接已經為你處理了跳脫資料，因此安全方面就不需要特別的擔心。但是，有時候你需要藉由執行預備語法或預備查詢來最佳化查詢。</p>
+<p>大多數的資料庫引擎，支援某些形式的預備語法，這些語法讓你可以準備一次查詢，然後使用新的資料集進行多次查詢。由於資料是用與查詢本身不同的格式傳送到資料庫，因此消除了SQL注入的可能性。當你需要執行多次相同的查詢，速度也會快很多。然而，對每次的查詢都使用它，會對效能產生重大的影響，因為你要加倍頻繁的呼叫資料庫。由於查詢生成器和資料庫連接已經為你處理了跳脫資料，因此安全方面就不需要特別的擔心。但是，有時候你需要藉由執行預備語法或預備查詢來最佳化查詢。</p>
 <div class="section" id="id13">
 <h3><a class="toc-backref" href="#id28">預備查詢</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h3>
 <p>透過 <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> 方法可以簡單地完成預備。這需要一個會回傳查詢物件的匿名函數作為參數。查詢物件是由任何 「final」 類型查詢自動產生的，包含新增、更新、刪除、取代、取得。使用查詢生成器執行查詢，是最簡單的方式。實際上，該查詢並未執行，而且變數無關緊要，因為它們從未被應用，而是置換符號。這會回傳一個 PreparedQuery 的物件。</p>
@@ -601,7 +603,7 @@
 </div>
 <div class="section" id="id16">
 <h2><a class="toc-backref" href="#id31">操作查詢物件</a><a class="headerlink" href="#id16" title="本標題的永久連結">¶</a></h2>
-<p>在CodeIgniter的內部架構中，所有查詢都會當作為 CodeIgniterDatabaseQuery 的實體進行處理和儲存。這些類別負責繫結變數，否則準備好查詢，並且儲存查詢相關的性能資訊。</p>
+<p>在CodeIgniter的內部架構中，所有查詢都會當作為 CodeIgniterDatabaseQuery 的實體進行處理和儲存。這些類別負責繫結變數，否則準備好查詢，並且儲存查詢相關的效能資訊。</p>
 <p><strong>getLastQuery()</strong></p>
 <p>當你需要檢索上次查詢的語法，使用 getLastQuery() 這個方法：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">getLastQuery</span><span class="p">();</span>
@@ -681,9 +683,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
+        &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年06月23日。
+        最後更新於 2021年03月02日。
       </span>
 
     </p>

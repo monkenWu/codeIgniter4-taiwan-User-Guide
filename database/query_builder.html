@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>查詢生成器類別 &mdash; CodeIgniter4 4.0.3 說明文件</title>
+  <title>查詢生成器類別 &mdash; CodeIgniter4 4.1.1 說明文件</title>
   
 
   
@@ -28,6 +28,7 @@
         <script type="text/javascript" src="../_static/doctools.js"></script>
         <script type="text/javascript" src="../_static/language_data.js"></script>
         <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/js/carbon.js"></script>
         <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -96,13 +97,10 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
 </ul>
@@ -123,6 +121,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -218,7 +217,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Dates and Times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">Working with Uploaded Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">Working with URIs</a></li>
@@ -238,6 +237,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">Test Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
@@ -248,6 +248,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">測試</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">入門</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
@@ -259,6 +260,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -366,7 +368,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 <li><a class="reference internal" href="#id10" id="id23">插入資料</a></li>
 <li><a class="reference internal" href="#id11" id="id24">更新資料</a></li>
 <li><a class="reference internal" href="#id12" id="id25">刪除資料</a></li>
-<li><a class="reference internal" href="#id13" id="id26">方法串接</a></li>
+<li><a class="reference internal" href="#id13" id="id26">鏈式方法</a></li>
 <li><a class="reference internal" href="#ar-caching" id="id27">重置查詢生成器</a></li>
 <li><a class="reference internal" href="#id15" id="id28">類別參考</a></li>
 </ul>
@@ -408,7 +410,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 </div>
 <p>請參考 <a class="reference internal" href="results.html"><span class="doc">產生查詢結果</span></a> 來了解關於產生結果的完整內容。</p>
 <p><strong>$builder-&gt;getCompiledSelect()</strong></p>
-<p>編譯選取查詢就像是 <strong>$builder-&gt;get()</strong> 的方法一樣，但實際上並不會 <em>執行</em> 查詢。
+<p>編譯選取查詢就像是 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;get()</span></code> 的方法一樣，但實際上並不會 <em>執行</em> 查詢。
 這個方法只是簡單的回傳字串格式的SQL查詢語法。</p>
 <p>範例</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">getCompiledSelect</span><span class="p">();</span>
@@ -417,7 +419,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 <span class="c1">// 輸出字串：SELECT * FROM mytable</span>
 </pre></div>
 </div>
-<p>第一個參數是設定是否重置查詢生成器的查詢。(預設是會重置，就像使用 <cite>$builder-&gt;get()</cite> )</p>
+<p>第一個參數是設定是否重置查詢生成器的查詢。(預設是會重置，就像使用 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;get()</span></code> )</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getCompiledSelect</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
 
 <span class="c1">// 輸出字串: SELECT * FROM mytable LIMIT 20, 10</span>
@@ -428,8 +430,8 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 <span class="c1">// 輸出字串: SELECT title, content, date FROM mytable LIMIT 20, 10</span>
 </pre></div>
 </div>
-<p>上述的範例要注意的關鍵是，第二次的查詢並沒有使用 <strong>$builder-&gt;from()</strong> ，也沒有傳送資料表名稱。
-這是因為查詢並沒有使用 <strong>$builder-&gt;get()</strong> 來執行，這是重置值或直接使用 <strong>$builder-&gt;resetQuery()</strong> 來進行重置。</p>
+<p>上述的範例要注意的關鍵是，第二次的查詢並沒有使用 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;from()</span></code> ，也沒有傳送資料表名稱。
+這是因為查詢並沒有使用 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;get()</span></code> 來執行，這是重置值或直接使用 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;resetQuery()</span></code> 來進行重置。</p>
 <p><strong>$builder-&gt;getWhere()</strong></p>
 <p>與 <code class="docutils literal notranslate"><span class="pre">get()</span></code> 函數相同，只是它能在第一個參數中加入 「where」  語法。而不是使用 db-&gt;where() 這個函數。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">getWhere</span><span class="p">([</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$id</span><span class="p">],</span> <span class="nv">$limit</span><span class="p">,</span> <span class="nv">$offset</span><span class="p">);</span>
@@ -446,9 +448,9 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">如果你是要從資料表選取全部的欄位(*)，你就不需要使用這個函數。當你忽略這個函數，CodeIgniter會假設你要選取所有欄位，自動幫你加入 『SELECT *』 。</p>
+<p class="last">如果你是要從資料表選取全部的欄位(*)，你就不需要使用這個函數。當你忽略這個函數，CodeIgniter會假設你要選取所有欄位，自動幫你加入 <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">\*</span></code> 。</p>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">$builder-&gt;select()</span></code> 的第二個參數是可有可無的。如果你設定為FALSE，CodeIgniter將不會保護你的語法或資料表名稱。
+<p><code class="docutils literal notranslate"><span class="pre">$builder-&gt;select()</span></code> 的第二個參數是可有可無的。如果你設定為 <code class="docutils literal notranslate"><span class="pre">false</span></code>，CodeIgniter將不會保護你的語法或資料表名稱。
 當你需要使用複合選取語法時這很有幫助，因為自動跳脫語法可能會破壞你的語法。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">&#39;(SELECT SUM(payments.amount) FROM payments WHERE payments.invoice_id=4) AS amount_paid&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
 <span class="nv">$query</span> <span class="o">=</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
@@ -476,13 +478,13 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 </pre></div>
 </div>
 <p><strong>$builder-&gt;selectSum()</strong></p>
-<p>當你要在查詢使用 「SELECT SUM(field)」。就像 selectMax() 一樣，你可以利用第二個參數為你查詢的結果重新命名。</p>
+<p>當你要在查詢使用 <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">SUM(field)</span></code>。就像 <code class="docutils literal notranslate"><span class="pre">selectMax()</span></code> 一樣，你可以利用第二個參數為你查詢的結果重新命名。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">selectSum</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">);</span>
 <span class="nv">$query</span> <span class="o">=</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span> <span class="c1">// 產生的語法: SELECT SUM(age) as age FROM mytable</span>
 </pre></div>
 </div>
 <p><strong>$builder-&gt;selectCount()</strong></p>
-<p>當你要在查詢使用 「SELECT COUNT(field)」。就像 selectMax() 一樣，你可以利用第二個參數為你查詢的結果重新命名。</p>
+<p>當你要在查詢使用 <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">COUNT(field)</span></code>。就像 <code class="docutils literal notranslate"><span class="pre">selectMax()</span></code> 一樣，你可以利用第二個參數為你查詢的結果重新命名。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
 <p class="last">這個方法與 <code class="docutils literal notranslate"><span class="pre">groupBy()</span></code> 一起使用時非常方便。如果是要計算查詢的筆數，可以參考 <code class="docutils literal notranslate"><span class="pre">countAll()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">countAllResults()</span></code> 。</p>
@@ -500,7 +502,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">就像前面所介紹的，FROM 的語法可以在 $db-&gt;table() 中加入。額外呼叫 from() 只會在你的查詢中增加更多的資料表。</p>
+<p class="last">就像前面所介紹的，FROM 的語法可以在 <code class="docutils literal notranslate"><span class="pre">$db-&gt;table()</span></code> 中加入。額外呼叫 <code class="docutils literal notranslate"><span class="pre">from()</span></code> 只會在你的查詢中增加更多的資料表。</p>
 </div>
 <p><strong>$builder-&gt;join()</strong></p>
 <p>在你的查詢中加入 JOIN 的語法。</p>
@@ -607,7 +609,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 </div>
 </div></blockquote>
 <p><strong>$builder-&gt;whereIn()</strong></p>
-<p>產生 WHERE 欄位 IN (『item』, 『item』) 的SQL查詢語法，如果合適的話就用AND串接。</p>
+<p>產生 WHERE 欄位 <code class="docutils literal notranslate"><span class="pre">IN</span> <span class="pre">('item',</span> <span class="pre">'item')</span></code> 的SQL查詢語法，如果合適的話就用AND串接。</p>
 <blockquote>
 <div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Frank&#39;</span><span class="p">,</span> <span class="s1">&#39;Todd&#39;</span><span class="p">,</span> <span class="s1">&#39;James&#39;</span><span class="p">];</span>
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">whereIn</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="nv">$names</span><span class="p">);</span>
@@ -625,15 +627,14 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 </div>
 </div></blockquote>
 <p><strong>$builder-&gt;orWhereIn()</strong></p>
-<dl class="docutils">
-<dt>產生 WHERE 欄位 IN (『item』, 『item』) 的SQL查詢語法，如果合適的話就用OR串接。</dt>
-<dd><div class="first last highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Frank&#39;</span><span class="p">,</span> <span class="s1">&#39;Todd&#39;</span><span class="p">,</span> <span class="s1">&#39;James&#39;</span><span class="p">];</span>
+<p>產生 WHERE 欄位 <code class="docutils literal notranslate"><span class="pre">IN</span> <span class="pre">('item',</span> <span class="pre">'item')</span></code> 的SQL查詢語法，如果合適的話就用OR串接。</p>
+<blockquote>
+<div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Frank&#39;</span><span class="p">,</span> <span class="s1">&#39;Todd&#39;</span><span class="p">,</span> <span class="s1">&#39;James&#39;</span><span class="p">];</span>
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">orWhereIn</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="nv">$names</span><span class="p">);</span>
 <span class="c1">// 產生的語法: OR username IN (&#39;Frank&#39;, &#39;Todd&#39;, &#39;James&#39;)</span>
 </pre></div>
 </div>
-</dd>
-</dl>
+</div></blockquote>
 <p>你也可以使用子查詢而不是陣列。</p>
 <blockquote>
 <div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">orWhereIn</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nx">BaseBuilder</span> <span class="nv">$builder</span><span class="p">)</span> <span class="p">{</span>
@@ -645,7 +646,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 </div>
 </div></blockquote>
 <p><strong>$builder-&gt;whereNotIn()</strong></p>
-<p>產生 WHERE 欄位 NOT IN (『item』, 『item』) 的SQL查詢語法，如果合適的話就用AND串接。</p>
+<p>產生 WHERE 欄位 <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">IN</span> <span class="pre">('item',</span> <span class="pre">'item')</span></code> 的SQL查詢語法，如果合適的話就用AND串接。</p>
 <blockquote>
 <div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Frank&#39;</span><span class="p">,</span> <span class="s1">&#39;Todd&#39;</span><span class="p">,</span> <span class="s1">&#39;James&#39;</span><span class="p">];</span>
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">whereNotIn</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="nv">$names</span><span class="p">);</span>
@@ -664,7 +665,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 </div>
 </div></blockquote>
 <p><strong>$builder-&gt;orWhereNotIn()</strong></p>
-<p>產生 WHERE 欄位 NOT IN (『item』, 『item』) 的SQL查詢語法，如果合適的話就用OR串接。</p>
+<p>產生 WHERE 欄位 <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">IN</span> <span class="pre">('item',</span> <span class="pre">'item')</span></code> 的SQL查詢語法，如果合適的話就用OR串接。</p>
 <blockquote>
 <div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Frank&#39;</span><span class="p">,</span> <span class="s1">&#39;Todd&#39;</span><span class="p">,</span> <span class="s1">&#39;James&#39;</span><span class="p">];</span>
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">orWhereNotIn</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="nv">$names</span><span class="p">);</span>
@@ -778,7 +779,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 <p><strong>$builder-&gt;orHaving()</strong></p>
 <p>與 having() 相同，只用 「OR」 分開多個字句。</p>
 <p><strong>$builder-&gt;havingIn()</strong></p>
-<p>產生 HAVING 欄位 IN (『item』, 『item』) 的SQL查詢語法，如果合適的話就用AND串接。</p>
+<p>產生 HAVING 欄位 <code class="docutils literal notranslate"><span class="pre">IN</span> <span class="pre">('item',</span> <span class="pre">'item')</span></code> 的SQL查詢語法，如果合適的話就用AND串接。</p>
 <blockquote>
 <div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$groups</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">havingIn</span><span class="p">(</span><span class="s1">&#39;group_id&#39;</span><span class="p">,</span> <span class="nv">$groups</span><span class="p">);</span>
@@ -796,7 +797,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 </div>
 </div></blockquote>
 <p><strong>$builder-&gt;orHavingIn()</strong></p>
-<p>產生 HAVING 欄位 IN (『item』, 『item』) 的SQL查詢語法，如果合適的話就用OR串接。</p>
+<p>產生 HAVING 欄位 <code class="docutils literal notranslate"><span class="pre">IN</span> <span class="pre">('item',</span> <span class="pre">'item')</span></code> 的SQL查詢語法，如果合適的話就用OR串接。</p>
 <blockquote>
 <div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$groups</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">orHavingIn</span><span class="p">(</span><span class="s1">&#39;group_id&#39;</span><span class="p">,</span> <span class="nv">$groups</span><span class="p">);</span>
@@ -815,7 +816,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 </div>
 </div></blockquote>
 <p><strong>$builder-&gt;havingNotIn()</strong></p>
-<p>產生 HAVING 欄位 NOT IN (『item』, 『item』) 的SQL查詢語法，如果合適的話就用AND串接。</p>
+<p>產生 HAVING 欄位 <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">IN</span> <span class="pre">('item',</span> <span class="pre">'item')</span></code> 的SQL查詢語法，如果合適的話就用AND串接。</p>
 <blockquote>
 <div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$groups</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">havingNotIn</span><span class="p">(</span><span class="s1">&#39;group_id&#39;</span><span class="p">,</span> <span class="nv">$groups</span><span class="p">);</span>
@@ -834,7 +835,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 </div>
 </div></blockquote>
 <p><strong>$builder-&gt;orHavingNotIn()</strong></p>
-<p>產生 HAVING 欄位 NOT IN (『item』, 『item』) 的SQL查詢語法，如果合適的話就用OR串接。</p>
+<p>產生 HAVING 欄位 <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">IN</span> <span class="pre">('item',</span> <span class="pre">'item')</span></code> 的SQL查詢語法，如果合適的話就用OR串接。</p>
 <blockquote>
 <div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$groups</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">havingNotIn</span><span class="p">(</span><span class="s1">&#39;group_id&#39;</span><span class="p">,</span> <span class="nv">$groups</span><span class="p">);</span>
@@ -966,8 +967,9 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 </pre></div>
 </div>
 <p>不過這個方法會重置你在 <code class="docutils literal notranslate"><span class="pre">select()</span></code> 中傳送任何欄位值。如果你需要保留它們，你可以在第一個參數中傳送 <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> 。</p>
-<blockquote>
-<div>echo $builder-&gt;countAllResults(false); // 產生integer結果，如：17。</div></blockquote>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">countAllResults</span><span class="p">(</span><span class="k">false</span><span class="p">);</span> <span class="c1">// 產生integer結果，如：17。</span>
+</pre></div>
+</div>
 <p><strong>$builder-&gt;countAll()</strong></p>
 <p>回傳在特定的資料表中的資料數量。
 範例：</p>
@@ -996,7 +998,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">分組需要保持平衡，確保每個 groupStart() 都有相對應的 groupEnd()。</p>
+<p class="last">分組需要保持平衡，確保每個 <code class="docutils literal notranslate"><span class="pre">groupStart()</span></code> 都有相對應的 <code class="docutils literal notranslate"><span class="pre">groupEnd()</span></code>。</p>
 </div>
 <p><strong>$builder-&gt;groupStart()</strong></p>
 <p>開始一個新的分組，在查詢的WHERE子句中加入一個左括號。</p>
@@ -1071,7 +1073,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </pre></div>
 </div>
 <p><strong>$builder-&gt;getCompiledInsert()</strong></p>
-<p>像是 $builder-&gt;insert() 一樣編譯插入查詢，但並不會 <strong>執行</strong> 查詢。這個方法只會回傳SQL查詢的語法字串。</p>
+<p>像是 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;insert()</span></code> 一樣編譯插入查詢，但並不會 <strong>執行</strong> 查詢。這個方法只會回傳SQL查詢的語法字串。</p>
 <p>範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
@@ -1085,7 +1087,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <span class="c1">// 產生的語法字串: INSERT INTO mytable (`title`, `name`, `date`) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
 </pre></div>
 </div>
-<p>第二個參數是設定是否重置查詢生成器的查詢(預設是會重置，就像使用 $builder-&gt;insert() 一樣)。</p>
+<p>第二個參數是設定是否重置查詢生成器的查詢(預設是會重置，就像使用 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;insert()</span></code> 一樣)。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;My Title&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getCompiledInsert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
 
 <span class="c1">// 產生的語法字串: INSERT INTO mytable (`title`) VALUES (&#39;My Title&#39;)</span>
@@ -1095,8 +1097,8 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <span class="c1">// 產生的語法字串: INSERT INTO mytable (`title`, `content`) VALUES (&#39;My Title&#39;, &#39;My Content&#39;)</span>
 </pre></div>
 </div>
-<p>上述的範例要注意的關鍵是，第二次的查詢並沒有使用 <cite>$builder-&gt;from()</cite> ，也沒有在第一個參數中傳送資料表名稱。
-這是因為查詢並沒有使用 <cite>$builder-&gt;insert()</cite> 來執行，這個查詢會重置值或直接使用 <cite>$builder-&gt;resetQuery()</cite> 來進行重置。</p>
+<p>上述的範例要注意的關鍵是，第二次的查詢並沒有使用 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;from()</span></code> ，也沒有在第一個參數中傳送資料表名稱。
+這是因為查詢並沒有使用 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;insert`()</span></code> 來執行，這個查詢會重置值或直接使用 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;resetQuery()</span></code> 來進行重置。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
 <p class="last">這個方法不適用在批次插入。</p>
@@ -1159,7 +1161,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">();</span>
 </pre></div>
 </div>
-<p><strong>set()</strong>  也會接受可有可無的第三個參數 ( <code class="docutils literal notranslate"><span class="pre">$escape</span></code> )，如果它設定為 FALSE 它將會避免資料被跳脫。
+<p><strong>set()</strong>  也會接受可有可無的第三個參數 ( <code class="docutils literal notranslate"><span class="pre">$escape</span></code> )，如果它設定為 <code class="docutils literal notranslate"><span class="pre">false</span></code> 它將會避免資料被跳脫。
 為了要說差異，以下的範例是使用 <code class="docutils literal notranslate"><span class="pre">set()</span></code> 來做比較，分別是有無使用跳脫參數。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;field&#39;</span><span class="p">,</span> <span class="s1">&#39;field+1&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
@@ -1182,13 +1184,11 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </pre></div>
 </div>
 <p>或是一個物件</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
-<span class="cm">class Myclass {</span>
-<span class="cm">        public $title   = &#39;My Title&#39;;</span>
-<span class="cm">        public $content = &#39;My Content&#39;;</span>
-<span class="cm">        public $date    = &#39;My Date&#39;;</span>
-<span class="cm">}</span>
-<span class="cm">*/</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Myclass</span> <span class="p">{</span>
+        <span class="k">public</span> <span class="nv">$title</span>   <span class="o">=</span> <span class="s1">&#39;My Title&#39;</span><span class="p">;</span>
+        <span class="k">public</span> <span class="nv">$content</span> <span class="o">=</span> <span class="s1">&#39;My Content&#39;</span><span class="p">;</span>
+        <span class="k">public</span> <span class="nv">$date</span>    <span class="o">=</span> <span class="s1">&#39;My Date&#39;</span><span class="p">;</span>
+<span class="p">}</span>
 
 <span class="nv">$object</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Myclass</span><span class="p">;</span>
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$object</span><span class="p">);</span>
@@ -1236,7 +1236,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <p class="first admonition-title">備註</p>
 <p class="last">傳送到這個函數的數值都會自動跳脫，來產生安全的查詢。</p>
 </div>
-<p>$builder-&gt;where() 這個函數，能夠使你設定 WHERE的語法。
+<p><code class="docutils literal notranslate"><span class="pre">$builder-&gt;where()</span></code> 這個函數，能夠使你設定 WHERE的語法。
 你也可以將資料作為字串直接傳送到更新函數裡：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="s2">&quot;id = 4&quot;</span><span class="p">);</span>
 </pre></div>
@@ -1245,7 +1245,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$id</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p>你也可以在更新時使用 $builder-&gt;set() 這個函數來闡述上述的內容。</p>
+<p>你也可以在更新時使用 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;set()</span></code> 這個函數來闡述上述的內容。</p>
 <p><strong>$builder-&gt;updateBatch()</strong></p>
 <p>產生一個更新字串並根據你提供的資料執行查詢。你可以在函數中傳送一個 <strong>陣列</strong> 或 <strong>物件</strong>。
 以下是使用陣列的範例：</p>
@@ -1287,7 +1287,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </div>
 <p><strong>$builder-&gt;getCompiledUpdate()</strong></p>
 <p>上述的方法與 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;getCompiledInsert()</span></code> 完全一樣，只差在它是產生 UPDATE 的 SQL 字串，而不是 INSERT SQL字串。</p>
-<p>可以參考 <cite>$builder-&gt;getCompiledInsert()</cite> ，了解更多的資訊。</p>
+<p>可以參考 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;getCompiledInsert()</span></code> ，了解更多的資訊。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
 <p class="last">這個方法不適用在批次更新。</p>
@@ -1301,7 +1301,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </pre></div>
 </div>
 <p>第一個參數是 where 的條件。
-也可以使用 where() 或 or_where() 函數來取代你想要的條件判斷。</p>
+也可以使用 <code class="docutils literal notranslate"><span class="pre">where()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">or_where()</span></code> 函數來取代你想要的條件判斷。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
 
@@ -1310,7 +1310,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <span class="c1">// WHERE id = $id</span>
 </pre></div>
 </div>
-<p>如果你想要刪除資料表裡的所有資料，你可以使用 truncate() 或是 emptyTable() 這兩個函數。</p>
+<p>如果你想要刪除資料表裡的所有資料，你可以使用 <code class="docutils literal notranslate"><span class="pre">truncate()</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">emptyTable()</span></code> 這兩個函數。</p>
 <p><strong>$builder-&gt;emptyTable()</strong></p>
 <p>產生刪除的 SQL 字串，並且執行查詢：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">emptyTable</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span> <span class="c1">// 產生的語法: DELETE FROM mytable</span>
@@ -1326,15 +1326,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">如果 TRUNCATE 不能使用，truncate() 將會執行 「DELETE FROM table」。</p>
+<p class="last">如果 TRUNCATE 不能使用，<code class="docutils literal notranslate"><span class="pre">truncate()</span></code> 將會執行 <code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">FROM</span> <span class="pre">table</span></code>。</p>
 </div>
 <p><strong>$builder-&gt;getCompiledDelete()</strong></p>
 <p>這個方法與 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;getCompiledInsert()</span></code>  相同，差別在於產生的是 DELETE 的 SQL 字串，而不是 INSERT 的 SQL 字串。</p>
-<p>可以參考 $builder-&gt;getCompiledInsert()，了解更多的資訊。</p>
+<p>可以參考 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;getCompiledInsert()</span></code>，了解更多的資訊。</p>
 </div>
 <div class="section" id="id13">
-<h2><a class="toc-backref" href="#id26">方法串接</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h2>
-<p>方法串接藉由結合多個函數，簡化你的語法。</p>
+<h2><a class="toc-backref" href="#id26">鏈式方法</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h2>
+<p>鏈式方法藉由結合多個函數，簡化你的語法。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span>
                  <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">)</span>
                  <span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
@@ -1345,7 +1345,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <div class="section" id="ar-caching">
 <span id="id14"></span><h2><a class="toc-backref" href="#id27">重置查詢生成器</a><a class="headerlink" href="#ar-caching" title="本標題的永久連結">¶</a></h2>
 <p><strong>$builder-&gt;resetQuery()</strong></p>
-<p>重置查詢生成器可以讓你重新開始查詢，而不需要先執行 $builder-&gt;get() 或是 $builder-&gt;insert() 這樣的方法來執行查詢 。</p>
+<p>重置查詢生成器可以讓你重新開始查詢，而不需要先執行 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;get()</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;insert()</span></code> 這樣的方法來執行查詢 。</p>
 <p>這在使用查詢生成器產生 SQL (例如： <code class="docutils literal notranslate"><span class="pre">$builder-&gt;getCompiledSelect()</span></code> ) 但是選擇它很有用，可以參考以下範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 請注意 get_compiled_select() 的第二個參數是 FALSE</span>
 <span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">([</span><span class="s1">&#39;field1&#39;</span><span class="p">,</span><span class="s1">&#39;field2&#39;</span><span class="p">])</span>
@@ -1370,15 +1370,33 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <code class="descname">CodeIgniter\Database\BaseBuilder</code></dt>
 <dd><blockquote>
 <div><dl class="method">
+<dt id="db">
+<code class="descname">db</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#db" title="本定義的永久連結">¶</a></dt>
+<dd></dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">returns:</th><td class="field-body">The database connection in use</td>
+</tr>
+<tr class="field-even field"><th class="field-name">rtype:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">ConnectionInterface</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Returns the current database connection from <code class="docutils literal notranslate"><span class="pre">$db</span></code>. Useful for
+accessing <code class="docutils literal notranslate"><span class="pre">ConnectionInterface</span></code> methods that are not directly
+available to the Query Builder, like <code class="docutils literal notranslate"><span class="pre">insertID()</span></code> or <code class="docutils literal notranslate"><span class="pre">errors()</span></code>.</p>
+<dl class="method">
 <dt id="resetQuery">
 <code class="descname">resetQuery</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#resetQuery" title="本定義的永久連結">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">BaseBuilder 實體(方法串接)</td>
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">BaseBuilder</td>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -1445,15 +1463,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">CodeIgniterDatabaseResultInterface 實體 (方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">\CodeIgniter\Database\ResultInterface</span></code> 實體 (鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniterDatabaseResultInterface</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">\CodeIgniter\Database\ResultInterface</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>根據已經呼叫的查詢生成器方法，編譯和執行　SELECT 的語句。</p>
+<p>根據已經呼叫的查詢生成器方法，編譯和執行 <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> 的語句。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1471,10 +1489,10 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">CodeIgniterDatabaseResultInterface 實體 (method chaining)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">\CodeIgniter\Database\ResultInterface</span></code> 實體 (method chaining)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniterDatabaseResultInterface</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">\CodeIgniter\Database\ResultInterface</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -1495,15 +1513,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>在查詢中加入 SELECT 語法。</p>
+<p>在查詢中加入 <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> 語法。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1519,15 +1537,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>在查詢中加入 SELECT AVG(欄位) 語法。</p>
+<p>在查詢中加入 <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">AVG(欄位)</span></code> 語法。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1543,15 +1561,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>在查詢中加入 SELECT MAX(欄位) 語法。</p>
+<p>在查詢中加入 <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">MAX(欄位)</span></code> 語法。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1567,15 +1585,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>在查詢中加入 SELECT MIN(欄位) 語法。</p>
+<p>在查詢中加入 <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">MIN(欄位)</span></code> 語法。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1591,15 +1609,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>在查詢中加入 SELECT SUM(欄位) 語法。</p>
+<p>在查詢中加入 <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">SUM(欄位)</span></code> 語法。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1615,15 +1633,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>在查詢中加入 SELECT COUNT(欄位) 語法。</p>
+<p>在查詢中加入 <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">COUNT(欄位)</span></code> 語法。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1638,15 +1656,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>設立一個標記告訴查詢生成器在 SELECT 中加入 DISTINCT 的語法。</p>
+<p>設立一個標記告訴查詢生成器在 <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> 中加入 <code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code> 的語法。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1662,15 +1680,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>指定查詢的 FROM 語法。</p>
+<p>指定查詢的 <code class="docutils literal notranslate"><span class="pre">FROM</span></code> 語法。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1688,10 +1706,10 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -1721,7 +1739,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </tr>
 </tbody>
 </table>
-<p>產生查詢的 WHERE 語法。呼叫多次函式會使用 『AND』 將SQL語法串接在一起。</p>
+<p>產生查詢的 <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> 語法。呼叫多次函式會使用 <code class="docutils literal notranslate"><span class="pre">AND</span></code> 將SQL語法串接在一起。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1746,7 +1764,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </tr>
 </tbody>
 </table>
-<p>產生查詢的 WHERE 語法。呼叫多次函式會使用 『OR』 將SQL語法串接在一起。</p>
+<p>產生查詢的 <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> 語法。呼叫多次函式會使用 <code class="docutils literal notranslate"><span class="pre">OR</span></code> 將SQL語法串接在一起。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1771,7 +1789,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </tr>
 </tbody>
 </table>
-<p>產生 WHERE 欄位 IN(『項目』, 『項目』) 的 SQL 查詢語法。如果合適則使用’OR’將SQL語法串接在一起。</p>
+<p>產生 <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> 欄位 <code class="docutils literal notranslate"><span class="pre">IN('項目',</span> <span class="pre">'項目')</span></code> 的 SQL 查詢語法。如果合適則使用 <code class="docutils literal notranslate"><span class="pre">OR</span></code> 將SQL語法串接在一起。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1796,7 +1814,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </tr>
 </tbody>
 </table>
-<p>產生 WHERE 欄位 NOT IN(『項目』, 『項目』) 的 SQL 查詢語法。如果合適則使用 『OR』 將SQL語法串接在一起。</p>
+<p>產生 <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> 欄位 <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">IN('項目',</span> <span class="pre">'項目')</span></code> 的 SQL 查詢語法。如果合適則使用 <code class="docutils literal notranslate"><span class="pre">OR</span></code> 將SQL語法串接在一起。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1821,7 +1839,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </tr>
 </tbody>
 </table>
-<p>產生 WHERE 欄位 IN(『項目』 , 『項目』) 的 SQL 查詢語法。如果合適則使用 『AND』 將SQL語法串接在一起。</p>
+<p>產生 <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> 欄位 <code class="docutils literal notranslate"><span class="pre">IN('項目'</span> <span class="pre">,</span> <span class="pre">'項目')</span></code> 的 SQL 查詢語法。如果合適則使用 <code class="docutils literal notranslate"><span class="pre">AND</span></code> 將SQL語法串接在一起。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1846,7 +1864,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </tr>
 </tbody>
 </table>
-<p>產生 WHERE 欄位 NOT IN(『項目』, 『項目』) 的 SQL 查詢語法。如果合適則使用 『AND』 將SQL語法串接在一起。</p>
+<p>產生 <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> 欄位 <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">IN('項目',</span> <span class="pre">'項目')</span></code> 的 SQL 查詢語法。如果合適則使用 <code class="docutils literal notranslate"><span class="pre">AND</span></code> 將SQL語法串接在一起。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1856,13 +1874,13 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">BaseBuilder 實體(方法串接)</td>
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">BaseBuilder</td>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></td>
 </tr>
 </tbody>
 </table>
-<p>開始一個分組的語法，在判斷式中使用 『AND』 。</p>
+<p>開始一個分組的語法，在判斷式中使用 <code class="docutils literal notranslate"><span class="pre">AND</span></code> 。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1872,13 +1890,13 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">BaseBuilder 實體(方法串接)</td>
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">BaseBuilder</td>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></td>
 </tr>
 </tbody>
 </table>
-<p>開始一個分組的語法，在判斷式中使用 『OR』 。</p>
+<p>開始一個分組的語法，在判斷式中使用 <code class="docutils literal notranslate"><span class="pre">OR</span></code> 。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1888,13 +1906,13 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">BaseBuilder 實體(方法串接)</td>
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">BaseBuilder</td>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></td>
 </tr>
 </tbody>
 </table>
-<p>開始一個分組的語法，在判斷式中使用 『AND NOT』 。</p>
+<p>開始一個分組的語法，在判斷式中使用 <code class="docutils literal notranslate"><span class="pre">AND</span> <span class="pre">NOT</span></code> 。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1904,13 +1922,13 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">BaseBuilder 實體(方法串接)</td>
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">BaseBuilder</td>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></td>
 </tr>
 </tbody>
 </table>
-<p>開始一個分組的語法，在判斷式中使用 『OR NOT』 。</p>
+<p>開始一個分組的語法，在判斷式中使用 <code class="docutils literal notranslate"><span class="pre">OR</span> <span class="pre">NOT</span></code> 。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1945,15 +1963,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>在查詢中加入 LIKE 的語法，呼叫多次函式會使用 『AND』 將SQL語法串接在一起。</p>
+<p>在查詢中加入 <code class="docutils literal notranslate"><span class="pre">LIKE</span></code> 的語法，呼叫多次函式會使用 <code class="docutils literal notranslate"><span class="pre">AND</span></code> 將SQL語法串接在一起。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1972,15 +1990,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>在查詢中加入 LIKE 的語法，呼叫多次函式會使用 『OR』 將SQL語法串接在一起。</p>
+<p>在查詢中加入 <code class="docutils literal notranslate"><span class="pre">LIKE</span></code> 的語法，呼叫多次函式會使用 <code class="docutils literal notranslate"><span class="pre">OR</span></code> 將SQL語法串接在一起。</p>
 </dd></dl>
 
 <dl class="method">
@@ -1999,15 +2017,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>在查詢中加入 NOT LIKE 的語法，呼叫多次函式會使用 『AND』 將SQL語法串接在一起。</p>
+<p>在查詢中加入 <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">LIKE</span></code> 的語法，呼叫多次函式會使用 <code class="docutils literal notranslate"><span class="pre">AND</span></code> 將SQL語法串接在一起。</p>
 </dd></dl>
 
 <dl class="method">
@@ -2026,15 +2044,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>在查詢中加入 NOT LIKE 的語法，呼叫多次函式會使用 『OR』 將SQL語法串接在一起。</p>
+<p>在查詢中加入 NOT LIKE 的語法，呼叫多次函式會使用  <code class="docutils literal notranslate"><span class="pre">OR</span></code> 將SQL語法串接在一起。</p>
 </dd></dl>
 
 <dl class="method">
@@ -2051,10 +2069,10 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -2076,10 +2094,10 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -2204,15 +2222,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>在查詢中將 LIKE 的語法加入至 HAVING 的部分，呼叫多次函式會使用 『AND』 將SQL語法串接在一起。</p>
+<p>在查詢中將 <code class="docutils literal notranslate"><span class="pre">LIKE</span></code> 的語法加入至 <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> 的部分，呼叫多次函式會使用 『AND』 將SQL語法串接在一起。</p>
 </dd></dl>
 
 <dl class="method">
@@ -2231,15 +2249,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>在查詢中將 LIKE 的語法加入至 HAVING 的部分，呼叫多次函式會使用 『OR』 將SQL語法串接在一起。</p>
+<p>在查詢中將 <code class="docutils literal notranslate"><span class="pre">LIKE</span></code> 的語法加入至 HAVING 的部分，呼叫多次函式會使用  <code class="docutils literal notranslate"><span class="pre">OR</span></code> 將SQL語法串接在一起。</p>
 </dd></dl>
 
 <dl class="method">
@@ -2258,10 +2276,10 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -2284,15 +2302,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>在查詢中將 NOT LIKE 的語法加入至 HAVING 的部分，呼叫多次函式會使用 『OR』 將SQL語法串接在一起。</p>
+<p>在查詢中將 NOT LIKE 的語法加入至 HAVING 的部分，呼叫多次函式會使用  <code class="docutils literal notranslate"><span class="pre">OR</span></code> 將SQL語法串接在一起。</p>
 </dd></dl>
 
 <dl class="method">
@@ -2302,9 +2320,9 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">BaseBuilder 實體(方法串接)</td>
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">BaseBuilder</td>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -2318,9 +2336,9 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">BaseBuilder 實體(方法串接)</td>
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">BaseBuilder</td>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -2334,9 +2352,9 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">BaseBuilder 實體(方法串接)</td>
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">BaseBuilder</td>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -2350,9 +2368,9 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">BaseBuilder 實體(方法串接)</td>
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">BaseBuilder</td>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -2387,10 +2405,10 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -2412,10 +2430,10 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -2436,10 +2454,10 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -2459,10 +2477,10 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -2484,10 +2502,10 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -2562,10 +2580,10 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -2641,10 +2659,10 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接)</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">BaseBuilder</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -2689,7 +2707,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">BaseBuilder 實體(方法串接) 或 FALSE 代表執行失敗</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">BaseBuilder</span></code> 實體(鏈式方法) 或 FALSE 代表執行失敗</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">mixed</p>
@@ -2890,9 +2908,9 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
+        &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年06月23日。
+        最後更新於 2021年03月02日。
       </span>
 
     </p>

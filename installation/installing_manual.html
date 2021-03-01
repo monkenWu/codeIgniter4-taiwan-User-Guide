@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>手動安裝 &mdash; CodeIgniter4 4.0.3 說明文件</title>
+  <title>手動安裝 &mdash; CodeIgniter4 4.1.1 說明文件</title>
   
 
   
@@ -28,6 +28,7 @@
         <script type="text/javascript" src="../_static/doctools.js"></script>
         <script type="text/javascript" src="../_static/language_data.js"></script>
         <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/js/carbon.js"></script>
         <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -40,8 +41,8 @@
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Composer 安裝" href="installing_composer.html" />
-    <link rel="prev" title="安裝指引" href="index.html" /> 
+    <link rel="next" title="運作你的應用程式" href="running.html" />
+    <link rel="prev" title="Composer 安裝" href="installing_composer.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -96,13 +97,10 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">安裝指引</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installing_composer.html">Composer 安裝</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="running.html">運作你的應用程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="upgrading.html">從舊版升級</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="repositories.html">CodeIgniter 儲存庫</a></li>
 </ul>
@@ -123,6 +121,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -218,7 +217,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Dates and Times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">Working with Uploaded Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">Working with URIs</a></li>
@@ -238,6 +237,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">Test Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
@@ -248,6 +248,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">測試</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">入門</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
@@ -259,6 +260,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -349,7 +351,10 @@
 <h1>手動安裝<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>CodeIgniter 4 的 <a class="reference external" href="https://github.com/codeigniter4/framework">git 儲存庫</a> 上保存著所有的歷史版本，它適合不希望使用 Composer 進行專案管理的開發人員，因為它下載後就能直接部屬。</p>
 <p>你可以在框架中的 <code class="docutils literal notranslate"><span class="pre">app</span></code> 資料夾開發你的應用程式，而 <code class="docutils literal notranslate"><span class="pre">public</span></code> 資料夾則是放置網站的公開檔案，請勿修改 <code class="docutils literal notranslate"><span class="pre">system</span></code> 資料夾中的任何內容！</p>
-<p><strong>Note</strong> ：這是最接近於上一代框架 <a class="reference external" href="https://www.codeigniter.com/user_guide/installation/index.html">CodeIgniter 3</a> ，的安裝方式。</p>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">這是最接近於上一代框架 <a class="reference external" href="https://www.codeigniter.com/user_guide/installation/index.html">CodeIgniter 3</a> ，的安裝方式。</p>
+</div>
 <div class="section" id="id2">
 <h2>安裝步驟<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <p>下載 <a class="reference external" href="https://github.com/CodeIgniter4/framework/releases/latest">版本列表</a> 中的最新版本，並且將它解壓縮到你的專案根目錄之中。</p>
@@ -391,10 +396,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="installing_composer.html" class="btn btn-neutral float-right" title="Composer 安裝" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="running.html" class="btn btn-neutral float-right" title="運作你的應用程式" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="安裝指引" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="installing_composer.html" class="btn btn-neutral float-left" title="Composer 安裝" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -403,9 +408,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
+        &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年06月23日。
+        最後更新於 2021年03月02日。
       </span>
 
     </p>

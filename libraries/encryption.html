@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>加密服務 &mdash; CodeIgniter4 4.0.3 說明文件</title>
+  <title>加密服務 &mdash; CodeIgniter4 4.1.1 說明文件</title>
   
 
   
@@ -28,6 +28,7 @@
         <script type="text/javascript" src="../_static/doctools.js"></script>
         <script type="text/javascript" src="../_static/language_data.js"></script>
         <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/js/carbon.js"></script>
         <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -96,13 +97,10 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
 </ul>
@@ -123,6 +121,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -218,7 +217,7 @@
 <li class="toctree-l2"><a class="reference internal" href="security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="throttler.html">Throttler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="time.html">Dates and Times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time.html">Times and Dates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="typography.html">Typography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="uploaded_files.html">Working with Uploaded Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="uri.html">Working with URIs</a></li>
@@ -238,6 +237,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">Test Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
@@ -248,6 +248,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">測試</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">入門</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
@@ -259,6 +260,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -358,6 +360,7 @@
 <p>當前支援以下 PHP　擴充模組：</p>
 <ul class="simple">
 <li><a class="reference external" href="https://www.php.net/openssl">OpenSSL</a></li>
+<li><a class="reference external" href="https://www.php.net/manual/en/book.sodium">Sodium</a></li>
 </ul>
 <p>這不是完整的密碼解決方案。如果你需要更多功能，像是：公鑰加密，我們建議你考慮直接使用 OpenSSL 或另一個 <a class="reference external" href="https://www.php.net/manual/en/refs.crypto.php">Cryptography Extensions</a>。
 更全面的軟體包，像是 <a class="reference external" href="https://github.com/paragonie/halite">Halite</a>
@@ -368,26 +371,29 @@
 </div>
 <div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#usage" id="id14">使用加密服務</a><ul>
-<li><a class="reference internal" href="#configuration" id="id15">設置程式庫</a></li>
-<li><a class="reference internal" href="#id5" id="id16">預設行為</a></li>
-<li><a class="reference internal" href="#id6" id="id17">設置你的加密金鑰</a><ul>
-<li><a class="reference internal" href="#id7" id="id18">編碼金鑰或結果</a></li>
+<li><a class="reference internal" href="#usage" id="id15">使用加密服務</a><ul>
+<li><a class="reference internal" href="#configuration" id="id16">設置程式庫</a></li>
+<li><a class="reference internal" href="#id5" id="id17">預設行為</a></li>
+<li><a class="reference internal" href="#id6" id="id18">設置你的加密金鑰</a><ul>
+<li><a class="reference internal" href="#id7" id="id19">編碼金鑰或結果</a></li>
+<li><a class="reference internal" href="#using-prefixes-in-storing-keys" id="id20">Using Prefixes in Storing Keys</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id8" id="id19">加密程序說明</a><ul>
-<li><a class="reference internal" href="#id9" id="id20">OpenSSL</a></li>
+<li><a class="reference internal" href="#padding" id="id21">Padding</a></li>
+<li><a class="reference internal" href="#id8" id="id22">加密程序說明</a><ul>
+<li><a class="reference internal" href="#id9" id="id23">OpenSSL</a></li>
+<li><a class="reference internal" href="#sodium-notes" id="id24">Sodium Notes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id11" id="id21">訊息長度</a></li>
-<li><a class="reference internal" href="#id12" id="id22">使用加密服務</a></li>
+<li><a class="reference internal" href="#id12" id="id25">訊息長度</a></li>
+<li><a class="reference internal" href="#id13" id="id26">使用加密服務</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id13" id="id23">類別參考</a></li>
+<li><a class="reference internal" href="#id14" id="id27">類別參考</a></li>
 </ul>
 </div>
 <div class="custom-index container"></div><div class="section" id="usage">
-<span id="id3"></span><h2><a class="toc-backref" href="#id14">使用加密服務</a><a class="headerlink" href="#usage" title="本標題的永久連結">¶</a></h2>
+<span id="id3"></span><h2><a class="toc-backref" href="#id15">使用加密服務</a><a class="headerlink" href="#usage" title="本標題的永久連結">¶</a></h2>
 <p>像是 CodeIgniter 其他服務，他可以透過 <code class="docutils literal notranslate"><span class="pre">Config\Services</span></code> 被載入</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$encrypter</span> <span class="o">=</span> <span class="nx">\Config\Services</span><span class="o">::</span><span class="na">encrypter</span><span class="p">();</span>
 </pre></div>
@@ -402,7 +408,7 @@
 </div>
 <p>就這麼簡單！加密程式庫將完成每一個所有必要的工作為整個過程提供開箱及用的加密安全性，你不必擔心。</p>
 <div class="section" id="configuration">
-<span id="id4"></span><h3><a class="toc-backref" href="#id15">設置程式庫</a><a class="headerlink" href="#configuration" title="本標題的永久連結">¶</a></h3>
+<span id="id4"></span><h3><a class="toc-backref" href="#id16">設置程式庫</a><a class="headerlink" href="#configuration" title="本標題的永久連結">¶</a></h3>
 <p>上面的範例使用在 <code class="docutils literal notranslate"><span class="pre">app/Config/Encryption.php</span></code> 。</p>
 <p>這裡只有兩個設定:</p>
 <table border="1" class="docutils">
@@ -412,7 +418,7 @@
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">選項</th>
-<th class="head">可能的值 (括號中為默認值)</th>
+<th class="head">可能的值 (括號中為預設值)</th>
 </tr>
 </thead>
 <tbody valign="top">
@@ -420,12 +426,18 @@
 <td>Encryption key starter</td>
 </tr>
 <tr class="row-odd"><td>driver</td>
-<td>Preferred handler (OpenSSL)</td>
+<td>Preferred handler, e.g., OpenSSL or Sodium (<code class="docutils literal notranslate"><span class="pre">OpenSSL</span></code>)</td>
+</tr>
+<tr class="row-even"><td>blockSize</td>
+<td>Padding length in bytes for SodiumHandler (<code class="docutils literal notranslate"><span class="pre">16</span></code>)</td>
+</tr>
+<tr class="row-odd"><td>digest</td>
+<td>Message digest algorithm (<code class="docutils literal notranslate"><span class="pre">SHA512</span></code>)</td>
 </tr>
 </tbody>
 </table>
 <p>你可以透過傳遞你自己對 <code class="docutils literal notranslate"><span class="pre">Services</span></code> 的呼叫來替換設置文件的設置。
-這個 <code class="docutils literal notranslate"><span class="pre">config</span></code> 變數必須是 <cite>Config\Encryption</cite> 類別的實體或是 <cite>CodeIgniter\Config\BaseConfig</cite> 的延伸模組。</p>
+這個 <code class="docutils literal notranslate"><span class="pre">config</span></code> 變數必須是 <code class="docutils literal notranslate"><span class="pre">Config\Encryption</span></code> 類別。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span>         <span class="o">=</span> <span class="k">new</span> <span class="nx">Config\Encryption</span><span class="p">();</span>
 <span class="nv">$config</span><span class="o">-&gt;</span><span class="na">key</span>    <span class="o">=</span> <span class="s1">&#39;aBigsecret_ofAtleast32Characters&#39;</span><span class="p">;</span>
 <span class="nv">$config</span><span class="o">-&gt;</span><span class="na">driver</span> <span class="o">=</span> <span class="s1">&#39;OpenSSL&#39;</span><span class="p">;</span>
@@ -435,25 +447,29 @@
 </div>
 </div>
 <div class="section" id="id5">
-<h3><a class="toc-backref" href="#id16">預設行為</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">預設行為</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
 <p>默認情況下，加密程式庫使用OpenSSL的處理程序。該加密處理程序使用 AES-256-CTR 演算法，你設定的 <em>key</em> 和 SHA512 HMAC 身分驗證。</p>
 </div>
 <div class="section" id="id6">
-<h3><a class="toc-backref" href="#id17">設置你的加密金鑰</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id18">設置你的加密金鑰</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
 <p>你的加密金要 <strong>必須</strong> 在使用中的加密演算法允許的範圍內。
 像是 AES-256 ，要在 256 個 bits 或者 32 bytes （字元）內。</p>
 <p>金鑰應盡可能的隨機，並且 <strong>不得</strong> 為常規本文字串，也不輸出雜湊函數等。要創造適當的金鑰，你可以使用加密程式庫內的 <code class="docutils literal notranslate"><span class="pre">createKey()</span></code> 方法。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// $key will be assigned a 32-byte (256-bit) random key</span>
-<span class="nv">$key</span> <span class="o">=</span> <span class="nx">Encryption</span><span class="o">::</span><span class="na">createKey</span><span class="p">(</span><span class="mi">32</span><span class="p">);</span>
+<span class="nv">$key</span> <span class="o">=</span> <span class="nx">Encryption</span><span class="o">::</span><span class="na">createKey</span><span class="p">();</span>
+
+<span class="c1">// for the SodiumHandler, you can use either:</span>
+<span class="nv">$key</span> <span class="o">=</span> <span class="nx">sodium_crypto_secretbox_keygen</span><span class="p">();</span>
+<span class="nv">$key</span> <span class="o">=</span> <span class="nx">Encryption</span><span class="o">::</span><span class="na">createKey</span><span class="p">(</span><span class="nx">SODIUM_CRYPTO_SECRETBOX_KEYBYTES</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>金鑰可以被儲存在 <em>app/Config/Encryption.php</em> ，或你可以設計自己的儲存機制，並在加密／解密時動態傳遞金鑰。</p>
-<p>要將保存到 <em>app/Config/Encryption.php</em> ，請打開你的檔案並設置</p>
+<p>金鑰可以被儲存在 <code class="docutils literal notranslate"><span class="pre">app/Config/Encryption.php</span></code> ，或你可以設計自己的儲存機制，並在加密／解密時動態傳遞金鑰。</p>
+<p>要將保存到 <code class="docutils literal notranslate"><span class="pre">app/Config/Encryption.php</span></code> ，請打開你的檔案並設置</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$key</span> <span class="o">=</span> <span class="s1">&#39;YOUR KEY&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 <div class="section" id="id7">
-<h4><a class="toc-backref" href="#id18">編碼金鑰或結果</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h4>
+<h4><a class="toc-backref" href="#id19">編碼金鑰或結果</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h4>
 <p>你會注意到 <code class="docutils literal notranslate"><span class="pre">createKey()</span></code> 方法輸出一個複製貼上可能會損壞的難處理二進位的資料，所以你可以使用 <code class="docutils literal notranslate"><span class="pre">bin2hex()</span></code> ， <code class="docutils literal notranslate"><span class="pre">hex2bin()</span></code> 或 Base64 編碼來更方便的使用金鑰，
 像是</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Get a hex-encoded representation of the key:</span>
@@ -461,7 +477,7 @@
 
 <span class="c1">// Put the same value in your config with hex2bin(),</span>
 <span class="c1">// so that it is still passed as binary to the library:</span>
-<span class="nv">$key</span> <span class="o">=</span> <span class="nb">hex2bin</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">your</span> <span class="nx">hex</span><span class="o">-</span><span class="nx">encoded</span> <span class="nb">key</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="nv">$key</span> <span class="o">=</span> <span class="nb">hex2bin</span><span class="p">(</span><span class="s1">&#39;your-hex-encoded-key&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>你可能會發現到相同的技術也可以使用在多個加密結果</p>
@@ -470,26 +486,84 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="using-prefixes-in-storing-keys">
+<h4><a class="toc-backref" href="#id20">Using Prefixes in Storing Keys</a><a class="headerlink" href="#using-prefixes-in-storing-keys" title="本標題的永久連結">¶</a></h4>
+<p>You may take advantage of two special prefixes in storing your
+encryption keys: <code class="docutils literal notranslate"><span class="pre">hex2bin:</span></code> and <code class="docutils literal notranslate"><span class="pre">base64:</span></code>. When these prefixes
+immediately precede the value of your key, <code class="docutils literal notranslate"><span class="pre">Encryption</span></code> will
+intelligently parse the key and still pass a binary string to
+the library.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// In Encryption, you may use</span>
+<span class="k">public</span> <span class="nv">$key</span> <span class="o">=</span> <span class="s1">&#39;hex2bin:&lt;your-hex-encoded-key&gt;&#39;</span>
+
+<span class="c1">// or</span>
+<span class="k">public</span> <span class="nv">$key</span> <span class="o">=</span> <span class="s1">&#39;base64:&lt;your-base64-encoded-key&gt;&#39;</span>
+</pre></div>
+</div>
+<p>Similarly, you can use these prefixes in your <code class="docutils literal notranslate"><span class="pre">.env</span></code> file, too!</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// For hex2bin</span>
+<span class="nx">encryption</span><span class="o">.</span><span class="nb">key</span> <span class="o">=</span> <span class="nb">hex2bin</span><span class="o">:&lt;</span><span class="nx">your</span><span class="o">-</span><span class="nx">hex</span><span class="o">-</span><span class="nx">encoded</span><span class="o">-</span><span class="nb">key</span><span class="o">&gt;</span>
+
+<span class="c1">// or</span>
+<span class="nx">encryption</span><span class="o">.</span><span class="nb">key</span> <span class="o">=</span> <span class="nx">base64</span><span class="o">:&lt;</span><span class="nx">your</span><span class="o">-</span><span class="nx">base64</span><span class="o">-</span><span class="nx">encoded</span><span class="o">-</span><span class="nb">key</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="padding">
+<h3><a class="toc-backref" href="#id21">Padding</a><a class="headerlink" href="#padding" title="本標題的永久連結">¶</a></h3>
+<p>Sometimes, the length of a message may provide a lot of information about its nature. If
+a message is one of 「yes」, 「no」 and 「maybe」, encrypting the message doesn’t help: knowing
+the length is enough to know what the message is.</p>
+<p>Padding is a technique to mitigate this, by making the length a multiple of a given block size.</p>
+<p>Padding is implemented in <code class="docutils literal notranslate"><span class="pre">SodiumHandler</span></code> using libsodium’s native <code class="docutils literal notranslate"><span class="pre">sodium_pad</span></code> and <code class="docutils literal notranslate"><span class="pre">sodium_unpad</span></code>
+functions. This requires the use of a padding length (in bytes) that is added to the plaintext
+message prior to encryption, and removed after decryption. Padding is configurable via the
+<code class="docutils literal notranslate"><span class="pre">$blockSize</span></code> property of <code class="docutils literal notranslate"><span class="pre">Config\Encryption</span></code>. This value should be greater than zero.</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">You are advised not to devise your own padding implementation. You must always use
+the more secure implementation of a library. Also, passwords should not be padded. Usage of
+padding in order to hide the length of a password is not recommended. A client willing to send
+a password to a server should hash it instead (even with a single iteration of the hash function).
+This ensures that the length of the transmitted data is constant, and that the server doesn’t
+effortlessly get a copy of the password.</p>
+</div>
 </div>
 <div class="section" id="id8">
-<h3><a class="toc-backref" href="#id19">加密程序說明</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id22">加密程序說明</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
 <div class="section" id="id9">
-<h4><a class="toc-backref" href="#id20">OpenSSL</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h4>
+<h4><a class="toc-backref" href="#id23">OpenSSL</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h4>
 <p>長期以來， <a class="reference external" href="https://www.php.net/openssl">OpenSSL</a> 擴充套件一直是 PHP 標準的一部分。</p>
 <p>CodeIgniter 的 OpenSSL 處理程序就是使用 AES-256-CTR 加密。</p>
 <p>你所設定提供的 <em>key</em> 用來得到另外兩組，一組用於加密則另一組用來認證。
 這透過已知技術 <a class="reference external" href="https://en.wikipedia.org/wiki/HKDF">HMAC-based Key Derivation Function</a> （HKDF） 來實現作為基於 HMAC 的金鑰產生函數。</p>
 </div>
+<div class="section" id="sodium-notes">
+<h4><a class="toc-backref" href="#id24">Sodium Notes</a><a class="headerlink" href="#sodium-notes" title="本標題的永久連結">¶</a></h4>
+<p>The <a class="reference external" href="https://www.php.net/manual/en/book.sodium">Sodium</a> extension is bundled by default in PHP as
+of PHP 7.2.0.</p>
+<p>Sodium uses the algorithms XSalsa20 to encrypt, Poly1305 for MAC, and XS25519 for key exchange in
+sending secret messages in an end-to-end scenario. To encrypt and/or authenticate a string using
+a shared-key, such as symmetric encryption, Sodium uses the XSalsa20 algorithm to encrypt and
+HMAC-SHA512 for the authentication.</p>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">CodeIgniter’s <code class="docutils literal notranslate"><span class="pre">SodiumHandler</span></code> uses <code class="docutils literal notranslate"><span class="pre">sodium_memzero</span></code> in every encryption or decryption
+session. After each session, the message (whether plaintext or ciphertext) and starter key are
+wiped out from the buffers. You may need to provide again the key before starting a new session.</p>
 </div>
-<div class="section" id="id11">
-<h3><a class="toc-backref" href="#id21">訊息長度</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id12">
+<h3><a class="toc-backref" href="#id25">訊息長度</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h3>
 <p>一個加密的資串通常長於原本的純文本字符串（取決於密碼）。</p>
 <p>這受密碼演算法本身，初始化向量（IV）以及 HMAC 演算法的影響。此外，加密訊息也經過 Base64 編碼，因此無論使用甚麼字符都可以安全的儲存以及傳輸。</p>
 <p>選擇資料儲存機制時，請留意這個資訊。
 像是：Cookies 只能保存 4K 的訊息。</p>
 </div>
-<div class="section" id="id12">
-<h3><a class="toc-backref" href="#id22">使用加密服務</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id26">使用加密服務</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h3>
 <p>代替（或除了）使用 <a class="reference internal" href="#usage"><span class="std std-ref">使用加密服務</span></a> 中所描述得 <code class="docutils literal notranslate"><span class="pre">Services</span></code> ，你可以直接創造一個 「Encrypter」 ，或者更改現有實體的設置。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// create an Encrypter instance</span>
 <span class="nv">$encryption</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Encryption\Encryption</span><span class="p">();</span>
@@ -501,8 +575,8 @@
 <p>記住， <code class="docutils literal notranslate"><span class="pre">$config</span></code> 必須是 <cite>ConfigEncryption</cite> 類別的實體或擴展 <cite>CodeIgniterConfigBaseConfig</cite> 。</p>
 </div>
 </div>
-<div class="section" id="id13">
-<h2><a class="toc-backref" href="#id23">類別參考</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id14">
+<h2><a class="toc-backref" href="#id27">類別參考</a><a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h2>
 <dl class="class">
 <dt>
 <code class="descname">CodeIgniter\Encryption\Encryption</code></dt>
@@ -526,7 +600,7 @@
 </tr>
 </tbody>
 </table>
-<p>透過作業系統來源中獲取隨機數據來創建加密金鑰（i.e. /dev/urandom）。</p>
+<p>透過作業系統來源中獲取隨機數據來創建加密金鑰（i.e. <code class="docutils literal notranslate"><span class="pre">/dev/urandom</span></code>）。</p>
 </dd></dl>
 
 <dl class="method">
@@ -541,13 +615,13 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">CodeIgniter\Encryption\EncrypterInterface instance</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">CodeIgniter\Encryption\EncrypterInterface</span></code></p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first">CodeIgniter\Encryption\EncrypterInterface</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">CodeIgniter\Encryption\EncrypterInterface</span></code></p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><p class="first last">CodeIgniter\Encryption\Exceptions\EncryptionException</p>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">CodeIgniter\Encryption\Exceptions\EncryptionException</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -564,7 +638,7 @@
 
 <dl class="interface">
 <dt>
-<code class="descname">CodeIgniter\Encryption\EncrypterInterface</code></dt>
+<code class="descname">``CodeIgniterEncryptionEncrypterInterface``</code></dt>
 <dd><dl class="method">
 <dt id="encrypt">
 <code class="descname">encrypt</code><span class="sig-paren">(</span><em>$data</em>, <em>$params = null</em><span class="sig-paren">)</span><a class="headerlink" href="#encrypt" title="本定義的永久連結">¶</a></dt>
@@ -584,17 +658,21 @@
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first">string</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><p class="first last">CodeIgniter\Encryption\Exceptions\EncryptionException</p>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">CodeIgniter\Encryption\Exceptions\EncryptionException</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
 <p>加密輸入數據並回傳加密後的資料。</p>
 <p>如果您將參數作為第二個參數傳遞，如果 <code class="docutils literal notranslate"><span class="pre">$params</span></code> 是陣列，則 <code class="docutils literal notranslate"><span class="pre">key</span></code> 元素將是此操作的開始鍵；或者起始鍵可以作為字串傳遞。</p>
-<p>範例:</p>
+<p>If you are using the SodiumHandler and want to pass a different <code class="docutils literal notranslate"><span class="pre">blockSize</span></code>
+on runtime, pass the <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> key in the <code class="docutils literal notranslate"><span class="pre">$params</span></code> array.</p>
+<p>範例</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$ciphertext</span> <span class="o">=</span> <span class="nv">$encrypter</span><span class="o">-&gt;</span><span class="na">encrypt</span><span class="p">(</span><span class="s1">&#39;My secret message&#39;</span><span class="p">);</span>
 <span class="nv">$ciphertext</span> <span class="o">=</span> <span class="nv">$encrypter</span><span class="o">-&gt;</span><span class="na">encrypt</span><span class="p">(</span><span class="s1">&#39;My secret message&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;key&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;New secret key&#39;</span><span class="p">]);</span>
+<span class="nv">$ciphertext</span> <span class="o">=</span> <span class="nv">$encrypter</span><span class="o">-&gt;</span><span class="na">encrypt</span><span class="p">(</span><span class="s1">&#39;My secret message&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;key&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;New secret key&#39;</span><span class="p">,</span> <span class="s1">&#39;blockSize&#39;</span> <span class="o">=&gt;</span> <span class="mi">32</span><span class="p">]);</span>
 <span class="nv">$ciphertext</span> <span class="o">=</span> <span class="nv">$encrypter</span><span class="o">-&gt;</span><span class="na">encrypt</span><span class="p">(</span><span class="s1">&#39;My secret message&#39;</span><span class="p">,</span> <span class="s1">&#39;New secret key&#39;</span><span class="p">);</span>
+<span class="nv">$ciphertext</span> <span class="o">=</span> <span class="nv">$encrypter</span><span class="o">-&gt;</span><span class="na">encrypt</span><span class="p">(</span><span class="s1">&#39;My secret message&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;blockSize&#39;</span> <span class="o">=&gt;</span> <span class="mi">32</span><span class="p">]);</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -612,23 +690,27 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">解密資料或失敗時為FALSE</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">解密資料</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first">string</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><p class="first last">CodeIgniter\Encryption\Exceptions\EncryptionException</p>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">CodeIgniter\Encryption\Exceptions\EncryptionException</span></code></p>
 </td>
 </tr>
 </tbody>
 </table>
 <p>解密輸入資料並回傳解密後的資料。</p>
 <p>如果您將參數作為第二個參數傳遞，如果 <code class="docutils literal notranslate"><span class="pre">$params</span></code> 是陣列，則 <code class="docutils literal notranslate"><span class="pre">key</span></code> 元素將是此操作的開始鍵；或者起始鍵可以作為字串傳遞。</p>
-<p>範例:</p>
+<p>If you are using the SodiumHandler and want to pass a different <code class="docutils literal notranslate"><span class="pre">blockSize</span></code>
+on runtime, pass the <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> key in the <code class="docutils literal notranslate"><span class="pre">$params</span></code> array.</p>
+<p>範例</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$encrypter</span><span class="o">-&gt;</span><span class="na">decrypt</span><span class="p">(</span><span class="nv">$ciphertext</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$encrypter</span><span class="o">-&gt;</span><span class="na">decrypt</span><span class="p">(</span><span class="nv">$ciphertext</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;key&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;New secret key&#39;</span><span class="p">]);</span>
+<span class="k">echo</span> <span class="nv">$encrypter</span><span class="o">-&gt;</span><span class="na">decrypt</span><span class="p">(</span><span class="nv">$ciphertext</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;key&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;New secret key&#39;</span><span class="p">,</span> <span class="s1">&#39;blockSize&#39;</span> <span class="o">=&gt;</span> <span class="mi">32</span><span class="p">]);</span>
 <span class="k">echo</span> <span class="nv">$encrypter</span><span class="o">-&gt;</span><span class="na">decrypt</span><span class="p">(</span><span class="nv">$ciphertext</span><span class="p">,</span> <span class="s1">&#39;New secret key&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$encrypter</span><span class="o">-&gt;</span><span class="na">decrypt</span><span class="p">(</span><span class="nv">$ciphertext</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;blockSize&#39;</span> <span class="o">=&gt;</span> <span class="mi">32</span><span class="p">]);</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -658,9 +740,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
+        &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年06月23日。
+        最後更新於 2021年03月02日。
       </span>
 
     </p>

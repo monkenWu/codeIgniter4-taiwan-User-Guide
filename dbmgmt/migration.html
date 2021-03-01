@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>資料庫遷移 &mdash; CodeIgniter4 4.0.3 說明文件</title>
+  <title>資料庫遷移 &mdash; CodeIgniter4 4.1.1 說明文件</title>
   
 
   
@@ -28,6 +28,7 @@
         <script type="text/javascript" src="../_static/doctools.js"></script>
         <script type="text/javascript" src="../_static/language_data.js"></script>
         <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/js/carbon.js"></script>
         <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -96,13 +97,10 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
 </ul>
@@ -123,6 +121,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -218,7 +217,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Dates and Times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">Working with Uploaded Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">Working with URIs</a></li>
@@ -238,6 +237,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">Test Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
@@ -248,6 +248,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">測試</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">入門</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
@@ -259,6 +260,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -492,15 +494,15 @@
 </div>
 <p>migrate 指令具有以下可用選項：</p>
 <ul class="simple">
-<li>(-g) 選擇資料庫群組，否則將使用預設資料庫群組</li>
-<li>(-n) 選擇命名空間，否則將使用 「App」 命名空間</li>
-<li>(-all) 將所有命名空間都升級至最新遷移</li>
+<li><code class="docutils literal notranslate"><span class="pre">-g</span></code> 選擇資料庫群組，否則將使用預設資料庫群組</li>
+<li><code class="docutils literal notranslate"><span class="pre">-n</span></code> 選擇命名空間，否則將使用 「App」 命名空間</li>
+<li><code class="docutils literal notranslate"><span class="pre">-all</span></code> 將所有命名空間都升級至最新遷移</li>
 </ul>
 <p>這個範例將遷移 BLOG 命名空間和測試資料庫群組上所有的新遷移。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">migrate</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">test</span> <span class="o">-</span><span class="nx">n</span> <span class="nx">Blog</span>
 </pre></div>
 </div>
-<p>當使用 <cite>-all</cite> 選項，它將掃描所有的命名空間，試圖找到任何尚未運作過的遷移。這些遷移都將被記錄起來，再以創建日期進行排序後執行。這將有助於幫助任何應用程式與模組之間的淺在衝突。</p>
+<p>當使用 <code class="docutils literal notranslate"><span class="pre">-all</span></code> 選項，它將掃描所有的命名空間，試圖找到任何尚未運作過的遷移。這些遷移都將被記錄起來，再以創建日期進行排序後執行。這將有助於幫助任何應用程式與模組之間的淺在衝突。</p>
 <p><strong>rollback</strong></p>
 <p>退回所有遷移，將資料庫群組重新開始，設定有效遷移為 0 ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">migrate</span><span class="o">:</span><span class="nx">rollback</span>
@@ -508,9 +510,9 @@
 </div>
 <p>rollback 指令具有以下可用選項：</p>
 <ul class="simple">
-<li>(-g) 選擇資料庫群組，否則將使用預設資料庫群組</li>
-<li>(-b) 選擇批次，自然數為指定批次，負數為相對批次</li>
-<li>(-f) 強行透過確認問題，這只有在上線環境會詢問</li>
+<li><code class="docutils literal notranslate"><span class="pre">-g</span></code> 選擇資料庫群組，否則將使用預設資料庫群組</li>
+<li><code class="docutils literal notranslate"><span class="pre">-b</span></code> 選擇批次，自然數為指定批次，負數為相對批次</li>
+<li><code class="docutils literal notranslate"><span class="pre">-f</span></code> 強行透過確認問題，這只有在上線環境會詢問</li>
 </ul>
 <p><strong>refresh</strong></p>
 <p>更新資料庫狀態，先退回所有遷移然後重新執行遷移：</p>
@@ -519,10 +521,10 @@
 </div>
 <p>refresh 指令具有以下可選選項：</p>
 <ul class="simple">
-<li>(-g) 選擇資料庫群組，否則將使用預設資料庫群組</li>
-<li>(-n) 選擇命名空間，否則將使用 「App」 命名空間</li>
-<li>(-all) 將所有命名空間都進行更新</li>
-<li>(-f) 強行透過確認問題，這只有在上線環境會詢問</li>
+<li><code class="docutils literal notranslate"><span class="pre">-g</span></code> 選擇資料庫群組，否則將使用預設資料庫群組</li>
+<li><code class="docutils literal notranslate"><span class="pre">-n</span></code> 選擇命名空間，否則將使用 「App」 命名空間</li>
+<li><code class="docutils literal notranslate"><span class="pre">-all</span></code> 將所有命名空間都進行更新</li>
+<li><code class="docutils literal notranslate"><span class="pre">-f</span></code> 強行透過確認問題，這只有在上線環境會詢問</li>
 </ul>
 <p><strong>status</strong></p>
 <p>顯示所有遷移列表和運作的日前與時間，如果沒有運作過將會顯示 「–」 ：</p>
@@ -533,15 +535,17 @@
 </div>
 <p>status 指令具有以下可選選項：</p>
 <ul class="simple">
-<li>(-g) 選擇資料庫群組，否則將使用預設資料庫群組</li>
+<li><code class="docutils literal notranslate"><span class="pre">-g</span></code> 選擇資料庫群組，否則將使用預設資料庫群組</li>
 </ul>
-<p><strong>create</strong></p>
+<p><strong>make:migration</strong></p>
 <p>在 <strong>app/Database/Migrations</strong> 中新建一個骨架檔案。它將自動以目前的時間戳命名，它所創建的類別名稱將會是檔案名稱的駝峰式命名版。</p>
-<blockquote>
-<div>&gt; php spark migrate:create [filename]</div></blockquote>
-<p>create 指令具有以下可選選項：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">migrate</span><span class="o">:</span><span class="nx">create</span> <span class="p">[</span><span class="nx">filename</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>You can use (make:migration) with the following options:</p>
 <ul class="simple">
-<li>(-n) 選擇命名空間，否則將使用 「App」 命名空間</li>
+<li><code class="docutils literal notranslate"><span class="pre">-n</span></code> - to choose namespace, otherwise the value of <code class="docutils literal notranslate"><span class="pre">APP_NAMESPACE</span></code> will be used.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-force</span></code> - If a similarly named migration file is present in destination, this will be overwritten.</li>
 </ul>
 </div>
 <div class="section" id="id10">
@@ -674,7 +678,11 @@
 </tr>
 </tbody>
 </table>
-<p>強制將單個檔案進行遷移，不考慮順序或批次處理。根據是否已經遷移的方法， 「up」 或 「down」 來檢測。 <strong>注意</strong> ：這個方法僅用於測試，可能會發生資料不一致的問題。</p>
+<p>強制將單個檔案進行遷移，不考慮順序或批次處理。根據是否已經遷移的方法， 「up」 或 「down」 來檢測。</p>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">這個方法僅用於測試，可能會發生資料不一致的問題。</p>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -756,9 +764,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
+        &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年06月23日。
+        最後更新於 2021年03月02日。
       </span>
 
     </p>

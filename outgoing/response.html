@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>HTTP 響應 &mdash; CodeIgniter4 4.0.3 說明文件</title>
+  <title>HTTP 響應 &mdash; CodeIgniter4 4.1.1 說明文件</title>
   
 
   
@@ -28,6 +28,7 @@
         <script type="text/javascript" src="../_static/doctools.js"></script>
         <script type="text/javascript" src="../_static/language_data.js"></script>
         <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/js/carbon.js"></script>
         <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -96,13 +97,10 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
 </ul>
@@ -123,6 +121,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -218,7 +217,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Dates and Times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">Working with Uploaded Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">Working with URIs</a></li>
@@ -238,6 +237,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">Test Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
@@ -248,6 +248,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">測試</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">入門</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
@@ -259,6 +260,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -443,13 +445,13 @@ handler for that type - it can use it.</p>
 </pre></div>
 </div>
 <p>If you want to download an existing file from your server you’ll need to
-do the following:</p>
+pass <code class="docutils literal notranslate"><span class="pre">null</span></code> explicitly for the second parameter:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Contents of photo.jpg will be automatically read</span>
-<span class="k">return</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;/path/to/photo.jpg&#39;</span><span class="p">,</span> <span class="k">NULL</span><span class="p">);</span>
+<span class="k">return</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;/path/to/photo.jpg&#39;</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Use the optional <code class="docutils literal notranslate"><span class="pre">setFileName()</span></code> method to change the filename as it is sent to the client’s browser:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;awkwardEncryptedFileName.fakeExt&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">setFileName</span><span class="p">(</span><span class="s1">&#39;expenses.csv&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;awkwardEncryptedFileName.fakeExt&#39;</span><span class="p">,</span> <span class="k">null</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">setFileName</span><span class="p">(</span><span class="s1">&#39;expenses.csv&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -468,7 +470,7 @@ introduction to all of the cache headers power, but you can get a good understan
 <a class="reference external" href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching">Google Developers</a>.</p>
 <p>By default, all response objects sent through CodeIgniter have HTTP caching turned off. The options and exact
 circumstances are too varied for us to be able to create a good default other than turning it off. It’s simple
-to set the Cache values to what you need, though, through the <code class="docutils literal notranslate"><span class="pre">setCache()</span></code> method:</p>
+to set the Cache values to what you need, through the <code class="docutils literal notranslate"><span class="pre">setCache()</span></code> method:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$options</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;max-age&#39;</span>  <span class="o">=&gt;</span> <span class="mi">300</span><span class="p">,</span>
         <span class="s1">&#39;s-maxage&#39;</span> <span class="o">=&gt;</span> <span class="mi">900</span><span class="p">,</span>
@@ -617,7 +619,8 @@ life, and is most secure when generated on the fly. To make this simple, you can
 <dl class="class">
 <dt>
 <code class="descname">CodeIgniter\HTTP\Response</code></dt>
-<dd><dl class="method">
+<dd><blockquote>
+<div><dl class="method">
 <dt id="getStatusCode">
 <code class="descname">getStatusCode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#getStatusCode" title="本定義的永久連結">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
@@ -670,8 +673,8 @@ for a custom status code, you can pass the reason phrase as the second parameter
 </dd></dl>
 
 <dl class="method">
-<dt id="getReason">
-<code class="descname">getReason</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#getReason" title="本定義的永久連結">¶</a></dt>
+<dt id="getReasonPhrase">
+<code class="descname">getReasonPhrase</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#getReasonPhrase" title="本定義的永久連結">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -683,7 +686,7 @@ for a custom status code, you can pass the reason phrase as the second parameter
 </tbody>
 </table>
 <p>Returns the current status code for this response. If not status has been set, will return an empty string:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getReason</span><span class="p">();</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getReasonPhrase</span><span class="p">();</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -855,7 +858,7 @@ this as it is handled automatically by CodeIgniter.</p>
 
 <dl class="method">
 <dt id="setCookie">
-<code class="descname">setCookie</code><span class="sig-paren">(</span><em>$name = ''</em><span class="optional">[</span>, <em>$value = ''</em><span class="optional">[</span>, <em>$expire = ''</em><span class="optional">[</span>, <em>$domain = ''</em><span class="optional">[</span>, <em>$path = '/'</em><span class="optional">[</span>, <em>$prefix = ''</em><span class="optional">[</span>, <em>$secure = FALSE</em><span class="optional">[</span>, <em>$httponly = FALSE</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#setCookie" title="本定義的永久連結">¶</a></dt>
+<code class="descname">setCookie</code><span class="sig-paren">(</span><em>$name = ''</em><span class="optional">[</span>, <em>$value = ''</em><span class="optional">[</span>, <em>$expire = ''</em><span class="optional">[</span>, <em>$domain = ''</em><span class="optional">[</span>, <em>$path = '/'</em><span class="optional">[</span>, <em>$prefix = ''</em><span class="optional">[</span>, <em>$secure = FALSE</em><span class="optional">[</span>, <em>$httponly = FALSE</em><span class="optional">[</span>, <em>$samesite = null</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#setCookie" title="本定義的永久連結">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -869,6 +872,7 @@ this as it is handled automatically by CodeIgniter.</p>
 <li><strong>$prefix</strong> (<em>string</em>) – Cookie name prefix</li>
 <li><strong>$secure</strong> (<em>bool</em>) – Whether to only transfer the cookie through HTTPS</li>
 <li><strong>$httponly</strong> (<em>bool</em>) – Whether to only make the cookie accessible for HTTP requests (no JavaScript)</li>
+<li><strong>$samesite</strong> (<em>string</em>) – The value for the SameSite cookie parameter. If set to <code class="docutils literal notranslate"><span class="pre">''</span></code>, no SameSite attribute will be set on the cookie. If set to <cite>null</cite>, the default value from <cite>config/App.php</cite> will be used</li>
 </ul>
 </td>
 </tr>
@@ -891,7 +895,8 @@ parameter:</p>
         <span class="s1">&#39;path&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
         <span class="s1">&#39;prefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;myprefix_&#39;</span><span class="p">,</span>
         <span class="s1">&#39;secure&#39;</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
-        <span class="s1">&#39;httponly&#39;</span> <span class="o">=&gt;</span> <span class="k">FALSE</span>
+        <span class="s1">&#39;httponly&#39;</span> <span class="o">=&gt;</span> <span class="k">FALSE</span><span class="p">,</span>
+        <span class="s1">&#39;samesite&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Lax&#39;</span>
 <span class="p">];</span>
 
 <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">setCookie</span><span class="p">(</span><span class="nv">$cookie</span><span class="p">);</span>
@@ -912,10 +917,14 @@ URL to the <strong>domain</strong> starting with a period, like this:
 other identically named cookies for your server.</p>
 <p>The secure boolean is only needed if you want to make it a secure cookie
 by setting it to TRUE.</p>
+<p>The SameSite value controls how cookies are shared between domains and sub-domains.
+Allowed values are 『None』, 『Lax』, 『Strict』 or a blank string <code class="docutils literal notranslate"><span class="pre">''</span></code>.
+If set to blank string, no SameSite attribute will be set on the cookie sent to the client.
+If set to <code class="docutils literal notranslate"><span class="pre">null</span></code>, the default from <code class="docutils literal notranslate"><span class="pre">config/App.php</span></code> is used.</p>
 <p><strong>Discrete Parameters</strong></p>
 <p>If you prefer, you can set the cookie by passing data using individual
 parameters:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">setCookie</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$value</span><span class="p">,</span> <span class="nv">$expire</span><span class="p">,</span> <span class="nv">$domain</span><span class="p">,</span> <span class="nv">$path</span><span class="p">,</span> <span class="nv">$prefix</span><span class="p">,</span> <span class="nv">$secure</span><span class="p">,</span> <span class="nv">$httponly</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">setCookie</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$value</span><span class="p">,</span> <span class="nv">$expire</span><span class="p">,</span> <span class="nv">$domain</span><span class="p">,</span> <span class="nv">$path</span><span class="p">,</span> <span class="nv">$prefix</span><span class="p">,</span> <span class="nv">$secure</span><span class="p">,</span> <span class="nv">$httponly</span><span class="p">,</span> <span class="nv">$samesite</span><span class="p">);</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1015,6 +1024,23 @@ that the cookie exists, and that it has the prescribed value.</p>
 </div>
 </dd></dl>
 
+</div></blockquote>
+<dl class="method">
+<dt id="getCookies">
+<code class="descname">getCookies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#getCookies" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body">array</td>
+</tr>
+</tbody>
+</table>
+<p>Returns all cookies currently set within the Response instance.
+These are any cookies that you have specifically specified to set during the current
+request only.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -1042,9 +1068,9 @@ that the cookie exists, and that it has the prescribed value.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
+        &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年06月23日。
+        最後更新於 2021年03月02日。
       </span>
 
     </p>

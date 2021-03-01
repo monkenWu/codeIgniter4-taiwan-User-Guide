@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>HTTP 特性測試 &mdash; CodeIgniter4 4.0.3 說明文件</title>
+  <title>HTTP 特性測試 &mdash; CodeIgniter4 4.1.1 說明文件</title>
   
 
   
@@ -28,6 +28,7 @@
         <script type="text/javascript" src="../_static/doctools.js"></script>
         <script type="text/javascript" src="../_static/language_data.js"></script>
         <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/js/carbon.js"></script>
         <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -96,13 +97,10 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
 </ul>
@@ -123,6 +121,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -218,7 +217,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Dates and Times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">Working with Uploaded Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">Working with URIs</a></li>
@@ -238,6 +237,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">Test Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
@@ -248,6 +248,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">測試</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="overview.html">入門</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers.html">控制器測試</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">HTTP 特性測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="benchmark.html">基準測試</a></li>
@@ -259,6 +260,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -354,17 +356,20 @@
 <li><a class="reference internal" href="#id3" id="id12">發送一個頁面請求</a><ul>
 <li><a class="reference internal" href="#id4" id="id13">設定預設路由</a></li>
 <li><a class="reference internal" href="#id5" id="id14">設定會談值</a></li>
-<li><a class="reference internal" href="#id6" id="id15">繞過事件</a></li>
+<li><a class="reference internal" href="#setting-headers" id="id15">Setting Headers</a></li>
+<li><a class="reference internal" href="#id6" id="id16">繞過事件</a></li>
+<li><a class="reference internal" href="#formatting-the-request" id="id17">Formatting The Request</a></li>
+<li><a class="reference internal" href="#setting-the-body" id="id18">Setting the Body</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id7" id="id16">測試響應</a><ul>
-<li><a class="reference internal" href="#id8" id="id17">響應狀態測試</a></li>
-<li><a class="reference internal" href="#id9" id="id18">會談斷言</a></li>
-<li><a class="reference internal" href="#id10" id="id19">標頭斷言</a></li>
-<li><a class="reference internal" href="#cookie" id="id20">Cookie 斷言</a></li>
-<li><a class="reference internal" href="#dom" id="id21">DOM 斷言</a></li>
-<li><a class="reference internal" href="#json" id="id22">使用 JSON</a></li>
-<li><a class="reference internal" href="#xml" id="id23">使用 XML</a></li>
+<li><a class="reference internal" href="#id7" id="id19">測試響應</a><ul>
+<li><a class="reference internal" href="#id8" id="id20">響應狀態測試</a></li>
+<li><a class="reference internal" href="#id9" id="id21">會談斷言</a></li>
+<li><a class="reference internal" href="#id10" id="id22">標頭斷言</a></li>
+<li><a class="reference internal" href="#cookie" id="id23">Cookie 斷言</a></li>
+<li><a class="reference internal" href="#dom" id="id24">DOM 斷言</a></li>
+<li><a class="reference internal" href="#json" id="id25">使用 JSON</a></li>
+<li><a class="reference internal" href="#xml" id="id26">使用 XML</a></li>
 </ul>
 </li>
 </ul>
@@ -443,24 +448,57 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="setting-headers">
+<h3><a class="toc-backref" href="#id15">Setting Headers</a><a class="headerlink" href="#setting-headers" title="本標題的永久連結">¶</a></h3>
+<p>You can set header values with the <code class="docutils literal notranslate"><span class="pre">withHeaders()</span></code> method. This takes an array of key/value pairs that would be
+passed as a header into the call.:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$headers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;CONTENT_TYPE&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;application/json&#39;</span>
+<span class="p">];</span>
+
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">withHeaders</span><span class="p">(</span><span class="nv">$headers</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="id6">
-<h3><a class="toc-backref" href="#id15">繞過事件</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">繞過事件</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
 <p>在你的應用程式中，使用「事件」是非常方便的事情，但在測試中可能會出現問題，尤其是「發送郵件」這種事件。你可以透過 <code class="docutils literal notranslate"><span class="pre">skipEvents()</span></code> 方法告訴系統跳過任何事件：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">skipEvents</span><span class="p">()</span>
     <span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="nv">$userInfo</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
+<div class="section" id="formatting-the-request">
+<h3><a class="toc-backref" href="#id17">Formatting The Request</a><a class="headerlink" href="#formatting-the-request" title="本標題的永久連結">¶</a></h3>
+<p>You can set the format of your request’s body using the <code class="docutils literal notranslate"><span class="pre">withBodyFormat()</span></code> method. Currently this supports either
+<cite>json</cite> or <cite>xml</cite>. This will take the parameters passed into <code class="docutils literal notranslate"><span class="pre">call(),</span> <span class="pre">post(),</span> <span class="pre">get()...</span></code> and assign them to the
+body of the request in the given format. This will also set the <cite>Content-Type</cite> header for your request accordingly.
+This is useful when testing JSON or XML API’s so that you can set the request in the form that the controller will expect.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">//If your feature test contains this:</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">withBodyFormat</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="nv">$userInfo</span><span class="p">);</span>
+
+<span class="c1">//Your controller can then get the parameters passed in with:</span>
+<span class="nv">$userInfo</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getJson</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-the-body">
+<h3><a class="toc-backref" href="#id18">Setting the Body</a><a class="headerlink" href="#setting-the-body" title="本標題的永久連結">¶</a></h3>
+<p>You can set the body of your request with the <code class="docutils literal notranslate"><span class="pre">withBody()</span></code> method. This allows you to format the body how you want
+to format it. It is recommended that you use this if you have more complicated xml’s to test. This will also not set
+the Content-Type header for you so if you need that, you can set it with the <code class="docutils literal notranslate"><span class="pre">withHeaders()</span></code> method.</p>
+</div>
 </div>
 <div class="section" id="id7">
-<h2><a class="toc-backref" href="#id16">測試響應</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id19">測試響應</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
 <p>一旦你執行了 <code class="docutils literal notranslate"><span class="pre">call()</span></code> 函數並且獲得了回傳的結果後，你就可以在測試使用一些新的斷言。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
 <p class="last">Response 物件在 <code class="docutils literal notranslate"><span class="pre">$result-&gt;response</span></code> 是公開屬性，如果有其他需要，你也可使用這個實體執行其他斷言。</p>
 </div>
 <div class="section" id="id8">
-<h3><a class="toc-backref" href="#id17">響應狀態測試</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id20">響應狀態測試</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
 <p><strong>isOK()</strong></p>
 <p>證明這個響應是成功的響應 ，回傳一個布林值 true 或 false 。主要檢查 HTTP 狀態是否在 200 至 300 這個範圍之間。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">isOK</span><span class="p">())</span>
@@ -494,7 +532,7 @@
 </div>
 </div>
 <div class="section" id="id9">
-<h3><a class="toc-backref" href="#id18">會談斷言</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id21">會談斷言</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h3>
 <p><strong>assertSessionHas(string $key, $value = null)</strong></p>
 <p>斷言此時的會話中存在所指定鍵。如果你也傳入了 $value ，也會斷言你所指定的鍵的值是否與傳入的 $value 相符。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSessionHas</span><span class="p">(</span><span class="s1">&#39;logged_in&#39;</span><span class="p">,</span> <span class="mi">123</span><span class="p">);</span>
@@ -507,7 +545,7 @@
 </div>
 </div>
 <div class="section" id="id10">
-<h3><a class="toc-backref" href="#id19">標頭斷言</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id22">標頭斷言</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h3>
 <p><strong>assertHeader(string $key, $value = null)</strong></p>
 <p>斷言響應中存在著一個名為 <strong>$key</strong> 的標頭。如果你也傳入了 <strong>$value</strong> ，也會斷言這個值是相符的。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;text/html&#39;</span><span class="p">);</span>
@@ -520,7 +558,7 @@
 </div>
 </div>
 <div class="section" id="cookie">
-<h3><a class="toc-backref" href="#id20">Cookie 斷言</a><a class="headerlink" href="#cookie" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id23">Cookie 斷言</a><a class="headerlink" href="#cookie" title="本標題的永久連結">¶</a></h3>
 <p><strong>assertCookie(string $key, $value = null, string $prefix = 『』)</strong></p>
 <p>斷言響應中存在著名為 <strong>$key</strong> 的 Cookie ，如果你也傳入了 <strong>$value</strong> ，也會判定這些值是否相符。如果你需要的話，也可以設定 cookie 的前綴，透過傳遞第三個參數作為判斷依據。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertCookie</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
@@ -538,7 +576,7 @@
 </div>
 </div>
 <div class="section" id="dom">
-<h3><a class="toc-backref" href="#id21">DOM 斷言</a><a class="headerlink" href="#dom" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id24">DOM 斷言</a><a class="headerlink" href="#dom" title="本標題的永久連結">¶</a></h3>
 <p>你可以利用下列的斷言執行測試，檢閱特定的元素與文字等內容是否存在於響應的 body 之中。</p>
 <p><strong>assertSee(string $search = null, string $element = null)</strong></p>
 <p>斷言文字與 HTML 存在於在頁面上。這個斷言可以指的是全體文字，或具體成搜索一個標記，例如指定 Clase 、 type 或 id 。</p>
@@ -592,7 +630,7 @@
 </div>
 </div>
 <div class="section" id="json">
-<h3><a class="toc-backref" href="#id22">使用 JSON</a><a class="headerlink" href="#json" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id25">使用 JSON</a><a class="headerlink" href="#json" title="本標題的永久連結">¶</a></h3>
 <p>響應經常會是 JSON 格式的回傳，特別是在呼叫 API 方法時。以下提供可以幫助你測試響應的方法。</p>
 <p><strong>getJSON()</strong></p>
 <p>這個</p>
@@ -631,7 +669,7 @@
 <p>類似於 <strong>assertJSONFragment()</strong> 但會檢閱整個 JSON 響應以確保結果精準地符合。</p>
 </div>
 <div class="section" id="xml">
-<h3><a class="toc-backref" href="#id23">使用 XML</a><a class="headerlink" href="#xml" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id26">使用 XML</a><a class="headerlink" href="#xml" title="本標題的永久連結">¶</a></h3>
 <p><strong>getXML()</strong></p>
 <p>如果你的應用程式會回傳 XML ，你可以使用這個方法檢閱它。</p>
 </div>
@@ -658,9 +696,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
+        &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年06月23日。
+        最後更新於 2021年03月02日。
       </span>
 
     </p>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>靜態頁面 &mdash; CodeIgniter4 4.0.3 說明文件</title>
+  <title>靜態頁面 &mdash; CodeIgniter4 4.1.1 說明文件</title>
   
 
   
@@ -28,6 +28,7 @@
         <script type="text/javascript" src="../_static/doctools.js"></script>
         <script type="text/javascript" src="../_static/language_data.js"></script>
         <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/js/carbon.js"></script>
         <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -96,13 +97,10 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
 </ul>
@@ -123,6 +121,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -218,7 +217,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Dates and Times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">Working with Uploaded Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">Working with URIs</a></li>
@@ -238,6 +237,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">Test Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
@@ -248,6 +248,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">測試</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">入門</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
@@ -259,6 +260,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -347,32 +349,40 @@
             
   <div class="section" id="id1">
 <h1>靜態頁面<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
-<p><strong>注:</strong> 這個教學預設你已經下載了 CodeIgniter 並且在開發環境中 <a class="reference internal" href="../installation/index.html"><span class="doc">部屬了框架</span></a> 。</p>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">這個教學預設你已經下載了 CodeIgniter 並且在開發環境中 <a class="reference internal" href="../installation/index.html"><span class="doc">部屬了框架</span></a> 。</p>
+</div>
 <p>你要做的第一件事就是設置一個 <strong>控制器</strong> 來處理靜態頁面。控制器是一個有助於指派工作的類別。它可以說是 Web 應用程式間的黏著劑。</p>
 <p>舉個例子，當呼叫：</p>
-<blockquote>
-<div><code class="docutils literal notranslate"><span class="pre">http://example.com/news/latest/10</span></code></div></blockquote>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">http</span><span class="o">://</span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">news</span><span class="o">/</span><span class="nx">latest</span><span class="o">/</span><span class="mi">10</span>
+</pre></div>
+</div>
 <p>我們可以想像有個控制器名為「新聞（ news ）」，新聞呼叫的是 「最新的（latest）」這個方法（ method ）。這個方法可能會獲取 10 條新聞，並且將其呈現在畫面上。在 MVC 中，你經常會看到這子的 URL 映射模式：</p>
-<blockquote>
-<div><code class="docutils literal notranslate"><span class="pre">http://example.com/[controller-class]/[controller-method]/[arguments]</span></code></div></blockquote>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">http</span><span class="o">://</span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="p">[</span><span class="nx">controller</span><span class="o">-</span><span class="nx">class</span><span class="p">]</span><span class="o">/</span><span class="p">[</span><span class="nx">controller</span><span class="o">-</span><span class="nx">method</span><span class="p">]</span><span class="o">/</span><span class="p">[</span><span class="nx">arguments</span><span class="p">]</span>
+</pre></div>
+</div>
 <p>隨著 URL 的需求變得越來越複雜，這種方案可能會有所變化。但是現在，我們只需要先了解這些就好了。</p>
 <div class="section" id="id2">
 <h2>讓我們製作第一個控制器<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <p>在 <strong>app/Controllers/Pages.php</strong> 中創建一個有以下程式碼的檔案。</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Controller</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">Pages</span> <span class="k">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">Pages</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;welcome_message&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
 
-        <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
-        <span class="p">{</span>
-                <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;welcome_message&#39;</span><span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="k">public</span> <span class="k">function</span> <span class="nf">showme</span><span class="p">(</span><span class="nv">$page</span> <span class="o">=</span> <span class="s1">&#39;home&#39;</span><span class="p">)</span>
-        <span class="p">{</span>
-        <span class="p">}</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">view</span><span class="p">(</span><span class="nv">$page</span> <span class="o">=</span> <span class="s1">&#39;home&#39;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -397,6 +407,20 @@
 <span class="o">&lt;/</span><span class="nx">html</span><span class="o">&gt;</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">If you look closely in <strong>header.php</strong> template we are using an <strong>esc()</strong>
+function. It’s a global function provided by CodeIgniter to help prevent
+XSS attacks. You can read more about it <a class="reference internal" href="../general/common_functions.html"><span class="doc">here</span></a>.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">There are two <strong>view()</strong> functions referred to in this tutorial.
+One is the class method created with <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">function</span> <span class="pre">view($page</span> <span class="pre">=</span> <span class="pre">'home')</span></code>
+and <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">view('welcome_message');</span></code> for displaying a view.
+Both are <em>technically</em> a function. But when you create a function in a class,
+it’s called a method.</p>
+</div>
 </div>
 <div class="section" id="id3">
 <h2>在控制器中新增邏輯<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
@@ -404,19 +428,19 @@
 這個引數是被載入的頁面的名稱。靜態頁面的主體將被儲存在 <strong>app/Views/pages/</strong> 目錄中。</p>
 <p>在這個目錄中，創建名為 <strong>home.php</strong> 與 <strong>about.php</strong> 兩個檔案。在這些檔案中，輸入一些你喜歡的文字，並且保存它們。如果你不喜歡獨樹一格，你可以鍵入「 Hello World! 」。</p>
 <p>為了載入這些頁面，你必須檢查請求的頁面是否實際存在，這些判斷邏輯是在創建 <code class="docutils literal notranslate"><span class="pre">Pages</span></code> 控制器後，於 <code class="docutils literal notranslate"><span class="pre">showme()</span></code> 方法中的主體。</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">showme</span><span class="p">(</span><span class="nv">$page</span> <span class="o">=</span> <span class="s1">&#39;home&#39;</span><span class="p">)</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">view</span><span class="p">(</span><span class="nv">$page</span> <span class="o">=</span> <span class="s1">&#39;home&#39;</span><span class="p">)</span>
 <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">is_file</span><span class="p">(</span><span class="nx">APPPATH</span><span class="o">.</span><span class="s1">&#39;/Views/pages/&#39;</span><span class="o">.</span><span class="nv">$page</span><span class="o">.</span><span class="s1">&#39;.php&#39;</span><span class="p">))</span>
-        <span class="p">{</span>
-            <span class="c1">// Whoops, we don&#39;t have a page for that!</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nx">\CodeIgniter\Exceptions\PageNotFoundException</span><span class="p">(</span><span class="nv">$page</span><span class="p">);</span>
-        <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">is_file</span><span class="p">(</span><span class="nx">APPPATH</span><span class="o">.</span><span class="s1">&#39;/Views/pages/&#39;</span><span class="o">.</span><span class="nv">$page</span><span class="o">.</span><span class="s1">&#39;.php&#39;</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="c1">// Whoops, we don&#39;t have a page for that!</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nx">\CodeIgniter\Exceptions\PageNotFoundException</span><span class="p">(</span><span class="nv">$page</span><span class="p">);</span>
+    <span class="p">}</span>
 
-        <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">ucfirst</span><span class="p">(</span><span class="nv">$page</span><span class="p">);</span> <span class="c1">// Capitalize the first letter</span>
+    <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">ucfirst</span><span class="p">(</span><span class="nv">$page</span><span class="p">);</span> <span class="c1">// Capitalize the first letter</span>
 
-        <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;templates/header&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
-        <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;pages/&#39;</span><span class="o">.</span><span class="nv">$page</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
-        <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;templates/footer&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;templates/header&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;pages/&#39;</span><span class="o">.</span><span class="nv">$page</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;templates/footer&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -450,7 +474,10 @@
 <div class="section" id="id5">
 <h2>路由<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
 <p>控制器運作正常！</p>
-<p>使用自訂的路由規則，你可以將任何 URL 映射到任何控制器和方法，並且跳出這個預設的路由約定： <code class="docutils literal notranslate"><span class="pre">http://example.com/[controller-class]/[controller-method]/[arguments]</span></code></p>
+<p>使用自訂的路由規則，你可以將任何 URL 映射到任何控制器和方法，並且跳出這個預設的路由約定：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">http</span><span class="o">://</span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="p">[</span><span class="nx">controller</span><span class="o">-</span><span class="nx">class</span><span class="p">]</span><span class="o">/</span><span class="p">[</span><span class="nx">controller</span><span class="o">-</span><span class="nx">method</span><span class="p">]</span><span class="o">/</span><span class="p">[</span><span class="nx">arguments</span><span class="p">]</span>
+</pre></div>
+</div>
 <p>讓我們試試看吧！打開 <em>app/Config/Routes.php</em> 這個路由設定檔，並查找其中「定義路由（ Route Definitions ）」的部分。</p>
 <p>唯一沒有被註解的程式應該是這一行：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;Home::index&#39;</span><span class="p">);</span>
@@ -494,9 +521,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
+        &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年06月23日。
+        最後更新於 2021年03月02日。
       </span>
 
     </p>

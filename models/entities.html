@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>使用實體類別 &mdash; CodeIgniter4 4.0.3 說明文件</title>
+  <title>使用實體類別 &mdash; CodeIgniter4 4.1.1 說明文件</title>
   
 
   
@@ -28,6 +28,7 @@
         <script type="text/javascript" src="../_static/doctools.js"></script>
         <script type="text/javascript" src="../_static/language_data.js"></script>
         <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/js/carbon.js"></script>
         <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -96,13 +97,10 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
 </ul>
@@ -123,6 +121,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -218,7 +217,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Dates and Times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">Working with Uploaded Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">Working with URIs</a></li>
@@ -238,6 +237,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">Test Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
@@ -248,6 +248,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">測試</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">入門</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
@@ -259,6 +260,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -355,15 +357,17 @@
 <li><a class="reference internal" href="#id5" id="id16">建立模型</a></li>
 <li><a class="reference internal" href="#id6" id="id17">使用實體類別</a></li>
 <li><a class="reference internal" href="#id7" id="id18">快速填充屬性</a></li>
+<li><a class="reference internal" href="#bulk-accessing-properties" id="id19">Bulk Accessing Properties</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id8" id="id19">處理商業邏輯</a></li>
-<li><a class="reference internal" href="#id9" id="id20">資料映射</a></li>
-<li><a class="reference internal" href="#id10" id="id21">修改器</a><ul>
-<li><a class="reference internal" href="#id11" id="id22">資料修改器</a></li>
-<li><a class="reference internal" href="#id12" id="id23">型別轉換</a></li>
-<li><a class="reference internal" href="#array-json" id="id24">Array/Json 轉換</a></li>
-<li><a class="reference internal" href="#id13" id="id25">檢查類別屬性是否變更</a></li>
+<li><a class="reference internal" href="#id8" id="id20">處理商業邏輯</a></li>
+<li><a class="reference internal" href="#id9" id="id21">資料映射</a></li>
+<li><a class="reference internal" href="#id10" id="id22">修改器</a><ul>
+<li><a class="reference internal" href="#id11" id="id23">資料修改器</a></li>
+<li><a class="reference internal" href="#id12" id="id24">型別轉換</a></li>
+<li><a class="reference internal" href="#array-json" id="id25">Array/Json 轉換</a></li>
+<li><a class="reference internal" href="#csv-casting" id="id26">CSV Casting</a></li>
+<li><a class="reference internal" href="#id13" id="id27">檢查類別屬性是否變更</a></li>
 </ul>
 </li>
 </ul>
@@ -441,6 +445,11 @@
 </div>
 <p>你可能已經注意到了，使用者實體類別並沒有為資料列設定任何屬性，但你仍然可以把它們作為公開屬性存取。在基本類別中， <strong>CodeIgniterEntity</strong> 替你解決了這個問題，它還擁有 <strong>isset()</strong> 與 <strong>unset()</strong> 檢查屬性的能力，並追蹤物件新建或從資料庫中提取物件來比對那些資料列已被更改。</p>
 <p>當 User 實體類別被傳遞給模型的 <strong>save()</strong> 方法時，它會自動讀取實體內的屬性，判斷這是次的 save() 是插入新記錄還是更新現有記錄，並將資料更新到被  <strong>$allowedFields</strong>  允許的欄位中。</p>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">When we are making a call to the <code class="docutils literal notranslate"><span class="pre">insert()</span></code> all the values from Entity are passed to the method, but when we
+call the <code class="docutils literal notranslate"><span class="pre">update()</span></code>, then only values that have changed are passed.</p>
+</div>
 </div>
 <div class="section" id="id7">
 <h3><a class="toc-backref" href="#id18">快速填充屬性</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
@@ -452,7 +461,7 @@
 <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$user</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>你也可以在建構函數中傳遞資料，在實體化（ Instantiation ）實體類別的過程中，資料會透過 <cite>fill()</cite> 方法傳遞資料。</p>
+<p>你也可以在建構函數中傳遞資料，在實體化的過程中，資料會透過 <code class="docutils literal notranslate"><span class="pre">fill()</span></code> 方法傳遞資料。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getPost</span><span class="p">();</span>
 
 <span class="nv">$user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">App\Entities\User</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
@@ -460,9 +469,16 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="bulk-accessing-properties">
+<h3><a class="toc-backref" href="#id19">Bulk Accessing Properties</a><a class="headerlink" href="#bulk-accessing-properties" title="本標題的永久連結">¶</a></h3>
+<p>The Entity class has two methods to extract all available properties into an array: <code class="docutils literal notranslate"><span class="pre">toArray()</span></code> and <code class="docutils literal notranslate"><span class="pre">toRawArray()</span></code>.
+Using the raw version will bypass magic 「getter」 methods and casts. Both methods can take a boolean first parameter
+to specify whether returned values should be filtered by those that have changed, and a boolean final parameter to
+make the method recursive, in case of nested Entities.</p>
+</div>
 </div>
 <div class="section" id="id8">
-<h2><a class="toc-backref" href="#id19">處理商業邏輯</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id20">處理商業邏輯</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h2>
 <p>雖然上述的範例很方便，但它們並不能幫助任何商業邏輯的執行。基本的實體類別實作了一些聰明的 <code class="docutils literal notranslate"><span class="pre">__get()</span></code> 與 <code class="docutils literal notranslate"><span class="pre">__set()</span></code> 方法，這些方法將會檢查特殊方法並使用它們，避免直接使用屬性，從而允許你強制實行所需的商業邏輯或資料轉換。</p>
 <p>下面將提到如何更新 User 實體，並提供了如何使用的範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
@@ -515,7 +531,7 @@
 </div>
 </div>
 <div class="section" id="id9">
-<h2><a class="toc-backref" href="#id20">資料映射</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id21">資料映射</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h2>
 <p>在你的職業生涯中，很多時候你可能會遇到這樣子的狀況：應用程式的用途發生了變化，資料庫中原來的資料列名稱的意義發生改變。或者是，你發現了你的程式碼風格偏向使用駝峰式命名的類別屬性，而你的資料庫卻要求你使用 snake_case （每個單字間以下底線分隔）進行命名。這些時候都可以透過實體類別，輕鬆地進行映射處理。</p>
 <p>透過一個例子來示範，想像一下你有一個簡單的使用者實體，它在整個應用程式中被使用：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
@@ -535,8 +551,8 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>你的老闆突然告訴你，現在沒有人使用 「usernames」 了啦，我需要你將它改成電子信箱登入。但他還表示，她希望可以對應用程式進行個人化設定，因此他想要你改變名稱欄位的用途，讓 <code class="docutils literal notranslate"><span class="pre">name</span></code> 欄位用來表示使用者全名，而不是像以前那樣。為了保持整潔以，並確保這個欄位在資料庫中繼續保持著某種意義，你需要使用資料庫遷移，並將欄位重新命名為 <code class="docutils literal notranslate"><span class="pre">full_name</span></code> 。</p>
-<p>先別想這個讓人為難的例子，我們現在有兩個選項可以修正使用者類別。我們可以將類別屬性從 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 改成 <code class="docutils literal notranslate"><span class="pre">$full_name</span></code> ，但這需要修改整個應用程式才行。反之，我們可以簡單地將資料庫中的 <code class="docutils literal notranslate"><span class="pre">full_name</span></code> 欄位映射到 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 屬性，就可以完成對實體的修改。</p>
+<p>你的老闆突然告訴你，現在沒有人使用 「usernames」 了，我需要你將它改成電子信箱登入。但他還表示希望可以對應用程式進行個人化設定，因此他想要你改變名稱欄位的用途，讓 <code class="docutils literal notranslate"><span class="pre">name</span></code> 欄位用來表示使用者全名，而不是像以前那樣。為了保持整潔，並確保這個欄位在資料庫中繼續保持著某種意義，你需要使用資料庫遷移，並將欄位重新命名為 <code class="docutils literal notranslate"><span class="pre">full_name</span></code> 。</p>
+<p>先別想這個讓人為難的例子，我們現在有兩個選項可以修正使用者類別。可以將類別屬性從 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 改成 <code class="docutils literal notranslate"><span class="pre">$full_name</span></code> ，但這需要修改整個應用程式才行。反之，我們可以簡單地將資料庫中的 <code class="docutils literal notranslate"><span class="pre">full_name</span></code> 欄位映射到 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 屬性，就可以完成對實體的修改。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Entity</span><span class="p">;</span>
@@ -562,9 +578,9 @@
 <p>在這個範例中，當模型在使用者類別上設定 <code class="docutils literal notranslate"><span class="pre">full_name</span></code> 欄位時，實際上是將這個值賦值至 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 屬性，所以可以透過 <code class="docutils literal notranslate"><span class="pre">$user-&gt;name</span></code> 來進行存取。這個值仍然可以使用 <code class="docutils literal notranslate"><span class="pre">$user-&gt;full_name</span></code> 進行存取，因為模型需要透過這個來得到資料並將它儲存在資料庫中。但要注意， <code class="docutils literal notranslate"><span class="pre">unset</span></code> 與 <code class="docutils literal notranslate"><span class="pre">isset</span></code> 只對映射到的 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 屬性起作用，而不是對原始名稱 <code class="docutils literal notranslate"><span class="pre">full_name</span></code> 起作用。</p>
 </div>
 <div class="section" id="id10">
-<h2><a class="toc-backref" href="#id21">修改器</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id22">修改器</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h2>
 <div class="section" id="id11">
-<h3><a class="toc-backref" href="#id22">資料修改器</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id23">資料修改器</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h3>
 <p>在預設的情形下，實體類別將會在設定或檢索時將命名為 <cite>created_at</cite> 、 <cite>updated_at</cite> ， 以及 <cite>deleted_at</cite> 的欄位轉換為 <a class="reference internal" href="../libraries/time.html"><span class="doc">時間與日期程式庫</span></a> 的實體（instances），這個程式庫將以一種不變的、當地語系化的方式提供大量有用的方法。</p>
 <p>你可以透過將名稱添加到 <strong>options[『dates』]</strong> 陣列來定義那些屬性會被自動轉換：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
@@ -590,7 +606,7 @@
 </div>
 </div>
 <div class="section" id="id12">
-<h3><a class="toc-backref" href="#id23">型別轉換</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id24">型別轉換</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h3>
 <p>你可以指定在實體中 <strong>成員</strong> 屬性應該強制被轉換成你指定的資料型別，這個選項應該是一個鍵值陣列，其中的鍵是屬性名稱，值是它應該要被強制轉換成的資料型別。強制轉換只在取值時影響，並不會轉換在實體或資料庫中的永久值。屬性可以強制轉換為下列數種資料型別：<strong>integer</strong> 、  <strong>float</strong> 、  <strong>double</strong> 、  <strong>string</strong> 、  <strong>boolean</strong> 、  <strong>object</strong> 、  <strong>array</strong> 、  <strong>datetime</strong> ， 以及 <strong>timestamp</strong>。在屬性前加入問號，可將其標註為 nullable ，例如： <strong>?string</strong> 或 <strong>?integer</strong> 。</p>
 <p>例如：你有一個具有 <strong>is_banned</strong> 屬性的使用者實體，你可以把它轉換為 boolean ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
@@ -608,7 +624,7 @@
 </div>
 </div>
 <div class="section" id="array-json">
-<h3><a class="toc-backref" href="#id24">Array/Json 轉換</a><a class="headerlink" href="#array-json" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id25">Array/Json 轉換</a><a class="headerlink" href="#array-json" title="本標題的永久連結">¶</a></h3>
 <p>Array/Json 的轉換對於儲存序列化的陣列或 json 欄位相當有用，當轉換為：</p>
 <ul class="simple">
 <li><strong>array</strong> ，它們將自動取消序列化。</li>
@@ -632,8 +648,9 @@
                 <span class="s1">&#39;options_array&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;json-array&#39;</span>
     <span class="p">];</span>
 <span class="p">}</span>
-
-<span class="nv">$user</span>    <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$user</span>    <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
 <span class="nv">$options</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">options</span><span class="p">;</span>
 
 <span class="nv">$options</span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
@@ -643,8 +660,37 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="csv-casting">
+<h3><a class="toc-backref" href="#id26">CSV Casting</a><a class="headerlink" href="#csv-casting" title="本標題的永久連結">¶</a></h3>
+<p>If you know you have a flat array of simple values, encoding them as a serialized or JSON string
+may be more complex than the original structure. Casting as Comma-Separated Values (CSV) is
+a simpler alternative will result in a string that uses less space and is more easily read
+by humans:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Entity</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Widget</span> <span class="k">extends</span> <span class="nx">Entity</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$casts</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;colors&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;csv&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Stored in the database as 「red,yellow,green」:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$widget</span><span class="o">-&gt;</span><span class="na">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">];</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">Casting as CSV uses PHP’s internal <code class="docutils literal notranslate"><span class="pre">implode</span></code> and <code class="docutils literal notranslate"><span class="pre">explode</span></code> methods and assumes all values are string-safe and free of commas. For more complex data casts try <code class="docutils literal notranslate"><span class="pre">array</span></code> or <code class="docutils literal notranslate"><span class="pre">json</span></code>.</p>
+</div>
+</div>
 <div class="section" id="id13">
-<h3><a class="toc-backref" href="#id25">檢查類別屬性是否變更</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id27">檢查類別屬性是否變更</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h3>
 <p>你可以檢查一個實體的屬性在創建後始否發生了變化，這個方法唯一的參數就是你所想檢查的屬性名稱：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">();</span>
 <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">hasChanged</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>      <span class="c1">// false</span>
@@ -681,9 +727,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
+        &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年06月23日。
+        最後更新於 2021年03月02日。
       </span>
 
     </p>

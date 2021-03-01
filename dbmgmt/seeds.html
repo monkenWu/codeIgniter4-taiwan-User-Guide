@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>資料庫填充 &mdash; CodeIgniter4 4.0.3 說明文件</title>
+  <title>資料庫填充 &mdash; CodeIgniter4 4.1.1 說明文件</title>
   
 
   
@@ -28,6 +28,7 @@
         <script type="text/javascript" src="../_static/doctools.js"></script>
         <script type="text/javascript" src="../_static/language_data.js"></script>
         <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/js/carbon.js"></script>
         <script type="text/javascript" src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -96,13 +97,10 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/upgrade_4xx.html">從 3.x 升級至 4.x</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
 </ul>
@@ -123,6 +121,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -218,7 +217,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Dates and Times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">Working with Uploaded Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">Working with URIs</a></li>
@@ -238,6 +237,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">Test Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
@@ -248,6 +248,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">測試</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">入門</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
@@ -259,6 +260,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -348,7 +350,7 @@
   <div class="section" id="id1">
 <h1>資料庫填充<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>資料庫填充是一種將現有資料添加到資料庫的簡單方法，它在開發的過程中非常有用。當你需要以測試資料填充資料庫，並以這個資料作為開發依據時，此功能極為有效。但它的效果不亞於此，資料庫填充可以包含一些你不想包含在資料遷移中的靜態資料，例如：國家、地理編碼表、事件，或設定訊息等等。</p>
-<p>資料庫填充是個簡單的類別，必須有一個 <strong>run()</strong> 方法，並繼承 <strong>CodeIgniterDatabaseSeeder</strong> 。在 <strong>run()</strong> 方法中，這個類別可以創建各種形式或你所需要的資料。你可以透過 <code class="docutils literal notranslate"><span class="pre">$this-&gt;db</span></code> 與 <code class="docutils literal notranslate"><span class="pre">$this-&gt;forge</span></code> 分別存取資料庫和連結資料庫建構。資料庫填充檔案必須儲存在 <strong>app/Database/Seeds</strong> 目錄底下，文件名稱需與類別名稱相同。</p>
+<p>資料庫填充是個簡單的類別，必須有一個 <strong>run()</strong> 方法，並繼承 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Database\Seeder</span></code> 。在 <strong>run()</strong> 方法中，這個類別可以創建各種形式或你所需要的資料。你可以透過 <code class="docutils literal notranslate"><span class="pre">$this-&gt;db</span></code> 與 <code class="docutils literal notranslate"><span class="pre">$this-&gt;forge</span></code> 分別存取資料庫和連結資料庫建構。資料庫填充檔案必須儲存在 <strong>app/Database/Seeds</strong> 目錄底下，文件名稱需與類別名稱相同。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Database\Seeds</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">SimpleSeeder</span> <span class="k">extends</span> <span class="nx">\CodeIgniter\Database\Seeder</span>
@@ -396,6 +398,38 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="using-faker">
+<h2>Using Faker<a class="headerlink" href="#using-faker" title="本標題的永久連結">¶</a></h2>
+<p>If you want to automate the generation of seed data, you can use
+the <a class="reference external" href="https://github.com/fakerphp/faker">Faker library</a>.</p>
+<p>To install Faker into your project:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">composer</span> <span class="k">require</span> <span class="o">--</span><span class="nx">dev</span> <span class="nx">fakerphp</span><span class="o">/</span><span class="nx">faker</span>
+</pre></div>
+</div>
+<p>After installation, an instance of <code class="docutils literal notranslate"><span class="pre">Faker\Generator</span></code> is available in the main <code class="docutils literal notranslate"><span class="pre">Seeder</span></code>
+class and is accessible by all child seeders. You must use the static method <code class="docutils literal notranslate"><span class="pre">faker()</span></code>
+to access the instance.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Database\Seeds</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Database\Seeder</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserSeeder</span> <span class="k">extends</span> <span class="nx">Seeder</span>
+<span class="p">{</span>
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">run</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="nv">$model</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">);</span>
+
+                <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">([</span>
+                        <span class="s1">&#39;email&#39;</span>      <span class="o">=&gt;</span> <span class="k">static</span><span class="o">::</span><span class="na">faker</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">,</span>
+                        <span class="s1">&#39;ip_address&#39;</span> <span class="o">=&gt;</span> <span class="k">static</span><span class="o">::</span><span class="na">faker</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">ipv4</span><span class="p">,</span>
+                <span class="p">]);</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="id3">
 <h2>使用填充器<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p>你可以透過資料庫設定類別取得資料填充器的實體：</p>
@@ -409,6 +443,22 @@
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">db</span><span class="o">:</span><span class="nx">seed</span> <span class="nx">TestSeeder</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="creating-seed-files">
+<h3>Creating Seed Files<a class="headerlink" href="#creating-seed-files" title="本標題的永久連結">¶</a></h3>
+<p>Using the command line, you can easily generate seed files.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// This command will create a UserSeeder seed file</span>
+<span class="c1">// located at app/Database/Seeds/ directory.</span>
+<span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">make</span><span class="o">:</span><span class="nx">seeder</span> <span class="nx">UserSeeder</span>
+</pre></div>
+</div>
+<p>You can supply the <strong>root</strong> namespace where the seed file will be stored by supplying the <code class="docutils literal notranslate"><span class="pre">-n</span></code> option:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">make</span><span class="o">:</span><span class="nx">seeder</span> <span class="nx">MySeeder</span> <span class="o">-</span><span class="nx">n</span> <span class="nx">Acme\Blog</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">Acme\Blog</span></code> is mapped to <code class="docutils literal notranslate"><span class="pre">app/Blog</span></code> directory, then this command will save the
+seed file to <code class="docutils literal notranslate"><span class="pre">app/Blog/Database/Seeds/</span></code>.</p>
+<p>Supplying the <code class="docutils literal notranslate"><span class="pre">--force</span></code> option will overwrite existing files in destination.</p>
 </div>
 </div>
 </div>
@@ -433,9 +483,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
+        &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2020年06月23日。
+        最後更新於 2021年03月02日。
       </span>
 
     </p>
