@@ -98,6 +98,9 @@ CodeIgniter 支援使用實體類別作為資料庫的第一類物件，同時�
 
 當 User 實體類別被傳遞給模型的 **save()** 方法時，它會自動讀取實體內的屬性，判斷這是次的 save() 是插入新記錄還是更新現有記錄，並將資料更新到被  **$allowedFields**  允許的欄位中。
 
+.. note:: When we are making a call to the ``insert()`` all the values from Entity are passed to the method, but when we
+    call the ``update()``, then only values that have changed are passed.
+
 快速填充屬性
 --------------------------
 
@@ -111,7 +114,7 @@ CodeIgniter 支援使用實體類別作為資料庫的第一類物件，同時�
     $user->fill($data);
     $userModel->save($user);
 
-你也可以在建構函數中傳遞資料，在實體化（ Instantiation ）實體類別的過程中，資料會透過 `fill()` 方法傳遞資料。
+你也可以在建構函數中傳遞資料，在實體化的過程中，資料會透過 ``fill()`` 方法傳遞資料。
 
 ::
 
@@ -119,6 +122,14 @@ CodeIgniter 支援使用實體類別作為資料庫的第一類物件，同時�
 
     $user = new App\Entities\User($data);
     $userModel->save($user);
+
+Bulk Accessing Properties
+-------------------------
+
+The Entity class has two methods to extract all available properties into an array: ``toArray()`` and ``toRawArray()``.
+Using the raw version will bypass magic "getter" methods and casts. Both methods can take a boolean first parameter
+to specify whether returned values should be filtered by those that have changed, and a boolean final parameter to
+make the method recursive, in case of nested Entities.
 
 處理商業邏輯
 =======================
@@ -204,9 +215,9 @@ CodeIgniter 支援使用實體類別作為資料庫的第一類物件，同時�
         ];
     }
 
-你的老闆突然告訴你，現在沒有人使用 "usernames" 了啦，我需要你將它改成電子信箱登入。但他還表示，她希望可以對應用程式進行個人化設定，因此他想要你改變名稱欄位的用途，讓 ``name`` 欄位用來表示使用者全名，而不是像以前那樣。為了保持整潔以，並確保這個欄位在資料庫中繼續保持著某種意義，你需要使用資料庫遷移，並將欄位重新命名為 ``full_name`` 。
+你的老闆突然告訴你，現在沒有人使用 "usernames" 了，我需要你將它改成電子信箱登入。但他還表示希望可以對應用程式進行個人化設定，因此他想要你改變名稱欄位的用途，讓 ``name`` 欄位用來表示使用者全名，而不是像以前那樣。為了保持整潔，並確保這個欄位在資料庫中繼續保持著某種意義，你需要使用資料庫遷移，並將欄位重新命名為 ``full_name`` 。
 
-先別想這個讓人為難的例子，我們現在有兩個選項可以修正使用者類別。我們可以將類別屬性從 ``$name`` 改成 ``$full_name`` ，但這需要修改整個應用程式才行。反之，我們可以簡單地將資料庫中的 ``full_name`` 欄位映射到 ``$name`` 屬性，就可以完成對實體的修改。
+先別想這個讓人為難的例子，我們現在有兩個選項可以修正使用者類別。可以將類別屬性從 ``$name`` 改成 ``$full_name`` ，但這需要修改整個應用程式才行。反之，我們可以簡單地將資料庫中的 ``full_name`` 欄位映射到 ``$name`` 屬性，就可以完成對實體的修改。
 
 ::
 
@@ -318,6 +329,8 @@ Array/Json 的轉換對於儲存序列化的陣列或 json 欄位相當有用，
         ];
     }
 
+::
+
     $user    = $userModel->find(15);
     $options = $user->options;
 
@@ -325,6 +338,33 @@ Array/Json 的轉換對於儲存序列化的陣列或 json 欄位相當有用，
 
     $user->options = $options;
     $userModel->save($user);
+
+CSV Casting
+-----------
+
+If you know you have a flat array of simple values, encoding them as a serialized or JSON string
+may be more complex than the original structure. Casting as Comma-Separated Values (CSV) is
+a simpler alternative will result in a string that uses less space and is more easily read
+by humans::
+
+    <?php
+    
+    namespace App\Entities;
+
+    use CodeIgniter\Entity;
+
+    class Widget extends Entity
+    {
+        protected $casts = [
+            'colors' => 'csv',
+        ];
+    }
+
+Stored in the database as "red,yellow,green"::
+
+    $widget->colors = ['red', 'yellow', 'green'];
+
+.. note:: Casting as CSV uses PHP's internal ``implode`` and ``explode`` methods and assumes all values are string-safe and free of commas. For more complex data casts try ``array`` or ``json``.
 
 檢查類別屬性是否變更
 -------------------------------
