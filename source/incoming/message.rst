@@ -68,19 +68,20 @@ Class Reference
         Scans and parses the headers found in the SERVER data and stores it for later access.
         This is used by the :doc:`IncomingRequest Class </incoming/incomingrequest>` to make
         the current request's headers available.
-        The headers are any SERVER data that starts with ``HTTP_`` , like ``HTTP_HOST`` . Each message
+
+        The headers are any SERVER data that starts with ``HTTP_``, like ``HTTP_HOST``. Each message
         is converted from it's standard uppercase and underscore format to a ucwords and dash format.
         The preceding ``HTTP_`` is removed from the string. So ``HTTP_ACCEPT_LANGUAGE`` becomes
         ``Accept-Language``.
 
-    .. php:method:: getHeaders()
+    .. php:method:: headers()
 
         :returns: An array of all of the headers found.
         :rtype: array
 
         Returns an array of all headers found or previously set.
 
-    .. php:method:: getHeader($name)
+    .. php:method:: header($name)
 
         :param  string  $name: The name of the header you want to retrieve the value of.
         :returns: Returns a single header object. If multiple headers with the same name exist, then will return an array of header objects.
@@ -90,19 +91,19 @@ Class Reference
         While the header is converted internally as described above, you can access the header with any type of case::
 
             // These are all the same:
-            $message->getHeader('HOST');
-            $message->getHeader('Host');
-            $message->getHeader('host');
+            $message->header('HOST');
+            $message->header('Host');
+            $message->header('host');
 
         If the header has multiple values, ``getValue()`` will return as an array of values. You can use the ``getValueLine()``
         method to retrieve the values as a string::
 
-            echo $message->getHeader('Accept-Language');
+            echo $message->header('Accept-Language');
 
             // Outputs something like:
             'Accept-Language: en,en-US'
 
-            echo $message->getHeader('Accept-Language')->getValue();
+            echo $message->header('Accept-Language')->getValue();
 
             // Outputs something like:
             [
@@ -110,14 +111,14 @@ Class Reference
                 'en-US'
             ]
 
-            echo $message->getHeader('Accept-Language')->getValueLine();
+            echo $message->header('Accept-Language')->getValueLine();
 
             // Outputs something like:
             'en,en-US'
 
         You can filter the header by passing a filter value in as the second parameter::
 
-            $message->getHeader('Document-URI', FILTER_SANITIZE_URL);
+            $message->header('Document-URI', FILTER_SANITIZE_URL);
 
     .. php:method:: hasHeader($name)
 

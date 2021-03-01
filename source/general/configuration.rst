@@ -146,7 +146,7 @@ CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` �
     Config\App.CSRFCookieName = csrf_cookie
     Config\App.CSPEnabled = true
 
-.. note::　命名空間前綴和屬性名稱區分大小寫。它們必須與組態設定類別檔案中定義的完整命名空間與屬性名稱完全相同。
+.. note:: 命名空間前綴和屬性名稱區分大小寫。它們必須與組態設定類別檔案中定義的完整命名空間與屬性名稱完全相同。
 
 你也可以使用 *短前綴* 來達成目的，它是一個只使用組態設定類別名稱的省略版命名空間。如果短前綴與類別名稱相符合，則 **.env** 的值將會取代組態設定文件的值。
 
@@ -156,7 +156,7 @@ CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` �
     app.CSRFCookieName = csrf_cookie
     app.CSPEnabled = true
 
-note:: 當使用短前綴時，屬性名稱必須與類別所定義的屬性名稱完全一致。
+.. note:: 當使用短前綴時，屬性名稱必須與類別所定義的屬性名稱完全一致。
 
 將環境變數視為陣列
 ========================================
@@ -255,3 +255,8 @@ note:: 當使用短前綴時，屬性名稱必須與類別所定義的屬性名�
 
     $target   = 45;
     $campaign = "Winter Wonderland";
+
+In addition to explicit registrars defined by the ``$registrars`` property, you may also
+define registrars in any namespace using the **Config/Registrars.php** file, if discovery
+is enabled in :doc:`Modules </general/modules>`. These files work the same as the classes
+described above, using methods named for each configuration class you wish to extend.
