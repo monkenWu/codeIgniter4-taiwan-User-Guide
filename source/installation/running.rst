@@ -66,7 +66,7 @@ Apache 與許多平台綁定在一起，你也可以選擇使用 `Bitnami <https
 
 同時，你也要確認檔案根目錄的 <Directory> 元素啟用 AllowOverride 功能::
 
-    <Directory "/opt/lamp7.2/apache2/htdocs">
+    <Directory "/opt/lamp/apache2/htdocs">
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
@@ -81,14 +81,16 @@ Apache 與許多平台綁定在一起，你也可以選擇使用 `Bitnami <https
 
     LoadModule vhost_alias_module modules/mod_vhost_alias.so
 
-在類 Unix 平台或 Windows 主機上的 ``host`` 檔案中添加主機別名，別名可以命名為 myproject.local 或 myproject.test 或任何自訂的別名::
+在類 Unix 平台或 Windows 主機上的 host 檔案中添加主機別名，通常在 Unix 平台為 ``/etc/hosts`` Windows 平台則為 ``c:/Windows/System32/drivers/etc/hosts``，別名可以命名為 myproject.local 或 myproject.test 或任何自訂的別名
+
+::
 
     127.0.0.1 myproject.local
 
 在虛擬伺服器設定中幫應用程式新增  <VirtualHost> 元素。這個設定檔通常在 ``apache2/conf/extra/httpd-vhost.conf``::
 
     <VirtualHost *:80>
-        DocumentRoot "/opt/lamp7.2/apache2/htdocs/myproject/public"
+        DocumentRoot "/opt/lamp/apache2/htdocs/myproject/public"
         ServerName myproject.local
         ErrorLog "logs/myproject-error_log"
         CustomLog "logs/myproject-access_log" common
@@ -102,6 +104,45 @@ Apache 與許多平台綁定在一起，你也可以選擇使用 `Bitnami <https
 完成了上述的設定後，你的網頁應用程式將可以透過 ``http://myproject.local`` 在瀏覽器中進行訪問。
 
 每當改變設定的內容時，都需要重新啟動 Apache。
+
+Hosting with Nginx
+=================================================
+Nginx is the second most widely used HTTP server for web hosting.
+Here you can find an example configuration using PHP 7.3 FPM (unix sockets) under Ubuntu Server.
+
+This configuration enables URLs without “index.php” in them and using CodeIgniter's “404 - File Not Found” for URLs ending with “.php”.
+
+.. code-block:: nginx
+
+    server {
+        listen 80;
+        listen [::]:80;
+
+        server_name example.com;
+
+        root  /var/www/example.com/public;
+        index index.php index.html index.htm;
+
+        location / {
+            try_files $uri $uri/ /index.php$is_args$args;
+        }
+
+        location ~ \.php$ {
+            include snippets/fastcgi-php.conf;
+
+            # With php-fpm:
+            fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+            # With php-cgi:
+            # fastcgi_pass 127.0.0.1:9000;
+        }
+
+        error_page 404 /index.php;
+
+        # deny access to hidden files such as .htaccess
+        location ~ /\. {
+            deny all;
+        }
+    }
 
 使用 Vagrant 進行部屬
 =================================================
@@ -129,3 +170,15 @@ Vagrant 設定檔假設你的系統上設定了 `ubuntu/bionic64 Vagrant box
     vagrant up
 
 你的網頁應用程式將可以在 ``http://localhost:8080`` 造訪，程式碼覆蓋率報告將位於 ``http://localhost:8081`` ，使用指南則位於 ``http://localhost:8082`` 。
+
+Bootstrapping the App
+=================================================
+
+In some scenarios you will want to load the framework without actually running the whole
+application. This is particularly useful for unit testing your project, but may also be
+handy for using third-party tools to analyze and modify your code. The framework comes
+with a separate bootstrap script specifically for this scenario: ``system/Test/bootstrap.php``.
+
+Most of the paths to your project are defined during the bootstrap process. You may use
+pre-defined constants to override these, but when using the defaults be sure that your
+paths align with the expected directory structure for your installation method.
