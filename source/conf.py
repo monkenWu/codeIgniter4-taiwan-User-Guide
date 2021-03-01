@@ -18,16 +18,16 @@
 
 project = 'CodeIgniter4'
 author = 'CodeIgniter 基金會'
-copyright = '2019-2020 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 '
+copyright = '2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 '
 language = 'zh_TW'
 html_search_language = 'zh'
 html_show_sourcelink = False
 
 # The short X.Y version.
-version = '4.0-dev'
+version = '4.1'
 
 # The full version, including alpha/beta/rc tags.
-release = '4.0.3'
+release = '4.1.1'
 
 # -- General configuration ---------------------------------------------------
 
@@ -77,6 +77,7 @@ html_static_path = ['_static']
 html_theme_options = {
 	'collapse_navigation': False,
 	'sticky_navigation': False,
+	'navigation_depth': 2,
 	'includehidden': False,
 	'logo_only': True,
 	'display_version': False,
@@ -110,6 +111,7 @@ html_css_files = [
 # A list of JS files.
 html_js_files = [
 	'js/citheme.js',
+	'js/carbon.js'
 ]
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -137,4 +139,4 @@ man_pages = [
 epub_title = 'CodeIgniter4'
 epub_author = 'CodeIgniter 基金會'
 epub_publisher = 'CodeIgniter 基金會'
-epub_copyright = '2019-2020 CodeIgniter 基金會'
+epub_copyright = '2019-2021 CodeIgniter 基金會'

@@ -27,7 +27,7 @@ CodeIgniter 的命令列程式庫使創建交互式命令列腳本變得簡單�
 
 	class MyController extends \CodeIgniter\Controller
 	{
-		. . .
+		// ...
 	}
 
 當你第一次載入檔案時，類別會自動初始化。
@@ -86,38 +86,34 @@ CodeIgniter 的命令列程式庫使創建交互式命令列腳本變得簡單�
 
 以下為可以使用的顏色：
 
-::
-
-	black
-	dark_gray
-	blue
-	dark_blue
-	light_blue
-	green
-	light_green
-	cyan
-	light_cyan
-	red
-	light_red
-	purple
-	light_purple
-	light_yellow
-	yellow
-	light_gray
-	white
+* black
+* dark_gray
+* blue
+* dark_blue
+* light_blue
+* green
+* light_green
+* cyan
+* light_cyan
+* red
+* light_red
+* purple
+* light_purple
+* light_yellow
+* yellow
+* light_gray
+* white
 
 以下為可以使用的背景顏色：
 
-::
-
-	black
-	blue
-	green
-	cyan
-	red
-	yellow
-	light_gray
-	magenta
+* black
+* blue
+* green
+* cyan
+* red
+* yellow
+* light_gray
+* magenta
 
 **print()**
 
