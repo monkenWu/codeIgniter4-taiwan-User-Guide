@@ -35,6 +35,7 @@
 * CodeIgniter\\View\\View
 * CodeIgniter\\View\\Escaper
 
+
 替換核心類別
 ======================
 
@@ -44,14 +45,17 @@
 
 ::
 
-    <?php namespace App\Libraries;
+    <?php
+
+    namespace App\Libraries;
 
     use CodeIgniter\Router\RouteCollectionInterface;
 
     class RouteCollection implements RouteCollectionInterface
     {
-
+        // ...
     }
+
 
 然後，你得修改 ``routes`` 服務，改成載入你的類別：
 
