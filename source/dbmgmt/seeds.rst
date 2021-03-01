@@ -4,7 +4,7 @@
 
 資料庫填充是一種將現有資料添加到資料庫的簡單方法，它在開發的過程中非常有用。當你需要以測試資料填充資料庫，並以這個資料作為開發依據時，此功能極為有效。但它的效果不亞於此，資料庫填充可以包含一些你不想包含在資料遷移中的靜態資料，例如：國家、地理編碼表、事件，或設定訊息等等。
 
-資料庫填充是個簡單的類別，必須有一個 **run()** 方法，並繼承 **CodeIgniter\Database\Seeder** 。在 **run()** 方法中，這個類別可以創建各種形式或你所需要的資料。你可以透過 ``$this->db`` 與 ``$this->forge`` 分別存取資料庫和連結資料庫建構。資料庫填充檔案必須儲存在 **app/Database/Seeds** 目錄底下，文件名稱需與類別名稱相同。
+資料庫填充是個簡單的類別，必須有一個 **run()** 方法，並繼承 ``CodeIgniter\Database\Seeder`` 。在 **run()** 方法中，這個類別可以創建各種形式或你所需要的資料。你可以透過 ``$this->db`` 與 ``$this->forge`` 分別存取資料庫和連結資料庫建構。資料庫填充檔案必須儲存在 **app/Database/Seeds** 目錄底下，文件名稱需與類別名稱相同。
 
 ::
 
@@ -58,6 +58,41 @@
 		$this->call('My\Database\Seeds\CountrySeeder');
 	}
 
+Using Faker
+===========
+
+If you want to automate the generation of seed data, you can use
+the `Faker library <https://github.com/fakerphp/faker>`_.
+
+To install Faker into your project::
+
+	> composer require --dev fakerphp/faker
+
+After installation, an instance of ``Faker\Generator`` is available in the main ``Seeder``
+class and is accessible by all child seeders. You must use the static method ``faker()``
+to access the instance.
+
+::
+
+	<?php
+
+	namespace App\Database\Seeds;
+
+	use CodeIgniter\Database\Seeder;
+
+	class UserSeeder extends Seeder
+	{
+		public function run()
+		{
+			$model = model('UserModel');
+
+			$model->insert([
+				'email'      => static::faker()->email,
+				'ip_address' => static::faker()->ipv4,
+			]);
+		}
+	}
+
 使用填充器
 =============
 
@@ -77,3 +112,22 @@
 
 	> php spark db:seed TestSeeder
 
+Creating Seed Files
+-------------------
+
+Using the command line, you can easily generate seed files.
+
+::
+
+	// This command will create a UserSeeder seed file
+	// located at app/Database/Seeds/ directory.
+	> php spark make:seeder UserSeeder
+
+You can supply the **root** namespace where the seed file will be stored by supplying the ``-n`` option::
+
+	> php spark make:seeder MySeeder -n Acme\Blog
+
+If ``Acme\Blog`` is mapped to ``app/Blog`` directory, then this command will save the
+seed file to ``app/Blog/Database/Seeds/``.
+
+Supplying the ``--force`` option will overwrite existing files in destination.

@@ -28,6 +28,65 @@
 在上述範例，我們傳入了一個不同的資料庫群組名稱作為參數來連接資料庫。
 
 *******************************
+Creating and Dropping Databases
+*******************************
+
+**$forge->createDatabase('db_name')**
+
+Permits you to create the database specified in the first parameter.
+Returns TRUE/FALSE based on success or failure::
+
+	if ($forge->createDatabase('my_db'))
+	{
+		echo 'Database created!';
+	}
+
+An optional second parameter set to TRUE will add IF EXISTS statement
+or will check if a database exists before create it (depending on DBMS).
+
+::
+
+	$forge->createDatabase('my_db', TRUE);
+	// gives CREATE DATABASE IF NOT EXISTS my_db
+	// or will check if a database exists
+
+**$forge->dropDatabase('db_name')**
+
+Permits you to drop the database specified in the first parameter.
+Returns TRUE/FALSE based on success or failure::
+
+	if ($forge->dropDatabase('my_db'))
+	{
+		echo 'Database deleted!';
+	}
+
+Creating Databases in the Command Line
+======================================
+
+CodeIgniter supports creating databases straight from your favorite terminal using the dedicated ``db:create``
+command. By using this command it is assumed that the database is not yet existing. Otherwise, CodeIgniter
+will complain that the database creation has failed.
+
+To start, just type the command and the name of the database (e.g., ``foo``)::
+
+	php spark db:create foo
+
+If everything went fine, you should expect the ``Database "foo" successfully created.`` message displayed.
+
+If you are on a testing environment or you are using the SQLite3 driver, you may pass in the file extension
+for the file where the database will be created using the ``--ext`` option. Valid values are ``db`` and
+``sqlite`` and defaults to ``db``. Remember that these should not be preceded by a period.
+::
+
+	php spark db:create foo --ext sqlite
+	// will create the db file in WRITEPATH/foo.sqlite
+
+.. note:: When using the special SQLite3 database name ``:memory:``, expect that the command will still
+	produce a success message but no database file is created. This is because SQLite3 will just use
+	an in-memory database.
+
+
+*******************************
 新建與棄用資料庫
 *******************************
 
@@ -60,6 +119,31 @@
 	{
 		echo 'Database deleted!';
 	}
+
+Creating Databases in the Command Line
+======================================
+
+CodeIgniter supports creating databases straight from your favorite terminal using the dedicated ``db:create``
+command. By using this command it is assumed that the database is not yet existing. Otherwise, CodeIgniter
+will complain that the database creation has failed.
+
+To start, just type the command and the name of the database (e.g., ``foo``)::
+
+	php spark db:create foo
+
+If everything went fine, you should expect the ``Database "foo" successfully created.`` message displayed.
+
+If you are on a testing environment or you are using the SQLite3 driver, you may pass in the file extension
+for the file where the database will be created using the ``--ext`` option. Valid values are ``db`` and
+``sqlite`` and defaults to ``db``. Remember that these should not be preceded by a period.
+::
+
+	php spark db:create foo --ext sqlite
+	// will create the db file in WRITEPATH/foo.sqlite
+
+.. note:: When using the special SQLite3 database name ``:memory:``, expect that the command will still
+	produce a success message but no database file is created. This is because SQLite3 will just use
+	an in-memory database.
 
 ****************************
 新建與棄用資料表
