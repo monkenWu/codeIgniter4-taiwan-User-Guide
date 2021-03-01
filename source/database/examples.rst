@@ -15,7 +15,7 @@
 
 類別一旦被載入，就可以像以下的說明做使用：
 
-注意：如果你的所有頁面都需要存取資料庫，你可以設定自動連線。請參考 :doc:`資料庫連線 <connecting>` 來了解細節。
+.. note::  如果你的所有頁面都需要存取資料庫，你可以設定自動連線。請參考 :doc:`資料庫連線 <connecting>` 來了解細節。
 
 標準的多結果查詢（物件版）
 =====================================================
@@ -34,7 +34,8 @@
 
 	echo 'Total Results: ' . count($results);
 
-以上的 getResult() 函數會回傳一個 **物件** 陣列。範例：$row->title。
+以上的 ``getResult()`` 函數會回傳一個 **物件** 陣列。
+範例：``$row->title``。
 
 標準的多結果查詢（陣列版）
 ====================================================
@@ -51,7 +52,8 @@
 		echo $row['email'];
 	}
 
-以上的 getResultArray() 函數會回傳一個標準的索引陣列。範例：$row['title']。
+以上的 ``getResultArray()`` 函數會回傳一個標準的索引陣列。
+範例：``$row['title']``。
 
 標準的單一結果查詢（物件版）
 =================================
@@ -62,7 +64,8 @@
 	$row   = $query->getRow();
 	echo $row->name;
 
-以上的 getRow() 函數會回傳一個 **物件**。範例：$row->name。
+以上的 ``getRow()`` 函數會回傳一個 **物件**。
+範例：``$row->name``。
 
 標準的單一結果查詢（陣列版）
 =================================================
@@ -73,7 +76,8 @@
 	$row   = $query->getRowArray();
 	echo $row['name'];
 
-以上的 getRowArray() 函數會回傳一個 **陣列**。範例：$row['name']。
+以上的 ``getRowArray()`` 函數會回傳一個 **陣列**。
+範例：``$row['name']``。
 
 標準新增
 ===============
@@ -98,7 +102,7 @@
 		echo $row->title;
 	}
 
-以上的 get() 函數會回傳指定的資料表中所有的結果。:doc:`查詢生成器 <query_builder>` 類別包含完整的資料操作方法
+以上的 ``get()`` 函數會回傳指定的資料表中所有的結果。:doc:`查詢生成器 <query_builder>` 類別包含完整的資料操作方法
 
 查詢生成器 新增
 ====================
@@ -111,4 +115,5 @@
 		'date'  => $date
 	];
 
-	$db->table('mytable')->insert($data);  // Produces: INSERT INTO mytable (title, name, date) VALUES ('{$title}', '{$name}', '{$date}')
+	$db->table('mytable')->insert($data);
+	// Produces: INSERT INTO mytable (title, name, date) VALUES ('{$title}', '{$name}', '{$date}')

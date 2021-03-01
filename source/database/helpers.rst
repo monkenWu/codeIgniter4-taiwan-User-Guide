@@ -34,6 +34,17 @@
 
 	// Produces an integer, like 25
 
+	**$db->countAllResults()**
+
+Permits you to determine the number of rows in a particular result set.
+Submit the table name in the first parameter. This is part of Query Builder.
+Example::
+
+    echo $db->table('my_table')->countAllResults();
+
+    // Produces an integer, like 5
+
+
 **$db->getPlatform()**
 
 輸出你目前在運作的資料庫系統（例如：MySQL、MS SQL、Postgres等等）：

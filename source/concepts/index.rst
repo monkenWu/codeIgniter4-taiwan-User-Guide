@@ -5,11 +5,12 @@ CodeIgniter4 概觀
 以下的頁面描述了 CodeIgniter4 背後的架構理念：
 
 .. toctree::
-	:titlesonly:
+    :titlesonly:
 
-	structure
-	mvc
-	autoloader
-	services
-	http
-	security
+    structure
+    mvc
+    autoloader
+    services
+    factories
+    http
+    security

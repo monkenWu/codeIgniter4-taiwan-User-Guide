@@ -6,7 +6,7 @@
     :local:
     :depth: 2
 
-CodeIgniter 提供一個組態設定檔讓你設定資料庫連線資料（使用者名稱、密碼、資料庫名稱等...）。這一個設定檔位於 app/Config/Database.php 。你也可以藉由 .env 檔設定資料庫連線資料。參閱以下說明了解更多。
+CodeIgniter 提供一個組態設定檔讓你設定資料庫連線資料（使用者名稱、密碼、資料庫名稱等...）。這一個設定檔位於 **app/Config/Database.php** 。你也可以藉由 .env 檔設定資料庫連線資料。參閱以下說明了解更多。
 
 資料庫設定值被存放在一個遵照以下規範的類別屬性裡面：
 
@@ -35,6 +35,9 @@ CodeIgniter 提供一個組態設定檔讓你設定資料庫連線資料（使�
 
 類別屬性的名稱就是連線名稱，並且可以用特殊群組名稱連線。
 
+.. note:: The default location of the SQLite3 database is in the ``writable`` folder.
+    If you want to change the location, you must set the full path to the new folder.
+
 某些資料庫驅動例如：PDO、PostgreSQL、Oracle、ODBC）可能需要提供完整的DSN字串。在這些狀況下，你就需要使用 DSN 設定參數，就像是使用原生PHP的驅動擴充模組一樣，例如：
 
 ::
@@ -47,7 +50,21 @@ CodeIgniter 提供一個組態設定檔讓你設定資料庫連線資料（使�
 
 .. note:: 如果你沒有為驅動指定 DSN 字串，CodeIgniter 將會使用你提供的其他設定去建構你的資料庫。
 
+You can also set a Data Source Name in universal manner (URL like). In that case DSNs must have this prototype::
+
+    $default['DSN'] = 'DBDriver://username:password@hostname:port/database';
+
+To override default config values when connecting with a universal version of the DSN string,
+add the config variables as a query string::
+
+    // MySQLi
+    $default['DSN'] = 'MySQLi://username:password@hostname:3306/database?charset=utf8&DBCollat=utf8_general_ci';
+    // Postgre
+    $default['DSN'] = 'Postgre://username:password@hostname:5432/database?charset=utf8&connect_timeout=5&sslmode=1';
+
 .. note:: 如果你提供的 DSN 字串缺少了一些有效的參數（例如：資料庫的字元集），若這些參數出現在其他設定中，CodeIgniter 將自動在DNS的字串中附加上這些參數。
+
+
 
 當主要連線因為某些原因無法連線時，你可以設定故障排除。可以透過以下的連接設定做故障排除：
 
@@ -127,6 +144,8 @@ CodeIgniter 提供一個組態設定檔讓你設定資料庫連線資料（使�
 	$defaultGroup = 'test';
 
 .. note:: test 的名稱可以由你去任意更改。預設的情況下，主要的連線會使用 default 。但你也可以更改成跟你的專案有關係的名稱。你可以更改設定檔來檢測環境，並且在類別的建構函數中新增需要的邏輯，將 defaultGroup 自動更新成正確的數值：
+
+You could modify the config file to detect the environment and automatically update the defaultGroup value to the correct one by adding the required logic within the class’ constructor:
 
 ::
 
