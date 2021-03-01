@@ -20,7 +20,7 @@
 
 	helper('form');
 
-脫離領域的值
+脫離領欄位的值
 =====================
 
 你或許需要使用 HTML 與像是引用的字元在你的型式元素中。 
@@ -51,7 +51,7 @@
 
 	:param	string	$action: Form 動作／目標 URI 字串
     	:param	mixed	$attributes: HTML 屬性，是一個陣列或跳脫的字串
-    	:param	array	$hidden: 一個隱藏域的定義陣列
+    	:param	array	$hidden: 一個隱藏欄位的定義陣列
     	:returns:	HTML form 開啟標籤
     	:rtype:	string
 
@@ -83,7 +83,7 @@
 
 			<form method="post" accept-charset="utf-8" action="http://example.com/index.php/email/send" class="email" id="myform">
 			
-		如果 CSRF 過濾器是開啟的，`form_open()` 將會在 form 的最一開始產生 CSRF 域。你可以透過將 csrf_id 作為其中一個 $attribute 陣列傳送進 form 以指定這個域的ID:
+		如果 CSRF 過濾器是開啟的，`form_open()` 將會在 form 的最一開始產生 CSRF 欄位。你可以透過將 csrf_id 作為其中一個 $attribute 陣列傳送進 form 以指定這個欄位的ID:
 		
 			form_open('/u/sign-up', ['csrf_id' => 'my-id']);
 			
@@ -92,9 +92,9 @@
 			<form action="/u/sign-up" method="post" accept-charset="utf-8">
 			<input type="hidden" id="my-id" name="csrf_field" value="964ede6e0ae8a680f7b8eab69136717d" />
 
-	**增加隱藏的輸入域**
+	**增加隱藏的輸入欄位**
 
-		隱藏的輸入域可以藉由傳送一個關聯的陣列到第三個參數以增加，項是這樣::
+		隱藏的輸入欄位可以藉由傳送一個關聯的陣列到第三個參數以增加，項是這樣::
 
 			$hidden = ['username' => 'Joe', 'member_id' => '234'];
 			echo form_open('email/send', '', $hidden);
@@ -111,7 +111,7 @@
 
 	:param	string	$action: Form 動作／目標 URI 字串
     	:param	mixed	$attributes: HTML 屬性，是一個陣列或跳脫的字串
-    	:param	array	$hidden: 一個隱藏域的定義陣列
+    	:param	array	$hidden: 一個隱藏欄位的定義陣列
     	:returns:	HTML multipart 多部份的 form 開啟標籤
     	:rtype:	string
 

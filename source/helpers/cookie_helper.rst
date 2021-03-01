@@ -49,7 +49,7 @@ Cookie 輔助函數檔案包含幫助使用 cookie 的功能。
 	:rtype:	混合的
 
 	此輔助函數功能提供更友善的語法以取得 cookie。
-	由於此功能的動作與``IncomingRequest::getCookie()``相似，
+	由於此功能的動作與 ``IncomingRequest::getCookie()`` 相似，
 	請參照 :doc:`傳入請求庫 </incoming/incomingrequest>` 
 	以找到更詳細的使用說明。除非它同時也會預置你可能預先設定在你的 
 	*app/Config/App.php* 檔中的 ``$cookiePrefix``
@@ -57,7 +57,7 @@ Cookie 輔助函數檔案包含幫助使用 cookie 的功能。
 .. php:function:: delete_cookie($name[, $domain = ''[, $path = '/'[, $prefix = '']]])
 
 	:param	string	$name: Cookie 名稱
-	:param	string	$domain: Cookie 域 (通常會是: .yourdomain.com)
+	:param	string	$domain: Cookie 網域 (通常會是: .yourdomain.com)
 	:param	string	$path: Cookie 路徑
 	:param	string	$prefix: Cookie 名稱前綴
 	:rtype:	void

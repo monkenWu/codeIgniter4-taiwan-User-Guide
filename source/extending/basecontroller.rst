@@ -6,13 +6,17 @@ CodeIgniter 的核心控制器不應該被改變，但是在 **app/Controllers/B
 
 ::
 
-	<?php namespace App\Controllers;
-	
+	<?php
+
+	namespace App\Controllers;
+
 	use CodeIgniter\Controller;
-	
-	class Home extends BaseController {
-	
+
+	class Home extends BaseController
+	{
+		// ...
 	}
+
 
 預載組件
 =====================

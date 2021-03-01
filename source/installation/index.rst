@@ -10,8 +10,8 @@ CodeIgniter4可以透過多種方式安裝：手動安裝、 `Composer <https://
 .. toctree::
     :titlesonly:
     
-    installing_manual
     installing_composer
+    installing_manual
     running
     upgrading
     troubleshooting

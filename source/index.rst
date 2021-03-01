@@ -110,10 +110,10 @@ CodeIgniter4 使用手冊
 	extending/index
 
 .. toctree::
-        :hidden:
+    :hidden:
 
-        license
-        changelogs/index
+    license
+    changelogs/index
 
 ***************
 正體中文化

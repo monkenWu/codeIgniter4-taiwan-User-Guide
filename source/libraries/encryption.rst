@@ -13,6 +13,7 @@
 當前支援以下 PHP　擴充模組：
 
 - `OpenSSL <https://www.php.net/openssl>`_
+- `Sodium <https://www.php.net/manual/en/book.sodium>`_
 
 這不是完整的密碼解決方案。如果你需要更多功能，像是：公鑰加密，我們建議你考慮直接使用 OpenSSL 或另一個 `Cryptography Extensions <https://www.php.net/manual/en/refs.crypto.php>`_。
 更全面的軟體包，像是 `Halite <https://github.com/paragonie/halite>`_ 
@@ -59,15 +60,17 @@
 
 這裡只有兩個設定:
 
-======== ===============================================
-選項      可能的值 (括號中為默認值)
-======== ===============================================
-key      Encryption key starter
-driver   Preferred handler (OpenSSL)
-======== ===============================================
+========== ===================================================
+選項        可能的值 (括號中為預設值)
+========== ===================================================
+key        Encryption key starter
+driver     Preferred handler, e.g., OpenSSL or Sodium (``OpenSSL``)
+blockSize  Padding length in bytes for SodiumHandler (``16``)
+digest     Message digest algorithm (``SHA512``)
+========== ===================================================
 
 你可以透過傳遞你自己對 ``Services`` 的呼叫來替換設置文件的設置。
-這個 ``config`` 變數必須是 `Config\\Encryption` 類別的實體或是 `CodeIgniter\\Config\\BaseConfig` 的延伸模組。
+這個 ``config`` 變數必須是 ``Config\Encryption`` 類別。
 ::
 
     $config         = new Config\Encryption();
@@ -92,11 +95,15 @@ driver   Preferred handler (OpenSSL)
 ::
 
 	// $key will be assigned a 32-byte (256-bit) random key
-	$key = Encryption::createKey(32);
+	$key = Encryption::createKey();
 
-金鑰可以被儲存在 *app/Config/Encryption.php* ，或你可以設計自己的儲存機制，並在加密／解密時動態傳遞金鑰。
+	// for the SodiumHandler, you can use either:
+	$key = sodium_crypto_secretbox_keygen();
+	$key = Encryption::createKey(SODIUM_CRYPTO_SECRETBOX_KEYBYTES);
 
-要將保存到 *app/Config/Encryption.php* ，請打開你的檔案並設置
+金鑰可以被儲存在 ``app/Config/Encryption.php`` ，或你可以設計自己的儲存機制，並在加密／解密時動態傳遞金鑰。
+
+要將保存到 ``app/Config/Encryption.php`` ，請打開你的檔案並設置
 ::
 
 	public $key = 'YOUR KEY';
@@ -113,13 +120,59 @@ driver   Preferred handler (OpenSSL)
 
 	// Put the same value in your config with hex2bin(),
 	// so that it is still passed as binary to the library:
-	$key = hex2bin(<your hex-encoded key>);
+	$key = hex2bin('your-hex-encoded-key');
 
 你可能會發現到相同的技術也可以使用在多個加密結果
 ::
 
 	// Encrypt some text & make the results text
 	$encoded = base64_encode($encrypter->encrypt($plaintext));
+
+Using Prefixes in Storing Keys
+------------------------------
+
+You may take advantage of two special prefixes in storing your
+encryption keys: ``hex2bin:`` and ``base64:``. When these prefixes
+immediately precede the value of your key, ``Encryption`` will
+intelligently parse the key and still pass a binary string to
+the library.
+::
+
+	// In Encryption, you may use
+	public $key = 'hex2bin:<your-hex-encoded-key>'
+
+	// or
+	public $key = 'base64:<your-base64-encoded-key>'
+
+Similarly, you can use these prefixes in your ``.env`` file, too!
+::
+
+	// For hex2bin
+	encryption.key = hex2bin:<your-hex-encoded-key>
+
+	// or
+	encryption.key = base64:<your-base64-encoded-key>
+
+Padding
+=======
+
+Sometimes, the length of a message may provide a lot of information about its nature. If
+a message is one of "yes", "no" and "maybe", encrypting the message doesn't help: knowing
+the length is enough to know what the message is.
+
+Padding is a technique to mitigate this, by making the length a multiple of a given block size.
+
+Padding is implemented in ``SodiumHandler`` using libsodium's native ``sodium_pad`` and ``sodium_unpad``
+functions. This requires the use of a padding length (in bytes) that is added to the plaintext
+message prior to encryption, and removed after decryption. Padding is configurable via the
+``$blockSize`` property of ``Config\Encryption``. This value should be greater than zero.
+
+.. important:: You are advised not to devise your own padding implementation. You must always use
+	the more secure implementation of a library. Also, passwords should not be padded. Usage of
+	padding in order to hide the length of a password is not recommended. A client willing to send
+	a password to a server should hash it instead (even with a single iteration of the hash function).
+	This ensures that the length of the transmitted data is constant, and that the server doesn't
+	effortlessly get a copy of the password.
 
 加密程序說明
 ========================
@@ -133,6 +186,21 @@ CodeIgniter 的 OpenSSL 處理程序就是使用 AES-256-CTR 加密。
 
 你所設定提供的 *key* 用來得到另外兩組，一組用於加密則另一組用來認證。
 這透過已知技術 `HMAC-based Key Derivation Function <https://en.wikipedia.org/wiki/HKDF>`_ （HKDF） 來實現作為基於 HMAC 的金鑰產生函數。
+
+Sodium Notes
+------------
+
+The `Sodium <https://www.php.net/manual/en/book.sodium>`_ extension is bundled by default in PHP as
+of PHP 7.2.0.
+
+Sodium uses the algorithms XSalsa20 to encrypt, Poly1305 for MAC, and XS25519 for key exchange in
+sending secret messages in an end-to-end scenario. To encrypt and/or authenticate a string using
+a shared-key, such as symmetric encryption, Sodium uses the XSalsa20 algorithm to encrypt and
+HMAC-SHA512 for the authentication.
+
+.. note:: CodeIgniter's ``SodiumHandler`` uses ``sodium_memzero`` in every encryption or decryption
+	session. After each session, the message (whether plaintext or ciphertext) and starter key are
+	wiped out from the buffers. You may need to provide again the key before starting a new session.
 
 訊息長度
 ==============
@@ -170,15 +238,15 @@ CodeIgniter 的 OpenSSL 處理程序就是使用 AES-256-CTR 加密。
 		:returns:	具有指定長度的偽隨機密碼密鑰，失敗則為FALSE
 		:rtype:	string
 
-		透過作業系統來源中獲取隨機數據來創建加密金鑰（i.e. /dev/urandom）。
+		透過作業系統來源中獲取隨機數據來創建加密金鑰（i.e. ``/dev/urandom``）。
 
 
 	.. php:method:: initialize($config)
 
 		:param	BaseConfig	$config: 設定參數
-		:returns:	CodeIgniter\\Encryption\\EncrypterInterface instance
-		:rtype:	CodeIgniter\\Encryption\\EncrypterInterface
-		:throws:	CodeIgniter\\Encryption\\Exceptions\\EncryptionException
+		:returns:	``CodeIgniter\Encryption\EncrypterInterface`` 
+		:rtype:	``CodeIgniter\Encryption\EncrypterInterface``
+		:throws:	``CodeIgniter\Encryption\Exceptions\EncryptionException``
 
 		初始化（設定）程式庫來使用不同的設定。
 
@@ -188,7 +256,7 @@ CodeIgniter 的 OpenSSL 處理程序就是使用 AES-256-CTR 加密。
 
 		請參考 :ref:`configuration` 部分詳細的訊息。
 
-.. php:interface:: CodeIgniter\\Encryption\\EncrypterInterface
+.. php:interface:: ``CodeIgniter\Encryption\EncrypterInterface``
 
 	.. php:method:: encrypt($data, $params = null)
 
@@ -196,32 +264,46 @@ CodeIgniter 的 OpenSSL 處理程序就是使用 AES-256-CTR 加密。
 		:param		$params: 設定參數（金鑰）
 		:returns:	加密資料或失敗時為FALSE
 		:rtype:	string
-		:throws:	CodeIgniter\\Encryption\\Exceptions\\EncryptionException
+		:throws:	``CodeIgniter\Encryption\Exceptions\EncryptionException``
 
 		加密輸入數據並回傳加密後的資料。
+		
+		如果您將參數作為第二個參數傳遞，如果 ``$params`` 是陣列，則 ``key`` 元素將是此操作的開始鍵；或者起始鍵可以作為字串傳遞。
 
-                如果您將參數作為第二個參數傳遞，如果 ``$params`` 是陣列，則 ``key`` 元素將是此操作的開始鍵；或者起始鍵可以作為字串傳遞。
+		If you are using the SodiumHandler and want to pass a different ``blockSize``
+		on runtime, pass the ``blockSize`` key in the ``$params`` array.
 
-		範例::
+		範例
+		
+		::
 
 			$ciphertext = $encrypter->encrypt('My secret message');
 			$ciphertext = $encrypter->encrypt('My secret message', ['key' => 'New secret key']);
+			$ciphertext = $encrypter->encrypt('My secret message', ['key' => 'New secret key', 'blockSize' => 32]);
 			$ciphertext = $encrypter->encrypt('My secret message', 'New secret key');
+			$ciphertext = $encrypter->encrypt('My secret message', ['blockSize' => 32]);
 
 	.. php:method:: decrypt($data, $params = null)
 
 		:param	string	$data: 要解密的資料
 		:param		$params: 設定參數（金鑰）
-		:returns:	解密資料或失敗時為FALSE
+		:returns:	解密資料
 		:rtype:	string
-		:throws:	CodeIgniter\\Encryption\\Exceptions\\EncryptionException
+		:throws:	``CodeIgniter\Encryption\Exceptions\EncryptionException``
 
 		解密輸入資料並回傳解密後的資料。
+		
+		如果您將參數作為第二個參數傳遞，如果 ``$params`` 是陣列，則 ``key`` 元素將是此操作的開始鍵；或者起始鍵可以作為字串傳遞。
 
-                如果您將參數作為第二個參數傳遞，如果 ``$params`` 是陣列，則 ``key`` 元素將是此操作的開始鍵；或者起始鍵可以作為字串傳遞。
+		If you are using the SodiumHandler and want to pass a different ``blockSize``
+		on runtime, pass the ``blockSize`` key in the ``$params`` array.
 
-		範例::
+		範例
+		
+		::
 
 			echo $encrypter->decrypt($ciphertext);
 			echo $encrypter->decrypt($ciphertext, ['key' => 'New secret key']);
+			echo $encrypter->decrypt($ciphertext, ['key' => 'New secret key', 'blockSize' => 32]);
 			echo $encrypter->decrypt($ciphertext, 'New secret key');
+			echo $encrypter->decrypt($ciphertext, ['blockSize' => 32]);

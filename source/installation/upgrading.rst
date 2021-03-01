@@ -7,4 +7,7 @@
 .. toctree::
 	:titlesonly:
 
+	從 4.0.5 升級至 4.1.0 或 4.1.1 <upgrade_410>
+	從 4.0.4 升級至 4.0.5 <upgrade_405>
+	從 4.0.X 升級至 4.0.4 <upgrade_404>
 	從 3.x 升級至 4.x <upgrade_4xx>

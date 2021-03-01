@@ -47,6 +47,8 @@
 
     > php spark help db:seed
 
+Use the list command to get a list of available commands and their descriptions, sorted by categories. You may also use spark list --simple to get a raw list of all available commands, sorted alphabetically.
+
 *********************
 建立新的指令
 *********************
@@ -55,25 +57,12 @@
 
 你應該要在你的新指令類別檔案中實現下列屬性，以及這些指令的使用方式，這樣它就能在命令列指令列表中出現：
 
-* （$group）: 字串，用來描述該指令在指令表中被歸類的群組。例如：資料庫 Database 。
-* （$name）:  描述指令名稱的字串，例如： migrate:create 。
-* （$description）: 簡單描述指令效果的字串，例如：建立一個新的遷移檔案。
-* （$usage）: 描述指令使用方式的字串，例如： migrate:create [migration_name] [Options] 。
-* （$arguments）: 描述每個指令參數的鍵值陣列，例如：
-
-    ::
-
-        $arguments = [
-            "migration_name" => "The migration file name"
-        ];
-
-* （$options）: 描述每個指令選項的鍵值陣列，例如：
-
-    ::
-
-        $options = [
-            "-n" => "Set migration namespace"
-        ];
+* ``$group``: 字串，用來描述該指令在指令表中被歸類的群組。例如：資料庫 ``Database`` 。
+* ``$name``:  描述指令名稱的字串，例如： ``migrate:create`` 。
+* ``$description``: 簡單描述指令效果的字串，例如：建立一個新的遷移檔案。
+* ``$usage``: 描述指令使用方式的字串，例如： ``migrate:create [migration_name] [Options]`` 。
+* ``$arguments``: 描述每個指令參數的鍵值陣列，例如：``'name' => 'The migration file name'`` 。
+* ``$options``: 描述每個指令選項的鍵值陣列，例如：``'-n' => 'Set migration namespace'``
 
 **提示列表或提示指令所顯示的內容將會從上述的屬性中產出。**
 

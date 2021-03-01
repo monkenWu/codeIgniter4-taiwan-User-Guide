@@ -1,17 +1,21 @@
 靜態頁面
 ###############################################################################
 
-**注:** 這個教學預設你已經下載了 CodeIgniter 並且在開發環境中 :doc:`部屬了框架 <../installation/index>` 。
+.. note:: 這個教學預設你已經下載了 CodeIgniter 並且在開發環境中 :doc:`部屬了框架 <../installation/index>` 。
 
 你要做的第一件事就是設置一個 **控制器** 來處理靜態頁面。控制器是一個有助於指派工作的類別。它可以說是 Web 應用程式間的黏著劑。
 
 舉個例子，當呼叫：
 
-	``http://example.com/news/latest/10``
+::
+
+	http://example.com/news/latest/10
 
 我們可以想像有個控制器名為「新聞（ news ）」，新聞呼叫的是 「最新的（latest）」這個方法（ method ）。這個方法可能會獲取 10 條新聞，並且將其呈現在畫面上。在 MVC 中，你經常會看到這子的 URL 映射模式：
 
-	``http://example.com/[controller-class]/[controller-method]/[arguments]``
+::
+
+	http://example.com/[controller-class]/[controller-method]/[arguments]
 
 隨著 URL 的需求變得越來越複雜，這種方案可能會有所變化。但是現在，我們只需要先了解這些就好了。
 
@@ -22,21 +26,24 @@
 
 ::
 
-	<?php namespace App\Controllers;
-	
-	use CodeIgniter\Controller;
+    <?php
 
-	class Pages extends Controller {
+    namespace App\Controllers;
 
-		public function index()
-		{
-			return view('welcome_message');
-		}
+    use CodeIgniter\Controller;
 
-		public function showme($page = 'home')
-		{
-		}
-	}
+    class Pages extends Controller
+    {
+        public function index()
+        {
+            return view('welcome_message');
+        }
+
+        public function view($page = 'home')
+        {
+            // ...
+        }
+    }
 
 
 你創建了一個名為 ``Pages`` 的類別，這個類別具有 ``showme`` 方法，這個方法將會被傳入 ``$page`` 引數。 還有一個 ``index()`` 方法，這與 **app/Controllers/Home.php** 這個控制器相同，將會默認顯示 CodeIgniter 歡迎頁面。
@@ -68,6 +75,16 @@ header 包含載入主要視圖之前輸出的基本 HTML 程式碼與標題。�
 	</body>
 	</html>
 
+.. note:: If you look closely in **header.php** template we are using an **esc()**
+    function. It's a global function provided by CodeIgniter to help prevent
+    XSS attacks. You can read more about it :doc:`here </general/common_functions>`.
+
+.. warning:: There are two **view()** functions referred to in this tutorial.
+    One is the class method created with ``public function view($page = 'home')``
+    and ``echo view('welcome_message');`` for displaying a view.
+    Both are *technically* a function. But when you create a function in a class,
+    it's called a method.
+
 在控制器中新增邏輯
 -------------------------------------------------------
 
@@ -80,20 +97,20 @@ header 包含載入主要視圖之前輸出的基本 HTML 程式碼與標題。�
 
 ::
 
-	public function showme($page = 'home')
-	{
-		if ( ! is_file(APPPATH.'/Views/pages/'.$page.'.php'))
-		{
-		    // Whoops, we don't have a page for that!
-		    throw new \CodeIgniter\Exceptions\PageNotFoundException($page);
-		}
+    public function view($page = 'home')
+    {
+        if ( ! is_file(APPPATH.'/Views/pages/'.$page.'.php'))
+        {
+            // Whoops, we don't have a page for that!
+            throw new \CodeIgniter\Exceptions\PageNotFoundException($page);
+        }
 
-		$data['title'] = ucfirst($page); // Capitalize the first letter
+        $data['title'] = ucfirst($page); // Capitalize the first letter
 
-		echo view('templates/header', $data);
-		echo view('pages/'.$page, $data);
-		echo view('templates/footer', $data);
-	}
+        echo view('templates/header', $data);
+        echo view('pages/'.$page, $data);
+        echo view('templates/footer', $data);
+    }
 
 現在，當請求的頁面實際存在時，將載入該頁面（包含 header 與 footer ），並顯示給使用者。如果請求的頁面不存在，將顯示「 404 Page not found 」錯誤。
 
@@ -136,7 +153,11 @@ header 包含載入主要視圖之前輸出的基本 HTML 程式碼與標題。�
 
 控制器運作正常！
 
-使用自訂的路由規則，你可以將任何 URL 映射到任何控制器和方法，並且跳出這個預設的路由約定： ``http://example.com/[controller-class]/[controller-method]/[arguments]``
+使用自訂的路由規則，你可以將任何 URL 映射到任何控制器和方法，並且跳出這個預設的路由約定： 
+
+::
+
+	http://example.com/[controller-class]/[controller-method]/[arguments]
 
 讓我們試試看吧！打開 *app/Config/Routes.php* 這個路由設定檔，並查找其中「定義路由（ Route Definitions ）」的部分。
 

@@ -67,7 +67,7 @@ PHPUnit 組態設定
     {
         public function testFooNotBar()
         {
-            . . .
+            // ...
         }
     }
 
@@ -83,7 +83,7 @@ PHPUnit 組態設定
     {
         public function testFooNotBar()
         {
-            . . .
+            // ...
         }
     }
 
@@ -92,6 +92,51 @@ PHPUnit 組態設定
 .. note:: 測試類別並不會嚴格要求你的命名空間，但妥善使用命明空間將對確保類別名稱不衝突這件事很有幫助。
 
 如果你需要測試資料庫結果，你必須使用 `CIDatabaseTestClass <database.html>`_ 類別。
+
+Staging
+-------
+
+Most tests require some preparation in order to run correctly. PHPUnit's ``TestCase`` provides four methods
+to help with staging and clean up::
+
+    public static function setUpBeforeClass(): void
+    public static function tearDownAfterClass(): void
+    public function setUp(): void
+    public function tearDown(): void
+
+The static methods run before and after the entire test case, whereas the local methods run
+between each test. If you implement any of these special functions make sure you run their
+parent as well so extended test cases do not interfere with staging::
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        helper('text');
+    }
+
+In addition to these methods, ``CIUnitTestCase`` also comes with a convenience property for
+parameter-free methods you want run during set up and tear down::
+
+    protected $setUpMethods = [
+        'mockEmail',
+        'mockSession',
+    ];
+
+    protected $tearDownMethods = [];
+
+You can see by default these handle the mocking of intrusive services, but your class may override
+that or provide their own::
+
+    class OneOfMyModelsTest extends CIUnitTestCase
+    {
+        protected $tearDownMethods = [
+            'purgeRows',
+        ];
+
+        protected function purgeRows()
+        {
+            $this->model->purgeDeleted()
+        }
 
 額外斷言
 ---------------------
@@ -256,6 +301,26 @@ PHPUnit 組態設定
 **reset()**
 
 使用這個方法刪除了服務類別中的所有服務模擬類別，它將會恢復到原來的狀態。
+
+.. note:: The ``Email`` and ``Session`` services are mocked by default to prevent intrusive testing behavior. To prevent these from mocking remove their method callback from the class property: ``$setUpMethods = ['mockEmail', 'mockSession'];``
+
+Mocking Factory Instances
+=========================
+
+Similar to Services, you may find yourself needing to supply a pre-configured class instance
+during testing that will be used with ``Factories``. Use the same ``injectMock()`` and ``reset()``
+static methods like **Services**, but they take an additional preceding parameter for the
+component name::
+
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $model = new MockUserModel();
+        Factories::injectMock('models', 'App\Models\UserModel', $model);
+    }
+
+.. note:: All component Factories are reset by default between each test. Modify your test case's ``$setUpMethods`` if you need instances to persist.
 
 串流過濾器
 ==============

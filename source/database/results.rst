@@ -14,7 +14,7 @@
 
 **getResult()**
 
-這個方法會將查詢結果以 *物件* 陣列或 *空* 陣列(查詢失敗時)回傳。
+這個方法會將查詢結果以 **物件** 陣列或 **空** 陣列(查詢失敗時)回傳。
 一般情況下可以使用foreach迴圈，參考以下範例：
 
 ::
@@ -190,35 +190,35 @@ which represents a class to instantiate for each result object
 
 ::
 
-	class User
-	{
-		public $id;
-		public $email;
-		public $username;
+    class User
+    {
+        public $id;
+        public $email;
+        public $username;
 
-		protected $last_login;
+        protected $last_login;
 
-		public function lastLogin($format)
-		{
-			return $this->lastLogin->format($format);
-		}
+        public function lastLogin($format)
+        {
+            return $this->lastLogin->format($format);
+        }
 
-		public function __set($name, $value)
-		{
-			if ($name === 'lastLogin')
-			{
-				$this->lastLogin = DateTime::createFromFormat('U', $value);
-			}
-		}
+        public function __set($name, $value)
+        {
+            if ($name === 'lastLogin')
+            {
+                $this->lastLogin = DateTime::createFromFormat('U', $value);
+            }
+        }
 
-		public function __get($name)
-		{
-			if (isset($this->$name))
-			{
-				return $this->$name;
-			}
-		}
-	}
+        public function __get($name)
+        {
+            if (isset($this->$name))
+            {
+                return $this->$name;
+            }
+        }
+    }
 
 除了以下列出的兩個方法之外，這些方法(例如： ``getFirstRow()``, ``getLastRow()``,
 ``getNextRow()``, and ``getPreviousRow()`` )也可以使用類別名稱的方式做回傳查詢結果。
@@ -232,16 +232,16 @@ which represents a class to instantiate for each result object
 
 ::
 
-	$query = $db->query("YOUR QUERY");
+    $query = $db->query("YOUR QUERY");
 
-	$rows = $query->getCustomResultObject('User');
+    $rows = $query->getCustomResultObject('User');
 
-	foreach ($rows as $row)
-	{
-		echo $row->id;
-		echo $row->email;
-		echo $row->last_login('Y-m-d');
-	}
+    foreach ($rows as $row)
+    {
+        echo $row->id;
+        echo $row->email;
+        echo $row->last_login('Y-m-d');
+    }
 
 **getCustomRowObject()**
 
@@ -252,15 +252,15 @@ The second parameter is the class name to instantiate.
 
 ::
 
-	$query = $db->query("YOUR QUERY");
+    $query = $db->query("YOUR QUERY");
 
-	$row = $query->getCustomRowObject(0, 'User');
+    $row = $query->getCustomRowObject(0, 'User');
 
-	if (isset($row))
-	{
-		echo $row->email;   // access attributes
-		echo $row->last_login('Y-m-d');   // access class methods
-	}
+    if (isset($row))
+    {
+        echo $row->email;               // access attributes
+        echo $row->last_login('Y-m-d'); // access class methods
+    }
 
 你也能以完全相同的方式，使用 ``getRow()`` 這個方法。
 
@@ -293,6 +293,21 @@ The second parameter is the class name to instantiate.
     $query = $db->query('SELECT * FROM my_table');
 
 	echo $query->getFieldNames();
+
+**getNumRows()**
+
+The number of records returned by the query. Make sure to call
+the method using your query result object
+
+::
+
+    $query = $db->query('SELECT * FROM my_table');
+
+    echo $query->getNumRows();
+
+.. note:: Because SQLite3 lacks an efficient method returning a record count,
+    CodeIgniter will fetch and buffer the query result records internally and
+    return a count of the resulting record array, which can be inefficient.
 
 **freeResult()**
 

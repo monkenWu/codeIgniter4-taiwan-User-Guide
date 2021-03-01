@@ -82,7 +82,10 @@
 
 ::
 
-    <?php namespace App\Models;
+    <?php
+
+    namespace App\Models;
+
     use CodeIgniter\Model;
 
     class NewsModel extends Model
@@ -92,12 +95,13 @@
         protected $allowedFields = ['title', 'slug', 'body'];
     }
 
+
 這個新的屬性現在包含了允許被更新的欄位，注意到我們省略了 ``id`` 嗎？這是因為你幾乎不需要這樣做，它在資料庫中是一個自動遞增的欄位。這有助於防止 Mass assignment vulnerability 漏洞的發生。如果你的模型正在處理你的時間戳，那麼你也應該將那些時間戳排除在外。
 
 路由
 -------------------------------------------------------
 
-在你開始在你的 CodeIgniter 應用程式中添加新聞之前，你必須到 **app/Config/Routes.php** 這個設定檔添加額外的規則，這將可以確保 CodeIgniter 將 'create' 視為一個可執行的方法，而不是新聞的 slug 。
+在你開始在你的 CodeIgniter 應用程式中添加新聞之前，你必須到 **app/Config/Routes.php** 這個設定檔添加額外的規則，這將可以確保 CodeIgniter 將 ``create`` 視為一個可執行的方法，而不是新聞的 slug 。你可以在 :doc:`這裡 </incoming/routing>` 閱讀更多有關路由的知識。
 
 ::
 
@@ -118,13 +122,12 @@
     :height: 415px
     :width: 45%
 
-.. image:: ../images/tutorial9.png
-    :align: left
- 
-
 恭喜你
 -------------------------------------------------------
 
 你剛剛完成了你第一個 CodeIgniter4 應用程式！
 
-左圖顯示的是專案的 **app** 資料夾，你所創建的所有文件顯示成綠色字體。兩個你所修改的設定檔案（資料庫與路由設定檔）並沒有改變顏色。
+下圖顯示的是專案的 **app** 資料夾，你所創建的所有文件顯示成綠色字體。兩個你所修改的設定檔案（資料庫與路由設定檔）並沒有改變顏色。
+
+.. image:: ../images/tutorial9.png
+    :align: left

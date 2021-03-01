@@ -28,21 +28,27 @@
 讓我們試一下：Hello World!
 ==========================
 
-讓我們創建一個簡單的控制器，這樣你就可以看到它的操作方式。使用你的文本編輯器，創建一個名為 Helloworld.php 的文件，然後把下面的程式碼放在裡面：
+讓我們創建一個簡單的控制器，這樣你就可以看到它的操作方式。使用你的文本編輯器，創建一個名為 Helloworld.php 的文件，然後把下面的程式碼放在裡面。
+
+You will notice that the Helloworld Controller is extending the BaseController. you can also extend the CodeIgniter\Controller if you do not need the functionality of the BaseController.
+
+The BaseController provides a convenient place for loading components and performing functions that are needed by all your controllers. You can extend this class in any new controller.
+
+For security reasons be sure to declare any new utility methods as protected or private.:
 
 ::
 
-	<?php namespace App\Controllers;
+    <?php
 
-        use CodeIgniter\Controller;
+    namespace App\Controllers;
 
-	class Helloworld extends Controller
+    class Helloworld extends BaseController
+    {
+        public function index()
         {
-		public function index()
-		{
-			echo 'Hello World!';
-		}
-	}
+            echo 'Hello World!';
+        }
+    }
 
 然後將文件保存到你的 **/app/Controllers/** 目錄下。
 
@@ -288,12 +294,12 @@ $routes->get('/', 'Home::index');
 
 .. note:: 使用此功能時，URI的第一段必須要指定資料夾。例如，假設你有一個控制器位於這裡：
 
-::
-	
+	::
+		
 		app/Controllers/products/Shoes.php
 
 	要呼叫上面的控制器，你的 URI 會看起來像這樣：
-	
+		
 	::
 
 		example.com/index.php/products/shoes/show/123
@@ -393,6 +399,8 @@ CodeIgniter 還允許你使用 :doc:`URI Routing <routing>` 功能重新映射�
     }
 
 驗證也可以在模型中自動處理，但有時在控制器中進行驗證會更方便。具體到哪裡，由你自己決定.
+
+.. note:: Validation can also be handled automatically in the model, but sometimes it's easier to do it in the controller. Where is up to you.
 
 就是這樣！
 ==========

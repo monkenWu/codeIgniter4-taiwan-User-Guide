@@ -92,6 +92,18 @@ HTTP 特性測試
     $result = $this->withSession($values)
         ->get('admin');
 
+Setting Headers
+---------------
+
+You can set header values with the ``withHeaders()`` method. This takes an array of key/value pairs that would be
+passed as a header into the call.::
+
+    $headers = [
+        'CONTENT_TYPE' => 'application/json'
+    ];
+
+    $result = $this->withHeaders($headers)->post('users');
+
 繞過事件
 ----------------
 
@@ -102,6 +114,28 @@ HTTP 特性測試
     $result = $this->skipEvents()
         ->post('users', $userInfo);
 
+Formatting The Request
+-----------------------
+
+You can set the format of your request's body using the ``withBodyFormat()`` method. Currently this supports either
+`json` or `xml`. This will take the parameters passed into ``call(), post(), get()...`` and assign them to the
+body of the request in the given format. This will also set the `Content-Type` header for your request accordingly.
+This is useful when testing JSON or XML API's so that you can set the request in the form that the controller will expect.
+::
+
+    //If your feature test contains this:
+    $result = $this->withBodyFormat('json')
+        ->post('users', $userInfo);
+
+    //Your controller can then get the parameters passed in with:
+    $userInfo = $this->request->getJson();
+
+Setting the Body
+----------------
+
+You can set the body of your request with the ``withBody()`` method. This allows you to format the body how you want
+to format it. It is recommended that you use this if you have more complicated xml's to test. This will also not set
+the Content-Type header for you so if you need that, you can set it with the ``withHeaders()`` method.
 
 測試響應
 ====================

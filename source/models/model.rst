@@ -55,14 +55,16 @@ CodeIgniter 支援了模型類別，它提供了一些很好的功能，包括�
 
 ::
 
-        <?php namespace App\Models;
+    <?php
 
-        use CodeIgniter\Model;
+    namespace App\Models;
 
-	class UserModel extends Model
-	{
+    use CodeIgniter\Model;
 
-	}
+    class UserModel extends Model
+    {
+        // ...
+    }
 
 這個空的類別提供了對資料庫連接、查詢生成器，和一些額外的便捷方法的訪問。
 
@@ -73,14 +75,17 @@ CodeIgniter 支援了模型類別，它提供了一些很好的功能，包括�
 
 ::
 
-    <?php namespace App\Models;
+    <?php
+
+    namespace App\Models;
 
     use CodeIgniter\Model;
 
-	class UserModel extends Model
-	{
-		protected $DBGroup = 'group_name';
-	}
+    class UserModel extends Model
+    {
+        protected $DBGroup = 'group_name';
+    }
+
 
 你可以把 "group_name" 替換成資料庫組態設定檔案中定義的資料庫群組名稱。
 
@@ -91,29 +96,33 @@ CodeIgniter 支援了模型類別，它提供了一些很好的功能，包括�
 
 ::
 
-        <?php namespace App\Models;
+    <?php
 
-        use CodeIgniter\Model;
+    namespace App\Models;
 
-	class UserModel extends Model
-	{
-		protected $table      = 'users';
-		protected $primaryKey = 'id';
+    use CodeIgniter\Model;
 
-		protected $returnType = 'array';
-		protected $useSoftDeletes = true;
+    class UserModel extends Model
+    {
+        protected $table      = 'users';
+        protected $primaryKey = 'id';
 
-		protected $allowedFields = ['name', 'email'];
+        protected $useAutoIncrement = true;
 
-		protected $useTimestamps = false;
-		protected $createdField  = 'created_at';
-		protected $updatedField  = 'updated_at';
-		protected $deletedField  = 'deleted_at';
+        protected $returnType     = 'array';
+        protected $useSoftDeletes = true;
 
-		protected $validationRules    = [];
-		protected $validationMessages = [];
-		protected $skipValidation     = false;
-	}
+        protected $allowedFields = ['name', 'email'];
+
+        protected $useTimestamps = false;
+        protected $createdField  = 'created_at';
+        protected $updatedField  = 'updated_at';
+        protected $deletedField  = 'deleted_at';
+
+        protected $validationRules    = [];
+        protected $validationMessages = [];
+        protected $skipValidation     = false;
+    }
 
 **$table**
 
@@ -124,6 +133,16 @@ CodeIgniter 支援了模型類別，它提供了一些很好的功能，包括�
 你所選擇的資料表中資料記錄的唯一識別符號，它不一定要與資料庫中資料表的主鍵欄位相同，而是你在使用像是 ``find()`` 這種方法時，模型可以知道要將指定值以哪個欄位進行搜索。
 
 .. note:: 所有模型必須指定一個 $primaryKey ，以使所有功能可以正常工作。
+
+**$useAutoIncrement**
+
+Specifies if the table uses an auto-increment feature for ``$primaryKey``. If set to ``false``
+then you are responsible for providing primary key value for every record in the table. This 
+feature may be handy when we want to implement 1:1 relation or use UUIDs for our model.
+
+.. note:: If you set ``$useAutoIncrement`` to ``false`` then make sure to set your primary
+    key in the database to ``unique``. This way you will make sure that all of Model's features
+    will still work the same as before.
 
 **$returnType**
 
@@ -145,11 +164,11 @@ CodeIgniter 支援了模型類別，它提供了一些很好的功能，包括�
 
 **$createdField**
 
-指定使用哪個資料庫欄位來保存資料在創建時的時間戳，請將其留空並避免更新這個欄位（即使啟動了 useTimestamps 功能）。
+指定使用哪個資料庫欄位來保存資料在創建時的時間戳，請將其留空並避免更新這個欄位（即使啟動了 ``$useTimestamps`` 功能）。
 
 **$updatedField**
 
-指定使用哪個資料庫欄位來保存資料在更新時的時間戳，請將其留空並避免更新這個欄位（即使啟動了 useTimestamps 功能）。
+指定使用哪個資料庫欄位來保存資料在更新時的時間戳，請將其留空並避免更新這個欄位（即使啟動了 ``$useTimestamps`` 功能）。
 
 **$dateFormat**
 
@@ -175,6 +194,10 @@ CodeIgniter 支援了模型類別，它提供了一些很好的功能，包括�
 **afterDelete**
 
 這些陣列允許你宣告需要執行的回呼方法，並在你指定的事件發生時執行。
+
+**$allowCallbacks**
+
+Whether the callbacks defined above should be used.
 
 資料作業
 =================
@@ -306,9 +329,9 @@ withDeleted() 方法將會回傳已經刪除與未刪除的記錄，而這個方
 ::
 
 	$data = [
-		'username' => 'darth',
-		'email'    => 'd.vader@theempire.com'
-	];
+        'username' => 'darth',
+        'email'    => 'd.vader@theempire.com'
+    ];
 
 	$userModel->update($id, $data);
 
@@ -317,8 +340,8 @@ withDeleted() 方法將會回傳已經刪除與未刪除的記錄，而這個方
 ::
 
     $data = [
-		'active' => 1
-	];
+        'active' => 1
+    ];
 
 	$userModel->update([1, 2, 3], $data);
 
@@ -360,45 +383,46 @@ save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬�
 
 ::
 
-	namespace App\Entities;
+    namespace App\Entities;
 
-	class Job
-	{
-		protected $id;
-		protected $name;
-		protected $description;
+    class Job
+    {
+        protected $id;
+        protected $name;
+        protected $description;
 
-		public function __get($key)
-		{
-			if (property_exists($this, $key))
-			{
-				return $this->$key;
-			}
-		}
+        public function __get($key)
+        {
+            if (property_exists($this, $key))
+            {
+                return $this->$key;
+            }
+        }
 
-		public function __set($key, $value)
-		{
-			if (property_exists($this, $key))
-			{
-				$this->$key = $value;
-			}
-		}
-	}
+        public function __set($key, $value)
+        {
+            if (property_exists($this, $key))
+            {
+                $this->$key = $value;
+            }
+        }
+    }
+
 
 一個對應實體類別的最簡模型可能會像這個樣子：
 
 ::
 
-        use CodeIgniter\Model;
+    use CodeIgniter\Model;
 
-	class JobModel extends Model
-	{
-		protected $table = 'jobs';
-		protected $returnType = '\App\Entities\Job';
-		protected $allowedFields = [
-			'name', 'description'
-		];
-	}
+    class JobModel extends Model
+    {
+        protected $table = 'jobs';
+        protected $returnType = '\App\Entities\Job';
+        protected $allowedFields = [
+            'name', 'description'
+        ];
+    }
 
 這個模型使用 ``jobs`` 資料表來運作，並將所有結果以 ``App\Entities\Job`` 的一個實體回傳。當你需要將這個記錄儲存到資料庫時，你需要撰寫自定方法，使用模型提供的 ``save()`` 方法檢查類別、獲取公開屬性與私有屬性並將它們儲存到資料庫中。
 
@@ -458,21 +482,56 @@ save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬�
 
 ::
 
-	class UserModel extends Model
-	{
-		protected $validationRules    = [
-			'username'     => 'required|alpha_numeric_space|min_length[3]',
-			'email'        => 'required|valid_email|is_unique[users.email]',
-			'password'     => 'required|min_length[8]',
-			'pass_confirm' => 'required_with[password]|matches[password]'
-		];
+    class UserModel extends Model
+    {
+        protected $validationRules    = [
+            'username'     => 'required|alpha_numeric_space|min_length[3]',
+            'email'        => 'required|valid_email|is_unique[users.email]',
+            'password'     => 'required|min_length[8]',
+            'pass_confirm' => 'required_with[password]|matches[password]'
+        ];
 
-		protected $validationMessages = [
-			'email'        => [
-				'is_unique' => 'Sorry. That email has already been taken. Please choose another.'
-			]
-		];
-	}
+        protected $validationMessages = [
+            'email'        => [
+                'is_unique' => 'Sorry. That email has already been taken. Please choose another.'
+            ]
+        ];
+    }
+
+The other way to set the validation rules to fields by functions,
+
+.. php:function:: setValidationRule($field, $fieldRules)
+
+    :param  string  $field:
+    :param  array   $fieldRules:
+
+    This function will set the field validation rules.
+
+    Usage example::
+
+        $fieldName = 'username';
+        $fieldRules = 'required|alpha_numeric_space|min_length[3]';
+        
+        $model->setValidationRule($fieldName, $fieldRules);
+
+.. php:function:: setValidationRules($validationRules)
+
+    :param  array   $validationRules:
+
+    This function will set the validation rules.
+
+    Usage example::
+
+        $validationRules = [
+            'username' => 'required|alpha_numeric_space|min_length[3]',
+            'email' => [
+                'rules'  => 'required|valid_email|is_unique[users.email]',
+                'errors' => [
+                    'required' => 'We really need your email.',
+                ],
+            ],
+        ];
+        $model->setValidationRules($validationRules);
 
 另一種方式是透過函數將驗證訊息設定成欄位。
 
@@ -714,14 +773,19 @@ save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬�
 	protected $beforeInsert = ['hashPassword'];
 	protected $beforeUpdate = ['hashPassword'];
 
+Additionally, each model may allow (default) or deny callbacks class-wide by setting its $allowCallbacks property::
+
+    protected $allowCallbacks = false;
+
+You may also change this setting temporarily for a single model call sing the ``allowCallbacks()`` method::
+
+    $model->allowCallbacks(false)->find(1); // No callbacks triggered
+    $model->find(1);                        // Callbacks subject to original property value
+
 事件參數
 ----------------
 
 由於傳遞給每個回呼的確切資料存在著一些差異，下面將會詳列傳遞給每個事件的 $data 參數中的詳細內容：
-
-id = 被更新的行的主键。
-data = 被插入的键/值对。如果一个对象或Entity类被传递给insert方法，首先将其转换为数组。
-
 
 ================ =========================================================================================================
 事件             $data 內容
@@ -735,22 +799,42 @@ beforeUpdate      **id** = 被更新的資料的主鍵。
 afterUpdate       **id** = 被更新的資料主鍵。
                   **data** = 更新完成的鍵值陣列。
                   **result** = 透過查詢生成器使用 update() 方法的結果
-afterFind         將因為 find 方法的不同而相異，請詳閱下方內容：
-- find()          **id** = 被搜索的主鍵。
-                  **data** = 搜索結果的資訊列，若沒有結果則為空。
-- findAll()       **data** = 要查找的資料列數，如果沒有找到結果則為空。
-                  **limit** = 要查找的列數。
-                  **offset** = 搜索過程中要跳過的列數。
-- first()         **data** = 搜索過程中找到的結果列。如果沒找到則為空。
+beforeFind        The name of the calling **method**, whether a **singleton** was requested, and these additional fields:
+- first()         No additional fields
+- find()          **id** = the primary key of the row being searched for.
+- findAll()       **limit** = the number of rows to find.
+                  **offset** = the number of rows to skip during the search.
+afterFind         與 **beforeFind** 相同，但包括結果資料列；如果未找到結果，則為null。
 beforeDelete      將因為 delete 方法的不同而相異，請詳閱下方內容：
 - delete()        **id** = 即將被刪除的主鍵。
                   **purge** = 布林，是否被完全刪除或假性刪除。
-afterDelete       將因為 delete 方法的不同而相異，請詳閱下方內容：
-- delete()        **id** = 被刪除的主鍵。
+afterDelete       **id** = 被刪除的主鍵。
                   **purge** = 布林，是否被完全刪除或假性刪除。
                   **result** = 查詢生成器呼叫 delete() 的結果。
                   **data** = 未使用。
 ================ =========================================================================================================
+
+Modifying Find* Data
+--------------------
+
+The ``beforeFind`` and ``afterFind`` methods can both return a modified set of data to override the normal response
+from the model. For ``afterFind`` any changes made to ``data`` in the return array will automatically be passed back
+to the calling context. In order for ``beforeFind`` to intercept the find workflow it must also return an additional
+boolean, ``returnData``::
+
+    protected $beforeFind = ['checkCache'];
+    // ...
+    protected function checkCache(array $data)
+    {
+        // Check if the requested item is already in our cache
+        if (isset($data['id']) && $item = $this->getCachedItem($data['id']]))
+        {
+            $data['data']       = $item;
+            $data['returnData'] = true;
+
+            return $data;
+    // ...
+
 
 創建手動模型
 =====================
@@ -759,16 +843,19 @@ afterDelete       將因為 delete 方法的不同而相異，請詳閱下方內
 
 ::
 
-    <?php namespace App\Models;
+    <?php
 
-	use CodeIgniter\Database\ConnectionInterface;
+    namespace App\Models;
 
-	class UserModel
-	{
-		protected $db;
+    use CodeIgniter\Database\ConnectionInterface;
 
-		public function __construct(ConnectionInterface &$db)
-		{
-			$this->db =& $db;
-		}
-	}
+    class UserModel
+    {
+        protected $db;
+
+        public function __construct(ConnectionInterface &$db)
+        {
+            $this->db = &$db;
+        }
+    }
+

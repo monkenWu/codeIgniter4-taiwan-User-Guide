@@ -68,7 +68,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 **$builder->getCompiledSelect()**
 
-編譯選取查詢就像是 **$builder->get()** 的方法一樣，但實際上並不會 *執行* 查詢。
+編譯選取查詢就像是 ``$builder->get()`` 的方法一樣，但實際上並不會 *執行* 查詢。
 這個方法只是簡單的回傳字串格式的SQL查詢語法。
 
 範例
@@ -80,7 +80,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 	// 輸出字串：SELECT * FROM mytable
 
-第一個參數是設定是否重置查詢生成器的查詢。(預設是會重置，就像使用 `$builder->get()` )
+第一個參數是設定是否重置查詢生成器的查詢。(預設是會重置，就像使用 ``$builder->get()`` )
 
 ::
 
@@ -93,8 +93,8 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 	// 輸出字串: SELECT title, content, date FROM mytable LIMIT 20, 10
 
-上述的範例要注意的關鍵是，第二次的查詢並沒有使用 **$builder->from()** ，也沒有傳送資料表名稱。
-這是因為查詢並沒有使用 **$builder->get()** 來執行，這是重置值或直接使用 **$builder->resetQuery()** 來進行重置。
+上述的範例要注意的關鍵是，第二次的查詢並沒有使用 ``$builder->from()`` ，也沒有傳送資料表名稱。
+這是因為查詢並沒有使用 ``$builder->get()`` 來執行，這是重置值或直接使用 ``$builder->resetQuery()`` 來進行重置。
 
 **$builder->getWhere()**
 
@@ -117,9 +117,9 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 	// 執行: SELECT title, content, date FROM mytable
 
-.. note:: 如果你是要從資料表選取全部的欄位(\*)，你就不需要使用這個函數。當你忽略這個函數，CodeIgniter會假設你要選取所有欄位，自動幫你加入 'SELECT \*' 。
+.. note:: 如果你是要從資料表選取全部的欄位(\*)，你就不需要使用這個函數。當你忽略這個函數，CodeIgniter會假設你要選取所有欄位，自動幫你加入 ``SELECT \*`` 。
 
-``$builder->select()`` 的第二個參數是可有可無的。如果你設定為FALSE，CodeIgniter將不會保護你的語法或資料表名稱。
+``$builder->select()`` 的第二個參數是可有可無的。如果你設定為 ``false``，CodeIgniter將不會保護你的語法或資料表名稱。
 當你需要使用複合選取語法時這很有幫助，因為自動跳脫語法可能會破壞你的語法。
 
 
@@ -159,7 +159,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 **$builder->selectSum()**
 
-當你要在查詢使用 "SELECT SUM(field)"。就像 selectMax() 一樣，你可以利用第二個參數為你查詢的結果重新命名。
+當你要在查詢使用 ``SELECT SUM(field)``。就像 ``selectMax()`` 一樣，你可以利用第二個參數為你查詢的結果重新命名。
 
 ::
 
@@ -168,7 +168,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 **$builder->selectCount()**
 
-當你要在查詢使用 "SELECT COUNT(field)"。就像 selectMax() 一樣，你可以利用第二個參數為你查詢的結果重新命名。
+當你要在查詢使用 ``SELECT COUNT(field)``。就像 ``selectMax()`` 一樣，你可以利用第二個參數為你查詢的結果重新命名。
 
 .. note:: 這個方法與 ``groupBy()`` 一起使用時非常方便。如果是要計算查詢的筆數，可以參考 ``countAll()`` 和 ``countAllResults()`` 。
 
@@ -187,7 +187,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 	$builder->from('mytable');
 	$query = $builder->get();  // 產生的語法: SELECT title, content, date FROM mytable
 
-.. note:: 就像前面所介紹的，FROM 的語法可以在 $db->table() 中加入。額外呼叫 from() 只會在你的查詢中增加更多的資料表。
+.. note:: 就像前面所介紹的，FROM 的語法可以在 ``$db->table()`` 中加入。額外呼叫 ``from()`` 只會在你的查詢中增加更多的資料表。
 
 **$builder->join()**
 
@@ -299,7 +299,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 **$builder->whereIn()**
 
-產生 WHERE 欄位 IN ('item', 'item') 的SQL查詢語法，如果合適的話就用AND串接。
+產生 WHERE 欄位 ``IN ('item', 'item')`` 的SQL查詢語法，如果合適的話就用AND串接。
 
     ::
 
@@ -318,7 +318,8 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 **$builder->orWhereIn()**
 
-產生 WHERE 欄位 IN ('item', 'item') 的SQL查詢語法，如果合適的話就用OR串接。
+產生 WHERE 欄位 ``IN ('item', 'item')`` 的SQL查詢語法，如果合適的話就用OR串接。
+
     ::
 
         $names = ['Frank', 'Todd', 'James'];
@@ -337,7 +338,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 **$builder->whereNotIn()**
 
-產生 WHERE 欄位 NOT IN ('item', 'item') 的SQL查詢語法，如果合適的話就用AND串接。
+產生 WHERE 欄位 ``NOT IN ('item', 'item')`` 的SQL查詢語法，如果合適的話就用AND串接。
 
     ::
 
@@ -358,7 +359,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 **$builder->orWhereNotIn()**
 
-產生 WHERE 欄位 NOT IN ('item', 'item') 的SQL查詢語法，如果合適的話就用OR串接。
+產生 WHERE 欄位 ``NOT IN ('item', 'item')`` 的SQL查詢語法，如果合適的話就用OR串接。
 
     ::
 
@@ -498,7 +499,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 **$builder->havingIn()**
 
-產生 HAVING 欄位 IN ('item', 'item') 的SQL查詢語法，如果合適的話就用AND串接。
+產生 HAVING 欄位 ``IN ('item', 'item')`` 的SQL查詢語法，如果合適的話就用AND串接。
 
     ::
 
@@ -517,7 +518,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 **$builder->orHavingIn()**
 
-產生 HAVING 欄位 IN ('item', 'item') 的SQL查詢語法，如果合適的話就用OR串接。
+產生 HAVING 欄位 ``IN ('item', 'item')`` 的SQL查詢語法，如果合適的話就用OR串接。
 
     ::
 
@@ -537,7 +538,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 **$builder->havingNotIn()**
 
-產生 HAVING 欄位 NOT IN ('item', 'item') 的SQL查詢語法，如果合適的話就用AND串接。
+產生 HAVING 欄位 ``NOT IN ('item', 'item')`` 的SQL查詢語法，如果合適的話就用AND串接。
 
     ::
 
@@ -558,7 +559,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 **$builder->orHavingNotIn()**
 
-產生 HAVING 欄位 NOT IN ('item', 'item') 的SQL查詢語法，如果合適的話就用OR串接。
+產生 HAVING 欄位 ``NOT IN ('item', 'item')`` 的SQL查詢語法，如果合適的話就用OR串接。
 
     ::
 
@@ -718,6 +719,8 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 不過這個方法會重置你在 ``select()`` 中傳送任何欄位值。如果你需要保留它們，你可以在第一個參數中傳送 ``FALSE`` 。
 
+::
+
 	echo $builder->countAllResults(false); // 產生integer結果，如：17。
 
 **$builder->countAll()**
@@ -753,7 +756,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 	// 產生的語法:
 	// SELECT * FROM (`my_table`) WHERE ( `a` = 'a' OR ( `b` = 'b' AND `c` = 'c' ) ) AND `d` = 'd'
 
-.. note:: 分組需要保持平衡，確保每個 groupStart() 都有相對應的 groupEnd()。
+.. note:: 分組需要保持平衡，確保每個 ``groupStart()`` 都有相對應的 ``groupEnd()``。
 
 **$builder->groupStart()**
 
@@ -859,7 +862,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 
 **$builder->getCompiledInsert()**
 
-像是 $builder->insert() 一樣編譯插入查詢，但並不會 **執行** 查詢。這個方法只會回傳SQL查詢的語法字串。
+像是 ``$builder->insert()`` 一樣編譯插入查詢，但並不會 **執行** 查詢。這個方法只會回傳SQL查詢的語法字串。
 
 範例：
 
@@ -876,7 +879,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 
 	// 產生的語法字串: INSERT INTO mytable (`title`, `name`, `date`) VALUES ('My title', 'My name', 'My date')
 
-第二個參數是設定是否重置查詢生成器的查詢(預設是會重置，就像使用 $builder->insert() 一樣)。
+第二個參數是設定是否重置查詢生成器的查詢(預設是會重置，就像使用 ``$builder->insert()`` 一樣)。
 
 ::
 
@@ -888,8 +891,8 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 
 	// 產生的語法字串: INSERT INTO mytable (`title`, `content`) VALUES ('My Title', 'My Content')
 
-上述的範例要注意的關鍵是，第二次的查詢並沒有使用 `$builder->from()` ，也沒有在第一個參數中傳送資料表名稱。
-這是因為查詢並沒有使用 `$builder->insert()` 來執行，這個查詢會重置值或直接使用 `$builder->resetQuery()` 來進行重置。
+上述的範例要注意的關鍵是，第二次的查詢並沒有使用 ``$builder->from()`` ，也沒有在第一個參數中傳送資料表名稱。
+這是因為查詢並沒有使用 ``$builder->insert`()`` 來執行，這個查詢會重置值或直接使用 ``$builder->resetQuery()`` 來進行重置。
 
 
 .. note:: 這個方法不適用在批次插入。
@@ -966,7 +969,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 	$builder->set('status', $status);
 	$builder->insert();
 
-**set()**  也會接受可有可無的第三個參數 ( ``$escape`` )，如果它設定為 FALSE 它將會避免資料被跳脫。
+**set()**  也會接受可有可無的第三個參數 ( ``$escape`` )，如果它設定為 ``false`` 它將會避免資料被跳脫。
 為了要說差異，以下的範例是使用 ``set()`` 來做比較，分別是有無使用跳脫參數。
 
 ::
@@ -996,13 +999,11 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 
 ::
 
-	/*
 	class Myclass {
 		public $title   = 'My Title';
 		public $content = 'My Content';
 		public $date    = 'My Date';
 	}
-	*/
 
 	$object = new Myclass;
 	$builder->set($object);
@@ -1052,7 +1053,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 
 .. note:: 傳送到這個函數的數值都會自動跳脫，來產生安全的查詢。
 
-$builder->where() 這個函數，能夠使你設定 WHERE的語法。
+``$builder->where()`` 這個函數，能夠使你設定 WHERE的語法。
 你也可以將資料作為字串直接傳送到更新函數裡：
 
 ::
@@ -1065,7 +1066,7 @@ $builder->where() 這個函數，能夠使你設定 WHERE的語法。
 
 	$builder->update($data, ['id' => $id]);
 
-你也可以在更新時使用 $builder->set() 這個函數來闡述上述的內容。
+你也可以在更新時使用 ``$builder->set()`` 這個函數來闡述上述的內容。
 
 **$builder->updateBatch()**
 
@@ -1111,7 +1112,7 @@ The first parameter is an associative array of values, the second parameter is t
 上述的方法與 ``$builder->getCompiledInsert()`` 完全一樣，只差在它是產生 UPDATE 的 SQL 字串，而不是 INSERT SQL字串。
 
 
-可以參考 `$builder->getCompiledInsert()` ，了解更多的資訊。
+可以參考 ``$builder->getCompiledInsert()`` ，了解更多的資訊。
 
 .. note:: 這個方法不適用在批次更新。
 
@@ -1128,7 +1129,7 @@ The first parameter is an associative array of values, the second parameter is t
 	$builder->delete(['id' => $id]);  // Produces: // DELETE FROM mytable  // WHERE id = $id
 
 第一個參數是 where 的條件。
-也可以使用 where() 或 or_where() 函數來取代你想要的條件判斷。
+也可以使用 ``where()`` 或 ``or_where()`` 函數來取代你想要的條件判斷。
 
 ::
 
@@ -1139,7 +1140,7 @@ The first parameter is an associative array of values, the second parameter is t
 	// DELETE FROM mytable
 	// WHERE id = $id
 
-如果你想要刪除資料表裡的所有資料，你可以使用 truncate() 或是 emptyTable() 這兩個函數。
+如果你想要刪除資料表裡的所有資料，你可以使用 ``truncate()`` 或是 ``emptyTable()`` 這兩個函數。
 
 **$builder->emptyTable()**
 
@@ -1160,20 +1161,20 @@ The first parameter is an associative array of values, the second parameter is t
 	// 產生的語法:
 	// TRUNCATE mytable
 
-.. note:: 如果 TRUNCATE 不能使用，truncate() 將會執行 "DELETE FROM table"。
+.. note:: 如果 TRUNCATE 不能使用，``truncate()`` 將會執行 ``DELETE FROM table``。
 
 **$builder->getCompiledDelete()**
 
 
 這個方法與 ``$builder->getCompiledInsert()``  相同，差別在於產生的是 DELETE 的 SQL 字串，而不是 INSERT 的 SQL 字串。
 
-可以參考 $builder->getCompiledInsert()，了解更多的資訊。
+可以參考 ``$builder->getCompiledInsert()``，了解更多的資訊。
 
 ***************
-方法串接
+鏈式方法
 ***************
 
-方法串接藉由結合多個函數，簡化你的語法。
+鏈式方法藉由結合多個函數，簡化你的語法。
 
 ::
 
@@ -1190,7 +1191,7 @@ The first parameter is an associative array of values, the second parameter is t
 
 **$builder->resetQuery()**
 
-重置查詢生成器可以讓你重新開始查詢，而不需要先執行 $builder->get() 或是 $builder->insert() 這樣的方法來執行查詢 。
+重置查詢生成器可以讓你重新開始查詢，而不需要先執行 ``$builder->get()`` 或是 ``$builder->insert()`` 這樣的方法來執行查詢 。
 
 這在使用查詢生成器產生 SQL (例如： ``$builder->getCompiledSelect()`` ) 但是選擇它很有用，可以參考以下範例：
 
@@ -1216,10 +1217,19 @@ The first parameter is an associative array of values, the second parameter is t
 
 .. php:class:: CodeIgniter\\Database\\BaseBuilder
 
+	.. php:method:: db()
+
+        :returns: The database connection in use
+        :rtype:	``ConnectionInterface``
+
+        Returns the current database connection from ``$db``. Useful for
+        accessing ``ConnectionInterface`` methods that are not directly
+        available to the Query Builder, like ``insertID()`` or ``errors()``.
+
 	.. php:method:: resetQuery()
 
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
 		重置目前查詢生成器的狀態。當你想要建立一個可以在特定條件下取消的查詢是很有用的。
 
@@ -1244,10 +1254,10 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	int	$limit: LIMIT 限制量
 		:param	int	$offset: OFFSET 位移量
 		:param 	bool $reset: 是否要清除查詢生成器的值？
-		:returns:	\CodeIgniter\Database\ResultInterface 實體 (方法串接)
-		:rtype:	\CodeIgniter\Database\ResultInterface
+		:returns:	``\CodeIgniter\Database\ResultInterface`` 實體 (鏈式方法)
+		:rtype:	``\CodeIgniter\Database\ResultInterface``
 
-		根據已經呼叫的查詢生成器方法，編譯和執行　SELECT 的語句。
+		根據已經呼叫的查詢生成器方法，編譯和執行 ``SELECT`` 的語句。
 
 	.. php:method:: getWhere([$where = NULL[, $limit = NULL[, $offset = NULL[, $reset = TRUE]]]]])
 
@@ -1255,8 +1265,8 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	int	$limit: LIMIT 限制量
 		:param	int	$offset: OFFSET 位移量
 		:param 	bool $reset: 是否要清除查詢生成器的值？
-		:returns:	\CodeIgniter\Database\ResultInterface 實體 (method chaining)
-		:rtype:	\CodeIgniter\Database\ResultInterface
+		:returns:	``\CodeIgniter\Database\ResultInterface`` 實體 (method chaining)
+		:rtype:	``\CodeIgniter\Database\ResultInterface``
 
 		跟 ``get()`` 一樣, 但是也允許直接加入 WHERE 條件判斷。
 
@@ -1264,72 +1274,72 @@ The first parameter is an associative array of values, the second parameter is t
 
 		:param	string	$select: 查詢的 SELECT
 		:param	bool	$escape: 是否跳脫數值或識別符號
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		在查詢中加入 SELECT 語法。
+		在查詢中加入 ``SELECT`` 語法。
 
 	.. php:method:: selectAvg([$select = ''[, $alias = '']])
 
 		:param	string	$select: 計算平均值的欄位
 		:param	string	$alias: 為計算平均值的欄位重新取名的名稱
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		在查詢中加入 SELECT AVG(欄位) 語法。
+		在查詢中加入 ``SELECT AVG(欄位)`` 語法。
 
 	.. php:method:: selectMax([$select = ''[, $alias = '']])
 
 		:param	string	$select: 計算最大值的欄位
 		:param	string	$alias: 為計算最大值的欄位重新取名的名稱
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		在查詢中加入 SELECT MAX(欄位) 語法。
+		在查詢中加入 ``SELECT MAX(欄位)`` 語法。
 
 	.. php:method:: selectMin([$select = ''[, $alias = '']])
 
 		:param	string	$select: 計算最小值的欄位
 		:param	string	$alias: 為計算最小值的欄位重新取名的名稱
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		在查詢中加入 SELECT MIN(欄位) 語法。
+		在查詢中加入 ``SELECT MIN(欄位)`` 語法。
 
 	.. php:method:: selectSum([$select = ''[, $alias = '']])
 
 		:param	string	$select: 計算總和的欄位
 		:param	string	$alias: 為計算總和的欄位重新取名的名稱
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		在查詢中加入 SELECT SUM(欄位) 語法。
+		在查詢中加入 ``SELECT SUM(欄位)`` 語法。
 
 	.. php:method:: selectCount([$select = ''[, $alias = '']])
 
 		:param	string	$select: 計算數量的欄位
 		:param	string	$alias: 為計算數量的欄位重新取名的名稱
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		在查詢中加入 SELECT COUNT(欄位) 語法。
+		在查詢中加入 ``SELECT COUNT(欄位)`` 語法。
 
 	.. php:method:: distinct([$val = TRUE])
 
 		:param	bool	$val: 是否使用 distinct
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		設立一個標記告訴查詢生成器在 SELECT 中加入 DISTINCT 的語法。
+		設立一個標記告訴查詢生成器在 ``SELECT`` 中加入 ``DISTINCT`` 的語法。
 
 	.. php:method:: from($from[, $overwrite = FALSE])
 
                 :param	mixed	$from: 資料表名稱；字串或陣列
                 :param	bool	$overwrite: 是否要移除現有的第一個資料表？
-                :returns:	BaseBuilder 實體(方法串接)
-                :rtype:	BaseBuilder
+                :returns:	``BaseBuilder`` 實體(鏈式方法)
+                :rtype:	``BaseBuilder``
 
-		指定查詢的 FROM 語法。
+		指定查詢的 ``FROM`` 語法。
 
 	.. php:method:: join($table, $cond[, $type = ''[, $escape = NULL]])
 
@@ -1337,8 +1347,8 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	string	$cond: JOIN ON 的條件
 		:param	string	$type: JOIN 的類型
 		:param	bool	$escape: 是否要跳脫數值或識別符號
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
 		Adds a JOIN clause to a query.
 
@@ -1350,7 +1360,7 @@ The first parameter is an associative array of values, the second parameter is t
 		:returns:	BaseBuilder 實體
 		:rtype:	object
 
-		產生查詢的 WHERE 語法。呼叫多次函式會使用 'AND' 將SQL語法串接在一起。
+		產生查詢的 ``WHERE`` 語法。呼叫多次函式會使用 ``AND`` 將SQL語法串接在一起。
 
 	.. php:method:: orWhere($key[, $value = NULL[, $escape = NULL]])
 
@@ -1360,7 +1370,7 @@ The first parameter is an associative array of values, the second parameter is t
 		:returns:	BaseBuilder 實體
 		:rtype:	object
 
-		產生查詢的 WHERE 語法。呼叫多次函式會使用 'OR' 將SQL語法串接在一起。
+		產生查詢的 ``WHERE`` 語法。呼叫多次函式會使用 ``OR`` 將SQL語法串接在一起。
 
 	.. php:method:: orWhereIn([$key = NULL[, $values = NULL[, $escape = NULL]]])
 
@@ -1370,7 +1380,7 @@ The first parameter is an associative array of values, the second parameter is t
 		:returns:	BaseBuilder 實體
 		:rtype:	object
 
-		產生 WHERE 欄位 IN('項目', '項目') 的 SQL 查詢語法。如果合適則使用'OR'將SQL語法串接在一起。
+		產生 ``WHERE`` 欄位 ``IN('項目', '項目')`` 的 SQL 查詢語法。如果合適則使用 ``OR`` 將SQL語法串接在一起。
 
 	.. php:method:: orWhereNotIn([$key = NULL[, $values = NULL[, $escape = NULL]]])
 
@@ -1380,7 +1390,7 @@ The first parameter is an associative array of values, the second parameter is t
 		:returns:	BaseBuilder 實體
 		:rtype:	object
 
-		產生 WHERE 欄位 NOT IN('項目', '項目') 的 SQL 查詢語法。如果合適則使用 'OR' 將SQL語法串接在一起。
+		產生 ``WHERE`` 欄位 ``NOT IN('項目', '項目')`` 的 SQL 查詢語法。如果合適則使用 ``OR`` 將SQL語法串接在一起。
 
 	.. php:method:: whereIn([$key = NULL[, $values = NULL[, $escape = NULL]]])
 
@@ -1390,7 +1400,7 @@ The first parameter is an associative array of values, the second parameter is t
 		:returns:	BaseBuilder 實體
 		:rtype:	object
 
-		產生 WHERE 欄位 IN('項目' , '項目') 的 SQL 查詢語法。如果合適則使用 'AND' 將SQL語法串接在一起。
+		產生 ``WHERE`` 欄位 ``IN('項目' , '項目')`` 的 SQL 查詢語法。如果合適則使用 ``AND`` 將SQL語法串接在一起。
 
 	.. php:method:: whereNotIn([$key = NULL[, $values = NULL[, $escape = NULL]]])
 
@@ -1400,35 +1410,35 @@ The first parameter is an associative array of values, the second parameter is t
 		:returns:	BaseBuilder 實體
 		:rtype:	object
 
-		產生 WHERE 欄位 NOT IN('項目', '項目') 的 SQL 查詢語法。如果合適則使用 'AND' 將SQL語法串接在一起。
+		產生 ``WHERE`` 欄位 ``NOT IN('項目', '項目')`` 的 SQL 查詢語法。如果合適則使用 ``AND`` 將SQL語法串接在一起。
 
 	.. php:method:: groupStart()
 
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		開始一個分組的語法，在判斷式中使用 'AND' 。
+		開始一個分組的語法，在判斷式中使用 ``AND`` 。
 
 	.. php:method:: orGroupStart()
 
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		開始一個分組的語法，在判斷式中使用 'OR' 。
+		開始一個分組的語法，在判斷式中使用 ``OR`` 。
 
 	.. php:method:: notGroupStart()
 
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		開始一個分組的語法，在判斷式中使用 'AND NOT' 。
+		開始一個分組的語法，在判斷式中使用 ``AND NOT`` 。
 
 	.. php:method:: orNotGroupStart()
 
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		開始一個分組的語法，在判斷式中使用 'OR NOT' 。
+		開始一個分組的語法，在判斷式中使用 ``OR NOT`` 。
 
 	.. php:method:: groupEnd()
 
@@ -1444,10 +1454,10 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	string	$side: 在判斷式的哪一邊加入萬用字元 '%'
 		:param	bool	$escape: 是否要跳脫數值或識別符號
 		:param	bool    $insensitiveSearch: 是否使用不分大小寫的搜尋
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		在查詢中加入 LIKE 的語法，呼叫多次函式會使用 'AND' 將SQL語法串接在一起。
+		在查詢中加入 ``LIKE`` 的語法，呼叫多次函式會使用 ``AND`` 將SQL語法串接在一起。
 
 	.. php:method:: orLike($field[, $match = ''[, $side = 'both'[, $escape = NULL[, $insensitiveSearch = FALSE]]]])
 
@@ -1456,10 +1466,10 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	string	$side: 在判斷式的哪一邊加入萬用字元 '%'
 		:param	bool	$escape: 是否要跳脫數值或識別符號
 		:param	bool    $insensitiveSearch: 是否使用不分大小寫的搜尋
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		在查詢中加入 LIKE 的語法，呼叫多次函式會使用 'OR' 將SQL語法串接在一起。
+		在查詢中加入 ``LIKE`` 的語法，呼叫多次函式會使用 ``OR`` 將SQL語法串接在一起。
 
 	.. php:method:: notLike($field[, $match = ''[, $side = 'both'[, $escape = NULL[, $insensitiveSearch = FALSE]]]])
 
@@ -1468,10 +1478,10 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	string	$side: 在判斷式的哪一邊加入萬用字元 '%'
 		:param	bool	$escape: 是否要跳脫數值或識別符號
 		:param	bool    $insensitiveSearch: 是否使用不分大小寫的搜尋
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		在查詢中加入 NOT LIKE 的語法，呼叫多次函式會使用 'AND' 將SQL語法串接在一起。
+		在查詢中加入 ``NOT LIKE`` 的語法，呼叫多次函式會使用 ``AND`` 將SQL語法串接在一起。
 
 	.. php:method:: orNotLike($field[, $match = ''[, $side = 'both'[, $escape = NULL[, $insensitiveSearch = FALSE]]]])
 
@@ -1480,18 +1490,18 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	string	$side: 在判斷式的哪一邊加入萬用字元 '%'
 		:param	bool	$escape: 是否要跳脫數值或識別符號
 		:param	bool    $insensitiveSearch: 是否使用不分大小寫的搜尋
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		在查詢中加入 NOT LIKE 的語法，呼叫多次函式會使用 'OR' 將SQL語法串接在一起。
+		在查詢中加入 NOT LIKE 的語法，呼叫多次函式會使用  ``OR`` 將SQL語法串接在一起。
 
 	.. php:method:: having($key[, $value = NULL[, $escape = NULL]])
 
 		:param	mixed	$key: 欄位/數值的識別符號(字串)或關聯陣列的組合
 		:param	string	$value: 如果 $key 為識別符號，則代表要尋找的數值
 		:param	string	$escape: 是否要跳脫數值或識別符號
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
 		在查詢中加入 HAVING 的語法，呼叫多次函式會使用 AND 將SQL語法串接在一起。
 
@@ -1500,8 +1510,8 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	mixed	$key: 欄位/數值的識別符號(字串)或關聯陣列的組合
 		:param	string	$value: 如果 $key 為識別符號，則代表要尋找的數值
 		:param	string	$escape: 是否要跳脫數值或識別符號
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
 		在查詢中加入 HAVING 的語法，呼叫多次函式會使用 OR 將SQL語法串接在一起。
 
@@ -1553,10 +1563,10 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	string	$side: 在判斷式的哪一邊加入萬用字元 '%'
 		:param	bool	$escape: 是否要跳脫數值或識別符號
 		:param	bool    $insensitiveSearch: 是否使用不分大小寫的搜尋
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		在查詢中將 LIKE 的語法加入至 HAVING 的部分，呼叫多次函式會使用 'AND' 將SQL語法串接在一起。
+		在查詢中將 ``LIKE`` 的語法加入至 ``HAVING`` 的部分，呼叫多次函式會使用 'AND' 將SQL語法串接在一起。
 
 	.. php:method:: orHavingLike($field[, $match = ''[, $side = 'both'[, $escape = NULL[, $insensitiveSearch = FALSE]]]])
 
@@ -1565,10 +1575,10 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	string	$side: 在判斷式的哪一邊加入萬用字元 '%'
 		:param	bool	$escape: 是否要跳脫數值或識別符號
 		:param	bool    $insensitiveSearch: 是否使用不分大小寫的搜尋
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		在查詢中將 LIKE 的語法加入至 HAVING 的部分，呼叫多次函式會使用 'OR' 將SQL語法串接在一起。
+		在查詢中將 ``LIKE`` 的語法加入至 HAVING 的部分，呼叫多次函式會使用  ``OR`` 將SQL語法串接在一起。
 
 	.. php:method:: notHavingLike($field[, $match = ''[, $side = 'both'[, $escape = NULL[, $insensitiveSearch = FALSE]]]])
 
@@ -1577,8 +1587,8 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	string	$side: 在判斷式的哪一邊加入萬用字元 '%'
 		:param	bool	$escape: 是否要跳脫數值或識別符號
 		:param	bool    $insensitiveSearch: 是否使用不分大小寫的搜尋
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
 		在查詢中將 NOT LIKE 的語法加入至 HAVING 的部分，呼叫多次函式會使用 'AND' 將SQL語法串接在一起。
 
@@ -1588,36 +1598,36 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	string	$match: 要做匹配的文字
 		:param	string	$side: 在判斷式的哪一邊加入萬用字元 '%'
 		:param	bool	$escape: 是否要跳脫數值或識別符號
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
-		在查詢中將 NOT LIKE 的語法加入至 HAVING 的部分，呼叫多次函式會使用 'OR' 將SQL語法串接在一起。
+		在查詢中將 NOT LIKE 的語法加入至 HAVING 的部分，呼叫多次函式會使用  ``OR`` 將SQL語法串接在一起。
 
 	.. php:method:: havingGroupStart()
 
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
 		開始一個給 HAVING 的分組的語法，在判斷式中使用 'AND' 。
 
 	.. php:method:: orHavingGroupStart()
 
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
 		開始一個給 HAVING 的分組的語法，在判斷式中使用 'OR' 。
 
 	.. php:method:: notHavingGroupStart()
 
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
 		開始一個給 HAVING 的分組的語法，在判斷式中使用 'AND NOT' 。
 
 	.. php:method:: orNotHavingGroupStart()
 
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
 		開始一個給 HAVING 的分組的語法，在判斷式中使用 'OR NOT' 。
 
@@ -1631,8 +1641,8 @@ The first parameter is an associative array of values, the second parameter is t
 	.. php:method:: groupBy($by[, $escape = NULL])
 
 		:param	mixed	$by: 要做 group by 的欄位；字串或陣列
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
 		在查詢中加入 GROUP BY 的語法。
 
@@ -1641,8 +1651,8 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	string	$orderby: 要做 order by 的欄位
 		:param	string	$direction: 要排序的類型 - ASC 、 DESC 或 隨機
 		:param	bool	$escape: 是否要跳脫數值或識別符號
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
 		在查詢中加入 ORDER BY 的語法。
 
@@ -1650,16 +1660,16 @@ The first parameter is an associative array of values, the second parameter is t
 
 		:param	int	$value: 要限制結果列數的數量
 		:param	int	$offset: 要忽略列數的數量
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
 		在查詢中加入 LIMIT 和 OFFSET 的語法。
 
 	.. php:method:: offset($offset)
 
 		:param	int	$offset: 要忽略列數的數量
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
 		在查詢中加入 OFFSET 的語法。
 
@@ -1668,8 +1678,8 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	mixed	$key: 欄位名稱或欄位/值的陣列
 		:param	string	$value: 如果 $key 為單一欄位，則代表欄位的數值
 		:param	bool	$escape: 是否要跳脫數值或識別符號
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
 		加入欄位/數值的組合，之後再傳遞給 ``insert()`` 、 ``update()`` 或 ``replace()`` 。
 
@@ -1699,8 +1709,8 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	mixed	$key: 欄位名稱或欄位/值的陣列
 		:param	string	$value: 如果 $key 為單一欄位，則代表欄位的數值
 		:param	bool	$escape: 是否要跳脫數值或識別符號
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
 		加入欄位/數值的組合，以利稍後使用 ``insertBatch()`` 的插入。
 
@@ -1731,8 +1741,8 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	mixed	$key: 欄位名稱或欄位/值的陣列
 		:param	string	$value: 如果 $key 為單一欄位，則代表欄位的數值
 		:param	bool	$escape: 是否要跳脫數值或識別符號
-		:returns:	BaseBuilder 實體(方法串接)
-		:rtype:	BaseBuilder
+		:returns:	``BaseBuilder`` 實體(鏈式方法)
+		:rtype:	``BaseBuilder``
 
 		加入欄位/數值的組合，以利稍後使用 ``updateBatch()`` 的更新。
 
@@ -1749,7 +1759,7 @@ The first parameter is an associative array of values, the second parameter is t
 		:param	string	$where: WHERE 條件
 		:param	int	$limit: LIMIT 限制量
 		:param	bool	$reset_data: TRUE 代表重置查詢中 "寫入" 的語法
-		:returns:	BaseBuilder 實體(方法串接) 或 FALSE 代表執行失敗
+		:returns:	``BaseBuilder`` 實體(鏈式方法) 或 FALSE 代表執行失敗
 		:rtype:	mixed
 
 		編譯並執行 DELETE 的查詢。

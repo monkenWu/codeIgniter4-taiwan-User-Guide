@@ -14,14 +14,14 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
 
 ::
 
-	CREATE TABLE news (
-		id int(11) NOT NULL AUTO_INCREMENT,
-		title varchar(128) NOT NULL,
-		slug varchar(128) NOT NULL,
-		body text NOT NULL,
-		PRIMARY KEY (id),
-		KEY slug (slug)
-	);
+    CREATE TABLE news (
+        id int(11) NOT NULL AUTO_INCREMENT,
+        title varchar(128) NOT NULL,
+        slug varchar(128) NOT NULL,
+        body text NOT NULL,
+        PRIMARY KEY (id),
+        KEY slug (slug)
+    );
 
 註：slug 是在 Web 發布內容中，面相使用者與 SEO 用於友好地識別與描述資源的簡短文字。
 
@@ -56,14 +56,16 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
 
 ::
 
-        <?php namespace App\Models;
+    <?php
 
-        use CodeIgniter\Model;
+    namespace App\Models;
 
-	class NewsModel extends Model
-	{
-		protected $table = 'news';
-	}
+    use CodeIgniter\Model;
+
+    class NewsModel extends Model
+    {
+        protected $table = 'news';
+    }
 
 這些程式瑪與前一個條目的控制器程式碼類似，這個新創建的模型繼承了 ``CodeIgniter\Model`` 類別以及載入了資料庫函數庫。與資料庫類別的溝通可以呼叫 ``$this->db`` 物件達成。
 
@@ -71,17 +73,17 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
 
 ::
 
-	public function getNews($slug = false)
-	{
-		if ($slug === false)
-		{
-			return $this->findAll();
-		}
+    public function getNews($slug = false)
+    {
+        if ($slug === false)
+        {
+            return $this->findAll();
+        }
 
-		return $this->asArray()
-		             ->where(['slug' => $slug])
-		             ->first();
-	}
+        return $this->asArray()
+                    ->where(['slug' => $slug])
+                    ->first();
+    }
 
 這個程式碼包含兩個不同的查詢，你可以得到所有的新聞紀錄，或者是按條獲取。你可能已經注意到，在執行查詢之前我們尚未進行變數處理。 :doc:`查詢產生器 <../database/query_builder>` 會替您執行這個操作，使你的資料庫查詢更加安全。
 
@@ -94,26 +96,30 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
 
 ::
 
-	<?php namespace App\Controllers;
-	use App\Models\NewsModel;
-        use CodeIgniter\Controller;
+    <?php
 
-	class News extends Controller
-	{
-		public function index()
-		{
-			$model = new NewsModel();
+    namespace App\Controllers;
 
-			$data['news'] = $model->getNews();
-		}
+    use App\Models\NewsModel;
+    use CodeIgniter\Controller;
 
-		public function view($slug = null)
-		{
-			$model = new NewsModel();
+    class News extends Controller
+    {
+        public function index()
+        {
+            $model = new NewsModel();
 
-			$data['news'] = $model->getNews($slug);
-		}
-	}
+            $data['news'] = $model->getNews();
+        }
+
+        public function view($slug = null)
+        {
+            $model = new NewsModel();
+
+            $data['news'] = $model->getNews($slug);
+        }
+    }
+
 
 看看程式碼，你可能會發現與我們之前建立的文件有相似之處。首先，它繼承了 CodeIgniter 核心類別 ``Controller`` ，這個類別提供了幾個輔助方法，並且確保你可以使用當前的 ``Request`` 與 ``Response`` 物件。以及將運作資訊保存在伺服器的 ``Logger`` 類別。
 
@@ -123,46 +129,51 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
 
 ::
 
-	public function index()
-	{
-		$model = new NewsModel();
+    public function index()
+    {
+        $model = new NewsModel();
 
-		$data = [
-			'news'  => $model->getNews(),
-			'title' => 'News archive',
-		];
+        $data = [
+            'news'  => $model->getNews(),
+            'title' => 'News archive',
+        ];
 
-		echo view('templates/header', $data);
-		echo view('news/overview', $data);
-		echo view('templates/footer');
-	}
+        echo view('templates/header', $data);
+        echo view('news/overview', $data);
+        echo view('templates/footer', $data);
+    }
 
 上面的程式碼從模型獲得所有的新聞紀錄後，將它分配給變數。標題的值被宣告在 ``$data['title']`` 之中，所有資料都會傳送給視圖。現在需要創建一個視圖來呈現新聞畫面，在 **app/Views/news/overview.php** 中創建擁有以下程式碼的檔案。
 
 ::
 
-	<h2><?= $title ?></h2>
+    <h2><?= esc($title) ?></h2>
 
-	<?php if (! empty($news) && is_array($news)) : ?>
+    <?php if (! empty($news) && is_array($news)) : ?>
 
-		<?php foreach ($news as $news_item): ?>
+        <?php foreach ($news as $news_item): ?>
 
-			<h3><?= $news_item['title'] ?></h3>
+            <h3><?= esc($news_item['title']) ?></h3>
 
-			<div class="main">
-				<?= $news_item['body'] ?>
-			</div>
-			<p><a href="<?= '/news/'.$news_item['slug'] ?>">View article</a></p>
+            <div class="main">
+                <?= esc($news_item['body']) ?>
+            </div>
+            <p><a href="/news/<?= esc($news_item['slug'], 'url') ?>">View article</a></p>
 
-		<?php endforeach; ?>
+        <?php endforeach; ?>
 
-	<?php else : ?>
+    <?php else : ?>
 
-		<h3>No News</h3>
+        <h3>No News</h3>
 
-		<p>Unable to find any news for you.</p>
+        <p>Unable to find any news for you.</p>
 
-	<?php endif ?>
+    <?php endif ?>
+
+.. note:: We are again using using **esc()** to help prevent XSS attacks.
+    But this time we also passed "url" as a second parameter. That's because
+    attack patterns are different depending on the context in which the output
+    is used. You can read more about it :doc:`here </general/common_functions>`.
 
 在這裡每個專案將會透過迴圈產生並且顯示給使用者。你可以看到我們在 PHP 中撰寫了樣板，並且讓它與 HTML 混合。如果你更喜歡使用 樣板語法，則可以使用 CodeIgniter 的 :doc:`視圖器解析器 </outgoing/view_parser>` 。或置入任何你喜歡的解析器進入 CodeIgniter 。
 
@@ -170,23 +181,24 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
 
 ::
 
-	public function view($slug = NULL)
-	{
-		$model = new NewsModel();
+    public function view($slug = NULL)
+    {
+        $model = new NewsModel();
 
-		$data['news'] = $model->getNews($slug);
+        $data['news'] = $model->getNews($slug);
 
-		if (empty($data['news']))
-		{
-			throw new \CodeIgniter\Exceptions\PageNotFoundException('Cannot find the news item: '. $slug);
-		}
+        if (empty($data['news']))
+        {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Cannot find the news item: '. $slug);
+        }
 
-		$data['title'] = $data['news']['title'];
+        $data['title'] = $data['news']['title'];
 
-		echo view('templates/header', $data);
-		echo view('news/view', $data);
-		echo view('templates/footer');
-	}
+        echo view('templates/header', $data);
+        echo view('news/view', $data);
+        echo view('templates/footer', $data);
+    }
+
 
 為了要取得特定的新聞項目，我們得向 ``getNews()`` 方法傳遞 ``$slug`` 變數。剩下的工作只剩在 **app/Views/news/view.php** 中創下擁有下列程式碼的視圖。
 

@@ -9,7 +9,7 @@ Composer 安裝
 
 前兩種方式將說明如何以建立新專案為目標安裝 CodeIgniter4 ；第三種方式將告訴你如何把 CodeIgniter4 添加到現有的網頁應用程式之中。
 
-**Note** ：如果你是用 Git 進行專案管理並且與他人共同開發，那麼 git ignored 將會自動忽略 ``vendor`` 資料夾，你必須要在克隆你的儲存庫後執行 ``composer update`` ，將專案所依賴的程式庫下載至本地開發環境之中。
+.. note:: 如果你是用 Git 進行專案管理並且與他人共同開發，那麼 git ignored 將會自動忽略 ``vendor`` 資料夾，你必須要在克隆你的儲存庫後執行 ``composer update`` ，將專案所依賴的程式庫下載至本地開發環境之中。
 
 安裝穩定版本
 ============================================================
@@ -29,7 +29,7 @@ Composer 安裝
 
 如果你省略了上述指令中「 project-root 」引數，那麼 Composer 將會自動生成出「 appstarter 」資料夾，你可以依照自己的需求命名你的資料夾。
 
-若是你不需要安裝 phpunit 及其所有的 Composer 依賴（ dependencies ），則必須在上述的指令中添加「 –no-dev 」。執行了這個指令， Composer 將會安裝單純的框架檔案，以及我們預先同捆的三個所需的依賴程式庫。
+若是你不需要安裝 phpunit 及其所有的 Composer 依賴，則必須在上述的指令中添加 ``–no-dev``。執行了這個指令， Composer 將會安裝單純的框架檔案，以及我們預先同捆的三個所需的依賴程式庫。
 
 下例將使用默認的專案資料夾名稱「 appstarter 」演示上述需求的安裝指令： ::
 
@@ -43,6 +43,14 @@ Composer 安裝
 每當有新版本的 codeigniter4 發布時，請從專案的根目錄執行以下指令： ::
 
     composer update 
+
+If you want to compare the latest framework source structure for non-system directory (app, public, etc), you can update with ``--prefer-source``::
+
+    composer update codeigniter4/framework --prefer-source
+
+If ``--prefer-source`` doesn't automatically update to pull latest framework source structure, you can remove first::
+
+    rm -rf vendor/codeigniter4/framework && composer update codeigniter4/framework --prefer-source
 
 如果你在創建專案時使用了「 --no-dev 」，那麼在升級框架時你也必須做一樣的事：  ``composer update --no-dev`` 。
 
@@ -68,9 +76,6 @@ Composer 安裝
 - vendor/codeigniter4/framework/app & public (更新後可以利用這裡比較 ``app/Config`` 是否有所不同。)
 
 安裝最新版本
-============================================================
-
-安裝與設定
 -------------------------------------------------------
 
 穩定版本儲存庫附帶一個 ``builds`` 腳本，可以切換穩定版本框架與最新開發版本框架之間的 Composer 來源。對於願意接受最新且未發布的特性（可能不穩定）的開發人員，請使用這個腳本。
@@ -86,40 +91,6 @@ Composer 安裝
     php builds release
 
 使用 ``builds`` 後請務必執行 ``composer update`` ，以便將你的 vendor 資料夾與目前希望運作的版本進行同步。
-
-如何升級框架
--------------------------------------------------------
-
-每當有新版本的 codeigniter4 發布時，請從專案的根目錄執行以下指令： ::
-
-    composer update 
-
-如果你在創建專案時使用了「 --no-dev 」，那麼在升級框架時你也必須做一樣的事：  ``composer update --no-dev`` 。
-
-請務必檢查「修改記錄檔（ changelog ）」，查看框架是否有任何足以影響你的應用程式的改動，請記住，最新的更改可能未記載於記錄檔之中。
-
-最後，你必須閱讀新版本的升級說明，並檢查 ``app/Config`` 資料夾中的文件是否因為升級有所改變。
-
-優點
--------------------------------------------------------
-
-安裝簡單；容易更新；最新版本。
-
-缺點
--------------------------------------------------------
-
-我們將不保證框架的穩定性，升級後出現任何的問題將是你的責任。
-
-在自動更新後，仍需檢查 ``app/Config`` 是否有因為升級而有所改變。
-
-結構
--------------------------------------------------------
-
-在安裝 CodeIgniter 4 後，這些資料夾將會部署進你的專案中：
-
-- app, public, tests, writable 
-- vendor/codeigniter4/framework/system
-- vendor/codeigniter4/framework/app & public (更新後可以利用這裡比較 ``app/Config`` 是否有所不同。)
 
 將 CodeIgniter4 部屬到現有專案中
 ============================================================

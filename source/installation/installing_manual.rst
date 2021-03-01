@@ -5,7 +5,7 @@ CodeIgniter 4 的 `git 儲存庫 <https://github.com/codeigniter4/framework>`_ �
 
 你可以在框架中的 ``app`` 資料夾開發你的應用程式，而 ``public`` 資料夾則是放置網站的公開檔案，請勿修改 ``system`` 資料夾中的任何內容！
 
-**Note** ：這是最接近於上一代框架 `CodeIgniter 3 <https://www.codeigniter.com/user_guide/installation/index.html>`_ ，的安裝方式。
+.. note:: 這是最接近於上一代框架 `CodeIgniter 3 <https://www.codeigniter.com/user_guide/installation/index.html>`_ ，的安裝方式。
 
 安裝步驟
 ============================================================
