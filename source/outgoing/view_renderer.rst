@@ -6,79 +6,65 @@
     :local:
     :depth: 2
 
-Using the View Renderer
+使用視圖渲染
 ***************************
 
-The ``view()`` function is a convenience function that grabs an instance of the
-``renderer`` service, sets the data, and renders the view. While this is often
-exactly what you want, you may find times where you want to work with it more directly.
-In that case you can access the View service directly::
-
+``view()`` 是一個方便取得 ``renderer`` 服務實體的函數，設置資料並且渲染出此視圖。然而這通常是你所想要的，你可能會更直接的發現你使用它的次數：
+::
 	$view = \Config\Services::renderer();
 
-Alternately, if you are not using the ``View`` class as your default renderer, you
-can instantiate it directly::
+或者，如果你不使用 ``View`` 類別當成你的預設渲染器，則可以直接實體化它：
+::
 
 	$view = new \CodeIgniter\View\View();
 
-.. important:: You should create services only within controllers. If you need
-	access to the View class from a library, you should set that as a dependency
-	in your library's constructor.
+.. important:: 你應該在控制器內創建服務，如果你需要從程式庫內存取 View 類別，你應該在你的程式庫的建構內設置依賴。
 
-Then you can use any of the three standard methods that it provides:
-**render(viewpath, options, save)**, **setVar(name, value, context)** and **setData(data, context)**.
+然而你可以使用它提供三種標準方法內的任何一種：
+**render(viewpath, options, save)**, **setVar(name, value, context)** 和 **setData(data, context)**.
 
-What It Does
+它能做什麼
 ============
 
-The ``View`` class processes conventional HTML/PHP scripts stored in the application's view path,
-after extracting view parameters into PHP variables, accessible inside the scripts.
-This means that your view parameter names need to be legal PHP variable names.
+此 ``View`` 類別處理常規儲存在應用程式視圖路徑內的 HTML/PHP 腳本，將視圖參數提取到 PHP 變數後，就可以在腳本內中訪問。
+這意味著你的視圖變數的命名必須是合法的 PHP 變數名稱。
 
-The View class uses an associative array internally, to accumulate view parameters
-until you call its ``render()``. This means that your parameter (or variable) names
-need to be unique, or a later variable setting will over-ride an earlier one.
+此視圖類別在內部使用關聯陣列來積累視圖參數直到你呼叫 ``render()``。這代表了你的參數（或者變數）的名稱必須是唯一的，否則之後的變數設置將會覆蓋掉之前的。
 
-This also impacts escaping parameter values for different contexts inside your
-script. You will have to give each escaped value a unique parameter name.
+這還會影你在腳本內不同內文的轉義參數值。你將必須為了每個轉義的值賦予唯一個參數名稱。
 
-No special meaning is attached to parameters whose value is an array. It is up
-to you to process the array appropriately in your PHP code.
+對於值為一個不附加任何含意的陣列參數。你可以依據自己的 PHP 程式碼適當地處理陣列。
 
-Method Chaining
+方法鏈
 ===============
 
-The `setVar()` and `setData()` methods are chainable, allowing you to combine a
-number of different calls together in a chain::
+`setVar()` 和 `setData()` 方法是可被鏈接的，你可以將多個不同呼叫組合在一起：
+::
 
 	$view->setVar('one', $one)
 	     ->setVar('two', $two)
 	     ->render('myView');
 
-Escaping Data
+轉義資料
 =============
 
-When you pass data to the ``setVar()`` and ``setData()`` functions you have the option to escape the data to protect
-against cross-site scripting attacks. As the last parameter in either method, you can pass the desired context to
-escape the data for. See below for context descriptions.
+當你將資料傳遞給 ``setVar()`` 和 ``setData()`` 函數時，你可以選擇轉義你的資料以防止跨站腳本攻擊，你可以傳遞所需的語境以轉義數據。有關語境描述，請參見下文。
 
-If you don't want the data to be escaped, you can pass `null` or `raw` as the final parameter to each function::
+如果你不想轉義你的資料，你可以傳遞 `null` 或 `raw` 作為最終參數給每個函數：
+::
 
 	$view->setVar('one', $one, 'raw');
 
-If you choose not to escape data, or you are passing in an object instance, you can manually escape the data within
-the view with the ``esc()`` function. The first parameter is the string to escape. The second parameter is the
-context to escape the data for (see below)::
+如果你選擇不轉義資料，或者你在物件實體內傳遞，你可以在帶有 ``esc()`` 函數的視圖內手動地轉義資料。則第一個參數就是要轉義的字串。而第二個參數是用於轉義數據的內容（見下文）：
+::
 
 	<?= esc($object->getStat()) ?>
 
-Escaping Contexts
+轉義內容
 -----------------
 
-By default, the ``esc()`` and, in turn, the ``setVar()`` and ``setData()`` functions assume that the data you want to
-escape is intended to be used within standard HTML. However, if the data is intended for use in Javascript, CSS,
-or in an href attribute, you would need different escaping rules to be effective. You can pass in the name of the
-context as the second parameter. Valid contexts are 'html', 'js', 'css', 'url', and 'attr'::
+在預設情況下，``esc()`` 以及 ``setVar()`` 和 ``setData()`` 函數會假定你想轉義的資料在規範的 HTML 中使用。但是，如果資料打算在 Javascript，CSS 或 href 的屬性中使用，則需要使用不同的轉義規則才能生效。你可以傳入語境名稱作為第二個參數。有效的語境為html、js、css、url 和 attr：
+::
 
 	<a href="<?= esc($url, 'url') ?>" data-foo="<?= esc($bar, 'attr') ?>">Some Link</a>
 
@@ -92,20 +78,19 @@ context as the second parameter. Valid contexts are 'html', 'js', 'css', 'url', 
 		}
 	</style>
 
-View Renderer Options
+查看渲染器選項
 =====================
 
-Several options can be passed to the ``render()`` or ``renderString()`` methods:
+可以將幾個選項傳遞給 ``render()`` 或 ``renderString()`` 方法：
 
--   ``cache`` - the time in seconds, to save a view's results; ignored for renderString()
--   ``cache_name`` - the ID used to save/retrieve a cached view result; defaults to the viewpath;
-		ignored for renderString()
--   ``saveData`` - true if the view data parameters should be retained for subsequent calls
+-   ``cache`` - 儲存視圖的結果的時間（以秒為單位）；忽略 renderString()
+-   ``cache_name`` - 用於儲存/獲取快取視圖結果的 ID ；預設值為 viewpath；
+		忽略 renderString()
+-   ``saveData`` - 如果應保留視圖資料參數以供後續調用，則為 true 
 
-.. note:: ``saveData`` as defined by the interface must be a boolean, but implementing
-	classes (like ``View`` below) may extend this to include ``null`` values.
+.. note:: 介面定義的 ``saveData`` 必須為布林值，但實作類（如下面的View）可能會將其擴展為包含 ``null`` 值。
 
-Class Reference
+類別參考
 ***************
 
 .. php:class:: CodeIgniter\\View\\View
@@ -113,67 +98,65 @@ Class Reference
 	.. php:method:: render($view[, $options[, $saveData=false]])
                 :noindex:
 
-		:param  string       $view: File name of the view source
-		:param  array        $options: Array of options, as key/value pairs
-		:param  boolean|null $saveData: If true, will save data for use with any other calls. If false, will clean the data after rendering the view. If null, uses the config setting.
-		:returns: The rendered text for the chosen view
+		:param  string       $view: 視圖來源的檔案名稱
+		:param  array        $options: 選項陣列，作為一對鍵/值
+		:param  boolean|null $saveData: 如果為 true，將保存資料以供其他任何呼叫使用。如果為 false，將在渲染視圖後清除資料。如果為 null，則使用 config 設置。
+		:returns: 所選視圖的渲染文字
 		:rtype: string
 
-		Builds the output based upon a file name and any data that has already been set::
+		根據文件名稱和任何以設置的資料來建構輸出：
+		::
 
 			echo $view->render('myview');
 
 	.. php:method:: renderString($view[, $options[, $saveData=false]])
                 :noindex:
 
-		:param  string       $view: Contents of the view to render, for instance content retrieved from a database
-		:param  array        $options: Array of options, as key/value pairs
-		:param  boolean|null $saveData: If true, will save data for use with any other calls. If false, will clean the data after rendering the view. If null, uses the config setting.
-		:returns: The rendered text for the chosen view
+		:param  string       $view: 要呈現視圖的內容，例如從數據庫檢索的內容
+		:param  array        $options: 選項陣列，作為一對鍵/值
+		:param  boolean|null $saveData: 如果為 true，將保存資料以供其他任何呼叫使用。如果為 false，將在渲染視圖後清除資料。如果為 null，則使用 config 設置。
+		:returns: 所選視圖的渲染文字
 		:rtype: string
 
-		Builds the output based upon a view fragment and any data that has already been set::
+		根據文件名稱和任何以設置的資料來建構輸出：
+		::
 
 			echo $view->renderString('<div>My Sharona</div>');
 
-		This could be used for displaying content that might have been stored in a database,
-		but you need to be aware that this is a potential security vulnerability,
-		and that you **must** validate any such data, and probably escape it
-		appropriately!
+		這可以用於顯示可能已存儲在資料庫中的內容，但你需要注意到這是一個潛在的安全漏洞，並且你 **必須** 驗證任何此類別的數據，並可能適當地對其進行轉義！
 
 	.. php:method:: setData([$data[, $context=null]])
                 :noindex:
 
-		:param  array   $data: Array of view data strings, as key/value pairs
-		:param  string  $context: The context to use for data escaping.
-		:returns: The Renderer, for method chaining
+		:param  array   $data: 選項陣列，作為一對鍵/值
+		:param  string  $context: 用於數據轉義的內文。
+		:returns: 渲染器，用於方法鏈接
 		:rtype: CodeIgniter\\View\\RendererInterface.
 
-		Sets several pieces of view data at once::
+		一次設置多條視圖數據：
+		::
 
 			$view->setData(['name'=>'George', 'position'=>'Boss']);
 
-		Supported escape contexts: html, css, js, url, or attr or raw.
-		If 'raw', no escaping will happen.
+		支持的轉義的內文：html，css，js，url，attr或raw。
+		如果 'raw', 就不會發生轉義。
 
-		Each call adds to the array of data that the object is accumulating,
-		until the view is rendered.
+		每次呼叫都會添加物件至正在累積的資料陣列中，直到呈現視圖為止。
 
 	.. php:method:: setVar($name[, $value=null[, $context=null]])
                 :noindex:
 
-		:param  string  $name: Name of the view data variable
-		:param  mixed   $value: The value of this view data
-		:param  string  $context: The context to use for data escaping.
-		:returns: The Renderer, for method chaining
+		:param  string  $name: 視圖資料變數的名稱
+		:param  mixed   $value: 視圖資料的值
+		:param  string  $context: 用來轉義的內文
+		:returns: 渲染器，用於方法鏈接
 		:rtype: CodeIgniter\\View\\RendererInterface.
 
-		Sets a single piece of view data::
+		設置單個視圖資料::
 
 			$view->setVar('name','Joe','html');
 
-		Supported escape contexts: html, css, js, url, attr or raw.
-		If 'raw', no escaping will happen.
+		支持的轉義的內文：html，css，js，url，attr或raw。
+		如果 'raw', 就不會發生轉義。
 
-		If you use the a view data variable that you have previously used
-		for this object, the new value will replace the existing one.
+		每次呼叫都會添加物件至正在累積的資料陣列中，直到呈現視圖為止。
