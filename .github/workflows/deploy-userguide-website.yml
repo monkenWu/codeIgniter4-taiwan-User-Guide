@@ -1,0 +1,60 @@
+# When changes are pushed to the develop branch,
+# build the current version of the User Guide
+# with Sphinx and deploy it to the gh-pages branch.
+#
+# @todo Consolidate checkouts
+name: Deploy User Guide (website)
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Deploy to taiwan website
+    # if: (github.repository == 'codeigniter4/CodeIgniter4')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Build the latest User Guide
+      - name: Build with Sphinx
+        uses: ammaraskar/sphinx-action@0.4
+        with:
+          docs-folder: ./
+
+      # Create an artifact of the html output
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: HTML Documentation
+          path: ./build/html/
+
+      # 壓縮產出檔案
+      - name: Run a multi-line script
+        run: |
+          sudo apt-get install zip -y
+          zip -r user_guide_deploy.zip ./build/html
+
+      # 透過 SSH 複製檔案
+      - name: copy file via ssh
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_KNOWN_HOSTS }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "user_guide_deploy.zip"
+          target: "/home/cd"
+      # 透過 SSH 執行部屬指令檔案
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_KNOWN_HOSTS }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: bash /home/cd/user_guide_deploy.sh
