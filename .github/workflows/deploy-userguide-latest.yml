@@ -7,7 +7,7 @@ name: Deploy User Guide (latest)
 
 on:
   push:
-    branches: [ dev, gitflow ]
+    branches: [ dev ]
   pull_request:
     branches: [ dev ]
 
