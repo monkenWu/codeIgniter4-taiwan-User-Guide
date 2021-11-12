@@ -46,13 +46,19 @@
     }
 
 
-你創建了一個名為 ``Pages`` 的類別，這個類別具有 ``showme`` 方法，這個方法將會被傳入 ``$page`` 引數。 還有一個 ``index()`` 方法，這與 **app/Controllers/Home.php** 這個控制器相同，將會默認顯示 CodeIgniter 歡迎頁面。
+你創建了一個名為 ``Pages`` 的類別，這個類別具有 ``view`` 方法，這個方法將會被傳入 ``$page`` 引數。 還有一個 ``index()`` 方法，這與 **app/Controllers/Home.php** 這個控制器相同，將會默認顯示 CodeIgniter 歡迎頁面。
+
+.. note:: There are two ``view()`` functions referred to in this tutorial.
+    One is the class method created with ``public function view($page = 'home')``
+    and ``echo view('welcome_message')`` for displaying a view.
+    Both are *technically* a function. But when you create a function in a class,
+    it's called a method.
 
 ``Pages`` 繼承  ``CodeIgniter\Controller`` 類別。這代表， Pages 類別將可以呼叫 ``CodeIgniter\Controller`` 類別（ *system/Controller.php* ）中定義的方法與變數。
 
 控制器是每個 Web 應用程式的 **請求中心** 。與任何 PHP 類別一樣，在控制器中必須使用 ``$this`` 呼叫。
 
-現在，你已經創建了第一個方法，是時候製作一些用於 footer 與 header 的頁面樣板了。
+現在，你已經創建了第一個方法，是時候製作一些用於 footer 與 header 的頁面樣板了。我們將建立兩個視圖（頁面樣板），作為網頁的頁首與頁尾。
 
 在 **app/Views/templates/header.php** 路徑上創建含有下列程式碼的 header 檔案：
 
@@ -65,13 +71,13 @@
 	</head>
 	<body>
 
-		<h1><?= $title; ?></h1>
+		<h1><?= esc($title) ?></h1>
 
 header 包含載入主要視圖之前輸出的基本 HTML 程式碼與標題。它還會輸出 ``$title`` 變數，等等我們將會在控制器對這個變數進行定義。接著，在 **app/Views/templates/footer.php** 路徑上創建含有下列程式碼的 footer 檔案：
 
 ::
 
-		<em>&copy; 2019</em>
+		<em>&copy; 2021</em>
 	</body>
 	</html>
 
@@ -79,21 +85,15 @@ header 包含載入主要視圖之前輸出的基本 HTML 程式碼與標題。�
     function. It's a global function provided by CodeIgniter to help prevent
     XSS attacks. You can read more about it :doc:`here </general/common_functions>`.
 
-.. warning:: There are two **view()** functions referred to in this tutorial.
-    One is the class method created with ``public function view($page = 'home')``
-    and ``echo view('welcome_message');`` for displaying a view.
-    Both are *technically* a function. But when you create a function in a class,
-    it's called a method.
-
 在控制器中新增邏輯
 -------------------------------------------------------
 
-剛才，你設定了一個包含 ``showme()`` 方法的控制器。這個方法將傳入一個引數，
+剛才，你設定了一個包含 ``view()`` 方法的控制器。這個方法將傳入一個引數，
 這個引數是被載入的頁面的名稱。靜態頁面的主體將被儲存在 **app/Views/pages/** 目錄中。
 
 在這個目錄中，創建名為 **home.php** 與 **about.php** 兩個檔案。在這些檔案中，輸入一些你喜歡的文字，並且保存它們。如果你不喜歡獨樹一格，你可以鍵入「 Hello World! 」。
 
-為了載入這些頁面，你必須檢查請求的頁面是否實際存在，這些判斷邏輯是在創建 ``Pages`` 控制器後，於 ``showme()`` 方法中的主體。
+為了載入這些頁面，你必須檢查請求的頁面是否實際存在，這些判斷邏輯是在創建 ``Pages`` 控制器後，於 ``view()`` 方法中的主體。
 
 ::
 
@@ -120,7 +120,8 @@ header 包含載入主要視圖之前輸出的基本 HTML 程式碼與標題。�
 
 最後我們得按照順序依序載入視圖，對於這個操作，我們使用 CodeIgniter 內建的 ``view()`` 方法。``view()`` 方法中的第二個引數用於將一些值傳遞給視圖。 ``$data`` 陣列中的每個值在傳遞給視圖後，將會被宣告為以鍵值命名的變數。所以控制器中的 ``$data['title']`` 將等價於視圖中的 ``$title`` 。
 
-.. note:: 傳入 **view()** 函數的任何檔案名稱與目錄名稱都必須真實存在且完全一致，否則你的程式可能會在一些區分大小寫的系統平台上出現錯誤。
+.. note:: 傳入 **view()** 函數的任何檔案名稱與目錄名稱都必須真實存在且完全一致，否則你的程式可能會在一些區分大小寫的系統平台上出現錯誤。你可以在
+	:doc:`這裡 </outgoing/views>`  閱讀到更多的訊息。
 
 運作應用程式
 -------------------------------------------------------
@@ -134,19 +135,26 @@ header 包含載入主要視圖之前輸出的基本 HTML 程式碼與標題。�
 
 這行指令將會把 Web 伺服器啟動在 8080 埠上，如果在瀏覽器中前往 ``localhost:8080`` ，你應該可以看到 CodeIgniter 的歡迎畫面。
 
-現在，你可以在瀏覽器中嘗試多種 URL ，以查看上面製作的 `Pages` 究竟產生了甚麼......
+現在，你可以在瀏覽器中嘗試多種 URL ，以查看上面製作的 ``Pages`` 究竟產生了甚麼......
 
-- ``localhost:8080/pages`` 將顯示控制器中 `index` 方法的結果，也就是顯示 CodeIgniter 「 welcome 」 頁面，因為 `index` 是控制器的預設方法。
+.. table::
+    :widths: 20 80
 
-- ``localhost:8080/pages/index`` 也會顯示 CodeIgniter 「 welcome 」 頁面，因為我們明確的要求使用 index 方法。
-
-- ``localhost:8080/pages/showme`` 將顯示剛才製作的「 home 」頁面，因為它是 `showme()` 方法所預設的 page 引數。
-
-- ``localhost:8080/pages/showme/home`` 將顯示 「 home 」頁面 ，因為我們明確的要求了 page 的值。
-
-- ``localhost:8080/pages/showme/about`` 因為我們明確的要求了 about ，將顯示你剛才製作的「 about 」頁面，
-
-- ``localhost:8080/pages/showme/shop`` 將顯示「 404 - File Not Found 」錯誤畫面，因為 `app/Views/pages/shop.php` 並不存在。
+    +---------------------------------+---------------------------------------------------------------------------------------------------------------------+
+    | URL                             | Will show                                                                                                           |
+    +=================================+=====================================================================================================================+
+    | localhost:8080/pages            | 將顯示控制器中 ``index`` 方法的結果，也就是顯示 CodeIgniter 「 welcome 」 頁面，因為 ``index`` 是控制器的預設方法。 |
+    +---------------------------------+---------------------------------------------------------------------------------------------------------------------+
+    | localhost:8080/pages/index      | 也會顯示 CodeIgniter 「 welcome 」 頁面，因為我們明確的要求使用 index 方法。                                        |
+    +---------------------------------+---------------------------------------------------------------------------------------------------------------------+
+    | localhost:8080/pages/view       | 將顯示剛才製作的「 home 」頁面，因為它是 ``view()`` 方法所預設的 page 引數。                                        |
+    +---------------------------------+---------------------------------------------------------------------------------------------------------------------+
+    | localhost:8080/pages/view/home  | 將顯示 「 home 」頁面 ，因為我們明確的要求了 page 的值。                                                            |
+    +---------------------------------+---------------------------------------------------------------------------------------------------------------------+
+    | localhost:8080/pages/view/about | 因為我們明確的要求了 about ，將顯示你剛才製作的 about 頁面。                                                        |
+    +---------------------------------+---------------------------------------------------------------------------------------------------------------------+
+    | localhost:8080/pages/view/shop  | 將顯示「 404 - File Not Found 」錯誤畫面，因為 ``app/Views/pages/shop.php`` 並不存在。                              |
+    +---------------------------------+---------------------------------------------------------------------------------------------------------------------+
 
 路由
 -------------------------------------------------------
@@ -172,7 +180,7 @@ header 包含載入主要視圖之前輸出的基本 HTML 程式碼與標題。�
 
 ::
 
-	$routes->get('(:any)', 'Pages::showme/$1');
+	$routes->get('(:any)', 'Pages::view/$1');
 
 CodeIgniter 將從上至下依序讀取路由規則，並將請求導向至第一個匹配的規則。每一個規則都是左側的正規表示法，以及右側的控制器和方法名稱所組成（以斜線分隔）。當請求進入時， CodeIgniter 會找到第一個匹配項，並且呼叫適當的控制器與方法（可能會有引數），
 
@@ -180,7 +188,7 @@ CodeIgniter 將從上至下依序讀取路由規則，並將請求導向至第�
 
 在這裡， ``$routes`` 陣列中的第二個規則是， **任何** 請求都會與萬用字元字串 ``(:any)`` 相匹配後，再引數傳遞給 ``Pages`` 類別的 ``view()`` 方法。
 
-現在造訪 ``home`` 。它是不是正確將路由導向至控制器中的 ``showme()`` 方法呢？做得好！
+現在造訪 ``home`` 。它是不是正確將路由導向至控制器中的 ``view()`` 方法呢？做得好！
 
 你應該可以看到類似於以下內容的畫面:
 

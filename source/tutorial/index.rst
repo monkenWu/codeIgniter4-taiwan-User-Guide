@@ -48,7 +48,7 @@
 
 ::
 
-    ➜ composer create-project codeigniter4/appstarter ci-blog
+    composer create-project codeigniter4/appstarter ci-news
 
 這將會建立一個新的 ci-blog 資料夾，你的應用程式將會包含在其中， CodeIgniter 將被安裝在 vendor 資料夾。
 

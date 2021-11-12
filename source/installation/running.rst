@@ -12,7 +12,7 @@ CodeIgniter 4 應用程式可透過多種不同的方式運作，託管在 Web �
 初始組態與設定
 =================================================
 
-#. 使用文字編輯器打開 **app/Config/App.php** 這個檔案並設定基本的 URL 。如果你需要更多的靈活性，可以將 ``.env`` 檔中的 baseURL 設定為  **app.baseURL="http://example.com"** 。
+#. 使用文字編輯器打開 **app/Config/App.php** 這個檔案並設定基本的 URL 。如果你需要更多的靈活性，可以將 ``.env`` 檔中的 baseURL 設定為  ``app.baseURL="http://example.com"`` 。
 
 #. 如果需要使用資料庫，請使用文字編輯器打開 **app/Config/Database.php** 這個檔案並設定資料庫。或者可以在 ``.env`` 中進行這些設定。
 
@@ -23,7 +23,7 @@ CodeIgniter 4 應用程式可透過多種不同的方式運作，託管在 Web �
 本地開發伺服器
 =================================================
 
-CodeIgniter 4 附帶了本地開發伺服器，利用了 PHP 內建的 Web 伺服器和 CodeIgniter 路由。你可以在專案根目錄下透過命令列啟動它::
+CodeIgniter 4 附帶了本地開發伺服器，利用了 PHP 內建的 Web 伺服器和 CodeIgniter 路由。你可以使用 ``serve`` 指令來啟動它，在專案根目錄下透過命令列來執行::
 
     php spark serve
 
@@ -31,22 +31,21 @@ CodeIgniter 4 附帶了本地開發伺服器，利用了 PHP 內建的 Web 伺�
 
 .. note:: 內建的開發伺服器限用於開發環境，它絕不應該在正式伺服器上使用。
 
-如果需要在伺服器上運作特別的網址名稱，而不是簡單的本機 localhost，需要先將主機添加到 ``hosts`` 檔案中。這個檔案的路徑會根據作業系統而各不相同，所有類 Unix 的系統（包括 OSX ）通常都會將這個檔案放置在 **/etc/hosts** 。
-（譯者註： Windows 的 Host 檔案放置在 **C:\\WINDOWS\\system32\\drivers\\etc\\hosts** 之中）
+如果需要在伺服器上運作特別的網址名稱，而不是簡單的本機 localhost，需要先將主機添加到 ``hosts`` 檔案中。這個檔案的路徑會根據作業系統而各不相同，所有類 Unix 的系統（包括 OSX ）通常都會將這個檔案放置在 **/etc/hosts** 。 Windows 的 Host 檔案放置在 **C:\\WINDOWS\\system32\\drivers\\etc\\hosts** 之中。
 
 你可以透過三種選項自訂本地開發伺服器：
 
-- 你可以使用 CLI 中的 ``-host`` 選項將應用程式運作在你所設定的 host 上::
+- 你可以使用 CLI 中的 ``--host`` 選項將應用程式運作在你所設定的 host 上::
 
-    php spark serve -host example.dev
+    php spark serve --host example.dev
 
-- 在預設的情形下，伺服器將在 8080 埠上運作。但你可能會需要運做多個網站，或者這個埠已經被其他應用程式佔用。這時，可以使用 CLI 中 ``-port`` 選項::
+- 在預設的情形下，伺服器將在 8080 埠上運作。但你可能會需要運做多個網站，或者這個埠已經被其他應用程式佔用。這時，可以使用 CLI 中 ``--port`` 選項::
 
-    php spark serve -port 8081
+    php spark serve --port 8081
 
-- 你還可以使用 CLI 中的 ``-php`` 選項指定你所要使用的 PHP 版本，這個選項所需的值是 PHP 執行檔的檔案路徑::
+- 你還可以使用 CLI 中的 ``--php`` 選項指定你所要使用的 PHP 版本，這個選項所需的值是 PHP 執行檔的檔案路徑::
 
-    php spark serve -php /usr/bin/php7.6.5.4
+    php spark serve --php /usr/bin/php7.6.5.4
 
 部屬在 Apache 伺服器
 =================================================
