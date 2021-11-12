@@ -14,3 +14,4 @@ CodeIgniter 提供許多工具來幫你完整測試與偵錯你的應用程式�
     HTTP 特性測試 <feature>
     benchmark
     debugging
+    Mocking <mocking>

@@ -27,7 +27,7 @@ html_show_sourcelink = False
 version = '4.1'
 
 # The full version, including alpha/beta/rc tags.
-release = '4.1.1'
+release = '4.1.5'
 
 # -- General configuration ---------------------------------------------------
 
@@ -97,6 +97,9 @@ html_logo = '_static/ci-logo-text.png'
 # pixels large.
 html_favicon = '_static/favicon.ico'
 
+# The name of an style sheet to use for HTML pages.
+html_style = 'css/citheme.css'
+
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'CodeIgniterdoc'
 
@@ -104,9 +107,7 @@ htmlhelp_basename = 'CodeIgniterdoc'
 html_copy_source = False
 
 # A list of CSS files.
-html_css_files = [
-	'css/citheme.css',
-]
+html_css_files = []
 
 # A list of JS files.
 html_js_files = [

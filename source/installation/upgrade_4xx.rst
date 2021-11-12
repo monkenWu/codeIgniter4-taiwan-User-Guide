@@ -23,19 +23,30 @@ CodeIgniter 4 是一個完全重寫的框架，它不具備向後相容的特性
 
 - CI4 是針對 PHP7.2+ 版本所設計的，除了 helpers 以外的所有類別都使用了命名空間的特性。
 
-**應用程式結構**
+**Model, View and Controller**
 
-- 框架仍然具有 ``app`` 與 ``system`` 資料夾，其功能與以前相同。
+- CodeIgniter is based on the MVC concept. Thus, the changes on the Model, View and Controller
+  are one of the most important things you have to handle.
+- In CodeIgniter 4, models are now located in ``app/Models`` and you have to add the lines
+  ``namespace App\Models;`` along with ``use CodeIgniter\Model;`` right after the opening php tag.
+  The last step is to replace ``extends CI_Model`` with ``extends Model``.
+- The views of CodeIgniter 4 have been moved ``to app/Views``. Furthermore, you have to change
+  the syntax of loading views from ``$this->load->view('directory_name/file_name')`` to
+  ``echo view('directory_name/file_name');``.
+- Controllers of CodeIgniter 4 have to be moved to ``app/Controllers;``. After that,
+  add ``namespace App\Controllers;`` after the opening php tag.
+  Lastly, replace ``extends CI_Controller`` with ``extends BaseController``.
+- For more information we recommend you the following upgrade guides, which will give
+  you some step-by-step instructions to convert the MVC classes in CodeIgniter4:
 
-- 框架現在提供了一個名為 ``public`` 的資料夾，可以放置應用程式會使用到的靜態文件。
+.. toctree::
+    :titlesonly:
 
-- 以及一個名為 ``writable`` 的資料夾，用於儲存快取資料、日誌與會話資料。
+    upgrade_models
+    upgrade_views
+    upgrade_controllers
 
-- ``app`` 資料夾類似於 CI3 中的 application 資料夾，不過某些名稱與之前不同，並且某些子資料夾被移動到 ``writable`` 之中。
-
-- ``application/core`` 已經被取消，現在我們有不同的框架擴充機制（見下文）。
-
-**載入類別**
+**類別載入**
 
 - 不再有 CodeIgniter「超級物件」 的存在，框架組件的將會作為屬性，動態載入至控制器之中。
 
@@ -44,34 +55,6 @@ CodeIgniter 4 是一個完全重寫的框架，它不具備向後相容的特性
 - 類別載入器將自動以 PSR4 的規則，在 ``App`` （應用程式）和 ``CodeIgniter`` （系統）這兩個頂級命名空間進行類別定位；支援　Composer 自動載入，甚至是類別檔案在沒有宣告命名空間的情形下，也可以透過假設的方式，根據它們位於的文件夾，找到正確的模型與程式庫。
 
 - 為了支援你熟悉的應用程式結構，你可以透過設定類別載入器來達成。例如使用：「 `HMVC <https://zh.wikipedia.org/wiki/HMVC>`_ 」風格。
-
-**控制器**
-
-- 控制器將繼承 \\CodeIgniter\\Controller 類別而不是 CI_Controller 類別。
-
-- 控制器不再需要建構函數（呼叫 CI 魔術方法），除非這是你創建的基本控制器的一部份。
-
-- 與 CI3 相比， CI4 所提供的  ``Request`` 與 ``Response`` 物件功能更加強大。
-
-- 如果你需要使用基本控制器（例如 CI3 的 MY_Controller ），你可以在任何你喜歡的位置創建它，並且繼承 \\CodeIgniter\\Controller 類別，接著就可以讓其他的控制器繼承這個基本控制器。
-
-**模型**
-
-- 模型將繼承 \\CodeIgniter\\Model 類別，而不是 CI_Model 類別。
-
-- CI4 模型擁有更多便利的功能，用於連結資料庫、實現基本的 CRUD 、模型內驗證與自動分頁等功能。
-
-- CI4 也提供讓你可以自由實作的 ``Entity`` （實體）類別，提供你更豐富的資料映射資料表的功能。
-
-- CI3 的 ``$this->load->model(x);`` 已棄用。現在，在你所想要使用的組件內，你可以按照命名空間的定義，使用 ``$this->x = new X();`` 實作你想使用的模型類別。
-
-**視圖**
-
-- CI4 的視圖與先前的版本大同小異，他們最大的不同是呼叫的方式改變了。 CI3 中的 ``$this->load->view(x);`` 已被取消，現在你可以使用 ``echo view(x);`` 載入你需要使用的視圖。
-
-- CI4 支援「視圖單元」功能，它能夠分塊建構你的響應。
-
-- 樣板解析器依然存在，並且大大增強。
 
 **程式庫**
 
@@ -98,3 +81,46 @@ CodeIgniter 4 是一個完全重寫的框架，它不具備向後相容的特性
 - 在程式庫資料夾下，某些類別用於繼承或取代框架中原有的功能。現在，你不再需要以 ``MY_x`` 來命名。
 
 - 你可以在任何需要的地方創建這個類別，只需要在 ``app/Config/Services.php`` 中添加合適服務方法（ service methods ），來替換掉默認組件。
+
+Upgrading Libraries
+===================
+
+- Your app classes can still go inside ``app/Libraries``, but they don’t have to.
+- Instead of CI3’s ``$this->load->library(x);`` you can now use ``$this->x = new X();``,
+  following namespaced conventions for your component.
+- Some libraries from CodeIgniter 3 no longer exists in Version 4. For all these
+  libraries, you have to find a new way to implement your functions. These
+  libraries are `Calendaring <http://codeigniter.com/userguide3/libraries/calendar.html>`_,
+  `FTP <http://codeigniter.com/userguide3/libraries/ftp.html>`_,
+  `Javascript <http://codeigniter.com/userguide3/libraries/javascript.html>`_,
+  `Shopping Cart <http://codeigniter.com/userguide3/libraries/cart.html>`_,
+  `Trackback <http://codeigniter.com/userguide3/libraries/trackback.html>`_,
+  `XML-RPC /-Server <http://codeigniter.com/userguide3/libraries/xmlrpc.html>`_,
+  and `Zip Encoding <http://codeigniter.com/userguide3/libraries/zip.html>`_.
+- CI3's `Input <http://codeigniter.com/userguide3/libraries/input.html>`_ corresponds to CI4's :doc:`IncomingRequest </incoming/incomingrequest>`.
+- CI3's `Output <http://codeigniter.com/userguide3/libraries/output.html>`_ corresponds to CI4's :doc:`Responses </outgoing/response>`.
+- All the other libraries, which exist in both CodeIgniter versions, can be upgraded with some adjustments.
+  The most important and mostly used libraries received an Upgrade Guide, which will help you with simple
+  steps and examples to adjust your code.
+
+.. toctree::
+    :titlesonly:
+
+    upgrade_configuration
+    upgrade_database
+    upgrade_emails
+    upgrade_encryption
+    upgrade_file_upload
+    upgrade_html_tables
+    upgrade_localization
+    upgrade_migrations
+    upgrade_pagination
+    upgrade_responses
+    upgrade_routing
+    upgrade_security
+    upgrade_sessions
+    upgrade_validations
+    upgrade_view_parser
+
+.. note::
+    More upgrade guides coming soon
