@@ -25,6 +25,8 @@ Request 類別
             
     .. php:method:: isValidIP($ip[, $which = ''])
 
+        .. important:: 這個方法已被棄用。
+
         :param    string $ip: IP 地址
         :param    string $which: IP 協議 ('ipv4' 或是 'ipv6')
         :returns: IP 有效回傳 true，否則回傳 false
@@ -48,6 +50,8 @@ Request 類別
         第二個參數可選，可以為 'ipv4' 或 'ipv6'，預設這兩種格式皆會檢查。
 
     .. php:method:: getMethod([$upper = FALSE])
+
+        .. important:: ``$upper`` 參數的操作已被棄用。
 
         :param bool $upper: 以大寫還是小寫回傳方法名，TRUE 表示大寫
         :returns: HTTP 請求方法

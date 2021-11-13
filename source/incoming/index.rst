@@ -1,8 +1,8 @@
 #######################
-Controllers and Routing
+控制器與路由
 #######################
 
-Controllers handle incoming requests.
+控制器負責處理傳入的請求。
 
 .. toctree::
     :titlesonly:

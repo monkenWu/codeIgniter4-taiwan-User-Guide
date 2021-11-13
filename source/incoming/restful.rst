@@ -163,7 +163,7 @@ CodeIgniter 透過它的資源路由和 `ResourceController`，可以讓你的�
 
 	$routes->presenter('photos', ['only' => ['index', 'show']]);
 
-或是，你也可以用 ``except`` 選項來排除指定的路由。該選項會在``only`` 之後執行::
+或是，你也可以用 ``except`` 選項來排除指定的路由。該選項會在 ``only`` 之後執行::
 
 	$routes->presenter('photos', ['except' => 'new,edit']);
 
@@ -176,22 +176,24 @@ CodeIgniter 透過它的資源路由和 `ResourceController`，可以讓你的�
 
 繼承或覆蓋 `modelName` 屬性，並實作那些你需要呼叫的方法::
 
-	<?php namespace App\Controllers;
+    <?php
 
-	use CodeIgniter\RESTful\ResourcePresenter;
+    namespace App\Controllers;
 
-	class Photos extends ResourcePresenter
-	{
+    use CodeIgniter\RESTful\ResourcePresenter;
 
-		protected $modelName = 'App\Models\Photos';
+    class Photos extends ResourcePresenter
+    {
 
-		public function index()
-		{
-			return view('templates/list',$this->model->findAll());
-		}
+        protected $modelName = 'App\Models\Photos';
 
-                // ...
-	}
+        public function index()
+        {
+            return view('templates/list', $this->model->findAll());
+        }
+
+        // ...
+    }
 
 生成的路由會長這樣子::
 
