@@ -35,14 +35,11 @@
 
 ::
 
-	if ($db->simpleQuery('YOUR QUERY'))
-	{
-		echo "Success!";
-	}
-	else
-	{
-		echo "Query failed!";
-	}
+    if ($db->simpleQuery('YOUR QUERY')) {
+        echo "Success!";
+    } else {
+        echo "Query failed!";
+    }
 
 .. note:: 在 PostgreSQL 中，例如： ``pg_exec()`` 函數在執行查詢成功後，都只會回傳資源，即使是執行類型查詢也是一樣。所以如果你是要找布林值的話，請注意這一點。
 
@@ -168,10 +165,9 @@
 
 ::
 
-	if ( ! $db->simpleQuery('SELECT `example_field` FROM `example_table`'))
-	{
-		$error = $db->error(); // Has keys 'code' and 'message'
-	}
+    if ( ! $db->simpleQuery('SELECT `example_field` FROM `example_table`')) {
+        $error = $db->error(); // Has keys 'code' and 'message'
+    }
 
 ****************
 預備查詢
@@ -186,15 +182,14 @@
 
 ::
 
-    $pQuery = $db->prepare(function($db)
-    {
-        return $db->table('user')
-                   ->insert([
-                        'name'    => 'x',
-                        'email'   => 'y',
-                        'country' => 'US'
-                   ]);
+    $pQuery = $db->prepare(function ($db) {
+        return $db->table('user')->insert([
+            'name'    => 'x',
+            'email'   => 'y',
+            'country' => 'US'
+        ]);
     });
+
 
 如果你不想使用查詢生成器，則可以使用問號為置換符號的值，手動建立一個查詢物件。
 
@@ -202,8 +197,7 @@
 
     use CodeIgniter\Database\Query;
 
-    $pQuery = $db->prepare(function($db)
-    {
+    $pQuery = $db->prepare(function ($db) {
         $sql = "INSERT INTO user (name, email, country) VALUES (?, ?, ?)";
 
         return (new Query($db))->setQuery($sql);
@@ -215,8 +209,7 @@
 
     use CodeIgniter\Database\Query;
 
-    $pQuery = $db->prepare(function($db)
-    {
+    $pQuery = $db->prepare(function ($db) {
         $sql = "INSERT INTO user (name, email, country) VALUES (?, ?, ?)";
 
         return (new Query($db))->setQuery($sql);
@@ -229,14 +222,12 @@
 ::
 
     // Prepare the Query
-    $pQuery = $db->prepare(function($db)
-    {
-        return $db->table('user')
-                   ->insert([
-                        'name'    => 'x',
-                        'email'   => 'y',
-                        'country' => 'US'
-                   ]);
+    $pQuery = $db->prepare(function ($db) {
+        return $db->table('user')->insert([
+            'name'    => 'x',
+            'email'   => 'y',
+            'country' => 'US'
+        ]);
     });
 
     // Collect the Data
@@ -254,7 +245,9 @@
 
 除了以上的兩個主要的方法之外，預備查詢物件也有以下幾個方法：
 
-**close()** 儘管PHP在關閉資料庫語法已經做得很好，但是在操作完資料庫後關閉預備語法也是一項重要的工作。
+**close()** 
+
+儘管PHP在關閉資料庫語法已經做得很好，但是在操作完資料庫後關閉預備語法也是一項重要的工作。
 
 ::
 
@@ -266,7 +259,7 @@
 
 **hasError()**
 
-在最後一次 execute() 後如果出現任何錯誤，將會回傳布林型態的 true/false 。
+在最後一次 ``execute()`` 後如果出現任何錯誤，將會回傳布林型態的 true/false 。
 
 **getErrorCode()**
 **getErrorMessage()**
@@ -321,11 +314,10 @@
 
 ::
 
-	if ($query->hasError())
-	{
-		echo 'Code: '. $query->getErrorCode();
-		echo 'Error: '. $query->getErrorMessage();
-	}
+    if ($query->hasError()) {
+        echo 'Code: ' . $query->getErrorCode();
+        echo 'Error: ' . $query->getErrorMessage();
+    }
 
 **isWriteType()**
 
@@ -333,10 +325,9 @@
 
 ::
 
-	if ($query->isWriteType())
-	{
-		... do something
-	}
+    if ($query->isWriteType()) {
+        // ... do something
+    }
 
 **swapPrefix()**
 
