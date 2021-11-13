@@ -40,29 +40,40 @@ API 響應特性
 ::
 
     // 一般響應
-    respond($data, 200);
+    $this->respond($data, 200);
+
     // 故障響應
-    fail($errors, 400);
+    $this->fail($errors, 400);
+
     // 項目已建立成功
-    respondCreated($data);
+    $this->respondCreated($data);
+
     // 項目已刪除成功
-    respondDeleted($data);
+    $this->respondDeleted($data);
+
     // 命令已執行，無須響應
-    respondNoContent($message);
+    $this->respondNoContent($message);
+
     // 使用者無權限
-    failUnauthorized($description);
+    $this->failUnauthorized($description);
+
     // 禁止使用
-    failForbidden($description);
+    $this->failForbidden($description);
+
     // 找不到資源
-    failNotFound($description);
+    $this->failNotFound($description);
+
     // 資料未通過驗證
-    failValidationError($description);
+    $this->failValidationError($description);
+
     // 資源已經存在
-    failResourceExists($description);
+    $this->failResourceExists($description);
+    
     // 資源已經被刪除
-    failResourceGone($description);
+    $this->failResourceGone($description);
+
     // 使用者提出過多請求
-    failTooManyRequests($description);
+    $this->failTooManyRequests($description);
 
 ***********************
 處理響應類型
@@ -72,8 +83,7 @@ API 響應特性
 
 
 * 如果 $data 是一個字串，那麼它將會被視為 HTML 發送回使用者端。
-* **如果 $data 是一個陣列，它會根據控制器的 ``$this->format`` 規定進行格式化。**
-    如果這個值為空，那麼它將會嘗試與客戶端所要求的類型進行內容協商。如果在 Config\API.php 沒有指定其他的屬性，則預設為 JSON 即是以 ``$supportedResponseFormats`` 屬性為主。
+* 如果 $data 是一個陣列，它會根據控制器的 ``$this->format`` 規定進行格式化。如果這個值為空，那麼它將會嘗試與客戶端所要求的類型進行內容協商。如果在 **Config/Format.php** 沒有指定其他的屬性，則預設為 JSON 即是以 ``$supportedResponseFormats`` 屬性為主。
 
 若要定義所使用的屬性輸出格式器，請編輯 **Config/Format.php** 檔案。其中的 ``$supportedResponseFormats`` 屬性包含著一系列的 mime 類型，你的應用程式可以自動地格式化響應類型。在預設的情形下，系統會自動格式化 XML 與 JSON 響應：
 

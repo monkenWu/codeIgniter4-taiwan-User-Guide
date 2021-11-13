@@ -52,6 +52,8 @@ method that will automatically perform :doc:`content negotiation </incoming/cont
 determine the correct locale to use. The second method allows you to specify a segment in your routes that
 will be used to set the locale.
 
+Should you ever need to set the locale directly you may use ``IncomingRequest::setLocale(string $locale)``.
+
 Content Negotiation
 -------------------
 
@@ -123,7 +125,7 @@ It also support nested definition::
 
     'language_key' => [
         'nested' => [
-            'key' => 'The actual message to be shown.'
+            'key' => 'The actual message to be shown.',
         ],
     ],
 
@@ -276,8 +278,8 @@ Language files also allow nested arrays to make working with lists, etc... easie
             'Grapes',
             'Lemons',
             'Oranges',
-            'Strawberries'
-        ]
+            'Strawberries',
+        ],
     ];
 
     // Displays "Apples, Bananas, Grapes, Lemons, Oranges, Strawberries"

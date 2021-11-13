@@ -19,14 +19,14 @@
 
 ::
 
-	<html>
+    <html>
         <head>
             <title>My Blog</title>
         </head>
         <body>
             <h1>Welcome to my Blog!</h1>
         </body>
-	</html>
+    </html>
 
 然後，把這個檔案儲存在你的 **app/Views** 目錄下。
 
@@ -47,15 +47,18 @@
 
 ::
 
-	<?php namespace App\Controllers;
+    <?php
 
-        class Blog extends \CodeIgniter\Controller
-	{
-		public function index()
-		{
-			echo view('BlogView');
-		}
-	}
+    namespace App\Controllers;
+
+    class Blog extends \CodeIgniter\Controller
+    {
+        public function index()
+        {
+            echo view('BlogView');
+        }
+    }
+
 
 如果你使用上一個範例的 URL 造訪你的網站，你應該會看到新的視圖。這個 URL 視類似於這樣的：
 
@@ -72,22 +75,24 @@ CodeIgniter 將智慧地處理一個控制器中，對多個 ``view()`` 的呼�
 
 ::
 
-	<?php namespace App\Controllers;
+    <?php
 
-	class Page extends \CodeIgniter\Controller
-	{
-		public function index()
-		{
-			$data = [
-				'page_title' => 'Your title'
-			];
+    namespace App\Controllers;
 
-			echo view('header');
-			echo view('menu');
-			echo view('content', $data);
-			echo view('footer');
-		}
-	}
+    class Page extends \CodeIgniter\Controller
+    {
+        public function index()
+        {
+            $data = [
+                'page_title' => 'Your title',
+            ];
+
+            echo view('header');
+            echo view('menu');
+            echo view('content', $data);
+            echo view('footer');
+        }
+    }
 
 上面的範例中，有使用到「動態添加資料」的功能，你會在待會出現的內容閱讀到相關的資訊。
 
@@ -135,11 +140,11 @@ CodeIgniter 將智慧地處理一個控制器中，對多個 ``view()`` 的呼�
 
 ::
 
-	$data = [
-		'title'   => 'My title',
-		'heading' => 'My Heading',
-		'message' => 'My Message'
-	];
+    $data = [
+        'title'   => 'My title',
+        'heading' => 'My Heading',
+        'message' => 'My Message',
+    ];
 
 	echo view('blogview', $data);
 
@@ -147,31 +152,33 @@ CodeIgniter 將智慧地處理一個控制器中，對多個 ``view()`` 的呼�
 
 ::
 
-	<?php namespace App\Controllers;
+    <?php
 
-	class Blog extends \CodeIgniter\Controller
-	{
-		public function index()
-		{
-			$data['title']   = "My Real Title";
-			$data['heading'] = "My Real Heading";
+    namespace App\Controllers;
 
-			echo view('blogview', $data);
-		}
-	}
+    class Blog extends \CodeIgniter\Controller
+    {
+        public function index()
+        {
+            $data['title']   = "My Real Title";
+            $data['heading'] = "My Real Heading";
+
+            echo view('blogview', $data);
+        }
+    }
 
 現在，打開你的視圖檔案，把標籤的內容改成由控制器傳入的陣列中，元素鍵名相對應的變數：
 
 ::
 
-	<html>
+    <html>
         <head>
             <title><?= $title ?></title>
         </head>
         <body>
             <h1><?= $heading ?></h1>
         </body>
-	</html>
+    </html>
 
 然後，用瀏覽器重新進入此頁面，你應該就會看到原本的文字內容被變數的內容替換了。
 
@@ -179,13 +186,13 @@ CodeIgniter 將智慧地處理一個控制器中，對多個 ``view()`` 的呼�
 
 ::
 
-	$data = [
-		'title'   => 'My title',
-		'heading' => 'My Heading',
-		'message' => 'My Message'
-	];
+    $data = [
+        'title'   => 'My title',
+        'heading' => 'My Heading',
+        'message' => 'My Message',
+    ];
 
-	echo view('blogview', $data, ['saveData' => true]);
+    echo view('blogview', $data, ['saveData' => true]);
 
 此外，如果你希望視圖函數的預設功能是在呼叫之間保存資料，你可以在 **app/Config/Views.php** 的設定檔案中，將 ``$saveData`` 變數設定為 **true** 。
 
@@ -198,42 +205,45 @@ CodeIgniter 將智慧地處理一個控制器中，對多個 ``view()`` 的呼�
 
 ::
 
-	<?php namespace App\Controllers;
+    <?php
 
-	class Blog extends \CodeIgniter\Controller
-	{
-		public function index()
-		{
-			$data = [
-				'todo_list' => ['Clean House', 'Call Mom', 'Run Errands'],
-				'title'     => "My Real Title",
-				'heading'   => "My Real Heading"
-			];
+    namespace App\Controllers;
 
-			echo view('blogview', $data);
-		}
-	}
+    class Blog extends \CodeIgniter\Controller
+    {
+        public function index()
+        {
+            $data = [
+                'todo_list' => ['Clean House', 'Call Mom', 'Run Errands'],
+                'title'     => 'My Real Title',
+                'heading'   => 'My Real Heading',
+            ];
+
+            echo view('blogview', $data);
+        }
+    }
 
 現在，打開你的視圖檔案新建一個迴圈：
 
 ::
 
-	<html>
-	<head>
-		<title><?= $title ?></title>
-	</head>
-	<body>
-		<h1><?= $heading ?></h1>
+    <html>
+    <head>
+        <title><?= $title ?></title>
+    </head>
+    <body>
+        <h1><?= $heading ?></h1>
 
-		<h3>My Todo List</h3>
+        <h3>My Todo List</h3>
 
-		<ul>
-		<?php foreach ($todo_list as $item):?>
+        <ul>
+        <?php foreach ($todo_list as $item):?>
 
-			<li><?= $item ?></li>
+            <li><?= $item ?></li>
 
-		<?php endforeach;?>
-		</ul>
+        <?php endforeach;?>
+        </ul>
 
-	</body>
-	</html>
+    </body>
+    </html>
+
