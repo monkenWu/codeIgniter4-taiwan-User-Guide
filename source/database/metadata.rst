@@ -23,10 +23,9 @@
 
 	$tables = $db->listTables();
 
-	foreach ($tables as $table)
-	{
-		echo $table;
-	}
+    foreach ($tables as $table) {
+        echo $table;
+    }
 
 .. note:: 有些資料庫內部具有系統的資料表，上述函數並不會回傳這些系統資料表。
 
@@ -39,10 +38,9 @@
 
 ::
 
-	if ($db->tableExists('table_name'))
-	{
-		// some code...
-	}
+    if ($db->tableExists('table_name')) {
+        // some code...
+    }
 
 .. note:: 將 *table_name* 替換成你想要尋找的資料表名稱。
 
@@ -61,23 +59,21 @@
 
 ::
 
-	$fields = $db->getFieldNames('table_name');
+    $fields = $db->getFieldNames('table_name');
 
-	foreach ($fields as $field)
-	{
-		echo $field;
-	}
+    foreach ($fields as $field) {
+        echo $field;
+    }
 
 2. 你可以從查詢結果物件中，呼叫該函數得到相關聯查詢的欄位名稱：
 
 ::
 
-	$query = $db->query('SELECT * FROM some_table');
+    $query = $db->query('SELECT * FROM some_table');
 
-	foreach ($query->getFieldNames() as $field)
-	{
-		echo $field;
-	}
+    foreach ($query->getFieldNames() as $field) {
+        echo $field;
+    }
 
 確認欄位是否出現在資料表
 ==========================================
@@ -88,8 +84,7 @@
 
 ::
 
-	if ($db->fieldExists('field_name', 'table_name'))
-	{
+	if ($db->fieldExists('field_name', 'table_name')) {
 		// some code...
 	}
 
@@ -110,15 +105,14 @@
 
 ::
 
-	$fields = $db->getFieldData('table_name');
+    $fields = $db->getFieldData('table_name');
 
-	foreach ($fields as $field)
-	{
-		echo $field->name;
-		echo $field->type;
-		echo $field->max_length;
-		echo $field->primary_key;
-	}
+    foreach ($fields as $field) {
+        echo $field->name;
+        echo $field->type;
+        echo $field->max_length;
+        echo $field->primary_key;
+    }
 
 如果你已經執行查詢，則可以使用結果物件而不是資料表名稱
 
@@ -145,14 +139,13 @@
 
 ::
 
-	$keys = $db->getIndexData('table_name');
+    $keys = $db->getIndexData('table_name');
 
-	foreach ($keys as $key)
-	{
-		echo $key->name;
-		echo $key->type;
-		echo $key->fields;  // array of field names
-	}
+    foreach ($keys as $key) {
+        echo $key->name;
+        echo $key->type;
+        echo $key->fields; // array of field names
+    }
 
 鍵值類型在你使用的資料庫中應該是唯一。例如：MySQL會為每個跟資料表有關聯的鍵值，回傳主鍵、全文索引、空間索引、或唯一索引的其中一種。
 
@@ -164,15 +157,14 @@
 
 ::
 
-	$keys = $db->getForeignKeyData('table_name');
+    $keys = $db->getForeignKeyData('table_name');
 
-	foreach ($keys as $key)
-	{
-		echo $key->constraint_name;
-		echo $key->table_name;
-		echo $key->column_name;
-		echo $key->foreign_table_name;
-		echo $key->foreign_column_name;
-	}
+    foreach ($keys as $key) {
+        echo $key->constraint_name;
+        echo $key->table_name;
+        echo $key->column_name;
+        echo $key->foreign_table_name;
+        echo $key->foreign_column_name;
+    }
 
 在你使用的資料庫中，物件欄位可能是唯一的。例如：SQLite3不會回傳欄位名稱，但對複合外來鍵會 *排序* 欄位。

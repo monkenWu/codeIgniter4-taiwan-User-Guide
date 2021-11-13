@@ -6,6 +6,10 @@ CodeIgniter 透過資料庫抽象化，讓你在可以在支援交易的安全�
 
 如果你不熟悉交易，我們建議你在網路上瞭解你所使用的資料庫的交易。以下你的資訊都假設你對交易有一定程度的了解。
 
+.. contents::
+    :local:
+    :depth: 2
+
 CodeIgniter 的交易方式
 ======================================
 
@@ -51,10 +55,9 @@ CodeIgniter 使用常見的資料庫類別 ADODB ，它的處理過程非常相�
 	$this->db->query('ANOTHER QUERY...');
 	$this->db->transComplete();
 
-	if ($this->db->transStatus() === FALSE)
-	{
-		// generate an error... or use the log_message() function to log your error
-	}
+    if ($this->db->transStatus() === false) {
+        // generate an error... or use the log_message() function to log your error
+    }
 
 禁用交易
 ======================
@@ -92,17 +95,15 @@ CodeIgniter 使用常見的資料庫類別 ADODB ，它的處理過程非常相�
 
 	$this->db->transBegin();
 
-	$this->db->query('AN SQL QUERY...');
-	$this->db->query('ANOTHER QUERY...');
-	$this->db->query('AND YET ANOTHER QUERY...');
+    $this->db->query('AN SQL QUERY...');
+    $this->db->query('ANOTHER QUERY...');
+    $this->db->query('AND YET ANOTHER QUERY...');
 
-	if ($this->db->transStatus() === FALSE)
-	{
-		$this->db->transRollback();
-	}
-	else
-	{
-		$this->db->transCommit();
-	}
+    if ($this->db->transStatus() === false) {
+        $this->db->transRollback();
+    } else {
+        $this->db->transCommit();
+    }
+
 
 .. note:: 手動執行交易，請確認是使用 ``$this->db->transBegin()``，而 **不是** ``$this->db->transStart()`` 。
