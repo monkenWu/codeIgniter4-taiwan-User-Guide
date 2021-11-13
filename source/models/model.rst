@@ -68,6 +68,28 @@ CodeIgniter 支援了模型類別，它提供了一些很好的功能，包括�
 
 這個空的類別提供了對資料庫連接、查詢生成器，和一些額外的便捷方法的訪問。
 
+Should you need additional setup in your model you may extend the ``initialize()`` function
+which will be run immediately after the Model's constructor. This allows you to perform
+extra steps without repeating the constructor parameters, for example extending other models::
+
+    <?php
+
+    namespace App\Models;
+
+    use Modules\Authentication\Models\UserAuthModel;
+
+    class UserModel extends UserAuthModel
+    {
+        /**
+         * Called during initialization. Appends
+         * our custom field to the module's model.
+         */
+        protected function initialize()
+        {
+            $this->allowedFields[] = 'middlename';
+        }
+    }
+
 連接資料庫
 --------------------------
 
@@ -275,8 +297,7 @@ $column_name 應該要是單個欄位的名稱，若否你則會獲得 DataExcep
 	$activeUsers = $userModel->findAll();
 
 	// Gets all rows
-	$allUsers = $userModel->withDeleted()
-	                      ->findAll();
+	$allUsers = $userModel->withDeleted()->findAll();
 
 **onlyDeleted()**
 
@@ -284,8 +305,7 @@ withDeleted() 方法將會回傳已經刪除與未刪除的記錄，而這個方
 
 ::
 
-	$deletedUsers = $userModel->onlyDeleted()
-	                          ->findAll();
+	$deletedUsers = $userModel->onlyDeleted()->findAll();
 
 儲存資料
 -----------
@@ -296,12 +316,12 @@ withDeleted() 方法將會回傳已經刪除與未刪除的記錄，而這個方
 
 ::
 
-	$data = [
-		'username' => 'darth',
-		'email'    => 'd.vader@theempire.com'
-	];
+    $data = [
+        'username' => 'darth',
+        'email'    => 'd.vader@theempire.com',
+    ];
 
-	$userModel->insert($data);
+    $userModel->insert($data);
 
 **insertBatch()**
 
@@ -309,18 +329,18 @@ withDeleted() 方法將會回傳已經刪除與未刪除的記錄，而這個方
 
 ::
 
-	$data = [
-		[
-			'username' => 'darth',
-			'email'    => 'd.vader@theempire.com'
-		],
-		[
-			'username' => 'amos',
-			'email'    => 'a.vader@theempire.com'
-		]
-	];
+    $data = [
+        [
+            'username' => 'darth',
+            'email'    => 'd.vader@theempire.com'
+        ],
+        [
+            'username' => 'amos',
+            'email'    => 'a.vader@theempire.com'
+        ]
+    ];
 
-	$userModel->insertBatch($data);
+    $userModel->insertBatch($data);
 
 **update()**
 
@@ -328,22 +348,22 @@ withDeleted() 方法將會回傳已經刪除與未刪除的記錄，而這個方
 
 ::
 
-	$data = [
+    $data = [
         'username' => 'darth',
-        'email'    => 'd.vader@theempire.com'
+        'email'    => 'd.vader@theempire.com',
     ];
 
-	$userModel->update($id, $data);
+    $userModel->update($id, $data);
 
 透過傳入一個以主鍵組成的陣列作為第一個參數，可以只用一次呼叫更新多筆記錄。
 
 ::
 
     $data = [
-        'active' => 1
+        'active' => 1,
     ];
 
-	$userModel->update([1, 2, 3], $data);
+    $userModel->update([1, 2, 3], $data);
 
 當你出現一些額外的需求時，你可以把傳入的參數留白，這個方法便會成為查詢生成器的更新指令一樣，讓你可以進行額外的驗證、事件等功能。
 
@@ -361,23 +381,23 @@ withDeleted() 方法將會回傳已經刪除與未刪除的記錄，而這個方
 ::
 
 	// 定義 model 屬性
-	$primaryKey = 'id';
+    $primaryKey = 'id';
 
 	// 執行 insert()
-	$data = [
-		'username' => 'darth',
-		'email'    => 'd.vader@theempire.com'
-	];
+    $data = [
+        'username' => 'darth',
+        'email'    => 'd.vader@theempire.com',
+    ];
 
-	$userModel->save($data);
+    $userModel->save($data);
 
 	// 如果找的到你所傳入的主健，將會執行 update() 
-	$data = [
-		'id'       => 3,
-		'username' => 'darth',
-		'email'    => 'd.vader@theempire.com'
-	];
-	$userModel->save($data);
+    $data = [
+        'id'       => 3,
+        'username' => 'darth',
+        'email'    => 'd.vader@theempire.com',
+    ];
+    $userModel->save($data);
 
 save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬性和保護屬性，然後將它們保存成相應的陣列，傳入到插入或更新的方法中。這種方式允許你使用簡潔的實體類別，它表示的是一個物件類型的單一實體。比如使用者、部落格文章、作業等。這個類別負責維護圍繞著物件本身的商業邏輯，例如：以某種方法格式化元素等。它不應該有任何將資料儲存到資料庫的邏輯，最簡單的使用方式如下所示：
 
@@ -393,16 +413,14 @@ save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬�
 
         public function __get($key)
         {
-            if (property_exists($this, $key))
-            {
+            if (property_exists($this, $key)) {
                 return $this->$key;
             }
         }
 
         public function __set($key, $value)
         {
-            if (property_exists($this, $key))
-            {
+            if (property_exists($this, $key)) {
                 $this->$key = $value;
             }
         }
@@ -583,22 +601,22 @@ The other way to set the validation rules to fields by functions,
 
 ::
 
-	<?php if (! empty($errors)) : ?>
-		<div class="alert alert-danger">
-		<?php foreach ($errors as $field => $error) : ?>
-			<p><?= $error ?></p>
-		<?php endforeach ?>
-		</div>
-	<?php endif ?>
+    <?php if (! empty($errors)) : ?>
+        <div class="alert alert-danger">
+        <?php foreach ($errors as $field => $error) : ?>
+            <p><?= $error ?></p>
+        <?php endforeach ?>
+        </div>
+    <?php endif ?>
 
 如果你想在組態設定檔案中統一組織驗證用的規則以及錯誤訊息，只需將 ``$validationRules`` 設定為你所創建的規則群組名稱即可，就像這樣做：
 
 ::
 
-	class UserModel extends Model
-	{
-		protected $validationRules = 'users';
-	}
+    class UserModel extends Model
+    {
+        protected $validationRules = 'users';
+    }
 
 檢索驗證規則
 ---------------------------
@@ -683,7 +701,11 @@ The other way to set the validation rules to fields by functions,
 
 	$builder = $userModel->builder();
 
-這個生成器已經在模型中的 $table 設定好了。
+這個生成器已經在模型中的 $table 設定好了。如果你需要存取另一張表，你可以把它作為一個參數傳進去，但要注意使用這種方式獲得的並不是共享實體。
+
+::
+
+    $groupBuilder = $userModel->builder('groups');
 
 你還可以在同一個鏈式呼叫中優雅地混和使用查詢生成器方法與模型提供的 CRUD 方法。
 
@@ -735,11 +757,10 @@ The other way to set the validation rules to fields by functions,
 
 ::
 
-	$userModel->chunk(100, function ($data)
-	{
-		// do something.
-		// $data is a single row of data.
-	});
+    $userModel->chunk(100, function ($data) {
+        // do something.
+        // $data is a single row of data.
+    });
 
 模型事件
 ============
@@ -753,15 +774,15 @@ The other way to set the validation rules to fields by functions,
 
 ::
 
-	protected function hashPassword(array $data)
-	{
-		if (! isset($data['data']['password']) return $data;
+    protected function hashPassword(array $data)
+    {
+        if (! isset($data['data']['password'])) return $data;
 
-		$data['data']['password_hash'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
-		unset($data['data']['password'];
+        $data['data']['password_hash'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
+        unset($data['data']['password']);
 
-		return $data;
-	}
+        return $data;
+    }
 
 指定要運作的回呼
 ---------------------------
