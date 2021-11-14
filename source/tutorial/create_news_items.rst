@@ -41,7 +41,7 @@
         <input type="submit" name="submit" value="Create news item" />
     </form>
 
-你可能會覺得 ``service('validation')->listErrors()`` 這個函數看起來很陌生。它能用於表單驗證相關的錯誤報告。而 ``csrf_field()`` 函數創建了一個帶有 CSRF 令牌的隱藏輸入框，有助於你預防一些常見的攻擊。
+你可能會覺得 ``service('validation')->listErrors()`` 這個函數看起來很陌生。它能用於表單驗證相關的錯誤報告。而 ``csrf_field()`` 函數創建了一個帶有 CSRF 權杖的隱藏輸入框，有助於你預防一些常見的攻擊。
 
 回到你的 ``News`` 控制器。你將在這裡執行：檢查表單是否已經提交、提交的資料是否通過驗證，這兩項操作。我們使用 :doc:`表單驗證 <../libraries/validation>` 程式庫進行驗證。
 

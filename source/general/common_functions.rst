@@ -204,17 +204,17 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 
 .. php:function:: csrf_token ()
 
-	:returns: 當前 CSRF 令牌的名稱。
+	:returns: 當前 CSRF 權杖的名稱。
 	:rtype: string
 
-	回傳當前 CSRF 令牌的名稱。
+	回傳當前 CSRF 權杖的名稱。
 
 .. php:function:: csrf_header ()
 
-	:returns: 當前 CSRF 令牌的 header 名稱。
+	:returns: 當前 CSRF 權杖的 header 名稱。
 	:rtype: string
 
-	當前 CSRF 令牌的 header 名稱。
+	當前 CSRF 權杖的 header 名稱。
 
 .. php:function:: csrf_hash ()
 
