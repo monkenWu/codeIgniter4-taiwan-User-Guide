@@ -30,17 +30,19 @@
 
 ::
 
-	<?php namespace App\Controllers;
+    <?php
 
-        use CodeIgniter\Controller;
+    namespace App\Controllers;
 
-	class Tools extends Controller {
+    use CodeIgniter\Controller;
 
-		public function message($to = 'World')
-		{
-			echo "Hello {$to}!".PHP_EOL;
-		}
-	}
+    class Tools extends Controller
+    {
+        public function message($to = 'World')
+        {
+            echo "Hello {$to}!" . PHP_EOL;
+        }
+    }
 
 接著，把這個檔案儲存在你的 **app/Controllers/** 目錄底下。
 
@@ -48,26 +50,26 @@
 
 ::
 
-	example.com/index.php/tools/message/to
+    example.com/index.php/tools/message/to
 
 但現在，我們打開 Mac/Linux 的 Terminal ，或者在 Windows 中打開 cmd ，然後定位至 CodeIgniter 的專案根目錄。
 
 .. code-block:: bash
 
-	$ cd /path/to/project/public
-	$ php index.php tools message
+    $ cd /path/to/project/public
+    $ php index.php tools message
 
 如果你做得沒錯，你應該會看到螢幕上出現 *Hello World!* 的訊息。
 
 .. code-block:: bash
 
-	$ php index.php tools message "John Smith"
+    $ php index.php tools message "John Smith"
 
 在這裡，我們使用與 URL 一樣的方式傳遞一個參數， "John Smith" 就會作為參數傳入到控制器方法中，你得輸出就會變為：
 
 ::
 
-	Hello John Smith!
+    Hello John Smith!
 
 基本知識
 ==================

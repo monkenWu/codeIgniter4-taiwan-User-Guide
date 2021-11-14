@@ -21,14 +21,16 @@ CodeIgniter 的命令列程式庫使創建交互式命令列腳本變得簡單�
 
 ::
 
-	<?php namespace App\Controllers;
+    <?php
 
-	use CodeIgniter\CLI\CLI;
+    namespace App\Controllers;
 
-	class MyController extends \CodeIgniter\Controller
-	{
-		// ...
-	}
+    use CodeIgniter\CLI\CLI;
+
+    class MyController extends \CodeIgniter\Controller
+    {
+        // ...
+    }
 
 當你第一次載入檔案時，類別會自動初始化。
 
@@ -60,6 +62,43 @@ CodeIgniter 的命令列程式庫使創建交互式命令列腳本變得簡單�
 ::
 
 	$email = CLI::prompt('What is your email?', null, 'required|valid_email');
+
+驗證規則也可以用陣列語法撰寫：
+
+::
+
+    $email = CLI::prompt('What is your email?', null, ['required', 'valid_email']);
+
+**promptByKey()**
+
+Predefined answers (options) for prompt sometimes need to be described or are too complex to select via their value.
+``promptByKey()`` allows the user to select an option by its key instead of its value::
+
+    $fruit = CLI::promptByKey('These are your choices:', ['The red apple', 'The plump orange', 'The ripe banana']);
+
+    //These are your choices:
+    //  [0]  The red apple
+    //  [1]  The plump orange
+    //  [2]  The ripe banana
+    //
+    //[0, 1, 2]:
+
+Named keys are also possible::
+
+    $fruit = CLI::promptByKey(['These are your choices:', 'Which would you like?'], [
+        'apple' => 'The red apple',
+        'orange' => 'The plump orange',
+        'banana' => 'The ripe banana'
+    ]);
+
+    //These are your choices:
+    //  [apple]   The red apple
+    //  [orange]  The plump orange
+    //  [banana]  The ripe banana
+    //
+    //Which would you like? [apple, orange, banana]:
+
+Finally, you can pass :doc:`validation </libraries/validation>` rules to the answer input as the third parameter, the acceptable answers are automatically restricted to the passed options.
 
 提供回饋
 ==================
@@ -121,10 +160,10 @@ print()　函數與　``write()``　函數相同，使是它不強制在前後�
 
 ::
 
-    for ($i = 0; $i <= 10; $i++)
-    {
+    for ($i = 0; $i <= 10; $i++) {
         CLI::print($i);
     }
+
 
 **color()**
 
@@ -164,21 +203,33 @@ print()　函數與　``write()``　函數相同，使是它不強制在前後�
 
 ::
 
-	// 決定所有標題長度
-	// 以確定左欄的寬度
-	$maxlen = max(array_map('strlen', $titles));
+    $titles = [
+        'task1a',
+        'task1abc',
+    ];
+    $descriptions = [
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+        "Lorem Ipsum has been the industry's standard dummy text ever since the",
+    ];
 
-	for ($i=0; $i <= count($titles); $i++)
-	{
-		CLI::write(
-			// Display the title on the left of the row
-			$title[$i] . '   ' .
-			// Wrap the descriptions in a right-hand column
-			// with its left side 3 characters wider than
-			// the longest item on the left.
-			CLI::wrap($descriptions[$i], 40, $maxlen + 3)
-		);
-	}
+    // Determine the maximum length of all titles
+    // to determine the width of the left column
+    $maxlen = max(array_map('strlen', $titles));
+
+    for ($i = 0; $i < count($titles); $i++) {
+        CLI::write(
+            // Display the title on the left of the row
+            substr(
+                $titles[$i] . str_repeat(' ', $maxlen + 3),
+                0,
+                $maxlen + 3
+            ) .
+            // Wrap the descriptions in a right-hand column
+            // with its left side 3 characters wider than
+            // the longest item on the left.
+            CLI::wrap($descriptions[$i], 40, $maxlen + 3)
+        );
+    }
 
 會建立起下列內容：
 
@@ -220,17 +271,16 @@ print()　函數與　``write()``　函數相同，使是它不強制在前後�
 
 ::
 
-	$totalSteps = count($tasks);
-	$currStep   = 1;
+    $totalSteps = count($tasks);
+    $currStep   = 1;
 
-	foreach ($tasks as $task)
-	{
-		CLI::showProgress($currStep++, $totalSteps);
-		$task->run();
-	}
+    foreach ($tasks as $task) {
+        CLI::showProgress($currStep++, $totalSteps);
+        $task->run();
+    }
 
-	// Done, so erase it...
-	CLI::showProgress(false);
+    // Done, so erase it...
+    CLI::showProgress(false);
 
 **table()**
 
