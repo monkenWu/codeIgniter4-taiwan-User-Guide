@@ -53,3 +53,9 @@ CLI 請求類別
 
     // command line: php index.php users 21 profile -foo bar
     echo $request->getOptionPath();  // -foo bar
+
+Passing ``true`` to the first argument will try to write long options using two dashes::
+
+    // php index.php user 21 --foo bar -f
+    echo $request->getOptionString(); // -foo bar -f
+    echo $request->getOptionString(true); // --foo bar -f

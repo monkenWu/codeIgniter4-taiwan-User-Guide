@@ -6,11 +6,11 @@ PSR 規範
 
 **PSR-1 ：基本程式寫作標準（ Basic Coding Standard ）**
 
-這份規範涵蓋了基本類別、方法，以及檔案命名標準。我們的 `開發風格指南 <https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing/styleguide.rst>`_ 符合 PSR-1 ，並且在它的基礎上新增了自己的標準。
+這份規範涵蓋了基本類別、方法，以及檔案命名標準。我們的 `開發風格指南 <https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing/styleguide.md>`_ 符合 PSR-1 ，並且在它的基礎上新增了自己的標準。
 
 **PSR-2 ：程式碼風格指南（ Coding Style Guide ）**
 
-這是一份有爭議的 PSR ， CodeIgniter 將最大限度地滿足其中的建議，並不會全部符合。
+我們的 `開發風格指南 <https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing/styleguide.md>`_ 遵循 PSR 建議，並且加上一套我們自己的程式碼風格約束。
 
 **PSR-3 ：日誌記錄器（ Logger Interface ）**
 
@@ -22,11 +22,11 @@ CodeIgniter 的 :doc:`日誌記錄器（ 記錄 ） </general/logging>` 實作�
 
 **PSR-6 ：快取介面標準（ Caching Interface ）**
 
-CodeIgniter 並不會嘗試符合這份 PSR 的規範，我們將提出新的 `SimpleCache 介面 <https://github.com/dragoonis/fig-standards/blob/psr-simplecache/proposed/simplecache.md>`_ 以符合我們的需求。
+雖然框架中的快取元件沒有遵守 PSR-6 或是 PSR-16，但 CodeIgniter4 團隊提供了一套單獨的轉接器作為補充模組。當然，我們推薦你直接使用 CodeIgniter4 原生的快取驅動，因為轉接器的開發僅僅是為了與第三方程式庫相容。若你需要了解更多訊息，可以造訪 `CodeIgniter4 Cache 儲存庫 <https://github.com/codeigniter4/cache>`_ 。
 
 **PSR-7 ： HTTP訊息介面標準（ HTTP Message Interface ）**
 
-這份 PSR 標準化了與 HTTP 的溝通方式，縱使有許多概念已經成為 CodeIgniter HTTP 層的一部分，但 CodeIgniter 將最大限度地滿足其中的建議，並不會全部符合。
+這份 PSR 標準化了與 HTTP 的互動模式，縱使有許多概念已經成為 CodeIgniter HTTP 層的一部分，但 CodeIgniter 並不追求相容這份建議。
 
 ---
 

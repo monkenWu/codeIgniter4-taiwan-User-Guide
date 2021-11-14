@@ -9,6 +9,10 @@
 
 在預設的情形下，CodeIgniter 內建的環境常數將使用 ``$_SERVER['CI_ENVIRONMENT']`` 提供的值，否則默認為 production（上線模式）。可以根據你的伺服器的性質，設定多種不同的模式。
 
+.. note:: The environment ``testing`` is the special one for PHPUnit testing.
+    It has special conditions built into the framework at various places to assist with that.
+    You can't use it for your development.
+
 .env
 ----
 

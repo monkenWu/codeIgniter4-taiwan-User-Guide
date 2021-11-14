@@ -20,14 +20,14 @@ CodeIgniter 提供了兩個獨立的工具——計時器與疊代器，來幫�
 
 ::
 
-	$benchmark = \Config\Services::timer();
-	$benchmark->start('render view');
+    $benchmark = \Config\Services::timer();
+    $benchmark->start('render view');
 
 ``stop()`` 方法則是以你要停止的計時器名稱作為唯一的傳入參數：
 
 ::
 
-	$benchmark->stop('render view');
+    $benchmark->stop('render view');
 
 這個名稱不區分大小寫，但必須與啟動計時器時給予的名稱相符。
 
@@ -35,11 +35,11 @@ CodeIgniter 提供了兩個獨立的工具——計時器與疊代器，來幫�
 
 ::
 
-	// 開始計時器
-	timer('render view');
-	// 如果以這個名子命名的計時器已經啟動
-	// 將停止計時器,
-	timer('render view');
+    // 開始計時器
+    timer('render view');
+    // 如果以這個名子命名的計時器已經啟動
+    // 將停止計時器,
+    timer('render view');
 
 查閱基準測試得分
 =============================
@@ -48,22 +48,22 @@ CodeIgniter 提供了兩個獨立的工具——計時器與疊代器，來幫�
 
 ::
 
-	$timers = $benchmark->getTimers();
+    $timers = $benchmark->getTimers();
 
-	// Timers =
-	[
-		'render view'  => [
-			'start'    => 1234567890,
-			'end'      => 1345678920,
-			'duration' => 15.4315      // number of seconds
-		]
-	]
+    // Timers =
+    [
+        'render view'  => [
+            'start'    => 1234567890,
+            'end'      => 1345678920,
+            'duration' => 15.4315      // number of seconds
+        ]
+    ]
 
 你可以透過傳入你所希望顯示的小數位數作為唯一的參數，用於改變計算出的持續時間的精度。預設值是小數點後四位。
 
 ::
 
-	$timers = $benchmark->getTimers(6);
+    $timers = $benchmark->getTimers(6);
 
 計時器會自動顯示在 :doc:`除錯工具列 </testing/debugging>` 上。
 
@@ -74,8 +74,8 @@ CodeIgniter 提供了兩個獨立的工具——計時器與疊代器，來幫�
 
 ::
 
-	echo timer()->getElapsedTime('render view');
-	// Displays: 0.0234
+    echo timer()->getElapsedTime('render view');
+    // Displays: 0.0234
 
 ==================
 使用疊代器
@@ -90,21 +90,17 @@ CodeIgniter 提供了兩個獨立的工具——計時器與疊代器，來幫�
 
 ::
 
-	$iterator = new \CodeIgniter\Benchmark\Iterator();
+    $iterator = new \CodeIgniter\Benchmark\Iterator();
 
-	// 加入新的任務
-	$iterator->add('single_concat', function()
-		{
-			$str = 'Some basic'.'little'.'string concatenation test.';
-		}
-	);
+    // 加入新的任務
+    $iterator->add('single_concat', function () {
+        $str = 'Some basic'.'little'.'string concatenation test.';
+    });
 
-	// 加入另一項任務
-	$iterator->add('double', function($a='little')
-		{
-			$str = "Some basic {$a} string test.";
-		}
-	);
+    // 加入另一項任務
+    $iterator->add('double', function ($a = 'little') {
+        $str = "Some basic {$little} string test.";
+    });
 
 運作任務
 =================
@@ -113,12 +109,12 @@ CodeIgniter 提供了兩個獨立的工具——計時器與疊代器，來幫�
 
 ::
 
-	// 運作測試 3000 次.
-	$iterator->run(3000);
+    // 運作測試 3000 次.
+    $iterator->run(3000);
 
 一旦運作了疊代器，它將會回傳一個包含測試結果的 HTML 表格。如果你不希望將測試結果顯示出來，你可以在第二個參數中傳入 false ：
 
 ::
 
-	// 不輸出結果到畫面
-	$iterator->run(1000, false);
+    // 不輸出結果到畫面
+    $iterator->run(1000, false);

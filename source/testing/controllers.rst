@@ -6,6 +6,10 @@
 
 .. note:: 因為整個框架沒有經過啟動，所以在某些特殊的狀況，你會無法使用這種方式測試控制器。
 
+.. contents::
+    :local:
+    :depth: 2
+
 使用輔助特性
 ================
 
@@ -13,26 +17,34 @@
 
 ::
 
-    <?php namespace CodeIgniter;
+    <?php
 
-    use CodeIgniter\Test\ControllerTester;
+    namespace CodeIgniter;
 
-    class TestControllerA extends \CIDatabaseTestCase
+    use CodeIgniter\Test\ControllerTestTrait;
+    use CodeIgniter\Test\CIUnitTestCase;
+    use CodeIgniter\Test\DatabaseTestTrait;
+
+    class TestControllerA extends CIUnitTestCase
     {
-        use ControllerTester;
+        use ControllerTestTrait, DatabaseTestTrait;
     }
 
 一旦包含了這個特性在你的測試類別中，你就可以開始設定環境，包括請求、響應類別、請求 body ，與 URI 等內容。當你用 ``controller()`` 方法指定你所要使用的 controller 時，請傳入該 controller 全稱的類別名稱。最後，使用 ``execute()`` 呼叫你所想要運作的方法名稱。
 
 ::
 
-    <?php namespace CodeIgniter;
+    <?php
 
-    use CodeIgniter\Test\ControllerTester;
+    namespace CodeIgniter;
 
-    class TestControllerA extends \CIDatabaseTestCase
+    use CodeIgniter\Test\ControllerTestTrait;
+    use CodeIgniter\Test\CIUnitTestCase;
+    use CodeIgniter\Test\DatabaseTestTrait;
+
+    class TestControllerA extends CIUnitTestCase
     {
-        use ControllerTester;
+        use ControllerTestTrait, DatabaseTestTrait;
 
         public function testShowCategories()
         {
@@ -152,135 +164,131 @@
 驗證響應
 =====================
 
-當控制器被執行完畢時，將會回傳一個新的 **ControllerResponse** 實體，這個實體提供了許多有用的方法，也可以透過呼叫方法產生 Request 與 Response 。
+``ControllerTestTrait::execute()`` returns an instance of a ``TestResponse``. See `Testing Responses <response.html>`_ on
+how to use this class to perform additional assertions and verification in your test cases.
 
-**isOK()**
+Filter Testing
+==============
 
-提供你一個簡單的檢查，證明這個響應是成功的響應。主要檢查 HTTP 狀態是否在 200 至 300 這個範圍之間。
+Similar to Controller Testing, the framework provides tools to help with creating tests for
+custom :doc:`Filters </incoming/filters>` and your projects use of them in routing.
 
-::
+The Helper Trait
+----------------
 
-    $results = $this->withBody($body)
-                    ->controller(\App\Controllers\ForumController::class)
-                    ->execute('showCategories');
+Just like with the Controller Tester you need to include the ``FilterTestTrait`` in your test
+cases to enable these features::
 
-    if ($results->isOK())
+    <?php
+
+    namespace CodeIgniter;
+
+    use CodeIgniter\Test\CIUnitTestCase;
+    use CodeIgniter\Test\FilterTestTrait;
+
+    class FilterTestCase extends CIUnitTestCase
     {
-        . . .
+        use FilterTestTrait;
     }
 
-**isRedirect()**
+Configuration
+-------------
 
-檢查響應是否是重新導向：
+Because of the logical overlap with Controller Testing ``FilterTestTrait`` is designed to
+work together with ``ControllerTestTrait`` should you need both on the same class.
+Once the trait has been included ``CIUnitTestCase`` will detect its ``setUp`` method and
+prepare all the components needed for your tests. Should you need a special configuration
+you can alter any of the properties before calling the support methods:
 
-::
+* ``$request`` A prepared version of the default ``IncomingRequest`` service
+* ``$response`` A prepared version of the default ``ResponseInterface`` service
+* ``$filtersConfig`` The default ``Config\Filters`` configuration (note: discovery is handle by ``Filters`` so this will not include module aliases)
+* ``$filters`` An instance of ``CodeIgniter\Filters\Filters`` using the three components above
+* ``$collection`` A prepared version of ``RouteCollection`` which includes the discovery of ``Config\Routes``
 
-    $results = $this->withBody($body)
-                    ->controller(\App\Controllers\ForumController::class)
-                    ->execute('showCategories');
+The default configuration will usually be best for your testing since it most closely emulates
+a "live" project, but (for example) if you wanted to simulate a filter triggering accidentally
+on an unfiltered route you could add it to the Config::
 
-    if ($results->isRedirect())
+    class FilterTestCase extends CIUnitTestCase
     {
-        . . .
-    }
+        use FilterTestTrait;
 
-**request()**
+        protected function testFilterFailsOnAdminRoute()
+        {
+            $this->filtersConfig->globals['before'] = ['admin-only-filter'];
 
-你可以透過這個方法產生請求物件：
+            $this->assertHasFilters('unfiltered/route', 'before');
+        }
+    ...
 
-::
+Checking Routes
+---------------
 
-    $results = $this->withBody($body)
-                    ->controller(\App\Controllers\ForumController::class)
-                    ->execute('showCategories');
+The first helper method is ``getFiltersForRoute()`` which will simulate the provided route
+and return a list of all Filters (by their alias) that would have run for the given position
+("before" or "after"), without actually executing any controller or routing code. This has
+a large performance advantage over Controller and HTTP Testing.
 
-    $request = $results->request();
+.. php:function:: getFiltersForRoute($route, $position)
 
-**response()**
+    :param    string    $route: The URI to check
+    :param    string    $position: The filter method to check, "before" or "after"
+    :returns:    Aliases for each filter that would have run
+    :rtype:    string[]
 
-你可以透過這個方法產生響應物件（如果存在）：
+    Usage example::
 
-::
+        $result = $this->getFiltersForRoute('/', 'after'); // ['toolbar']
 
-    $results = $this->withBody($body)
-                    ->controller(\App\Controllers\ForumController::class)
-                    ->execute('showCategories');
+Calling Filter Methods
+----------------------
 
-    $response = $results->response();
+The properties describe in Configuration are all set up to ensure maximum performance without
+interfering or interference from other tests. The next helper method will return a callable
+method using these properties to test your Filter code safely and check the results.
 
-**getBody()**
+.. php:function:: getFilterCaller($filter, $position)
 
-你可以透過 **getBody()** 方法造訪響應的 body ，這個響應會被發送到使用者端。這個方法可以產生 HTML 或 JSON 響應。
+    :param    FilterInterface|string    $filter: The filter instance, class, or alias
+    :param    string    $position: The filter method to run, "before" or "after"
+    :returns:    A callable method to run the simulated Filter event
+    :rtype:    Closure
 
-::
+    Usage example::
 
-    $results = $this->withBody($body)
-                    ->controller(\App\Controllers\ForumController::class)
-                    ->execute('showCategories');
+        protected function testUnauthorizedAccessRedirects()
+        {
+            $caller = $this->getFilterCaller('permission', 'before');
+            $result = $caller('MayEditWidgets');
 
-    $body = $results->getBody();
+            $this->assertInstanceOf('CodeIgniter\HTTP\RedirectResponse', $result);
+        }
 
-響應輔助方法
------------------------
+    Notice how the ``Closure`` can take input parameters which are passed to your filter method.
 
-你得到的響應包含著一些輔助方法，用於驗證響應中的 HTML 輸出。這些方法對於在測試中宣告斷言時非常有用。
+Assertions
+----------
 
-**see()** 方法將會檢查你所傳入的字串是否存在於頁面本身，你也可以更加具體的描述它，確定他是否是某種標記的描述，例如： tag 、 class 或 id ：
+In addition to the helper methods above ``FilterTestTrait`` also comes with some assertions
+to streamline your test methods.
 
-::
+The **assertFilter()** method checks that the given route at position uses the filter (by its alias)::
 
-    // 驗證 Hello World 是否存在於頁面中
-    $results->see('Hello World');
-    // 驗證是否有存在著 Hello World 的 h1 標籤
-    $results->see('Hello World', 'h1');
-    // 驗證是否有存在著包含 Hello World 的元素，並且它為 .notice Class 中的成員。
-    $results->see('Hello World', '.notice');
-    // 驗證是否存在著包含 Hello World 的元素，並且它的 id 被宣告為 title  。
-    $results->see('Hellow World', '#title');
+    // Make sure users are logged in before checking their account
+    $this->assertFilter('users/account', 'before', 'login');
 
-而 **dontSee()** 的方法則完全相反於 **see()** 方法：
+The **assertNotFilter()** method checks that the given route at position does not use the filter (by its alias)::
 
-::
+    // Make sure API calls do not try to use the Debug Toolbar
+    $this->assertNotFilter('api/v1/widgets', 'after', 'toolbar');
 
-    // 驗證 Hello World 不存在於頁面中
-    $results->dontSee('Hello World');
-    // 驗證 Hello World 不存在於任何 h1 標籤中
-    $results->dontSee('Hello World', 'h1');
+The **assertHasFilters()** method checks that the given route at position has at least one filter set::
 
-**seeElement()** 與 **dontSeeElement()** 和前面的方法非常類似，但它並不會去比對元素的值。相反的，它指是檢查頁面上的某個元素是否存在：
+    // Make sure that filters are enabled
+    $this->assertHasFilters('filtered/route', 'after');
 
-::
+The **assertNotHasFilters()** method checks that the given route at position has no filters set::
 
-    // 驗至 notice Class 在頁面上是否有任何成員元素
-    $results->seeElement('.notice');
-    // 驗證頁面上是否有 id 為 title 的元素
-    $results->seeElement('#title')
-    // 驗證頁面上是否不存在任何 id 為 title 的元素
-    $results->dontSeeElement('#title');
-
-你可以使用 **seeLink()** 來確認頁面上出現了某個帶有指定字串的超連接：
-
-::
-
-    // 驗證是否有一個文字為 Upgrade Account 的超連結
-    $results->seeLink('Upgrade Account');
-    // 驗證是否有一個文字為 Upgrade Account 且它正好是 upsell class 成員的超連結
-    $results->seeLink('Upgrade Account', '.upsell');
-
-**seeInField()** 用於驗證你所傳入的標籤與內容元素是否存在：
-
-::
-
-    // 驗證是否存在著名為 user 且值為 John Snow 的輸入
-    $results->seeInField('user', 'John Snow');
-    // 驗證陣列內的輸入
-    $results->seeInField('user[name]', 'John Snow');
-
-最後，你可以使用 **seeCheckboxIsChecked()** 方法來檢查某個核取方塊是否被選中：
-
-::
-
-    // 驗證 class 為 foo 的成員核取方塊是否被選中
-    $results->seeCheckboxIsChecked('.foo');
-    // 驗證 id 為 bar 的核取方塊是否被選中
-    $results->seeCheckboxIsChecked('#bar');
+    // Make sure no filters run for our static pages
+    $this->assertNotHasFilters('about/contact', 'before');

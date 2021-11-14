@@ -1,11 +1,12 @@
 #################
-Library Reference
+程式庫參考
 #################
 
 .. toctree::
     :titlesonly:
 
     caching
+    cookies
     curlrequest
     email
     encryption
@@ -13,6 +14,7 @@ Library Reference
     honeypot
     images
     pagination
+    publisher
     security
     sessions
     throttler

@@ -2,6 +2,10 @@
 查詢輔助函數
 ####################
 
+.. contents::
+    :local:
+    :depth: 2
+
 取得執行查詢的資訊
 ==================================
 
@@ -30,17 +34,17 @@
 
 ::
 
-	echo $db->table('my_table')->countAll();
+    echo $db->table('my_table')->countAll();
 
-	// Produces an integer, like 25
+    // Produces an integer, like 25
 
-	**$db->countAllResults()**
+**$db->countAllResults()**
 
 Permits you to determine the number of rows in a particular result set.
 Submit the table name in the first parameter. This is part of Query Builder.
 Example::
 
-    echo $db->table('my_table')->countAllResults();
+    echo $db->table('my_table')->like('title', 'match')->countAllResults();
 
     // Produces an integer, like 5
 

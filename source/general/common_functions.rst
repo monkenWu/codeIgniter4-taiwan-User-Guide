@@ -31,6 +31,26 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
      	$foo = cache('foo');
     	$cache = cache();
 
+.. php:function:: cookie(string $name[, string $value = ''[, array $options = []]])
+
+    :param string $name: Cookie name
+    :param string $value: Cookie value
+    :param array $options: Cookie options
+    :rtype: ``Cookie``
+    :returns: ``Cookie`` instance
+    :throws: ``CookieException``
+
+    Simpler way to create a new Cookie instance.
+
+.. php:function:: cookies([array $cookies = [][, bool $getGlobal = true]])
+
+    :param array $cookies: If ``getGlobal`` is ``false``, this is passed to ``CookieStore``'s constructor.
+    :param bool $getGlobal: If ``false``, creates a new instance of ``CookieStore``.
+    :rtype: ``CookieStore``
+    :returns: Instance of ``CookieStore`` saved in the current ``Response``, or a new ``CookieStore`` instance.
+
+    Fetches the global ``CookieStore`` instance held by ``Response``.
+
 .. php:function:: env ( $key[, $default=null])
 
 	:param string $key: 需要檢索的環境變數名稱
@@ -184,17 +204,17 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 
 .. php:function:: csrf_token ()
 
-	:returns: 當前 CSRF 令牌的名稱。
+	:returns: 當前 CSRF 權杖的名稱。
 	:rtype: string
 
-	回傳當前 CSRF 令牌的名稱。
+	回傳當前 CSRF 權杖的名稱。
 
 .. php:function:: csrf_header ()
 
-	:returns: 當前 CSRF 令牌的 header 名稱。
+	:returns: 當前 CSRF 權杖的 header 名稱。
 	:rtype: string
 
-	當前 CSRF 令牌的 header 名稱。
+	當前 CSRF 權杖的 header 名稱。
 
 .. php:function:: csrf_hash ()
 
@@ -287,11 +307,17 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 		// 設定快閃訊息（Flash message）
 		return redirect()->back()->with('foo', 'message');
 
+		// Copies all cookies from global response instance
+		return redirect()->back()->withCookies();
+
+        // Copies all headers from the global response instance
+        return redirect()->back()->withHeaders();
+
 	當傳遞 URL 到函數中時，它會被視為反向路由請求，而不是 relative/full 的 URI ，處理方式與使用 redirect()->route() 相同 ：
 
 	::
 
-        	// 前往 named/reverse-routed 的 URI
+		// 前往 named/reverse-routed 的 URI
 		return redirect('named_route');
 
 .. php:function:: remove_invisible_characters($str[, $urlEncoded = TRUE])

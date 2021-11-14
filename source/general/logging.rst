@@ -10,10 +10,9 @@
 
 ::
 
-	if ($some_var == '')
-	{
-		log_message('error', 'Some variable did not contain a value.');
-	}
+    if ($some_var === '') {
+        log_message('error', 'Some variable did not contain a value.');
+    }
 
 共有 8 個不同的日誌級別，源自  `RFC 5424 <https://tools.ietf.org/html/rfc5424>`_  中提到的級別，具體說明如下：
 
@@ -59,24 +58,20 @@ emergency   系統無法使用。
 記錄日誌系統支援多種日誌記錄處理程序同時運作的方法。可以將每個處理程序設定為特定的級別，從而忽略其他處理程序，預設安裝的處理程序有兩種：
 
 - **檔案處理程序** 是預設的處理程序，將會每天在本地建立一個檔案。這是推薦的記錄方法。
-
 - **ChromeLogger 處理程序** 如果你在 Chrome Web 瀏覽器中安裝了 `ChromeLogger extension <https://craig.is/writing/chrome-logger>`_ 擴充模組，你可以使用這個處理程序在 Chrome 主控台中顯示日誌訊息。
+- **Errorlog Handler** This handler will take advantage of PHP's native ``error_log()`` function and write
+  the logs there. Currently, only the ``0`` and ``4`` message types of ``error_log()`` are supported.
 
 處理程序是在核心設定檔案中的 ``$handlers`` 屬性設定的，它只是一個處理程序的陣列與其設定內容。每個處理程序將可以在這個陣列中被指定，「鍵」為以命名空間所構成的類別名稱，「值」將是一個針對每個處理程序的不同屬性的陣列。每個處理程序都會一個供通屬性： ``handles`` ，這是處理程序將記錄訊息的日誌級別的陣列。
 
 ::
 
 	public $handlers = [
-
-		//--------------------------------------------------------------------
-		// File Handler
-		//--------------------------------------------------------------------
-
-		'CodeIgniter\Log\Handlers\FileHandler' => [
-
-			'handles' => ['critical', 'alert', 'emergency', 'debug', 'error', 'info', 'notice', 'warning'],
-		]
-	];
+        // File Handler
+        'CodeIgniter\Log\Handlers\FileHandler' => [
+            'handles' => ['critical', 'alert', 'emergency', 'debug', 'error', 'info', 'notice', 'warning'],
+        ]
+    ];
 
 依據語境修改訊息
 ==================================
@@ -85,24 +80,21 @@ emergency   系統無法使用。
 
 ::
 
-	// Generates a message like: User 123 logged into the system from 127.0.0.1
-	$info = [
-		'id' => $user->id,
-		'ip_address' => $this->request->ip_address()
-	];
+    // Generates a message like: User 123 logged into the system from 127.0.0.1
+    $info = [
+        'id' => $user->id,
+        'ip_address' => $this->request->ip_address()
+    ];
 
-	log_message('info', 'User {id} logged into the system from {ip_address}', $info);
+    log_message('info', 'User {id} logged into the system from {ip_address}', $info);
 
 如果你想記錄一個異常或是錯誤，你可以在陣列中宣告一個鍵為「 exception 」值為錯誤本身的成員。這個設定將會從物件中產生一個包含錯誤資訊、檔案名稱和行數的字串。當然，在訊息字串中，你也得提供名為「 exception 」的置換符號：
 
 ::
 
-	try
-	{
-		... Something throws error here
-	}
-	catch (\Exception $e)
-	{
+	try {
+		// Something throws error here
+	} catch (\Exception $e) {
 		log_message('error', '[ERROR] {exception}', ['exception' => $e]);
 	}
 

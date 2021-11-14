@@ -26,15 +26,15 @@
 
 ::
 
-	<ul>
+    <ul>
 
-	<?php foreach ($todo as $item) : ?>
+    <?php foreach ($todo as $item) : ?>
 
-		<li><?= $item ?></li>
+        <li><?= $item ?></li>
 
-	<?php endforeach ?>
+    <?php endforeach ?>
 
-	</ul>
+    </ul>
 
 注意，簡化語法將省略大括弧。相反的，結構語句後頭緊接著的括弧被話成了冒號與 ``endforeach`` 。上面所列出的控制結構都有相應的結束於法： ``endif`` 、 ``endfor`` 、 ``endforeach`` ，以及 ``endwhile`` 。
 
@@ -44,16 +44,16 @@
 
 ::
 
-	<?php if ($username === 'sally') : ?>
+    <?php if ($username === 'sally') : ?>
 
-		<h3>Hi Sally</h3>
+        <h3>Hi Sally</h3>
 
-	<?php elseif ($username === 'joe') : ?>
+    <?php elseif ($username === 'joe') : ?>
 
-		<h3>Hi Joe</h3>
+        <h3>Hi Joe</h3>
 
-	<?php else : ?>
+    <?php else : ?>
 
-		<h3>Hi unknown user</h3>
+        <h3>Hi unknown user</h3>
 
-	<?php endif ?>
+    <?php endif ?>

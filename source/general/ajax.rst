@@ -16,13 +16,9 @@ Fetch API
     fetch(url, {
         method: "get",
         headers: {
-
           "Content-Type": "application/json",
-
           "X-Requested-With": "XMLHttpRequest"
-
         }
-
     });
 
 
@@ -36,7 +32,6 @@ jQuery
     $.ajax({
         url: "your url",
         headers: {'X-Requested-With': 'XMLHttpRequest'}
-
     });
 
 

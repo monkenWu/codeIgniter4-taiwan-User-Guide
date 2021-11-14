@@ -21,8 +21,7 @@
 
     $query = $db->query("YOUR QUERY");
 
-    foreach ($query->getResult() as $row)
-    {
+    foreach ($query->getResult() as $row) {
         echo $row->title;
         echo $row->name;
         echo $row->body;
@@ -36,8 +35,7 @@
 
     $query = $db->query("YOUR QUERY");
 
-    foreach ($query->getResult('array') as $row)
-    {
+    foreach ($query->getResult('array') as $row) {
         echo $row['title'];
         echo $row['name'];
         echo $row['body'];
@@ -52,8 +50,7 @@ which represents a class to instantiate for each result object
 
     $query = $db->query("SELECT * FROM users;");
 
-    foreach ($query->getResult('User') as $user)
-    {
+    foreach ($query->getResult('User') as $user) {
         echo $user->name; // access attributes
         echo $user->reverseName(); // or methods defined on the 'User' class
     }
@@ -69,8 +66,7 @@ which represents a class to instantiate for each result object
 
     $query = $db->query("YOUR QUERY");
 
-    foreach ($query->getResultArray() as $row)
-    {
+    foreach ($query->getResultArray() as $row) {
         echo $row['title'];
         echo $row['name'];
         echo $row['body'];
@@ -91,8 +87,7 @@ which represents a class to instantiate for each result object
 
     $row = $query->getRow();
 
-    if (isset($row))
-    {
+    if (isset($row)) {
         echo $row->title;
         echo $row->name;
         echo $row->body;
@@ -124,8 +119,7 @@ which represents a class to instantiate for each result object
 
     $row = $query->getRowArray();
 
-    if (isset($row))
-    {
+    if (isset($row)) {
         echo $row['title'];
         echo $row['name'];
         echo $row['body'];
@@ -139,17 +133,17 @@ which represents a class to instantiate for each result object
 
 除此之外，你可以利用底下方式查詢到 前一筆/下一筆/第一筆/最後一筆 資料：
 
-	| **$row = $query->getFirstRow()**
-	| **$row = $query->getLastRow()**
-	| **$row = $query->getNextRow()**
-	| **$row = $query->getPreviousRow()**
+	| ``$row = $query->getFirstRow()``
+	| ``$row = $query->getLastRow()``
+	| ``$row = $query->getNextRow()``
+	| ``$row = $query->getPreviousRow()``
 
 預設回傳值為物件，除非設定第一個參數為 "array"：
 
-	| **$row = $query->getFirstRow('array')**
-	| **$row = $query->getLastRow('array')**
-	| **$row = $query->getNextRow('array')**
-	| **$row = $query->getPreviousRow('array')**
+	| ``$row = $query->getFirstRow('array')``
+	| ``$row = $query->getLastRow('array')``
+	| ``$row = $query->getNextRow('array')``
+	| ``$row = $query->getPreviousRow('array')``
 
 .. note:: 上述的所有方法都會將結果載入到記憶體(prefetching)中。使用 ``getUnbufferedRow()`` 處理大量的資料集。
 
@@ -162,12 +156,41 @@ which represents a class to instantiate for each result object
 
     $query = $db->query("YOUR QUERY");
 
-    while ($row = $query->getUnbufferedRow())
-    {
+    while ($row = $query->getUnbufferedRow()) {
         echo $row->title;
         echo $row->name;
         echo $row->body;
     }
+
+For use with MySQLi you may set MySQLi's result mode to 
+``MYSQLI_USE_RESULT`` for maximum memory savings. Use of this is not 
+generally recommended but it can be beneficial in some circumstances 
+such as writing large queries to csv. If you change the result mode 
+be aware of the tradeoffs associated with it.
+
+::
+
+    $db->resultMode = MYSQLI_USE_RESULT; // for unbuffered results
+
+    $query = $db->query("YOUR QUERY");
+
+    $file = new \CodeIgniter\Files\File(WRITEPATH.'data.csv');
+
+    $csv = $file->openFile('w');
+
+    while ($row = $query->getUnbufferedRow('array'))
+    {
+        $csv->fputcsv($row);
+    }
+
+    $db->resultMode = MYSQLI_STORE_RESULT; // return to default mode
+
+.. note:: When using ``MYSQLI_USE_RESULT`` all subsequent calls on the same  
+    connection will result in error until all records have been fetched or 
+    a ``freeResult()`` call has been made. The ``getNumRows()`` method will only 
+    return the number of rows based on the current position of the data pointer. 
+    MyISAM tables will remain locked until all the records have been fetched 
+    or a ``freeResult()`` call has been made.
 
 你可以選擇傳入 'object' （預設）或 'array' 來指定回傳的資料型態：
 
@@ -205,20 +228,19 @@ which represents a class to instantiate for each result object
 
         public function __set($name, $value)
         {
-            if ($name === 'lastLogin')
-            {
+            if ($name === 'lastLogin') {
                 $this->lastLogin = DateTime::createFromFormat('U', $value);
             }
         }
 
         public function __get($name)
         {
-            if (isset($this->$name))
-            {
+            if (isset($this->$name)) {
                 return $this->$name;
             }
         }
     }
+
 
 除了以下列出的兩個方法之外，這些方法(例如： ``getFirstRow()``, ``getLastRow()``,
 ``getNextRow()``, and ``getPreviousRow()`` )也可以使用類別名稱的方式做回傳查詢結果。
@@ -236,12 +258,12 @@ which represents a class to instantiate for each result object
 
     $rows = $query->getCustomResultObject('User');
 
-    foreach ($rows as $row)
-    {
+    foreach ($rows as $row) {
         echo $row->id;
         echo $row->email;
         echo $row->last_login('Y-m-d');
     }
+
 
 **getCustomRowObject()**
 
@@ -256,8 +278,7 @@ The second parameter is the class name to instantiate.
 
     $row = $query->getCustomRowObject(0, 'User');
 
-    if (isset($row))
-    {
+    if (isset($row)) {
         echo $row->email;               // access attributes
         echo $row->last_login('Y-m-d'); // access class methods
     }
@@ -319,20 +340,19 @@ the method using your query result object
 
 ::
 
-	$query = $thisdb->query('SELECT title FROM my_table');
+    $query = $thisdb->query('SELECT title FROM my_table');
 
-	foreach ($query->getResult() as $row)
-	{
-		echo $row->title;
-	}
+    foreach ($query->getResult() as $row) {
+        echo $row->title;
+    }
 
-	$query->freeResult();  // The $query result object will no longer be available
+    $query->freeResult(); // The $query result object will no longer be available
 
-	$query2 = $db->query('SELECT name FROM some_table');
+    $query2 = $db->query('SELECT name FROM some_table');
 
-	$row = $query2->getRow();
-	echo $row->name;
-	$query2->freeResult(); // The $query2 result object will no longer be available
+    $row = $query2->getRow();
+    echo $row->name;
+    $query2->freeResult(); // The $query2 result object will no longer be available
 
 **dataSeek()**
 
@@ -497,7 +517,7 @@ the method using your query result object
 
 		回傳查詢結果集合中欄位的數量
 
-		詳細用法: `結果輔助方法`__
+		詳細用法: `結果輔助方法`_
 
     .. php:method:: getFieldNames()
 

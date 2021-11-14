@@ -29,11 +29,10 @@ CodeIgniter 支援使用程式碼模組化的方式，幫助你創建具有重�
 
 ::
 
-    $psr4 = [
-        'Config'        => APPPATH . 'Config',
-        APP_NAMESPACE   => APPPATH,                // For custom namespace
-        'App'           => APPPATH,                // To ensure filters, etc still found,
-        'Acme'          => ROOTPATH.'acme'
+    public $psr4 = [
+        APP_NAMESPACE => APPPATH, // For custom namespace
+        'Config'      => APPPATH . 'Config',
+        'Acme'        => ROOTPATH . 'acme',
     ];
 
 現在，我們可以透過 ``Acme`` 命名空間造訪 **acme** 資料夾。僅僅是這樣我們就能完成模組所需的 80% 工作，你應該要使用自己熟悉的命名空間並且熟練地使用它們。多個檔案類型將透過所有已經定義的命名空間進行自動掃描，這對於模組的工作要素來說是至關重要的。
@@ -57,6 +56,28 @@ CodeIgniter 支援使用程式碼模組化的方式，幫助你創建具有重�
             /Views
 
 當然，沒有誰可以強迫你使用這個結構進行開發，你應該以最適合自己的方式來組織你的模組，省去不需要的目錄。或是，替你的實體、介面或是儲存庫創建新的目錄。
+
+===========================
+自動載入無類別檔案
+===========================
+
+More often than not that your module will not contain only PHP classes but also others like procedural
+functions, bootstrapping files, module constants files, etc. which are not normally loaded the way classes
+are loaded. One approach for this is using ``require``-ing the file(s) at the start of the file where it
+would be used.
+
+Another approach provided by CodeIgniter is to autoload these *non-class* files like how you would autoload
+your classes. All we need to do is provide the list of paths to those files and include them in the
+``$files`` property of your **app/Config/Autoload.php** file.
+
+::
+
+    public $files = [
+        'path/to/my/functions.php',
+        'path/to/my/constants.php',
+        'path/to/my/bootstrap.php',
+    ];
+
 
 ==============
 自動探索
@@ -108,6 +129,19 @@ Composer 與探索
 在預設的情形下 :doc:`路由 </incoming/routing>` 會在模組內被自動掃描。他可以在 **Modules** （模組）的設定檔案中關閉。
 
 .. note:: 因為這個檔案被包含在當前的作用域中，所以 ``$routes`` 實體已經替你自動宣告好了。如果你試圖重新定義這個類別，它將會導致錯誤發生。
+
+過濾器
+=======
+
+By default, :doc:`filters </incoming/filters>` are automatically scanned for within modules.
+It can be turned off in the **Modules** config file, described above.
+
+.. note:: Since the files are being included into the current scope, the ``$filters`` instance is already defined for you.
+    It will cause errors if you attempt to redefine that class.
+
+In the module's **Config/Filters.php** file, you need to define the aliases of the filters you use.::
+
+    $filters->aliases['menus'] = MenusFilter::class;
 
 控制器
 ===========
