@@ -57,19 +57,19 @@
     }
 
 
-然後，你得修改 ``routes`` 服務，改成載入你的類別：
+然後，你得修改在 **app/Config/Services.php** 的 ``routes`` 服務，改成載入你的類別：
 
 ::
 
-	public static function routes(bool $getShared = true)
-	{
-		if ($getShared)
-		{
-			return static::getSharedInstance('routes');
-		}
+    public static function routes(bool $getShared = true)
+    {
+        if ($getShared)
+        {
+            return static::getSharedInstance('routes');
+        }
 
-		return new RouteCollection(static::locator(), config('Modules'));
-	}
+        return new RouteCollection(static::locator(), config('Modules'));
+    }
 
 擴充核心系統類別
 ======================
@@ -82,29 +82,35 @@
 
 ::
 
-    <?php namespace App\Libraries;
+    <?php
+
+    namespace App\Libraries;
 
     use CodeIgniter\Router\RouteCollection;
 
     class RouteCollection extends RouteCollection
     {
-
+        // ...
     }
 
 如果你需要在你的類別中使用建構函數，請確定你同時運作了父類別的擴充函數：
 
 ::
 
-    <?php namespace App\Libraries;
+    <?php
+
+    namespace App\Libraries;
 
     use CodeIgniter\Router\RouteCollection as BaseRouteCollection;
 
     class RouteCollection extends BaseRouteCollection
     {
-         public function __construct()
-         {
-             parent::__construct();
-         }
-     }
+        public function __construct()
+        {
+            parent::__construct();
+
+            // your code here
+        }
+    }
 
 **Tip ：** 在你的類別中，任何與父類別相同的函數都將被使用，而不會使用原生的函數，這就是所謂的方法覆寫，你可以利用這種方式大幅度地修改 CodeIgniter 的核心。
