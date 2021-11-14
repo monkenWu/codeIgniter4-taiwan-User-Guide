@@ -49,17 +49,17 @@ CodeIgniter 中的所有的核心類別都由服務（services）提供。這意
 
 舉例來說，``RouterCollection`` 類別實作了 ``RouterCollectionInterface`` ，所以當你要替換創建路由的方式時，只需創建可以實作 ``RouterCollectionInterface`` 的新類別即可::
 
-	class MyRouter implements \CodeIgniter\Router\RouteCollectionInterface
-	{
-		// Implement required methods here.
-	}
+    class MyRouter implements \CodeIgniter\Router\RouteCollectionInterface
+    {
+        // Implement required methods here.
+    }
 
 最後，修改 **/app/Config/Services.php** 的內容來創建 ``MyRouter`` 的新實體，而不是自己創建一個::
 
-	public static function routes()
-	{
-		return new \App\Router\MyRouter();
-	}
+    public static function routes()
+    {
+        return new \App\Router\MyRouter();
+    }
 
 允許引數
 -------------------
@@ -68,14 +68,14 @@ CodeIgniter 中的所有的核心類別都由服務（services）提供。這意
 
 ``renderer`` service 就是一個很好的例子。預設情況下，我們希望此類別能夠在 ``APPPATH.views/`` 中找到視圖。但是，我們希望開發人員有需要的話，也能夠更改這個路徑。因此，類別接受 ``$viewPath`` 作為建構函數的引數。service 的方法如下所示::
 
-	public static function renderer($viewPath=APPPATH.'views/')
-	{
-		return new \CodeIgniter\View\View($viewPath);
-	}
+    public static function renderer($viewPath=APPPATH.'views/')
+    {
+        return new \CodeIgniter\View\View($viewPath);
+    }
 
 這將設置建構函數方法中的預設路徑，但也能輕鬆的更改它使用的路徑::
 
-	$renderer = \Config\Services::renderer('/shared/views');
+    $renderer = \Config\Services::renderer('/shared/views');
 
 共用類別
 -----------------

@@ -13,25 +13,35 @@
 
 ::
 
-    <?php namespace App\Database;
+    <?php
 
-    use CodeIgniter\Test\CIDatabaseTestCase;
+    namespace App\Database;
 
-    class MyTests extends CIDatabaseTestCase
+    use CodeIgniter\Test\CIUnitTestCase;
+    use CodeIgniter\Test\DatabaseTestTrait;
+
+    class MyTests extends CIUnitTestCase
     {
-        . . .
+        use DatabaseTestTrait;
+
+        // ...
     }
 
 因為大多數的特殊功能是在 ``setUp()`` 與 ``tearDown()`` 階段執行的，所以你必須確定在使用某些方法前呼叫了父類別的方法，否則你將無法實作這一章所描述的大部分功能：
 
 ::
 
-    <?php namespace App\Database;
+    <?php
 
-    use CodeIgniter\Test\CIDatabaseTestCase;
+    namespace App\Database;
 
-    class MyTests extends CIDatabaseTestCase
+    use CodeIgniter\Test\CIUnitTestCase;
+    use CodeIgniter\Test\DatabaseTestTrait;
+
+    class MyTests extends CIUnitTestCase
     {
+        use DatabaseTestTrait;
+
         public function setUp()
         {
             parent::setUp();
@@ -68,12 +78,17 @@
 
 ::
 
-    <?php namespace App\Database;
+    <?php
 
-    use CodeIgniter\Test\CIDatabaseTestCase;
+    namespace App\Database;
 
-    class MyTests extends\CIDatabaseTestCase
+    use CodeIgniter\Test\CIUnitTestCase;
+    use CodeIgniter\Test\DatabaseTestTrait;
+
+    class MyTests extends CIUnitTestCase
     {
+        use DatabaseTestTrait;
+
         protected $refresh  = true;
         protected $seed     = 'TestSeeder';
         protected $basePath = 'path/to/database/files';
@@ -111,7 +126,7 @@ runs before each test.
 
 **$namespace**
 
-在預設的情形下， CodeIgniter 會在 **tests/_support/DatabaseTestMigrations/Database/Migrations** 中查找在測試過程中應該運作的遷移檔案。你可以透過在 ``$namespace`` 屬性中宣告一個新的命名空間來更改這個位置。你所需告的新命名空間不應該包括 **Database/Migrations** 這個路徑，而應該是去除了這些路徑的基本命名空間。
+在預設的情形下， CodeIgniter 會在 **tests/_support/Database/Migrations** 中查找在測試過程中應該運作的遷移檔案。你可以透過在 ``$namespace`` 屬性中宣告一個新的命名空間來更改這個位置。你所需告的新命名空間不應該包括 **Database/Migrations** 這個路徑，而應該是去除了這些路徑的基本命名空間。要從所有可用的命名空間中運作遷移，請將這個屬性設定為 ``null`` 。
 
 輔助方法
 ==============

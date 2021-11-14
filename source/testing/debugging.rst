@@ -57,7 +57,9 @@
 啟動工具列
 ====================
 
-在 *除了* 上線環境外的任何環境，這個工具列都是預設啟動的。只要定義了 CI_DEBUG 常數值為 true ，工具列就會顯示。這個常數是在啟動檔案中宣告的（ app/Config/Boot/development.php ），可以在啟動檔案中宣告它會在甚麼環境下進行顯示。
+在 *除了* 上線環境外的任何環境，這個工具列都是預設啟動的。只要定義了 CI_DEBUG 常數值為 true ，工具列就會顯示。這個常數是在啟動檔案中宣告的（ **app/Config/Boot/development.php** ），可以在啟動檔案中宣告它會在甚麼環境下進行顯示。
+
+.. note:: The Debug Toolbar is not displayed when your ``baseURL`` setting (in **app/Config/App.php** or ``app.baseURL`` in **.env**) does not match your actual URL.
 
 工具列本身是以 :doc:`後濾器 </incoming/filters>` 的形式顯示，你可以透過從 **app/Config/Filters.php** 檔案中刪除 ``$globals`` 這個屬性來阻止它的運作。
 
@@ -68,16 +70,16 @@ CodeIgniter 內建多個蒐集器，用於蒐集資料並顯示在工具列上�
 
 ::
 
-	public $collectors = [
-		\CodeIgniter\Debug\Toolbar\Collectors\Timers::class,
-		\CodeIgniter\Debug\Toolbar\Collectors\Database::class,
-		\CodeIgniter\Debug\Toolbar\Collectors\Logs::class,
-		\CodeIgniter\Debug\Toolbar\Collectors\Views::class,
- 		\CodeIgniter\Debug\Toolbar\Collectors\Cache::class,
-		\CodeIgniter\Debug\Toolbar\Collectors\Files::class,
-		\CodeIgniter\Debug\Toolbar\Collectors\Routes::class,
-		\CodeIgniter\Debug\Toolbar\Collectors\Events::class,
-	];
+    public $collectors = [
+        \CodeIgniter\Debug\Toolbar\Collectors\Timers::class,
+        \CodeIgniter\Debug\Toolbar\Collectors\Database::class,
+        \CodeIgniter\Debug\Toolbar\Collectors\Logs::class,
+        \CodeIgniter\Debug\Toolbar\Collectors\Views::class,
+        \CodeIgniter\Debug\Toolbar\Collectors\Cache::class,
+        \CodeIgniter\Debug\Toolbar\Collectors\Files::class,
+        \CodeIgniter\Debug\Toolbar\Collectors\Routes::class,
+        \CodeIgniter\Debug\Toolbar\Collectors\Events::class,
+    ];
 
 若是有你不想顯示的蒐集器，註解掉它即可。你可以透過完全符合要求的類別名稱來加入自定義的蒐集器，接著我們將告訴你蒐集器會影響到標籤頁以及時間軸上顯示的訊息是哪些。
 
@@ -108,20 +110,22 @@ CodeIgniter 所內建的蒐集器為：
 
 ::
 
-	<?php namespace MyNamespace;
+    <?php
 
-	use CodeIgniter\Debug\Toolbar\Collectors\BaseCollector;
+    namespace MyNamespace;
 
-	class MyCollector extends BaseCollector
-	{
-		protected $hasTimeline   = false;
+    use CodeIgniter\Debug\Toolbar\Collectors\BaseCollector;
 
-		protected $hasTabContent = false;
+    class MyCollector extends BaseCollector
+    {
+        protected $hasTimeline = false;
 
-		protected $hasVarData    = false;
+        protected $hasTabContent = false;
 
-		protected $title         = '';
-	}
+        protected $hasVarData = false;
+
+        protected $title = '';
+    }
 
 對於任何想要在工具列的時間軸中顯示訊息的蒐集器， **$hasTimeline**  應該設定為 ``true`` 。如果為 ``true`` 則你需要實作 ``formatTimelineData()`` 方法來格式化並回傳資料進行顯示。
 
@@ -157,12 +161,12 @@ CodeIgniter 所內建的蒐集器為：
 
 ::
 
-	$data[] = [
-		'name'      => '',     // 時間軸左側顯示的名稱
-		'component' => '',     // 時間軸中間列出的組件名稱
-		'start'     => 0.00,   // 開始時間，如： microtime(true)
-		'duration'  => 0.00    // 持續時間，如： mircrotime(true) - microtime(true)
-	];
+    $data[] = [
+        'name'      => '',     // Name displayed on the left of the timeline
+        'component' => '',     // Name of the Component listed in the middle of timeline
+        'start'     => 0.00,   // start time, like microtime(true)
+        'duration'  => 0.00,   // duration, like mircrotime(true) - microtime(true)
+    ];
 
 提供變數
 --------------
@@ -176,13 +180,13 @@ CodeIgniter 所內建的蒐集器為：
 
 ::
 
-	$data = [
-		'section 1' => [
-		    'foo' => 'bar',
-		    'bar' => 'baz'
-		],
-		'section 2' => [
-		    'foo' => 'bar',
-		    'bar' => 'baz'
-		]
-	 ];
+    $data = [
+        'section 1' => [
+            'foo' => 'bar',
+            'bar' => 'baz',
+        ],
+        'section 2' => [
+            'foo' => 'bar',
+            'bar' => 'baz',
+        ],
+     ];

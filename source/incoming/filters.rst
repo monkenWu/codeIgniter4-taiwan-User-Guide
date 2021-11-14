@@ -67,8 +67,7 @@ This is typically used to perform redirects, like in this example::
     {
         $auth = service('auth');
 
-        if (! $auth->isLoggedIn())
-        {
+        if (! $auth->isLoggedIn()) {
             return redirect()->to(site_url('login'));
         }
     }
@@ -89,7 +88,7 @@ the final output, or even to filter the final output with a bad words filter.
 Configuring Filters
 *******************
 
-Once you've created your filters, you need to configure when they get run. This is done in ``app/Config/Filters.php``.
+Once you've created your filters, you need to configure when they get run. This is done in **app/Config/Filters.php**.
 This file contains four properties that allow you to configure exactly when the filters run.
 
 $aliases
@@ -128,7 +127,7 @@ run on every request. Filters can be specified by adding their alias to either t
         'before' => [
             'csrf',
         ],
-        'after'  => [],
+        'after' => [],
     ];
 
 There are times where you want to apply a filter to almost every request, but have a few that should be left alone.
@@ -140,7 +139,7 @@ an array with the 'except' key and a uri to match as the value alongside the ali
         'before' => [
             'csrf' => ['except' => 'api/*'],
         ],
-        'after'  => [],
+        'after' => [],
     ];
 
 Any place you can use a URI in the filter settings, you can use a regular expression or, like in this example, use
@@ -152,7 +151,7 @@ URI's you can use an array of URI patterns::
         'before' => [
             'csrf' => ['except' => ['foo/*', 'bar/*']],
         ],
-        'after'  => [],
+        'after' => [],
     ];
 
 $methods
@@ -167,11 +166,8 @@ specify the method name in lowercase. It's value would be an array of filters to
         'get'  => ['baz'],
     ]
 
-In addition to the standard HTTP methods, this also supports two special cases: 'cli', and 'ajax'. The names are
-self-explanatory here, but 'cli' would apply to all requests that were run from the command line, while 'ajax'
-would apply to every AJAX request.
-
-.. note:: The AJAX requests depends on the ``X-Requested-With`` header, which in some cases is not sent by default in XHR requests via JavaScript (i.e., fetch). See the :doc:`AJAX Requests </general/ajax>` section on how to avoid this problem.
+In addition to the standard HTTP methods, this also supports one special case: 'cli'. The 'cli' method would apply to
+all requests that were run from the command line.
 
 $filters
 ========

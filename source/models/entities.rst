@@ -51,7 +51,9 @@ CodeIgniter 支援使用實體類別作為資料庫的第一類物件，同時�
 
 ::
 
-    <?php namespace App\Models;
+    <?php
+
+    namespace App\Models;
 
     use CodeIgniter\Model;
 
@@ -59,9 +61,9 @@ CodeIgniter 支援使用實體類別作為資料庫的第一類物件，同時�
     {
         protected $table         = 'users';
         protected $allowedFields = [
-            'username', 'email', 'password'
+            'username', 'email', 'password',
         ];
-        protected $returnType    = 'App\Entities\User';
+        protected $returnType    = \App\Entities\User::class;
         protected $useTimestamps = true;
     }
 
@@ -316,16 +318,18 @@ Array/Json 的轉換對於儲存序列化的陣列或 json 欄位相當有用，
 
 ::
 
-    <?php namespace App\Entities;
+    <?php
 
-    use CodeIgniter\Entity;
+    namespace App\Entities;
+
+    use CodeIgniter\Entity\Entity;
 
     class User extends Entity
     {
-        protected $casts => [
-            'options' => 'array',
-		    'options_object' => 'json',
-		    'options_array' => 'json-array'
+        protected $casts = [
+            'options'        => 'array',
+            'options_object' => 'json',
+            'options_array'  => 'json-array',
         ];
     }
 
@@ -366,8 +370,119 @@ Stored in the database as "red,yellow,green"::
 
 .. note:: Casting as CSV uses PHP's internal ``implode`` and ``explode`` methods and assumes all values are string-safe and free of commas. For more complex data casts try ``array`` or ``json``.
 
+Custom casting
+--------------
+
+You can define your own conversion types for getting and setting data.
+
+At first you need to create a handler class for your type.
+Let's say the class will be located in the 'app/Entity/Cast' directory::
+
+    <?php
+
+    namespace App\Entity\Cast;
+
+    use CodeIgniter\Entity\Cast\BaseCast;
+
+    //The class must inherit the CodeIgniter\Entity\Cast\BaseCast class
+    class CastBase64 extends BaseCast
+    {
+        public static function get($value, array $params = [])
+        {
+            return base64_decode($value);
+        }
+
+        public static function set($value, array $params = [])
+        {
+            return base64_encode($value);
+        }
+    }
+
+Now you need to register it::
+
+    <?php
+
+    namespace App\Entities;
+
+    use CodeIgniter\Entity\Entity;
+
+    class MyEntity extends Entity
+    {
+        // Specifying the type for the field
+        protected $casts = [
+            'key' => 'base64',
+        ];
+
+        //Bind the type to the handler
+        protected $castHandlers = [
+            'base64' => \App\Entity\Cast\CastBase64::class,
+        ];
+    }
+
+    //...
+
+    $entity->key = 'test'; // dGVzdA==
+    echo $entity->key;     // test
+
+
+If you don't need to change values when getting or setting a value. Then just don't implement the appropriate method::
+
+    use CodeIgniter\Entity\Cast\BaseCast;
+
+    class CastBase64 extends BaseCast
+    {
+        public static function get($value, array $params = [])
+        {
+            return base64_decode($value);
+        }
+    }
+
+
+**Parameters**
+
+In some cases, one type is not enough. In this situation, you can use additional parameters.
+Additional parameters are indicated in square brackets and listed with a comma.
+
+**type[param1, param2]**
+
+::
+
+    // Defining a type with parameters
+    protected $casts = [
+        'some_attribute' => 'class[App\SomeClass, param2, param3]',
+    ];
+
+    // Bind the type to the handler
+    protected $castHandlers = [
+        'class' => 'SomeHandler',
+    ];
+
+::
+
+    use CodeIgniter\Entity\Cast\BaseCast;
+
+    class SomeHandler extends BaseCast
+    {
+        public static function get($value, array $params = [])
+        {
+            var_dump($params);
+            // array(3) {
+            //   [0]=>
+            //   string(13) "App\SomeClass"
+            //   [1]=>
+            //   string(6) "param2"
+            //   [2]=>
+            //   string(6) "param3"
+            // }
+        }
+    }
+
+.. note:: If the casting type is marked as nullable ``?bool`` and the passed value is not null, then the parameter with
+    the value ``nullable`` will be passed to the casting type handler.
+    If casting type has predefined parameters, then ``nullable`` will be added to the end of the list.
+
 檢查類別屬性是否變更
--------------------------------
+===============================
 
 你可以檢查一個實體的屬性在創建後始否發生了變化，這個方法唯一的參數就是你所想檢查的屬性名稱：
 

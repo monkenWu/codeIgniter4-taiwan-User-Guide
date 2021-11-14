@@ -73,37 +73,41 @@ For security reasons be sure to declare any new utility methods as protected or 
 
 ::
 
-	<?php namespace App\Controllers;
+    <?php
 
-        use CodeIgniter\Controller;
+    namespace App\Controllers;
 
-	class Helloworld extends Controller {
 
-	}
+    class Helloworld extends BaseController
+    {
 
-這是 **無效** 的命名：
-
-::
-
-	<?php namespace App\Controllers;
-
-        use CodeIgniter\Controller;
-
-	class helloworld extends Controller {
-
-	}
+    }
 
 這是 **無效** 的命名：
 
 ::
 
-	<?php namespace App\Controllers;
+    <?php
 
-        use CodeIgniter\Controller;
+    namespace App\Controllers;
 
-	class HelloWorld extends Controller {
+    class helloworld extends BaseController
+    {
 
-	}
+    }
+
+這是 **無效** 的命名：
+
+::
+
+    <?php
+
+    namespace App\Controllers;
+
+    class HelloWorld extends BaseController
+    {
+
+    }
 
 另外，一定要確保你的控制器擴展了父控制器類別，這樣它才可以繼承所有的方法。
 
@@ -136,23 +140,22 @@ For security reasons be sure to declare any new utility methods as protected or 
 
 ::
 
-	<?php namespace App\Controllers;
+    <?php
 
-        use CodeIgniter\Controller;
+    namespace App\Controllers;
 
-	class Helloworld extends Controller
+    class Helloworld extends BaseController
+    {
+        public function index()
         {
+            echo 'Hello World!';
+        }
 
-		public function index()
-		{
-			echo 'Hello World!';
-		}
-
-		public function comment()
-		{
-			echo 'I am not flat!';
-		}
-	}
+        public function comment()
+        {
+            echo 'I am not flat!';
+        }
+    }
 
 現在載入下面的URL，查看 comment 方法：
 
@@ -177,19 +180,18 @@ URI 的第三個區段和第四個區段（"sandals" 和 "123"）將傳入你的
 
 ::
 
-	<?php namespace App\Controllers;
+    <?php
 
-        use CodeIgniter\Controller;
+    namespace App\Controllers;
 
-	class Products extends Controller
+    class Products extends BaseController
+    {
+        public function shoes($sandals, $id)
         {
-
-		public function shoes($sandals, $id)
-		{
-			echo $sandals;
-			echo $id;
-		}
-	}
+            echo $sandals;
+            echo $id;
+        }
+    }
 
 .. important:: 如果你使用了 :doc:`URI 路由 <routing>`
 	功能，傳遞給你的方法的區段，將是重定向的區段。
@@ -226,10 +228,10 @@ $routes->get('/', 'Home::index');
 
 ::
 
-	public function _remap()
-	{
-		// Some code here...
-	}
+    public function _remap()
+    {
+        // Some code here...
+    }
 
 .. important:: 如果你的控制器包含一個名為 _remap() 的方法，無論你的 URI 包含什麼，它 **都會被呼叫** 。它覆蓋了 URI 正常判斷該呼叫哪個方法的行為，允許你定義自己的路由規則方法。
 
@@ -237,17 +239,15 @@ $routes->get('/', 'Home::index');
 
 ::
 
-	public function _remap($method)
-	{
-		if ($method === 'some_method')
-		{
-			$this->$method();
-		}
-		else
-		{
-			$this->default_method();
-		}
-	}
+    public function _remap($method)
+    {
+        if ($method === 'some_method') {
+            return $this->$method();
+        } else {
+            return $this->default_method();
+        }
+    }
+
 
 方法名稱後的任何額外的字段都會被傳遞到 ``_remap()`` 中。這些參數可以被傳遞到方法中，來模擬CodeIgniter的預設行為。
 
@@ -255,15 +255,16 @@ $routes->get('/', 'Home::index');
 
 ::
 
-	public function _remap($method, ...$params)
-	{
-		$method = 'process_'.$method;
-		if (method_exists($this, $method))
-		{
-			return $this->$method(...$params);
-		}
-		throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-	}
+    public function _remap($method, ...$params)
+    {
+        $method = 'process_'.$method;
+
+        if (method_exists($this, $method)) {
+            return $this->$method(...$params);
+        }
+
+        throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+    }
 
 私有方法
 ===============
@@ -272,10 +273,10 @@ $routes->get('/', 'Home::index');
 
 ::
 
-	protected function utility()
-	{
-		// some code
-	}
+    protected function utility()
+    {
+        // some code
+    }
 
 然後嘗試使用以下 URL 來訪問它，他將無法執行：
 
@@ -329,17 +330,15 @@ CodeIgniter 還允許你使用 :doc:`URI Routing <routing>` 功能重新映射�
 
 在所有的控制器中都有一個方便的方法，可以強制使用者透過 HTTPS 來訪問一個方法::
 
-	if (! $this->request->isSecure())
-	{
-		$this->forceHTTPS();
-	}
+    if (! $this->request->isSecure()) {
+        $this->forceHTTPS();
+    }
 
 預設情況下，在支持 HTTP 嚴格傳輸安全頭的現代瀏覽器中，這個呼叫應該強制瀏覽器將非 HTTPS 訪問轉換為 HTTPS 訪問一年。你可以透過傳入持續時間（秒）作為第一個參數來修改：
 
 ::
 
-	if (! $this->request->isSecure())
-	{
+	if (! $this->request->isSecure()){
 		$this->forceHTTPS(31536000);    // 一年
 	}
 
@@ -352,13 +351,12 @@ CodeIgniter 還允許你使用 :doc:`URI Routing <routing>` 功能重新映射�
 
 ::
 
-	namespace App\Controllers;
-        use CodeIgniter\Controller;
+    namespace App\Controllers;
 
-	class MyController extends Controller
-	{
-		protected $helpers = ['url', 'form'];
-	}
+    class MyController extends BaseController
+    {
+        protected $helpers = ['url', 'form'];
+    }
 
 驗證資料
 ======================
@@ -372,8 +370,7 @@ CodeIgniter 還允許你使用 :doc:`URI Routing <routing>` 功能重新映射�
         if (! $this->validate([
             'email' => "required|is_unique[users.email,id,{$userID}]",
             'name'  => 'required|alpha_numeric_spaces'
-        ]))
-        {
+        ])) {
             return view('users/update', [
                 'errors' => $this->validator->getErrors()
             ]);
@@ -388,14 +385,13 @@ CodeIgniter 還允許你使用 :doc:`URI Routing <routing>` 功能重新映射�
 
     public function updateUser(int $userID)
     {
-        if (! $this->validate('userRules'))
-        {
+        if (! $this->validate('userRules')) {
             return view('users/update', [
                 'errors' => $this->validator->getErrors()
             ]);
         }
 
-        // 如果成功的話，在這裡做一些事情...
+        // do something here if successful...
     }
 
 驗證也可以在模型中自動處理，但有時在控制器中進行驗證會更方便。具體到哪裡，由你自己決定.

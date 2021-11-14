@@ -29,7 +29,7 @@ Composer 安裝
 
 如果你省略了上述指令中「 project-root 」引數，那麼 Composer 將會自動生成出「 appstarter 」資料夾，你可以依照自己的需求命名你的資料夾。
 
-若是你不需要安裝 phpunit 及其所有的 Composer 依賴，則必須在上述的指令中添加 ``–no-dev``。執行了這個指令， Composer 將會安裝單純的框架檔案，以及我們預先同捆的三個所需的依賴程式庫。
+若是你不需要安裝 phpunit 及其所有的 Composer 依賴，則必須在上述的指令中添加 ``-–no-dev``。執行了這個指令， Composer 將會安裝單純的框架檔案，以及我們預先同捆的三個所需的依賴程式庫。
 
 下例將使用默認的專案資料夾名稱「 appstarter 」演示上述需求的安裝指令： ::
 
@@ -52,7 +52,7 @@ If ``--prefer-source`` doesn't automatically update to pull latest framework sou
 
     rm -rf vendor/codeigniter4/framework && composer update codeigniter4/framework --prefer-source
 
-如果你在創建專案時使用了「 --no-dev 」，那麼在升級框架時你也必須做一樣的事：  ``composer update --no-dev`` 。
+如果你在創建專案時使用了 ``--no-dev`` ，那麼在升級框架時你也必須做一樣的事：  ``composer update --no-dev`` 。
 
 最後，你必須閱讀新版本的升級說明，並檢查 ``app/Config`` 資料夾中的文件是否因為升級有所改變。
 
@@ -140,7 +140,7 @@ If ``--prefer-source`` doesn't automatically update to pull latest framework sou
 
 在執行完上述流程後，這些資料夾將會部署進你的專案中：
 
-- app, public, tests, writable 
+- app, public, writable（當使用 ``--prefer-source`` ）
 - vendor/codeigniter4/framework/system
 
 安裝多語言系統提示

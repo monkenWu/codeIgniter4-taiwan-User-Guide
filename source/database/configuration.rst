@@ -12,26 +12,24 @@ CodeIgniter 提供一個組態設定檔讓你設定資料庫連線資料（使�
 
 ::
 
-	public $default = [
-		'DSN'	   => '',
-		'hostname' => 'localhost',
-		'username' => 'root',
-		'password' => '',
-		'database' => 'database_name',
-		'DBDriver' => 'MySQLi',
-		'DBPrefix' => '',
-		'pConnect' => TRUE,
-		'DBDebug'  => TRUE,
-		'cacheOn'  => FALSE,
-		'cacheDir' => '',
-		'charset'  => 'utf8',
-		'DBCollat' => 'utf8_general_ci',
-		'swapPre'  => '',
-		'encrypt'  => FALSE,
-		'compress' => FALSE,
-		'strictOn' => FALSE,
-		'failover' => [],
-	];
+    public $default = [
+        'DSN'      => '',
+        'hostname' => 'localhost',
+        'username' => 'root',
+        'password' => '',
+        'database' => 'database_name',
+        'DBDriver' => 'MySQLi',
+        'DBPrefix' => '',
+        'pConnect' => true,
+        'DBDebug'  => true,
+        'charset'  => 'utf8',
+        'DBCollat' => 'utf8_general_ci',
+        'swapPre'  => '',
+        'encrypt'  => false,
+        'compress' => false,
+        'strictOn' => false,
+        'failover' => [],
+    ];
 
 類別屬性的名稱就是連線名稱，並且可以用特殊群組名稱連線。
 
@@ -70,44 +68,40 @@ add the config variables as a query string::
 
 ::
 
-	$default['failover'] = [
-		[
-			'hostname' => 'localhost1',
-			'username' => '',
-			'password' => '',
-			'database' => '',
-			'DBDriver' => 'MySQLi',
-			'DBPrefix' => '',
-			'pConnect' => TRUE,
-			'DBDebug'  => TRUE,
-			'cacheOn'  => FALSE,
-			'cacheDir' => '',
-			'charset'  => 'utf8',
-			'DBCollat' => 'utf8_general_ci',
-			'swapPre'  => '',
-			'encrypt'  => FALSE,
-			'compress' => FALSE,
-			'strictOn' => FALSE
-		],
-		[
-			'hostname' => 'localhost2',
-			'username' => '',
-			'password' => '',
-			'database' => '',
-			'DBDriver' => 'MySQLi',
-			'DBPrefix' => '',
-			'pConnect' => TRUE,
-			'DBDebug'  => TRUE,
-			'cacheOn'  => FALSE,
-			'cacheDir' => '',
-			'charset'  => 'utf8',
-			'DBCollat' => 'utf8_general_ci',
-			'swapPre'  => '',
-			'sencrypt'  => FALSE,
-			'compress' => FALSE,
-			'strictOn' => FALSE
-		]
-	];
+    $default['failover'] = [
+        [
+            'hostname' => 'localhost1',
+            'username' => '',
+            'password' => '',
+            'database' => '',
+            'DBDriver' => 'MySQLi',
+            'DBPrefix' => '',
+            'pConnect' => true,
+            'DBDebug'  => true,
+            'charset'  => 'utf8',
+            'DBCollat' => 'utf8_general_ci',
+            'swapPre'  => '',
+            'encrypt'  => false,
+            'compress' => false,
+            'strictOn' => false,
+        ],
+        [
+            'hostname' => 'localhost2',
+            'username' => '',
+            'password' => '',
+            'database' => '',
+            'DBDriver' => 'MySQLi',
+            'DBPrefix' => '',
+            'pConnect' => true,
+            'DBDebug'  => true,
+            'charset'  => 'utf8',
+            'DBCollat' => 'utf8_general_ci',
+            'swapPre'  => '',
+            'encrypt'  => false,
+            'compress' => false,
+            'strictOn' => false,
+        ]
+    ];
 
 你可以指定任意數量的故障排除。
 
@@ -116,26 +110,24 @@ add the config variables as a query string::
 
 ::
 
-	public $test = [
-		'DSN'	   => '',
-		'hostname' => 'localhost',
-		'username' => 'root',
-		'password' => '',
-		'database' => 'database_name',
-		'DBDriver' => 'MySQLi',
-		'DBPrefix' => '',
-		'pConnect' => TRUE,
-		'DBDebug'  => TRUE,
-		'cacheOn'  => FALSE,
-		'cacheDir' => '',
-		'charset'  => 'utf8',
-		'DBCollat' => 'utf8_general_ci',
-		'swapPre'  => '',
-		'compress' => FALSE,
-		'encrypt'  => FALSE,
-		'strictOn' => FALSE,
-		'failover' => []
-	）;
+    public $test = [
+        'DSN'      => '',
+        'hostname' => 'localhost',
+        'username' => 'root',
+        'password' => '',
+        'database' => 'database_name',
+        'DBDriver' => 'MySQLi',
+        'DBPrefix' => '',
+        'pConnect' => true,
+        'DBDebug'  => true,
+        'charset'  => 'utf8',
+        'DBCollat' => 'utf8_general_ci',
+        'swapPre'  => '',
+        'compress' => false,
+        'encrypt'  => false,
+        'strictOn' => false,
+        'failover' => []
+    );
 
 然後，要以全域的方式告訴系統，在設定檔中使用 test 這組連線：
 
@@ -149,17 +141,17 @@ You could modify the config file to detect the environment and automatically upd
 
 ::
 
-	class Database
-	{
-	    public $development = [...];
-	    public $test        = [...];
-	    public $production  = [...];
+    class Database
+    {
+        public $development = [...];
+        public $test        = [...];
+        public $production  = [...];
 
-		public function __construct()
-		{
-			$this->defaultGroup = ENVIRONMENT;
-		}
-	}
+        public function __construct()
+        {
+            $this->defaultGroup = ENVIRONMENT;
+        }
+    }
 
 使用 .env 檔設定
 --------------------------
@@ -190,8 +182,6 @@ You could modify the config file to detect the environment and automatically upd
 **DBPrefix**		資料表字首。當使用 :doc:`查詢生成器 <query_builder>` 查詢資料時，會自動新增該值到資料表的字首。這允許了多個 CodeIgniter 共用同個資料庫。
 **pConnect**		TRUE/FALSE （boolean） - 是否使用保持連線的功能。
 **DBDebug**			TRUE/FALSE （boolean） - 是否顯示資料庫的錯誤訊息。
-**cacheOn**			TRUE/FALSE （boolean） - 是否使用資料庫快取的功能。
-**cacheDir**		資料庫查詢時的快取目錄。該目錄為伺服器的絕對路徑。
 **charset**	    	與資料庫溝通時，所使用的字元集。
 **DBCollat**		與資料庫溝通時，所使用的字元排序。
 

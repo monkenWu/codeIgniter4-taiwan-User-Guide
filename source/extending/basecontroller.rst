@@ -6,16 +6,16 @@ CodeIgniter 的核心控制器不應該被改變，但是在 **app/Controllers/B
 
 ::
 
-	<?php
+    <?php
 
-	namespace App\Controllers;
+    namespace App\Controllers;
 
-	use CodeIgniter\Controller;
+    use CodeIgniter\Controller;
 
-	class Home extends BaseController
-	{
-		// ...
-	}
+    class Home extends BaseController
+    {
+        // ...
+    }
 
 
 預載組件
@@ -25,19 +25,19 @@ CodeIgniter 的核心控制器不應該被改變，但是在 **app/Controllers/B
 
 ::
 
-	protected $helpers = ['html', 'text'];
+    protected $helpers = ['html', 'text'];
 
 任何需要載入的組件或需要處理的資料都應該加入到建構函數 ``initController()`` 中。例如：你的專案大量使用到會談程式庫，你可以會需要在這裡啟動它：
 
 ::
 
-	public function initController(...)
-	{
-		// 請不要編輯這行
-		parent::initController($request, $response, $logger);
-		
-		$this->session = \Config\Services::session();
-	}
+    public function initController(...)
+    {
+        // 請不要編輯這行
+        parent::initController($request, $response, $logger);
+        
+        $this->session = \Config\Services::session();
+    }
 
 新增方法
 ==================
@@ -53,7 +53,7 @@ CodeIgniter 的核心控制器不應該被改變，但是在 **app/Controllers/B
 
 ::
 
-	class Home extends \CodeIgniter\Controller
-	{
-	
-	}
+    class Home extends \CodeIgniter\Controller
+    {
+    
+    }

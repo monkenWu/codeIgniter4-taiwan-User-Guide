@@ -92,7 +92,7 @@ CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` �
 
 	S3_BUCKET = dotenv
 	SECRET_KEY = super_secret_key
-        CI_ENVIRONMENT = development
+    CI_ENVIRONMENT = development
 
 **.env** 檔會在你的應用程式運作時自動載入，並把設定放在運作的環境中。若一個變數已經存在於環境中，則不會被覆蓋過去。若需要取得環境變數，可以使用以下任何一個方法： ``getenv()`` 、 ``$_SERVER`` 或 ``$_ENV`` 。
 
@@ -101,6 +101,8 @@ CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` �
 	$s3_bucket = getenv('S3_BUCKET');
 	$s3_bucket = $_ENV['S3_BUCKET'];
 	$s3_bucket = $_SERVER['S3_BUCKET'];
+
+.. important:: Note that your settings from the **.env** file are added to Environment Variables. As a side effect, this means that if your CodeIgniter application is (for example) generating a ``var_dump($_ENV)`` or ``phpinfo()`` (for debugging or other valid reasons) **your secure credentials are publicly exposed**.
 
 巢狀變數
 =================
@@ -158,6 +160,28 @@ CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` �
 
 .. note:: 當使用短前綴時，屬性名稱必須與類別所定義的屬性名稱完全一致。
 
+Some environments do not permit variable name with dots. In such case, you could also use ``_`` as a seperator.
+
+::
+
+    app_forceGlobalSecureRequests = true
+    app_CSPEnabled = true
+
+Environment Variables as Replacements for Data
+==============================================
+
+It is very important to always remember that environment variables contained in your **.env** are
+**only replacements for existing data**. This means that you cannot expect to fill your **.env** with all
+the replacements for your configurations but have nothing to receive these replacements in the
+related configuration file(s).
+
+The **.env** only serves to fill or replace the values in your configuration files. That said, your
+configuration files should have a container or receiving property for those. Adding so many variables in
+your **.env** with nothing to contain them in the receiving end is useless.
+
+Simply put, you cannot just put ``app.myNewConfig = foo`` in your **.env** and expect your ``Config\App``
+to magically have that property and value at run time.
+
 將環境變數視為陣列
 ========================================
 
@@ -206,6 +230,41 @@ CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` �
 註冊器
 ==========
 
+"Registrars" are any other classes which might provide additional configuration properties.
+Registrars provide a means of altering a configuration at runtime across namespaces and files.
+There are two ways to implement a Registrar: implicit and explicit.
+
+.. note:: Values from **.env** always take priority over Registrars.
+
+隱性註冊器
+-------------------
+
+Any namespace may define registrars by using the **Config/Registrar.php** file, if discovery
+is enabled in :doc:`Modules </general/modules>`. These files are classes whose methods are
+named for each configuration class you wish to extend. For example, a third-party module might
+wish to supply an additional template to ``Pager`` without overwriting whatever a develop has
+already configured. In **src/Config/Registrar.php** there would be a ``Registrar`` class with
+the single ``Pager()`` method (note the case-sensitivity)::
+
+    class Registrar
+    {
+        public static function Pager(): array
+        {
+            return [
+                'templates' => [
+                    'module_pager' => 'MyModule\Views\Pager',
+                ],
+            ];
+        }
+    }
+
+Registrar methods must always return an array, with keys corresponding to the properties
+of the target config file. Existing values are merged, and Registrar properties have
+overwrite priority.
+
+顯性註冊器
+-------------------
+
 組態設定檔案可以指定任意數量的「註冊器」，這可以是任何可能提供額外組態設定屬性的類別。可以藉由在你的組態設定檔案中新增一個註冊器屬性來實作，這個屬性包含了一個註冊器的名稱陣列。
 
 ::
@@ -222,41 +281,42 @@ CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` �
 
 ::
 
-    <?php namespace App\Config;
+    <?php
+
+    namespace App\Config;
 
     use CodeIgniter\Config\BaseConfig;
 
     class MySalesConfig extends BaseConfig
     {
-        public $target        = 100;
-        public $campaign      = "Winter Wonderland";
-        protected $registrars = [
-            '\App\Models\RegionalSales';
+        public $target            = 100;
+        public $campaign          = "Winter Wonderland";
+        public static $registrars = [
+            '\App\Models\RegionalSales'
         ];
     }
-
 與上例相關的 RegionalSales 模型可能是這個樣子的：
 
 ::
 
-    <?php namespace App\Models;
+    <?php
+
+    namespace App\Models;
 
     class RegionalSales
     {
         public static function MySalesConfig()
         {
-            return ['target' => 45, 'actual' => 72];
+            return [
+                'target' => 45,
+                'actual' => 72,
+            ];
         }
     }
 
-透過上面的範例，當 `MySalesConfig` 被實體化時，它最終會宣告這兩個屬性，但 `$target` 屬性的值會被覆蓋，因為它把 `RegionalSalesModel` 視為「註冊器」，由此產生這樣子的組態設定屬性：
+透過上面的範例，當 ``MySalesConfig`` 被實體化時，它最終會宣告這兩個屬性，但 ``$target`` 屬性的值會被覆蓋，因為它把 ``RegionalSalesModel`` 視為「註冊器」，由此產生這樣子的組態設定屬性：
 
 ::
 
     $target   = 45;
     $campaign = "Winter Wonderland";
-
-In addition to explicit registrars defined by the ``$registrars`` property, you may also
-define registrars in any namespace using the **Config/Registrars.php** file, if discovery
-is enabled in :doc:`Modules </general/modules>`. These files work the same as the classes
-described above, using methods named for each configuration class you wish to extend.

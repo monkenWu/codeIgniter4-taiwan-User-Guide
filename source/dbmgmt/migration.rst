@@ -34,37 +34,42 @@
 
 ::
 
-	<?php namespace App\Database\Migrations;
+    <?php
 
-	class AddBlog extends \CodeIgniter\Database\Migration {
+    namespace App\Database\Migrations;
 
-		public function up()
-		{
-			$this->forge->addField([
-				'blog_id'          => [
-					'type'           => 'INT',
-					'constraint'     => 5,
-					'unsigned'       => TRUE,
-					'auto_increment' => TRUE
-				],
-				'blog_title'       => [
-					'type'           => 'VARCHAR',
-					'constraint'     => '100',
-				],
-				'blog_description' => [
-					'type'           => 'TEXT',
-					'null'           => TRUE,
-				],
-			]);
-			$this->forge->addKey('blog_id', TRUE);
-			$this->forge->createTable('blog');
-		}
+    use CodeIgniter\Database\Migration;
 
-		public function down()
-		{
-			$this->forge->dropTable('blog');
-		}
-	}
+    class AddBlog extends Migration
+    {
+        public function up()
+        {
+            $this->forge->addField([
+                'blog_id'          => [
+                    'type'           => 'INT',
+                    'constraint'     => 5,
+                    'unsigned'       => true,
+                    'auto_increment' => true,
+                ],
+                'blog_title'       => [
+                    'type'       => 'VARCHAR',
+                    'constraint' => '100',
+                ],
+                'blog_description' => [
+                    'type' => 'TEXT',
+                    'null' => true,
+                ],
+            ]);
+            $this->forge->addKey('blog_id', true);
+            $this->forge->createTable('blog');
+        }
+
+        public function down()
+        {
+            $this->forge->dropTable('blog');
+        }
+    }
+
 
 資料庫連接以及資料庫建構類別都可以透過 ``$this->db`` 以及 ``$this->forge`` 分別被你取用。
 
@@ -93,16 +98,27 @@
 
 ::
 
-    <?php namespace App\Database\Migrations;
+    <?php
 
-    class AddBlog extends \CodeIgniter\Database\Migration
+    namespace App\Database\Migrations;
+
+    use CodeIgniter\Database\Migration;
+
+    class AddBlog extends Migration
     {
         protected $DBGroup = 'alternate_db_group';
 
-        public function up() { . . . }
+        public function up()
+        {
+            // ...
+        }
 
-        public function down() { . . . }
+        public function down()
+        {
+            // ...
+        }
     }
+
 
 命名空間
 ==========
@@ -115,10 +131,10 @@
 
 ::
 
-	$psr4 = [
-		'App'       => APPPATH,
-		'MyCompany' => ROOTPATH.'MyCompany'
-	];
+    $psr4 = [
+        'App'       => APPPATH,
+        'MyCompany' => ROOTPATH.'MyCompany'
+    ];
 
 這將查找位於 **APPPATH/Database/Migrations** 以及 **ROOTPATH/MyCompany/Database/Migrations** 這兩個路徑的所有遷移，這使得在可重用的模組化程式碼套件中，加入遷移檔案變得更加簡單。
 
@@ -130,26 +146,24 @@
 
 ::
 
-    <?php namespace App\Controllers;
+    <?php
 
-	class Migrate extends \CodeIgniter\Controller
-	{
+    namespace App\Controllers;
 
-		public function index()
-		{
-			$migrate = \Config\Services::migrations();
+    class Migrate extends \CodeIgniter\Controller
+    {
+        public function index()
+        {
+            $migrate = \Config\Services::migrations();
 
-			try
-			{
-			  $migrate->latest();
-			}
-			catch (\Exception $e)
-			{
-			  // 當例外拋出時可以做點什麼
-			}
-		}
+            try {
+                $migrate->latest();
+            } catch (\Throwable $e) {
+                // 當例外拋出時可以做點什麼...
+            }
+        }
+    }
 
-	}
 
 *******************
 命令列工具
@@ -233,8 +247,11 @@ status 指令具有以下可選選項：
 
 You can use (make:migration) with the following options:
 
-- ``-n`` - to choose namespace, otherwise the value of ``APP_NAMESPACE`` will be used.
-- ``-force`` - If a similarly named migration file is present in destination, this will be overwritten.
+- ``--session``   - Generates the migration file for database sessions.
+- ``--table``     - Table name to use for database sessions. Default: ``ci_sessions``.
+- ``--dbgroup``   - Database group to use for database sessions. Default: ``default``.
+- ``--namespace`` - Set root namespace. Default: ``APP_NAMESPACE``.
+- ``--suffix``    - Append the component title to the class name.
 
 *********************
 遷移參考
@@ -256,69 +273,67 @@ You can use (make:migration) with the following options:
 
 .. php:class:: CodeIgniter\\Database\\MigrationRunner
 
-	.. php:method:: findMigrations()
+    .. php:method:: findMigrations()
 
-		:returns:	陣列或遷移檔案
-		:rtype:	array
+        :returns:	陣列或遷移檔案
+        :rtype:	array
 
-		回傳 **path** 屬性中找到的遷移檔案名稱陣列。
+        回傳 **path** 屬性中找到的遷移檔案名稱陣列。
 
-	.. php:method:: latest($group)
+    .. php:method:: latest($group)
 
-		:param	mixed	$group: 資料庫名稱，如果為 null 則會使用預設資料庫群組
-		:returns:	成功為 TRUE ，失敗為 FALSE
-		:rtype:	bool
+        :param	mixed	$group: 資料庫名稱，如果為 null 則會使用預設資料庫群組
+        :returns:	成功為 TRUE ，失敗為 FALSE
+        :rtype:	bool
 
-		這將在一個命名空間（或所有的命名空間）中定位遷移，確定那些遷移還沒有被運作過，並按照它們的版本順序運作（不管位於哪個命名空間都將參與排序）。
+        這將在一個命名空間（或所有的命名空間）中定位遷移，確定那些遷移還沒有被運作過，並按照它們的版本順序運作（不管位於哪個命名空間都將參與排序）。
 
-	.. php:method:: regress($batch, $group)
+    .. php:method:: regress($batch, $group)
 
-		:param	mixed	$batch: 要遷移的到的批次，1 或大於 1 為指定批次，0 為恢復所有批次，負數則是指相對批次（例如 -3 為 "退回三個批次" ）
-		:param	mixed	$group: 資料庫名稱，如果為 null 則會使用預設資料庫群組
-		:returns:	成功為 TRUE ，失敗為 FALSE 或是未發現任何遷移
-		:rtype:	bool
+        :param	mixed	$batch: 要遷移的到的批次，1 或大於 1 為指定批次，0 為恢復所有批次，負數則是指相對批次（例如 -3 為 "退回三個批次" ）
+        :param	mixed	$group: 資料庫名稱，如果為 null 則會使用預設資料庫群組
+        :returns:	成功為 TRUE ，失敗為 FALSE 或是未發現任何遷移
+        :rtype:	bool
 
-		Regress 可以用於逐批退回到以前的狀態。
+        Regress 可以用於逐批退回到以前的狀態。
 
-		::
+        ::
 
-			$migration->batch(5);
-			$migration->batch(-1);
+            $migration->batch(5);
+            $migration->batch(-1);
 
-	.. php:method:: force($path, $namespace, $group)
+    .. php:method:: force($path, $namespace, $group)
 
-		:param	mixed	$path:  有效的遷移檔案路徑
-		:param	mixed	$namespace: 遷移檔案的命名空間
-		:param	mixed	$group: 資料庫名稱，如果為 null 則會使用預設資料庫群組
-		:returns:	成功為 TRUE ，失敗為 FALSE
-		:rtype:	bool
-		
-		強制將單個檔案進行遷移，不考慮順序或批次處理。根據是否已經遷移的方法， "up" 或 "down" 來檢測。
-		
-		.. note::  這個方法僅用於測試，可能會發生資料不一致的問題。
+        :param	mixed	$path:  有效的遷移檔案路徑
+        :param	mixed	$namespace: 遷移檔案的命名空間
+        :param	mixed	$group: 資料庫名稱，如果為 null 則會使用預設資料庫群組
+        :returns:	成功為 TRUE ，失敗為 FALSE
+        :rtype:	bool
+        
+        強制將單個檔案進行遷移，不考慮順序或批次處理。根據是否已經遷移的方法， "up" 或 "down" 來檢測。
+        
+        .. note::  這個方法僅用於測試，可能會發生資料不一致的問題。
 
-	.. php:method:: setNamespace($namespace)
+    .. php:method:: setNamespace($namespace)
 
-		:param  string  $namespace: 應用程式命名空間
-		:returns:   目前的 MigrationRunner 實體
-		:rtype:     CodeIgniter\Database\MigrationRunner
+        :param  string  $namespace: 應用程式命名空間
+        :returns:   目前的 MigrationRunner 實體
+        :rtype:     CodeIgniter\Database\MigrationRunner
 
-		設定程式庫應該尋找的遷移檔案路徑：
+        設定程式庫應該尋找的遷移檔案路徑：
 
-		::
+        ::
 
-			$migration->setNamespace($path)
-					->latest();
+            $migration->setNamespace($path)->latest();
 
-	.. php:method:: setGroup($group)
+    .. php:method:: setGroup($group)
 
-		:param  string  $group: 資料庫群組名稱
-		:returns:   目前的 MigrationRunner 實體
-		:rtype:     CodeIgniter\Database\MigrationRunner
+        :param  string  $group: 資料庫群組名稱
+        :returns:   目前的 MigrationRunner 實體
+        :rtype:     CodeIgniter\Database\MigrationRunner
 
-		設定程式庫應該使用的資料庫群組名稱：
+        設定程式庫應該使用的資料庫群組名稱：
 
-		::
-		
-			$migration->setGroup($group)
-					->latest();
+        ::
+        
+            $migration->setGroup($group)->latest();

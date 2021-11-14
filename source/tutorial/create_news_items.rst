@@ -3,6 +3,21 @@
 
 現在，你已經知道如何使用 CodeIgniter 從資料庫中讀取資料，但尚未將任何資訊寫入到資料庫中。在本條目，你將擴充之前創建的新聞控制器與模型以完成此功能。
 
+開啟 CSRF 過濾器
+------------------
+
+在建立一個表單前，讓我們先打開 CSRF 保護。
+
+打開 **app/Config/Filters.php** 檔案，並更新 ``$methods`` 屬性成下面這個樣子
+
+::
+
+    public $methods = [
+        'post' => ['csrf'],
+    ];
+
+它將會對所有 **POST** 請求啟用 CSRF 過濾器，你可以在 :doc:`安全性程式庫 </libraries/security>` 中閱讀更多有關 CSRF 保護的資訊。
+
 創建表單
 -------------------------------------------------------
 
@@ -10,9 +25,9 @@
 
 ::
 
-    <h2><?= esc($title); ?></h2>
+    <h2><?= esc($title) ?></h2>
 
-    <?= \Config\Services::validation()->listErrors(); ?>
+    <?= service('validation')->listErrors() ?>
 
     <form action="/news/create" method="post">
         <?= csrf_field() ?>
@@ -21,13 +36,12 @@
         <input type="input" name="title" /><br />
 
         <label for="body">Text</label>
-        <textarea name="body"></textarea><br />
+        <textarea name="body" cols="45" rows="4"></textarea><br />
 
         <input type="submit" name="submit" value="Create news item" />
-
     </form>
 
-你可能會覺得 ``\Config\Services::validation()->listErrors()`` 這個函數看起來很陌生。它能用於表單驗證相關的錯誤報告。而 ``csrf_field()`` 函數創建了一個帶有 CSRF 令牌的隱藏輸入框，有助於你預防一些常見的攻擊。
+你可能會覺得 ``service('validation')->listErrors()`` 這個函數看起來很陌生。它能用於表單驗證相關的錯誤報告。而 ``csrf_field()`` 函數創建了一個帶有 CSRF 權杖的隱藏輸入框，有助於你預防一些常見的攻擊。
 
 回到你的 ``News`` 控制器。你將在這裡執行：檢查表單是否已經提交、提交的資料是否通過驗證，這兩項操作。我們使用 :doc:`表單驗證 <../libraries/validation>` 程式庫進行驗證。
 
@@ -35,35 +49,31 @@
 
     public function create()
     {
-        helper('form');
-        $model = new NewsModel();
+        $model = model(NewsModel::class);
 
-        if (! $this->validate([
+        if ($this->request->getMethod() === 'post' && $this->validate([
             'title' => 'required|min_length[3]|max_length[255]',
-            'body'  => 'required'
-        ]))
-        {
+            'body'  => 'required',
+        ])) {
+            $model->save([
+                'title' => $this->request->getPost('title'),
+                'slug'  => url_title($this->request->getPost('title'), '-', true),
+                'body'  => $this->request->getPost('body'),
+            ]);
+
+            echo view('news/success');
+        } else {
             echo view('templates/header', ['title' => 'Create a news item']);
             echo view('news/create');
             echo view('templates/footer');
-
-        }
-        else
-        {
-            $model->save([
-                'title' => $this->request->getVar('title'),
-                'slug'  => url_title($this->request->getVar('title')),
-                'body'  => $this->request->getVar('body'),
-            ]);
-            echo view('news/success');
         }
     }
 
-上面的程式碼增加了很多功能，前幾行負責載入表單輔助函數與新聞模型。之後，透過輔助函數驗證 $_POST 欄位。在這種情形下，標題和文字欄位是必須的。
+上面的程式碼增加了很多功能。首先，我們載入了 NewsModel 。之後，我們檢查了 POST 請求是否已被處理，接著使用控制器提供的輔助函數來驗證使用者傳入的資料。在這種情況下，POST 資料，以及標題和文字欄位是必須的。
 
 如上所述， CodeIgniter 具有強大的驗證程式庫，你可以在 :doc:`這裡 <../libraries/validation>` 閱讀更多關於這個程式庫的資訊。
 
-繼續往下看，你可以看到一個條件式，檢查表單驗證是否成功運行。如果沒有成功，則顯示表單；；如果表單提交後，也通過了所有的規則，就會呼叫模型，把新聞的資料傳遞到模型中。這裡你會看到一個新的函數 url\_title() （由 :doc:`URL 輔助函數 <../helpers/url_helper>` 提供），它將你傳遞給它的字串使用破折號替代所有的空格，你便可以獲得一個漂亮的 slug ，這非常適合用於創建 URL 。
+繼續往下看，你可以看到一個條件式，檢查表單驗證是否成功運行。如果沒有成功，則顯示表單；如果表單提交後，也通過了所有的規則，就會呼叫模型，把新聞的資料傳遞到模型中。這裡你會看到一個新的函數 ``url_title()`` （由 :doc:`URL 輔助函數 <../helpers/url_helper>` 提供），它將你傳遞給它的字串使用破折號替代所有的空格，你便可以獲得一個漂亮的 slug ，這非常適合用於創建 URL 。
 
 在這之後，就會載入一個視圖來顯示成功訊息，新建一個 **app/Views/news/success.php** 檔案並且寫入一些成功訊息。
 
@@ -127,7 +137,7 @@
 
 你剛剛完成了你第一個 CodeIgniter4 應用程式！
 
-下圖顯示的是專案的 **app** 資料夾，你所創建的所有文件顯示成綠色字體。兩個你所修改的設定檔案（資料庫與路由設定檔）並沒有改變顏色。
+下圖顯示的是專案的 **app** 資料夾，你所創建的所有文件顯示成綠色字體。兩個你所修改的設定檔案（ ``Config/Routes.php`` & ``Config/Filters.php`` ）並沒有改變顏色。
 
 .. image:: ../images/tutorial9.png
     :align: left

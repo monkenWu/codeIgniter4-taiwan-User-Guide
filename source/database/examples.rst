@@ -4,6 +4,10 @@
 
 以下的頁面包含了示範如何使用資料庫類別的範例程式。請閱讀各個函數的說明頁面來了解完整的細節。
 
+.. contents::
+    :local:
+    :depth: 2
+
 初始化資料庫類別
 ===============================
 
@@ -22,17 +26,17 @@
 
 ::
 
-	$query = $db->query('SELECT name, title, email FROM my_table');
-	$results = $query->getResult();
+    $query   = $db->query('SELECT name, title, email FROM my_table');
+    $results = $query->getResult();
 
-	foreach ($results as $row)
-	{
-		echo $row->title;
-		echo $row->name;
-		echo $row->email;
-	}
+    foreach ($results as $row) {
+        echo $row->title;
+        echo $row->name;
+        echo $row->email;
+    }
 
-	echo 'Total Results: ' . count($results);
+    echo 'Total Results: ' . count($results);
+
 
 以上的 ``getResult()`` 函數會回傳一個 **物件** 陣列。
 範例：``$row->title``。
@@ -42,15 +46,14 @@
 
 ::
 
-	$query   = $db->query('SELECT name, title, email FROM my_table');
-	$results = $query->getResultArray();
+    $query   = $db->query('SELECT name, title, email FROM my_table');
+    $results = $query->getResultArray();
 
-	foreach ($results as $row)
-	{
-		echo $row['title'];
-		echo $row['name'];
-		echo $row['email'];
-	}
+    foreach ($results as $row) {
+        echo $row['title'];
+        echo $row['name'];
+        echo $row['email'];
+    }
 
 以上的 ``getResultArray()`` 函數會回傳一個標準的索引陣列。
 範例：``$row['title']``。
@@ -60,9 +63,9 @@
 
 ::
 
-	$query = $db->query('SELECT name FROM my_table LIMIT 1');
-	$row   = $query->getRow();
-	echo $row->name;
+    $query = $db->query('SELECT name FROM my_table LIMIT 1');
+    $row   = $query->getRow();
+    echo $row->name;
 
 以上的 ``getRow()`` 函數會回傳一個 **物件**。
 範例：``$row->name``。

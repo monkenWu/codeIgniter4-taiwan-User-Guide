@@ -57,12 +57,11 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 ::
 
-	$query = $builder->get();
+    $query = $builder->get();
 
-	foreach ($query->getResult() as $row)
-	{
-		echo $row->title;
-	}
+    foreach ($query->getResult() as $row) {
+        echo $row->title;
+    }
 
 請參考 :doc:`產生查詢結果 <results>` 來了解關於產生結果的完整內容。
 
@@ -221,7 +220,10 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 你可以使用以下四個方法的其中一個來設定查詢的 **WHERE** 條件。
 
-.. note:: 傳送到這個函數的數值都會自動跳脫，來產生安全的查詢。
+.. note:: 除了使用自訂字串時，傳送到這個函數的數值都會自動跳脫，來產生安全的查詢。
+
+.. note:: ``$builder->where()`` accepts an optional third parameter. If you set it to
+    ``false``, CodeIgniter will not try to protect your field or table names.
 
 #. **簡單的 key/value 方法：**
 
@@ -265,18 +267,22 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 		$builder->where($array);
 
 #. **自定字串：**
-	你可以手動編寫你的語法。
 
+	你可以手動編寫你的語法。
+	
 	::
 
 		$where = "name='Joe' AND status='boss' OR status='active'";
 		$builder->where($where);
 
-    ``$builder->where()`` 的第三個參數是可有可無的。如果你設定為FALSE，CodeIgniter將不會保護你的語法或資料表名稱。
+    If you are using user-supplied data within the string, you MUST escape the
+    data manually. Failure to do so could result in SQL injections.
 
     ::
 
-        $builder->where('MATCH (field) AGAINST ("value")', NULL, FALSE);
+        $name = $builder->db->escape('Joe');
+        $where = "name={$name} AND status='boss' OR status='active'";
+        $builder->where($where);
 
 #. **子查詢：**
 	你可以使用匿名函數來建立子查詢。
@@ -318,7 +324,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 **$builder->orWhereIn()**
 
-產生 WHERE 欄位 ``IN ('item', 'item')`` 的SQL查詢語法，如果合適的話就用OR串接。
+產生 WHERE 欄位 ``WHERE field IN ('item', 'item')`` 的SQL查詢語法，如果合適的話就用OR串接。
 
     ::
 
@@ -495,7 +501,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 **$builder->orHaving()**
 
-與 having() 相同，只用 "OR" 分開多個字句。
+與 ``having()`` 相同，只用 "OR" 分開多個字句。
 
 **$builder->havingIn()**
 
@@ -742,16 +748,16 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 
 ::
 
-	$builder->select('*')->from('my_table')
-		->groupStart()
-			->where('a', 'a')
-			->orGroupStart()
-				->where('b', 'b')
-				->where('c', 'c')
-			->groupEnd()
-		->groupEnd()
-		->where('d', 'd')
-	->get();
+    $builder->select('*')->from('my_table')
+        ->groupStart()
+            ->where('a', 'a')
+            ->orGroupStart()
+                ->where('b', 'b')
+                ->where('c', 'c')
+            ->groupEnd()
+        ->groupEnd()
+        ->where('d', 'd')
+    ->get();
 
 	// 產生的語法:
 	// SELECT * FROM (`my_table`) WHERE ( `a` = 'a' OR ( `b` = 'b' AND `c` = 'c' ) ) AND `d` = 'd'
@@ -810,11 +816,11 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 
 ::
 
-	$data = [
-		'title' => 'My title',
-		'name'  => 'My Name',
-		'date'  => 'My date'
-	];
+    $data = [
+        'title' => 'My title',
+        'name'  => 'My Name',
+        'date'  => 'My date',
+    ];
 
 	$builder->insert($data);
 	// 產生的語法: INSERT INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date')
@@ -825,16 +831,15 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 
 ::
 
-	/*
-	class Myclass {
-		public $title   = 'My Title';
-		public $content = 'My Content';
-		public $date    = 'My Date';
-	}
-	*/
+	class Myclass
+    {
+        public $title   = 'My Title';
+        public $content = 'My Content';
+        public $date    = 'My Date';
+    }
 
-	$object = new Myclass;
-	$builder->insert($object);
+    $object = new Myclass;
+    $builder->insert($object);
 	// 產生的語法: INSERT INTO mytable (title, content, date) VALUES ('My Title', 'My Content', 'My Date')
 
 第一個參數是傳送的物件變數。
@@ -850,11 +855,11 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 
 ::
 
-	$data = [
-		'title' => 'My title',
-		'name'  => 'My Name',
-		'date'  => 'My date'
-	];
+    $data = [
+        'title' => 'My title',
+        'name'  => 'My Name',
+        'date'  => 'My date',
+    ];
 
 	$builder->ignore(true)->insert($data);
 	// 產生的語法: INSERT OR IGNORE INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date')
@@ -868,11 +873,11 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 
 ::
 
-	$data = [
-		'title' => 'My title',
-		'name'  => 'My Name',
-		'date'  => 'My date'
-	];
+    $data = [
+        'title' => 'My title',
+        'name'  => 'My Name',
+        'date'  => 'My date',
+    ];
 
 	$sql = $builder->set($data)->getCompiledInsert('mytable');
 	echo $sql;
@@ -903,18 +908,18 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 
 ::
 
-	$data = [
-		[
-			'title' => 'My title',
-			'name'  => 'My Name',
-			'date'  => 'My date'
-		],
-		[
-			'title' => 'Another title',
-			'name'  => 'Another Name',
-			'date'  => 'Another date'
-		]
-	];
+    $data = [
+        [
+            'title' => 'My title',
+            'name'  => 'My Name',
+            'date'  => 'My date',
+        ],
+        [
+            'title' => 'Another title',
+            'name'  => 'Another Name',
+            'date'  => 'Another date',
+        ],
+    ];
 
 	$builder->insertBatch($data);
 	// 產生的語法: INSERT INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date'),  ('Another title', 'Another name', 'Another date')
@@ -934,11 +939,11 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 
 範例::
 
-	$data = [
-		'title' => 'My title',
-		'name'  => 'My Name',
-		'date'  => 'My date'
-	];
+    $data = [
+        'title' => 'My title',
+        'name'  => 'My Name',
+        'date'  => 'My date',
+    ];
 
 	$builder->replace($data);
 
@@ -986,11 +991,11 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 
 ::
 
-	$array = [
-		'name'   => $name,
-		'title'  => $title,
-		'status' => $status
-	];
+    $array = [
+        'name'   => $name,
+        'title'  => $title,
+        'status' => $status,
+    ];
 
 	$builder->set($array);
 	$builder->insert();
@@ -999,11 +1004,12 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 
 ::
 
-	class Myclass {
-		public $title   = 'My Title';
-		public $content = 'My Content';
-		public $date    = 'My Date';
-	}
+    class Myclass
+    {
+        public $title   = 'My Title';
+        public $content = 'My Content';
+        public $date    = 'My Date';
+    }
 
 	$object = new Myclass;
 	$builder->set($object);
@@ -1016,40 +1022,39 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 
 ::
 
-	$data = [
-		'title' => $title,
-		'name'  => $name,
-		'date'  => $date
-	];
+    $data = [
+        'title' => $title,
+        'name'  => $name,
+        'date'  => $date,
+    ];
 
-	$builder->where('id', $id);
-	$builder->update($data);
-	// 產生的語法:
-	//
-	//	UPDATE mytable
-	//	SET title = '{$title}', name = '{$name}', date = '{$date}'
-	//	WHERE id = $id
+    $builder->where('id', $id);
+    $builder->update($data);
+    // 產生的語法:
+    //
+    // UPDATE mytable
+    // SET title = '{$title}', name = '{$name}', date = '{$date}'
+    // WHERE id = $id
 
 或者你可以傳送物件：
 
 ::
 
-	/*
-	class Myclass {
-		public $title   = 'My Title';
-		public $content = 'My Content';
-		public $date    = 'My Date';
-	}
-	*/
+    class Myclass
+    {
+        public $title   = 'My Title';
+        public $content = 'My Content';
+        public $date    = 'My Date';
+    }
 
-	$object = new Myclass;
-	$builder->where('id', $id);
-	$builder->update($object);
-	// 產生的語法:
-	//
-	// UPDATE `mytable`
-	// SET `title` = '{$title}', `name` = '{$name}', `date` = '{$date}'
-	// WHERE id = `$id`
+    $object = new Myclass;
+    $builder->where('id', $id);
+    $builder->update($object);
+    // 產生的語法:
+    //
+    // UPDATE `mytable`
+    // SET `title` = '{$title}', `name` = '{$name}', `date` = '{$date}'
+    // WHERE id = `$id`
 
 .. note:: 傳送到這個函數的數值都會自動跳脫，來產生安全的查詢。
 

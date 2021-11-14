@@ -25,9 +25,7 @@ CodeIgniter 透過 Exceptions 將錯誤報告建構到你的系統中，包括 `
 
 	try {
 		$user = $userModel->find($id);
-	}
-	catch (\Exception $e)
-	{
+	} catch (\Exception $e) {
 		die($e->getMessage());
 	}
 
@@ -37,8 +35,7 @@ CodeIgniter 透過 Exceptions 將錯誤報告建構到你的系統中，包括 `
 
 ::
 
-	catch (\CodeIgniter\UnknownFileException $e)
-	{
+	catch (\CodeIgniter\UnknownFileException $e) {
 		// do something here...
 	}
 
@@ -46,8 +43,7 @@ CodeIgniter 透過 Exceptions 將錯誤報告建構到你的系統中，包括 `
 
 ::
 
-	catch (\CodeIgniter\UnknownFileException $e)
-	{
+	catch (\CodeIgniter\UnknownFileException $e) {
 		// do something here...
 
 		throw new \RuntimeException($e->getMessage(), $e->getCode(), $e);

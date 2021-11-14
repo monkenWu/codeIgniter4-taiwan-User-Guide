@@ -75,14 +75,11 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
 
     public function getNews($slug = false)
     {
-        if ($slug === false)
-        {
+        if ($slug === false) {
             return $this->findAll();
         }
 
-        return $this->asArray()
-                    ->where(['slug' => $slug])
-                    ->first();
+        return $this->where(['slug' => $slug])->first();
     }
 
 這個程式碼包含兩個不同的查詢，你可以得到所有的新聞紀錄，或者是按條獲取。你可能已經注意到，在執行查詢之前我們尚未進行變數處理。 :doc:`查詢產生器 <../database/query_builder>` 會替您執行這個操作，使你的資料庫查詢更加安全。
@@ -107,14 +104,14 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
     {
         public function index()
         {
-            $model = new NewsModel();
+            $model = model(NewsModel::class);
 
             $data['news'] = $model->getNews();
         }
 
         public function view($slug = null)
         {
-            $model = new NewsModel();
+            $model = model(NewsModel::class);
 
             $data['news'] = $model->getNews($slug);
         }
@@ -123,7 +120,13 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
 
 看看程式碼，你可能會發現與我們之前建立的文件有相似之處。首先，它繼承了 CodeIgniter 核心類別 ``Controller`` ，這個類別提供了幾個輔助方法，並且確保你可以使用當前的 ``Request`` 與 ``Response`` 物件。以及將運作資訊保存在伺服器的 ``Logger`` 類別。
 
-接下來，有兩個方法，一個用於查看所有新聞專案，另一個用於查看特定的新聞專案。 ``$slug`` 變數在第二個方法中傳遞給模型，而模型也使用 slug 回傳相應的新聞。
+Next, the ``model()`` function is used to create the **NewsModel** instance.
+This is a helper function. You can read more about it :doc:`here </general/common_functions>`.
+You could also write ``$model = new NewsModel();``, if you don't use it.
+
+接下來， ``model()`` 函數被用於建立 NewsModel 實體。這是一個輔助函數，你可以在 :doc:`這裡 </general/common_functions>` 閱讀到更多說明。若你不想這麼使用，你也可以寫成 ``$model = new NewsModel();`` 。
+
+ ``$slug`` 變數在第二個方法中傳遞給模型，而模型也使用 slug 回傳相應的新聞。
 
 現在，控制器透過我們的模型檢索資料，但尚未顯示任何資料。接下來我們得將這些資料傳遞給視圖。將  ``index()`` 修改成向下面這樣。
 
@@ -131,7 +134,7 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
 
     public function index()
     {
-        $model = new NewsModel();
+        $model = model(NewsModel::class);
 
         $data = [
             'news'  => $model->getNews(),
@@ -149,7 +152,7 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
 
     <h2><?= esc($title) ?></h2>
 
-    <?php if (! empty($news) && is_array($news)) : ?>
+    <?php if (! empty($news) && is_array($news)): ?>
 
         <?php foreach ($news as $news_item): ?>
 
@@ -162,7 +165,7 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
 
         <?php endforeach; ?>
 
-    <?php else : ?>
+    <?php else: ?>
 
         <h3>No News</h3>
 
@@ -170,7 +173,7 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
 
     <?php endif ?>
 
-.. note:: We are again using using **esc()** to help prevent XSS attacks.
+.. note:: We are again using using ``esc()`` to help prevent XSS attacks.
     But this time we also passed "url" as a second parameter. That's because
     attack patterns are different depending on the context in which the output
     is used. You can read more about it :doc:`here </general/common_functions>`.
@@ -181,15 +184,14 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
 
 ::
 
-    public function view($slug = NULL)
+    public function view($slug = null)
     {
-        $model = new NewsModel();
+        $model = model(NewsModel::class);
 
         $data['news'] = $model->getNews($slug);
 
-        if (empty($data['news']))
-        {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Cannot find the news item: '. $slug);
+        if (empty($data['news'])) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Cannot find the news item: ' . $slug);
         }
 
         $data['title'] = $data['news']['title'];
@@ -204,9 +206,8 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
 
 ::
 
-	<?php
-	echo '<h2>'.$news['title'].'</h2>';
-	echo $news['body'];
+    <h2><?= esc($news['title']) ?></h2>
+    <p><?= esc($news['body']) ?></p>
 
 路由
 -------------------------------------------------------
