@@ -59,7 +59,9 @@ PHPUnit 組態設定
 
 ::
 
-    <?php namespace App\Libraries;
+    <?php
+
+    namespace App\Libraries;
 
     use CodeIgniter\Test\CIUnitTestCase;
 
@@ -75,7 +77,9 @@ PHPUnit 組態設定
 
 ::
 
-    <?php namespace App\Models;
+    <?php
+
+    namespace App\Models;
 
     use CodeIgniter\Test\CIUnitTestCase;
 
@@ -138,12 +142,33 @@ that or provide their own::
             $this->model->purgeDeleted()
         }
 
+Traits
+------
+
+A common way to enhance your tests is by using traits to consolidate staging across different
+test cases. ``CIUnitTestCase`` will detect any class traits and look for staging methods
+to run named for the trait itself. For example, if you needed to add authentication to some
+of your test cases you could create an authentication trait with a set up method to fake a
+logged in user::
+
+    trait AuthTrait
+    {
+        protected setUpAuthTrait()
+        {
+            $user = $this->createFakeUser();
+            $this->logInUser($user);
+        }
+    ...
+
+    class AuthenticationFeatureTest
+    {
+        use AuthTrait;
+    ...
+
 額外斷言
 ---------------------
 
 ``CIUnitTestCase`` 提供了額外的單元測試斷言，你可能會覺得這些功能很有用。
-
-.. note:: （譯者註）斷言（Assertion），是指程式執行過程中，斷定某個時間點一定是某種狀態。換句話說，在斷言的宣告下，你能斷定這個時間點某個變數的絕對值或是有著某種特殊的狀態。
 
 **assertLogged($level, $expectedMessage)**
 
@@ -205,7 +230,7 @@ that or provide their own::
 
 .. note:: 這個測試案例應該在 PHPunit 中作為 `單獨的處理程序運作 <https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess>`_ 。
 
-**assertCloseEnough($expected, $actual, $message='', $tolerance=1)**
+**assertCloseEnough($expected, $actual, $message=\\'\\', $tolerance=1)**
 
 對於延長的執行時間測試來說，判斷你所預期時間與實際時間的相差是否在你規定的公差範圍內：
 
@@ -244,10 +269,10 @@ that or provide their own::
     $obj = new Foo();
 
     // Get the invoker for the 'privateMethod' method.
-	$method = $this->getPrivateMethodInvoker($obj, 'privateMethod');
+    $method = $this->getPrivateMethodInvoker($obj, 'privateMethod');
 
     // Test the results
-	$this->assertEquals('bar', $method('param1', 'param2'));
+    $this->assertEquals('bar', $method('param1', 'param2'));
 
 **getPrivateProperty($instance, $property)**
 
@@ -301,6 +326,10 @@ that or provide their own::
 **reset()**
 
 使用這個方法刪除了服務類別中的所有服務模擬類別，它將會恢復到原來的狀態。
+
+**resetSingle(string $name)**
+
+Removes any mock and shared instances for a single service, by its name.
 
 .. note:: The ``Email`` and ``Session`` services are mocked by default to prevent intrusive testing behavior. To prevent these from mocking remove their method callback from the class property: ``$setUpMethods = ['mockEmail', 'mockSession'];``
 
