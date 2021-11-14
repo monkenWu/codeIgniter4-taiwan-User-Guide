@@ -10,24 +10,22 @@
 
         <?php namespace App\Database\Seeds;
 
-	class SimpleSeeder extends \CodeIgniter\Database\Seeder
-	{
-		public function run()
-		{
-			$data = [
-				'username' => 'darth',
-				'email'    => 'darth@theempire.com'
-			];
+    class SimpleSeeder extends \CodeIgniter\Database\Seeder
+    {
+        public function run()
+        {
+            $data = [
+                'username' => 'darth',
+                'email'    => 'darth@theempire.com'
+            ];
 
-			// 簡單查詢
-			$this->db->query("INSERT INTO users (username, email) VALUES(:username:, :email:)",
-				$data
-			);
+            // 簡單查詢
+            $this->db->query("INSERT INTO users (username, email) VALUES(:username:, :email:)", $data);
 
-			// 使用查詢生成器
-			$this->db->table('users')->insert($data);
-		}
-	}
+            // 使用查詢生成器
+            $this->db->table('users')->insert($data);
+        }
+    }
 
 巢套填充器
 ===============
@@ -36,27 +34,29 @@
 
 ::
 
-        <?php namespace App\Database\Seeds;
+    namespace App\Database\Seeds;
 
-	class TestSeeder extends \CodeIgniter\Database\Seeder
-	{
-		public function run()
-		{
-			$this->call('UserSeeder');
-			$this->call('CountrySeeder');
-			$this->call('JobSeeder');
-		}
-	}
+    use CodeIgniter\Database\Seeder;
+
+    class TestSeeder extends Seeder
+    {
+        public function run()
+        {
+            $this->call('UserSeeder');
+            $this->call('CountrySeeder');
+            $this->call('JobSeeder');
+        }
+    }
 
 你還可以在透過在 **call()** 方法中使用完整的命名空間類別名稱，這樣你就可以利用自動載入器找到任何地方的資料填充器，這對於多模組化的程式專案是一大福音。
 
 ::
 
-	public function run()
-	{
-		$this->call('UserSeeder');
-		$this->call('My\Database\Seeds\CountrySeeder');
-	}
+    public function run()
+    {
+        $this->call('UserSeeder');
+        $this->call('My\Database\Seeds\CountrySeeder');
+    }
 
 Using Faker
 ===========
@@ -66,7 +66,7 @@ the `Faker library <https://github.com/fakerphp/faker>`_.
 
 To install Faker into your project::
 
-	> composer require --dev fakerphp/faker
+    > composer require --dev fakerphp/faker
 
 After installation, an instance of ``Faker\Generator`` is available in the main ``Seeder``
 class and is accessible by all child seeders. You must use the static method ``faker()``
@@ -74,24 +74,24 @@ to access the instance.
 
 ::
 
-	<?php
+    <?php
 
-	namespace App\Database\Seeds;
+    namespace App\Database\Seeds;
 
-	use CodeIgniter\Database\Seeder;
+    use CodeIgniter\Database\Seeder;
 
-	class UserSeeder extends Seeder
-	{
-		public function run()
-		{
-			$model = model('UserModel');
+    class UserSeeder extends Seeder
+    {
+        public function run()
+        {
+            $model = model('UserModel');
 
-			$model->insert([
-				'email'      => static::faker()->email,
-				'ip_address' => static::faker()->ipv4,
-			]);
-		}
-	}
+            $model->insert([
+                'email'      => static::faker()->email,
+                'ip_address' => static::faker()->ipv4,
+            ]);
+        }
+    }
 
 使用填充器
 =============
@@ -100,8 +100,8 @@ to access the instance.
 
 ::
 
-	$seeder = \Config\Database::seeder();
-	$seeder->call('TestSeeder');
+    $seeder = \Config\Database::seeder();
+    $seeder->call('TestSeeder');
 
 以命令列執行填充
 --------------------
@@ -110,7 +110,7 @@ to access the instance.
 
 ::
 
-	> php spark db:seed TestSeeder
+    > php spark db:seed TestSeeder
 
 Creating Seed Files
 -------------------
@@ -119,15 +119,13 @@ Using the command line, you can easily generate seed files.
 
 ::
 
-	// This command will create a UserSeeder seed file
-	// located at app/Database/Seeds/ directory.
-	> php spark make:seeder UserSeeder
+    > php spark make:seeder user --suffix
+    // Output: UserSeeder.php file located at app/Database/Seeds directory.
 
-You can supply the **root** namespace where the seed file will be stored by supplying the ``-n`` option::
+You can supply the **root** namespace where the seed file will be stored by supplying the ``--namespace`` option::
 
-	> php spark make:seeder MySeeder -n Acme\Blog
+    > php spark make:seeder MySeeder --namespace Acme\Blog
 
-If ``Acme\Blog`` is mapped to ``app/Blog`` directory, then this command will save the
-seed file to ``app/Blog/Database/Seeds/``.
+If ``Acme\Blog`` is mapped to ``app/Blog`` directory, then this command will generate ``MySeeder.php`` at ``app/Blog/Database/Seeds`` directory.
 
 Supplying the ``--force`` option will overwrite existing files in destination.
