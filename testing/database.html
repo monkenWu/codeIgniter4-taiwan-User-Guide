@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>資料庫測試 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>資料庫測試 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Generating Test Data" href="fabricator.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -362,23 +366,33 @@
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id7">建立一個測試類別</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p>為了利用 CodeIgniter 提供的內建資料庫工具進行測試，你的測試類別必須繼承 <code class="docutils literal notranslate"><span class="pre">CIDatabaseTestCase</span></code> ：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Database</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
-<span class="k">use</span> <span class="nx">CodeIgniter\Test\CIDatabaseTestCase</span><span class="p">;</span>
+<span class="k">namespace</span> <span class="nx">App\Database</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">MyTests</span> <span class="k">extends</span> <span class="nx">CIDatabaseTestCase</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Test\CIUnitTestCase</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Test\DatabaseTestTrait</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyTests</span> <span class="k">extends</span> <span class="nx">CIUnitTestCase</span>
 <span class="p">{</span>
-    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+    <span class="k">use</span> <span class="nx">DatabaseTestTrait</span><span class="p">;</span>
+
+    <span class="c1">// ...</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>因為大多數的特殊功能是在 <code class="docutils literal notranslate"><span class="pre">setUp()</span></code> 與 <code class="docutils literal notranslate"><span class="pre">tearDown()</span></code> 階段執行的，所以你必須確定在使用某些方法前呼叫了父類別的方法，否則你將無法實作這一章所描述的大部分功能：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Database</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
-<span class="k">use</span> <span class="nx">CodeIgniter\Test\CIDatabaseTestCase</span><span class="p">;</span>
+<span class="k">namespace</span> <span class="nx">App\Database</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">MyTests</span> <span class="k">extends</span> <span class="nx">CIDatabaseTestCase</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Test\CIUnitTestCase</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Test\DatabaseTestTrait</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyTests</span> <span class="k">extends</span> <span class="nx">CIUnitTestCase</span>
 <span class="p">{</span>
+    <span class="k">use</span> <span class="nx">DatabaseTestTrait</span><span class="p">;</span>
+
     <span class="k">public</span> <span class="k">function</span> <span class="nf">setUp</span><span class="p">()</span>
     <span class="p">{</span>
         <span class="k">parent</span><span class="o">::</span><span class="na">setUp</span><span class="p">();</span>
@@ -409,12 +423,17 @@
 <div class="section" id="id5">
 <h3><a class="toc-backref" href="#id9">遷移與資料填充</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
 <p>在運作測試時，你需要確認你的資料庫有正確的 schema （綱目）設定，並且每次測試時都需要確保它處於全知的狀態。你可以透過在測試中添加幾個類別屬性，用於資料庫遷移和資料填充，藉此設定你的資料庫。</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Database</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
-<span class="k">use</span> <span class="nx">CodeIgniter\Test\CIDatabaseTestCase</span><span class="p">;</span>
+<span class="k">namespace</span> <span class="nx">App\Database</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">MyTests</span> <span class="k">extends</span><span class="nx">\CIDatabaseTestCase</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Test\CIUnitTestCase</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Test\DatabaseTestTrait</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyTests</span> <span class="k">extends</span> <span class="nx">CIUnitTestCase</span>
 <span class="p">{</span>
+    <span class="k">use</span> <span class="nx">DatabaseTestTrait</span><span class="p">;</span>
+
     <span class="k">protected</span> <span class="nv">$refresh</span>  <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
     <span class="k">protected</span> <span class="nv">$seed</span>     <span class="o">=</span> <span class="s1">&#39;TestSeeder&#39;</span><span class="p">;</span>
     <span class="k">protected</span> <span class="nv">$basePath</span> <span class="o">=</span> <span class="s1">&#39;path/to/database/files&#39;</span><span class="p">;</span>
@@ -440,7 +459,7 @@ runs before each test.</p>
 <p><strong>$basePath</strong></p>
 <p>在預設的情形下， CodeIgniter 將會在 <strong>tests/_support/Database/Seeds</strong> 中查找測試過程中應該執行的資料填充檔案。你可以透過指定 <code class="docutils literal notranslate"><span class="pre">$basePath</span></code> 屬性來改變這個預設的目錄。而你所宣告的路徑不應該包括 <strong>seeds</strong> 資料夾，應該包括的是擁有這個子路的單一目錄的路徑。</p>
 <p><strong>$namespace</strong></p>
-<p>在預設的情形下， CodeIgniter 會在 <strong>tests/_support/DatabaseTestMigrations/Database/Migrations</strong> 中查找在測試過程中應該運作的遷移檔案。你可以透過在 <code class="docutils literal notranslate"><span class="pre">$namespace</span></code> 屬性中宣告一個新的命名空間來更改這個位置。你所需告的新命名空間不應該包括 <strong>Database/Migrations</strong> 這個路徑，而應該是去除了這些路徑的基本命名空間。</p>
+<p>在預設的情形下， CodeIgniter 會在 <strong>tests/_support/Database/Migrations</strong> 中查找在測試過程中應該運作的遷移檔案。你可以透過在 <code class="docutils literal notranslate"><span class="pre">$namespace</span></code> 屬性中宣告一個新的命名空間來更改這個位置。你所需告的新命名空間不應該包括 <strong>Database/Migrations</strong> 這個路徑，而應該是去除了這些路徑的基本命名空間。要從所有可用的命名空間中運作遷移，請將這個屬性設定為 <code class="docutils literal notranslate"><span class="pre">null</span></code> 。</p>
 </div>
 </div>
 <div class="section" id="id6">
@@ -517,7 +536,7 @@ runs before each test.</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>查詢生成器類別 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>查詢生成器類別 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="交易" href="transactions.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -402,9 +406,8 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 <p>以上的函數都被指定到 $query 這個變數中，如果要顯示這些結果，你可以使用以下方式：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 
-<span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
-<span class="p">{</span>
-        <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -528,7 +531,12 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 <p>你可以使用以下四個方法的其中一個來設定查詢的 <strong>WHERE</strong> 條件。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">傳送到這個函數的數值都會自動跳脫，來產生安全的查詢。</p>
+<p class="last">除了使用自訂字串時，傳送到這個函數的數值都會自動跳脫，來產生安全的查詢。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">$builder-&gt;where()</span></code> accepts an optional third parameter. If you set it to
+<code class="docutils literal notranslate"><span class="pre">false</span></code>, CodeIgniter will not try to protect your field or table names.</p>
 </div>
 <ol class="arabic">
 <li><p class="first"><strong>簡單的 key/value 方法：</strong></p>
@@ -569,21 +577,23 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 </div>
 </div></blockquote>
 </li>
-<li><dl class="first docutils">
-<dt><strong>自定字串：</strong></dt>
-<dd><blockquote class="first">
+<li><p class="first"><strong>自定字串：</strong></p>
+<blockquote>
+<div><blockquote>
 <div><p>你可以手動編寫你的語法。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$where</span> <span class="o">=</span> <span class="s2">&quot;name=&#39;Joe&#39; AND status=&#39;boss&#39; OR status=&#39;active&#39;&quot;</span><span class="p">;</span>
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="nv">$where</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
-<p><code class="docutils literal notranslate"><span class="pre">$builder-&gt;where()</span></code> 的第三個參數是可有可無的。如果你設定為FALSE，CodeIgniter將不會保護你的語法或資料表名稱。</p>
-<div class="last highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;MATCH (field) AGAINST (&quot;value&quot;)&#39;</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
+<p>If you are using user-supplied data within the string, you MUST escape the
+data manually. Failure to do so could result in SQL injections.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="s1">&#39;Joe&#39;</span><span class="p">);</span>
+<span class="nv">$where</span> <span class="o">=</span> <span class="s2">&quot;name=</span><span class="si">{</span><span class="nv">$name</span><span class="si">}</span><span class="s2"> AND status=&#39;boss&#39; OR status=&#39;active&#39;&quot;</span><span class="p">;</span>
+<span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="nv">$where</span><span class="p">);</span>
 </pre></div>
 </div>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 <li><dl class="first docutils">
 <dt><strong>子查詢：</strong></dt>
@@ -627,7 +637,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 </div>
 </div></blockquote>
 <p><strong>$builder-&gt;orWhereIn()</strong></p>
-<p>產生 WHERE 欄位 <code class="docutils literal notranslate"><span class="pre">IN</span> <span class="pre">('item',</span> <span class="pre">'item')</span></code> 的SQL查詢語法，如果合適的話就用OR串接。</p>
+<p>產生 WHERE 欄位 <code class="docutils literal notranslate"><span class="pre">WHERE</span> <span class="pre">field</span> <span class="pre">IN</span> <span class="pre">('item',</span> <span class="pre">'item')</span></code> 的SQL查詢語法，如果合適的話就用OR串接。</p>
 <blockquote>
 <div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Frank&#39;</span><span class="p">,</span> <span class="s1">&#39;Todd&#39;</span><span class="p">,</span> <span class="s1">&#39;James&#39;</span><span class="p">];</span>
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">orWhereIn</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="nv">$names</span><span class="p">);</span>
@@ -777,7 +787,7 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 </pre></div>
 </div>
 <p><strong>$builder-&gt;orHaving()</strong></p>
-<p>與 having() 相同，只用 「OR」 分開多個字句。</p>
+<p>與 <code class="docutils literal notranslate"><span class="pre">having()</span></code> 相同，只用 「OR」 分開多個字句。</p>
 <p><strong>$builder-&gt;havingIn()</strong></p>
 <p>產生 HAVING 欄位 <code class="docutils literal notranslate"><span class="pre">IN</span> <span class="pre">('item',</span> <span class="pre">'item')</span></code> 的SQL查詢語法，如果合適的話就用AND串接。</p>
 <blockquote>
@@ -982,18 +992,18 @@ CodeIgniter 並沒有要求每個資料表都要有自己的類別檔。
 <h2><a class="toc-backref" href="#id22">查詢分組</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h2>
 <p>查詢分組可以使用括號在WHERE子句中建立不同的群組。這樣就能在WHERE子句中建立複雜的查詢。支援巢狀的群組。範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;my_table&#39;</span><span class="p">)</span>
-        <span class="o">-&gt;</span><span class="na">groupStart</span><span class="p">()</span>
-                <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
-                <span class="o">-&gt;</span><span class="na">orGroupStart</span><span class="p">()</span>
-                        <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
-                        <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">)</span>
-                <span class="o">-&gt;</span><span class="na">groupEnd</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">groupStart</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">orGroupStart</span><span class="p">()</span>
+            <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">)</span>
         <span class="o">-&gt;</span><span class="na">groupEnd</span><span class="p">()</span>
-        <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">groupEnd</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">)</span>
 <span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 
-<span class="c1">// 產生的語法:</span>
-<span class="c1">// SELECT * FROM (`my_table`) WHERE ( `a` = &#39;a&#39; OR ( `b` = &#39;b&#39; AND `c` = &#39;c&#39; ) ) AND `d` = &#39;d&#39;</span>
+    <span class="c1">// 產生的語法:</span>
+    <span class="c1">// SELECT * FROM (`my_table`) WHERE ( `a` = &#39;a&#39; OR ( `b` = &#39;b&#39; AND `c` = &#39;c&#39; ) ) AND `d` = &#39;d&#39;</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1028,28 +1038,27 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <p><strong>$builder-&gt;insert()</strong></p>
 <p>根據你提供的資料產生插入的語法，並執行查詢。你也可以傳送 <strong>陣列</strong> 或 <strong>物件</strong> 到函數中。以下是使用陣列的範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My Name&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;date&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My date&#39;</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My Name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;date&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My date&#39;</span><span class="p">,</span>
 <span class="p">];</span>
 
-<span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
-<span class="c1">// 產生的語法: INSERT INTO mytable (title, name, date) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
+    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+    <span class="c1">// 產生的語法: INSERT INTO mytable (title, name, date) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
 </pre></div>
 </div>
 <p>第一個參數是傳送的關聯陣列變數。</p>
 <p>以下是使用物件的範例：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
-<span class="cm">class Myclass {</span>
-<span class="cm">        public $title   = &#39;My Title&#39;;</span>
-<span class="cm">        public $content = &#39;My Content&#39;;</span>
-<span class="cm">        public $date    = &#39;My Date&#39;;</span>
-<span class="cm">}</span>
-<span class="cm">*/</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span>    <span class="k">class</span> <span class="nc">Myclass</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$title</span>   <span class="o">=</span> <span class="s1">&#39;My Title&#39;</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$content</span> <span class="o">=</span> <span class="s1">&#39;My Content&#39;</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$date</span>    <span class="o">=</span> <span class="s1">&#39;My Date&#39;</span><span class="p">;</span>
+<span class="p">}</span>
 
 <span class="nv">$object</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Myclass</span><span class="p">;</span>
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="nv">$object</span><span class="p">);</span>
-<span class="c1">// 產生的語法: INSERT INTO mytable (title, content, date) VALUES (&#39;My Title&#39;, &#39;My Content&#39;, &#39;My Date&#39;)</span>
+    <span class="c1">// 產生的語法: INSERT INTO mytable (title, content, date) VALUES (&#39;My Title&#39;, &#39;My Content&#39;, &#39;My Date&#39;)</span>
 </pre></div>
 </div>
 <p>第一個參數是傳送的物件變數。</p>
@@ -1063,28 +1072,28 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 你可以以傳送 <strong>布林</strong> 到這個函數中。
 以下是使用上述傳送陣列的範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My Name&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;date&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My date&#39;</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My Name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;date&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My date&#39;</span><span class="p">,</span>
 <span class="p">];</span>
 
-<span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">ignore</span><span class="p">(</span><span class="k">true</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
-<span class="c1">// 產生的語法: INSERT OR IGNORE INTO mytable (title, name, date) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
+    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">ignore</span><span class="p">(</span><span class="k">true</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+    <span class="c1">// 產生的語法: INSERT OR IGNORE INTO mytable (title, name, date) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
 </pre></div>
 </div>
 <p><strong>$builder-&gt;getCompiledInsert()</strong></p>
 <p>像是 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;insert()</span></code> 一樣編譯插入查詢，但並不會 <strong>執行</strong> 查詢。這個方法只會回傳SQL查詢的語法字串。</p>
 <p>範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My Name&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;date&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My date&#39;</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My Name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;date&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My date&#39;</span><span class="p">,</span>
 <span class="p">];</span>
 
-<span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getCompiledInsert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
-<span class="k">echo</span> <span class="nv">$sql</span><span class="p">;</span>
+    <span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getCompiledInsert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nv">$sql</span><span class="p">;</span>
 
-<span class="c1">// 產生的語法字串: INSERT INTO mytable (`title`, `name`, `date`) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
+    <span class="c1">// 產生的語法字串: INSERT INTO mytable (`title`, `name`, `date`) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
 </pre></div>
 </div>
 <p>第二個參數是設定是否重置查詢生成器的查詢(預設是會重置，就像使用 <code class="docutils literal notranslate"><span class="pre">$builder-&gt;insert()</span></code> 一樣)。</p>
@@ -1106,20 +1115,20 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 <p><strong>$builder-&gt;insertBatch()</strong></p>
 <p>根據你提供的資料產生插入的語法，並執行查詢。你也可以傳送 <strong>陣列</strong> 或 <strong>物件</strong> 到函數中。以下是使用陣列的範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">[</span>
-                <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My Name&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;date&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My date&#39;</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-                <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Another title&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Another Name&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;date&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Another date&#39;</span>
-        <span class="p">]</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My Name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;date&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My date&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Another title&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Another Name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;date&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Another date&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
 <span class="p">];</span>
 
-<span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">insertBatch</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
-<span class="c1">// 產生的語法: INSERT INTO mytable (title, name, date) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;),  (&#39;Another title&#39;, &#39;Another name&#39;, &#39;Another date&#39;)</span>
+    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">insertBatch</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+    <span class="c1">// 產生的語法: INSERT INTO mytable (title, name, date) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;),  (&#39;Another title&#39;, &#39;Another name&#39;, &#39;Another date&#39;)</span>
 </pre></div>
 </div>
 <p>第一個參數是傳送的關聯陣列變數。</p>
@@ -1135,14 +1144,14 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 在我們的範例中，它將會使你減少呼叫  <code class="docutils literal notranslate"><span class="pre">select()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">update()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">delete()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">insert()</span></code> 不同的組合來實現複雜的邏輯。</p>
 <p>範例:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My Name&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;date&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My date&#39;</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My Name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;date&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My date&#39;</span><span class="p">,</span>
 <span class="p">];</span>
 
-<span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
 
-<span class="c1">// 執行的語法: REPLACE INTO mytable (title, name, date) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
+    <span class="c1">// 執行的語法: REPLACE INTO mytable (title, name, date) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
 </pre></div>
 </div>
 <p>在上述的範例中，假設 <em>title</em> 是這個欄位的主鍵，如果 <em>title</em> 有指定 『My title』 這個值，則整個列將會被刪除，並用新的值去替換它。</p>
@@ -1174,53 +1183,53 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 </div>
 <p>你也可以在這個函數中傳送一個關聯陣列：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$array</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;name&#39;</span>   <span class="o">=&gt;</span> <span class="nv">$name</span><span class="p">,</span>
-        <span class="s1">&#39;title&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$title</span><span class="p">,</span>
-        <span class="s1">&#39;status&#39;</span> <span class="o">=&gt;</span> <span class="nv">$status</span>
+    <span class="s1">&#39;name&#39;</span>   <span class="o">=&gt;</span> <span class="nv">$name</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$title</span><span class="p">,</span>
+    <span class="s1">&#39;status&#39;</span> <span class="o">=&gt;</span> <span class="nv">$status</span><span class="p">,</span>
 <span class="p">];</span>
 
-<span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$array</span><span class="p">);</span>
-<span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">();</span>
+    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$array</span><span class="p">);</span>
+    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>或是一個物件</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Myclass</span> <span class="p">{</span>
-        <span class="k">public</span> <span class="nv">$title</span>   <span class="o">=</span> <span class="s1">&#39;My Title&#39;</span><span class="p">;</span>
-        <span class="k">public</span> <span class="nv">$content</span> <span class="o">=</span> <span class="s1">&#39;My Content&#39;</span><span class="p">;</span>
-        <span class="k">public</span> <span class="nv">$date</span>    <span class="o">=</span> <span class="s1">&#39;My Date&#39;</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Myclass</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$title</span>   <span class="o">=</span> <span class="s1">&#39;My Title&#39;</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$content</span> <span class="o">=</span> <span class="s1">&#39;My Content&#39;</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$date</span>    <span class="o">=</span> <span class="s1">&#39;My Date&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="nv">$object</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Myclass</span><span class="p">;</span>
-<span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$object</span><span class="p">);</span>
-<span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">();</span>
+    <span class="nv">$object</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Myclass</span><span class="p">;</span>
+    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$object</span><span class="p">);</span>
+    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">();</span>
 </pre></div>
 </div>
 <p><strong>$builder-&gt;update()</strong></p>
 <p>產生一個更新字串並根據你提供的資料執行查詢。你可以在函數中傳送一個 <strong>陣列</strong> 或 <strong>物件</strong>。
 以下是使用陣列的範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="nv">$title</span><span class="p">,</span>
-        <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$name</span><span class="p">,</span>
-        <span class="s1">&#39;date&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$date</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="nv">$title</span><span class="p">,</span>
+    <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$name</span><span class="p">,</span>
+    <span class="s1">&#39;date&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$date</span><span class="p">,</span>
 <span class="p">];</span>
 
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
 <span class="c1">// 產生的語法:</span>
 <span class="c1">//</span>
-<span class="c1">//      UPDATE mytable</span>
-<span class="c1">//      SET title = &#39;{$title}&#39;, name = &#39;{$name}&#39;, date = &#39;{$date}&#39;</span>
-<span class="c1">//      WHERE id = $id</span>
+<span class="c1">// UPDATE mytable</span>
+<span class="c1">// SET title = &#39;{$title}&#39;, name = &#39;{$name}&#39;, date = &#39;{$date}&#39;</span>
+<span class="c1">// WHERE id = $id</span>
 </pre></div>
 </div>
 <p>或者你可以傳送物件：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
-<span class="cm">class Myclass {</span>
-<span class="cm">        public $title   = &#39;My Title&#39;;</span>
-<span class="cm">        public $content = &#39;My Content&#39;;</span>
-<span class="cm">        public $date    = &#39;My Date&#39;;</span>
-<span class="cm">}</span>
-<span class="cm">*/</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Myclass</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$title</span>   <span class="o">=</span> <span class="s1">&#39;My Title&#39;</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$content</span> <span class="o">=</span> <span class="s1">&#39;My Content&#39;</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$date</span>    <span class="o">=</span> <span class="s1">&#39;My Date&#39;</span><span class="p">;</span>
+<span class="p">}</span>
 
 <span class="nv">$object</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Myclass</span><span class="p">;</span>
 <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>
@@ -2910,7 +2919,7 @@ available to the Query Builder, like <code class="docutils literal notranslate">
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

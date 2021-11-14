@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>使用 CodeIgniter 的模型 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>使用 CodeIgniter 的模型 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="使用實體類別" href="entities.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -435,6 +439,28 @@
 </pre></div>
 </div>
 <p>這個空的類別提供了對資料庫連接、查詢生成器，和一些額外的便捷方法的訪問。</p>
+<p>Should you need additional setup in your model you may extend the <code class="docutils literal notranslate"><span class="pre">initialize()</span></code> function
+which will be run immediately after the Model’s constructor. This allows you to perform
+extra steps without repeating the constructor parameters, for example extending other models:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Modules\Authentication\Models\UserAuthModel</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserModel</span> <span class="k">extends</span> <span class="nx">UserAuthModel</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * Called during initialization. Appends</span>
+<span class="sd">     * our custom field to the module&#39;s model.</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">allowedFields</span><span class="p">[]</span> <span class="o">=</span> <span class="s1">&#39;middlename&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <div class="section" id="id5">
 <h3><a class="toc-backref" href="#id27">連接資料庫</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
 <p>當類別被首次實體化後，如果沒有向建構方法傳遞資料庫的連結實體，那麼它將會自動連接到組態設定中預設的資料庫群組。你可以透過在類別中添加 DBGroup 屬性來修改每個模型會使用到的資料庫設定群組。這樣可以讓模型中任何對 <code class="docutils literal notranslate"><span class="pre">$this-&gt;db</span></code> 的呼叫引用，都是透過你所設定適合的連接執行。</p>
@@ -582,14 +608,12 @@ will still work the same as before.</p>
 <span class="nv">$activeUsers</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
 
 <span class="c1">// Gets all rows</span>
-<span class="nv">$allUsers</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">withDeleted</span><span class="p">()</span>
-                      <span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
+<span class="nv">$allUsers</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">withDeleted</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
 </pre></div>
 </div>
 <p><strong>onlyDeleted()</strong></p>
 <p>withDeleted() 方法將會回傳已經刪除與未刪除的記錄，而這個方法將會修改下一個生效的 find() 方法，使它只會回傳被假性刪除的資料。</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$deletedUsers</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">onlyDeleted</span><span class="p">()</span>
-                          <span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$deletedUsers</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">onlyDeleted</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -598,8 +622,8 @@ will still work the same as before.</p>
 <p><strong>insert()</strong></p>
 <p>這個方法允許你傳入一個鍵值陣列，使你可以在資料庫中插入一筆新資料。你所傳入的陣列的鍵必須與資料庫的欄位名稱相符，而每個鍵的值則是你所需要儲存的資料。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span>
+    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span><span class="p">,</span>
 <span class="p">];</span>
 
 <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
@@ -608,14 +632,14 @@ will still work the same as before.</p>
 <p><strong>insertBatch()</strong></p>
 <p>若是你需要一次插入多筆資料進資料庫中，你需要傳入一個包含上一個條目 insert() 使用的陣列的陣列。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">[</span>
-                <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-                <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;amos&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;a.vader@theempire.com&#39;</span>
-        <span class="p">]</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;amos&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;a.vader@theempire.com&#39;</span>
+    <span class="p">]</span>
 <span class="p">];</span>
 
 <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">insertBatch</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
@@ -623,20 +647,20 @@ will still work the same as before.</p>
 </div>
 <p><strong>update()</strong></p>
 <p>更新資料庫的現有記錄，第一個參數是你目標更新資料的 $primaryKey ，而第二個參數則是一個鍵值陣列。陣列的鍵必須與資料表中的欄位名稱相符，而每個鍵的值則是你所要更新的資料。</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span>    <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span>
+    <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span><span class="p">,</span>
 <span class="p">];</span>
 
-    <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+<span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>透過傳入一個以主鍵組成的陣列作為第一個參數，可以只用一次呼叫更新多筆記錄。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;active&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span>
+    <span class="s1">&#39;active&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
 <span class="p">];</span>
 
-    <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="nv">$data</span><span class="p">);</span>
+<span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="nv">$data</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>當你出現一些額外的需求時，你可以把傳入的參數留白，這個方法便會成為查詢生成器的更新指令一樣，讓你可以進行額外的驗證、事件等功能。</p>
@@ -648,22 +672,22 @@ will still work the same as before.</p>
 </div>
 <p><strong>save()</strong></p>
 <p>這個功能它封裝了 insert() 與 update() 兩個方法。它依據在資料表中是否找的到你所傳入的 $primaryKey 主鍵，自動處理你所需要的是插入或是更新。</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 定義 model 屬性</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span>    <span class="c1">// 定義 model 屬性</span>
 <span class="nv">$primaryKey</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span><span class="p">;</span>
 
-<span class="c1">// 執行 insert()</span>
+    <span class="c1">// 執行 insert()</span>
 <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span>
+    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span><span class="p">,</span>
 <span class="p">];</span>
 
 <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
 
-<span class="c1">// 如果找的到你所傳入的主健，將會執行 update()</span>
+    <span class="c1">// 如果找的到你所傳入的主健，將會執行 update()</span>
 <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;id&#39;</span>       <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span>
+    <span class="s1">&#39;id&#39;</span>       <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span><span class="p">,</span>
 <span class="p">];</span>
 <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
 </pre></div>
@@ -679,16 +703,14 @@ will still work the same as before.</p>
 
     <span class="k">public</span> <span class="k">function</span> <span class="fm">__get</span><span class="p">(</span><span class="nv">$key</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">property_exists</span><span class="p">(</span><span class="nv">$this</span><span class="p">,</span> <span class="nv">$key</span><span class="p">))</span>
-        <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">property_exists</span><span class="p">(</span><span class="nv">$this</span><span class="p">,</span> <span class="nv">$key</span><span class="p">))</span> <span class="p">{</span>
             <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nv">$key</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">}</span>
 
     <span class="k">public</span> <span class="k">function</span> <span class="fm">__set</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">property_exists</span><span class="p">(</span><span class="nv">$this</span><span class="p">,</span> <span class="nv">$key</span><span class="p">))</span>
-        <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">property_exists</span><span class="p">(</span><span class="nv">$this</span><span class="p">,</span> <span class="nv">$key</span><span class="p">))</span> <span class="p">{</span>
             <span class="nv">$this</span><span class="o">-&gt;</span><span class="nv">$key</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -887,18 +909,18 @@ will still work the same as before.</p>
 </div>
 <p>這將回傳一個包含欄位名稱和相關錯誤訊息的陣列，可以用來在表單的頂部顯示所有錯誤，你也可以單獨顯示它們：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$errors</span><span class="p">))</span> <span class="o">:</span> <span class="cp">?&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;alert alert-danger&quot;</span><span class="p">&gt;</span>
-        <span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$errors</span> <span class="k">as</span> <span class="nv">$field</span> <span class="o">=&gt;</span> <span class="nv">$error</span><span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span>
-                <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$error</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-        <span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;alert alert-danger&quot;</span><span class="p">&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$errors</span> <span class="k">as</span> <span class="nv">$field</span> <span class="o">=&gt;</span> <span class="nv">$error</span><span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$error</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
 </pre></div>
 </div>
 <p>如果你想在組態設定檔案中統一組織驗證用的規則以及錯誤訊息，只需將 <code class="docutils literal notranslate"><span class="pre">$validationRules</span></code> 設定為你所創建的規則群組名稱即可，就像這樣做：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UserModel</span> <span class="k">extends</span> <span class="nx">Model</span>
 <span class="p">{</span>
-        <span class="k">protected</span> <span class="nv">$validationRules</span> <span class="o">=</span> <span class="s1">&#39;users&#39;</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$validationRules</span> <span class="o">=</span> <span class="s1">&#39;users&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -964,7 +986,10 @@ will still work the same as before.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$builder</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">builder</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>這個生成器已經在模型中的 $table 設定好了。</p>
+<p>這個生成器已經在模型中的 $table 設定好了。如果你需要存取另一張表，你可以把它作為一個參數傳進去，但要注意使用這種方式獲得的並不是共享實體。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$groupBuilder</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">builder</span><span class="p">(</span><span class="s1">&#39;groups&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
 <p>你還可以在同一個鏈式呼叫中優雅地混和使用查詢生成器方法與模型提供的 CRUD 方法。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">)</span>
                    <span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="s1">&#39;last_login&#39;</span><span class="p">,</span> <span class="s1">&#39;asc&#39;</span><span class="p">)</span>
@@ -1005,10 +1030,9 @@ will still work the same as before.</p>
 <h3><a class="toc-backref" href="#id39">處理大量資料</a><a class="headerlink" href="#id17" title="本標題的永久連結">¶</a></h3>
 <p>有的時候，你可能會需要處理大量的資料，說不定會有記憶體不足的問題。為了簡單化這個問題，你可以使用 chunk() 方法來獲取更小的資料塊，然後再進行工作。第一個參數是單個資料塊中被檢索的行數，第二個參數是一個匿名陣列，它將會呼叫每一行的資料。</p>
 <p>這最好在排程工作、資料匯出與其他大型任務中使用。</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">chunk</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$data</span><span class="p">)</span>
-<span class="p">{</span>
-        <span class="c1">// do something.</span>
-        <span class="c1">// $data is a single row of data.</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">chunk</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do something.</span>
+    <span class="c1">// $data is a single row of data.</span>
 <span class="p">});</span>
 </pre></div>
 </div>
@@ -1022,12 +1046,12 @@ will still work the same as before.</p>
 <p>首先，我們在模型中會創建一個新的類別方法來定義回呼。這個類別會接受一個 $data 陣列作為它的唯一參數。$data 陣列的確切內容會因事件的不同而相異，但總是會包含一個名為 <strong>data</strong> 的鍵，其中包含著傳遞給原始方法的主要資料——在插入或更新的方法下，這將是會被插入到資料庫的鍵值陣列。主要的陣列內容也會包含傳遞給其他方法的值，待會將會詳細的介紹。所有的回呼方法都必須回傳原始的 $data 陣列，這樣其他的回呼函數才能得到完整的訊息。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">protected</span> <span class="k">function</span> <span class="nf">hashPassword</span><span class="p">(</span><span class="k">array</span> <span class="nv">$data</span><span class="p">)</span>
 <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">])</span> <span class="k">return</span> <span class="nv">$data</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">]))</span> <span class="k">return</span> <span class="nv">$data</span><span class="p">;</span>
 
-        <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;password_hash&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">password_hash</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="nx">PASSWORD_DEFAULT</span><span class="p">);</span>
-        <span class="nb">unset</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">];</span>
+    <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;password_hash&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">password_hash</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="nx">PASSWORD_DEFAULT</span><span class="p">);</span>
+    <span class="nb">unset</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">]);</span>
 
-        <span class="k">return</span> <span class="nv">$data</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nv">$data</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1191,7 +1215,7 @@ boolean, <code class="docutils literal notranslate"><span class="pre">returnData
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

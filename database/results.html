@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>產生查詢結果 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>產生查詢結果 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="查詢輔助函數" href="helpers.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -352,22 +356,21 @@
 <p>有幾種方法可以產生查詢結果：</p>
 <div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#id3" id="id10">結果陣列</a></li>
-<li><a class="reference internal" href="#id4" id="id11">結果列</a></li>
-<li><a class="reference internal" href="#id5" id="id12">客製化查詢結果</a></li>
-<li><a class="reference internal" href="#id6" id="id13">結果輔助方法</a></li>
-<li><a class="reference internal" href="#id7" id="id14">物件參考</a></li>
+<li><a class="reference internal" href="#id3" id="id8">結果陣列</a></li>
+<li><a class="reference internal" href="#id4" id="id9">結果列</a></li>
+<li><a class="reference internal" href="#id5" id="id10">客製化查詢結果</a></li>
+<li><a class="reference internal" href="#id6" id="id11">結果輔助方法</a></li>
+<li><a class="reference internal" href="#id7" id="id12">物件參考</a></li>
 </ul>
 </div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id10">結果陣列</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">結果陣列</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p><strong>getResult()</strong></p>
 <p>這個方法會將查詢結果以 <strong>物件</strong> 陣列或 <strong>空</strong> 陣列(查詢失敗時)回傳。
 一般情況下可以使用foreach迴圈，參考以下範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;YOUR QUERY&quot;</span><span class="p">);</span>
 
-<span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
-<span class="p">{</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">;</span>
@@ -378,8 +381,7 @@
 <p>如果你想要得到多重陣列的查詢結果，你可以在參數中傳送 『array』：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;YOUR QUERY&quot;</span><span class="p">);</span>
 
-<span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">(</span><span class="s1">&#39;array&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
-<span class="p">{</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">(</span><span class="s1">&#39;array&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">];</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">];</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">];</span>
@@ -391,8 +393,7 @@
 which represents a class to instantiate for each result object</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users;&quot;</span><span class="p">);</span>
 
-<span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nv">$user</span><span class="p">)</span>
-<span class="p">{</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span> <span class="c1">// access attributes</span>
     <span class="k">echo</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">reverseName</span><span class="p">();</span> <span class="c1">// or methods defined on the &#39;User&#39; class</span>
 <span class="p">}</span>
@@ -404,8 +405,7 @@ which represents a class to instantiate for each result object</p>
 一般情況下可以使用foreach迴圈，參考以下範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;YOUR QUERY&quot;</span><span class="p">);</span>
 
-<span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResultArray</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
-<span class="p">{</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResultArray</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">];</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">];</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">];</span>
@@ -414,7 +414,7 @@ which represents a class to instantiate for each result object</p>
 </div>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id11">結果列</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">結果列</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
 <p><strong>getRow()</strong></p>
 <p>這個方法會回傳單筆查詢結果。如果你查詢的資料不只一筆，它只會回傳第一筆資料。
 查詢結果會以 <strong>物件</strong> 的方式回傳。參考以下範例：</p>
@@ -422,8 +422,7 @@ which represents a class to instantiate for each result object</p>
 
 <span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getRow</span><span class="p">();</span>
 
-<span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$row</span><span class="p">))</span>
-<span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$row</span><span class="p">))</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">;</span>
@@ -448,8 +447,7 @@ which represents a class to instantiate for each result object</p>
 
 <span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getRowArray</span><span class="p">();</span>
 
-<span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$row</span><span class="p">))</span>
-<span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$row</span><span class="p">))</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">];</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">];</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">];</span>
@@ -463,19 +461,19 @@ which represents a class to instantiate for each result object</p>
 <p>除此之外，你可以利用底下方式查詢到 前一筆/下一筆/第一筆/最後一筆 資料：</p>
 <blockquote>
 <div><div class="line-block">
-<div class="line"><strong>$row = $query-&gt;getFirstRow()</strong></div>
-<div class="line"><strong>$row = $query-&gt;getLastRow()</strong></div>
-<div class="line"><strong>$row = $query-&gt;getNextRow()</strong></div>
-<div class="line"><strong>$row = $query-&gt;getPreviousRow()</strong></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">$row</span> <span class="pre">=</span> <span class="pre">$query-&gt;getFirstRow()</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">$row</span> <span class="pre">=</span> <span class="pre">$query-&gt;getLastRow()</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">$row</span> <span class="pre">=</span> <span class="pre">$query-&gt;getNextRow()</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">$row</span> <span class="pre">=</span> <span class="pre">$query-&gt;getPreviousRow()</span></code></div>
 </div>
 </div></blockquote>
 <p>預設回傳值為物件，除非設定第一個參數為 「array」：</p>
 <blockquote>
 <div><div class="line-block">
-<div class="line"><strong>$row = $query-&gt;getFirstRow(『array』)</strong></div>
-<div class="line"><strong>$row = $query-&gt;getLastRow(『array』)</strong></div>
-<div class="line"><strong>$row = $query-&gt;getNextRow(『array』)</strong></div>
-<div class="line"><strong>$row = $query-&gt;getPreviousRow(『array』)</strong></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">$row</span> <span class="pre">=</span> <span class="pre">$query-&gt;getFirstRow('array')</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">$row</span> <span class="pre">=</span> <span class="pre">$query-&gt;getLastRow('array')</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">$row</span> <span class="pre">=</span> <span class="pre">$query-&gt;getNextRow('array')</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">$row</span> <span class="pre">=</span> <span class="pre">$query-&gt;getPreviousRow('array')</span></code></div>
 </div>
 </div></blockquote>
 <div class="admonition note">
@@ -487,13 +485,42 @@ which represents a class to instantiate for each result object</p>
 如果你的查詢結果超過一筆，它將回傳該筆資料並將內部資料指標移動到下一筆資料。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;YOUR QUERY&quot;</span><span class="p">);</span>
 
-<span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getUnbufferedRow</span><span class="p">())</span>
-<span class="p">{</span>
+<span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getUnbufferedRow</span><span class="p">())</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
+</div>
+<p>For use with MySQLi you may set MySQLi’s result mode to
+<code class="docutils literal notranslate"><span class="pre">MYSQLI_USE_RESULT</span></code> for maximum memory savings. Use of this is not
+generally recommended but it can be beneficial in some circumstances
+such as writing large queries to csv. If you change the result mode
+be aware of the tradeoffs associated with it.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">resultMode</span> <span class="o">=</span> <span class="nx">MYSQLI_USE_RESULT</span><span class="p">;</span> <span class="c1">// for unbuffered results</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;YOUR QUERY&quot;</span><span class="p">);</span>
+
+<span class="nv">$file</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\Files\File</span><span class="p">(</span><span class="nx">WRITEPATH</span><span class="o">.</span><span class="s1">&#39;data.csv&#39;</span><span class="p">);</span>
+
+<span class="nv">$csv</span> <span class="o">=</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">openFile</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getUnbufferedRow</span><span class="p">(</span><span class="s1">&#39;array&#39;</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="nv">$csv</span><span class="o">-&gt;</span><span class="na">fputcsv</span><span class="p">(</span><span class="nv">$row</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nv">$db</span><span class="o">-&gt;</span><span class="na">resultMode</span> <span class="o">=</span> <span class="nx">MYSQLI_STORE_RESULT</span><span class="p">;</span> <span class="c1">// return to default mode</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">When using <code class="docutils literal notranslate"><span class="pre">MYSQLI_USE_RESULT</span></code> all subsequent calls on the same
+connection will result in error until all records have been fetched or
+a <code class="docutils literal notranslate"><span class="pre">freeResult()</span></code> call has been made. The <code class="docutils literal notranslate"><span class="pre">getNumRows()</span></code> method will only
+return the number of rows based on the current position of the data pointer.
+MyISAM tables will remain locked until all the records have been fetched
+or a <code class="docutils literal notranslate"><span class="pre">freeResult()</span></code> call has been made.</p>
 </div>
 <p>你可以選擇傳入 『object』 （預設）或 『array』 來指定回傳的資料型態：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getUnbufferedRow</span><span class="p">();</span>                 <span class="c1">// object</span>
@@ -503,7 +530,7 @@ which represents a class to instantiate for each result object</p>
 </div>
 </div>
 <div class="section" id="id5">
-<h2><a class="toc-backref" href="#id12">客製化查詢結果</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">客製化查詢結果</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
 <p>你可以將查詢結果以自定義類別的實體做回傳，而不是像 <code class="docutils literal notranslate"><span class="pre">getResult()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">getResultArray()</span></code> ，以stdClass或陣列的方式回傳。
 如果類別沒有載入到記憶體中，Autoloader將會自動載入。
 物件將會把資料庫中回傳的所有變數設定為屬性。
@@ -524,16 +551,14 @@ which represents a class to instantiate for each result object</p>
 
     <span class="k">public</span> <span class="k">function</span> <span class="fm">__set</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nv">$name</span> <span class="o">===</span> <span class="s1">&#39;lastLogin&#39;</span><span class="p">)</span>
-        <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$name</span> <span class="o">===</span> <span class="s1">&#39;lastLogin&#39;</span><span class="p">)</span> <span class="p">{</span>
             <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lastLogin</span> <span class="o">=</span> <span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">,</span> <span class="nv">$value</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 
     <span class="k">public</span> <span class="k">function</span> <span class="fm">__get</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="nv">$name</span><span class="p">))</span>
-        <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="nv">$name</span><span class="p">))</span> <span class="p">{</span>
             <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nv">$name</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -550,8 +575,7 @@ which represents a class to instantiate for each result object</p>
 
 <span class="nv">$rows</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getCustomResultObject</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">);</span>
 
-<span class="k">foreach</span> <span class="p">(</span><span class="nv">$rows</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
-<span class="p">{</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$rows</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">last_login</span><span class="p">(</span><span class="s1">&#39;Y-m-d&#39;</span><span class="p">);</span>
@@ -566,8 +590,7 @@ The second parameter is the class name to instantiate.</p>
 
 <span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getCustomRowObject</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;User&#39;</span><span class="p">);</span>
 
-<span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$row</span><span class="p">))</span>
-<span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$row</span><span class="p">))</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span>               <span class="c1">// access attributes</span>
     <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">last_login</span><span class="p">(</span><span class="s1">&#39;Y-m-d&#39;</span><span class="p">);</span> <span class="c1">// access class methods</span>
 <span class="p">}</span>
@@ -580,7 +603,7 @@ The second parameter is the class name to instantiate.</p>
 </div>
 </div>
 <div class="section" id="id6">
-<h2><a class="toc-backref" href="#id13">結果輔助方法</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">結果輔助方法</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
 <p><strong>getFieldCount()</strong></p>
 <p>回傳查詢後的欄位數量。確保使用查詢結果物件來呼叫這個方法。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM my_table&#39;</span><span class="p">);</span>
@@ -616,12 +639,11 @@ return a count of the resulting record array, which can be inefficient.</p>
 <p>範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$thisdb</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT title FROM my_table&#39;</span><span class="p">);</span>
 
-<span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
-<span class="p">{</span>
-        <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">freeResult</span><span class="p">();</span>  <span class="c1">// The $query result object will no longer be available</span>
+<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">freeResult</span><span class="p">();</span> <span class="c1">// The $query result object will no longer be available</span>
 
 <span class="nv">$query2</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name FROM some_table&#39;</span><span class="p">);</span>
 
@@ -644,7 +666,7 @@ return a count of the resulting record array, which can be inefficient.</p>
 </div>
 </div>
 <div class="section" id="id7">
-<h2><a class="toc-backref" href="#id14">物件參考</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">物件參考</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
 <dl class="class">
 <dt>
 <code class="descname">CodeIgniter\Database\BaseResult</code></dt>
@@ -1002,7 +1024,7 @@ return a count of the resulting record array, which can be inefficient.</p>
 </tbody>
 </table>
 <p>回傳查詢結果集合中欄位的數量</p>
-<p>詳細用法: <a href="#id8"><span class="problematic" id="id9">`結果輔助方法`__</span></a></p>
+<p>詳細用法: <a class="reference internal" href="#id6">結果輔助方法</a></p>
 </dd></dl>
 
 </div></blockquote>
@@ -1082,7 +1104,7 @@ return a count of the resulting record array, which can be inefficient.</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

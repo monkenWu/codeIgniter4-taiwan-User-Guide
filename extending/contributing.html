@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>為 CodeIgniter 貢獻 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>為 CodeIgniter 貢獻 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="The MIT License (MIT)" href="../license.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -349,40 +353,8 @@
             
   <div class="section" id="codeigniter">
 <h1>為 CodeIgniter 貢獻<a class="headerlink" href="#codeigniter" title="本標題的永久連結">¶</a></h1>
-<p>CodeIgniter 是一個社群促使開發的專案，接受來自社群的程式碼與使用手冊的貢獻。這些貢獻以發出問題或 <a class="reference external" href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">拉取請求</a> 的形式在 GitHub 上的 <a class="reference external" href="https://github.com/codeigniter4/CodeIgniter4">CodeIgniter4 儲存庫</a> 中提交。</p>
-<p>發出問題是一種快速指出 BUG 的方法，如果你在 CodeIgniter 或 使用手冊發現了錯誤，那麼請你先檢查幾件事：</p>
-<ul class="simple">
-<li>是否從未有人針對這個錯誤發出問題</li>
-<li>這個問題是否已經被修復了（查看分支或尋找已經被關閉的問題）</li>
-<li>是不是真的有很明顯的問題需要你去解決？</li>
-</ul>
-<p>問題回報是非常用的方法，但更好的方案是透過分叉主儲存庫並提交修改到你自己的副本中，再回到 GitHub 發送拉取請求（這需要你使用 Git 版本控制系統）。</p>
-<p>詳情請見儲存庫中的 <a class="reference external" href="https://github.com/codeigniter4/CodeIgniter4/tree/develop/contributing">貢獻至 CodeIgniter4</a>　部分。</p>
-<div class="section" id="id3">
-<h2>支援<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
-<p>請注意， GitHub 儲存庫並不是回答一般問題的地方！如果你在使用某項功能遇到了非錯誤的困難，你可以：</p>
-<ul class="simple">
-<li>在 <a class="reference external" href="http://forum.codeigniter.com/">論壇</a> 上創建主題</li>
-<li>在 <a class="reference external" href="https://codeigniterchat.slack.com/">Slack</a> 提出你的問題</li>
-</ul>
-<p>如果你確定你的使用方法是否正確，或是你真的發現了 BUG ，煩請先至論壇上詢問。</p>
-</div>
-<div class="section" id="id5">
-<h2>安全性<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
-<p>你是否發現了 CodeIgniter 中的安全性問題？</p>
-<p>請 <em>不要</em> 公開它們，請你發送電子郵件至 <a class="reference external" href="mailto:security&#37;&#52;&#48;codeigniter&#46;com">security<span>&#64;</span>codeigniter<span>&#46;</span>com</a> ，或在 <a class="reference external" href="https://hackerone.com/codeigniter">HackerOne</a> 上的頁面傳送問題報告。</p>
-<p>如果你真的發現了嚴重的漏洞，我們很願意將這個功勞歸功於你，並紀載至 <a class="reference external" href="../changelogs/index.html">ChangeLog</a> 上。</p>
-</div>
-<div class="section" id="id6">
-<h2>如何撰寫好的問題回報<a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
-<p>使用一個具有描述性的主題，例如：解釋器程式庫無法正確解釋逗號（ parser library chokes on commas ），而不是一個模糊的標題：你的程式碼壞掉了（ your code broke ）。</p>
-<p>在一個問題回報中只提出一個問題。</p>
-<p>請列出你所知道發生問題的版本（例如： 4.0.1 ）或是組件為何（例如：解釋器）。</p>
-<p>解釋一下你預期會有什麼結果，但卻發生了什麼問題。如果有的話也可以提供：錯誤訊息以及堆疊追蹤的資訊。</p>
-<p>如果簡短的程式碼塊有助於你解釋錯誤的話，也請附上。你可以使用 pastebin 或 Dropbox 的工具，來幫助你處理較長的程式碼與螢幕截圖——不要將它們直接置於問題報告中。</p>
-<p>如果你知道如何解決這個問題，你可以在自己的分叉與分支中這麼做，並且提交一個拉取請求給主儲存庫，而上面的問題報告也請附在拉取請求中。</p>
-<p>如果你的問題報告能描述出重現問題的方法，那就太好了！如果你能包含重現問題的單元測試，那就更好了！因為這樣可以幫助修復問題人員可以有更明確的目標。</p>
-</div>
+<p>CodeIgniter 是一個社群驅動開發的專案，接受來自社群的程式碼與使用手冊的貢獻。這些貢獻以發出問題或 <a class="reference external" href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">拉取請求</a> 的形式在 GitHub 上的 <a class="reference external" href="https://github.com/codeigniter4/CodeIgniter4">CodeIgniter4 儲存庫</a> 中提交。</p>
+<p>如果你想要做出貢獻，請查閱我們儲存庫中的 <a class="reference external" href="https://github.com/codeigniter4/CodeIgniter4/tree/develop/contributing">貢獻 CodeIgniter4</a> 。</p>
 </div>
 
 
@@ -407,7 +379,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

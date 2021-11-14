@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>詞彙對照表 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>詞彙對照表 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="翻譯貢獻者" href="members.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -391,241 +395,244 @@
 <tr class="row-odd"><td>Autoloader</td>
 <td>自動載入器</td>
 </tr>
-<tr class="row-even"><td>application</td>
+<tr class="row-even"><td>Adapter</td>
+<td>轉接器</td>
+</tr>
+<tr class="row-odd"><td>application</td>
 <td>應用程式</td>
 </tr>
-<tr class="row-odd"><td>algorithm</td>
+<tr class="row-even"><td>algorithm</td>
 <td>演算法</td>
 </tr>
-<tr class="row-even"><td>argument</td>
+<tr class="row-odd"><td>argument</td>
 <td>引數</td>
 </tr>
-<tr class="row-odd"><td>array</td>
+<tr class="row-even"><td>array</td>
 <td>陣列</td>
 </tr>
-<tr class="row-even"><td>key/value array</td>
+<tr class="row-odd"><td>key/value array</td>
 <td>鍵值陣列</td>
 </tr>
-<tr class="row-odd"><td>associative array</td>
+<tr class="row-even"><td>associative array</td>
 <td>關聯陣列 或 鍵值陣列</td>
 </tr>
-<tr class="row-even"><td>asynchronous</td>
+<tr class="row-odd"><td>asynchronous</td>
 <td>非同步</td>
 </tr>
-<tr class="row-odd"><td>binding</td>
+<tr class="row-even"><td>binding</td>
 <td>繫結</td>
 </tr>
-<tr class="row-even"><td>bit</td>
+<tr class="row-odd"><td>bit</td>
 <td>位元</td>
 </tr>
-<tr class="row-odd"><td>boolean</td>
+<tr class="row-even"><td>boolean</td>
 <td>布林</td>
 </tr>
-<tr class="row-even"><td>byte</td>
+<tr class="row-odd"><td>byte</td>
 <td>位元組</td>
 </tr>
-<tr class="row-odd"><td>cache</td>
+<tr class="row-even"><td>cache</td>
 <td>快取</td>
 </tr>
-<tr class="row-even"><td>call</td>
+<tr class="row-odd"><td>call</td>
 <td>呼叫</td>
 </tr>
-<tr class="row-odd"><td>callback</td>
+<tr class="row-even"><td>callback</td>
 <td>回呼</td>
 </tr>
-<tr class="row-even"><td>class</td>
+<tr class="row-odd"><td>class</td>
 <td>類別</td>
 </tr>
-<tr class="row-odd"><td>Closures</td>
+<tr class="row-even"><td>Closures</td>
 <td>匿名函數</td>
 </tr>
-<tr class="row-even"><td>command line</td>
+<tr class="row-odd"><td>command line</td>
 <td>命令列</td>
 </tr>
-<tr class="row-odd"><td>context</td>
+<tr class="row-even"><td>context</td>
 <td>語境、情境</td>
 </tr>
-<tr class="row-even"><td>constructor</td>
+<tr class="row-odd"><td>constructor</td>
 <td>建構</td>
 </tr>
-<tr class="row-odd"><td>components</td>
+<tr class="row-even"><td>components</td>
 <td>組件</td>
 </tr>
-<tr class="row-even"><td>design patterns</td>
+<tr class="row-odd"><td>design patterns</td>
 <td>設計模式</td>
 </tr>
-<tr class="row-odd"><td>data</td>
+<tr class="row-even"><td>data</td>
 <td>資料</td>
 </tr>
-<tr class="row-even"><td>debug</td>
+<tr class="row-odd"><td>debug</td>
 <td>除錯</td>
 </tr>
-<tr class="row-odd"><td>deploy</td>
+<tr class="row-even"><td>deploy</td>
 <td>部屬</td>
 </tr>
-<tr class="row-even"><td>declaration</td>
+<tr class="row-odd"><td>declaration</td>
 <td>宣告</td>
 </tr>
-<tr class="row-odd"><td>default</td>
+<tr class="row-even"><td>default</td>
 <td>預設</td>
 </tr>
-<tr class="row-even"><td>destructor</td>
+<tr class="row-odd"><td>destructor</td>
 <td>解構</td>
 </tr>
-<tr class="row-odd"><td>document</td>
+<tr class="row-even"><td>document</td>
 <td>文件</td>
 </tr>
-<tr class="row-even"><td>exception</td>
+<tr class="row-odd"><td>exception</td>
 <td>例外</td>
 </tr>
-<tr class="row-odd"><td>export</td>
+<tr class="row-even"><td>export</td>
 <td>匯出</td>
 </tr>
-<tr class="row-even"><td>extension</td>
+<tr class="row-odd"><td>extension</td>
 <td>擴充、擴充模組</td>
 </tr>
-<tr class="row-odd"><td>flash message</td>
+<tr class="row-even"><td>flash message</td>
 <td>即時訊息</td>
 </tr>
-<tr class="row-even"><td>field</td>
+<tr class="row-odd"><td>field</td>
 <td>欄位</td>
 </tr>
-<tr class="row-odd"><td>file</td>
+<tr class="row-even"><td>file</td>
 <td>檔案</td>
 </tr>
-<tr class="row-even"><td>function</td>
+<tr class="row-odd"><td>function</td>
 <td>函數</td>
 </tr>
-<tr class="row-odd"><td>global</td>
+<tr class="row-even"><td>global</td>
 <td>全域</td>
 </tr>
-<tr class="row-even"><td>identifier</td>
+<tr class="row-odd"><td>identifier</td>
 <td>識別符號</td>
 </tr>
-<tr class="row-odd"><td>implement</td>
+<tr class="row-even"><td>implement</td>
 <td>實作</td>
 </tr>
-<tr class="row-even"><td>import</td>
+<tr class="row-odd"><td>import</td>
 <td>匯入</td>
 </tr>
-<tr class="row-odd"><td>inline</td>
+<tr class="row-even"><td>inline</td>
 <td>行內</td>
 </tr>
-<tr class="row-even"><td>instance</td>
+<tr class="row-odd"><td>instance</td>
 <td>實體</td>
 </tr>
-<tr class="row-odd"><td>local</td>
+<tr class="row-even"><td>local</td>
 <td>區域</td>
 </tr>
-<tr class="row-even"><td>loop</td>
+<tr class="row-odd"><td>loop</td>
 <td>迴圈</td>
 </tr>
-<tr class="row-odd"><td>load</td>
+<tr class="row-even"><td>load</td>
 <td>載入</td>
 </tr>
-<tr class="row-even"><td>menu</td>
+<tr class="row-odd"><td>menu</td>
 <td>選單、功能表</td>
 </tr>
-<tr class="row-odd"><td>message</td>
+<tr class="row-even"><td>message</td>
 <td>訊息</td>
 </tr>
-<tr class="row-even"><td>model-view-controller</td>
+<tr class="row-odd"><td>model-view-controller</td>
 <td>模型、視圖、控制器</td>
 </tr>
-<tr class="row-odd"><td>module</td>
+<tr class="row-even"><td>module</td>
 <td>模組</td>
 </tr>
-<tr class="row-even"><td>object</td>
+<tr class="row-odd"><td>object</td>
 <td>物件</td>
 </tr>
-<tr class="row-odd"><td>operator</td>
+<tr class="row-even"><td>operator</td>
 <td>運算子</td>
 </tr>
-<tr class="row-even"><td>overflow</td>
+<tr class="row-odd"><td>overflow</td>
 <td>溢位</td>
 </tr>
-<tr class="row-odd"><td>overload</td>
+<tr class="row-even"><td>overload</td>
 <td>多載</td>
 </tr>
-<tr class="row-even"><td>override</td>
+<tr class="row-odd"><td>override</td>
 <td>覆寫</td>
 </tr>
-<tr class="row-odd"><td>path</td>
+<tr class="row-even"><td>path</td>
 <td>路徑</td>
 </tr>
-<tr class="row-even"><td>project root</td>
+<tr class="row-odd"><td>project root</td>
 <td>根目錄</td>
 </tr>
-<tr class="row-odd"><td>parameter</td>
+<tr class="row-even"><td>parameter</td>
 <td>參數</td>
 </tr>
-<tr class="row-even"><td>pattern</td>
+<tr class="row-odd"><td>pattern</td>
 <td>樣式</td>
 </tr>
-<tr class="row-odd"><td>pointer</td>
+<tr class="row-even"><td>pointer</td>
 <td>指標</td>
 </tr>
-<tr class="row-even"><td>procedure</td>
+<tr class="row-odd"><td>procedure</td>
 <td>程序、程序式</td>
 </tr>
-<tr class="row-odd"><td>preferences</td>
+<tr class="row-even"><td>preferences</td>
 <td>喜好設定</td>
 </tr>
-<tr class="row-even"><td>performance</td>
+<tr class="row-odd"><td>performance</td>
 <td>效能</td>
 </tr>
-<tr class="row-odd"><td>process</td>
+<tr class="row-even"><td>process</td>
 <td>處理程序</td>
 </tr>
-<tr class="row-even"><td>program</td>
+<tr class="row-odd"><td>program</td>
 <td>程式</td>
 </tr>
-<tr class="row-odd"><td>project</td>
+<tr class="row-even"><td>project</td>
 <td>專案</td>
 </tr>
-<tr class="row-even"><td>package</td>
+<tr class="row-odd"><td>package</td>
 <td>軟體包</td>
 </tr>
-<tr class="row-odd"><td>redirect</td>
+<tr class="row-even"><td>redirect</td>
 <td>重新導向</td>
 </tr>
-<tr class="row-even"><td>return</td>
+<tr class="row-odd"><td>return</td>
 <td>回傳</td>
 </tr>
-<tr class="row-odd"><td>source code</td>
+<tr class="row-even"><td>source code</td>
 <td>原始碼</td>
 </tr>
-<tr class="row-even"><td>string</td>
+<tr class="row-odd"><td>string</td>
 <td>字串</td>
 </tr>
-<tr class="row-odd"><td>synchronous</td>
+<tr class="row-even"><td>synchronous</td>
 <td>同步</td>
 </tr>
-<tr class="row-even"><td>server</td>
+<tr class="row-odd"><td>server</td>
 <td>伺服器</td>
 </tr>
-<tr class="row-odd"><td>throw</td>
+<tr class="row-even"><td>throw</td>
 <td>拋出</td>
 </tr>
-<tr class="row-even"><td>token</td>
-<td>令牌</td>
+<tr class="row-odd"><td>token</td>
+<td>權杖</td>
 </tr>
-<tr class="row-odd"><td>type</td>
+<tr class="row-even"><td>type</td>
 <td>型別</td>
 </tr>
-<tr class="row-even"><td>variable</td>
+<tr class="row-odd"><td>variable</td>
 <td>變數</td>
 </tr>
-<tr class="row-odd"><td>recursion</td>
+<tr class="row-even"><td>recursion</td>
 <td>遞迴</td>
 </tr>
-<tr class="row-even"><td>interface</td>
+<tr class="row-odd"><td>interface</td>
 <td>介面</td>
 </tr>
-<tr class="row-odd"><td>refreshes</td>
+<tr class="row-even"><td>refreshes</td>
 <td>更新</td>
 </tr>
-<tr class="row-even"><td>trait</td>
+<tr class="row-odd"><td>trait</td>
 <td>特性</td>
 </tr>
 </tbody>
@@ -1488,7 +1495,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

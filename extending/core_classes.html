@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>建立核心系統類別 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>建立核心系統類別 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="替換常用功能" href="common.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -398,15 +402,15 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>然後，你得修改 <code class="docutils literal notranslate"><span class="pre">routes</span></code> 服務，改成載入你的類別：</p>
+<p>然後，你得修改在 <strong>app/Config/Services.php</strong> 的 <code class="docutils literal notranslate"><span class="pre">routes</span></code> 服務，改成載入你的類別：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">routes</span><span class="p">(</span><span class="nx">bool</span> <span class="nv">$getShared</span> <span class="o">=</span> <span class="k">true</span><span class="p">)</span>
 <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nv">$getShared</span><span class="p">)</span>
-        <span class="p">{</span>
-                <span class="k">return</span> <span class="k">static</span><span class="o">::</span><span class="na">getSharedInstance</span><span class="p">(</span><span class="s1">&#39;routes&#39;</span><span class="p">);</span>
-        <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$getShared</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">static</span><span class="o">::</span><span class="na">getSharedInstance</span><span class="p">(</span><span class="s1">&#39;routes&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
 
-        <span class="k">return</span> <span class="k">new</span> <span class="nx">RouteCollection</span><span class="p">(</span><span class="k">static</span><span class="o">::</span><span class="na">locator</span><span class="p">(),</span> <span class="nx">config</span><span class="p">(</span><span class="s1">&#39;Modules&#39;</span><span class="p">));</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">RouteCollection</span><span class="p">(</span><span class="k">static</span><span class="o">::</span><span class="na">locator</span><span class="p">(),</span> <span class="nx">config</span><span class="p">(</span><span class="s1">&#39;Modules&#39;</span><span class="p">));</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -418,28 +422,34 @@
 <li>類別必須繼承父類別。</li>
 </ul>
 <p>舉個例子，要擴充原生的 RouteCollection 類別，你得這麼做：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Router\RouteCollection</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">RouteCollection</span> <span class="k">extends</span> <span class="nx">RouteCollection</span>
 <span class="p">{</span>
-
+    <span class="c1">// ...</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>如果你需要在你的類別中使用建構函數，請確定你同時運作了父類別的擴充函數：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Router\RouteCollection</span> <span class="k">as</span> <span class="nx">BaseRouteCollection</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">RouteCollection</span> <span class="k">extends</span> <span class="nx">BaseRouteCollection</span>
 <span class="p">{</span>
-     <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
-     <span class="p">{</span>
-         <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">();</span>
-     <span class="p">}</span>
- <span class="p">}</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">();</span>
+
+        <span class="c1">// your code here</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>Tip ：</strong> 在你的類別中，任何與父類別相同的函數都將被使用，而不會使用原生的函數，這就是所謂的方法覆寫，你可以利用這種方式大幅度地修改 CodeIgniter 的核心。</p>
@@ -468,7 +478,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

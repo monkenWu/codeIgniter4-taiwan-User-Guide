@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User Agent Class &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>User Agent Class &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Validation" href="validation.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Library Reference</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">程式庫參考</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -328,7 +332,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Library Reference</a> &raquo;</li>
+          <li><a href="index.html">程式庫參考</a> &raquo;</li>
         
       <li>User Agent Class</li>
     
@@ -387,21 +391,14 @@ device, or a robot. It will also gather the platform information if it
 is available:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$agent</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getUserAgent</span><span class="p">();</span>
 
-<span class="k">if</span> <span class="p">(</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">isBrowser</span><span class="p">())</span>
-<span class="p">{</span>
-        <span class="nv">$currentAgent</span> <span class="o">=</span> <span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">getBrowser</span><span class="p">()</span><span class="o">.</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">getVersion</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="k">elseif</span> <span class="p">(</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">isRobot</span><span class="p">())</span>
-<span class="p">{</span>
-        <span class="nv">$currentAgent</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">agent</span><span class="o">-&gt;</span><span class="na">robot</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="k">elseif</span> <span class="p">(</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">isMobile</span><span class="p">())</span>
-<span class="p">{</span>
-        <span class="nv">$currentAgent</span> <span class="o">=</span> <span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">getMobile</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="k">else</span>
-<span class="p">{</span>
-        <span class="nv">$currentAgent</span> <span class="o">=</span> <span class="s1">&#39;Unidentified User Agent&#39;</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">isBrowser</span><span class="p">())</span> <span class="p">{</span>
+    <span class="nv">$currentAgent</span> <span class="o">=</span> <span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">getBrowser</span><span class="p">()</span> <span class="o">.</span> <span class="s1">&#39; &#39;</span> <span class="o">.</span> <span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">getVersion</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">isRobot</span><span class="p">())</span> <span class="p">{</span>
+    <span class="nv">$currentAgent</span> <span class="o">=</span> <span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">getRobot</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">isMobile</span><span class="p">())</span> <span class="p">{</span>
+    <span class="nv">$currentAgent</span> <span class="o">=</span> <span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">getMobile</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nv">$currentAgent</span> <span class="o">=</span> <span class="s1">&#39;Unidentified User Agent&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="k">echo</span> <span class="nv">$currentAgent</span><span class="p">;</span>
@@ -418,7 +415,7 @@ is available:</p>
 <code class="descname">CodeIgniter\HTTP\UserAgent</code></dt>
 <dd><dl class="method">
 <dt id="isBrowser">
-<code class="descname">isBrowser</code><span class="sig-paren">(</span><span class="optional">[</span><em>$key = NULL</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#isBrowser" title="本定義的永久連結">¶</a></dt>
+<code class="descname">isBrowser</code><span class="sig-paren">(</span><span class="optional">[</span><em>$key = null</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#isBrowser" title="本定義的永久連結">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -428,7 +425,7 @@ is available:</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE if the user agent is a (specified) browser, FALSE if not</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">true if the user agent is a (specified) browser, false if not</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">bool</p>
@@ -436,14 +433,11 @@ is available:</p>
 </tr>
 </tbody>
 </table>
-<p>Returns TRUE/FALSE (boolean) if the user agent is a known web browser.</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">isBrowser</span><span class="p">(</span><span class="s1">&#39;Safari&#39;</span><span class="p">))</span>
-<span class="p">{</span>
-        <span class="k">echo</span> <span class="s1">&#39;You are using Safari.&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">elseif</span> <span class="p">(</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">isBrowser</span><span class="p">())</span>
-<span class="p">{</span>
-        <span class="k">echo</span> <span class="s1">&#39;You are using a browser.&#39;</span><span class="p">;</span>
+<p>Returns true/false (boolean) if the user agent is a known web browser.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">isBrowser</span><span class="p">(</span><span class="s1">&#39;Safari&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;You are using Safari.&#39;</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">isBrowser</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;You are using a browser.&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -457,7 +451,7 @@ browsers or change the strings.</p>
 
 <dl class="method">
 <dt id="isMobile">
-<code class="descname">isMobile</code><span class="sig-paren">(</span><span class="optional">[</span><em>$key = NULL</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#isMobile" title="本定義的永久連結">¶</a></dt>
+<code class="descname">isMobile</code><span class="sig-paren">(</span><span class="optional">[</span><em>$key = null</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#isMobile" title="本定義的永久連結">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -467,7 +461,7 @@ browsers or change the strings.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE if the user agent is a (specified) mobile device, FALSE if not</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">true if the user agent is a (specified) mobile device, false if not</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">bool</p>
@@ -475,18 +469,13 @@ browsers or change the strings.</p>
 </tr>
 </tbody>
 </table>
-<p>Returns TRUE/FALSE (boolean) if the user agent is a known mobile device.</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">isMobile</span><span class="p">(</span><span class="s1">&#39;iphone&#39;</span><span class="p">))</span>
-<span class="p">{</span>
-        <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;iphone/home&#39;</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="k">elseif</span> <span class="p">(</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">isMobile</span><span class="p">())</span>
-<span class="p">{</span>
-        <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;mobile/home&#39;</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="k">else</span>
-<span class="p">{</span>
-        <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;web/home&#39;</span><span class="p">);</span>
+<p>Returns true/false (boolean) if the user agent is a known mobile device.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">isMobile</span><span class="p">(</span><span class="s1">&#39;iphone&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;iphone/home&#39;</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">isMobile</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;mobile/home&#39;</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;web/home&#39;</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -494,7 +483,7 @@ browsers or change the strings.</p>
 
 <dl class="method">
 <dt id="isRobot">
-<code class="descname">isRobot</code><span class="sig-paren">(</span><span class="optional">[</span><em>$key = NULL</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#isRobot" title="本定義的永久連結">¶</a></dt>
+<code class="descname">isRobot</code><span class="sig-paren">(</span><span class="optional">[</span><em>$key = null</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#isRobot" title="本定義的永久連結">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -504,7 +493,7 @@ browsers or change the strings.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE if the user agent is a (specified) robot, FALSE if not</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">true if the user agent is a (specified) robot, false if not</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">bool</p>
@@ -512,7 +501,7 @@ browsers or change the strings.</p>
 </tr>
 </tbody>
 </table>
-<p>Returns TRUE/FALSE (boolean) if the user agent is a known robot.</p>
+<p>Returns true/false (boolean) if the user agent is a known robot.</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
 <p class="last">The user agent library only contains the most common robot definitions. It is not a complete list of bots.
@@ -529,13 +518,13 @@ that commonly visit your site are missing from the list you can add them to your
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">TRUE if the user agent is a referral, FALSE if not</td>
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">true if the user agent is a referral, false if not</td>
 </tr>
 <tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">bool</td>
 </tr>
 </tbody>
 </table>
-<p>Returns TRUE/FALSE (boolean) if the user agent was referred from another site.</p>
+<p>Returns true/false (boolean) if the user agent was referred from another site.</p>
 </dd></dl>
 
 <dl class="method">
@@ -632,9 +621,8 @@ that commonly visit your site are missing from the list you can add them to your
 </tbody>
 </table>
 <p>The referrer, if the user agent was referred from another site. Typically you’ll test for this as follows:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">isReferral</span><span class="p">())</span>
-<span class="p">{</span>
-        <span class="k">echo</span> <span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">referrer</span><span class="p">();</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">isReferral</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$agent</span><span class="o">-&gt;</span><span class="na">referrer</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -706,7 +694,7 @@ that commonly visit your site are missing from the list you can add them to your
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

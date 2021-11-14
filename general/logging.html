@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>記錄日誌資訊 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>記錄日誌資訊 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="錯誤處理" href="errors.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -360,9 +364,8 @@
 </ul>
 </div>
 <p>你可透過使用 <code class="docutils literal notranslate"><span class="pre">log_message()</span></code> 方法將訊息記錄到本地日誌檔案中。你必須在第一個參數中提供錯誤的「級別」，定義這是個怎麼樣的錯誤訊息（ debug 或 error ）。第二個參數則是錯誤訊息本體：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$some_var</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="p">{</span>
-        <span class="nx">log_message</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="s1">&#39;Some variable did not contain a value.&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$some_var</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">log_message</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="s1">&#39;Some variable did not contain a value.&#39;</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -424,18 +427,15 @@
 <ul class="simple">
 <li><strong>檔案處理程序</strong> 是預設的處理程序，將會每天在本地建立一個檔案。這是推薦的記錄方法。</li>
 <li><strong>ChromeLogger 處理程序</strong> 如果你在 Chrome Web 瀏覽器中安裝了 <a class="reference external" href="https://craig.is/writing/chrome-logger">ChromeLogger extension</a> 擴充模組，你可以使用這個處理程序在 Chrome 主控台中顯示日誌訊息。</li>
+<li><strong>Errorlog Handler</strong> This handler will take advantage of PHP’s native <code class="docutils literal notranslate"><span class="pre">error_log()</span></code> function and write
+the logs there. Currently, only the <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">4</span></code> message types of <code class="docutils literal notranslate"><span class="pre">error_log()</span></code> are supported.</li>
 </ul>
 <p>處理程序是在核心設定檔案中的 <code class="docutils literal notranslate"><span class="pre">$handlers</span></code> 屬性設定的，它只是一個處理程序的陣列與其設定內容。每個處理程序將可以在這個陣列中被指定，「鍵」為以命名空間所構成的類別名稱，「值」將是一個針對每個處理程序的不同屬性的陣列。每個處理程序都會一個供通屬性： <code class="docutils literal notranslate"><span class="pre">handles</span></code> ，這是處理程序將記錄訊息的日誌級別的陣列。</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$handlers</span> <span class="o">=</span> <span class="p">[</span>
-
-        <span class="c1">//--------------------------------------------------------------------</span>
-        <span class="c1">// File Handler</span>
-        <span class="c1">//--------------------------------------------------------------------</span>
-
-        <span class="s1">&#39;CodeIgniter\Log\Handlers\FileHandler&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-
-                <span class="s1">&#39;handles&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;critical&#39;</span><span class="p">,</span> <span class="s1">&#39;alert&#39;</span><span class="p">,</span> <span class="s1">&#39;emergency&#39;</span><span class="p">,</span> <span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;notice&#39;</span><span class="p">,</span> <span class="s1">&#39;warning&#39;</span><span class="p">],</span>
-        <span class="p">]</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span>    <span class="k">public</span> <span class="nv">$handlers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1">// File Handler</span>
+    <span class="s1">&#39;CodeIgniter\Log\Handlers\FileHandler&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;handles&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;critical&#39;</span><span class="p">,</span> <span class="s1">&#39;alert&#39;</span><span class="p">,</span> <span class="s1">&#39;emergency&#39;</span><span class="p">,</span> <span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;notice&#39;</span><span class="p">,</span> <span class="s1">&#39;warning&#39;</span><span class="p">],</span>
+    <span class="p">]</span>
 <span class="p">];</span>
 </pre></div>
 </div>
@@ -446,20 +446,17 @@
 <p>你可能經常會想根據語境來修改被記錄事件的訊息細節。它們可能是使用者 ID 、 IP 位置，或是目前的 POST 變數等等。你可以利用在訊息中的置換符號來實現。每個置換符號必須使用大括弧包裹起來。在第三個參數中，你必須提供一個鍵值為置換符號名稱的陣列（沒有括號）和他們的值。這些內容將被替換至到訊息字串中：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Generates a message like: User 123 logged into the system from 127.0.0.1</span>
 <span class="nv">$info</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
-        <span class="s1">&#39;ip_address&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">ip_address</span><span class="p">()</span>
+    <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
+    <span class="s1">&#39;ip_address&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">ip_address</span><span class="p">()</span>
 <span class="p">];</span>
 
 <span class="nx">log_message</span><span class="p">(</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;User {id} logged into the system from {ip_address}&#39;</span><span class="p">,</span> <span class="nv">$info</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>如果你想記錄一個異常或是錯誤，你可以在陣列中宣告一個鍵為「 exception 」值為錯誤本身的成員。這個設定將會從物件中產生一個包含錯誤資訊、檔案名稱和行數的字串。當然，在訊息字串中，你也得提供名為「 exception 」的置換符號：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">try</span>
-<span class="p">{</span>
-        <span class="o">...</span> <span class="nx">Something</span> <span class="nx">throws</span> <span class="nx">error</span> <span class="nx">here</span>
-<span class="p">}</span>
-<span class="k">catch</span> <span class="p">(</span><span class="nx">\Exception</span> <span class="nv">$e</span><span class="p">)</span>
-<span class="p">{</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">try</span> <span class="p">{</span>
+        <span class="c1">// Something throws error here</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">log_message</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="s1">&#39;[ERROR] {exception}&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;exception&#39;</span> <span class="o">=&gt;</span> <span class="nv">$e</span><span class="p">]);</span>
 <span class="p">}</span>
 </pre></div>
@@ -530,7 +527,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

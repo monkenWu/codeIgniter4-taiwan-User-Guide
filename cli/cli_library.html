@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>命令列程式庫 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>命令列程式庫 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="CLI 請求類別" href="cli_request.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -367,13 +371,15 @@
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id6">初始化類別</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p>你不宣要建立一個命令列程式庫的實體，因為它所有的方法都是靜態的，你只需要在你的控制器上方使用 <code class="docutils literal notranslate"><span class="pre">use</span></code> 語句來引入它即可。</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\CLI\CLI</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">MyController</span> <span class="k">extends</span> <span class="nx">\CodeIgniter\Controller</span>
 <span class="p">{</span>
-        <span class="c1">// ...</span>
+    <span class="c1">// ...</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -398,6 +404,39 @@
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$email</span> <span class="o">=</span> <span class="nx">CLI</span><span class="o">::</span><span class="na">prompt</span><span class="p">(</span><span class="s1">&#39;What is your email?&#39;</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;required|valid_email&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>驗證規則也可以用陣列語法撰寫：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$email</span> <span class="o">=</span> <span class="nx">CLI</span><span class="o">::</span><span class="na">prompt</span><span class="p">(</span><span class="s1">&#39;What is your email?&#39;</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;required&#39;</span><span class="p">,</span> <span class="s1">&#39;valid_email&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p><strong>promptByKey()</strong></p>
+<p>Predefined answers (options) for prompt sometimes need to be described or are too complex to select via their value.
+<code class="docutils literal notranslate"><span class="pre">promptByKey()</span></code> allows the user to select an option by its key instead of its value:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$fruit</span> <span class="o">=</span> <span class="nx">CLI</span><span class="o">::</span><span class="na">promptByKey</span><span class="p">(</span><span class="s1">&#39;These are your choices:&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;The red apple&#39;</span><span class="p">,</span> <span class="s1">&#39;The plump orange&#39;</span><span class="p">,</span> <span class="s1">&#39;The ripe banana&#39;</span><span class="p">]);</span>
+
+<span class="c1">//These are your choices:</span>
+<span class="c1">//  [0]  The red apple</span>
+<span class="c1">//  [1]  The plump orange</span>
+<span class="c1">//  [2]  The ripe banana</span>
+<span class="c1">//</span>
+<span class="c1">//[0, 1, 2]:</span>
+</pre></div>
+</div>
+<p>Named keys are also possible:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$fruit</span> <span class="o">=</span> <span class="nx">CLI</span><span class="o">::</span><span class="na">promptByKey</span><span class="p">([</span><span class="s1">&#39;These are your choices:&#39;</span><span class="p">,</span> <span class="s1">&#39;Which would you like?&#39;</span><span class="p">],</span> <span class="p">[</span>
+    <span class="s1">&#39;apple&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The red apple&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;orange&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The plump orange&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;banana&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The ripe banana&#39;</span>
+<span class="p">]);</span>
+
+<span class="c1">//These are your choices:</span>
+<span class="c1">//  [apple]   The red apple</span>
+<span class="c1">//  [orange]  The plump orange</span>
+<span class="c1">//  [banana]  The ripe banana</span>
+<span class="c1">//</span>
+<span class="c1">//Which would you like? [apple, orange, banana]:</span>
+</pre></div>
+</div>
+<p>Finally, you can pass <a class="reference internal" href="../libraries/validation.html"><span class="doc">validation</span></a> rules to the answer input as the third parameter, the acceptable answers are automatically restricted to the passed options.</p>
 </div>
 <div class="section" id="id5">
 <h2><a class="toc-backref" href="#id8">提供回饋</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
@@ -447,8 +486,7 @@
 </ul>
 <p><strong>print()</strong></p>
 <p>print()　函數與　<code class="docutils literal notranslate"><span class="pre">write()</span></code>　函數相同，使是它不強制在前後加上換行。相反的，它會將內容輸出到螢幕上游標的位置。這使得你可以在同一行中輸出多個項目，並從不同的呼叫中持續輸出。當你想顯示一些狀態、做一些事情，然後在同一列中輸出 「Done」 時，這個方法特別有用：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
-<span class="p">{</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">CLI</span><span class="o">::</span><span class="na">print</span><span class="p">(</span><span class="nv">$i</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
@@ -476,20 +514,32 @@
 </pre></div>
 </div>
 <p>你可能會有標題、檔案名稱、工作名稱記錄在左側，並且右側有包含其說明文字的需求。在預設的情形下，右方文字的換行將會回到視窗的左側，將沒辦法允許你這麼排版。在這種情況下，你可以傳入多個空格，在第一行之後填充每一行，這樣你就能在左方獲得清晰的邊緣列：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 決定所有標題長度</span>
-<span class="c1">// 以確定左欄的寬度</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$titles</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;task1a&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;task1abc&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+<span class="nv">$descriptions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Lorem Ipsum is simply dummy text of the printing and typesetting industry.&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;Lorem Ipsum has been the industry&#39;s standard dummy text ever since the&quot;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="c1">// Determine the maximum length of all titles</span>
+<span class="c1">// to determine the width of the left column</span>
 <span class="nv">$maxlen</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">array_map</span><span class="p">(</span><span class="s1">&#39;strlen&#39;</span><span class="p">,</span> <span class="nv">$titles</span><span class="p">));</span>
 
-<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;=</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$titles</span><span class="p">);</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
-<span class="p">{</span>
-        <span class="nx">CLI</span><span class="o">::</span><span class="na">write</span><span class="p">(</span>
-                <span class="c1">// Display the title on the left of the row</span>
-                <span class="nv">$title</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span> <span class="o">.</span> <span class="s1">&#39;   &#39;</span> <span class="o">.</span>
-                <span class="c1">// Wrap the descriptions in a right-hand column</span>
-                <span class="c1">// with its left side 3 characters wider than</span>
-                <span class="c1">// the longest item on the left.</span>
-                <span class="nx">CLI</span><span class="o">::</span><span class="na">wrap</span><span class="p">(</span><span class="nv">$descriptions</span><span class="p">[</span><span class="nv">$i</span><span class="p">],</span> <span class="mi">40</span><span class="p">,</span> <span class="nv">$maxlen</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
-        <span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$titles</span><span class="p">);</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">CLI</span><span class="o">::</span><span class="na">write</span><span class="p">(</span>
+        <span class="c1">// Display the title on the left of the row</span>
+        <span class="nb">substr</span><span class="p">(</span>
+            <span class="nv">$titles</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span> <span class="o">.</span> <span class="nb">str_repeat</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="nv">$maxlen</span> <span class="o">+</span> <span class="mi">3</span><span class="p">),</span>
+            <span class="mi">0</span><span class="p">,</span>
+            <span class="nv">$maxlen</span> <span class="o">+</span> <span class="mi">3</span>
+        <span class="p">)</span> <span class="o">.</span>
+        <span class="c1">// Wrap the descriptions in a right-hand column</span>
+        <span class="c1">// with its left side 3 characters wider than</span>
+        <span class="c1">// the longest item on the left.</span>
+        <span class="nx">CLI</span><span class="o">::</span><span class="na">wrap</span><span class="p">(</span><span class="nv">$descriptions</span><span class="p">[</span><span class="nv">$i</span><span class="p">],</span> <span class="mi">40</span><span class="p">,</span> <span class="nv">$maxlen</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -521,10 +571,9 @@ task1abc   Lorem Ipsum has been the industry&#39;s
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$totalSteps</span> <span class="o">=</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$tasks</span><span class="p">);</span>
 <span class="nv">$currStep</span>   <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 
-<span class="k">foreach</span> <span class="p">(</span><span class="nv">$tasks</span> <span class="k">as</span> <span class="nv">$task</span><span class="p">)</span>
-<span class="p">{</span>
-        <span class="nx">CLI</span><span class="o">::</span><span class="na">showProgress</span><span class="p">(</span><span class="nv">$currStep</span><span class="o">++</span><span class="p">,</span> <span class="nv">$totalSteps</span><span class="p">);</span>
-        <span class="nv">$task</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$tasks</span> <span class="k">as</span> <span class="nv">$task</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">CLI</span><span class="o">::</span><span class="na">showProgress</span><span class="p">(</span><span class="nv">$currStep</span><span class="o">++</span><span class="p">,</span> <span class="nv">$totalSteps</span><span class="p">);</span>
+    <span class="nv">$task</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
 <span class="p">}</span>
 
 <span class="c1">// Done, so erase it...</span>
@@ -586,7 +635,7 @@ task1abc   Lorem Ipsum has been the industry&#39;s
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

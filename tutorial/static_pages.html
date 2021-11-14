@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>靜態頁面 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>靜態頁面 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="新聞頁面" href="news_section.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -386,10 +390,18 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>你創建了一個名為 <code class="docutils literal notranslate"><span class="pre">Pages</span></code> 的類別，這個類別具有 <code class="docutils literal notranslate"><span class="pre">showme</span></code> 方法，這個方法將會被傳入 <code class="docutils literal notranslate"><span class="pre">$page</span></code> 引數。 還有一個 <code class="docutils literal notranslate"><span class="pre">index()</span></code> 方法，這與 <strong>app/Controllers/Home.php</strong> 這個控制器相同，將會默認顯示 CodeIgniter 歡迎頁面。</p>
+<p>你創建了一個名為 <code class="docutils literal notranslate"><span class="pre">Pages</span></code> 的類別，這個類別具有 <code class="docutils literal notranslate"><span class="pre">view</span></code> 方法，這個方法將會被傳入 <code class="docutils literal notranslate"><span class="pre">$page</span></code> 引數。 還有一個 <code class="docutils literal notranslate"><span class="pre">index()</span></code> 方法，這與 <strong>app/Controllers/Home.php</strong> 這個控制器相同，將會默認顯示 CodeIgniter 歡迎頁面。</p>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">There are two <code class="docutils literal notranslate"><span class="pre">view()</span></code> functions referred to in this tutorial.
+One is the class method created with <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">function</span> <span class="pre">view($page</span> <span class="pre">=</span> <span class="pre">'home')</span></code>
+and <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">view('welcome_message')</span></code> for displaying a view.
+Both are <em>technically</em> a function. But when you create a function in a class,
+it’s called a method.</p>
+</div>
 <p><code class="docutils literal notranslate"><span class="pre">Pages</span></code> 繼承  <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code> 類別。這代表， Pages 類別將可以呼叫 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code> 類別（ <em>system/Controller.php</em> ）中定義的方法與變數。</p>
 <p>控制器是每個 Web 應用程式的 <strong>請求中心</strong> 。與任何 PHP 類別一樣，在控制器中必須使用 <code class="docutils literal notranslate"><span class="pre">$this</span></code> 呼叫。</p>
-<p>現在，你已經創建了第一個方法，是時候製作一些用於 footer 與 header 的頁面樣板了。</p>
+<p>現在，你已經創建了第一個方法，是時候製作一些用於 footer 與 header 的頁面樣板了。我們將建立兩個視圖（頁面樣板），作為網頁的頁首與頁尾。</p>
 <p>在 <strong>app/Views/templates/header.php</strong> 路徑上創建含有下列程式碼的 header 檔案：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;!</span><span class="nx">doctype</span> <span class="nx">html</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
@@ -398,11 +410,11 @@
 <span class="o">&lt;/</span><span class="nx">head</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
 
-        <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;&lt;?=</span> <span class="nv">$title</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;&lt;?=</span> <span class="nx">esc</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 <p>header 包含載入主要視圖之前輸出的基本 HTML 程式碼與標題。它還會輸出 <code class="docutils literal notranslate"><span class="pre">$title</span></code> 變數，等等我們將會在控制器對這個變數進行定義。接著，在 <strong>app/Views/templates/footer.php</strong> 路徑上創建含有下列程式碼的 footer 檔案：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span>        <span class="o">&lt;</span><span class="nx">em</span><span class="o">&gt;&amp;</span><span class="nb">copy</span><span class="p">;</span> <span class="mi">2019</span><span class="o">&lt;/</span><span class="nx">em</span><span class="o">&gt;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span>        <span class="o">&lt;</span><span class="nx">em</span><span class="o">&gt;&amp;</span><span class="nb">copy</span><span class="p">;</span> <span class="mi">2021</span><span class="o">&lt;/</span><span class="nx">em</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="nx">body</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="nx">html</span><span class="o">&gt;</span>
 </pre></div>
@@ -413,21 +425,13 @@
 function. It’s a global function provided by CodeIgniter to help prevent
 XSS attacks. You can read more about it <a class="reference internal" href="../general/common_functions.html"><span class="doc">here</span></a>.</p>
 </div>
-<div class="admonition warning">
-<p class="first admonition-title">警告</p>
-<p class="last">There are two <strong>view()</strong> functions referred to in this tutorial.
-One is the class method created with <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">function</span> <span class="pre">view($page</span> <span class="pre">=</span> <span class="pre">'home')</span></code>
-and <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">view('welcome_message');</span></code> for displaying a view.
-Both are <em>technically</em> a function. But when you create a function in a class,
-it’s called a method.</p>
-</div>
 </div>
 <div class="section" id="id3">
 <h2>在控制器中新增邏輯<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
-<p>剛才，你設定了一個包含 <code class="docutils literal notranslate"><span class="pre">showme()</span></code> 方法的控制器。這個方法將傳入一個引數，
+<p>剛才，你設定了一個包含 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法的控制器。這個方法將傳入一個引數，
 這個引數是被載入的頁面的名稱。靜態頁面的主體將被儲存在 <strong>app/Views/pages/</strong> 目錄中。</p>
 <p>在這個目錄中，創建名為 <strong>home.php</strong> 與 <strong>about.php</strong> 兩個檔案。在這些檔案中，輸入一些你喜歡的文字，並且保存它們。如果你不喜歡獨樹一格，你可以鍵入「 Hello World! 」。</p>
-<p>為了載入這些頁面，你必須檢查請求的頁面是否實際存在，這些判斷邏輯是在創建 <code class="docutils literal notranslate"><span class="pre">Pages</span></code> 控制器後，於 <code class="docutils literal notranslate"><span class="pre">showme()</span></code> 方法中的主體。</p>
+<p>為了載入這些頁面，你必須檢查請求的頁面是否實際存在，這些判斷邏輯是在創建 <code class="docutils literal notranslate"><span class="pre">Pages</span></code> 控制器後，於 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法中的主體。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">view</span><span class="p">(</span><span class="nv">$page</span> <span class="o">=</span> <span class="s1">&#39;home&#39;</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">is_file</span><span class="p">(</span><span class="nx">APPPATH</span><span class="o">.</span><span class="s1">&#39;/Views/pages/&#39;</span><span class="o">.</span><span class="nv">$page</span><span class="o">.</span><span class="s1">&#39;.php&#39;</span><span class="p">))</span>
@@ -450,7 +454,8 @@ it’s called a method.</p>
 <p>最後我們得按照順序依序載入視圖，對於這個操作，我們使用 CodeIgniter 內建的 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法。<code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法中的第二個引數用於將一些值傳遞給視圖。 <code class="docutils literal notranslate"><span class="pre">$data</span></code> 陣列中的每個值在傳遞給視圖後，將會被宣告為以鍵值命名的變數。所以控制器中的 <code class="docutils literal notranslate"><span class="pre">$data['title']</span></code> 將等價於視圖中的 <code class="docutils literal notranslate"><span class="pre">$title</span></code> 。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">傳入 <strong>view()</strong> 函數的任何檔案名稱與目錄名稱都必須真實存在且完全一致，否則你的程式可能會在一些區分大小寫的系統平台上出現錯誤。</p>
+<p class="last">傳入 <strong>view()</strong> 函數的任何檔案名稱與目錄名稱都必須真實存在且完全一致，否則你的程式可能會在一些區分大小寫的系統平台上出現錯誤。你可以在
+<a class="reference internal" href="../outgoing/views.html"><span class="doc">這裡</span></a>  閱讀到更多的訊息。</p>
 </div>
 </div>
 <div class="section" id="id4">
@@ -461,15 +466,38 @@ it’s called a method.</p>
 </pre></div>
 </div>
 <p>這行指令將會把 Web 伺服器啟動在 8080 埠上，如果在瀏覽器中前往 <code class="docutils literal notranslate"><span class="pre">localhost:8080</span></code> ，你應該可以看到 CodeIgniter 的歡迎畫面。</p>
-<p>現在，你可以在瀏覽器中嘗試多種 URL ，以查看上面製作的 <cite>Pages</cite> 究竟產生了甚麼……</p>
-<ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages</span></code> 將顯示控制器中 <cite>index</cite> 方法的結果，也就是顯示 CodeIgniter 「 welcome 」 頁面，因為 <cite>index</cite> 是控制器的預設方法。</li>
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/index</span></code> 也會顯示 CodeIgniter 「 welcome 」 頁面，因為我們明確的要求使用 index 方法。</li>
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme</span></code> 將顯示剛才製作的「 home 」頁面，因為它是 <cite>showme()</cite> 方法所預設的 page 引數。</li>
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme/home</span></code> 將顯示 「 home 」頁面 ，因為我們明確的要求了 page 的值。</li>
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme/about</span></code> 因為我們明確的要求了 about ，將顯示你剛才製作的「 about 」頁面，</li>
-<li><code class="docutils literal notranslate"><span class="pre">localhost:8080/pages/showme/shop</span></code> 將顯示「 404 - File Not Found 」錯誤畫面，因為 <cite>app/Views/pages/shop.php</cite> 並不存在。</li>
-</ul>
+<p>現在，你可以在瀏覽器中嘗試多種 URL ，以查看上面製作的 <code class="docutils literal notranslate"><span class="pre">Pages</span></code> 究竟產生了甚麼……</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">URL</th>
+<th class="head">Will show</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>localhost:8080/pages</td>
+<td>將顯示控制器中 <code class="docutils literal notranslate"><span class="pre">index</span></code> 方法的結果，也就是顯示 CodeIgniter 「 welcome 」 頁面，因為 <code class="docutils literal notranslate"><span class="pre">index</span></code> 是控制器的預設方法。</td>
+</tr>
+<tr class="row-odd"><td>localhost:8080/pages/index</td>
+<td>也會顯示 CodeIgniter 「 welcome 」 頁面，因為我們明確的要求使用 index 方法。</td>
+</tr>
+<tr class="row-even"><td>localhost:8080/pages/view</td>
+<td>將顯示剛才製作的「 home 」頁面，因為它是 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法所預設的 page 引數。</td>
+</tr>
+<tr class="row-odd"><td>localhost:8080/pages/view/home</td>
+<td>將顯示 「 home 」頁面 ，因為我們明確的要求了 page 的值。</td>
+</tr>
+<tr class="row-even"><td>localhost:8080/pages/view/about</td>
+<td>因為我們明確的要求了 about ，將顯示你剛才製作的 about 頁面。</td>
+</tr>
+<tr class="row-odd"><td>localhost:8080/pages/view/shop</td>
+<td>將顯示「 404 - File Not Found 」錯誤畫面，因為 <code class="docutils literal notranslate"><span class="pre">app/Views/pages/shop.php</span></code> 並不存在。</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="id5">
 <h2>路由<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
@@ -485,13 +513,13 @@ it’s called a method.</p>
 </div>
 <p>這個指令指出，未指定任何內容的請求都應該由 <code class="docutils literal notranslate"><span class="pre">Home</span></code> 控制器的 <code class="docutils literal notranslate"><span class="pre">index</span></code> 方法進行處理。</p>
 <p>我們緊接著在這一行程式下方新增下列程式：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;(:any)&#39;</span><span class="p">,</span> <span class="s1">&#39;Pages::showme/$1&#39;</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;(:any)&#39;</span><span class="p">,</span> <span class="s1">&#39;Pages::view/$1&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>CodeIgniter 將從上至下依序讀取路由規則，並將請求導向至第一個匹配的規則。每一個規則都是左側的正規表示法，以及右側的控制器和方法名稱所組成（以斜線分隔）。當請求進入時， CodeIgniter 會找到第一個匹配項，並且呼叫適當的控制器與方法（可能會有引數），</p>
 <p>有關路由的詳細資訊，請參閱 <a class="reference internal" href="../incoming/routing.html"><span class="doc">URL 路由條目</span></a>。</p>
 <p>在這裡， <code class="docutils literal notranslate"><span class="pre">$routes</span></code> 陣列中的第二個規則是， <strong>任何</strong> 請求都會與萬用字元字串 <code class="docutils literal notranslate"><span class="pre">(:any)</span></code> 相匹配後，再引數傳遞給 <code class="docutils literal notranslate"><span class="pre">Pages</span></code> 類別的 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法。</p>
-<p>現在造訪 <code class="docutils literal notranslate"><span class="pre">home</span></code> 。它是不是正確將路由導向至控制器中的 <code class="docutils literal notranslate"><span class="pre">showme()</span></code> 方法呢？做得好！</p>
+<p>現在造訪 <code class="docutils literal notranslate"><span class="pre">home</span></code> 。它是不是正確將路由導向至控制器中的 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 方法呢？做得好！</p>
 <p>你應該可以看到類似於以下內容的畫面:</p>
 <img alt="../_images/tutorial1.png" class="align-center" src="../_images/tutorial1.png" />
 <div class="admonition note">
@@ -523,7 +551,7 @@ it’s called a method.</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

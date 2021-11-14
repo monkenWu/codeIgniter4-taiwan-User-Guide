@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with URIs &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>Working with URIs &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="User Agent Class" href="user_agent.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Library Reference</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">程式庫參考</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -328,7 +332,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Library Reference</a> &raquo;</li>
+          <li><a href="index.html">程式庫參考</a> &raquo;</li>
         
       <li>Working with URIs</li>
     
@@ -392,17 +396,18 @@ into its appropriate sections:</p>
 </div>
 <div class="section" id="the-current-uri">
 <h3><a class="toc-backref" href="#id3">The Current URI</a><a class="headerlink" href="#the-current-uri" title="本標題的永久連結">¶</a></h3>
-<p>Many times, all you really want is an object representing the current URL of this request. This can be accessed
-in two different ways. The first is to grab it directly from the current request object. Assuming that you’re in
-a controller that extends <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code> you can get it like:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$uri</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">uri</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>Second, you can use one of the functions available in the <strong>url_helper</strong>:</p>
+<p>Many times, all you really want is an object representing the current URL of this request.
+You can use one of the functions available in the <strong>url_helper</strong>:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$uri</span> <span class="o">=</span> <span class="nx">current_url</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>You must pass <code class="docutils literal notranslate"><span class="pre">true</span></code> as the first parameter, otherwise, it will return the string representation of the current URL.</p>
+<p>You must pass <code class="docutils literal notranslate"><span class="pre">true</span></code> as the first parameter, otherwise, it will return the string representation of the current URL.
+This URI is based on the path (relative to your <code class="docutils literal notranslate"><span class="pre">baseURL</span></code>) as determined by the current request object and
+your settings in <code class="docutils literal notranslate"><span class="pre">Config\App</span></code> (baseURL, indexPage, and forceGlobalSecureRequests).
+Assuming that you’re in a controller that extends <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code> you can get this relative path:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getPath</span><span class="p">();</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="uri-strings">
@@ -410,7 +415,7 @@ a controller that extends <code class="docutils literal notranslate"><span class
 <p>Many times, all you really want is to get a string representation of a URI. This is easy to do by simply casting
 the URI as a string:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$uri</span> <span class="o">=</span> <span class="nx">current_url</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
-<span class="k">echo</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span><span class="nv">$uri</span><span class="p">;</span>  <span class="c1">// http://example.com</span>
+<span class="k">echo</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$uri</span><span class="p">;</span>  <span class="c1">// http://example.com/index.php</span>
 </pre></div>
 </div>
 <p>If you know the pieces of the URI and just want to ensure it’s all formatted correctly, you can generate a string
@@ -420,6 +425,12 @@ using the URI class』 static <code class="docutils literal notranslate"><span c
 <span class="c1">// Creates: http://exmample.com/some/path?foo=bar#first-heading</span>
 <span class="k">echo</span> <span class="nx">URI</span><span class="o">::</span><span class="na">createURIString</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="s1">&#39;example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;some/path&#39;</span><span class="p">,</span> <span class="s1">&#39;foo=bar&#39;</span><span class="p">,</span> <span class="s1">&#39;first-heading&#39;</span><span class="p">);</span>
 </pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">When <code class="docutils literal notranslate"><span class="pre">URI</span></code> is cast to a string, it will attempt to adjust project URLs to the
+settings defined in <code class="docutils literal notranslate"><span class="pre">Config\App</span></code>. If you need the exact, unaltered string representation
+then use <code class="docutils literal notranslate"><span class="pre">URI::createURIString()</span></code> instead.</p>
 </div>
 </div>
 <div class="section" id="the-uri-parts">
@@ -589,9 +600,8 @@ what the values of the segments are. The segments start at 1 being the furthest 
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// URI = http://example.com/users/15/profile</span>
 
 <span class="c1">// Prints &#39;15&#39;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getSegment</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;users&#39;</span><span class="p">)</span>
-<span class="p">{</span>
-        <span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getSegment</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getSegment</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;users&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getSegment</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -619,9 +629,9 @@ what the values of the segments are. The segments start at 1 being the furthest 
 
 <span class="c1">// $segments =</span>
 <span class="p">[</span>
-        <span class="mi">0</span> <span class="o">=&gt;</span> <span class="s1">&#39;users&#39;</span><span class="p">,</span>
-        <span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;15&#39;</span><span class="p">,</span>
-        <span class="mi">2</span> <span class="o">=&gt;</span> <span class="s1">&#39;profile&#39;</span>
+    <span class="mi">0</span> <span class="o">=&gt;</span> <span class="s1">&#39;users&#39;</span><span class="p">,</span>
+    <span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;15&#39;</span><span class="p">,</span>
+    <span class="mi">2</span> <span class="o">=&gt;</span> <span class="s1">&#39;profile&#39;</span>
 <span class="p">]</span>
 </pre></div>
 </div>
@@ -662,7 +672,7 @@ that will prevent throwing exceptions.</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

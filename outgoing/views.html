@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>視圖 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>視圖 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="視圖單元" href="view_cells.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -368,12 +372,12 @@
 <h2><a class="toc-backref" href="#id11">新建一個視圖</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p>使用你的編輯器或開發環境，創建一個 <code class="docutils literal notranslate"><span class="pre">BlogView.php</span></code> 檔案，並將以下內容置入其中：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Blog</span><span class="o">&lt;/</span><span class="nx">title</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="nx">head</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welcome</span> <span class="nx">to</span> <span class="nx">my</span> <span class="nx">Blog</span><span class="o">!&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="nx">body</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Blog</span><span class="o">&lt;/</span><span class="nx">title</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="nx">head</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welcome</span> <span class="nx">to</span> <span class="nx">my</span> <span class="nx">Blog</span><span class="o">!&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="nx">body</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="nx">html</span><span class="o">&gt;</span>
 </pre></div>
 </div>
@@ -391,14 +395,16 @@
 <p class="last">如果等省去掉檔案的副檔名，那麼視圖將會自動加上 .php 的副檔名。</p>
 </div>
 <p>現在，打開你之前製作的 <code class="docutils literal notranslate"><span class="pre">Blog.php</span></code> 控制器檔案，將 echo 語法替換成視圖函數：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">Blog</span> <span class="k">extends</span> <span class="nx">\CodeIgniter\Controller</span>
 <span class="p">{</span>
-        <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
-        <span class="p">{</span>
-                <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;BlogView&#39;</span><span class="p">);</span>
-        <span class="p">}</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;BlogView&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -414,21 +420,23 @@
 <div class="section" id="id5">
 <h2><a class="toc-backref" href="#id13">載入多個視圖</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
 <p>CodeIgniter 將智慧地處理一個控制器中，對多個 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 的呼叫。如果有一個以上的 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 被呼叫，它們將會被串接在一起。例如，你可能希望有一個標題頁眉、選單視圖、內容視圖以及頁腳視圖，實作時看起來會像這樣：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">Page</span> <span class="k">extends</span> <span class="nx">\CodeIgniter\Controller</span>
 <span class="p">{</span>
-        <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
-        <span class="p">{</span>
-                <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-                        <span class="s1">&#39;page_title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Your title&#39;</span>
-                <span class="p">];</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;page_title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Your title&#39;</span><span class="p">,</span>
+        <span class="p">];</span>
 
-                <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;header&#39;</span><span class="p">);</span>
-                <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;menu&#39;</span><span class="p">);</span>
-                <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
-                <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;footer&#39;</span><span class="p">);</span>
-        <span class="p">}</span>
+        <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;header&#39;</span><span class="p">);</span>
+        <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;menu&#39;</span><span class="p">);</span>
+        <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+        <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;footer&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -466,46 +474,48 @@
 <h2><a class="toc-backref" href="#id17">替視圖加入動態資料</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h2>
 <p>資料是透過視圖函數的第二個參數從控制器傳入到你所開啟的視圖的。下面將演示一個範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;title&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;heading&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My Heading&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My Message&#39;</span>
+    <span class="s1">&#39;title&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;heading&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My Heading&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My Message&#39;</span><span class="p">,</span>
 <span class="p">];</span>
 
-<span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;blogview&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;blogview&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>讓我們延續你之前製作過的範例繼續試試，在你所製作控制器檔案中加入這段程式碼：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">Blog</span> <span class="k">extends</span> <span class="nx">\CodeIgniter\Controller</span>
 <span class="p">{</span>
-        <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
-        <span class="p">{</span>
-                <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>   <span class="o">=</span> <span class="s2">&quot;My Real Title&quot;</span><span class="p">;</span>
-                <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;heading&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;My Real Heading&quot;</span><span class="p">;</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>   <span class="o">=</span> <span class="s2">&quot;My Real Title&quot;</span><span class="p">;</span>
+        <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;heading&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;My Real Heading&quot;</span><span class="p">;</span>
 
-                <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;blogview&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
-        <span class="p">}</span>
+        <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;blogview&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>現在，打開你的視圖檔案，把標籤的內容改成由控制器傳入的陣列中，元素鍵名相對應的變數：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;&lt;?=</span> <span class="nv">$title</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$heading</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;&lt;?=</span> <span class="nv">$title</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$heading</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 <p>然後，用瀏覽器重新進入此頁面，你應該就會看到原本的文字內容被變數的內容替換了。</p>
 <p>傳入的資料，只能在該次呼叫的視圖中使用。如果你在一個請求中，多次呼叫 <cite>view</cite> 函數，你必須傳遞所需的資料到每個視圖中。這樣就能防止視圖間的資料不會汙染到對方。如果你想讓傳入到視圖中的資料持久化，你可以在第三個參數中傳入 <cite>saveData</cite> 選項來啟動：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;title&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;heading&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My Heading&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My Message&#39;</span>
+    <span class="s1">&#39;title&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;heading&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My Heading&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My Message&#39;</span><span class="p">,</span>
 <span class="p">];</span>
 
 <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;blogview&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;saveData&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
@@ -517,40 +527,42 @@
 <h2><a class="toc-backref" href="#id18">建立迴圈</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h2>
 <p>你傳入給視圖檔案的資料陣列並不限於簡單的變數，你也可以傳遞多維陣列，它可以用於以迴圈執行。例如，你從資料庫中取出數筆資料，資料通常會是多維陣列的形式。</p>
 <p>這裡有一個簡單的範例，將以下程式碼加入到你的控制器中：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">Blog</span> <span class="k">extends</span> <span class="nx">\CodeIgniter\Controller</span>
 <span class="p">{</span>
-        <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
-        <span class="p">{</span>
-                <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-                        <span class="s1">&#39;todo_list&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Clean House&#39;</span><span class="p">,</span> <span class="s1">&#39;Call Mom&#39;</span><span class="p">,</span> <span class="s1">&#39;Run Errands&#39;</span><span class="p">],</span>
-                        <span class="s1">&#39;title&#39;</span>     <span class="o">=&gt;</span> <span class="s2">&quot;My Real Title&quot;</span><span class="p">,</span>
-                        <span class="s1">&#39;heading&#39;</span>   <span class="o">=&gt;</span> <span class="s2">&quot;My Real Heading&quot;</span>
-                <span class="p">];</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;todo_list&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Clean House&#39;</span><span class="p">,</span> <span class="s1">&#39;Call Mom&#39;</span><span class="p">,</span> <span class="s1">&#39;Run Errands&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;title&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;My Real Title&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;heading&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;My Real Heading&#39;</span><span class="p">,</span>
+        <span class="p">];</span>
 
-                <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;blogview&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
-        <span class="p">}</span>
+        <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;blogview&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>現在，打開你的視圖檔案新建一個迴圈：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;&lt;?=</span> <span class="nv">$title</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;&lt;?=</span> <span class="nv">$title</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$heading</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$heading</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
 
-        <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>My Todo List<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>My Todo List<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
 
-        <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
-        <span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$todo_list</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span><span class="o">:</span><span class="cp">?&gt;</span>
+    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$todo_list</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span><span class="o">:</span><span class="cp">?&gt;</span>
 
-                <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$item</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$item</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 
-        <span class="cp">&lt;?php</span> <span class="k">endforeach</span><span class="p">;</span><span class="cp">?&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">endforeach</span><span class="p">;</span><span class="cp">?&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
@@ -581,7 +593,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

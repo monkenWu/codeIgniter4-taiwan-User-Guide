@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API 響應特性 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>API 響應特性 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="本土化" href="localization.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -383,29 +387,40 @@
 </div>
 <p>在這個範例中，回傳一個 201 HTTP 狀態碼為，並帶有一般的狀態訊息： 「Created」 ，對於常見的需求，都有相應的方法可以使用：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 一般響應</span>
-<span class="nx">respond</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">respond</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+
 <span class="c1">// 故障響應</span>
-<span class="nx">fail</span><span class="p">(</span><span class="nv">$errors</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">fail</span><span class="p">(</span><span class="nv">$errors</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+
 <span class="c1">// 項目已建立成功</span>
-<span class="nx">respondCreated</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">respondCreated</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+
 <span class="c1">// 項目已刪除成功</span>
-<span class="nx">respondDeleted</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">respondDeleted</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+
 <span class="c1">// 命令已執行，無須響應</span>
-<span class="nx">respondNoContent</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">respondNoContent</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+
 <span class="c1">// 使用者無權限</span>
-<span class="nx">failUnauthorized</span><span class="p">(</span><span class="nv">$description</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">failUnauthorized</span><span class="p">(</span><span class="nv">$description</span><span class="p">);</span>
+
 <span class="c1">// 禁止使用</span>
-<span class="nx">failForbidden</span><span class="p">(</span><span class="nv">$description</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">failForbidden</span><span class="p">(</span><span class="nv">$description</span><span class="p">);</span>
+
 <span class="c1">// 找不到資源</span>
-<span class="nx">failNotFound</span><span class="p">(</span><span class="nv">$description</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">failNotFound</span><span class="p">(</span><span class="nv">$description</span><span class="p">);</span>
+
 <span class="c1">// 資料未通過驗證</span>
-<span class="nx">failValidationError</span><span class="p">(</span><span class="nv">$description</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">failValidationError</span><span class="p">(</span><span class="nv">$description</span><span class="p">);</span>
+
 <span class="c1">// 資源已經存在</span>
-<span class="nx">failResourceExists</span><span class="p">(</span><span class="nv">$description</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">failResourceExists</span><span class="p">(</span><span class="nv">$description</span><span class="p">);</span>
+
 <span class="c1">// 資源已經被刪除</span>
-<span class="nx">failResourceGone</span><span class="p">(</span><span class="nv">$description</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">failResourceGone</span><span class="p">(</span><span class="nv">$description</span><span class="p">);</span>
+
 <span class="c1">// 使用者提出過多請求</span>
-<span class="nx">failTooManyRequests</span><span class="p">(</span><span class="nv">$description</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">failTooManyRequests</span><span class="p">(</span><span class="nv">$description</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -414,11 +429,7 @@
 <p>當你透過下列任何一種方法傳遞資料時，他們將會根據以下條件來決定結果會被格式化為何種資料型別：</p>
 <ul class="simple">
 <li>如果 $data 是一個字串，那麼它將會被視為 HTML 發送回使用者端。</li>
-<li><dl class="first docutils">
-<dt><strong>如果 $data 是一個陣列，它會根據控制器的 ``$this-&gt;format`` 規定進行格式化。</strong></dt>
-<dd>如果這個值為空，那麼它將會嘗試與客戶端所要求的類型進行內容協商。如果在 ConfigAPI.php 沒有指定其他的屬性，則預設為 JSON 即是以 <code class="docutils literal notranslate"><span class="pre">$supportedResponseFormats</span></code> 屬性為主。</dd>
-</dl>
-</li>
+<li>如果 $data 是一個陣列，它會根據控制器的 <code class="docutils literal notranslate"><span class="pre">$this-&gt;format</span></code> 規定進行格式化。如果這個值為空，那麼它將會嘗試與客戶端所要求的類型進行內容協商。如果在 <strong>Config/Format.php</strong> 沒有指定其他的屬性，則預設為 JSON 即是以 <code class="docutils literal notranslate"><span class="pre">$supportedResponseFormats</span></code> 屬性為主。</li>
 </ul>
 <p>若要定義所使用的屬性輸出格式器，請編輯 <strong>Config/Format.php</strong> 檔案。其中的 <code class="docutils literal notranslate"><span class="pre">$supportedResponseFormats</span></code> 屬性包含著一系列的 mime 類型，你的應用程式可以自動地格式化響應類型。在預設的情形下，系統會自動格式化 XML 與 JSON 響應：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$supportedResponseFormats</span> <span class="o">=</span> <span class="p">[</span>
@@ -822,7 +833,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>資料庫建構類別 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>資料庫建構類別 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="資料庫遷移" href="migration.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -368,16 +372,17 @@
 <li><a class="reference internal" href="#id11" id="id29">新建資料表</a></li>
 <li><a class="reference internal" href="#id12" id="id30">棄用資料表</a></li>
 <li><a class="reference internal" href="#id13" id="id31">棄用外來鍵</a></li>
-<li><a class="reference internal" href="#id14" id="id32">重新命名資料表</a></li>
+<li><a class="reference internal" href="#dropping-a-key" id="id32">Dropping a Key</a></li>
+<li><a class="reference internal" href="#id14" id="id33">重新命名資料表</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id15" id="id33">修改資料表</a><ul>
-<li><a class="reference internal" href="#id16" id="id34">新增一個資料表欄位</a></li>
-<li><a class="reference internal" href="#id17" id="id35">棄用一個資料表欄位</a></li>
-<li><a class="reference internal" href="#id18" id="id36">修改資料表欄位</a></li>
+<li><a class="reference internal" href="#id15" id="id34">修改資料表</a><ul>
+<li><a class="reference internal" href="#id16" id="id35">新增一個資料表欄位</a></li>
+<li><a class="reference internal" href="#id17" id="id36">棄用一個資料表欄位</a></li>
+<li><a class="reference internal" href="#id18" id="id37">修改資料表欄位</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id19" id="id37">類別參考</a></li>
+<li><a class="reference internal" href="#id19" id="id38">類別參考</a></li>
 </ul>
 </div>
 <div class="section" id="id3">
@@ -403,7 +408,7 @@
 Returns TRUE/FALSE based on success or failure:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createDatabase</span><span class="p">(</span><span class="s1">&#39;my_db&#39;</span><span class="p">))</span>
 <span class="p">{</span>
-        <span class="k">echo</span> <span class="s1">&#39;Database created!&#39;</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s1">&#39;Database created!&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -419,7 +424,7 @@ or will check if a database exists before create it (depending on DBMS).</p>
 Returns TRUE/FALSE based on success or failure:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropDatabase</span><span class="p">(</span><span class="s1">&#39;my_db&#39;</span><span class="p">))</span>
 <span class="p">{</span>
-        <span class="k">echo</span> <span class="s1">&#39;Database deleted!&#39;</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s1">&#39;Database deleted!&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -454,7 +459,7 @@ an in-memory database.</p>
 <p>允許你傳入資料庫名稱來新建資料庫，根據成功與否回傳 TRUE 或 FALSE ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createDatabase</span><span class="p">(</span><span class="s1">&#39;my_db&#39;</span><span class="p">))</span>
 <span class="p">{</span>
-        <span class="k">echo</span> <span class="s1">&#39;Database created!&#39;</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s1">&#39;Database created!&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -468,7 +473,7 @@ an in-memory database.</p>
 <p>允許你傳入資料庫名稱並棄用這個資料庫，根據成功與否回傳 TRUE 或 FALSE ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropDatabase</span><span class="p">(</span><span class="s1">&#39;my_db&#39;</span><span class="p">))</span>
 <span class="p">{</span>
-        <span class="k">echo</span> <span class="s1">&#39;Database deleted!&#39;</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s1">&#39;Database deleted!&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -504,10 +509,10 @@ an in-memory database.</p>
 <h3><a class="toc-backref" href="#id26">新增欄位</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
 <p>欄位通常是透過鍵值陣列建立的，在這個鍵值陣列中你必須包含一個與這個欄位相關的資料類型 「type」 鍵，例如：INT 、 VARCHAR ，以及 TEXT 等。許多資料型別（例如 VARCHAR ），會需要定義 「constraint」 鍵，約束它的最大資料長度。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;users&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-                <span class="s1">&#39;type&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;VARCHAR&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;constraint&#39;</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
-        <span class="p">],</span>
+    <span class="s1">&#39;users&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;type&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;VARCHAR&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;constraint&#39;</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="p">],</span>
 <span class="p">];</span>
 <span class="c1">// 將轉化為 &quot;users VARCHAR(100)&quot;</span>
 </pre></div>
@@ -521,31 +526,31 @@ an in-memory database.</p>
 <li>unique/true : 替欄位定義產生一個唯一鍵。</li>
 </ul>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;id&#39;</span>          <span class="o">=&gt;</span> <span class="p">[</span>
-                <span class="s1">&#39;type&#39;</span>           <span class="o">=&gt;</span> <span class="s1">&#39;INT&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;constraint&#39;</span>     <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
-                <span class="s1">&#39;unsigned&#39;</span>       <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
-                <span class="s1">&#39;auto_increment&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span>
-        <span class="p">],</span>
-        <span class="s1">&#39;title&#39;</span>       <span class="o">=&gt;</span> <span class="p">[</span>
-                <span class="s1">&#39;type&#39;</span>           <span class="o">=&gt;</span> <span class="s1">&#39;VARCHAR&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;constraint&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;100&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;unique&#39;</span>         <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="s1">&#39;author&#39;</span>      <span class="o">=&gt;</span> <span class="p">[</span>
-                <span class="s1">&#39;type&#39;</span>           <span class="o">=&gt;</span><span class="s1">&#39;VARCHAR&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;constraint&#39;</span>     <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
-                <span class="s1">&#39;default&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;King of Town&#39;</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="s1">&#39;description&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-                <span class="s1">&#39;type&#39;</span>           <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;null&#39;</span>           <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="s1">&#39;status&#39;</span>      <span class="o">=&gt;</span> <span class="p">[</span>
-                <span class="s1">&#39;type&#39;</span>           <span class="o">=&gt;</span> <span class="s1">&#39;ENUM&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;constraint&#39;</span>     <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;publish&#39;</span><span class="p">,</span> <span class="s1">&#39;pending&#39;</span><span class="p">,</span> <span class="s1">&#39;draft&#39;</span><span class="p">],</span>
-                <span class="s1">&#39;default&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;pending&#39;</span><span class="p">,</span>
-        <span class="p">],</span>
+    <span class="s1">&#39;id&#39;</span>          <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;type&#39;</span>           <span class="o">=&gt;</span> <span class="s1">&#39;INT&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;constraint&#39;</span>     <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s1">&#39;unsigned&#39;</span>       <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+        <span class="s1">&#39;auto_increment&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;title&#39;</span>       <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;type&#39;</span>           <span class="o">=&gt;</span> <span class="s1">&#39;VARCHAR&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;constraint&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;100&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;unique&#39;</span>         <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;author&#39;</span>      <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;type&#39;</span>           <span class="o">=&gt;</span><span class="s1">&#39;VARCHAR&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;constraint&#39;</span>     <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="s1">&#39;default&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;King of Town&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;description&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;type&#39;</span>           <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;null&#39;</span>           <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;status&#39;</span>      <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;type&#39;</span>           <span class="o">=&gt;</span> <span class="s1">&#39;ENUM&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;constraint&#39;</span>     <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;publish&#39;</span><span class="p">,</span> <span class="s1">&#39;pending&#39;</span><span class="p">,</span> <span class="s1">&#39;draft&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;default&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;pending&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
 <span class="p">];</span>
 </pre></div>
 </div>
@@ -611,11 +616,17 @@ an in-memory database.</p>
 <p>外來鍵有助於資料表的關聯操作，對於需要使用外來鍵的資料表，你可以直接在資料庫建構類別中加入外來鍵：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addForeignKey</span><span class="p">(</span><span class="s1">&#39;users_id&#39;</span><span class="p">,</span><span class="s1">&#39;users&#39;</span><span class="p">,</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
 <span class="c1">// 給予 CONSTRAINT `TABLENAME_users_foreign` FOREIGN KEY(`users_id`) REFERENCES `users`(`id`)</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addForeignKey</span><span class="p">([</span><span class="s1">&#39;users_id&#39;</span><span class="p">,</span> <span class="s1">&#39;users_name&#39;</span><span class="p">],</span><span class="s1">&#39;users&#39;</span><span class="p">,[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">]);</span>
+<span class="c1">// 給予 CONSTRAINT `TABLENAME_users_foreign` FOREIGN KEY(`users_id`, `users_name`) REFERENCES `users`(`id`, `name`)</span>
 </pre></div>
 </div>
 <p>你可以額外約束  「on delete」 與 「on update」 屬性：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addForeignKey</span><span class="p">(</span><span class="s1">&#39;users_id&#39;</span><span class="p">,</span><span class="s1">&#39;users&#39;</span><span class="p">,</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;CASCADE&#39;</span><span class="p">,</span><span class="s1">&#39;CASCADE&#39;</span><span class="p">);</span>
 <span class="c1">// 給予 CONSTRAINT `TABLENAME_users_foreign` FOREIGN KEY(`users_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addForeignKey</span><span class="p">([</span><span class="s1">&#39;users_id&#39;</span><span class="p">,</span> <span class="s1">&#39;users_name&#39;</span><span class="p">],</span><span class="s1">&#39;users&#39;</span><span class="p">,[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">],</span><span class="s1">&#39;CASCADE&#39;</span><span class="p">,</span><span class="s1">&#39;CASCADE&#39;</span><span class="p">);</span>
+<span class="c1">// 給予 CONSTRAINT `TABLENAME_users_foreign` FOREIGN KEY(`users_id`, `users_name`) REFERENCES `users`(`id`, `name`) ON DELETE CASCADE ON UPDATE CASCADE</span>
 </pre></div>
 </div>
 </div>
@@ -652,6 +663,12 @@ an in-memory database.</p>
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span><span class="k">TRUE</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>A third parameter can be passed to add a 「CASCADE」 option, which might be required for some
+drivers to handle removal of tables with foreign keys.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Produces: DROP TABLE `table_name` CASCADE</span>
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="id13">
 <h3><a class="toc-backref" href="#id31">棄用外來鍵</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h3>
@@ -661,8 +678,16 @@ an in-memory database.</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="dropping-a-key">
+<h3><a class="toc-backref" href="#id32">Dropping a Key</a><a class="headerlink" href="#dropping-a-key" title="本標題的永久連結">¶</a></h3>
+<p>Execute a DROP KEY.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Produces: DROP INDEX `users_index` ON `tablename`</span>
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropKey</span><span class="p">(</span><span class="s1">&#39;tablename&#39;</span><span class="p">,</span><span class="s1">&#39;users_index&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="id14">
-<h3><a class="toc-backref" href="#id32">重新命名資料表</a><a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id33">重新命名資料表</a><a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h3>
 <p>執行 TABLE 重新命名語句。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">renameTable</span><span class="p">(</span><span class="s1">&#39;old_table_name&#39;</span><span class="p">,</span> <span class="s1">&#39;new_table_name&#39;</span><span class="p">);</span>
 <span class="c1">// 給予 ALTER TABLE old_table_name RENAME TO new_table_name</span>
@@ -671,13 +696,13 @@ an in-memory database.</p>
 </div>
 </div>
 <div class="section" id="id15">
-<h2><a class="toc-backref" href="#id33">修改資料表</a><a class="headerlink" href="#id15" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id34">修改資料表</a><a class="headerlink" href="#id15" title="本標題的永久連結">¶</a></h2>
 <div class="section" id="id16">
-<h3><a class="toc-backref" href="#id34">新增一個資料表欄位</a><a class="headerlink" href="#id16" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id35">新增一個資料表欄位</a><a class="headerlink" href="#id16" title="本標題的永久連結">¶</a></h3>
 <p><strong>$forge-&gt;addColumn()</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">addColumn()</span></code> 方法用於修改一個現有的資料表，它接受與上述相同的欄位陣列，並可以用於不限量的附加欄位。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;preferences&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">]</span>
+    <span class="s1">&#39;preferences&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">]</span>
 <span class="p">];</span>
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="nv">$fields</span><span class="p">);</span>
 <span class="c1">// 執行: ALTER TABLE table_name ADD preferences TEXT</span>
@@ -687,18 +712,18 @@ an in-memory database.</p>
 <p>例如：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 將把新的資料列放在 `another_field` 資料列之後:</span>
 <span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;preferences&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">,</span> <span class="s1">&#39;after&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;another_field&#39;</span><span class="p">]</span>
+    <span class="s1">&#39;preferences&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">,</span> <span class="s1">&#39;after&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;another_field&#39;</span><span class="p">]</span>
 <span class="p">];</span>
 
 <span class="c1">// 將把新的資料列定義在起始處:</span>
 <span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;preferences&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">,</span> <span class="s1">&#39;first&#39;</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">]</span>
+    <span class="s1">&#39;preferences&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">,</span> <span class="s1">&#39;first&#39;</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">]</span>
 <span class="p">];</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id17">
-<h3><a class="toc-backref" href="#id35">棄用一個資料表欄位</a><a class="headerlink" href="#id17" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id36">棄用一個資料表欄位</a><a class="headerlink" href="#id17" title="本標題的永久連結">¶</a></h3>
 <p><strong>$forge-&gt;dropColumn()</strong></p>
 <p>用來刪除資料表中的資料列。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="s1">&#39;column_to_drop&#39;</span><span class="p">);</span> <span class="c1">// 刪除單一資料列</span>
@@ -711,14 +736,14 @@ an in-memory database.</p>
 </div>
 </div>
 <div class="section" id="id18">
-<h3><a class="toc-backref" href="#id36">修改資料表欄位</a><a class="headerlink" href="#id18" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id37">修改資料表欄位</a><a class="headerlink" href="#id18" title="本標題的永久連結">¶</a></h3>
 <p><strong>$forge-&gt;modifyColumn()</strong></p>
 <p>這個方法的使用方式與 <code class="docutils literal notranslate"><span class="pre">addColumn()</span></code> 相同，它只是改變了一個現有的資料欄位，而不是增價一個新的資料欄位。為了改變名稱，可以在欄位定義的陣列中新增一個 「name」 鍵。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;old_name&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-                <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;new_name&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">,</span>
-        <span class="p">],</span>
+    <span class="s1">&#39;old_name&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;new_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
 <span class="p">];</span>
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">modifyColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="nv">$fields</span><span class="p">);</span>
 <span class="c1">// 給予 ALTER TABLE table_name CHANGE old_name new_name TEXT</span>
@@ -727,7 +752,7 @@ an in-memory database.</p>
 </div>
 </div>
 <div class="section" id="id19">
-<h2><a class="toc-backref" href="#id37">類別參考</a><a class="headerlink" href="#id19" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id38">類別參考</a><a class="headerlink" href="#id19" title="本標題的永久連結">¶</a></h2>
 <dl class="class">
 <dt>
 <code class="descname">CodeIgniter\Database\Forge</code></dt>
@@ -770,12 +795,40 @@ an in-memory database.</p>
 <tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">CodeIgniterDatabaseForge 實體（方法鏈）</p>
 </td>
 </tr>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last"><p>CodeIgniterDatabaseForge</p>
+<p>將欄位添加到用於創建資料表的集合中。　使用方式：請見 <a class="reference internal" href="#id7">新增欄位</a>.</p>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="addForeignKey">
+<code class="descname">addForeignKey</code><span class="sig-paren">(</span><em>$fieldName</em>, <em>$tableName</em>, <em>$tableField</em><span class="optional">[</span>, <em>$onUpdate = ''</em>, <em>$onDelete = ''</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#addForeignKey" title="本定義的永久連結">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
+<li><strong>$fieldName</strong> (<em>string|string[]</em>) – Name of a key field or an array of fields</li>
+<li><strong>$tableName</strong> (<em>string</em>) – Name of a parent table</li>
+<li><strong>$tableField</strong> (<em>string|string[]</em>) – Name of a parent table field or an array of fields</li>
+<li><strong>$onUpdate</strong> (<em>string</em>) – Desired action for the “on update”</li>
+<li><strong>$onDelete</strong> (<em>string</em>) – Desired action for the “on delete”</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">CodeIgniterDatabaseForge instance (method chaining)</p>
+</td>
+</tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniterDatabaseForge</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>將欄位添加到用於創建資料表的集合中。　使用方式：請見 <a class="reference internal" href="#id7">新增欄位</a>.</p>
+<p>Adds a foreign key to the set that will be used to create a table. Usage:  See <a href="#id39"><span class="problematic" id="id40">`Adding Foreign Keys`_</span></a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1044,7 +1097,7 @@ an in-memory database.</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

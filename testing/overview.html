@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>入門 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>入門 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="資料庫測試" href="database.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -400,7 +404,9 @@
 <h3><a class="toc-backref" href="#id17">測試類別</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
 <p>為了利用框架提供的附加工具，你的測試必須繼承 <code class="docutils literal notranslate"><span class="pre">CIUnitTestCase</span></code> 。在預設的情形下，所有的測試都應該儲存在 <strong>tests/app</strong> 目錄之中。</p>
 <p>要測試新的程式庫 <strong>Foo</strong> 的話，你需要在 <strong>tests/app/Libraries/FooTest.php</strong> 中創建一個新檔案：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Libraries</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Test\CIUnitTestCase</span><span class="p">;</span>
 
@@ -414,7 +420,9 @@
 </pre></div>
 </div>
 <p>若是要測試模型的話，你可能會需要一個類似 <code class="docutils literal notranslate"><span class="pre">tests/app/Models/OneOfMyModelsTest.php</span></code> 這樣子的檔案：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Test\CIUnitTestCase</span><span class="p">;</span>
 
@@ -478,13 +486,32 @@ that or provide their own:</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="traits">
+<h4>Traits<a class="headerlink" href="#traits" title="本標題的永久連結">¶</a></h4>
+<p>A common way to enhance your tests is by using traits to consolidate staging across different
+test cases. <code class="docutils literal notranslate"><span class="pre">CIUnitTestCase</span></code> will detect any class traits and look for staging methods
+to run named for the trait itself. For example, if you needed to add authentication to some
+of your test cases you could create an authentication trait with a set up method to fake a
+logged in user:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">trait</span> <span class="nx">AuthTrait</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nx">setUpAuthTrait</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">createFakeUser</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logInUser</span><span class="p">(</span><span class="nv">$user</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="o">...</span>
+
+<span class="k">class</span> <span class="nc">AuthenticationFeatureTest</span>
+<span class="p">{</span>
+    <span class="k">use</span> <span class="nx">AuthTrait</span><span class="p">;</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="id7">
 <h4>額外斷言<a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">CIUnitTestCase</span></code> 提供了額外的單元測試斷言，你可能會覺得這些功能很有用。</p>
-<div class="admonition note">
-<p class="first admonition-title">備註</p>
-<p class="last">（譯者註）斷言（Assertion），是指程式執行過程中，斷定某個時間點一定是某種狀態。換句話說，在斷言的宣告下，你能斷定這個時間點某個變數的絕對值或是有著某種特殊的狀態。</p>
-</div>
 <p><strong>assertLogged($level, $expectedMessage)</strong></p>
 <p>你所期望記錄的實際內容是：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">LoggerConfig</span><span class="p">();</span>
@@ -537,7 +564,7 @@ that or provide their own:</p>
 <p class="first admonition-title">備註</p>
 <p class="last">這個測試案例應該在 PHPunit 中作為 <a class="reference external" href="https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess">單獨的處理程序運作</a> 。</p>
 </div>
-<p><strong>assertCloseEnough($expected, $actual, $message=』』, $tolerance=1)</strong></p>
+<p><strong>assertCloseEnough($expected, $actual, $message='', $tolerance=1)</strong></p>
 <p>對於延長的執行時間測試來說，判斷你所預期時間與實際時間的相差是否在你規定的公差範圍內：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$timer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Timer</span><span class="p">();</span>
 <span class="nv">$timer</span><span class="o">-&gt;</span><span class="na">start</span><span class="p">(</span><span class="s1">&#39;longjohn&#39;</span><span class="p">,</span> <span class="nb">strtotime</span><span class="p">(</span><span class="s1">&#39;-11 minutes&#39;</span><span class="p">));</span>
@@ -563,10 +590,10 @@ that or provide their own:</p>
 <span class="nv">$obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
 
 <span class="c1">// Get the invoker for the &#39;privateMethod&#39; method.</span>
-    <span class="nv">$method</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getPrivateMethodInvoker</span><span class="p">(</span><span class="nv">$obj</span><span class="p">,</span> <span class="s1">&#39;privateMethod&#39;</span><span class="p">);</span>
+<span class="nv">$method</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getPrivateMethodInvoker</span><span class="p">(</span><span class="nv">$obj</span><span class="p">,</span> <span class="s1">&#39;privateMethod&#39;</span><span class="p">);</span>
 
 <span class="c1">// Test the results</span>
-    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="nv">$method</span><span class="p">(</span><span class="s1">&#39;param1&#39;</span><span class="p">,</span> <span class="s1">&#39;param2&#39;</span><span class="p">));</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="nv">$method</span><span class="p">(</span><span class="s1">&#39;param1&#39;</span><span class="p">,</span> <span class="s1">&#39;param2&#39;</span><span class="p">));</span>
 </pre></div>
 </div>
 <p><strong>getPrivateProperty($instance, $property)</strong></p>
@@ -610,6 +637,8 @@ that or provide their own:</p>
 <p>第一個參數是你所要替換的服務，這個名稱必須與服務類別中函數的名稱完全一致。第二個參數是使用一個實體來替換掉它。</p>
 <p><strong>reset()</strong></p>
 <p>使用這個方法刪除了服務類別中的所有服務模擬類別，它將會恢復到原來的狀態。</p>
+<p><strong>resetSingle(string $name)</strong></p>
+<p>Removes any mock and shared instances for a single service, by its name.</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
 <p class="last">The <code class="docutils literal notranslate"><span class="pre">Email</span></code> and <code class="docutils literal notranslate"><span class="pre">Session</span></code> services are mocked by default to prevent intrusive testing behavior. To prevent these from mocking remove their method callback from the class property: <code class="docutils literal notranslate"><span class="pre">$setUpMethods</span> <span class="pre">=</span> <span class="pre">['mockEmail',</span> <span class="pre">'mockSession'];</span></code></p>
@@ -685,7 +714,7 @@ component name:</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

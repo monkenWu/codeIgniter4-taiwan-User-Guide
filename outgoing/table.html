@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>HTML 表格類別 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>HTML 表格類別 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="HTTP 響應" href="response.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -381,10 +385,10 @@ method described in the function reference below).</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$table</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\View\Table</span><span class="p">();</span>
 
 <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Color&#39;</span><span class="p">,</span> <span class="s1">&#39;Size&#39;</span><span class="p">],</span>
-        <span class="p">[</span><span class="s1">&#39;Fred&#39;</span><span class="p">,</span> <span class="s1">&#39;Blue&#39;</span><span class="p">,</span>  <span class="s1">&#39;Small&#39;</span><span class="p">],</span>
-        <span class="p">[</span><span class="s1">&#39;Mary&#39;</span><span class="p">,</span> <span class="s1">&#39;Red&#39;</span><span class="p">,</span>   <span class="s1">&#39;Large&#39;</span><span class="p">],</span>
-        <span class="p">[</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;Green&#39;</span><span class="p">,</span> <span class="s1">&#39;Medium&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Color&#39;</span><span class="p">,</span> <span class="s1">&#39;Size&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Fred&#39;</span><span class="p">,</span> <span class="s1">&#39;Blue&#39;</span><span class="p">,</span>  <span class="s1">&#39;Small&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Mary&#39;</span><span class="p">,</span> <span class="s1">&#39;Red&#39;</span><span class="p">,</span>   <span class="s1">&#39;Large&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;Green&#39;</span><span class="p">,</span> <span class="s1">&#39;Medium&#39;</span><span class="p">],</span>
 <span class="p">];</span>
 
 <span class="k">echo</span> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">generate</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
@@ -433,38 +437,38 @@ arrays are used:</p>
 <p>The Table Class permits you to set a table template with which you can
 specify the design of your layout. Here is the template prototype:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$template</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;table_open&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;&lt;table border=&quot;0&quot; cellpadding=&quot;4&quot; cellspacing=&quot;0&quot;&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;table_open&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;&lt;table border=&quot;0&quot; cellpadding=&quot;4&quot; cellspacing=&quot;0&quot;&gt;&#39;</span><span class="p">,</span>
 
-        <span class="s1">&#39;thead_open&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;&lt;thead&gt;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;thead_close&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/thead&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;thead_open&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;&lt;thead&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;thead_close&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/thead&gt;&#39;</span><span class="p">,</span>
 
-        <span class="s1">&#39;heading_row_start&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;&lt;tr&gt;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;heading_row_end&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/tr&gt;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;heading_cell_start&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&lt;th&gt;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;heading_cell_end&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/th&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;heading_row_start&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;&lt;tr&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;heading_row_end&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/tr&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;heading_cell_start&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&lt;th&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;heading_cell_end&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/th&gt;&#39;</span><span class="p">,</span>
 
-        <span class="s1">&#39;tfoot_open&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;&lt;tfoot&gt;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;tfoot_close&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/tfoot&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;tfoot_open&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;&lt;tfoot&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;tfoot_close&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/tfoot&gt;&#39;</span><span class="p">,</span>
 
-        <span class="s1">&#39;footing_row_start&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;&lt;tr&gt;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;footing_row_end&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/tr&gt;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;footing_cell_start&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&lt;td&gt;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;footing_cell_end&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/td&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;footing_row_start&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;&lt;tr&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;footing_row_end&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/tr&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;footing_cell_start&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&lt;td&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;footing_cell_end&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/td&gt;&#39;</span><span class="p">,</span>
 
-        <span class="s1">&#39;tbody_open&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;&lt;tbody&gt;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;tbody_close&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/tbody&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;tbody_open&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;&lt;tbody&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;tbody_close&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/tbody&gt;&#39;</span><span class="p">,</span>
 
-        <span class="s1">&#39;row_start&#39;</span>          <span class="o">=&gt;</span> <span class="s1">&#39;&lt;tr&gt;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;row_end&#39;</span>            <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/tr&gt;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;cell_start&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;&lt;td&gt;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;cell_end&#39;</span>           <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/td&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;row_start&#39;</span>          <span class="o">=&gt;</span> <span class="s1">&#39;&lt;tr&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;row_end&#39;</span>            <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/tr&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cell_start&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;&lt;td&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cell_end&#39;</span>           <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/td&gt;&#39;</span><span class="p">,</span>
 
-        <span class="s1">&#39;row_alt_start&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;&lt;tr&gt;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;row_alt_end&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/tr&gt;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;cell_alt_start&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;&lt;td&gt;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;cell_alt_end&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/td&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;row_alt_start&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;&lt;tr&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;row_alt_end&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/tr&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cell_alt_start&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;&lt;td&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cell_alt_end&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/td&gt;&#39;</span><span class="p">,</span>
 
-        <span class="s1">&#39;table_close&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/table&gt;&#39;</span>
+    <span class="s1">&#39;table_close&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;&lt;/table&gt;&#39;</span>
 <span class="p">];</span>
 
 <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">setTemplate</span><span class="p">(</span><span class="nv">$template</span><span class="p">);</span>
@@ -480,7 +484,7 @@ elements that alternate with each iteration of the row data.</p>
 change parts of the layout you can simply submit those elements. In this
 example, only the table opening tag is being changed:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$template</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;table_open&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&lt;table border=&quot;1&quot; cellpadding=&quot;2&quot; cellspacing=&quot;1&quot; class=&quot;mytable&quot;&gt;&#39;</span>
+    <span class="s1">&#39;table_open&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&lt;table border=&quot;1&quot; cellpadding=&quot;2&quot; cellspacing=&quot;1&quot; class=&quot;mytable&quot;&gt;&#39;</span>
 <span class="p">];</span>
 
 <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">setTemplate</span><span class="p">(</span><span class="nv">$template</span><span class="p">);</span>
@@ -489,7 +493,7 @@ example, only the table opening tag is being changed:</p>
 <p>You can also set defaults for these by passing an array of template settings
 to the Table constructor.:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$customSettings</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;table_open&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&lt;table border=&quot;1&quot; cellpadding=&quot;2&quot; cellspacing=&quot;1&quot; class=&quot;mytable&quot;&gt;&#39;</span>
+    <span class="s1">&#39;table_open&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&lt;table border=&quot;1&quot; cellpadding=&quot;2&quot; cellspacing=&quot;1&quot; class=&quot;mytable&quot;&gt;&#39;</span>
 <span class="p">];</span>
 
 <span class="nv">$table</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\View\Table</span><span class="p">(</span><span class="nv">$customSettings</span><span class="p">);</span>
@@ -504,7 +508,7 @@ to the Table constructor.:</p>
 <em class="property">class </em><code class="descname">Table</code><a class="headerlink" href="#Table" title="本定義的永久連結">¶</a></dt>
 <dd><dl class="attribute">
 <dt>
-<code class="descname">$function = NULL</code></dt>
+<code class="descname">$function = null</code></dt>
 <dd><p>Allows you to specify a native PHP function or a valid function array object to be applied to all cell data.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$table</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\View\Table</span><span class="p">();</span>
 
@@ -523,7 +527,7 @@ to the Table constructor.:</p>
 
 <dl class="method">
 <dt id="Table::generate">
-<code class="descname">generate</code><span class="sig-paren">(</span><span class="optional">[</span><em>$tableData = NULL</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Table::generate" title="本定義的永久連結">¶</a></dt>
+<code class="descname">generate</code><span class="sig-paren">(</span><span class="optional">[</span><em>$tableData = null</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Table::generate" title="本定義的永久連結">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -628,7 +632,7 @@ to the Table constructor.:</p>
 
 <dl class="method">
 <dt id="Table::addRow">
-<code class="descname">addRow</code><span class="sig-paren">(</span><span class="optional">[</span><em>$args = array()</em><span class="optional">[</span>, <em>...</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Table::addRow" title="本定義的永久連結">¶</a></dt>
+<code class="descname">addRow</code><span class="sig-paren">(</span><span class="optional">[</span><em>$args = []</em><span class="optional">[</span>, <em>...</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Table::addRow" title="本定義的永久連結">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -720,7 +724,7 @@ This allows a single array with many elements to be displayed in a table that ha
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">TRUE on success, FALSE on failure</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">true on success, false on failure</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">bool</p>
@@ -730,7 +734,7 @@ This allows a single array with many elements to be displayed in a table that ha
 </table>
 <p>Permits you to set your template. You can submit a full or partial template.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$template</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;table_open&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;&lt;table border=&quot;1&quot; cellpadding=&quot;2&quot; cellspacing=&quot;1&quot; class=&quot;mytable&quot;&gt;&#39;</span>
+    <span class="s1">&#39;table_open&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&lt;table border=&quot;1&quot; cellpadding=&quot;2&quot; cellspacing=&quot;1&quot; class=&quot;mytable&quot;&gt;&#39;</span>
 <span class="p">];</span>
 
 <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">setTemplate</span><span class="p">(</span><span class="nv">$template</span><span class="p">);</span>
@@ -785,7 +789,6 @@ generated to clear the previous table information.</p>
 <p>Example</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$table</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\View\Table</span><span class="p">();</span>
 
-
 <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">setCaption</span><span class="p">(</span><span class="s1">&#39;Preferences&#39;</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="na">setHeading</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Color&#39;</span><span class="p">,</span> <span class="s1">&#39;Size&#39;</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="na">addRow</span><span class="p">(</span><span class="s1">&#39;Fred&#39;</span><span class="p">,</span> <span class="s1">&#39;Blue&#39;</span><span class="p">,</span> <span class="s1">&#39;Small&#39;</span><span class="p">)</span>
@@ -834,7 +837,7 @@ generated to clear the previous table information.</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

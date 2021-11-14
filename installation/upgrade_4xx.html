@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>從 3.x 升級至 4.x &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>從 3.x 升級至 4.x &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,12 +36,11 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="故障排除" href="troubleshooting.html" />
+    <link rel="next" title="Upgrade Models" href="upgrade_models.html" />
     <link rel="prev" title="Upgrading from 4.0.x to 4.0.4" href="upgrade_404.html" /> 
 </head>
 
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -366,40 +370,35 @@
 <ul class="simple">
 <li>CI4 是針對 PHP7.2+ 版本所設計的，除了 helpers 以外的所有類別都使用了命名空間的特性。</li>
 </ul>
-<p><strong>應用程式結構</strong></p>
+<p><strong>Model, View and Controller</strong></p>
 <ul class="simple">
-<li>框架仍然具有 <code class="docutils literal notranslate"><span class="pre">app</span></code> 與 <code class="docutils literal notranslate"><span class="pre">system</span></code> 資料夾，其功能與以前相同。</li>
-<li>框架現在提供了一個名為 <code class="docutils literal notranslate"><span class="pre">public</span></code> 的資料夾，可以放置應用程式會使用到的靜態文件。</li>
-<li>以及一個名為 <code class="docutils literal notranslate"><span class="pre">writable</span></code> 的資料夾，用於儲存快取資料、日誌與會話資料。</li>
-<li><code class="docutils literal notranslate"><span class="pre">app</span></code> 資料夾類似於 CI3 中的 application 資料夾，不過某些名稱與之前不同，並且某些子資料夾被移動到 <code class="docutils literal notranslate"><span class="pre">writable</span></code> 之中。</li>
-<li><code class="docutils literal notranslate"><span class="pre">application/core</span></code> 已經被取消，現在我們有不同的框架擴充機制（見下文）。</li>
+<li>CodeIgniter is based on the MVC concept. Thus, the changes on the Model, View and Controller
+are one of the most important things you have to handle.</li>
+<li>In CodeIgniter 4, models are now located in <code class="docutils literal notranslate"><span class="pre">app/Models</span></code> and you have to add the lines
+<code class="docutils literal notranslate"><span class="pre">namespace</span> <span class="pre">App\Models;</span></code> along with <code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">CodeIgniter\Model;</span></code> right after the opening php tag.
+The last step is to replace <code class="docutils literal notranslate"><span class="pre">extends</span> <span class="pre">CI_Model</span></code> with <code class="docutils literal notranslate"><span class="pre">extends</span> <span class="pre">Model</span></code>.</li>
+<li>The views of CodeIgniter 4 have been moved <code class="docutils literal notranslate"><span class="pre">to</span> <span class="pre">app/Views</span></code>. Furthermore, you have to change
+the syntax of loading views from <code class="docutils literal notranslate"><span class="pre">$this-&gt;load-&gt;view('directory_name/file_name')</span></code> to
+<code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">view('directory_name/file_name');</span></code>.</li>
+<li>Controllers of CodeIgniter 4 have to be moved to <code class="docutils literal notranslate"><span class="pre">app/Controllers;</span></code>. After that,
+add <code class="docutils literal notranslate"><span class="pre">namespace</span> <span class="pre">App\Controllers;</span></code> after the opening php tag.
+Lastly, replace <code class="docutils literal notranslate"><span class="pre">extends</span> <span class="pre">CI_Controller</span></code> with <code class="docutils literal notranslate"><span class="pre">extends</span> <span class="pre">BaseController</span></code>.</li>
+<li>For more information we recommend you the following upgrade guides, which will give
+you some step-by-step instructions to convert the MVC classes in CodeIgniter4:</li>
 </ul>
-<p><strong>載入類別</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_models.html">Upgrade Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_views.html">Upgrade Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_controllers.html">Upgrade Controllers</a></li>
+</ul>
+</div>
+<p><strong>類別載入</strong></p>
 <ul class="simple">
 <li>不再有 CodeIgniter「超級物件」 的存在，框架組件的將會作為屬性，動態載入至控制器之中。</li>
 <li>類別只在需要它的地方才進行實作，組件統一由 <code class="docutils literal notranslate"><span class="pre">Services</span></code> 進行管理。</li>
 <li>類別載入器將自動以 PSR4 的規則，在 <code class="docutils literal notranslate"><span class="pre">App</span></code> （應用程式）和 <code class="docutils literal notranslate"><span class="pre">CodeIgniter</span></code> （系統）這兩個頂級命名空間進行類別定位；支援　Composer 自動載入，甚至是類別檔案在沒有宣告命名空間的情形下，也可以透過假設的方式，根據它們位於的文件夾，找到正確的模型與程式庫。</li>
 <li>為了支援你熟悉的應用程式結構，你可以透過設定類別載入器來達成。例如使用：「 <a class="reference external" href="https://zh.wikipedia.org/wiki/HMVC">HMVC</a> 」風格。</li>
-</ul>
-<p><strong>控制器</strong></p>
-<ul class="simple">
-<li>控制器將繼承 \CodeIgniter\Controller 類別而不是 CI_Controller 類別。</li>
-<li>控制器不再需要建構函數（呼叫 CI 魔術方法），除非這是你創建的基本控制器的一部份。</li>
-<li>與 CI3 相比， CI4 所提供的  <code class="docutils literal notranslate"><span class="pre">Request</span></code> 與 <code class="docutils literal notranslate"><span class="pre">Response</span></code> 物件功能更加強大。</li>
-<li>如果你需要使用基本控制器（例如 CI3 的 MY_Controller ），你可以在任何你喜歡的位置創建它，並且繼承 \CodeIgniter\Controller 類別，接著就可以讓其他的控制器繼承這個基本控制器。</li>
-</ul>
-<p><strong>模型</strong></p>
-<ul class="simple">
-<li>模型將繼承 \CodeIgniter\Model 類別，而不是 CI_Model 類別。</li>
-<li>CI4 模型擁有更多便利的功能，用於連結資料庫、實現基本的 CRUD 、模型內驗證與自動分頁等功能。</li>
-<li>CI4 也提供讓你可以自由實作的 <code class="docutils literal notranslate"><span class="pre">Entity</span></code> （實體）類別，提供你更豐富的資料映射資料表的功能。</li>
-<li>CI3 的 <code class="docutils literal notranslate"><span class="pre">$this-&gt;load-&gt;model(x);</span></code> 已棄用。現在，在你所想要使用的組件內，你可以按照命名空間的定義，使用 <code class="docutils literal notranslate"><span class="pre">$this-&gt;x</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">X();</span></code> 實作你想使用的模型類別。</li>
-</ul>
-<p><strong>視圖</strong></p>
-<ul class="simple">
-<li>CI4 的視圖與先前的版本大同小異，他們最大的不同是呼叫的方式改變了。 CI3 中的 <code class="docutils literal notranslate"><span class="pre">$this-&gt;load-&gt;view(x);</span></code> 已被取消，現在你可以使用 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">view(x);</span></code> 載入你需要使用的視圖。</li>
-<li>CI4 支援「視圖單元」功能，它能夠分塊建構你的響應。</li>
-<li>樣板解析器依然存在，並且大大增強。</li>
 </ul>
 <p><strong>程式庫</strong></p>
 <ul class="simple">
@@ -422,6 +421,51 @@
 <li>在程式庫資料夾下，某些類別用於繼承或取代框架中原有的功能。現在，你不再需要以 <code class="docutils literal notranslate"><span class="pre">MY_x</span></code> 來命名。</li>
 <li>你可以在任何需要的地方創建這個類別，只需要在 <code class="docutils literal notranslate"><span class="pre">app/Config/Services.php</span></code> 中添加合適服務方法（ service methods ），來替換掉默認組件。</li>
 </ul>
+<div class="section" id="upgrading-libraries">
+<h2>Upgrading Libraries<a class="headerlink" href="#upgrading-libraries" title="本標題的永久連結">¶</a></h2>
+<ul class="simple">
+<li>Your app classes can still go inside <code class="docutils literal notranslate"><span class="pre">app/Libraries</span></code>, but they don’t have to.</li>
+<li>Instead of CI3’s <code class="docutils literal notranslate"><span class="pre">$this-&gt;load-&gt;library(x);</span></code> you can now use <code class="docutils literal notranslate"><span class="pre">$this-&gt;x</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">X();</span></code>,
+following namespaced conventions for your component.</li>
+<li>Some libraries from CodeIgniter 3 no longer exists in Version 4. For all these
+libraries, you have to find a new way to implement your functions. These
+libraries are <a class="reference external" href="http://codeigniter.com/userguide3/libraries/calendar.html">Calendaring</a>,
+<a class="reference external" href="http://codeigniter.com/userguide3/libraries/ftp.html">FTP</a>,
+<a class="reference external" href="http://codeigniter.com/userguide3/libraries/javascript.html">Javascript</a>,
+<a class="reference external" href="http://codeigniter.com/userguide3/libraries/cart.html">Shopping Cart</a>,
+<a class="reference external" href="http://codeigniter.com/userguide3/libraries/trackback.html">Trackback</a>,
+<a class="reference external" href="http://codeigniter.com/userguide3/libraries/xmlrpc.html">XML-RPC /-Server</a>,
+and <a class="reference external" href="http://codeigniter.com/userguide3/libraries/zip.html">Zip Encoding</a>.</li>
+<li>CI3’s <a class="reference external" href="http://codeigniter.com/userguide3/libraries/input.html">Input</a> corresponds to CI4’s <a class="reference internal" href="../incoming/incomingrequest.html"><span class="doc">IncomingRequest</span></a>.</li>
+<li>CI3’s <a class="reference external" href="http://codeigniter.com/userguide3/libraries/output.html">Output</a> corresponds to CI4’s <a class="reference internal" href="../outgoing/response.html"><span class="doc">Responses</span></a>.</li>
+<li>All the other libraries, which exist in both CodeIgniter versions, can be upgraded with some adjustments.
+The most important and mostly used libraries received an Upgrade Guide, which will help you with simple
+steps and examples to adjust your code.</li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_configuration.html">Upgrade Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_database.html">Upgrade Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_emails.html">Upgrade Emails</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_encryption.html">Upgrade Encryption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_file_upload.html">Upgrade Working with Uploaded Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_html_tables.html">Upgrade HTML Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_localization.html">Upgrade Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_migrations.html">Upgrade Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_pagination.html">Upgrade Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_responses.html">Upgrade HTTP Responses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_routing.html">Upgrade Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_security.html">Upgrade Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_sessions.html">Upgrade Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_validations.html">Upgrade Validations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade_view_parser.html">Upgrade View Parser</a></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">More upgrade guides coming soon</p>
+</div>
+</div>
 </div>
 
 
@@ -432,7 +476,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="troubleshooting.html" class="btn btn-neutral float-right" title="故障排除" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="upgrade_models.html" class="btn btn-neutral float-right" title="Upgrade Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="upgrade_404.html" class="btn btn-neutral float-left" title="Upgrading from 4.0.x to 4.0.4" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -446,7 +490,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>建立新聞 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>建立新聞 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="結論" href="conclusion.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -350,12 +354,23 @@
   <div class="section" id="id1">
 <h1>建立新聞<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>現在，你已經知道如何使用 CodeIgniter 從資料庫中讀取資料，但尚未將任何資訊寫入到資料庫中。在本條目，你將擴充之前創建的新聞控制器與模型以完成此功能。</p>
+<div class="section" id="csrf">
+<h2>開啟 CSRF 過濾器<a class="headerlink" href="#csrf" title="本標題的永久連結">¶</a></h2>
+<p>在建立一個表單前，讓我們先打開 CSRF 保護。</p>
+<p>打開 <strong>app/Config/Filters.php</strong> 檔案，並更新 <code class="docutils literal notranslate"><span class="pre">$methods</span></code> 屬性成下面這個樣子</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$methods</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;post&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;csrf&#39;</span><span class="p">],</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>它將會對所有 <strong>POST</strong> 請求啟用 CSRF 過濾器，你可以在 <a class="reference internal" href="../libraries/security.html"><span class="doc">安全性程式庫</span></a> 中閱讀更多有關 CSRF 保護的資訊。</p>
+</div>
 <div class="section" id="id2">
 <h2>創建表單<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <p>你需要製作出一個表單，藉由表單的輸入才能將資料存入資料庫。這代表你需要製作一個包含兩個欄位的表單，一個欄位用於標題、一個欄位用於文章內容。你將從模型中的標題派生出這個 slug 。請在 <strong>app/Views/news/create.php</strong> 新建一個包含下列程式碼的視圖。</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;&lt;?=</span> <span class="nx">esc</span><span class="p">(</span><span class="nv">$title</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;&lt;?=</span> <span class="nx">esc</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
 
-<span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">\Config\Services</span><span class="o">::</span><span class="na">validation</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">listErrors</span><span class="p">();</span> <span class="cp">?&gt;</span>
+<span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;validation&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">listErrors</span><span class="p">()</span> <span class="cp">?&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/news/create&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
     <span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">csrf_field</span><span class="p">()</span> <span class="cp">?&gt;</span>
@@ -364,45 +379,40 @@
     <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;input&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;title&quot;</span> <span class="p">/&gt;&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
 
     <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;body&quot;</span><span class="p">&gt;</span>Text<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;body&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;body&quot;</span> <span class="na">cols</span><span class="o">=</span><span class="s">&quot;45&quot;</span> <span class="na">rows</span><span class="o">=</span><span class="s">&quot;4&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
 
     <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Create news item&quot;</span> <span class="p">/&gt;</span>
-
 <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>你可能會覺得 <code class="docutils literal notranslate"><span class="pre">\Config\Services::validation()-&gt;listErrors()</span></code> 這個函數看起來很陌生。它能用於表單驗證相關的錯誤報告。而 <code class="docutils literal notranslate"><span class="pre">csrf_field()</span></code> 函數創建了一個帶有 CSRF 令牌的隱藏輸入框，有助於你預防一些常見的攻擊。</p>
+<p>你可能會覺得 <code class="docutils literal notranslate"><span class="pre">service('validation')-&gt;listErrors()</span></code> 這個函數看起來很陌生。它能用於表單驗證相關的錯誤報告。而 <code class="docutils literal notranslate"><span class="pre">csrf_field()</span></code> 函數創建了一個帶有 CSRF 權杖的隱藏輸入框，有助於你預防一些常見的攻擊。</p>
 <p>回到你的 <code class="docutils literal notranslate"><span class="pre">News</span></code> 控制器。你將在這裡執行：檢查表單是否已經提交、提交的資料是否通過驗證，這兩項操作。我們使用 <a class="reference internal" href="../libraries/validation.html"><span class="doc">表單驗證</span></a> 程式庫進行驗證。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">);</span>
-    <span class="nv">$model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NewsModel</span><span class="p">();</span>
+    <span class="nv">$model</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="nx">NewsModel</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">validate</span><span class="p">([</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getMethod</span><span class="p">()</span> <span class="o">===</span> <span class="s1">&#39;post&#39;</span> <span class="o">&amp;&amp;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">validate</span><span class="p">([</span>
         <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required|min_length[3]|max_length[255]&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;body&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
-    <span class="p">]))</span>
-    <span class="p">{</span>
+        <span class="s1">&#39;body&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span><span class="p">,</span>
+    <span class="p">]))</span> <span class="p">{</span>
+        <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">([</span>
+            <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getPost</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;slug&#39;</span>  <span class="o">=&gt;</span> <span class="nx">url_title</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getPost</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">),</span>
+            <span class="s1">&#39;body&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getPost</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">),</span>
+        <span class="p">]);</span>
+
+        <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;news/success&#39;</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;templates/header&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Create a news item&#39;</span><span class="p">]);</span>
         <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;news/create&#39;</span><span class="p">);</span>
         <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;templates/footer&#39;</span><span class="p">);</span>
-
-    <span class="p">}</span>
-    <span class="k">else</span>
-    <span class="p">{</span>
-        <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">([</span>
-            <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getVar</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">),</span>
-            <span class="s1">&#39;slug&#39;</span>  <span class="o">=&gt;</span> <span class="nx">url_title</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getVar</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)),</span>
-            <span class="s1">&#39;body&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getVar</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">),</span>
-        <span class="p">]);</span>
-        <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;news/success&#39;</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>上面的程式碼增加了很多功能，前幾行負責載入表單輔助函數與新聞模型。之後，透過輔助函數驗證 $_POST 欄位。在這種情形下，標題和文字欄位是必須的。</p>
+<p>上面的程式碼增加了很多功能。首先，我們載入了 NewsModel 。之後，我們檢查了 POST 請求是否已被處理，接著使用控制器提供的輔助函數來驗證使用者傳入的資料。在這種情況下，POST 資料，以及標題和文字欄位是必須的。</p>
 <p>如上所述， CodeIgniter 具有強大的驗證程式庫，你可以在 <a class="reference internal" href="../libraries/validation.html"><span class="doc">這裡</span></a> 閱讀更多關於這個程式庫的資訊。</p>
-<p>繼續往下看，你可以看到一個條件式，檢查表單驗證是否成功運行。如果沒有成功，則顯示表單；；如果表單提交後，也通過了所有的規則，就會呼叫模型，把新聞的資料傳遞到模型中。這裡你會看到一個新的函數 url_title() （由 <a class="reference internal" href="../helpers/url_helper.html"><span class="doc">URL 輔助函數</span></a> 提供），它將你傳遞給它的字串使用破折號替代所有的空格，你便可以獲得一個漂亮的 slug ，這非常適合用於創建 URL 。</p>
+<p>繼續往下看，你可以看到一個條件式，檢查表單驗證是否成功運行。如果沒有成功，則顯示表單；如果表單提交後，也通過了所有的規則，就會呼叫模型，把新聞的資料傳遞到模型中。這裡你會看到一個新的函數 <code class="docutils literal notranslate"><span class="pre">url_title()</span></code> （由 <a class="reference internal" href="../helpers/url_helper.html"><span class="doc">URL 輔助函數</span></a> 提供），它將你傳遞給它的字串使用破折號替代所有的空格，你便可以獲得一個漂亮的 slug ，這非常適合用於創建 URL 。</p>
 <p>在這之後，就會載入一個視圖來顯示成功訊息，新建一個 <strong>app/Views/news/success.php</strong> 檔案並且寫入一些成功訊息。</p>
 <p>你可簡單地這麼寫：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">News</span> <span class="nx">item</span> <span class="nx">created</span> <span class="nx">successfully</span><span class="o">.</span>
@@ -445,7 +455,7 @@
 <div class="section" id="id5">
 <h2>恭喜你<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
 <p>你剛剛完成了你第一個 CodeIgniter4 應用程式！</p>
-<p>下圖顯示的是專案的 <strong>app</strong> 資料夾，你所創建的所有文件顯示成綠色字體。兩個你所修改的設定檔案（資料庫與路由設定檔）並沒有改變顏色。</p>
+<p>下圖顯示的是專案的 <strong>app</strong> 資料夾，你所創建的所有文件顯示成綠色字體。兩個你所修改的設定檔案（ <code class="docutils literal notranslate"><span class="pre">Config/Routes.php</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">Config/Filters.php</span></code> ）並沒有改變顏色。</p>
 <img alt="../_images/tutorial9.png" class="align-left" src="../_images/tutorial9.png" />
 </div>
 </div>
@@ -472,7 +482,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

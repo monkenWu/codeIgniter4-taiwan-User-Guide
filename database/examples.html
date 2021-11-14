@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>快速入門： 範例程式 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>快速入門： 範例程式 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="資料庫組態設定" href="configuration.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -350,8 +354,20 @@
   <div class="section" id="id1">
 <h1>快速入門： 範例程式<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>以下的頁面包含了示範如何使用資料庫類別的範例程式。請閱讀各個函數的說明頁面來了解完整的細節。</p>
-<div class="section" id="id2">
-<h2>初始化資料庫類別<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
+<div class="contents local topic" id="id2">
+<ul class="simple">
+<li><a class="reference internal" href="#id3" id="id11">初始化資料庫類別</a></li>
+<li><a class="reference internal" href="#id4" id="id12">標準的多結果查詢（物件版）</a></li>
+<li><a class="reference internal" href="#id5" id="id13">標準的多結果查詢（陣列版）</a></li>
+<li><a class="reference internal" href="#id6" id="id14">標準的單一結果查詢（物件版）</a></li>
+<li><a class="reference internal" href="#id7" id="id15">標準的單一結果查詢（陣列版）</a></li>
+<li><a class="reference internal" href="#id8" id="id16">標準新增</a></li>
+<li><a class="reference internal" href="#id9" id="id17">查詢生成器 查詢</a></li>
+<li><a class="reference internal" href="#id10" id="id18">查詢生成器 新增</a></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id11">初始化資料庫類別</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p>以下的程式根據你 <a class="reference internal" href="configuration.html"><span class="doc">組態設定檔</span></a> 中的設定載入並初始化資料庫類別：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$db</span> <span class="o">=</span> <span class="nx">\Config\Database</span><span class="o">::</span><span class="na">connect</span><span class="p">();</span>
 </pre></div>
@@ -362,16 +378,15 @@
 <p class="last">如果你的所有頁面都需要存取資料庫，你可以設定自動連線。請參考 <a class="reference internal" href="connecting.html"><span class="doc">資料庫連線</span></a> 來了解細節。</p>
 </div>
 </div>
-<div class="section" id="id3">
-<h2>標準的多結果查詢（物件版）<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name, title, email FROM my_table&#39;</span><span class="p">);</span>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id12">標準的多結果查詢（物件版）</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span>   <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name, title, email FROM my_table&#39;</span><span class="p">);</span>
 <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">();</span>
 
-<span class="k">foreach</span> <span class="p">(</span><span class="nv">$results</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
-<span class="p">{</span>
-        <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
-        <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
-        <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$results</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="k">echo</span> <span class="s1">&#39;Total Results: &#39;</span> <span class="o">.</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$results</span><span class="p">);</span>
@@ -380,24 +395,23 @@
 <p>以上的 <code class="docutils literal notranslate"><span class="pre">getResult()</span></code> 函數會回傳一個 <strong>物件</strong> 陣列。
 範例：<code class="docutils literal notranslate"><span class="pre">$row-&gt;title</span></code>。</p>
 </div>
-<div class="section" id="id4">
-<h2>標準的多結果查詢（陣列版）<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id13">標準的多結果查詢（陣列版）</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span>   <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name, title, email FROM my_table&#39;</span><span class="p">);</span>
 <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResultArray</span><span class="p">();</span>
 
-<span class="k">foreach</span> <span class="p">(</span><span class="nv">$results</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
-<span class="p">{</span>
-        <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">];</span>
-        <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">];</span>
-        <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">];</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$results</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">];</span>
+    <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">];</span>
+    <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">];</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>以上的 <code class="docutils literal notranslate"><span class="pre">getResultArray()</span></code> 函數會回傳一個標準的索引陣列。
 範例：<code class="docutils literal notranslate"><span class="pre">$row['title']</span></code>。</p>
 </div>
-<div class="section" id="id5">
-<h2>標準的單一結果查詢（物件版）<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id14">標準的單一結果查詢（物件版）</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name FROM my_table LIMIT 1&#39;</span><span class="p">);</span>
 <span class="nv">$row</span>   <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getRow</span><span class="p">();</span>
 <span class="k">echo</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
@@ -406,8 +420,8 @@
 <p>以上的 <code class="docutils literal notranslate"><span class="pre">getRow()</span></code> 函數會回傳一個 <strong>物件</strong>。
 範例：<code class="docutils literal notranslate"><span class="pre">$row-&gt;name</span></code>。</p>
 </div>
-<div class="section" id="id6">
-<h2>標準的單一結果查詢（陣列版）<a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id15">標準的單一結果查詢（陣列版）</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name FROM my_table LIMIT 1&#39;</span><span class="p">);</span>
 <span class="nv">$row</span>   <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getRowArray</span><span class="p">();</span>
 <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">];</span>
@@ -416,16 +430,16 @@
 <p>以上的 <code class="docutils literal notranslate"><span class="pre">getRowArray()</span></code> 函數會回傳一個 <strong>陣列</strong>。
 範例：<code class="docutils literal notranslate"><span class="pre">$row['name']</span></code>。</p>
 </div>
-<div class="section" id="id7">
-<h2>標準新增<a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id16">標準新增</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h2>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO mytable (title, name) VALUES (&quot;</span><span class="o">.</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;)&quot;</span><span class="p">;</span>
 <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">affectedRows</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id8">
-<h2>查詢生成器 查詢<a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id9">
+<h2><a class="toc-backref" href="#id17">查詢生成器 查詢</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h2>
 <p><a class="reference internal" href="query_builder.html"><span class="doc">查詢生成器</span></a> 提供一個取得資料的簡單方法：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 
@@ -437,8 +451,8 @@
 </div>
 <p>以上的 <code class="docutils literal notranslate"><span class="pre">get()</span></code> 函數會回傳指定的資料表中所有的結果。<a class="reference internal" href="query_builder.html"><span class="doc">查詢生成器</span></a> 類別包含完整的資料操作方法</p>
 </div>
-<div class="section" id="id9">
-<h2>查詢生成器 新增<a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id10">
+<h2><a class="toc-backref" href="#id18">查詢生成器 新增</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h2>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="nv">$title</span><span class="p">,</span>
         <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$name</span><span class="p">,</span>
@@ -474,7 +488,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

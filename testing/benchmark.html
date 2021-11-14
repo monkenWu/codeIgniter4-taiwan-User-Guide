@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>基準測試 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>基準測試 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,13 +36,12 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="偵錯與除錯應用程式" href="debugging.html" />
-    <link rel="prev" title="HTTP 特性測試" href="feature.html" /> 
+    <link rel="prev" title="Testing Responses" href="response.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="response.html">Testing Responses</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -393,11 +397,11 @@
 
 <span class="c1">// Timers =</span>
 <span class="p">[</span>
-        <span class="s1">&#39;render view&#39;</span>  <span class="o">=&gt;</span> <span class="p">[</span>
-                <span class="s1">&#39;start&#39;</span>    <span class="o">=&gt;</span> <span class="mi">1234567890</span><span class="p">,</span>
-                <span class="s1">&#39;end&#39;</span>      <span class="o">=&gt;</span> <span class="mi">1345678920</span><span class="p">,</span>
-                <span class="s1">&#39;duration&#39;</span> <span class="o">=&gt;</span> <span class="mf">15.4315</span>      <span class="c1">// number of seconds</span>
-        <span class="p">]</span>
+    <span class="s1">&#39;render view&#39;</span>  <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;start&#39;</span>    <span class="o">=&gt;</span> <span class="mi">1234567890</span><span class="p">,</span>
+        <span class="s1">&#39;end&#39;</span>      <span class="o">=&gt;</span> <span class="mi">1345678920</span><span class="p">,</span>
+        <span class="s1">&#39;duration&#39;</span> <span class="o">=&gt;</span> <span class="mf">15.4315</span>      <span class="c1">// number of seconds</span>
+    <span class="p">]</span>
 <span class="p">]</span>
 </pre></div>
 </div>
@@ -425,18 +429,14 @@
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$iterator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\Benchmark\Iterator</span><span class="p">();</span>
 
 <span class="c1">// 加入新的任務</span>
-<span class="nv">$iterator</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;single_concat&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span>
-        <span class="p">{</span>
-                <span class="nv">$str</span> <span class="o">=</span> <span class="s1">&#39;Some basic&#39;</span><span class="o">.</span><span class="s1">&#39;little&#39;</span><span class="o">.</span><span class="s1">&#39;string concatenation test.&#39;</span><span class="p">;</span>
-        <span class="p">}</span>
-<span class="p">);</span>
+<span class="nv">$iterator</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;single_concat&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$str</span> <span class="o">=</span> <span class="s1">&#39;Some basic&#39;</span><span class="o">.</span><span class="s1">&#39;little&#39;</span><span class="o">.</span><span class="s1">&#39;string concatenation test.&#39;</span><span class="p">;</span>
+<span class="p">});</span>
 
 <span class="c1">// 加入另一項任務</span>
-<span class="nv">$iterator</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$a</span><span class="o">=</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
-        <span class="p">{</span>
-                <span class="nv">$str</span> <span class="o">=</span> <span class="s2">&quot;Some basic </span><span class="si">{</span><span class="nv">$a</span><span class="si">}</span><span class="s2"> string test.&quot;</span><span class="p">;</span>
-        <span class="p">}</span>
-<span class="p">);</span>
+<span class="nv">$iterator</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">=</span> <span class="s1">&#39;little&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$str</span> <span class="o">=</span> <span class="s2">&quot;Some basic </span><span class="si">{</span><span class="nv">$little</span><span class="si">}</span><span class="s2"> string test.&quot;</span><span class="p">;</span>
+<span class="p">});</span>
 </pre></div>
 </div>
 </div>
@@ -467,7 +467,7 @@
         <a href="debugging.html" class="btn btn-neutral float-right" title="偵錯與除錯應用程式" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="feature.html" class="btn btn-neutral float-left" title="HTTP 特性測試" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="response.html" class="btn btn-neutral float-left" title="Testing Responses" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -478,7 +478,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

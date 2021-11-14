@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Session Library &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>Session Library &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,13 +36,12 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Throttler" href="throttler.html" />
-    <link rel="prev" title="安全性類別" href="security.html" /> 
+    <link rel="prev" title="Security" href="security.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Library Reference</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">程式庫參考</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -328,7 +332,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Library Reference</a> &raquo;</li>
+          <li><a href="index.html">程式庫參考</a> &raquo;</li>
         
       <li>Session Library</li>
     
@@ -498,7 +502,7 @@ variable, you will do this:</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">The <code class="docutils literal notranslate"><span class="pre">get()</span></code> method returns NULL if the item you are trying
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">get()</span></code> method returns null if the item you are trying
 to access does not exist.</p>
 </div>
 <p>If you want to retrieve all of the existing userdata, you can simply
@@ -528,9 +532,9 @@ but you can pass an array containing your new session data to the
 <p>Where <code class="docutils literal notranslate"><span class="pre">$array</span></code> is an associative array containing your new data. Here’s
 an example:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$newdata</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;username&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;johndoe&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;email&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;johndoe@some-site.com&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;logged_in&#39;</span> <span class="o">=&gt;</span> <span class="k">TRUE</span>
+    <span class="s1">&#39;username&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;johndoe&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;johndoe@some-site.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;logged_in&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
 <span class="p">];</span>
 
 <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$newdata</span><span class="p">);</span>
@@ -543,8 +547,8 @@ supports this syntax:</p>
 </div>
 <p>If you want to verify that a session value exists, simply check with
 <code class="docutils literal notranslate"><span class="pre">isset()</span></code>:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// returns FALSE if the &#39;some_name&#39; item doesn&#39;t exist or is NULL,</span>
-<span class="c1">// TRUE otherwise:</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// returns false if the &#39;some_name&#39; item doesn&#39;t exist or is null,</span>
+<span class="c1">// true otherwise:</span>
 <span class="nb">isset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;some_name&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -570,8 +574,8 @@ done through <code class="docutils literal notranslate"><span class="pre">unset(
 <span class="c1">// or multiple values:</span>
 
 <span class="nb">unset</span><span class="p">(</span>
-        <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;some_name&#39;</span><span class="p">],</span>
-        <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;another_name&#39;</span><span class="p">]</span>
+    <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;some_name&#39;</span><span class="p">],</span>
+    <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;another_name&#39;</span><span class="p">]</span>
 <span class="p">);</span>
 </pre></div>
 </div>
@@ -638,7 +642,7 @@ any other kind), you can also use the <code class="docutils literal notranslate"
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">The <code class="docutils literal notranslate"><span class="pre">getFlashdata()</span></code> method returns NULL if the item cannot be
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">getFlashdata()</span></code> method returns null if the item cannot be
 found.</p>
 </div>
 <p>If you find that you need to preserve a flashdata variable through an
@@ -670,8 +674,8 @@ you want them all to have the same expiry time or not:</p>
 <span class="c1">// &#39;item&#39; will be erased after 300 seconds, while &#39;item2&#39;</span>
 <span class="c1">// will do so after only 240 seconds</span>
 <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">markAsTempdata</span><span class="p">([</span>
-        <span class="s1">&#39;item&#39;</span>  <span class="o">=&gt;</span> <span class="mi">300</span><span class="p">,</span>
-        <span class="s1">&#39;item2&#39;</span> <span class="o">=&gt;</span> <span class="mi">240</span>
+    <span class="s1">&#39;item&#39;</span>    <span class="o">=&gt;</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="s1">&#39;item2&#39;</span>    <span class="o">=&gt;</span> <span class="mi">240</span><span class="p">,</span>
 <span class="p">]);</span>
 </pre></div>
 </div>
@@ -685,8 +689,8 @@ you want them all to have the same expiry time or not:</p>
 </pre></div>
 </div>
 <p>You can also pass an array to <code class="docutils literal notranslate"><span class="pre">setTempdata()</span></code>:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$tempdata</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;newuser&#39;</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Thanks for joining!&#39;</span><span class="p">];</span>
-<span class="nv">$session</span><span class="o">-&gt;</span><span class="na">setTempdata</span><span class="p">(</span><span class="nv">$tempdata</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="nv">$expire</span><span class="p">);</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$tempdata</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;newuser&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Thanks for joining!&#39;</span><span class="p">];</span>
+<span class="nv">$session</span><span class="o">-&gt;</span><span class="na">setTempdata</span><span class="p">(</span><span class="nv">$tempdata</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="nv">$expire</span><span class="p">);</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -716,7 +720,7 @@ other kind), you can also use the <code class="docutils literal notranslate"><sp
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">The <code class="docutils literal notranslate"><span class="pre">getTempdata()</span></code> method returns NULL if the item cannot be
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">getTempdata()</span></code> method returns null if the item cannot be
 found.</p>
 </div>
 <p>If you need to remove a tempdata value before it expires, you can directly
@@ -821,16 +825,16 @@ CodeIgniter\Session\Handlers\ArrayHandler</td>
 If you would like a non-expiring session (until browser is closed) set the value to zero: 0</td>
 </tr>
 <tr class="row-odd"><td><strong>sessionSavePath</strong></td>
-<td>NULL</td>
+<td>null</td>
 <td>None</td>
 <td>Specifies the storage location, depends on the driver being used.</td>
 </tr>
 <tr class="row-even"><td><strong>sessionMatchIP</strong></td>
-<td>FALSE</td>
-<td>TRUE/FALSE (boolean)</td>
+<td>false</td>
+<td>true/false (boolean)</td>
 <td>Whether to validate the user’s IP address when reading the session cookie.
 Note that some ISPs dynamically changes the IP, so if you want a non-expiring session you
-will likely set this to FALSE.</td>
+will likely set this to false.</td>
 </tr>
 <tr class="row-odd"><td><strong>sessionTimeToUpdate</strong></td>
 <td>300</td>
@@ -839,10 +843,10 @@ will likely set this to FALSE.</td>
 session ID. Setting it to 0 will disable session ID regeneration.</td>
 </tr>
 <tr class="row-even"><td><strong>sessionRegenerateDestroy</strong></td>
-<td>FALSE</td>
-<td>TRUE/FALSE (boolean)</td>
+<td>false</td>
+<td>true/false (boolean)</td>
 <td>Whether to destroy session data associated with the old session ID when auto-regenerating
-the session ID. When set to FALSE, the data will be later deleted by the garbage collector.</td>
+the session ID. When set to false, the data will be later deleted by the garbage collector.</td>
 </tr>
 </tbody>
 </table>
@@ -854,6 +858,13 @@ session related INI settings, as well as legacy CI settings such as
 However, you should never rely on this behavior as it can cause
 unexpected results or be changed in the future. Please configure
 everything properly.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">If <code class="docutils literal notranslate"><span class="pre">sessionExpiration</span></code> is set to <code class="docutils literal notranslate"><span class="pre">0</span></code>, the <code class="docutils literal notranslate"><span class="pre">session.gc_maxlifetime</span></code>
+setting set by PHP in session management will be used as-is
+(often the default value of <code class="docutils literal notranslate"><span class="pre">1440</span></code>). This needs to be changed in
+<code class="docutils literal notranslate"><span class="pre">php.ini</span></code> or via <code class="docutils literal notranslate"><span class="pre">ini_set()</span></code> as needed.</p>
 </div>
 <p>In addition to the values above, the cookie and native drivers apply the
 following configuration values shared by the <a class="reference internal" href="../incoming/incomingrequest.html"><span class="doc">IncomingRequest</span></a> and
@@ -880,7 +891,7 @@ following configuration values shared by the <a class="reference internal" href=
 <td>The path to which the session is applicable</td>
 </tr>
 <tr class="row-even"><td><strong>cookieSecure</strong></td>
-<td>FALSE</td>
+<td>false</td>
 <td>Whether to create the session cookie only on encrypted (HTTPS) connections</td>
 </tr>
 <tr class="row-odd"><td><strong>cookieSameSite</strong></td>
@@ -989,20 +1000,20 @@ you would do this:</p>
 <p>And then of course, create the database table …</p>
 <p>For MySQL:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="nx">EXISTS</span> <span class="sb">`ci_sessions`</span> <span class="p">(</span>
-        <span class="sb">`id`</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-        <span class="sb">`ip_address`</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-        <span class="sb">`timestamp`</span> <span class="nx">int</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="nx">unsigned</span> <span class="k">DEFAULT</span> <span class="mi">0</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-        <span class="sb">`data`</span> <span class="nx">blob</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-        <span class="nx">KEY</span> <span class="sb">`ci_sessions_timestamp`</span> <span class="p">(</span><span class="sb">`timestamp`</span><span class="p">)</span>
+    <span class="sb">`id`</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">null</span><span class="p">,</span>
+    <span class="sb">`ip_address`</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">null</span><span class="p">,</span>
+    <span class="sb">`timestamp`</span> <span class="nx">timestamp</span> <span class="k">DEFAULT</span> <span class="nx">CURRENT_TIMESTAMP</span> <span class="k">NOT</span> <span class="k">null</span><span class="p">,</span>
+    <span class="sb">`data`</span> <span class="nx">blob</span> <span class="k">NOT</span> <span class="k">null</span><span class="p">,</span>
+    <span class="nx">KEY</span> <span class="sb">`ci_sessions_timestamp`</span> <span class="p">(</span><span class="sb">`timestamp`</span><span class="p">)</span>
 <span class="p">);</span>
 </pre></div>
 </div>
 <p>For PostgreSQL:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="s2">&quot;ci_sessions&quot;</span> <span class="p">(</span>
-        <span class="s2">&quot;id&quot;</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-        <span class="s2">&quot;ip_address&quot;</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="nx">bigint</span> <span class="k">DEFAULT</span> <span class="mi">0</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-        <span class="s2">&quot;data&quot;</span> <span class="nx">text</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span> <span class="k">NOT</span> <span class="k">NULL</span>
+    <span class="s2">&quot;id&quot;</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="s2">&quot;ip_address&quot;</span> <span class="nx">inet</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="s2">&quot;timestamp&quot;</span> <span class="nx">timestamptz</span> <span class="k">DEFAULT</span> <span class="nx">CURRENT_TIMESTAMP</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="s2">&quot;data&quot;</span> <span class="nx">bytea</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span> <span class="k">NOT</span> <span class="k">NULL</span>
 <span class="p">);</span>
 
 <span class="nx">CREATE</span> <span class="nx">INDEX</span> <span class="s2">&quot;ci_sessions_timestamp&quot;</span> <span class="nx">ON</span> <span class="s2">&quot;ci_sessions&quot;</span> <span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">);</span>
@@ -1010,10 +1021,10 @@ you would do this:</p>
 </div>
 <p>You will also need to add a PRIMARY KEY <strong>depending on your 『sessionMatchIP』
 setting</strong>. The examples below work both on MySQL and PostgreSQL:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// When sessionMatchIP = TRUE</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// When sessionMatchIP = true</span>
 <span class="nx">ALTER</span> <span class="nx">TABLE</span> <span class="nx">ci_sessions</span> <span class="nx">ADD</span> <span class="nx">PRIMARY</span> <span class="nx">KEY</span> <span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">ip_address</span><span class="p">);</span>
 
-<span class="c1">// When sessionMatchIP = FALSE</span>
+<span class="c1">// When sessionMatchIP = false</span>
 <span class="nx">ALTER</span> <span class="nx">TABLE</span> <span class="nx">ci_sessions</span> <span class="nx">ADD</span> <span class="nx">PRIMARY</span> <span class="nx">KEY</span> <span class="p">(</span><span class="nx">id</span><span class="p">);</span>
 
 <span class="c1">// To drop a previously created primary key (use when changing the setting)</span>
@@ -1021,7 +1032,7 @@ setting</strong>. The examples below work both on MySQL and PostgreSQL:</p>
 </pre></div>
 </div>
 <p>You can choose the Database group to use by adding a new line to the
-<strong>applicationConfigApp.php</strong> file with the name of the group to use:</p>
+<strong>app/Config/App.php</strong> file with the name of the group to use:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$sessionDBGroup</span> <span class="o">=</span> <span class="s1">&#39;groupName&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -1135,7 +1146,7 @@ separate the multiple server paths with commas:</p>
         <a href="throttler.html" class="btn btn-neutral float-right" title="Throttler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="security.html" class="btn btn-neutral float-left" title="安全性類別" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="security.html" class="btn btn-neutral float-left" title="Security" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -1146,7 +1157,7 @@ separate the multiple server paths with commas:</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

@@ -1,0 +1,674 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-TW" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-TW" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Testing Responses &mdash; CodeIgniter4 4.1.5 說明文件</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/citheme.js"></script>
+        <script type="text/javascript" src="../_static/js/carbon.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
+    <link rel="next" title="基準測試" href="benchmark.html" />
+    <link rel="prev" title="HTTP 特性測試" href="feature.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DD4814" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ci-logo-text.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">歡迎加入 CodeIgniter4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">歡迎加入 CodeIgniter4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">系統需求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">貢獻</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 規範</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">建構第一個應用程式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">靜態頁面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">新聞頁面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">建立新聞</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">結論</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 概觀</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">應用程式結構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">一般主題</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">組態設定檔案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">全域函數與常數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">記錄日誌資訊</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">錯誤處理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">網頁快取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 請求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">程式碼模組</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">處理多種環境</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">內容協商</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 類型偽裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">處理 RESTful 請求資源</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">建構響應</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">視圖</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">視圖單元</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">視圖渲染</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">視圖布局</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">視圖解釋器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 表格類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 響應</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 響應特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">本土化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">用於視圖檔案的 PHP 語法</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">資料庫操作</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">快速入門: 範例程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">資料庫組態設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">連接你的資料庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">執行查詢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">產生查詢結果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查詢輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查詢生成器類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">交易</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">詮釋資料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自訂函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">資料庫事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">資料庫工具</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">資料模型化</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">使用 CodeIgniter 的模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">使用實體類別</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">資料庫管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">資料庫操控與資料庫建構</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">資料庫遷移</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">資料庫填充</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">Working with Uploaded Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">Working with URIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">Validation</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">輔助函數</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">陣列輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">檔案系統輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表單輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number 輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全性輔助函數</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">Test Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 輔助函數</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">測試</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">入門</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">資料庫測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fabricator.html">Generating Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">控制器測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基準測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mocking.html">Mocking</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">擴充 CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">建立核心系統類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">替換常用功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">擴充控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">認證方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">為 CodeIgniter 貢獻</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../translation/index.html">CodeIgniter4 文件翻譯</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../translation/glossary.html">詞彙對照表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../translation/members.html">翻譯貢獻者</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter4</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">測試</a> &raquo;</li>
+        
+      <li>Testing Responses</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="testing-responses">
+<h1>Testing Responses<a class="headerlink" href="#testing-responses" title="本標題的永久連結">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">TestResponse</span></code> class provides a number of helpful functions for parsing and testing responses
+from your test cases. Usually a <code class="docutils literal notranslate"><span class="pre">TestResponse</span></code> will be provided for you as a result of your
+<a class="reference external" href="controllers.html">Controller Tests</a> or <a class="reference external" href="feature.html">HTTP Feature Tests</a>, but you can always
+create your own directly using any <code class="docutils literal notranslate"><span class="pre">ResponseInterface</span></code>:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\Test\TestResponse</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+<span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertOK</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="section" id="testing-the-response">
+<h2>Testing the Response<a class="headerlink" href="#testing-the-response" title="本標題的永久連結">¶</a></h2>
+<p>Whether you have received a <code class="docutils literal notranslate"><span class="pre">TestResponse</span></code> as a result of your tests or created one yourself,
+there are a number of new assertions that you can use in your tests.</p>
+<div class="section" id="accessing-request-response">
+<h3>Accessing Request/Response<a class="headerlink" href="#accessing-request-response" title="本標題的永久連結">¶</a></h3>
+<p><strong>request()</strong></p>
+<p>You can access directly the Request object, if it was set during testing:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$request</span> <span class="o">=</span> <span class="nv">$results</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>response()</strong></p>
+<p>This allows you direct access to the response object:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$response</span> <span class="o">=</span> <span class="nv">$results</span><span class="o">-&gt;</span><span class="na">response</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="checking-response-status">
+<h3>Checking Response Status<a class="headerlink" href="#checking-response-status" title="本標題的永久連結">¶</a></h3>
+<p><strong>isOK()</strong></p>
+<p>證明這個響應是成功的響應 ，回傳一個布林值 true 或 false 。主要檢查 HTTP 狀態是否在 200 至 300 這個範圍之間。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">isOK</span><span class="p">())</span> <span class="p">{</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>assertOK()</strong></p>
+<p>這個斷言僅使用了 <strong>isOK()</strong> 來測試響應結果。 <strong>assertNotOK</strong> 是這個斷言的反向用法。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertOK</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>isRedirect()</strong></p>
+<p>判斷響應是否為重新導向，回傳一個布林值 true 或 false</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">isRedirect</span><span class="p">())</span> <span class="p">{</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>assertRedirect()</strong></p>
+<p>斷言這個響應是否是一個「重新導向響應」 的實體。 <strong>assertNotRedirect</strong> 是這個斷言的反向用法。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertRedirect</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>assertRedirectTo()</strong></p>
+<p>Asserts that the Response is an instance of RedirectResponse and the destination
+matches the uri given.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertRedirectTo</span><span class="p">(</span><span class="s1">&#39;foo/bar&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>getRedirectUrl()</strong></p>
+<p>Returns the URL set for a RedirectResponse, or null for failure.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$url</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">getRedirectUrl</span><span class="p">();</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="nx">site_url</span><span class="p">(</span><span class="s1">&#39;foo/bar&#39;</span><span class="p">),</span> <span class="nv">$url</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>assertStatus(int $code)</strong></p>
+<p>斷言回傳的 HTTP 狀態碼與傳入的 $code 相符。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertStatus</span><span class="p">(</span><span class="mi">403</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="session-assertions">
+<h3>Session Assertions<a class="headerlink" href="#session-assertions" title="本標題的永久連結">¶</a></h3>
+<p><strong>assertSessionHas(string $key, $value = null)</strong></p>
+<p>斷言此時的會話中存在所指定鍵。如果你也傳入了 $value ，也會斷言你所指定的鍵的值是否與傳入的 $value 相符。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertSessionHas</span><span class="p">(</span><span class="s1">&#39;logged_in&#39;</span><span class="p">,</span> <span class="mi">123</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>assertSessionMissing(string $key)</strong></p>
+<p>斷言目前的會談不包含指定的 $key 。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertSessionMissin</span><span class="p">(</span><span class="s1">&#39;logged_in&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="header-assertions">
+<h3>Header Assertions<a class="headerlink" href="#header-assertions" title="本標題的永久連結">¶</a></h3>
+<p><strong>assertHeader(string $key, $value = null)</strong></p>
+<p>斷言響應中存在著一個名為 <strong>$key</strong> 的標頭。如果你也傳入了 <strong>$value</strong> ，也會斷言這個值是相符的。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;text/html&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>assertHeaderMissing(string $key)</strong></p>
+<p>斷言響應中不存在著名稱為 <strong>$key</strong> 的標頭。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertHeader</span><span class="p">(</span><span class="s1">&#39;Accepts&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cookie-assertions">
+<h3>Cookie Assertions<a class="headerlink" href="#cookie-assertions" title="本標題的永久連結">¶</a></h3>
+<p><strong>assertCookie(string $key, $value = null, string $prefix = 『』)</strong></p>
+<p>斷言響應中存在著名為 <strong>$key</strong> 的 Cookie ，如果你也傳入了 <strong>$value</strong> ，也會判定這些值是否相符。如果你需要的話，也可以設定 cookie 的前綴，透過傳遞第三個參數作為判斷依據。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertCookie</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>assertCookieMissing(string $key)</strong></p>
+<p>斷言響應中不存在名為 <strong>$key</strong> 的 Cookie 。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertCookieMissing</span><span class="p">(</span><span class="s1">&#39;ci_session&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>assertCookieExpired(string $key, string $prefix = 『』)</strong></p>
+<p>斷言名為 <strong>$key</strong> 的 Cookie 確實存在，但已經過期了。如果你需要的話，也可以設定 cookie 的前綴，透過傳遞第二個參數作為設定值。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertCookieExpired</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>響應輔助方法<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h3>
+<p>你得到的響應包含著一些輔助方法，用於驗證響應中的 HTML 輸出。這些方法對於在測試中宣告斷言時非常有用。</p>
+<p><strong>see()</strong> 方法將會檢查你所傳入的字串是否存在於頁面本身，你也可以更加具體的描述它，確定他是否是某種標記的描述，例如： tag 、 class 或 id ：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 驗證 Hello World 是否存在於頁面中</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">see</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
+<span class="c1">// 驗證是否有存在著 Hello World 的 h1 標籤</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">see</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">,</span> <span class="s1">&#39;h1&#39;</span><span class="p">);</span>
+<span class="c1">// 驗證是否有存在著包含 Hello World 的元素，並且它為 .notice Class 中的成員。</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">see</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">,</span> <span class="s1">&#39;.notice&#39;</span><span class="p">);</span>
+<span class="c1">// 驗證是否存在著包含 Hello World 的元素，並且它的 id 被宣告為 title  。</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">see</span><span class="p">(</span><span class="s1">&#39;Hellow World&#39;</span><span class="p">,</span> <span class="s1">&#39;#title&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>而 <strong>dontSee()</strong> 的方法則完全相反於 <strong>see()</strong> 方法：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 驗證 Hello World 不存在於頁面中</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">dontSee</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
+<span class="c1">// 驗證 Hello World 不存在於任何 h1 標籤中</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">dontSee</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">,</span> <span class="s1">&#39;h1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>seeElement()</strong> 與 <strong>dontSeeElement()</strong> 和前面的方法非常類似，但它並不會去比對元素的值。相反的，它指是檢查頁面上的某個元素是否存在：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 驗至 notice Class 在頁面上是否有任何成員元素</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeElement</span><span class="p">(</span><span class="s1">&#39;.notice&#39;</span><span class="p">);</span>
+<span class="c1">// 驗證頁面上是否有 id 為 title 的元素</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeElement</span><span class="p">(</span><span class="s1">&#39;#title&#39;</span><span class="p">)</span>
+<span class="c1">// 驗證頁面上是否不存在任何 id 為 title 的元素</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">dontSeeElement</span><span class="p">(</span><span class="s1">&#39;#title&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>你可以使用 <strong>seeLink()</strong> 來確認頁面上出現了某個帶有指定字串的超連接：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 驗證是否有一個文字為 Upgrade Account 的超連結</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeLink</span><span class="p">(</span><span class="s1">&#39;Upgrade Account&#39;</span><span class="p">);</span>
+<span class="c1">// 驗證是否有一個文字為 Upgrade Account 且它正好是 upsell class 成員的超連結</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeLink</span><span class="p">(</span><span class="s1">&#39;Upgrade Account&#39;</span><span class="p">,</span> <span class="s1">&#39;.upsell&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>seeInField()</strong> 用於驗證你所傳入的標籤與內容元素是否存在：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 驗證是否存在著名為 user 且值為 John Snow 的輸入</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeInField</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;John Snow&#39;</span><span class="p">);</span>
+<span class="c1">// 驗證陣列內的輸入</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeInField</span><span class="p">(</span><span class="s1">&#39;user[name]&#39;</span><span class="p">,</span> <span class="s1">&#39;John Snow&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>最後，你可以使用 <strong>seeCheckboxIsChecked()</strong> 方法來檢查某個核取方塊是否被選中：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 驗證 class 為 foo 的成員核取方塊是否被選中</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeCheckboxIsChecked</span><span class="p">(</span><span class="s1">&#39;.foo&#39;</span><span class="p">);</span>
+<span class="c1">// 驗證 id 為 bar 的核取方塊是否被選中</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeCheckboxIsChecked</span><span class="p">(</span><span class="s1">&#39;#bar&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dom-assertions">
+<h3>DOM Assertions<a class="headerlink" href="#dom-assertions" title="本標題的永久連結">¶</a></h3>
+<p>你可以利用下列的斷言執行測試，檢閱特定的元素與文字等內容是否存在於響應的 body 之中。</p>
+<p><strong>assertSee(string $search = null, string $element = null)</strong></p>
+<p>斷言文字與 HTML 存在於在頁面上。這個斷言可以指的是全體文字，或具體成搜索一個標記，例如指定 Clase 、 type 或 id 。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 斷言 Hello World 存在於頁面中</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSee</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
+<span class="c1">// 斷言存在著內容為 Hello World 的 h1 標籤</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSee</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">,</span> <span class="s1">&#39;h1&#39;</span><span class="p">);</span>
+<span class="c1">// 斷言存在著包含 Hello World 的元素，並且它為 .notice Class 中的成員。</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSee</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">,</span> <span class="s1">&#39;.notice&#39;</span><span class="p">);</span>
+<span class="c1">// 斷言存在著包含 Hello World 的元素，並且它的 id 被宣告為 title  。</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSee</span><span class="p">(</span><span class="s1">&#39;Hellow World&#39;</span><span class="p">,</span> <span class="s1">&#39;#title&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>assertDontSee(string $search = null, string $element = null)</strong></p>
+<p>斷言的結果與 <strong>assertSee()</strong> 方法完全相反。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 斷言 Hello World 不存在於頁面中</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">dontSee</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
+<span class="c1">// 斷言 Hello World 不存在於任何 h1 標籤中</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">dontSee</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">,</span> <span class="s1">&#39;h1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>assertSeeElement(string $search)</strong></p>
+<p>類似於 <strong>assertSee()</strong> 但它只斷言特定元素是否存在，並不會檢查任何文字內容。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 斷言 notice Class 在頁面上存在任何成員元素</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeElement</span><span class="p">(</span><span class="s1">&#39;.notice&#39;</span><span class="p">);</span>
+<span class="c1">// 斷言頁面上具有 id 為 title 的元素</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeElement</span><span class="p">(</span><span class="s1">&#39;#title&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>assertDontSeeElement(string $search)</strong></p>
+<p>類似於 <strong>assertSee()</strong> ，但它只斷言一個元素是否不存在於頁面，它不檢查特定文字內容。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 斷言頁面不存在任何 id 為 title 的元素</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">dontSeeElement</span><span class="p">(</span><span class="s1">&#39;#title&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>assertSeeLink(string $text, string $details=null)</strong></p>
+<p>使用 <strong>$text</strong> 來斷言頁面上出現了帶有指定字串的超連接：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 斷言有一個文字為 Upgrade Account 的超連結存在於頁面</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeLink</span><span class="p">(</span><span class="s1">&#39;Upgrade Account&#39;</span><span class="p">);</span>
+<span class="c1">// 斷言有一文字為 Upgrade Account 且它正好是 upsell class 成員的超連結</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeLink</span><span class="p">(</span><span class="s1">&#39;Upgrade Account&#39;</span><span class="p">,</span> <span class="s1">&#39;.upsell&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>assertSeeInField(string $field, string $value=null)</strong></p>
+<p>斷言你所傳入的標籤與內容元素真實存在：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 斷言存在著名為 user 且值為 John Snow 的輸入</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeInField</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;John Snow&#39;</span><span class="p">);</span>
+<span class="c1">// 斷言陣列內的輸入</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeInField</span><span class="p">(</span><span class="s1">&#39;user[name]&#39;</span><span class="p">,</span> <span class="s1">&#39;John Snow&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="json">
+<h3>使用 JSON<a class="headerlink" href="#json" title="本標題的永久連結">¶</a></h3>
+<p>響應經常會是 JSON 格式的回傳，特別是在呼叫 API 方法時。以下提供可以幫助你測試響應的方法。</p>
+<p><strong>getJSON()</strong></p>
+<p>這個方法將以自串的形式回傳響應的 body ：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 響應 body 像是這樣:</span>
+<span class="p">[</span><span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;bar&#39;</span><span class="p">]</span>
+
+<span class="nv">$json</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">getJSON</span><span class="p">();</span>
+
+<span class="c1">// 獲得的 $json 像是這樣:</span>
+<span class="p">{</span>
+    <span class="s2">&quot;foo&quot;</span><span class="o">:</span> <span class="s2">&quot;bar&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You can use this method to determine if <code class="docutils literal notranslate"><span class="pre">$response</span></code> actually holds JSON content:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Verify the response is JSON</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertTrue</span><span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">getJSON</span><span class="p">()</span> <span class="o">!==</span> <span class="k">false</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">需要注意的是， JSON 字串會格式化地輸出在結果中。</p>
+</div>
+<p><strong>assertJSONFragment(array $fragment)</strong></p>
+<p>斷言 $fragment 存在於 JSON 響應中，它不需要符合整個 JSON 值。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 響應 body 像是這樣:</span>
+<span class="p">[</span>
+    <span class="s1">&#39;config&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;key-a&#39;</span><span class="p">,</span> <span class="s1">&#39;key-b&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="c1">// 將回傳 true</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertJSONFragment</span><span class="p">([</span><span class="s1">&#39;config&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;key-a&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p><strong>assertJSONExact($test)</strong></p>
+<p>類似於 <strong>assertJSONFragment()</strong> 但會檢閱整個 JSON 響應以確保結果精準地符合。</p>
+</div>
+<div class="section" id="xml">
+<h3>使用 XML<a class="headerlink" href="#xml" title="本標題的永久連結">¶</a></h3>
+<p><strong>getXML()</strong></p>
+<p>如果你的應用程式會回傳 XML ，你可以使用這個方法檢閱它。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="benchmark.html" class="btn btn-neutral float-right" title="基準測試" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="feature.html" class="btn btn-neutral float-left" title="HTTP 特性測試" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
+      <span class="lastupdated">
+        最後更新於 2021年11月14日。
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>錯誤處理 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>錯誤處理 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="網頁快取" href="caching.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -376,24 +380,20 @@
 <p>如果你正在呼叫一個可能會拋出異常的方法，你可以使用 <code class="docutils literal notranslate"><span class="pre">try/catch</span></code> 來捕捉這個異常：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">try</span> <span class="p">{</span>
         <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="k">catch</span> <span class="p">(</span><span class="nx">\Exception</span> <span class="nv">$e</span><span class="p">)</span>
-<span class="p">{</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">die</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>在這個例子中，我們將會捕捉所有類型的異常。如果 <code class="docutils literal notranslate"><span class="pre">$userModel</span></code> 拋出異常，則會被捕捉並執行 catch 內的程式碼。在這個例子中，腳本將會中止生命週期，回傳由 <code class="docutils literal notranslate"><span class="pre">UserModel</span></code> 所定義的錯誤訊息。</p>
 <p>若是我們只想監視特定類型的異常，比如 UnknownFileException ，我們可以在 catch 參數中指定。任何被拋出且不是被捕捉的異常子類別，都將被傳遞給錯誤處理程序進行處理：</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">catch</span> <span class="p">(</span><span class="nx">\CodeIgniter\UnknownFileException</span> <span class="nv">$e</span><span class="p">)</span>
-<span class="p">{</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">catch</span> <span class="p">(</span><span class="nx">\CodeIgniter\UnknownFileException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// do something here...</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>這對於親自處理錯誤或在腳本結束之前執行清除很方便。如果你想讓錯誤處理程序正常運作，你可以在 catch 中拋出一個新的異常。</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">catch</span> <span class="p">(</span><span class="nx">\CodeIgniter\UnknownFileException</span> <span class="nv">$e</span><span class="p">)</span>
-<span class="p">{</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">catch</span> <span class="p">(</span><span class="nx">\CodeIgniter\UnknownFileException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// do something here...</span>
 
         <span class="k">throw</span> <span class="k">new</span> <span class="nx">\RuntimeException</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getCode</span><span class="p">(),</span> <span class="nv">$e</span><span class="p">);</span>
@@ -496,7 +496,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>

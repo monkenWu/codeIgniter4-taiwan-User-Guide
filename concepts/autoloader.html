@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>自動載入檔案 &mdash; CodeIgniter4 4.1.1 說明文件</title>
+  <title>自動載入檔案 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -36,9 +36,8 @@
     
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="服務（services）" href="services.html" />
@@ -144,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">Controllers and Routing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">控制器與路由</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI Routing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">Controller Filters</a></li>
@@ -205,16 +204,19 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Library Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">程式庫參考</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">Cookies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密服務</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html#file-collections">File Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">誘捕系統類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -251,8 +253,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
 </ul>
 </li>
 </ul>
@@ -362,8 +366,8 @@
 <h2>命名空間<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p>我們建議，透過在應用程式檔案中創建一個或多個命名空間來管理你的類別。而這一點，對於業務邏輯相關聯的類別、實體類別等也是最為重要的。設定檔案中的 <code class="docutils literal notranslate"><span class="pre">psr4</span></code> 陣列，允許你將命名空間和對應的類別所存在的目錄進行映射:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$psr4</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;App&#39;</span>         <span class="o">=&gt;</span> <span class="nx">APPPATH</span><span class="p">,</span>
-        <span class="s1">&#39;CodeIgniter&#39;</span> <span class="o">=&gt;</span> <span class="nx">SYSTEMPATH</span><span class="p">,</span>
+    <span class="s1">&#39;App&#39;</span>         <span class="o">=&gt;</span> <span class="nx">APPPATH</span><span class="p">,</span>
+    <span class="s1">&#39;CodeIgniter&#39;</span> <span class="o">=&gt;</span> <span class="nx">SYSTEMPATH</span><span class="p">,</span>
 <span class="p">];</span>
 </pre></div>
 </div>
@@ -375,26 +379,21 @@
 <p>你需要修改所有現存指向當前命名空間的檔案。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last">設定檔案被聲名在 <code class="docutils literal notranslate"><span class="pre">Config</span></code> 命名空間中，而不是如你所想的 <code class="docutils literal notranslate"><span class="pre">App\Config</span></code>。這個特性使得核心系統檔案，甚至在應用程式的命名空間被更改的情況下，也可以被精準的定位。</p>
+<p class="last">設定檔案被宣告在 <code class="docutils literal notranslate"><span class="pre">Config</span></code> 命名空間中，而不是如你所想的 <code class="docutils literal notranslate"><span class="pre">App\Config</span></code>。這個特性使得核心系統檔案，甚至在應用程式的命名空間被更改的情況下，也可以被精準的定位。</p>
 </div>
 </div>
 <div class="section" id="id4">
-<h2>類別映射圖<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<h2>類別映射<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
 <p>類別映射圖是 CodeIgniter 用來榨乾系統最後一分效能的手段，透過不額外調用 <code class="docutils literal notranslate"><span class="pre">is_file()</span></code> 查詢檔案系統來實現。即使第三方程式庫並沒有命名空間，你也可以利用類別映射圖來連接他們:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$classmap</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;Markdown&#39;</span> <span class="o">=&gt;</span> <span class="nx">APPPATH</span> <span class="o">.</span><span class="s1">&#39;third_party/markdown.php&#39;</span>
+    <span class="s1">&#39;Markdown&#39;</span> <span class="o">=&gt;</span> <span class="nx">APPPATH</span> <span class="o">.</span> <span class="s1">&#39;third_party/markdown.php&#39;</span>
 <span class="p">];</span>
 </pre></div>
 </div>
 <p>每一行的鍵值就是你想定位的類別名，而值就是用來定位它的路徑</p>
 </div>
 <div class="section" id="id5">
-<h2>支援舊版本<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
-<p>如果以上的所有方法都找不到對應的類別檔案，且這個類別也沒有對應的命名空間，自動載入器將會查找 <strong>/application/Libraries</strong> 和 <strong>/application/Models</strong> 目錄來嘗試定位檔案。這提供了舊版本過渡到新版本的一個方式。</p>
-<p>對於舊版本而言，沒有額外的設定選項。</p>
-</div>
-<div class="section" id="id6">
-<h2>支援 Composer<a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
+<h2>支援 Composer<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
 <p>CodeIgniter 在初始化時就會預設支援 Composer。 它會在 <code class="docutils literal notranslate"><span class="pre">ROOTPATH.'vendor/autoload.php'</span></code> 中尋找 Composer 的自動載入檔案。 如果你需要更改這個檔案的位置，你可以修改定義在 <code class="docutils literal notranslate"><span class="pre">Config\Constants.php</span></code> 中的值。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
@@ -425,7 +424,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月11日。
+        最後更新於 2021年11月14日。
       </span>
 
     </p>
