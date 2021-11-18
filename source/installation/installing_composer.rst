@@ -69,7 +69,7 @@ If ``--prefer-source`` doesn't automatically update to pull latest framework sou
 結構
 -------------------------------------------------------
 
-在安裝 CodeIgniter 4 後，這些資料夾將會部署進你的專案中：
+在安裝 CodeIgniter 4 後，這些資料夾將會佈署進你的專案中：
 
 - app, public, tests, writable 
 - vendor/codeigniter4/framework/system
@@ -92,10 +92,10 @@ If ``--prefer-source`` doesn't automatically update to pull latest framework sou
 
 使用 ``builds`` 後請務必執行 ``composer update`` ，以便將你的 vendor 資料夾與目前希望運作的版本進行同步。
 
-將 CodeIgniter4 部屬到現有專案中
+將 CodeIgniter4 佈署到現有專案中
 ============================================================
 
-與「手動安裝」 `CodeIgniter 4 <https://github.com/codeigniter4/framework>`_ 相同，你也可以透過 Composer 下載最新版本再自行部屬。
+與「手動安裝」 `CodeIgniter 4 <https://github.com/codeigniter4/framework>`_ 相同，你也可以透過 Composer 下載最新版本再自行佈署。
 
 你可以在框架中的 ``app`` 資料夾開發你的應用程式，而 ``public`` 資料夾則是放置網站的公開檔案。
 
@@ -138,7 +138,7 @@ If ``--prefer-source`` doesn't automatically update to pull latest framework sou
 結構
 -------------------------------------------------------
 
-在執行完上述流程後，這些資料夾將會部署進你的專案中：
+在執行完上述流程後，這些資料夾將會佈署進你的專案中：
 
 - app, public, writable（當使用 ``--prefer-source`` ）
 - vendor/codeigniter4/framework/system

@@ -47,7 +47,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           source: "user_guide_deploy.zip"
           target: "/home/cd"
-      # 透過 SSH 執行部屬指令檔案
+      # 透過 SSH 執行佈署指令檔案
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
         with:

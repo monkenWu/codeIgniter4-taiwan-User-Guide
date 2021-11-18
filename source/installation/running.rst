@@ -47,10 +47,10 @@ CodeIgniter 4 附帶了本地開發伺服器，利用了 PHP 內建的 Web 伺�
 
     php spark serve --php /usr/bin/php7.6.5.4
 
-部屬在 Apache 伺服器
+佈署在 Apache 伺服器
 =================================================
 
-CodeIgniter4 應用程式通常會部屬在網頁伺服器中。通常 Apache的 ``httpd`` 是標準的平台，在手冊中我們預設你使用它。
+CodeIgniter4 應用程式通常會佈署在網頁伺服器中。通常 Apache的 ``httpd`` 是標準的平台，在手冊中我們預設你使用它。
 
 Apache 與許多平台綁定在一起，你也可以選擇使用 `Bitnami <https://bitnami.com/stacks/infrastructure>`_ 所綑綁的資料庫引擎、 PHP 與 Apache。
 
@@ -143,10 +143,10 @@ This configuration enables URLs without “index.php” in them and using CodeIg
         }
     }
 
-使用 Vagrant 進行部屬
+使用 Vagrant 進行佈署
 =================================================
 
-即便你在不同的環境中進行開發，利用虛擬化技術在預計部屬的環境中，對網頁應用程式進行測試是個不錯的方法。
+即便你在不同的環境中進行開發，利用虛擬化技術在預計佈署的環境中，對網頁應用程式進行測試是個不錯的方法。
 
 程式庫中附帶一個 ``VagrantFile.dist`` 設定檔，可以複製到 ``VagrantFile`` 並針對該系統進行訂製，例如：啟用對特定資料庫或快取引擎的訪問。
 
