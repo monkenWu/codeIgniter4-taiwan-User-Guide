@@ -295,6 +295,7 @@ overwrite priority.
             '\App\Models\RegionalSales'
         ];
     }
+
 與上例相關的 RegionalSales 模型可能是這個樣子的：
 
 ::
