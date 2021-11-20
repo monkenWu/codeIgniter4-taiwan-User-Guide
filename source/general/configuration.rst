@@ -102,7 +102,7 @@ CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` �
 	$s3_bucket = $_ENV['S3_BUCKET'];
 	$s3_bucket = $_SERVER['S3_BUCKET'];
 
-.. important:: Note that your settings from the **.env** file are added to Environment Variables. As a side effect, this means that if your CodeIgniter application is (for example) generating a ``var_dump($_ENV)`` or ``phpinfo()`` (for debugging or other valid reasons) **your secure credentials are publicly exposed**.
+.. important:: 請注意 **.env** 檔案中的設定內容將會被載入到環境變數中。若是你基於除錯或其他的原因，在 CodeIgniter 應用程式中使用了 ``var_dump($_ENV)`` 或 ``phpinfo()`` ，你的安全憑證將會被公開地暴露出來。 
 
 巢狀變數
 =================
@@ -160,27 +160,21 @@ CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` �
 
 .. note:: 當使用短前綴時，屬性名稱必須與類別所定義的屬性名稱完全一致。
 
-Some environments do not permit variable name with dots. In such case, you could also use ``_`` as a seperator.
+在某些環境中不允許你使用帶「點」的變數名稱，在這種情況下，你還可以使用 ``_`` 當作分隔符號。
 
 ::
 
     app_forceGlobalSecureRequests = true
     app_CSPEnabled = true
 
-Environment Variables as Replacements for Data
+用環境變數替代資料
 ==============================================
 
-It is very important to always remember that environment variables contained in your **.env** are
-**only replacements for existing data**. This means that you cannot expect to fill your **.env** with all
-the replacements for your configurations but have nothing to receive these replacements in the
-related configuration file(s).
+請牢記在 **env** 中包含的環境變數 **只會替換現有資料** ，這非常重要。這表示你不能在你的 **.env** 設定任何在相關配置文件中沒有宣告的內容。
 
-The **.env** only serves to fill or replace the values in your configuration files. That said, your
-configuration files should have a container or receiving property for those. Adding so many variables in
-your **.env** with nothing to contain them in the receiving end is useless.
+**.env** 的作用僅是填充或替換你的組態設定檔案中的數值。也就是說，你的組態設定文件應該要有一個容器或用於接收數值的屬性。在你的 **.env** 中加入很多變數，但卻沒有任何東西可以接收這些變數的內容，這並不是個好作法。
 
-Simply put, you cannot just put ``app.myNewConfig = foo`` in your **.env** and expect your ``Config\App``
-to magically have that property and value at run time.
+簡單地說，你不能只是將 ``app.myNewConfig = foo`` 放在你的 **.env** 中，並且希望 ``Config\App`` 在執行時期能夠像是施魔法一般出現這個屬性以及數值。
 
 將環境變數視為陣列
 ========================================
