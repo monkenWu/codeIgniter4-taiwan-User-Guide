@@ -61,14 +61,9 @@ CodeIgniter 支援使用程式碼模組化的方式，幫助你創建具有重�
 自動載入無類別檔案
 ===========================
 
-More often than not that your module will not contain only PHP classes but also others like procedural
-functions, bootstrapping files, module constants files, etc. which are not normally loaded the way classes
-are loaded. One approach for this is using ``require``-ing the file(s) at the start of the file where it
-would be used.
+通常來說，你的模組可能不只有 PHP 類別，還會包含：程序式函數、引導檔案，模組常數檔案等。這些檔案通常不會以類別的方式被載入，這時可能會使用 ``require`` 的方式載入會使用到的檔案。
 
-Another approach provided by CodeIgniter is to autoload these *non-class* files like how you would autoload
-your classes. All we need to do is provide the list of paths to those files and include them in the
-``$files`` property of your **app/Config/Autoload.php** file.
+而 CodeIgniter 提供你一種自動載入這些非類別檔案的方式，就像是類別自動載入一樣。我們需要提供這些檔案的路徑清單，並將它們宣告在 **app/Config/Autoload.php** 中的 ``$files`` 屬性。
 
 ::
 
@@ -133,13 +128,13 @@ Composer 與探索
 過濾器
 =======
 
-By default, :doc:`filters </incoming/filters>` are automatically scanned for within modules.
-It can be turned off in the **Modules** config file, described above.
+預設的情況下，會自動掃描模組內的 :doc:`過濾器 </incoming/filters>` 。它可以在 **Modules** 的設定檔案中被關閉。
 
-.. note:: Since the files are being included into the current scope, the ``$filters`` instance is already defined for you.
-    It will cause errors if you attempt to redefine that class.
+.. note:: 由於檔案包含在目前的作用域中，因此已經為你宣告好了 ``$filters`` 實體。如果你試圖重新宣告這個類別，則會導致錯誤。
 
-In the module's **Config/Filters.php** file, you need to define the aliases of the filters you use.::
+在模組的 **Config/Filters.php** 檔案中，你需要宣告你使用的過濾器別名。
+
+::
 
     $filters->aliases['menus'] = MenusFilter::class;
 

@@ -170,9 +170,9 @@ CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` �
 用環境變數替代資料
 ==============================================
 
-請牢記在 **env** 中包含的環境變數 **只會替換現有資料** ，這非常重要。這表示你不能在你的 **.env** 設定任何在相關配置文件中沒有宣告的內容。
+請牢記在 **env** 中包含的環境變數 **只會替換現有資料** ，這非常重要。這表示你不能在你的 **.env** 設定任何在相關組態設定檔案中沒有宣告的內容。
 
-**.env** 的作用僅是填充或替換你的組態設定檔案中的數值。也就是說，你的組態設定文件應該要有一個容器或用於接收數值的屬性。在你的 **.env** 中加入很多變數，但卻沒有任何東西可以接收這些變數的內容，這並不是個好作法。
+**.env** 的作用僅是填充或替換你的組態設定檔案中的數值。也就是說，你的組態設定檔案應該要有一個容器或用於接收數值的屬性。在你的 **.env** 中加入很多變數，但卻沒有任何東西可以接收這些變數的內容，這並不是個好作法。
 
 簡單地說，你不能只是將 ``app.myNewConfig = foo`` 放在你的 **.env** 中，並且希望 ``Config\App`` 在執行時期能夠像是施魔法一般出現這個屬性以及數值。
 
@@ -224,21 +224,16 @@ CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` �
 註冊器
 ==========
 
-"Registrars" are any other classes which might provide additional configuration properties.
-Registrars provide a means of altering a configuration at runtime across namespaces and files.
-There are two ways to implement a Registrar: implicit and explicit.
+註冊器 ``Registrars`` 是任何可能提供額外組態屬性的類別，註冊器提供一種在執行時期時命名空間與檔案改變組態的方法。有顯性與隱性兩種方法用於實作出註冊器。
 
-.. note:: Values from **.env** always take priority over Registrars.
+.. note:: 來自 ``.env`` 中的數值將始終優先於註冊器。
 
 隱性註冊器
 -------------------
 
-Any namespace may define registrars by using the **Config/Registrar.php** file, if discovery
-is enabled in :doc:`Modules </general/modules>`. These files are classes whose methods are
-named for each configuration class you wish to extend. For example, a third-party module might
-wish to supply an additional template to ``Pager`` without overwriting whatever a develop has
-already configured. In **src/Config/Registrar.php** there would be a ``Registrar`` class with
-the single ``Pager()`` method (note the case-sensitivity)::
+如果在 :doc:`程式碼模組 </general/modules>` 中啟用了自動探索，任何命名空間都可以透過使用 **Config/Registrar.php** 檔案來宣告註冊器。這些檔案是一些類別，類別中的方法命名以需要擴充的組態設定類別為準。例如：第三方模組可能希望 ``Pager`` 提供額外的樣板，而不覆蓋開發人員已經設定好的任何內容。在 **src/Config/Registrar.php** 中，將有一個具有 ``Pager()`` 方法的 ``Registrar`` 類別（請注意大小寫敏感）。
+
+::
 
     class Registrar
     {
@@ -252,9 +247,8 @@ the single ``Pager()`` method (note the case-sensitivity)::
         }
     }
 
-Registrar methods must always return an array, with keys corresponding to the properties
-of the target config file. Existing values are merged, and Registrar properties have
-overwrite priority.
+註冊器方法必須總是回傳鍵值陣列，它的鍵呼應目標組態設定檔案的屬性。合併現有的數值，並且註冊器屬性在覆蓋上具備優先級。
+
 
 顯性註冊器
 -------------------
