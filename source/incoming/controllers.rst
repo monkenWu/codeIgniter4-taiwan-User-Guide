@@ -30,11 +30,11 @@
 
 讓我們創建一個簡單的控制器，這樣你就可以看到它的操作方式。使用你的文本編輯器，創建一個名為 Helloworld.php 的文件，然後把下面的程式碼放在裡面。
 
-You will notice that the Helloworld Controller is extending the BaseController. you can also extend the CodeIgniter\Controller if you do not need the functionality of the BaseController.
+你會注意到 Helloworld 控制器繼承了 BaseController ，如果你不需要 BaseController 提供的功能，你也可以直接繼承 ``CodeIgniter\Controller`` 。
 
-The BaseController provides a convenient place for loading components and performing functions that are needed by all your controllers. You can extend this class in any new controller.
+BaseController 替載入元件以及執行所有控制器都需要的功能提供了一個好地方，你可以在任何新的控制器中繼承這個類別。
 
-For security reasons be sure to declare any new utility methods as protected or private.:
+為了安全起見，請以保護或私有宣告新的方法。
 
 ::
 
@@ -109,16 +109,14 @@ For security reasons be sure to declare any new utility methods as protected or 
 
     }
 
-另外，一定要確保你的控制器擴展了父控制器類別，這樣它才可以繼承所有的方法。
+另外，一定要確保你的控制器繼承了父控制器類別，這樣它才可以繼承所有的方法。
 
 .. note::
-    The system will attempt to match the URI against Controllers by matching each segment against
-    folders/files in APPPATH/Controllers, when a match wasn't found against defined routes.
-    That's why your folders/files MUST start with a capital letter and the rest MUST be lowercase.
-    If you want another naming convention you need to manually define it using the
-    :doc:`URI Routing <routing>` feature.
+    當未找到與你所宣告的路由相配對的項目時，系統將會嘗試透過將每個區段與 ``APPPATH/Controllers`` 中的資料夾/檔案進行配對來找到合適的控制器。這就是為什麼資料夾以及檔案必須大寫字母開頭，其餘部分皆是小寫的原因。如果你需要其他的命名方式，則需要使用 :doc:`URI 路由 <routing>` 功能手動宣告。
 
-    Here is an example based on PSR-4: Autoloader::
+    以下是基於 PSR-4 的範例：自動載入器
+
+    ::
 
         \<NamespaceName>(\<SubNamespaceNames>)*\<ClassName>
 
@@ -291,7 +289,7 @@ $routes->get('/', 'Home::index');
 
 只需在主要的 *app/Controllers/* 目錄下創建子目錄，然後將你的控制器類別放進去。
 
-.. important:: Folder names MUST start with an uppercase letter and ONLY the first character can be uppercase.
+.. important:: 資料夾名稱必須以大寫字母開頭，並且只有第一個字元可以大寫。
 
 .. note:: 使用此功能時，URI的第一段必須要指定資料夾。例如，假設你有一個控制器位於這裡：
 
@@ -312,7 +310,7 @@ CodeIgniter 還允許你使用 :doc:`URI Routing <routing>` 功能重新映射�
 擁有的屬性
 ===================
 
-你創建的每個控制器都應該擴展  ``CodeIgniter\Controller`` 類別。這個類別提供了幾個功能，所有的控制器都可以使用。
+你創建的每個控制器都應該繼承  ``CodeIgniter\Controller`` 類別。這個類別提供了幾個功能，所有的控制器都可以使用。
 
 **請求物件**
 
@@ -394,9 +392,7 @@ CodeIgniter 還允許你使用 :doc:`URI Routing <routing>` 功能重新映射�
         // do something here if successful...
     }
 
-驗證也可以在模型中自動處理，但有時在控制器中進行驗證會更方便。具體到哪裡，由你自己決定.
-
-.. note:: Validation can also be handled automatically in the model, but sometimes it's easier to do it in the controller. Where is up to you.
+.. note::  驗證也可以在模型中自動處理，但有時在控制器中進行驗證會更方便。具體在哪裡執行，由你自己決定.
 
 就是這樣！
 ==========

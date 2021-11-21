@@ -1,7 +1,7 @@
 手動安裝
 ###############################################################################
 
-CodeIgniter 4 的 `git 儲存庫 <https://github.com/codeigniter4/framework>`_ 上保存著所有的歷史版本，它適合不希望使用 Composer 進行專案管理的開發人員，因為它下載後就能直接部屬。
+CodeIgniter 4 的 `git 儲存庫 <https://github.com/codeigniter4/framework>`_ 上保存著所有的歷史版本，它適合不希望使用 Composer 進行專案管理的開發人員，因為它下載後就能直接佈署。
 
 你可以在框架中的 ``app`` 資料夾開發你的應用程式，而 ``public`` 資料夾則是放置網站的公開檔案，請勿修改 ``system`` 資料夾中的任何內容！
 
@@ -37,7 +37,7 @@ CodeIgniter 4 的 `git 儲存庫 <https://github.com/codeigniter4/framework>`_ �
 結構
 -------------------------------------------------------
 
-在安裝 CodeIgniter 4 後，這些資料夾將會部署進你的專案中： app 、 public 、 system 、 writable 。
+在安裝 CodeIgniter 4 後，這些資料夾將會佈署進你的專案中： app 、 public 、 system 、 writable 。
 
 安裝多語言系統提示
 ============================================================

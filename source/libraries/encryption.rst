@@ -83,7 +83,7 @@ digest     Message digest algorithm (``SHA512``)
 預設行為
 ================
 
-默認情況下，加密程式庫使用OpenSSL的處理程序。該加密處理程序使用 AES-256-CTR 演算法，你設定的 *key* 和 SHA512 HMAC 身分驗證。
+預設情況下，加密程式庫使用OpenSSL的處理程序。該加密處理程序使用 AES-256-CTR 演算法，你設定的 *key* 和 SHA512 HMAC 身分驗證。
 
 設置你的加密金鑰
 ===========================
@@ -223,7 +223,7 @@ HMAC-SHA512 for the authentication.
     // reconfigure an instance with different settings
     $encrypter = $encryption->initialize($config);
 
-記住， ``$config`` 必須是 `Config\Encryption` 類別的實體或擴展 `CodeIgniter\Config\BaseConfig` 。
+記住， ``$config`` 必須是 `Config\Encryption` 類別的實體或繼承 `CodeIgniter\Config\BaseConfig` 。
 
 
 ***************

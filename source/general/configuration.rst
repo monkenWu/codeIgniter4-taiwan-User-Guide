@@ -73,7 +73,7 @@
 環境變數
 =====================
 
-現今，「環境變數」是「應用程式設定」的最佳實踐之一。因為環境變數在部署的過程中，將替代程式碼被頻繁改變。例如：多個環環境，如開發者的開發機器與正式伺服器等多個環境，通常需要不同的設定值來滿足每個環境的特定情形。
+現今，「環境變數」是「應用程式設定」的最佳實踐之一。因為環境變數在佈署的過程中，將替代程式碼被頻繁改變。例如：多個環環境，如開發者的開發機器與正式伺服器等多個環境，通常需要不同的設定值來滿足每個環境的特定情形。
 
 密碼、API密鑰，或乃至任何隱私的敏感資訊，都應該使用環境變數作為儲存方案。
 
@@ -82,7 +82,7 @@
 
 CodeIgniter 透過使用「點 env」檔實現環境變數，這使得設定環境變數變得簡單又不用費功夫。「點 env」檔這個說法來自於 CodeIgniter 環境變數檔案的名稱，它指的是「 .env 」。
 
-CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` 與 ``app`` 目錄。在 CodeIgniter 中，有一個用於環境變數的樣板文件，它位於根目錄下，名為 **env** （注意！這個檔案的開頭並沒有 **點** ）。它內涵所有你的專案可能會使用到的變數集合，這些變數已經被分配了空值、虛值或默認值。你可以藉由將這個檔案重新命名成 **.env** 或將這個檔案複製一份命名成 **.env** 使它開始作用。這個檔案將會作為你的應用程式的起點。
+CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` 與 ``app`` 目錄。在 CodeIgniter 中，有一個用於環境變數的樣板文件，它位於根目錄下，名為 **env** （注意！這個檔案的開頭並沒有 **點** ）。它內涵所有你的專案可能會使用到的變數集合，這些變數已經被分配了空值、虛值或預設值。你可以藉由將這個檔案重新命名成 **.env** 或將這個檔案複製一份命名成 **.env** 使它開始作用。這個檔案將會作為你的應用程式的起點。
 
 .. important:: 為了不讓敏感資訊洩漏出去，請確定你的版本控制系統不追蹤 **.env** 檔案。以 *git* 來說，就是在  **.gitignore** 添加這個需要被忽略的檔案。
 
@@ -102,7 +102,7 @@ CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` �
 	$s3_bucket = $_ENV['S3_BUCKET'];
 	$s3_bucket = $_SERVER['S3_BUCKET'];
 
-.. important:: Note that your settings from the **.env** file are added to Environment Variables. As a side effect, this means that if your CodeIgniter application is (for example) generating a ``var_dump($_ENV)`` or ``phpinfo()`` (for debugging or other valid reasons) **your secure credentials are publicly exposed**.
+.. important:: 請注意 **.env** 檔案中的設定內容將會被載入到環境變數中。若是你基於除錯或其他的原因，在 CodeIgniter 應用程式中使用了 ``var_dump($_ENV)`` 或 ``phpinfo()`` ，你的安全憑證將會被公開地暴露出來。 
 
 巢狀變數
 =================
@@ -160,27 +160,21 @@ CodeIgniter 希望你將 **.env** 檔案置於根目錄下，緊鄰 ``system`` �
 
 .. note:: 當使用短前綴時，屬性名稱必須與類別所定義的屬性名稱完全一致。
 
-Some environments do not permit variable name with dots. In such case, you could also use ``_`` as a seperator.
+在某些環境中不允許你使用帶「點」的變數名稱，在這種情況下，你還可以使用 ``_`` 當作分隔符號。
 
 ::
 
     app_forceGlobalSecureRequests = true
     app_CSPEnabled = true
 
-Environment Variables as Replacements for Data
+用環境變數替代資料
 ==============================================
 
-It is very important to always remember that environment variables contained in your **.env** are
-**only replacements for existing data**. This means that you cannot expect to fill your **.env** with all
-the replacements for your configurations but have nothing to receive these replacements in the
-related configuration file(s).
+請牢記在 **env** 中包含的環境變數 **只會替換現有資料** ，這非常重要。這表示你不能在你的 **.env** 設定任何在相關組態設定檔案中沒有宣告的內容。
 
-The **.env** only serves to fill or replace the values in your configuration files. That said, your
-configuration files should have a container or receiving property for those. Adding so many variables in
-your **.env** with nothing to contain them in the receiving end is useless.
+**.env** 的作用僅是填充或替換你的組態設定檔案中的數值。也就是說，你的組態設定檔案應該要有一個容器或用於接收數值的屬性。在你的 **.env** 中加入很多變數，但卻沒有任何東西可以接收這些變數的內容，這並不是個好作法。
 
-Simply put, you cannot just put ``app.myNewConfig = foo`` in your **.env** and expect your ``Config\App``
-to magically have that property and value at run time.
+簡單地說，你不能只是將 ``app.myNewConfig = foo`` 放在你的 **.env** 中，並且希望 ``Config\App`` 在執行時期能夠像是施魔法一般出現這個屬性以及數值。
 
 將環境變數視為陣列
 ========================================
@@ -219,7 +213,7 @@ to magically have that property and value at run time.
 
 藉由使用一個單獨的 **.env** 檔案，並根據環境的需要修改設定值，就可以很容易地完成對多個環境的組態設定。
 
-請不要把你所有會使用到的設定都放在這個檔案中。事實上，它應該只記錄那些特定環境會使用到的設定項目，或者是密碼、 API 金鑰等不應該被揭露的敏感資訊。使用 **.env** 可以讓任何環境間的部屬所改變的東西都是相同的。
+請不要把你所有會使用到的設定都放在這個檔案中。事實上，它應該只記錄那些特定環境會使用到的設定項目，或者是密碼、 API 金鑰等不應該被揭露的敏感資訊。使用 **.env** 可以讓任何環境間的佈署所改變的東西都是相同的。
 
 與大多數的設定相同，不論在哪個環境，將 **.env** 檔案放在專案根目錄下（與 ``system`` 以及 ``app`` 同層）。
 
@@ -230,21 +224,16 @@ to magically have that property and value at run time.
 註冊器
 ==========
 
-"Registrars" are any other classes which might provide additional configuration properties.
-Registrars provide a means of altering a configuration at runtime across namespaces and files.
-There are two ways to implement a Registrar: implicit and explicit.
+註冊器 ``Registrars`` 是任何可能提供額外組態屬性的類別，註冊器提供一種在執行時期時命名空間與檔案改變組態的方法。有顯性與隱性兩種方法用於實作出註冊器。
 
-.. note:: Values from **.env** always take priority over Registrars.
+.. note:: 來自 ``.env`` 中的數值將始終優先於註冊器。
 
 隱性註冊器
 -------------------
 
-Any namespace may define registrars by using the **Config/Registrar.php** file, if discovery
-is enabled in :doc:`Modules </general/modules>`. These files are classes whose methods are
-named for each configuration class you wish to extend. For example, a third-party module might
-wish to supply an additional template to ``Pager`` without overwriting whatever a develop has
-already configured. In **src/Config/Registrar.php** there would be a ``Registrar`` class with
-the single ``Pager()`` method (note the case-sensitivity)::
+如果在 :doc:`程式碼模組 </general/modules>` 中啟用了自動探索，任何命名空間都可以透過使用 **Config/Registrar.php** 檔案來宣告註冊器。這些檔案是一些類別，類別中的方法命名以需要擴充的組態設定類別為準。例如：第三方模組可能希望 ``Pager`` 提供額外的樣板，而不覆蓋開發人員已經設定好的任何內容。在 **src/Config/Registrar.php** 中，將有一個具有 ``Pager()`` 方法的 ``Registrar`` 類別（請注意大小寫敏感）。
+
+::
 
     class Registrar
     {
@@ -258,9 +247,8 @@ the single ``Pager()`` method (note the case-sensitivity)::
         }
     }
 
-Registrar methods must always return an array, with keys corresponding to the properties
-of the target config file. Existing values are merged, and Registrar properties have
-overwrite priority.
+註冊器方法必須總是回傳鍵值陣列，它的鍵呼應目標組態設定檔案的屬性。合併現有的數值，並且註冊器屬性在覆蓋上具備優先級。
+
 
 顯性註冊器
 -------------------
@@ -295,6 +283,7 @@ overwrite priority.
             '\App\Models\RegionalSales'
         ];
     }
+
 與上例相關的 RegionalSales 模型可能是這個樣子的：
 
 ::

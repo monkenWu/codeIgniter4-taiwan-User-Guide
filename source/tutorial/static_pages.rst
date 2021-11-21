@@ -1,7 +1,7 @@
 靜態頁面
 ###############################################################################
 
-.. note:: 這個教學預設你已經下載了 CodeIgniter 並且在開發環境中 :doc:`部屬了框架 <../installation/index>` 。
+.. note:: 這個教學預設你已經下載了 CodeIgniter 並且在開發環境中 :doc:`佈署了框架 <../installation/index>` 。
 
 你要做的第一件事就是設置一個 **控制器** 來處理靜態頁面。控制器是一個有助於指派工作的類別。它可以說是 Web 應用程式間的黏著劑。
 
@@ -46,13 +46,10 @@
     }
 
 
-你創建了一個名為 ``Pages`` 的類別，這個類別具有 ``view`` 方法，這個方法將會被傳入 ``$page`` 引數。 還有一個 ``index()`` 方法，這與 **app/Controllers/Home.php** 這個控制器相同，將會默認顯示 CodeIgniter 歡迎頁面。
+你創建了一個名為 ``Pages`` 的類別，這個類別具有 ``view`` 方法，這個方法將會被傳入 ``$page`` 引數。 還有一個 ``index()`` 方法，這與 **app/Controllers/Home.php** 這個控制器相同，將會預設顯示 CodeIgniter 歡迎頁面。
 
-.. note:: There are two ``view()`` functions referred to in this tutorial.
-    One is the class method created with ``public function view($page = 'home')``
-    and ``echo view('welcome_message')`` for displaying a view.
-    Both are *technically* a function. But when you create a function in a class,
-    it's called a method.
+.. note:: 
+    本教學中提到了兩個 ``view()`` 函數。一種是 ``public function view($page = 'home')`` 另一種則是 ``echo view('welcome_message')``。前者為類別中的方法，後者用於顯示視圖。在技術上兩者都可以稱之為函數（function）。但是，當你在類別中撰寫一個函數時，我們會稱它為方法（method）。
 
 ``Pages`` 繼承  ``CodeIgniter\Controller`` 類別。這代表， Pages 類別將可以呼叫 ``CodeIgniter\Controller`` 類別（ *system/Controller.php* ）中定義的方法與變數。
 
@@ -81,9 +78,8 @@ header 包含載入主要視圖之前輸出的基本 HTML 程式碼與標題。�
 	</body>
 	</html>
 
-.. note:: If you look closely in **header.php** template we are using an **esc()**
-    function. It's a global function provided by CodeIgniter to help prevent
-    XSS attacks. You can read more about it :doc:`here </general/common_functions>`.
+.. note:: 
+    如果你仔細觀察過 ``header.php`` 樣板，你會發現我們使用了一個 ``esc()`` 函數。這是 CodeIgniter 提供的全域函數，可以幫助你防止 XSS 攻擊。你可以在 :doc:`這裡 </general/common_functions>` 閱讀更多關於它的資訊。
 
 在控制器中新增邏輯
 -------------------------------------------------------

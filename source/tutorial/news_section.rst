@@ -37,7 +37,7 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
 連接資料庫
 -------------------------------------------------------
 
-請打開在部屬 CodeIgniter 時所創建的環境設定檔 ``.env`` ，在設定檔中取消資料庫相關設定的註解，並且依據要連入的資料庫進行相關設定。
+請打開在佈署 CodeIgniter 時所創建的環境設定檔 ``.env`` ，在設定檔中取消資料庫相關設定的註解，並且依據要連入的資料庫進行相關設定。
 
 ::
 
@@ -120,10 +120,6 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
 
 看看程式碼，你可能會發現與我們之前建立的文件有相似之處。首先，它繼承了 CodeIgniter 核心類別 ``Controller`` ，這個類別提供了幾個輔助方法，並且確保你可以使用當前的 ``Request`` 與 ``Response`` 物件。以及將運作資訊保存在伺服器的 ``Logger`` 類別。
 
-Next, the ``model()`` function is used to create the **NewsModel** instance.
-This is a helper function. You can read more about it :doc:`here </general/common_functions>`.
-You could also write ``$model = new NewsModel();``, if you don't use it.
-
 接下來， ``model()`` 函數被用於建立 NewsModel 實體。這是一個輔助函數，你可以在 :doc:`這裡 </general/common_functions>` 閱讀到更多說明。若你不想這麼使用，你也可以寫成 ``$model = new NewsModel();`` 。
 
  ``$slug`` 變數在第二個方法中傳遞給模型，而模型也使用 slug 回傳相應的新聞。
@@ -173,10 +169,8 @@ You could also write ``$model = new NewsModel();``, if you don't use it.
 
     <?php endif ?>
 
-.. note:: We are again using using ``esc()`` to help prevent XSS attacks.
-    But this time we also passed "url" as a second parameter. That's because
-    attack patterns are different depending on the context in which the output
-    is used. You can read more about it :doc:`here </general/common_functions>`.
+.. note::
+    我們再次使用了 ``esc()`` 來防止 XSS 攻擊，但這次我們將「url」作為 ``esc()`` 的第二個參數。這是因為攻擊的模式是不同的，取決於輸出使用的語境。你可以在 :doc:`這裡 </general/common_functions>` 閱讀到更多的資訊。
 
 在這裡每個專案將會透過迴圈產生並且顯示給使用者。你可以看到我們在 PHP 中撰寫了樣板，並且讓它與 HTML 混合。如果你更喜歡使用 樣板語法，則可以使用 CodeIgniter 的 :doc:`視圖器解析器 </outgoing/view_parser>` 。或置入任何你喜歡的解析器進入 CodeIgniter 。
 
