@@ -104,7 +104,7 @@ CodeIgniter 支援使用程式碼模組化的方式，幫助你創建具有重�
 Composer 與探索
 ======================
 
-透過 Composer 安裝的軟體包也在默認探索的範圍之中，這是因為 Composer 的命名空間是採用 PSR4 規範的。 PSR0 的命名空間就不會被自動探索功能檢測到。
+透過 Composer 安裝的軟體包也在預設探索的範圍之中，這是因為 Composer 的命名空間是採用 PSR4 規範的。 PSR0 的命名空間就不會被自動探索功能檢測到。
 
 如果你不希望在定位檔案時掃描所有 Composer 的以知目錄，你可以透過編輯 ``Config\Modules.php`` 檔案，修改裡頭的 ``$discoverInComposer`` 變數來關閉這個功能：
 

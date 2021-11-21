@@ -96,7 +96,7 @@ CodeIgniter 透過 Exceptions 將錯誤報告建構到你的系統中，包括 `
 		throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 	}
 
-你可以將訊息傳遞到異常中，替換掉默認 404 所顯示的訊息。
+你可以將訊息傳遞到異常中，替換掉預設 404 所顯示的訊息。
 
 設定例外
 ---------------
@@ -129,7 +129,7 @@ CodeIgniter 透過 Exceptions 將錯誤報告建構到你的系統中，包括 `
 
 	throw new \CodeIgniter\Router\Exceptions\RedirectException($route);
 
-``$route`` 可以是一個被宣告過的路由名稱、相對的 URL ，或者是完整的 URL 。你也可以給予一個重新導向碼來替換掉默認的 ( ``302`` , "temporary redirect") ：
+``$route`` 可以是一個被宣告過的路由名稱、相對的 URL ，或者是完整的 URL 。你也可以給予一個重新導向碼來替換掉預設的 ( ``302`` , "temporary redirect") ：
 
 ::
 

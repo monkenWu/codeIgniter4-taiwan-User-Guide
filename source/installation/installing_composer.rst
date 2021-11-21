@@ -31,7 +31,7 @@ Composer 安裝
 
 若是你不需要安裝 phpunit 及其所有的 Composer 依賴，則必須在上述的指令中添加 ``-–no-dev``。執行了這個指令， Composer 將會安裝單純的框架檔案，以及我們預先同捆的三個所需的依賴程式庫。
 
-下例將使用默認的專案資料夾名稱「 appstarter 」演示上述需求的安裝指令： ::
+下例將使用預設的專案資料夾名稱「 appstarter 」演示上述需求的安裝指令： ::
 
     composer create-project codeigniter4/appstarter --no-dev
 

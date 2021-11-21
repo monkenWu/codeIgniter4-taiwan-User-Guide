@@ -46,7 +46,7 @@
     }
 
 
-你創建了一個名為 ``Pages`` 的類別，這個類別具有 ``view`` 方法，這個方法將會被傳入 ``$page`` 引數。 還有一個 ``index()`` 方法，這與 **app/Controllers/Home.php** 這個控制器相同，將會默認顯示 CodeIgniter 歡迎頁面。
+你創建了一個名為 ``Pages`` 的類別，這個類別具有 ``view`` 方法，這個方法將會被傳入 ``$page`` 引數。 還有一個 ``index()`` 方法，這與 **app/Controllers/Home.php** 這個控制器相同，將會預設顯示 CodeIgniter 歡迎頁面。
 
 .. note:: 
     本教學中提到了兩個 ``view()`` 函數。一種是 ``public function view($page = 'home')`` 另一種則是 ``echo view('welcome_message')``。前者為類別中的方法，後者用於顯示視圖。在技術上兩者都可以稱之為函數（function）。但是，當你在類別中撰寫一個函數時，我們會稱它為方法（method）。

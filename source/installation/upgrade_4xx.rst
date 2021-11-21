@@ -80,7 +80,7 @@ CodeIgniter 4 是一個完全重寫的框架，它不具備向後相容的特性
 
 - 在程式庫資料夾下，某些類別用於繼承或取代框架中原有的功能。現在，你不再需要以 ``MY_x`` 來命名。
 
-- 你可以在任何需要的地方創建這個類別，只需要在 ``app/Config/Services.php`` 中添加合適服務方法（ service methods ），來替換掉默認組件。
+- 你可以在任何需要的地方創建這個類別，只需要在 ``app/Config/Services.php`` 中添加合適服務方法（ service methods ），來替換掉預設組件。
 
 Upgrading Libraries
 ===================
