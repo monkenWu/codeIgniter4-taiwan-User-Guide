@@ -39,7 +39,7 @@
 替換核心類別
 ======================
 
-要使用自己的系統類別來替代掉默認的系統類別，請確定 :doc:`Autoloader <../concepts/autoloader>` 可以找得到你的類別，以及你的新類別實作了相應的介面，並修改 :doc:`Service <../concepts/services>` 來載入你的類別替換掉核心類別。
+要使用自己的系統類別來替代掉預設的系統類別，請確定 :doc:`Autoloader <../concepts/autoloader>` 可以找得到你的類別，以及你的新類別實作了相應的介面，並修改 :doc:`Service <../concepts/services>` 來載入你的類別替換掉核心類別。
 
 例如，你有一個新的 ``App\Libraries\RouteCollection`` 類別，你想用它來替換掉系統核心類別，你就可這樣創建你的類別：
 

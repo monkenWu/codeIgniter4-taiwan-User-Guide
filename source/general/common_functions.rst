@@ -54,11 +54,11 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 .. php:function:: env ( $key[, $default=null])
 
 	:param string $key: 需要檢索的環境變數名稱
-	:param mixed  $default: 如果沒有找到值，默認回傳的值。
-	:returns: 環境變數，默認值或為 null 。
+	:param mixed  $default: 如果沒有找到值，預設回傳的值。
+	:returns: 環境變數，預設值或為 null 。
 	:rtype: mixed
 
-	用於檢索已經被設定過的環境變數，如果沒有找到，則會回傳一個默認值。將會是實際的布林值，而不是以字串表示。
+	用於檢索已經被設定過的環境變數，如果沒有找到，則會回傳一個預設值。將會是實際的布林值，而不是以字串表示。
 
 	當與 .env 檔案結合使用時，這個函數會特別有用。用於設定環境本身的特定值，如資料庫設定、API 金鑰等等。
 
@@ -88,7 +88,7 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 
 	:param string $line: 要檢索的文字行數。
 	:param array  $args: 替代置換符號的資料陣列。
-	:param string $locale: 指定要使用的語言環境，而非默認的語言環境。
+	:param string $locale: 指定要使用的語言環境，而非預設的語言環境。
 
 	根據別名字串檢索特定的語言環境檔案。
 
@@ -106,9 +106,9 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 .. php:function:: old( $key[, $default = null, [, $escape = 'html' ]] )
 
 	:param string $key: 需要檢查的舊表單資料。
-	:param mixed  $default: 如果 $key 不存在，則回傳默認值。
+	:param mixed  $default: 如果 $key 不存在，則回傳預設值。
 	:param mixed  $escape: `轉譯 <#esc>`_ 內容或使用 false 禁用。
-	:returns: 定義 key 的值，或者使用默認值。
+	:returns: 定義 key 的值，或者使用預設值。
 	:rtype: mixed
 
 	提供一個簡單的方法，可以從已經提交的表單中造訪「舊的輸入資料」。
@@ -168,7 +168,7 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 
 	抓取目前的 RendererInterface 相容類別，並告訴它渲染所指定的視圖。提供便捷的方法，可以在控制器、程式庫與路由閉包中使用。
 
-	在 `$options` 陣列中有一個選項可以使用，即 `saveData` 。它指定的資料將保持在同一請求多次呼叫的 `View()` 之中。在默認的情況下，這個視圖的資料將在顯示視圖後被棄用。
+	在 `$options` 陣列中有一個選項可以使用，即 `saveData` 。它指定的資料將保持在同一請求多次呼叫的 `View()` 之中。在預設的情況下，這個視圖的資料將在顯示視圖後被棄用。
 
 	提供 $option 陣列是為了方便第三方與 Twig 等程式庫的集成。
 

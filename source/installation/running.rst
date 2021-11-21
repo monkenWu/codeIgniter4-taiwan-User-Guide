@@ -47,10 +47,10 @@ CodeIgniter 4 附帶了本地開發伺服器，利用了 PHP 內建的 Web 伺�
 
     php spark serve --php /usr/bin/php7.6.5.4
 
-部屬在 Apache 伺服器
+佈署在 Apache 伺服器
 =================================================
 
-CodeIgniter4 應用程式通常會部屬在網頁伺服器中。通常 Apache的 ``httpd`` 是標準的平台，在手冊中我們預設你使用它。
+CodeIgniter4 應用程式通常會佈署在網頁伺服器中。通常 Apache的 ``httpd`` 是標準的平台，在手冊中我們預設你使用它。
 
 Apache 與許多平台綁定在一起，你也可以選擇使用 `Bitnami <https://bitnami.com/stacks/infrastructure>`_ 所綑綁的資料庫引擎、 PHP 與 Apache。
 
@@ -106,10 +106,10 @@ Apache 與許多平台綁定在一起，你也可以選擇使用 `Bitnami <https
 
 Hosting with Nginx
 =================================================
-Nginx is the second most widely used HTTP server for web hosting.
-Here you can find an example configuration using PHP 7.3 FPM (unix sockets) under Ubuntu Server.
 
-This configuration enables URLs without “index.php” in them and using CodeIgniter's “404 - File Not Found” for URLs ending with “.php”.
+Nginx 是第二常用的 HTTP 伺服器，以下是在 Ubuntu 伺服器下使用 PHP 7.3 FPM （unix sockets）的範例設定。
+
+這個設定中去除了 URL 的「index.php」，並針對「.php」結尾的 URL 使用 CodeIgniter 內建的「404 - File Not Found」。
 
 .. code-block:: nginx
 
@@ -143,10 +143,10 @@ This configuration enables URLs without “index.php” in them and using CodeIg
         }
     }
 
-使用 Vagrant 進行部屬
+使用 Vagrant 進行佈署
 =================================================
 
-即便你在不同的環境中進行開發，利用虛擬化技術在預計部屬的環境中，對網頁應用程式進行測試是個不錯的方法。
+即便你在不同的環境中進行開發，利用虛擬化技術在預計佈署的環境中，對網頁應用程式進行測試是個不錯的方法。
 
 程式庫中附帶一個 ``VagrantFile.dist`` 設定檔，可以複製到 ``VagrantFile`` 並針對該系統進行訂製，例如：啟用對特定資料庫或快取引擎的訪問。
 
@@ -170,14 +170,9 @@ Vagrant 設定檔假設你的系統上設定了 `ubuntu/bionic64 Vagrant box
 
 你的網頁應用程式將可以在 ``http://localhost:8080`` 造訪，程式碼覆蓋率報告將位於 ``http://localhost:8081`` ，使用指南則位於 ``http://localhost:8082`` 。
 
-Bootstrapping the App
+啟動應用程式
 =================================================
 
-In some scenarios you will want to load the framework without actually running the whole
-application. This is particularly useful for unit testing your project, but may also be
-handy for using third-party tools to analyze and modify your code. The framework comes
-with a separate bootstrap script specifically for this scenario: ``system/Test/bootstrap.php``.
+在某些情況下，你會想在不實際執行整個應用程式的情況下載入框架。這對於專案的單元測試非常有用，對於使用第三方工具來分析與修改程式碼也很方便。CodeIgniter4 附帶了針對這種情形的獨立啟動腳本：　``system/Test/bootstrap.php`` 。
 
-Most of the paths to your project are defined during the bootstrap process. You may use
-pre-defined constants to override these, but when using the defaults be sure that your
-paths align with the expected directory structure for your installation method.
+專案中大部分的路徑都是在啟動過程中宣告的，你可以預先宣告這些常數來覆蓋這些啟動過程中被宣告的常數，但在使用預設值時，請確保你的路徑與安裝方法預期的目錄結構一致。

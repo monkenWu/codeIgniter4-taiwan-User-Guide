@@ -475,7 +475,7 @@ Execute a DROP KEY.
         :returns:    \CodeIgniter\Database\Forge instance (method chaining)
         :rtype:    \CodeIgniter\Database\Forge
 
-        Adds a foreign key to the set that will be used to create a table. Usage:  See `Adding Foreign Keys`_.
+        Adds a foreign key to the set that will be used to create a table. Usage:  See `新增外來鍵`_.
 
     .. php:method:: addKey($key[, $primary = FALSE[, $unique = FALSE]])
 

@@ -1,39 +1,35 @@
 #########
-Factories
+工廠模式
 #########
 
 .. contents::
     :local:
     :depth: 2
 
-Introduction
+簡介
 ============
 
-Like ``Services``, ``Factories`` are an extension of autoloading that helps keep your code
-concise yet optimal, without having to pass around object instances between classes. At its
-simplest, Factories provide a common way to create a class instance and access it from
-anywhere. This is a great way to reuse object states and reduce memory load from keeping
-multiple instances loaded across your app.
+如同 ``services`` 一樣，工廠（ ``Factories`` ）模式是自動載入的一種延伸，它有助於維持程式碼的簡潔，不必在類別之間傳遞物件實體。簡單來說，工廠模式提供了新建實體後從任何地方存取它的方法。這是一種能夠重複使用物件狀態以減少記憶體負載，並保持多個實體在應用程式中載入的好方式。
 
-Anything can be loaded by Factories, but the best examples are those classes that are used
-to work on or transmit common data. The framework itself uses Factories internally, e.g., to
-make sure the correct configuration is loaded when using the ``Config`` class. 
+任何物件都可以被工廠載入，但最好的使用場景是處理那些用於傳輸普通資料的類別。CodeIgniter 本身也使用了工廠模式，使 ``Config`` 類別總是能載入正確的組態設定。
 
-Take a look at ``Models`` as an example. You can access the Factory specific to ``Models``
-by using the magic static method of the Factories class, ``Factories::models()``. Because of
-the common path structure for namespaces and folders, Factories know that the model files
-and classes are found within **Models**, so you can request a model by its shorthand base name::
+以 ``Models`` 為例，你可以使用工廠類別中的魔術靜態方法 ``Factories::models()`` 來存取 ``Models`` 的特定工廠。由於命名空間和資料夾有著相同的路徑結構，工廠了解模型檔案與類別被歸類在 **Models** 資料夾下，所以你可以透過名稱直接向工廠請求一個模型的載入：
+
+::
 
     use CodeIgniter\Config\Factories;
 
     $users = Factories::models('UserModel');
 
-Or you could also request a specific class::
+或是你也可以請求一個特定的類別
+
+::
 
     $widgets = Factories::models('Some\Namespace\Models\WidgetModel');
 
-Next time you ask for the same class anywhere in your code, ``Factories`` will be sure
-you get back the instance as before::
+無論在何處請求相同的類別時， ``Factories`` 都會確保你取得取得一模一樣的實體。
+
+::
 
     class SomeOtherClass
     {
@@ -41,56 +37,54 @@ you get back the instance as before::
         // ...
     }
 
-Factory Parameters
+參數
 ==================
 
-``Factories`` takes as a second parameter an array of option values (described below).
-These directives will override the default options configured for each component.
+你能夠將控制可選功能的陣列傳入 ``Factories`` 的第二個參數，你所傳入的設定將會覆蓋預設的選項。
 
-Any more parameters passed at the same time will be forwarded on to the class
-constructor, making it easy to configure your class instance on-the-fly. For example, say
-your app uses a separate database for authentication and you want to be sure that any attempts
-to access user records always go through that connection::
+同時你也能緊接著傳入更多參數，這些參數將被轉送到類別的建構函數中，方便你從外部初始化你的類別。例如：假設你的應用程式使用獨立資料庫進行身分認證，並且你希望任何存取使用者紀錄的行為總是使用特定的連線進行時：
+
+::
 
     $conn  = db_connect('AuthDatabase');
     $users = Factories::models('UserModel', [], $conn);
 
-Now any time the ``UserModel`` is loaded from ``Factories`` it will in fact be returning a
-class instance that uses the alternate database connection.
+現在，每當 ``UserModel`` 從 ``Factories`` 載入時，它都會回傳類別實體，並使用你所希望的資料庫連線。
 
-Factories Options
+可選設定
 ==================
 
-The default behavior might not work for every component. For example, say your component
-name and its path do not align, or you need to limit instances to a certain type of class.
-Each component takes a set of options to direct discovery and instantiation.
+預設的載入模式可能不適合每個元件，例如：你的元件名稱與它的路徑不一致，或者是你需要將實體限制為特定類型的類別上。每個元件可能都需要特定的可選設定來指揮 ``Factories`` 探索與實體化。
 
-========== ============== ==================================================================================================================== ===================================================
-Key        Type           Description                                                                                                          Default
-========== ============== ==================================================================================================================== ===================================================
-component  string or null The name of the component (if different than the static method). This can be used to alias one component to another. ``null`` (defaults to the component name)
-path       string or null The relative path within the namespace/folder to look for classes.                                                   ``null`` (defaults to the component name)
-instanceOf string or null A required class name to match on the returned instance.                                                             ``null`` (no filtering)
-getShared  boolean        Whether to return a shared instance of the class or load a fresh one.                                                ``true``
-preferApp  boolean        Whether a class with the same basename in the App namespace overrides other explicit class requests.                 ``true``
-========== ============== ==================================================================================================================== ===================================================
++------------+----------------+-------------------------------------------------------------------------+---------------------------+
+| Key        | 型別           | 說明                                                                    | 預設值                    |
++============+================+=========================================================================+===========================+
+| component  | string or null | 元件的名稱（如果與靜態方法不同）。替一個元件別名為另一個元件。          | ``null`` （預設元件名稱） |
++------------+----------------+-------------------------------------------------------------------------+---------------------------+
+| path       | string or null | 命名空間/資料夾內查找類的相對路徑。                                     | ``null`` （預設元件名稱） |
++------------+----------------+-------------------------------------------------------------------------+---------------------------+
+| instanceOf | string or null | 所需的類別名稱，以確認回傳的實體。                                      | ``null`` （不過濾）       |
++------------+----------------+-------------------------------------------------------------------------+---------------------------+
+| getShared  | boolean        | 回傳一個共用實體還是載入一個新實體。                                    | ``true``                  |
++------------+----------------+-------------------------------------------------------------------------+---------------------------+
+| preferApp  | boolean        | 若是在 App 命名空間中具有相同基本名稱的類別，是否優先於其他明確的請求。 | ``true``                  |
++------------+----------------+-------------------------------------------------------------------------+---------------------------+
 
-Factories Behavior
+行為
 ==================
 
-Options can be applied in one of three ways (listed in ascending priority):
+可以透過下列三種方式應用可選設定（按照優先級列出）：
 
-* A configuration file ``Factory`` with a component property.
-* The static method ``Factories::setOptions``.
-* Passing options directly at call time with a parameter.
+* 帶有元件屬性的組態設定檔案 ``Factory``
+* 靜態方法 ``Factories::setOptions``
+* 在呼叫時直接透過參數傳遞可選設定
 
-Configurations
+組態設定
 --------------
 
-To set default component options, create a new Config files at **app/Config/Factory.php**
-that supplies options as an array property that matches the name of the component. For example,
-if you wanted to ensure that all Filters used by your app were valid framework instances,
-your **Factories.php** file might look like this::
+要設定預設的元件選項，請在 **app/Config/Factory.php** 中建立一個成員變數，並命名為元件名稱。這個變數為一個鍵值陣列，你可以宣告你所需要的可選設定內容。例如：如果你想要保證你的應用程式使用的所有過濾器都是有效的框架實體，你的　**Factories.php**　可能看起來會像這樣：
+
+::
 
     <?php
 
@@ -106,32 +100,28 @@ your **Factories.php** file might look like this::
         ];
     }
 
-This would prevent conflict of an unrelated third-party module which happened to have an
-unrelated "Filters" path in its namespace.
+如果某個模組碰巧在命名空間中擁有一個不相關的「Filters」路徑，這將防止第三方模組發生衝突。
 
-setOptions Method
+setOptions 方法
 -----------------
 
-The ``Factories`` class has a static method to allow runtime option configuration: simply
-supply the desired array of options using the ``setOptions()`` method and they will be
-merged with the default values and stored for the next call::
+``Factories`` 類別提供一個靜態方法，它能夠在執行期間進行可選設定的配置，只需要將設定用的鍵值陣列傳入 ``setOptions()`` ，它們將會與預設值合併並儲存以供下一個呼叫
+
+::
 
     Factories::setOptions('filters', [
         'instanceOf' => FilterInterface::class,
         'prefersApp' => false,
     ]);
 
-Parameter Options
+參數傳遞
 -----------------
 
-``Factories``'s magic static call takes as a second parameter an array of option values.
-These directives will override the stored options configured for each component and can be
-used at call time to get exactly what you need. The input should be an array with option
-names as keys to each overriding value.
+``Factories`` 的魔術靜態呼叫允許你將可選設定作為第二個參數傳入。這些指令將會覆蓋每個元件的可選設定，並且可以在呼叫時使用以準確的獲得你所需要的內容。你應該要傳入一個陣列，其中的鍵為選項名稱，其值將會覆蓋預設設定。
 
-For example, by default ``Factories`` assumes that you want to locate a shared instance of
-a component. By adding a second parameter to the magic static call, you can control whether
-that single call will return a new or shared instance::
+舉個例子，在預設的情況下， ``Factories`` 會假設你所需要的元件是共用實體。透過傳入第二個參數至魔術靜態呼叫中，你可以控制該次呼叫是回傳新實體還是共用實體：
 
-    $users = Factories::models('UserModel', ['getShared' => true]); // Default; will always be the same instance
-    $other = Factories::models('UserModel', ['getShared' => false]); // Will always create a new instance
+::
+
+    $users = Factories::models('UserModel', ['getShared' => true]); // 預設；; 將永遠為相同實體
+    $other = Factories::models('UserModel', ['getShared' => false]); // 將永遠建立新的實體

@@ -32,7 +32,7 @@ CodeIgniter 4 Traditional Chinese(Taiwan) User Guide - codeigniter4 繁體中文
 #### 簽名
 所有的提交的內容都必須要留下您的簽名，比如說：``John Doe <johndoe@example.com>``，其設定方式與你使用 git 的媒介有所不同，請務必設定完成後再進行提交。
 
-## 如何部屬
+## 如何佈署
 CodeIgniter 使用手冊基於 Sphinx 進行撰寫，它可以管理文檔並且輸出成各種格式。頁面以人類可讀的 [eStructuredText](http://sphinx.pocoo.org/rest.html)
 格式進行撰寫。
 

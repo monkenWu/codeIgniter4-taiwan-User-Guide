@@ -7,11 +7,9 @@
 環境常數
 ========================
 
-在預設的情形下，CodeIgniter 內建的環境常數將使用 ``$_SERVER['CI_ENVIRONMENT']`` 提供的值，否則默認為 production（上線模式）。可以根據你的伺服器的性質，設定多種不同的模式。
+在預設的情形下，CodeIgniter 內建的環境常數將使用 ``$_SERVER['CI_ENVIRONMENT']`` 提供的值，否則預設為 production（上線模式）。可以根據你的伺服器的性質，設定多種不同的模式。
 
-.. note:: The environment ``testing`` is the special one for PHPUnit testing.
-    It has special conditions built into the framework at various places to assist with that.
-    You can't use it for your development.
+.. note:: 環境變數 ``testing`` 是執行 PHPUnit 測時時的特殊環境。在框架中的各個地方都有特別的設定來幫助 PHPUnit 執行測試，所以你不能在開發中使用這個環境變數。
 
 .env
 ----
@@ -56,7 +54,7 @@ nginx
 引導檔案
 ----------
 
-CodeIgniter 把與環境名稱相同的 PHP 腳本置於 **APPPATH/Config/Boot** 之下。這些檔案可以包含任何對於環境的自定義設定，無論是更新錯誤顯示設定、載入額外的開發者工具，還是其他的設定，這些檔案都會被系統自動載入。下列文件是在你部屬全新的框架時就創建的：
+CodeIgniter 把與環境名稱相同的 PHP 腳本置於 **APPPATH/Config/Boot** 之下。這些檔案可以包含任何對於環境的自定義設定，無論是更新錯誤顯示設定、載入額外的開發者工具，還是其他的設定，這些檔案都會被系統自動載入。下列文件是在你佈署全新的框架時就創建的：
 
 * development.php
 * production.php
