@@ -223,7 +223,7 @@ HMAC-SHA512 for the authentication.
     // reconfigure an instance with different settings
     $encrypter = $encryption->initialize($config);
 
-記住， ``$config`` 必須是 `Config\Encryption` 類別的實體或擴展 `CodeIgniter\Config\BaseConfig` 。
+記住， ``$config`` 必須是 `Config\Encryption` 類別的實體或繼承 `CodeIgniter\Config\BaseConfig` 。
 
 
 ***************

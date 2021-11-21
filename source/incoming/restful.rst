@@ -80,7 +80,7 @@ CodeIgniter 透過它的資源路由和 `ResourceController`，可以讓你的�
 
 `ResourceController` 為你的 RESTful API 提供了一個方便的進入點，它有著與上述資源路由相對應的方法。
 
-擴展它，覆蓋 `modelName` 和 `format` 屬性，然後實作你想使用的方法::
+繼承它，覆蓋 `modelName` 和 `format` 屬性，然後實作你想使用的方法::
 
 	<?php namespace App\Controllers;
 

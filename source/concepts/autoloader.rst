@@ -6,7 +6,7 @@
 
 CodeIgniter 提供了一個非常靈活且極少需要設定的自動載入器。它可以定位單個非命名空間標註的類別、符合 `PSR4 <http://www.php-fig.org/psr/psr-4/>`_ 的命名空間規範目錄加載結構的類別，甚至可以在常規目錄下定位類別檔案（例如 Controller、Model等）。
 
-為了提升效能，CodeIgniter的核心組件已被添加到類別映射檔案中。
+為了提升效能，CodeIgniter的核心元件已被添加到類別映射檔案中。
 
 自動載入器可以獨立運行，但如果你需要的話，也可以和其他自動載入器協同運行，例如 `Composer <https://getcomposer.org>`_ 或者是你自己的自定義載入器。因為它們都是透過 `spl_autoload_register <http://php.net/manual/en/function.spl-autoload-register.php>`_ 來註冊運行的，所以可以依次運行，互不干擾。
 
