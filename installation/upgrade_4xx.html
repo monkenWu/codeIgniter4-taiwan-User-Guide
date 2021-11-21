@@ -120,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">工廠模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -358,12 +358,12 @@
 <p>CodeIgniter 4 是一個完全重寫的框架，它不具備向後相容的特性。所以，轉移與重構應用將比升級應用將更加合適。若你完成應用轉移，從任意版本的 CodeIgniter 4 升級到下一個版本的 CodeIgniter 將會非常簡單。</p>
 <p>與 CodeIgniter 3 相比，保持了「精益、平衡、簡單」的理念，但實踐上卻存在著很大的區別。</p>
 <p>在升級的工作上，並沒有類似於「十二步驟」的檢查表。相反的，你必須利用
-<a class="reference internal" href="index.html"><span class="doc">安裝指引</span></a> 在新的專案資料夾中取得全新的 CodeIgniter 4 ，接著再開始轉換整合你的應用組件，我們將指出你可能會需要考慮的因素。</p>
+<a class="reference internal" href="index.html"><span class="doc">安裝指引</span></a> 在新的專案資料夾中取得全新的 CodeIgniter 4 ，接著再開始轉換整合你的應用元件，我們將指出你可能會需要考慮的因素。</p>
 <p>並不是所有的 CI3 程式庫都移植或重構成 CI4 版本！關於最新的支援清單，你可以參閱 <a class="reference external" href="https://forum.codeigniter.com/forum-33.html">CodeIgniter 4 路線圖</a>　論壇分類中的 up-to-date 文章。</p>
 <p>在開始專案的轉移之前， <strong>請詳細閱讀使用指南</strong> ！</p>
 <p><strong>下載</strong></p>
 <ul class="simple">
-<li>CI4 仍然可以下載後直接運行的方式使用，即利用 zip 或 tarball 進行部屬。專案文件中包含完整的使用指南（在 <cite>doc</cite> 資料夾中）。</li>
+<li>CI4 仍然可以下載後直接運行的方式使用，即利用 zip 或 tarball 進行佈署。專案文件中包含完整的使用指南（在 <cite>doc</cite> 資料夾中）。</li>
 <li>也可以使用 Composer 進行安裝。</li>
 </ul>
 <p><strong>命名空間</strong></p>
@@ -395,15 +395,15 @@ you some step-by-step instructions to convert the MVC classes in CodeIgniter4:</
 </div>
 <p><strong>類別載入</strong></p>
 <ul class="simple">
-<li>不再有 CodeIgniter「超級物件」 的存在，框架組件的將會作為屬性，動態載入至控制器之中。</li>
-<li>類別只在需要它的地方才進行實作，組件統一由 <code class="docutils literal notranslate"><span class="pre">Services</span></code> 進行管理。</li>
+<li>不再有 CodeIgniter「超級物件」 的存在，框架元件的將會作為屬性，動態載入至控制器之中。</li>
+<li>類別只在需要它的地方才進行實作，元件統一由 <code class="docutils literal notranslate"><span class="pre">Services</span></code> 進行管理。</li>
 <li>類別載入器將自動以 PSR4 的規則，在 <code class="docutils literal notranslate"><span class="pre">App</span></code> （應用程式）和 <code class="docutils literal notranslate"><span class="pre">CodeIgniter</span></code> （系統）這兩個頂級命名空間進行類別定位；支援　Composer 自動載入，甚至是類別檔案在沒有宣告命名空間的情形下，也可以透過假設的方式，根據它們位於的文件夾，找到正確的模型與程式庫。</li>
 <li>為了支援你熟悉的應用程式結構，你可以透過設定類別載入器來達成。例如使用：「 <a class="reference external" href="https://zh.wikipedia.org/wiki/HMVC">HMVC</a> 」風格。</li>
 </ul>
 <p><strong>程式庫</strong></p>
 <ul class="simple">
 <li>你的應用程式類別依然可以載入在 <code class="docutils literal notranslate"><span class="pre">app/Libraries</span></code> 之中的類別，但這些類別也可以儲存在別處。</li>
-<li>CI3 的 <code class="docutils literal notranslate"><span class="pre">$this-&gt;load-&gt;library(x);</span></code> 已棄用。現在，在你所想要使用的組件內，你可以按照命名空間的定義，使用 <code class="docutils literal notranslate"><span class="pre">$this-&gt;x</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">X();</span></code> 實作你想使用的程式庫類別。</li>
+<li>CI3 的 <code class="docutils literal notranslate"><span class="pre">$this-&gt;load-&gt;library(x);</span></code> 已棄用。現在，在你所想要使用的元件內，你可以按照命名空間的定義，使用 <code class="docutils literal notranslate"><span class="pre">$this-&gt;x</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">X();</span></code> 實作你想使用的程式庫類別。</li>
 </ul>
 <p><strong>輔助函數</strong></p>
 <ul class="simple">
@@ -419,7 +419,7 @@ you some step-by-step instructions to convert the MVC classes in CodeIgniter4:</
 <ul class="simple">
 <li>在擴充、更換核心類別上，你不再需要使用 <code class="docutils literal notranslate"><span class="pre">core</span></code> 資料夾保存諸如 <code class="docutils literal notranslate"><span class="pre">MY_...</span></code> 的檔案。</li>
 <li>在程式庫資料夾下，某些類別用於繼承或取代框架中原有的功能。現在，你不再需要以 <code class="docutils literal notranslate"><span class="pre">MY_x</span></code> 來命名。</li>
-<li>你可以在任何需要的地方創建這個類別，只需要在 <code class="docutils literal notranslate"><span class="pre">app/Config/Services.php</span></code> 中添加合適服務方法（ service methods ），來替換掉默認組件。</li>
+<li>你可以在任何需要的地方創建這個類別，只需要在 <code class="docutils literal notranslate"><span class="pre">app/Config/Services.php</span></code> 中添加合適服務方法（ service methods ），來替換掉預設元件。</li>
 </ul>
 <div class="section" id="upgrading-libraries">
 <h2>Upgrading Libraries<a class="headerlink" href="#upgrading-libraries" title="本標題的永久連結">¶</a></h2>
@@ -490,7 +490,7 @@ steps and examples to adjust your code.</li>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月14日。
+        最後更新於 2021年11月21日。
       </span>
 
     </p>

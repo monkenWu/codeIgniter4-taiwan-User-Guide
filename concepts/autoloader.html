@@ -120,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="services.html">服務（services）</a></li>
-<li class="toctree-l2"><a class="reference internal" href="factories.html">Factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="factories.html">工廠模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="security.html">安全指南</a></li>
 </ul>
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -355,7 +355,7 @@
 <h1>自動載入檔案<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>每個應用程式都在不同的位置包含有大量的類別檔案，像是框架有為了實現核心功能的類別，而你的應用可能又會擁有大量的程式庫、模型以及其他實體檔案，甚至你也可能需要第三方的類別庫來供專案使用。記錄每個單獨檔案的路徑，並寫死在一系列的 <code class="docutils literal notranslate"><span class="pre">requires()</span></code> 在檔案中，這是一件非常令人頭痛且容易出錯的事情。這就是為什麼需要自動載入器。</p>
 <p>CodeIgniter 提供了一個非常靈活且極少需要設定的自動載入器。它可以定位單個非命名空間標註的類別、符合 <a class="reference external" href="http://www.php-fig.org/psr/psr-4/">PSR4</a> 的命名空間規範目錄加載結構的類別，甚至可以在常規目錄下定位類別檔案（例如 Controller、Model等）。</p>
-<p>為了提升效能，CodeIgniter的核心組件已被添加到類別映射檔案中。</p>
+<p>為了提升效能，CodeIgniter的核心元件已被添加到類別映射檔案中。</p>
 <p>自動載入器可以獨立運行，但如果你需要的話，也可以和其他自動載入器協同運行，例如 <a class="reference external" href="https://getcomposer.org">Composer</a> 或者是你自己的自定義載入器。因為它們都是透過 <a class="reference external" href="http://php.net/manual/en/function.spl-autoload-register.php">spl_autoload_register</a> 來註冊運行的，所以可以依次運行，互不干擾。</p>
 <p>自動載入器總是處於激活狀態，在框架開始運行時透過 <code class="docutils literal notranslate"><span class="pre">spl_autoload_register()</span></code> 進行註冊。</p>
 <div class="section" id="id2">
@@ -424,7 +424,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月14日。
+        最後更新於 2021年11月21日。
       </span>
 
     </p>

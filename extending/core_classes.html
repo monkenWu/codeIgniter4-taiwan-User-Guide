@@ -120,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">工廠模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -388,7 +388,7 @@
 </div>
 <div class="section" id="id3">
 <h2>替換核心類別<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
-<p>要使用自己的系統類別來替代掉默認的系統類別，請確定 <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">Autoloader</span></a> 可以找得到你的類別，以及你的新類別實作了相應的介面，並修改 <a class="reference internal" href="../concepts/services.html"><span class="doc">Service</span></a> 來載入你的類別替換掉核心類別。</p>
+<p>要使用自己的系統類別來替代掉預設的系統類別，請確定 <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">Autoloader</span></a> 可以找得到你的類別，以及你的新類別實作了相應的介面，並修改 <a class="reference internal" href="../concepts/services.html"><span class="doc">Service</span></a> 來載入你的類別替換掉核心類別。</p>
 <p>例如，你有一個新的 <code class="docutils literal notranslate"><span class="pre">App\Libraries\RouteCollection</span></code> 類別，你想用它來替換掉系統核心類別，你就可這樣創建你的類別：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -478,7 +478,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月14日。
+        最後更新於 2021年11月21日。
       </span>
 
     </p>

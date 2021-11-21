@@ -120,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">工廠模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -356,12 +356,10 @@
 <p>開發者通常會希望在開發環境或正式環境中，得到不同的系統行為。例如：在開發應用程式時，錯誤輸出是一件很有用的事情，但在上線環境中可能會帶來安全隱憂。在開發環境中，你可能會希望載入一些正式環境中不會使用的額外的工具。</p>
 <div class="section" id="id2">
 <h2>環境常數<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
-<p>在預設的情形下，CodeIgniter 內建的環境常數將使用 <code class="docutils literal notranslate"><span class="pre">$_SERVER['CI_ENVIRONMENT']</span></code> 提供的值，否則默認為 production（上線模式）。可以根據你的伺服器的性質，設定多種不同的模式。</p>
+<p>在預設的情形下，CodeIgniter 內建的環境常數將使用 <code class="docutils literal notranslate"><span class="pre">$_SERVER['CI_ENVIRONMENT']</span></code> 提供的值，否則預設為 production（上線模式）。可以根據你的伺服器的性質，設定多種不同的模式。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">The environment <code class="docutils literal notranslate"><span class="pre">testing</span></code> is the special one for PHPUnit testing.
-It has special conditions built into the framework at various places to assist with that.
-You can’t use it for your development.</p>
+<p class="last">環境變數 <code class="docutils literal notranslate"><span class="pre">testing</span></code> 是執行 PHPUnit 測時時的特殊環境。在框架中的各個地方都有特別的設定來幫助 PHPUnit 執行測試，所以你不能在開發中使用這個環境變數。</p>
 </div>
 <div class="section" id="env">
 <h3>.env<a class="headerlink" href="#env" title="本標題的永久連結">¶</a></h3>
@@ -397,7 +395,7 @@ You can’t use it for your development.</p>
 </div>
 <div class="section" id="id4">
 <h3>引導檔案<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
-<p>CodeIgniter 把與環境名稱相同的 PHP 腳本置於 <strong>APPPATH/Config/Boot</strong> 之下。這些檔案可以包含任何對於環境的自定義設定，無論是更新錯誤顯示設定、載入額外的開發者工具，還是其他的設定，這些檔案都會被系統自動載入。下列文件是在你部屬全新的框架時就創建的：</p>
+<p>CodeIgniter 把與環境名稱相同的 PHP 腳本置於 <strong>APPPATH/Config/Boot</strong> 之下。這些檔案可以包含任何對於環境的自定義設定，無論是更新錯誤顯示設定、載入額外的開發者工具，還是其他的設定，這些檔案都會被系統自動載入。下列文件是在你佈署全新的框架時就創建的：</p>
 <ul class="simple">
 <li>development.php</li>
 <li>production.php</li>
@@ -441,7 +439,7 @@ You can’t use it for your development.</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月14日。
+        最後更新於 2021年11月21日。
       </span>
 
     </p>

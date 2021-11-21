@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Factories &mdash; CodeIgniter4 4.1.5 說明文件</title>
+  <title>工廠模式 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -120,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="services.html">服務（services）</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Factories</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">工廠模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="security.html">安全指南</a></li>
 </ul>
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -334,7 +334,7 @@
         
           <li><a href="index.html">CodeIgniter4 概觀</a> &raquo;</li>
         
-      <li>Factories</li>
+      <li>工廠模式</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -351,46 +351,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="factories">
-<h1>Factories<a class="headerlink" href="#factories" title="本標題的永久連結">¶</a></h1>
-<div class="contents local topic" id="id1">
+  <div class="section" id="id1">
+<h1>工廠模式<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
-<li><a class="reference internal" href="#factory-parameters" id="id3">Factory Parameters</a></li>
-<li><a class="reference internal" href="#factories-options" id="id4">Factories Options</a></li>
-<li><a class="reference internal" href="#factories-behavior" id="id5">Factories Behavior</a><ul>
-<li><a class="reference internal" href="#configurations" id="id6">Configurations</a></li>
-<li><a class="reference internal" href="#setoptions-method" id="id7">setOptions Method</a></li>
-<li><a class="reference internal" href="#parameter-options" id="id8">Parameter Options</a></li>
+<li><a class="reference internal" href="#id3" id="id9">簡介</a></li>
+<li><a class="reference internal" href="#id4" id="id10">參數</a></li>
+<li><a class="reference internal" href="#id5" id="id11">可選設定</a></li>
+<li><a class="reference internal" href="#id6" id="id12">行為</a><ul>
+<li><a class="reference internal" href="#id7" id="id13">組態設定</a></li>
+<li><a class="reference internal" href="#setoptions" id="id14">setOptions 方法</a></li>
+<li><a class="reference internal" href="#id8" id="id15">參數傳遞</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="section" id="introduction">
-<h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="本標題的永久連結">¶</a></h2>
-<p>Like <code class="docutils literal notranslate"><span class="pre">Services</span></code>, <code class="docutils literal notranslate"><span class="pre">Factories</span></code> are an extension of autoloading that helps keep your code
-concise yet optimal, without having to pass around object instances between classes. At its
-simplest, Factories provide a common way to create a class instance and access it from
-anywhere. This is a great way to reuse object states and reduce memory load from keeping
-multiple instances loaded across your app.</p>
-<p>Anything can be loaded by Factories, but the best examples are those classes that are used
-to work on or transmit common data. The framework itself uses Factories internally, e.g., to
-make sure the correct configuration is loaded when using the <code class="docutils literal notranslate"><span class="pre">Config</span></code> class.</p>
-<p>Take a look at <code class="docutils literal notranslate"><span class="pre">Models</span></code> as an example. You can access the Factory specific to <code class="docutils literal notranslate"><span class="pre">Models</span></code>
-by using the magic static method of the Factories class, <code class="docutils literal notranslate"><span class="pre">Factories::models()</span></code>. Because of
-the common path structure for namespaces and folders, Factories know that the model files
-and classes are found within <strong>Models</strong>, so you can request a model by its shorthand base name:</p>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id9">簡介</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>如同 <code class="docutils literal notranslate"><span class="pre">services</span></code> 一樣，工廠（ <code class="docutils literal notranslate"><span class="pre">Factories</span></code> ）模式是自動載入的一種延伸，它有助於維持程式碼的簡潔，不必在類別之間傳遞物件實體。簡單來說，工廠模式提供了新建實體後從任何地方存取它的方法。這是一種能夠重複使用物件狀態以減少記憶體負載，並保持多個實體在應用程式中載入的好方式。</p>
+<p>任何物件都可以被工廠載入，但最好的使用場景是處理那些用於傳輸普通資料的類別。CodeIgniter 本身也使用了工廠模式，使 <code class="docutils literal notranslate"><span class="pre">Config</span></code> 類別總是能載入正確的組態設定。</p>
+<p>以 <code class="docutils literal notranslate"><span class="pre">Models</span></code> 為例，你可以使用工廠類別中的魔術靜態方法 <code class="docutils literal notranslate"><span class="pre">Factories::models()</span></code> 來存取 <code class="docutils literal notranslate"><span class="pre">Models</span></code> 的特定工廠。由於命名空間和資料夾有著相同的路徑結構，工廠了解模型檔案與類別被歸類在 <strong>Models</strong> 資料夾下，所以你可以透過名稱直接向工廠請求一個模型的載入：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\Config\Factories</span><span class="p">;</span>
 
 <span class="nv">$users</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Or you could also request a specific class:</p>
+<p>或是你也可以請求一個特定的類別</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$widgets</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="s1">&#39;Some\Namespace\Models\WidgetModel&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Next time you ask for the same class anywhere in your code, <code class="docutils literal notranslate"><span class="pre">Factories</span></code> will be sure
-you get back the instance as before:</p>
+<p>無論在何處請求相同的類別時， <code class="docutils literal notranslate"><span class="pre">Factories</span></code> 都會確保你取得取得一模一樣的實體。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SomeOtherClass</span>
 <span class="p">{</span>
     <span class="nv">$widgets</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="s1">&#39;WidgetModel&#39;</span><span class="p">);</span>
@@ -399,83 +389,73 @@ you get back the instance as before:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="factory-parameters">
-<h2><a class="toc-backref" href="#id3">Factory Parameters</a><a class="headerlink" href="#factory-parameters" title="本標題的永久連結">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">Factories</span></code> takes as a second parameter an array of option values (described below).
-These directives will override the default options configured for each component.</p>
-<p>Any more parameters passed at the same time will be forwarded on to the class
-constructor, making it easy to configure your class instance on-the-fly. For example, say
-your app uses a separate database for authentication and you want to be sure that any attempts
-to access user records always go through that connection:</p>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id10">參數</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<p>你能夠將控制可選功能的陣列傳入 <code class="docutils literal notranslate"><span class="pre">Factories</span></code> 的第二個參數，你所傳入的設定將會覆蓋預設的選項。</p>
+<p>同時你也能緊接著傳入更多參數，這些參數將被轉送到類別的建構函數中，方便你從外部初始化你的類別。例如：假設你的應用程式使用獨立資料庫進行身分認證，並且你希望任何存取使用者紀錄的行為總是使用特定的連線進行時：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$conn</span>  <span class="o">=</span> <span class="nx">db_connect</span><span class="p">(</span><span class="s1">&#39;AuthDatabase&#39;</span><span class="p">);</span>
 <span class="nv">$users</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">,</span> <span class="p">[],</span> <span class="nv">$conn</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Now any time the <code class="docutils literal notranslate"><span class="pre">UserModel</span></code> is loaded from <code class="docutils literal notranslate"><span class="pre">Factories</span></code> it will in fact be returning a
-class instance that uses the alternate database connection.</p>
+<p>現在，每當 <code class="docutils literal notranslate"><span class="pre">UserModel</span></code> 從 <code class="docutils literal notranslate"><span class="pre">Factories</span></code> 載入時，它都會回傳類別實體，並使用你所希望的資料庫連線。</p>
 </div>
-<div class="section" id="factories-options">
-<h2><a class="toc-backref" href="#id4">Factories Options</a><a class="headerlink" href="#factories-options" title="本標題的永久連結">¶</a></h2>
-<p>The default behavior might not work for every component. For example, say your component
-name and its path do not align, or you need to limit instances to a certain type of class.
-Each component takes a set of options to direct discovery and instantiation.</p>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id11">可選設定</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<p>預設的載入模式可能不適合每個元件，例如：你的元件名稱與它的路徑不一致，或者是你需要將實體限制為特定類型的類別上。每個元件可能都需要特定的可選設定來指揮 <code class="docutils literal notranslate"><span class="pre">Factories</span></code> 探索與實體化。</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="5%" />
-<col width="7%" />
-<col width="61%" />
-<col width="27%" />
+<col width="9%" />
+<col width="13%" />
+<col width="57%" />
+<col width="21%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Key</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
-<th class="head">Default</th>
+<th class="head">型別</th>
+<th class="head">說明</th>
+<th class="head">預設值</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>component</td>
 <td>string or null</td>
-<td>The name of the component (if different than the static method). This can be used to alias one component to another.</td>
-<td><code class="docutils literal notranslate"><span class="pre">null</span></code> (defaults to the component name)</td>
+<td>元件的名稱（如果與靜態方法不同）。替一個元件別名為另一個元件。</td>
+<td><code class="docutils literal notranslate"><span class="pre">null</span></code> （預設元件名稱）</td>
 </tr>
 <tr class="row-odd"><td>path</td>
 <td>string or null</td>
-<td>The relative path within the namespace/folder to look for classes.</td>
-<td><code class="docutils literal notranslate"><span class="pre">null</span></code> (defaults to the component name)</td>
+<td>命名空間/資料夾內查找類的相對路徑。</td>
+<td><code class="docutils literal notranslate"><span class="pre">null</span></code> （預設元件名稱）</td>
 </tr>
 <tr class="row-even"><td>instanceOf</td>
 <td>string or null</td>
-<td>A required class name to match on the returned instance.</td>
-<td><code class="docutils literal notranslate"><span class="pre">null</span></code> (no filtering)</td>
+<td>所需的類別名稱，以確認回傳的實體。</td>
+<td><code class="docutils literal notranslate"><span class="pre">null</span></code> （不過濾）</td>
 </tr>
 <tr class="row-odd"><td>getShared</td>
 <td>boolean</td>
-<td>Whether to return a shared instance of the class or load a fresh one.</td>
+<td>回傳一個共用實體還是載入一個新實體。</td>
 <td><code class="docutils literal notranslate"><span class="pre">true</span></code></td>
 </tr>
 <tr class="row-even"><td>preferApp</td>
 <td>boolean</td>
-<td>Whether a class with the same basename in the App namespace overrides other explicit class requests.</td>
+<td>若是在 App 命名空間中具有相同基本名稱的類別，是否優先於其他明確的請求。</td>
 <td><code class="docutils literal notranslate"><span class="pre">true</span></code></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="factories-behavior">
-<h2><a class="toc-backref" href="#id5">Factories Behavior</a><a class="headerlink" href="#factories-behavior" title="本標題的永久連結">¶</a></h2>
-<p>Options can be applied in one of three ways (listed in ascending priority):</p>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id12">行為</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
+<p>可以透過下列三種方式應用可選設定（按照優先級列出）：</p>
 <ul class="simple">
-<li>A configuration file <code class="docutils literal notranslate"><span class="pre">Factory</span></code> with a component property.</li>
-<li>The static method <code class="docutils literal notranslate"><span class="pre">Factories::setOptions</span></code>.</li>
-<li>Passing options directly at call time with a parameter.</li>
+<li>帶有元件屬性的組態設定檔案 <code class="docutils literal notranslate"><span class="pre">Factory</span></code></li>
+<li>靜態方法 <code class="docutils literal notranslate"><span class="pre">Factories::setOptions</span></code></li>
+<li>在呼叫時直接透過參數傳遞可選設定</li>
 </ul>
-<div class="section" id="configurations">
-<h3><a class="toc-backref" href="#id6">Configurations</a><a class="headerlink" href="#configurations" title="本標題的永久連結">¶</a></h3>
-<p>To set default component options, create a new Config files at <strong>app/Config/Factory.php</strong>
-that supplies options as an array property that matches the name of the component. For example,
-if you wanted to ensure that all Filters used by your app were valid framework instances,
-your <strong>Factories.php</strong> file might look like this:</p>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id13">組態設定</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
+<p>要設定預設的元件選項，請在 <strong>app/Config/Factory.php</strong> 中建立一個成員變數，並命名為元件名稱。這個變數為一個鍵值陣列，你可以宣告你所需要的可選設定內容。例如：如果你想要保證你的應用程式使用的所有過濾器都是有效的框架實體，你的　<strong>Factories.php</strong>　可能看起來會像這樣：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
@@ -491,14 +471,11 @@ your <strong>Factories.php</strong> file might look like this:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This would prevent conflict of an unrelated third-party module which happened to have an
-unrelated 「Filters」 path in its namespace.</p>
+<p>如果某個模組碰巧在命名空間中擁有一個不相關的「Filters」路徑，這將防止第三方模組發生衝突。</p>
 </div>
-<div class="section" id="setoptions-method">
-<h3><a class="toc-backref" href="#id7">setOptions Method</a><a class="headerlink" href="#setoptions-method" title="本標題的永久連結">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">Factories</span></code> class has a static method to allow runtime option configuration: simply
-supply the desired array of options using the <code class="docutils literal notranslate"><span class="pre">setOptions()</span></code> method and they will be
-merged with the default values and stored for the next call:</p>
+<div class="section" id="setoptions">
+<h3><a class="toc-backref" href="#id14">setOptions 方法</a><a class="headerlink" href="#setoptions" title="本標題的永久連結">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Factories</span></code> 類別提供一個靜態方法，它能夠在執行期間進行可選設定的配置，只需要將設定用的鍵值陣列傳入 <code class="docutils literal notranslate"><span class="pre">setOptions()</span></code> ，它們將會與預設值合併並儲存以供下一個呼叫</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">Factories</span><span class="o">::</span><span class="na">setOptions</span><span class="p">(</span><span class="s1">&#39;filters&#39;</span><span class="p">,</span> <span class="p">[</span>
     <span class="s1">&#39;instanceOf&#39;</span> <span class="o">=&gt;</span> <span class="nx">FilterInterface</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
     <span class="s1">&#39;prefersApp&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
@@ -506,17 +483,12 @@ merged with the default values and stored for the next call:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="parameter-options">
-<h3><a class="toc-backref" href="#id8">Parameter Options</a><a class="headerlink" href="#parameter-options" title="本標題的永久連結">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">Factories</span></code>’s magic static call takes as a second parameter an array of option values.
-These directives will override the stored options configured for each component and can be
-used at call time to get exactly what you need. The input should be an array with option
-names as keys to each overriding value.</p>
-<p>For example, by default <code class="docutils literal notranslate"><span class="pre">Factories</span></code> assumes that you want to locate a shared instance of
-a component. By adding a second parameter to the magic static call, you can control whether
-that single call will return a new or shared instance:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$users</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;getShared&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span> <span class="c1">// Default; will always be the same instance</span>
-<span class="nv">$other</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;getShared&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span> <span class="c1">// Will always create a new instance</span>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id15">參數傳遞</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Factories</span></code> 的魔術靜態呼叫允許你將可選設定作為第二個參數傳入。這些指令將會覆蓋每個元件的可選設定，並且可以在呼叫時使用以準確的獲得你所需要的內容。你應該要傳入一個陣列，其中的鍵為選項名稱，其值將會覆蓋預設設定。</p>
+<p>舉個例子，在預設的情況下， <code class="docutils literal notranslate"><span class="pre">Factories</span></code> 會假設你所需要的元件是共用實體。透過傳入第二個參數至魔術靜態呼叫中，你可以控制該次呼叫是回傳新實體還是共用實體：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$users</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;getShared&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span> <span class="c1">// 預設；; 將永遠為相同實體</span>
+<span class="nv">$other</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;getShared&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span> <span class="c1">// 將永遠建立新的實體</span>
 </pre></div>
 </div>
 </div>
@@ -545,7 +517,7 @@ that single call will return a new or shared instance:</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月14日。
+        最後更新於 2021年11月21日。
       </span>
 
     </p>

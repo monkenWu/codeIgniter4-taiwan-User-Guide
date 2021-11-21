@@ -120,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">工廠模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -442,7 +442,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>你可以將訊息傳遞到異常中，替換掉默認 404 所顯示的訊息。</p>
+<p>你可以將訊息傳遞到異常中，替換掉預設 404 所顯示的訊息。</p>
 </div>
 <div class="section" id="id8">
 <h3><a class="toc-backref" href="#id16">設定例外</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
@@ -466,7 +466,7 @@
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">throw</span> <span class="k">new</span> <span class="nx">\CodeIgniter\Router\Exceptions\RedirectException</span><span class="p">(</span><span class="nv">$route</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">$route</span></code> 可以是一個被宣告過的路由名稱、相對的 URL ，或者是完整的 URL 。你也可以給予一個重新導向碼來替換掉默認的 ( <code class="docutils literal notranslate"><span class="pre">302</span></code> , 「temporary redirect」) ：</p>
+<p><code class="docutils literal notranslate"><span class="pre">$route</span></code> 可以是一個被宣告過的路由名稱、相對的 URL ，或者是完整的 URL 。你也可以給予一個重新導向碼來替換掉預設的 ( <code class="docutils literal notranslate"><span class="pre">302</span></code> , 「temporary redirect」) ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">throw</span> <span class="k">new</span> <span class="nx">\CodeIgniter\Router\Exceptions\RedirectException</span><span class="p">(</span><span class="nv">$route</span><span class="p">,</span> <span class="mi">301</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -496,7 +496,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月14日。
+        最後更新於 2021年11月21日。
       </span>
 
     </p>

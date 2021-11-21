@@ -120,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">工廠模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -355,7 +355,7 @@
 <h1>靜態頁面<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">這個教學預設你已經下載了 CodeIgniter 並且在開發環境中 <a class="reference internal" href="../installation/index.html"><span class="doc">部屬了框架</span></a> 。</p>
+<p class="last">這個教學預設你已經下載了 CodeIgniter 並且在開發環境中 <a class="reference internal" href="../installation/index.html"><span class="doc">佈署了框架</span></a> 。</p>
 </div>
 <p>你要做的第一件事就是設置一個 <strong>控制器</strong> 來處理靜態頁面。控制器是一個有助於指派工作的類別。它可以說是 Web 應用程式間的黏著劑。</p>
 <p>舉個例子，當呼叫：</p>
@@ -390,14 +390,10 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>你創建了一個名為 <code class="docutils literal notranslate"><span class="pre">Pages</span></code> 的類別，這個類別具有 <code class="docutils literal notranslate"><span class="pre">view</span></code> 方法，這個方法將會被傳入 <code class="docutils literal notranslate"><span class="pre">$page</span></code> 引數。 還有一個 <code class="docutils literal notranslate"><span class="pre">index()</span></code> 方法，這與 <strong>app/Controllers/Home.php</strong> 這個控制器相同，將會默認顯示 CodeIgniter 歡迎頁面。</p>
+<p>你創建了一個名為 <code class="docutils literal notranslate"><span class="pre">Pages</span></code> 的類別，這個類別具有 <code class="docutils literal notranslate"><span class="pre">view</span></code> 方法，這個方法將會被傳入 <code class="docutils literal notranslate"><span class="pre">$page</span></code> 引數。 還有一個 <code class="docutils literal notranslate"><span class="pre">index()</span></code> 方法，這與 <strong>app/Controllers/Home.php</strong> 這個控制器相同，將會預設顯示 CodeIgniter 歡迎頁面。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">There are two <code class="docutils literal notranslate"><span class="pre">view()</span></code> functions referred to in this tutorial.
-One is the class method created with <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">function</span> <span class="pre">view($page</span> <span class="pre">=</span> <span class="pre">'home')</span></code>
-and <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">view('welcome_message')</span></code> for displaying a view.
-Both are <em>technically</em> a function. But when you create a function in a class,
-it’s called a method.</p>
+<p class="last">本教學中提到了兩個 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 函數。一種是 <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">function</span> <span class="pre">view($page</span> <span class="pre">=</span> <span class="pre">'home')</span></code> 另一種則是 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">view('welcome_message')</span></code>。前者為類別中的方法，後者用於顯示視圖。在技術上兩者都可以稱之為函數（function）。但是，當你在類別中撰寫一個函數時，我們會稱它為方法（method）。</p>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">Pages</span></code> 繼承  <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code> 類別。這代表， Pages 類別將可以呼叫 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code> 類別（ <em>system/Controller.php</em> ）中定義的方法與變數。</p>
 <p>控制器是每個 Web 應用程式的 <strong>請求中心</strong> 。與任何 PHP 類別一樣，在控制器中必須使用 <code class="docutils literal notranslate"><span class="pre">$this</span></code> 呼叫。</p>
@@ -421,9 +417,7 @@ it’s called a method.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">If you look closely in <strong>header.php</strong> template we are using an <strong>esc()</strong>
-function. It’s a global function provided by CodeIgniter to help prevent
-XSS attacks. You can read more about it <a class="reference internal" href="../general/common_functions.html"><span class="doc">here</span></a>.</p>
+<p class="last">如果你仔細觀察過 <code class="docutils literal notranslate"><span class="pre">header.php</span></code> 樣板，你會發現我們使用了一個 <code class="docutils literal notranslate"><span class="pre">esc()</span></code> 函數。這是 CodeIgniter 提供的全域函數，可以幫助你防止 XSS 攻擊。你可以在 <a class="reference internal" href="../general/common_functions.html"><span class="doc">這裡</span></a> 閱讀更多關於它的資訊。</p>
 </div>
 </div>
 <div class="section" id="id3">
@@ -551,7 +545,7 @@ XSS attacks. You can read more about it <a class="reference internal" href="../g
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月14日。
+        最後更新於 2021年11月21日。
       </span>
 
     </p>

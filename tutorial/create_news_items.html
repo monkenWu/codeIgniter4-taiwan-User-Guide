@@ -120,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">工廠模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -422,7 +422,7 @@
 <div class="section" id="id3">
 <h2>更新模型<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p>完成了上述工作，剩下的就是將模型給設定好，讓資料可以被正確保存。 <code class="docutils literal notranslate"><span class="pre">save()</span></code> 方法將根據主鍵來判斷是否需要插入訊息，若是這一筆資料已存在便會執行更新。在本例中，我們並沒有傳遞 id 給它，所以它將會插入一筆新的紀錄在 <strong>news</strong> 表。</p>
-<p>但是，在默認的情形向，模型中的插入與更新方法並不會保存任何資料，因為它不知道那些欄位是可以被安全地更新。我們可以編輯模型，在 <code class="docutils literal notranslate"><span class="pre">$allowedFields</span></code> 屬性中宣告可更新地欄位列表。</p>
+<p>但是，在預設的情形向，模型中的插入與更新方法並不會保存任何資料，因為它不知道那些欄位是可以被安全地更新。我們可以編輯模型，在 <code class="docutils literal notranslate"><span class="pre">$allowedFields</span></code> 屬性中宣告可更新地欄位列表。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
@@ -482,7 +482,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月14日。
+        最後更新於 2021年11月21日。
       </span>
 
     </p>

@@ -120,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">工廠模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -355,18 +355,18 @@
 <h1>運作你的應用程式<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#id3" id="id10">初始組態與設定</a></li>
-<li><a class="reference internal" href="#id4" id="id11">本地開發伺服器</a></li>
-<li><a class="reference internal" href="#apache" id="id12">部屬在 Apache 伺服器</a></li>
-<li><a class="reference internal" href="#hosting-with-nginx" id="id13">Hosting with Nginx</a></li>
-<li><a class="reference internal" href="#vagrant" id="id14">使用 Vagrant 進行部屬</a></li>
-<li><a class="reference internal" href="#bootstrapping-the-app" id="id15">Bootstrapping the App</a></li>
+<li><a class="reference internal" href="#id3" id="id11">初始組態與設定</a></li>
+<li><a class="reference internal" href="#id4" id="id12">本地開發伺服器</a></li>
+<li><a class="reference internal" href="#apache" id="id13">佈署在 Apache 伺服器</a></li>
+<li><a class="reference internal" href="#hosting-with-nginx" id="id14">Hosting with Nginx</a></li>
+<li><a class="reference internal" href="#vagrant" id="id15">使用 Vagrant 進行佈署</a></li>
+<li><a class="reference internal" href="#id10" id="id16">啟動應用程式</a></li>
 </ul>
 </div>
 <p>CodeIgniter 4 應用程式可透過多種不同的方式運作，託管在 Web 伺服器上，使用虛擬化或 CodeIgniter 命令列工具進行測試。本條目將會介紹如何使用每種技術，並且說明其中的優缺點。</p>
 <p>如果你初次使用 CodeIgniter ，請閱讀使用手冊的 <a class="reference internal" href="../intro/index.html"><span class="doc">入門</span></a> 條目，了解如何建構動態的 PHP 應用程式。享受吧！</p>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id10">初始組態與設定</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">初始組態與設定</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <ol class="arabic simple">
 <li>使用文字編輯器打開 <strong>app/Config/App.php</strong> 這個檔案並設定基本的 URL 。如果你需要更多的靈活性，可以將 <code class="docutils literal notranslate"><span class="pre">.env</span></code> 檔中的 baseURL 設定為  <code class="docutils literal notranslate"><span class="pre">app.baseURL=&quot;http://example.com&quot;</span></code> 。</li>
 <li>如果需要使用資料庫，請使用文字編輯器打開 <strong>app/Config/Database.php</strong> 這個檔案並設定資料庫。或者可以在 <code class="docutils literal notranslate"><span class="pre">.env</span></code> 中進行這些設定。</li>
@@ -378,7 +378,7 @@
 </div>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id11">本地開發伺服器</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">本地開發伺服器</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
 <p>CodeIgniter 4 附帶了本地開發伺服器，利用了 PHP 內建的 Web 伺服器和 CodeIgniter 路由。你可以使用 <code class="docutils literal notranslate"><span class="pre">serve</span></code> 指令來啟動它，在專案根目錄下透過命令列來執行:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">serve</span>
 </pre></div>
@@ -409,8 +409,8 @@
 </ul>
 </div>
 <div class="section" id="apache">
-<h2><a class="toc-backref" href="#id12">部屬在 Apache 伺服器</a><a class="headerlink" href="#apache" title="本標題的永久連結">¶</a></h2>
-<p>CodeIgniter4 應用程式通常會部屬在網頁伺服器中。通常 Apache的 <code class="docutils literal notranslate"><span class="pre">httpd</span></code> 是標準的平台，在手冊中我們預設你使用它。</p>
+<h2><a class="toc-backref" href="#id13">佈署在 Apache 伺服器</a><a class="headerlink" href="#apache" title="本標題的永久連結">¶</a></h2>
+<p>CodeIgniter4 應用程式通常會佈署在網頁伺服器中。通常 Apache的 <code class="docutils literal notranslate"><span class="pre">httpd</span></code> 是標準的平台，在手冊中我們預設你使用它。</p>
 <p>Apache 與許多平台綁定在一起，你也可以選擇使用 <a class="reference external" href="https://bitnami.com/stacks/infrastructure">Bitnami</a> 所綑綁的資料庫引擎、 PHP 與 Apache。</p>
 <div class="section" id="htaccess">
 <h3>.htaccess<a class="headerlink" href="#htaccess" title="本標題的永久連結">¶</a></h3>
@@ -457,10 +457,9 @@
 </div>
 </div>
 <div class="section" id="hosting-with-nginx">
-<h2><a class="toc-backref" href="#id13">Hosting with Nginx</a><a class="headerlink" href="#hosting-with-nginx" title="本標題的永久連結">¶</a></h2>
-<p>Nginx is the second most widely used HTTP server for web hosting.
-Here you can find an example configuration using PHP 7.3 FPM (unix sockets) under Ubuntu Server.</p>
-<p>This configuration enables URLs without “index.php” in them and using CodeIgniter’s “404 - File Not Found” for URLs ending with “.php”.</p>
+<h2><a class="toc-backref" href="#id14">Hosting with Nginx</a><a class="headerlink" href="#hosting-with-nginx" title="本標題的永久連結">¶</a></h2>
+<p>Nginx 是第二常用的 HTTP 伺服器，以下是在 Ubuntu 伺服器下使用 PHP 7.3 FPM （unix sockets）的範例設定。</p>
+<p>這個設定中去除了 URL 的「index.php」，並針對「.php」結尾的 URL 使用 CodeIgniter 內建的「404 - File Not Found」。</p>
 <div class="highlight-nginx notranslate"><div class="highlight"><pre><span></span><span class="k">server</span> <span class="p">{</span>
     <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
     <span class="kn">listen</span> <span class="s">[::]:80</span><span class="p">;</span>
@@ -494,8 +493,8 @@ Here you can find an example configuration using PHP 7.3 FPM (unix sockets) unde
 </div>
 </div>
 <div class="section" id="vagrant">
-<h2><a class="toc-backref" href="#id14">使用 Vagrant 進行部屬</a><a class="headerlink" href="#vagrant" title="本標題的永久連結">¶</a></h2>
-<p>即便你在不同的環境中進行開發，利用虛擬化技術在預計部屬的環境中，對網頁應用程式進行測試是個不錯的方法。</p>
+<h2><a class="toc-backref" href="#id15">使用 Vagrant 進行佈署</a><a class="headerlink" href="#vagrant" title="本標題的永久連結">¶</a></h2>
+<p>即便你在不同的環境中進行開發，利用虛擬化技術在預計佈署的環境中，對網頁應用程式進行測試是個不錯的方法。</p>
 <p>程式庫中附帶一個 <code class="docutils literal notranslate"><span class="pre">VagrantFile.dist</span></code> 設定檔，可以複製到 <code class="docutils literal notranslate"><span class="pre">VagrantFile</span></code> 並針對該系統進行訂製，例如：啟用對特定資料庫或快取引擎的訪問。</p>
 <div class="section" id="id7">
 <h3>設定<a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
@@ -515,15 +514,10 @@ Here you can find an example configuration using PHP 7.3 FPM (unix sockets) unde
 <p>你的網頁應用程式將可以在 <code class="docutils literal notranslate"><span class="pre">http://localhost:8080</span></code> 造訪，程式碼覆蓋率報告將位於 <code class="docutils literal notranslate"><span class="pre">http://localhost:8081</span></code> ，使用指南則位於 <code class="docutils literal notranslate"><span class="pre">http://localhost:8082</span></code> 。</p>
 </div>
 </div>
-<div class="section" id="bootstrapping-the-app">
-<h2><a class="toc-backref" href="#id15">Bootstrapping the App</a><a class="headerlink" href="#bootstrapping-the-app" title="本標題的永久連結">¶</a></h2>
-<p>In some scenarios you will want to load the framework without actually running the whole
-application. This is particularly useful for unit testing your project, but may also be
-handy for using third-party tools to analyze and modify your code. The framework comes
-with a separate bootstrap script specifically for this scenario: <code class="docutils literal notranslate"><span class="pre">system/Test/bootstrap.php</span></code>.</p>
-<p>Most of the paths to your project are defined during the bootstrap process. You may use
-pre-defined constants to override these, but when using the defaults be sure that your
-paths align with the expected directory structure for your installation method.</p>
+<div class="section" id="id10">
+<h2><a class="toc-backref" href="#id16">啟動應用程式</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h2>
+<p>在某些情況下，你會想在不實際執行整個應用程式的情況下載入框架。這對於專案的單元測試非常有用，對於使用第三方工具來分析與修改程式碼也很方便。CodeIgniter4 附帶了針對這種情形的獨立啟動腳本：　<code class="docutils literal notranslate"><span class="pre">system/Test/bootstrap.php</span></code> 。</p>
+<p>專案中大部分的路徑都是在啟動過程中宣告的，你可以預先宣告這些常數來覆蓋這些啟動過程中被宣告的常數，但在使用預設值時，請確保你的路徑與安裝方法預期的目錄結構一致。</p>
 </div>
 </div>
 
@@ -549,7 +543,7 @@ paths align with the expected directory structure for your installation method.<
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月14日。
+        最後更新於 2021年11月21日。
       </span>
 
     </p>

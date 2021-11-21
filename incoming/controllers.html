@@ -120,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">工廠模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -385,9 +385,9 @@
 <div class="section" id="hello-world">
 <h2><a class="toc-backref" href="#id14">讓我們試一下：Hello World!</a><a class="headerlink" href="#hello-world" title="本標題的永久連結">¶</a></h2>
 <p>讓我們創建一個簡單的控制器，這樣你就可以看到它的操作方式。使用你的文本編輯器，創建一個名為 Helloworld.php 的文件，然後把下面的程式碼放在裡面。</p>
-<p>You will notice that the Helloworld Controller is extending the BaseController. you can also extend the CodeIgniterController if you do not need the functionality of the BaseController.</p>
-<p>The BaseController provides a convenient place for loading components and performing functions that are needed by all your controllers. You can extend this class in any new controller.</p>
-<p>For security reasons be sure to declare any new utility methods as protected or private.:</p>
+<p>你會注意到 Helloworld 控制器繼承了 BaseController ，如果你不需要 BaseController 提供的功能，你也可以直接繼承 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code> 。</p>
+<p>BaseController 替載入元件以及執行所有控制器都需要的功能提供了一個好地方，你可以在任何新的控制器中繼承這個類別。</p>
+<p>為了安全起見，請以保護或私有宣告新的方法。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
@@ -452,15 +452,11 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>另外，一定要確保你的控制器擴展了父控制器類別，這樣它才可以繼承所有的方法。</p>
+<p>另外，一定要確保你的控制器繼承了父控制器類別，這樣它才可以繼承所有的方法。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p>The system will attempt to match the URI against Controllers by matching each segment against
-folders/files in APPPATH/Controllers, when a match wasn’t found against defined routes.
-That’s why your folders/files MUST start with a capital letter and the rest MUST be lowercase.
-If you want another naming convention you need to manually define it using the
-<a class="reference internal" href="routing.html"><span class="doc">URI Routing</span></a> feature.</p>
-<p>Here is an example based on PSR-4: Autoloader:</p>
+<p>當未找到與你所宣告的路由相配對的項目時，系統將會嘗試透過將每個區段與 <code class="docutils literal notranslate"><span class="pre">APPPATH/Controllers</span></code> 中的資料夾/檔案進行配對來找到合適的控制器。這就是為什麼資料夾以及檔案必須大寫字母開頭，其餘部分皆是小寫的原因。如果你需要其他的命名方式，則需要使用 <a class="reference internal" href="routing.html"><span class="doc">URI 路由</span></a> 功能手動宣告。</p>
+<p>以下是基於 PSR-4 的範例：自動載入器</p>
 <div class="last highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">\</span><span class="o">&lt;</span><span class="nx">NamespaceName</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">\</span><span class="o">&lt;</span><span class="nx">SubNamespaceNames</span><span class="o">&gt;</span><span class="p">)</span><span class="o">*</span><span class="nx">\</span><span class="o">&lt;</span><span class="nx">ClassName</span><span class="o">&gt;</span>
 
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;helloworld&#39;</span><span class="p">,</span> <span class="s1">&#39;App\Controllers\HelloWorld::index&#39;</span><span class="p">);</span>
@@ -606,7 +602,7 @@ If you want another naming convention you need to manually define it using the
 <p>只需在主要的 <em>app/Controllers/</em> 目錄下創建子目錄，然後將你的控制器類別放進去。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last">Folder names MUST start with an uppercase letter and ONLY the first character can be uppercase.</p>
+<p class="last">資料夾名稱必須以大寫字母開頭，並且只有第一個字元可以大寫。</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
@@ -624,7 +620,7 @@ If you want another naming convention you need to manually define it using the
 </div>
 <div class="section" id="id9">
 <h2><a class="toc-backref" href="#id21">擁有的屬性</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h2>
-<p>你創建的每個控制器都應該擴展  <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code> 類別。這個類別提供了幾個功能，所有的控制器都可以使用。</p>
+<p>你創建的每個控制器都應該繼承  <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code> 類別。這個類別提供了幾個功能，所有的控制器都可以使用。</p>
 <p><strong>請求物件</strong></p>
 <p>應用程式的主要的 <a class="reference internal" href="request.html"><span class="doc">請求實體</span></a> 總是可以作為一個類別屬性，<code class="docutils literal notranslate"><span class="pre">$this-&gt;request</span></code>。</p>
 <p><strong>響應物件</strong></p>
@@ -692,10 +688,9 @@ If you want another naming convention you need to manually define it using the
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>驗證也可以在模型中自動處理，但有時在控制器中進行驗證會更方便。具體到哪裡，由你自己決定.</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">Validation can also be handled automatically in the model, but sometimes it’s easier to do it in the controller. Where is up to you.</p>
+<p class="last">驗證也可以在模型中自動處理，但有時在控制器中進行驗證會更方便。具體在哪裡執行，由你自己決定.</p>
 </div>
 </div>
 <div class="section" id="id12">
@@ -726,7 +721,7 @@ If you want another naming convention you need to manually define it using the
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月14日。
+        最後更新於 2021年11月21日。
       </span>
 
     </p>

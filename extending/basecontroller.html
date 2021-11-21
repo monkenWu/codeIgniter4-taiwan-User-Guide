@@ -120,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">工廠模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -353,7 +353,7 @@
             
   <div class="section" id="id1">
 <h1>擴充控制器<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
-<p>CodeIgniter 的核心控制器不應該被改變，但是在 <strong>app/Controllers/BaseController.php</strong> 中，我們為你提供了一個預設的控制器擴充類別。你所製作的任何控制器都應該繼承 <code class="docutils literal notranslate"><span class="pre">BaseController</span></code> 來利用預載組件以及你提供的任何額外功能：</p>
+<p>CodeIgniter 的核心控制器不應該被改變，但是在 <strong>app/Controllers/BaseController.php</strong> 中，我們為你提供了一個預設的控制器擴充類別。你所製作的任何控制器都應該繼承 <code class="docutils literal notranslate"><span class="pre">BaseController</span></code> 來利用預載元件以及你提供的任何額外功能：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
@@ -367,12 +367,12 @@
 </pre></div>
 </div>
 <div class="section" id="id2">
-<h2>預載組件<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
+<h2>預載元件<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <p>基本控制器是一個好地方，可以在每次專案運作時載入任何輔助函數、模型、程式庫，以及服務等。輔助函數應該被加入到預先定義好的 <code class="docutils literal notranslate"><span class="pre">$helpers</span></code> 陣列中。例如：你想讓 HTML 以及文字輔助函數普遍可用：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">protected</span> <span class="nv">$helpers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">];</span>
 </pre></div>
 </div>
-<p>任何需要載入的組件或需要處理的資料都應該加入到建構函數 <code class="docutils literal notranslate"><span class="pre">initController()</span></code> 中。例如：你的專案大量使用到會談程式庫，你可以會需要在這裡啟動它：</p>
+<p>任何需要載入的元件或需要處理的資料都應該加入到建構函數 <code class="docutils literal notranslate"><span class="pre">initController()</span></code> 中。例如：你的專案大量使用到會談程式庫，你可以會需要在這裡啟動它：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">initController</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="c1">// 請不要編輯這行</span>
@@ -422,7 +422,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月14日。
+        最後更新於 2021年11月21日。
       </span>
 
     </p>

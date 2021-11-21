@@ -120,7 +120,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="services.html">服務（services）</a></li>
-<li class="toctree-l2"><a class="reference internal" href="factories.html">Factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="factories.html">工廠模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="security.html">安全指南</a></li>
 </ul>
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -353,14 +353,14 @@
             
   <div class="section" id="id1">
 <h1>模型、視圖與控制器<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
-<p>當創建一個應用程式的時候，我們需要有一種便捷且可以簡易組織代碼的架構。和很多 web 框架類似， CodeIgniter 框架也使用了模型、視圖以及控制器的架構，即 MVC 模式。這種方式可以將資料、畫面和流程等部分，分別作為單獨的組件存放在我們的應用程式中。需要特別注意的是，可能每個人會對某個組件所擔任的角色有不同的看法，那麼，下面我們就透過這個文檔來說明這些組件所擔任的角色，如果你有不同的想法，你可以依照你的需求自由決定如何使用這些組件。</p>
+<p>當創建一個應用程式的時候，我們需要有一種便捷且可以簡易組織代碼的架構。和很多 web 框架類似， CodeIgniter 框架也使用了模型、視圖以及控制器的架構，即 MVC 模式。這種方式可以將資料、畫面和流程等部分，分別作為單獨的元件存放在我們的應用程式中。需要特別注意的是，可能每個人會對某個元件所擔任的角色有不同的看法，那麼，下面我們就透過這個文檔來說明這些元件所擔任的角色，如果你有不同的想法，你可以依照你的需求自由決定如何使用這些元件。</p>
 <p><strong>模型</strong> 主要用來管理應用程式的資料，以及幫助應用程式執行特殊的業務規則。</p>
 <p><strong>視圖</strong> 是一個幾乎不具邏輯的簡單的檔案，只負責展示資料給使用者。</p>
 <p><strong>控制器</strong> 主要扮演著程式碼黏著劑的角色，主要在視圖（或使用者的畫面）和資料儲存區之間來回的處理並整合資料。</p>
 <p>在最一般的狀況下，控制器和模型 只是一個完成特定工作的類別。它們雖然不是你唯一可以使用的類別類型，但它們是構成整個框架的核心。我們在框架中指定 <strong>/app</strong> 資料夾來儲存他們，但你只要將他們正確地放進命名空間中，你也可以儲存在任何你想要的位置，我們稍後會更加詳細的討論。</p>
-<p>下面我們就來一一地仔細看一下這三個主要的組件。</p>
+<p>下面我們就來一一地仔細看一下這三個主要的元件。</p>
 <div class="section" id="id2">
-<h2>組件<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
+<h2>元件<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
 <div class="section" id="id3">
 <h3>視圖<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h3>
 <p>視圖 是最簡單的檔案，通常是一個 HTML 檔案加入少量的 PHP 程式碼。視圖中的 PHP 程式碼應該盡量保持簡單，一般只是顯示一個變數的內容，或者透過循環語句將物件的資料展示在表格中。</p>
@@ -409,7 +409,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月14日。
+        最後更新於 2021年11月21日。
       </span>
 
     </p>

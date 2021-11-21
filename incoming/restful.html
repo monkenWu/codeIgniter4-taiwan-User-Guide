@@ -120,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">工廠模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -445,7 +445,7 @@ the Design of Network-based Software Architectures》</a> 中描述。這本可�
 <div class="section" id="id6">
 <h2><a class="toc-backref" href="#id17">資源路由</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
 <p><cite>ResourceController</cite> 為你的 RESTful API 提供了一個方便的進入點，它有著與上述資源路由相對應的方法。</p>
-<p>擴展它，覆蓋 <cite>modelName</cite> 和 <cite>format</cite> 屬性，然後實作你想使用的方法:</p>
+<p>繼承它，覆蓋 <cite>modelName</cite> 和 <cite>format</cite> 屬性，然後實作你想使用的方法:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\RESTful\ResourceController</span><span class="p">;</span>
@@ -694,7 +694,7 @@ the Design of Network-based Software Architectures》</a> 中描述。這本可�
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月14日。
+        最後更新於 2021年11月21日。
       </span>
 
     </p>

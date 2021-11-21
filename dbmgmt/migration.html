@@ -120,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">模型、視圖與控制器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">自動載入檔案</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">服務（services）</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">Factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">工廠模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">處裡 HTTP 請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">安全指南</a></li>
 </ul>
@@ -216,7 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">Image Manipulation Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">Publisher</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全性類別</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">Throttler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">Times and Dates</a></li>
@@ -353,7 +353,7 @@
             
   <div class="section" id="id1">
 <h1>資料庫遷移<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
-<p>遷移是一種方便的管理模式，它讓你可以有條不紊地改變你地資料庫。你當然可以選擇手0動編輯 SQL 片段，然後告訴開發人員們要記得運作這些片段。但在下一次部屬專案時，說不定你還得追蹤在正式伺服器上是否運作了這些片段。</p>
+<p>遷移是一種方便的管理模式，它讓你可以有條不紊地改變你地資料庫。你當然可以選擇手0動編輯 SQL 片段，然後告訴開發人員們要記得運作這些片段。但在下一次佈署專案時，說不定你還得追蹤在正式伺服器上是否運作了這些片段。</p>
 <p>而資料庫資料表 <strong>遷移</strong> 功能會自動追蹤哪些資料遷移已經成功運作過了，你只要確定你的遷移已經設定完畢，然後呼叫 <code class="docutils literal notranslate"><span class="pre">$migration-&gt;latest()</span></code> 將資料庫更新到最新的狀態。你也可以使用 <code class="docutils literal notranslate"><span class="pre">$migration-&gt;setNamespace(null)-&gt;progess()</span></code> 來包含所有命名空間中的遷移項目。</p>
 <div class="contents local topic" id="id2">
 <ul class="simple">
@@ -782,7 +782,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月14日。
+        最後更新於 2021年11月21日。
       </span>
 
     </p>
