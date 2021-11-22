@@ -66,11 +66,11 @@ CodeIgniter 支援了模型類別，它提供了一些很好的功能，包括�
         // ...
     }
 
-這個空的類別提供了對資料庫連接、查詢生成器，和一些額外的便捷方法的訪問。
+這個空的類別提供了對資料庫連接、查詢生成器，和一些額外的便捷方法的存取。
 
-Should you need additional setup in your model you may extend the ``initialize()`` function
-which will be run immediately after the Model's constructor. This allows you to perform
-extra steps without repeating the constructor parameters, for example extending other models::
+如果你需要在模型中進行其他的設定，可以選擇覆寫父類別 ``initialize()`` 方法。這個函數將在模型的建構函數執行完畢時立即執行。它允許你在不重複撰寫建構函數參數的情況下執行額外的步驟，例如繼承其它模型：
+
+::
 
     <?php
 
@@ -158,13 +158,10 @@ extra steps without repeating the constructor parameters, for example extending 
 
 **$useAutoIncrement**
 
-Specifies if the table uses an auto-increment feature for ``$primaryKey``. If set to ``false``
-then you are responsible for providing primary key value for every record in the table. This 
-feature may be handy when we want to implement 1:1 relation or use UUIDs for our model.
+指定資料表是否對 ``$primaryKey`` 使用自動遞增功能。如果它被宣告為 ``false`` ，則由你負責提供資料表中每條紀錄得主鍵。當我們想要實作出一對一關係時或對模型使用 UUID 時，這會是個方便的功能。
 
-.. note:: If you set ``$useAutoIncrement`` to ``false`` then make sure to set your primary
-    key in the database to ``unique``. This way you will make sure that all of Model's features
-    will still work the same as before.
+.. note:: 
+    如果你宣告 ``$useAutoIncrement`` 為 ``false`` ，請保證資料庫中的主鍵為 ``unique`` 。透過這個方式才能保證 Model 所有功能能夠照常工作。
 
 **$returnType**
 
@@ -219,7 +216,7 @@ feature may be handy when we want to implement 1:1 relation or use UUIDs for our
 
 **$allowCallbacks**
 
-Whether the callbacks defined above should be used.
+是否允許使用上述回呼方法。
 
 資料作業
 =================
@@ -516,16 +513,18 @@ save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬�
         ];
     }
 
-The other way to set the validation rules to fields by functions,
+另一種方法是利用函數設定欄位與驗證規則：
 
 .. php:function:: setValidationRule($field, $fieldRules)
 
     :param  string  $field:
     :param  array   $fieldRules:
 
-    This function will set the field validation rules.
+    這個函數將設定欄位驗證規則。　
 
-    Usage example::
+    使用範例
+    
+    ::
 
         $fieldName = 'username';
         $fieldRules = 'required|alpha_numeric_space|min_length[3]';
