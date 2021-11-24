@@ -396,7 +396,7 @@ withDeleted() 方法將會回傳已經刪除與未刪除的記錄，而這個方
     ];
     $userModel->save($data);
 
-save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬性和保護屬性，然後將它們保存成相應的陣列，傳入到插入或更新的方法中。這種方式允許你使用簡潔的實體類別，它表示的是一個物件類型的單一實體。比如使用者、部落格文章、作業等。這個類別負責維護圍繞著物件本身的商業邏輯，例如：以某種方法格式化元素等。它不應該有任何將資料儲存到資料庫的邏輯，最簡單的使用方式如下所示：
+save() 方法還可以傳入一個物件並自動取得這個物件的公開屬性和保護屬性，然後將它們保存成相應的陣列，傳入到插入或更新的方法中。這種方式允許你使用簡潔的實體類別，它表示的是一個物件類型的單一實體。比如使用者、部落格文章、作業等。這個類別負責維護圍繞著物件本身的商業邏輯，例如：以某種方法格式化元素等。它不應該有任何將資料儲存到資料庫的邏輯，最簡單的使用方式如下所示：
 
 ::
 
@@ -520,9 +520,9 @@ save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬�
     :param  string  $field:
     :param  array   $fieldRules:
 
-    這個函數將設定欄位驗證規則。　
+    這個函數可以設定欄位驗證規則。　
 
-    使用範例
+    使用範例：
     
     ::
 
@@ -535,9 +535,11 @@ save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬�
 
     :param  array   $validationRules:
 
-    This function will set the validation rules.
+    這個函數可以設定驗證規則。
 
-    Usage example::
+    使用範例：
+
+    ::
 
         $validationRules = [
             'username' => 'required|alpha_numeric_space|min_length[3]',
@@ -550,7 +552,7 @@ save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬�
         ];
         $model->setValidationRules($validationRules);
 
-另一種方式是透過函數將驗證訊息設定成欄位。
+另一種方式是透過函數設定欄位的驗證訊息。
 
 .. php:function:: setValidationMessage($field, $fieldMessages)
 
@@ -793,11 +795,15 @@ save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬�
 	protected $beforeInsert = ['hashPassword'];
 	protected $beforeUpdate = ['hashPassword'];
 
-Additionally, each model may allow (default) or deny callbacks class-wide by setting its $allowCallbacks property::
+此外，每個模型都可以透過設定其 ``$allowCallbacks`` 屬性來允許（預設）或拒絕類別範圍的回呼：
+
+::
 
     protected $allowCallbacks = false;
 
-You may also change this setting temporarily for a single model call sing the ``allowCallbacks()`` method::
+你也可一透過 ``allowCallbacks()`` 臨時改變這個設定，在單次呼叫取消回呼。
+
+::
 
     $model->allowCallbacks(false)->find(1); // No callbacks triggered
     $model->find(1);                        // Callbacks subject to original property value
@@ -819,11 +825,11 @@ beforeUpdate      **id** = 被更新的資料的主鍵。
 afterUpdate       **id** = 被更新的資料主鍵。
                   **data** = 更新完成的鍵值陣列。
                   **result** = 透過查詢生成器使用 update() 方法的結果
-beforeFind        The name of the calling **method**, whether a **singleton** was requested, and these additional fields:
-- first()         No additional fields
-- find()          **id** = the primary key of the row being searched for.
-- findAll()       **limit** = the number of rows to find.
-                  **offset** = the number of rows to skip during the search.
+beforeFind        呼叫　**method**　名稱，是否請求了 **singleton** 以及以下附加參數：
+- first()         沒有附加參數
+- find()          **id** = 用於搜索的主鍵
+- findAll()       **limit** = 所要搜索的列數。
+                  **offset** = 搜索期間要跳過地列數。
 afterFind         與 **beforeFind** 相同，但包括結果資料列；如果未找到結果，則為null。
 beforeDelete      將因為 delete 方法的不同而相異，請詳閱下方內容：
 - delete()        **id** = 即將被刪除的主鍵。
@@ -834,13 +840,12 @@ afterDelete       **id** = 被刪除的主鍵。
                   **data** = 未使用。
 ================ =========================================================================================================
 
-Modifying Find* Data
+修改 Find* 資料
 --------------------
 
-The ``beforeFind`` and ``afterFind`` methods can both return a modified set of data to override the normal response
-from the model. For ``afterFind`` any changes made to ``data`` in the return array will automatically be passed back
-to the calling context. In order for ``beforeFind`` to intercept the find workflow it must also return an additional
-boolean, ``returnData``::
+``beforeFind`` 和 ``afterFind`` 方法都可以回傳一組修改後的資料集，用於重寫來自模型的正常響應。對於``afterFind`` 來說，回傳陣列中的 ``data`` 所做的任何更變都會自動傳遞到回呼方法。為了使 ``beforeFind`` 攔截 find 的工作流程，它還需要回傳一個額外的 ``returnData`` 。
+
+::
 
     protected $beforeFind = ['checkCache'];
     // ...
