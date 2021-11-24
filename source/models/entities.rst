@@ -100,8 +100,8 @@ CodeIgniter 支援使用實體類別作為資料庫的第一類物件，同時�
 
 當 User 實體類別被傳遞給模型的 **save()** 方法時，它會自動讀取實體內的屬性，判斷這是次的 save() 是插入新記錄還是更新現有記錄，並將資料更新到被  **$allowedFields**  允許的欄位中。
 
-.. note:: When we are making a call to the ``insert()`` all the values from Entity are passed to the method, but when we
-    call the ``update()``, then only values that have changed are passed.
+.. note::
+    當我們呼叫 ``insert()`` 時，實體中的所有數值都會傳遞給這個方法；但是，當我們呼叫的是 ``update()`` 時，只會傳遞已經被改動的數值。
 
 快速填充屬性
 --------------------------
@@ -125,13 +125,10 @@ CodeIgniter 支援使用實體類別作為資料庫的第一類物件，同時�
     $user = new App\Entities\User($data);
     $userModel->save($user);
 
-Bulk Accessing Properties
+批量存取屬性
 -------------------------
 
-The Entity class has two methods to extract all available properties into an array: ``toArray()`` and ``toRawArray()``.
-Using the raw version will bypass magic "getter" methods and casts. Both methods can take a boolean first parameter
-to specify whether returned values should be filtered by those that have changed, and a boolean final parameter to
-make the method recursive, in case of nested Entities.
+實體類別有兩個方法用於將可用的屬性轉換到陣列中回傳，分別是 ``toArray()`` 以及 ``toRawArray()`` 。使用 Raw 版本的方法將會繞過魔術方法「getter」以及強制轉換。這兩種方法都可以傳入布林作為第二個參數，去指定回傳的數值是否以已經修改過的數值進行過濾。若是傳入第二個布林參數，則可以決定內部實體是否也會被轉換為陣列。
 
 處理商業邏輯
 =======================
@@ -239,7 +236,7 @@ make the method recursive, in case of nested Entities.
         ];
 
         protected $datamap = [
-            'full_name' => 'name'
+            'name' => 'full_name'
         ],
     }
 
@@ -343,13 +340,12 @@ Array/Json 的轉換對於儲存序列化的陣列或 json 欄位相當有用，
     $user->options = $options;
     $userModel->save($user);
 
-CSV Casting
+CSV 轉換
 -----------
 
-If you know you have a flat array of simple values, encoding them as a serialized or JSON string
-may be more complex than the original structure. Casting as Comma-Separated Values (CSV) is
-a simpler alternative will result in a string that uses less space and is more easily read
-by humans::
+如果你有一個簡單數值的攤平陣列，將它們序列化或是轉化為 JSON 字串可能會遠比原始結構還要更加複雜。那麼，轉化為以逗號分隔的數值（CSV）是一種更簡單的替代方案。它將產生一個更精簡的字串，並容易被閱讀。
+
+::
 
     <?php
     
@@ -364,19 +360,23 @@ by humans::
         ];
     }
 
-Stored in the database as "red,yellow,green"::
+在資料庫中儲存「red,yellow,green」：
+
+::
 
     $widget->colors = ['red', 'yellow', 'green'];
 
-.. note:: Casting as CSV uses PHP's internal ``implode`` and ``explode`` methods and assumes all values are string-safe and free of commas. For more complex data casts try ``array`` or ``json``.
+.. note::
+    轉換成 CSV 使用的是 PHP 的內建  ``implode`` 與 ``explode`` 方法，並假定所有數值都是不包含逗號的安全字串。對於更複雜資料轉換，請嘗試更複雜的 ``array`` 或 ``json`` 。
 
-Custom casting
+自訂轉換
 --------------
 
-You can define your own conversion types for getting and setting data.
+你可以自行宣告你的轉換型別來取得或是設定資料。
 
-At first you need to create a handler class for your type.
-Let's say the class will be located in the 'app/Entity/Cast' directory::
+首先，你需要為你的型別建立一個處理類別。我們假設這個類別位於 ``app/Entity/Cast`` 目錄中：
+
+::
 
     <?php
 
@@ -398,7 +398,9 @@ Let's say the class will be located in the 'app/Entity/Cast' directory::
         }
     }
 
-Now you need to register it::
+現在，你需要這麼註冊它：
+
+::
 
     <?php
 
@@ -424,8 +426,9 @@ Now you need to register it::
     $entity->key = 'test'; // dGVzdA==
     echo $entity->key;     // test
 
+如果你已經知道你的轉換過程不需要改變數值時，那麼就不要實作相應的方法：
 
-If you don't need to change values when getting or setting a value. Then just don't implement the appropriate method::
+::
 
     use CodeIgniter\Entity\Cast\BaseCast;
 
@@ -438,21 +441,20 @@ If you don't need to change values when getting or setting a value. Then just do
     }
 
 
-**Parameters**
+**參數**
 
-In some cases, one type is not enough. In this situation, you can use additional parameters.
-Additional parameters are indicated in square brackets and listed with a comma.
+在某些情況，一種型別是不足的。你可以使用中括弧並以逗號的方式列出，就像這樣：
 
 **type[param1, param2]**
 
 ::
 
-    // Defining a type with parameters
+    // 使用參數定義型別
     protected $casts = [
         'some_attribute' => 'class[App\SomeClass, param2, param3]',
     ];
 
-    // Bind the type to the handler
+    // 將型別繫結到處理器上
     protected $castHandlers = [
         'class' => 'SomeHandler',
     ];
@@ -477,9 +479,8 @@ Additional parameters are indicated in square brackets and listed with a comma.
         }
     }
 
-.. note:: If the casting type is marked as nullable ``?bool`` and the passed value is not null, then the parameter with
-    the value ``nullable`` will be passed to the casting type handler.
-    If casting type has predefined parameters, then ``nullable`` will be added to the end of the list.
+.. note:: 
+    如果轉換型別被宣告成可為 null 的 ``?bool`` ，但傳遞的數值卻不為 null，這時數值為 ``nullable`` 的參數將被傳遞給轉換型別的處理器。如果轉換型別有預先定義的參數，則 ``nullable`` 將會被加入至列表的末項。
 
 檢查類別屬性是否變更
 ===============================
