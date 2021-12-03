@@ -133,7 +133,7 @@
 **獲取 JSON 中特定資料**
 
 您可以透過將您想要的資料名稱作為變數傳傳入 ``getVar()`` 中來從 JSON 串流中獲取特定的資料。
-或者您可以使用『點』符號來獲取 JSON 中那些不是根等級的資料。
+或者您可以使用「點」符號來獲取 JSON 中那些不是根等級的資料。
 
 ::
 
@@ -363,7 +363,7 @@ URL 請求
     .. php:method:: getVar([$index = null[, $filter = null[, $flags = null]]])
 
         :param  string  $index: 欲找尋的變數/值的名稱。
-        :param  int     $filter: 要使用的過濾器型別。過濾器型別清單請前往
+        :param  int     $filter: 要使用的過濾器類型。過濾器類型清單請前往
                         `這裡 <https://www.php.net/manual/en/filter.filters.php>`__。
         :param  int     $flags: 要使用的旗標。旗標清單請前往
                         `這裡 <https://www.php.net/manual/en/filter.filters.flags.php>`__。
@@ -376,7 +376,7 @@ URL 請求
 
         要是你試圖取回的項目不存在則此方法會回傳 null。
 
-        第二個可選參屬允許你透過 PHP 篩選運行資料。傳入想要的過濾器型別作為第二個參數::
+        第二個可選參屬允許你透過 PHP 篩選運行資料。傳入想要的過濾器類型作為第二個參數::
 
             $request->getVar('some_data', FILTER_SANITIZE_STRING);
 
@@ -391,14 +391,14 @@ URL 請求
 
             $request->getVar(['field1', 'field2']);
 
-        相同的規則也可以應用在這裡，如果想要取回參數與過濾器，將第二個參數設為想要應用的過濾器型別::
+        相同的規則也可以應用在這裡，如果想要取回過濾器篩選後的參數，將第二個參數設為想要使用的過濾器類型::
 
             $request->getVar(['field1', 'field2'], FILTER_SANITIZE_STRING);
 
     .. php:method:: getGet([$index = null[, $filter = null[, $flags = null]]])
 
         :param  string  $index: 欲找尋的變數/值的名稱。
-        :param  int     $filter: 要使用的過濾器型別。過濾器型別清單請前往
+        :param  int     $filter: 要使用的過濾器種類。過濾器類型清單請前往
                         `這裡 <https://www.php.net/manual/en/filter.filters.php>`__。
         :param  int     $flags: 要使用的旗標。旗標清單請前往
                         `這裡 <https://www.php.net/manual/en/filter.filters.flags.php>`__。
@@ -410,7 +410,7 @@ URL 請求
     .. php:method:: getPost([$index = null[, $filter = null[, $flags = null]]])
 
         :param  string  $index: 欲找尋的變數/值的名稱。
-        :param  int     $filter: 要使用的過濾器型別。過濾器型別清單請前往
+        :param  int     $filter: 要使用的過濾器類型。過濾器類型清單請前往
                         `這裡 <https://www.php.net/manual/en/filter.filters.php>`__。
         :param  int     $flags: 要使用的旗標。旗標清單請前往
                         `這裡 <https://www.php.net/manual/en/filter.filters.flags.php>`__。
@@ -422,7 +422,7 @@ URL 請求
     .. php:method:: getPostGet([$index = null[, $filter = null[, $flags = null]]])
 
         :param  string  $index: 欲找尋的變數/值的名稱。
-        :param  int     $filter: 要使用的過濾器型別。過濾器型別清單請前往
+        :param  int     $filter: 要使用的過濾器類型。過濾器類型清單請前往
                         `這裡 <https://www.php.net/manual/en/filter.filters.php>`__。
         :param  int     $flags: 要使用的旗標。旗標清單請前往
                         `這裡 <https://www.php.net/manual/en/filter.filters.flags.php>`__。
@@ -437,7 +437,7 @@ URL 請求
     .. php:method:: getGetPost([$index = null[, $filter = null[, $flags = null]]])
 
         :param  string  $index: 欲找尋的變數/值的名稱。
-        :param  int     $filter: 要使用的過濾器型別。過濾器型別清單請前往
+        :param  int     $filter: 要使用的過濾器類型。過濾器類型清單請前往
                         `這裡 <https://www.php.net/manual/en/filter.filters.php>`__。
         :param  int     $flags: 要使用的旗標。旗標清單請前往
                         `這裡 <https://www.php.net/manual/en/filter.filters.flags.php>`__。
@@ -453,7 +453,7 @@ URL 請求
         :noindex:
 
         :param    mixed    $index: COOKIE 名稱
-        :param  int     $filter: 要使用的過濾器型別。過濾器型別清單請前往
+        :param  int     $filter: 要使用的過濾器類型。過濾器類型清單請前往
                         `這裡 <https://www.php.net/manual/en/filter.filters.php>`__。
         :param  int     $flags: 要使用的旗標。旗標清單請前往
                         `這裡 <https://www.php.net/manual/en/filter.filters.flags.php>`__。
@@ -470,13 +470,13 @@ URL 請求
             $request->getCookie(['some_cookie', 'some_cookie2']);
 
         .. note:: 不同於 :doc:`Cookie Helper <../helpers/cookie_helper>`
-            函數 :php:func:`get_cookie()`，此方法並不會前置你的已設定 ``$config['cookie_prefix']`` 值。
+            函數 :php:func:`get_cookie()`，此方法並不會預先設定你的 ``$config['cookie_prefix']`` 值。
 
     .. php:method:: getServer([$index = null[, $filter = null[, $flags = null]]])
         :noindex:
 
         :param    mixed    $index: 值的名稱
-        :param  int     $filter: 要使用的過濾器型別。過濾器型別清單請前往
+        :param  int     $filter: 要使用的過濾器類型。過濾器類型清單請前往
                         `這裡 <https://www.php.net/manual/en/filter.filters.php>`__。
         :param  int     $flags: 要使用的旗標。旗標清單請前往
                         `這裡 <https://www.php.net/manual/en/filter.filters.flags.php>`__。
@@ -487,14 +487,14 @@ URL 請求
 
             $request->getServer('some_data');
 
-        如果想要回傳一個由多個 ``$_SERVER`` 值組成的陣列，將所有必要的鍵以陣列傳入。
+        如果想要回傳一個由多個 ``$_SERVER`` 值組成的陣列，將所有必要的鍵值以陣列傳入。
         ::
 
             $request->getServer(['SERVER_PROTOCOL', 'REQUEST_URI']);
 
     .. php:method:: getUserAgent([$filter = null])
 
-        :param  int $filter: 要使用的過濾器型別。過濾器型別清單請前往
+        :param  int $filter: 要使用的過濾器類型。過濾器類型清單請前往
                     `這裡 <https://www.php.net/manual/en/filter.filters.php>`__。
         :returns:  回傳在 SERVER 資料找到的 User Agent 字串，沒找到則回傳null。
         :rtype: mixed
