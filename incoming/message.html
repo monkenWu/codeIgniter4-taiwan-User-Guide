@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>HTTP Messages &mdash; CodeIgniter4 4.1.5 說明文件</title>
+  <title>HTTP 訊息 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -41,7 +41,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="Request 類別" href="request.html" />
-    <link rel="prev" title="Controller Filters" href="filters.html" /> 
+    <link rel="prev" title="控制器過濾器" href="filters.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -145,11 +145,11 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">控制器與路由</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="controllers.html">控制器</a></li>
-<li class="toctree-l2"><a class="reference internal" href="routing.html">URI Routing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters.html">Controller Filters</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">HTTP Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="routing.html">URI 路由設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">控制器過濾器</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HTTP 訊息</a></li>
 <li class="toctree-l2"><a class="reference internal" href="request.html">Request 類別</a></li>
-<li class="toctree-l2"><a class="reference internal" href="incomingrequest.html">IncomingRequest Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="incomingrequest.html">訪問請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="content_negotiation.html">內容協商</a></li>
 <li class="toctree-l2"><a class="reference internal" href="methodspoofing.html">HTTP 類型偽裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="restful.html">處理 RESTful 請求資源</a></li>
@@ -334,7 +334,7 @@
         
           <li><a href="index.html">控制器與路由</a> &raquo;</li>
         
-      <li>HTTP Messages</li>
+      <li>HTTP 訊息</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -351,33 +351,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="http-messages">
-<h1>HTTP Messages<a class="headerlink" href="#http-messages" title="本標題的永久連結">¶</a></h1>
-<p>The Message class provides an interface to the portions of an HTTP message that are common to both
-requests and responses, including the message body, protocol version, utilities for working with
-the headers, and methods for handling content negotiation.</p>
-<p>This class is the parent class that both the <a class="reference internal" href="request.html"><span class="doc">Request Class</span></a> and the
-<a class="reference internal" href="../outgoing/response.html"><span class="doc">Response Class</span></a> extend from. As such, some methods, such as the content
-negotiation methods, may apply only to a request or response, and not the other one, but they have
-been included here to keep the header methods together.</p>
-<div class="section" id="what-is-content-negotiation">
-<h2>What is Content Negotiation?<a class="headerlink" href="#what-is-content-negotiation" title="本標題的永久連結">¶</a></h2>
-<p>At it’s heart Content Negotiation is simply a part of the HTTP specification that allows a single
-resource to serve more than one type of content, allowing the clients to request the type of
-data that works best for them.</p>
-<p>A classic example of this is a browser that cannot display PNG files can request only GIF or
-JPEG images. When the getServer receives the request, it looks at the available file types the client
-is requesting and selects the best match from the image formats that it supports, in this case
-likely choosing a JPEG image to return.</p>
-<p>This same negotiation can happen with four types of data:</p>
+  <div class="section" id="http">
+<h1>HTTP 訊息<a class="headerlink" href="#http" title="本標題的永久連結">¶</a></h1>
+<p>Message 類別提供了 HTTP 訊息中請求和響應共有部分的介面，包括訊息主體、協定版本、處理標頭的程序和處理內容協商的方法。</p>
+<p>這個類別是 <a class="reference internal" href="request.html"><span class="doc">Request 類別</span></a> 跟 <a class="reference internal" href="../outgoing/response.html"><span class="doc">Response 類別</span></a> 的父類別。
+因此，某些方法（如內容協商方法）可能僅適用於請求或響應其中之一，但他們都已經被包含在此類別裡以維持標頭方法的完整。</p>
+<div class="section" id="id1">
+<h2>什麼是內容協商？<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h2>
+<p>從本質上講，內容協商只是HTTP規範的一部分，它允許單一資源提供多種類型的內容，允許用戶端請求最適合他們的數據類型。</p>
+<p>一個典型的例子是無法顯示 PNG 檔的瀏覽器只能請求 GIF 或 JPEG 影像。
+當 getServer 收到請求時，它會查看客戶端所請求的的文件類型並從其支援的圖像格式中選擇最佳匹配，在本例中可能選擇 JPEG 圖像來返回。</p>
+<p>同樣的協商可以發生在四種型別的資料上：</p>
 <ul class="simple">
-<li><strong>Media/Document Type</strong> - this could be image format, or HTML vs. XML or JSON.</li>
-<li><strong>Character Set</strong> - The character set the returned document should be set in. Typically is UTF-8.</li>
-<li><strong>Document Encoding</strong> - Typically the type of compression used on the results.</li>
-<li><strong>Document Language</strong> - For sites that support multiple languages, this helps determine which to return.</li>
+<li><strong>媒體/文件型別</strong> - 這可能是圖像格式，或 HTML vs. XML 或 JSON。</li>
+<li><strong>字元集</strong> - 返回的文件應該設定為何種字元集。通常是 UTF-8 。</li>
+<li><strong>文件編碼</strong> - 通常是在結果上使用的壓縮型別。</li>
+<li><strong>文件語言</strong> - 對於支援多種語言的網站，這有助於確定要返回的語言。</li>
 </ul>
-<div class="section" id="class-reference">
-<h3>Class Reference<a class="headerlink" href="#class-reference" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="id2">
+<h3>類別參考<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h3>
 <dl class="class">
 <dt>
 <code class="descname">CodeIgniter\HTTP\Message</code></dt>
@@ -388,13 +380,13 @@ likely choosing a JPEG image to return.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">The current message body</td>
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">目前的訊息主體</td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">mixed</td>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">混和的</td>
 </tr>
 </tbody>
 </table>
-<p>Returns the current message body, if any has been set. If not body exists, returns null:</p>
+<p>回傳目前的訊息主體（如果已設定）。如果主體不存在，則返回 null 。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -408,11 +400,11 @@ likely choosing a JPEG image to return.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$data</strong> (<em>mixed</em>) – The body of the message.</li>
+<li><strong>$data</strong> (<em>mixed</em>) – 訊息的主體</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">the Message|Response instance to allow methods to be chained together.</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">訊息|響應實體，以允許方法被串聯起來</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniter\HTTP\Message|CodeIgniter\HTTP\Response</p>
@@ -420,7 +412,7 @@ likely choosing a JPEG image to return.</p>
 </tr>
 </tbody>
 </table>
-<p>Sets the body of the current request.</p>
+<p>設定當前請求的主體。</p>
 </dd></dl>
 
 <dl class="method">
@@ -431,11 +423,11 @@ likely choosing a JPEG image to return.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$data</strong> (<em>mixed</em>) – The body of the message.</li>
+<li><strong>$data</strong> (<em>mixed</em>) – 訊息的主體</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">the Message|Response instance to allow methods to be chained together.</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">訊息|響應實體，以允許方法被串聯起來</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniter\HTTP\Message|CodeIgniter\HTTP\Response</p>
@@ -443,7 +435,7 @@ likely choosing a JPEG image to return.</p>
 </tr>
 </tbody>
 </table>
-<p>Appends data to the body of the current request.</p>
+<p>將資料加到當前請求的主體中。</p>
 </dd></dl>
 
 <dl class="method">
@@ -453,17 +445,15 @@ likely choosing a JPEG image to return.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">void</td>
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">無</td>
 </tr>
 </tbody>
 </table>
-<p>Scans and parses the headers found in the SERVER data and stores it for later access.
-This is used by the <a class="reference internal" href="incomingrequest.html"><span class="doc">IncomingRequest Class</span></a> to make
-the current request’s headers available.</p>
-<p>The headers are any SERVER data that starts with <code class="docutils literal notranslate"><span class="pre">HTTP_</span></code>, like <code class="docutils literal notranslate"><span class="pre">HTTP_HOST</span></code>. Each message
-is converted from it’s standard uppercase and underscore format to a ucwords and dash format.
-The preceding <code class="docutils literal notranslate"><span class="pre">HTTP_</span></code> is removed from the string. So <code class="docutils literal notranslate"><span class="pre">HTTP_ACCEPT_LANGUAGE</span></code> becomes
-<code class="docutils literal notranslate"><span class="pre">Accept-Language</span></code>.</p>
+<p>掃描和分析在 SERVER 資料中找到的標頭，並將其存儲以供以後訪問。
+這被 <a class="reference internal" href="incomingrequest.html"><span class="doc">IncomingRequest 類別</span></a> 使用來確保當前請求的標頭可用。</p>
+<p>標頭是以 <code class="docutils literal notranslate"><span class="pre">HTTP_</span></code> 開頭的任何 SERVER 數據，如 <code class="docutils literal notranslate"><span class="pre">HTTP_HOST</span></code>。
+每條訊息都從其標準的大寫字母和底線格式轉換為 ucwords 和破折號格式。
+前面的 <code class="docutils literal notranslate"><span class="pre">HTTP_</span></code> 將從字串中刪除。因此， <code class="docutils literal notranslate"><span class="pre">HTTP_ACCEPT_LANGUAGE</span></code> 變成了 <code class="docutils literal notranslate"><span class="pre">Accept-Language</span></code>。</p>
 </dd></dl>
 
 <dl class="method">
@@ -473,13 +463,13 @@ The preceding <code class="docutils literal notranslate"><span class="pre">HTTP_
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">An array of all of the headers found.</td>
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">所有找到的標頭的陣列</td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">array</td>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">陣列</td>
 </tr>
 </tbody>
 </table>
-<p>Returns an array of all headers found or previously set.</p>
+<p>回傳所有找到的或先前設定的標頭文件的陣列。</p>
 </dd></dl>
 
 <dl class="method">
@@ -490,11 +480,11 @@ The preceding <code class="docutils literal notranslate"><span class="pre">HTTP_
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$name</strong> (<em>string</em>) – The name of the header you want to retrieve the value of.</li>
+<li><strong>$name</strong> (<em>string</em>) – 要檢索的標頭名稱</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">Returns a single header object. If multiple headers with the same name exist, then will return an array of header objects.</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">回傳單個標頭物件。如果存在多個同名的標頭，則將返回標頭物件的陣列</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniter\HTTP\Header|array</p>
@@ -502,16 +492,15 @@ The preceding <code class="docutils literal notranslate"><span class="pre">HTTP_
 </tr>
 </tbody>
 </table>
-<p>Allows you to retrieve the current value of a single message header. <code class="docutils literal notranslate"><span class="pre">$name</span></code> is the case-insensitive header name.
-While the header is converted internally as described above, you can access the header with any type of case:</p>
+<p>檢索一個當前訊息標頭的值。 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 是標頭名稱但是不區分大小寫。
+當標頭按上述方式在內部轉換時，您可以使用任何類型的大小寫存取標頭。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// These are all the same:</span>
 <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;HOST&#39;</span><span class="p">);</span>
 <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;Host&#39;</span><span class="p">);</span>
 <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>If the header has multiple values, <code class="docutils literal notranslate"><span class="pre">getValue()</span></code> will return as an array of values. You can use the <code class="docutils literal notranslate"><span class="pre">getValueLine()</span></code>
-method to retrieve the values as a string:</p>
+<p>如果標頭有多個值，則 <code class="docutils literal notranslate"><span class="pre">getValue()</span></code> 將以陣列形式返回。你可以使用 <code class="docutils literal notranslate"><span class="pre">getValueLine()</span></code> 方法來以字串形式檢索。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">);</span>
 
 <span class="c1">// Outputs something like:</span>
@@ -531,7 +520,7 @@ method to retrieve the values as a string:</p>
 <span class="s1">&#39;en,en-US&#39;</span>
 </pre></div>
 </div>
-<p>You can filter the header by passing a filter value in as the second parameter:</p>
+<p>你可以在第二個參數輸入過濾值來過濾標頭。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;Document-URI&#39;</span><span class="p">,</span> <span class="nx">FILTER_SANITIZE_URL</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -545,14 +534,14 @@ method to retrieve the values as a string:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$name</strong> (<em>string</em>) – The name of the header you want to see if it exists.</li>
+<li><strong>$name</strong> (<em>string</em>) – 你想要查看是否存在的標頭名稱</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">Returns true if it exists, false otherwise.</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">如果標頭名稱存在，則回傳 true，否則返回 false</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">bool</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">布林值</p>
 </td>
 </tr>
 </tbody>
@@ -567,20 +556,19 @@ method to retrieve the values as a string:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$name</strong> (<em>string</em>) – The name of the header to retrieve.</li>
+<li><strong>$name</strong> (<em>string</em>) – 要檢索的標頭名稱</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">A string representing the header value.</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">表示標頭值的字串</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string</p>
+<tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">字串</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>Returns the value(s) of the header as a string. This method allows you to easily get a string representation
-of the header values when the header has multiple values. The values are appropriately joined:</p>
+<p>以字串形式返回標頭的值。此方法允許您在標頭具有多個值時輕鬆獲取標頭的字串表示形式。結果會適當地連接。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getHeaderLine</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">);</span>
 
 <span class="c1">// Outputs:</span>
@@ -597,12 +585,12 @@ of the header values when the header has multiple values. The values are appropr
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$name</strong> (<em>string</em>) – The name of the header to set the value for.</li>
-<li><strong>$value</strong> (<em>mixed</em>) – The value to set the header to.</li>
+<li><strong>$name</strong> (<em>string</em>) – 要為其設定值的標頭的名稱</li>
+<li><strong>$value</strong> (<em>mixed</em>) – 要將標頭設定為的值</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">The current Message|Response instance</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">當前的訊息|響應實體</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniter\HTTP\Message|CodeIgniter\HTTP\Response</p>
@@ -610,9 +598,8 @@ of the header values when the header has multiple values. The values are appropr
 </tr>
 </tbody>
 </table>
-<p>Sets the value of a single header. <code class="docutils literal notranslate"><span class="pre">$name</span></code> is the case-insensitive name of the header. If the header
-doesn’t already exist in the collection, it will be created. The <code class="docutils literal notranslate"><span class="pre">$value</span></code> can be either a string
-or an array of strings:</p>
+<p>設定單個標頭的值。 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 是不區分大小寫的標頭名稱。
+如果標頭不存在，則創建一個新的。 <code class="docutils literal notranslate"><span class="pre">$value</span></code> 可以是字串或字串陣列。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">setHeader</span><span class="p">(</span><span class="s1">&#39;Host&#39;</span><span class="p">,</span> <span class="s1">&#39;codeigniter.com&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -626,11 +613,11 @@ or an array of strings:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$name</strong> (<em>string</em>) – The name of the header to remove.</li>
+<li><strong>$name</strong> (<em>string</em>) – 要移除的標頭的名稱</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">The current message instance</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">當前的訊息實體</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniter\HTTP\Message</p>
@@ -638,7 +625,7 @@ or an array of strings:</p>
 </tr>
 </tbody>
 </table>
-<p>Removes the header from the Message. <code class="docutils literal notranslate"><span class="pre">$name</span></code> is the case-insensitive name of the header:</p>
+<p>從訊息中刪除標頭。 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 是不區分大小寫的標題。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">removeHeader</span><span class="p">(</span><span class="s1">&#39;Host&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -652,12 +639,12 @@ or an array of strings:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$name</strong> (<em>string</em>) – The name of the header to modify</li>
-<li><strong>$value</strong> (<em>string</em>) – The value to add to the header.</li>
+<li><strong>$name</strong> (<em>string</em>) – 要修改的標頭的名稱</li>
+<li><strong>$value</strong> (<em>string</em>) – 要添加到標頭的值</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">The current message instance</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">當前的訊息實體</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniter\HTTP\Message</p>
@@ -665,8 +652,8 @@ or an array of strings:</p>
 </tr>
 </tbody>
 </table>
-<p>Adds a value to an existing header. The header must already be an array of values instead of a single string.
-If it is a string then a LogicException will be thrown.</p>
+<p>向現有標頭添加值。標頭必須已經是陣列，而不是單個字串。
+如果它是一個字串，那麼將拋出一個LogicException。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">appendHeader</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">,</span> <span class="s1">&#39;en-US; q=0.8&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -680,12 +667,12 @@ If it is a string then a LogicException will be thrown.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$name</strong> (<em>string</em>) – The name of the header to modify</li>
-<li><strong>$value</strong> (<em>string</em>) – The value to prepend to the header.</li>
+<li><strong>$name</strong> (<em>string</em>) – 要修改的標頭的名稱</li>
+<li><strong>$value</strong> (<em>string</em>) – 要附加到標頭的值</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">The current message instance</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">當前的訊息實體</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniter\HTTP\Message</p>
@@ -693,8 +680,8 @@ If it is a string then a LogicException will be thrown.</p>
 </tr>
 </tbody>
 </table>
-<p>Prepends a value to an existing header. The header must already be an array of values instead of a single string.
-If it is a string then a LogicException will be thrown.</p>
+<p>在現有標頭前面附加一個值。標頭必須已經是陣列，而不是單個字串。
+如果它是一個字串，那麼將拋出一個 LogicException。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">prependHeader</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">,</span> <span class="s1">&#39;en,&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -707,14 +694,14 @@ If it is a string then a LogicException will be thrown.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">The current HTTP protocol version</td>
+<tr class="field-odd field"><th class="field-name">傳回:</th><td class="field-body">當前 HTTP 協定版本</td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">string</td>
+<tr class="field-even field"><th class="field-name">傳回型態:</th><td class="field-body">字串</td>
 </tr>
 </tbody>
 </table>
-<p>Returns the message’s current HTTP protocol. If none has been set, will return <code class="docutils literal notranslate"><span class="pre">null</span></code>.
-Acceptable values are <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, <code class="docutils literal notranslate"><span class="pre">1.1</span></code> and <code class="docutils literal notranslate"><span class="pre">2.0</span></code>.</p>
+<p>返回訊息當前的 HTTP 協定。如果未設定任何值，將返回 <code class="docutils literal notranslate"><span class="pre">null</span></code> 。
+可接受的值為 <code class="docutils literal notranslate"><span class="pre">1.0</span></code> 、 <code class="docutils literal notranslate"><span class="pre">1.1</span></code> 和 <code class="docutils literal notranslate"><span class="pre">2.0</span></code>。</p>
 </dd></dl>
 
 <dl class="method">
@@ -725,11 +712,11 @@ Acceptable values are <code class="docutils literal notranslate"><span class="pr
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$version</strong> (<em>string</em>) – The HTTP protocol version</li>
+<li><strong>$version</strong> (<em>string</em>) – HTTP 協定版本</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">The current message instance</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">當前訊息實體</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">CodeIgniter\HTTP\Message</p>
@@ -737,7 +724,7 @@ Acceptable values are <code class="docutils literal notranslate"><span class="pr
 </tr>
 </tbody>
 </table>
-<p>Sets the HTTP protocol version this Message uses. Valid values are <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, <code class="docutils literal notranslate"><span class="pre">1.1</span></code> and <code class="docutils literal notranslate"><span class="pre">2.0</span></code>:</p>
+<p>設定此訊息使用的 HTTP 協定版本。有效值為 <code class="docutils literal notranslate"><span class="pre">1.0</span></code> 、 <code class="docutils literal notranslate"><span class="pre">1.1</span></code> 和 <code class="docutils literal notranslate"><span class="pre">2.0</span></code></p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">setProtocolVersion</span><span class="p">(</span><span class="s1">&#39;1.1&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -760,7 +747,7 @@ Acceptable values are <code class="docutils literal notranslate"><span class="pr
         <a href="request.html" class="btn btn-neutral float-right" title="Request 類別" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="filters.html" class="btn btn-neutral float-left" title="Controller Filters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="filters.html" class="btn btn-neutral float-left" title="控制器過濾器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

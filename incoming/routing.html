@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>URI Routing &mdash; CodeIgniter4 4.1.5 說明文件</title>
+  <title>URI 路由設定 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -40,7 +40,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Controller Filters" href="filters.html" />
+    <link rel="next" title="控制器過濾器" href="filters.html" />
     <link rel="prev" title="控制器" href="controllers.html" /> 
 </head>
 
@@ -145,11 +145,11 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">控制器與路由</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="controllers.html">控制器</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">URI Routing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters.html">Controller Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="message.html">HTTP Messages</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">URI 路由設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">控制器過濾器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="message.html">HTTP 訊息</a></li>
 <li class="toctree-l2"><a class="reference internal" href="request.html">Request 類別</a></li>
-<li class="toctree-l2"><a class="reference internal" href="incomingrequest.html">IncomingRequest Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="incomingrequest.html">訪問請求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="content_negotiation.html">內容協商</a></li>
 <li class="toctree-l2"><a class="reference internal" href="methodspoofing.html">HTTP 類型偽裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="restful.html">處理 RESTful 請求資源</a></li>
@@ -334,7 +334,7 @@
         
           <li><a href="index.html">控制器與路由</a> &raquo;</li>
         
-      <li>URI Routing</li>
+      <li>URI 路由設定</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -351,71 +351,68 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="uri-routing">
-<h1>URI Routing<a class="headerlink" href="#uri-routing" title="本標題的永久連結">¶</a></h1>
+  <div class="section" id="uri">
+<h1>URI 路由設定<a class="headerlink" href="#uri" title="本標題的永久連結">¶</a></h1>
 <div class="contents local topic" id="id1">
 <ul class="simple">
-<li><a class="reference internal" href="#setting-your-own-routing-rules" id="id3">Setting your own routing rules</a></li>
-<li><a class="reference internal" href="#placeholders" id="id4">Placeholders</a></li>
-<li><a class="reference internal" href="#examples" id="id5">Examples</a></li>
-<li><a class="reference internal" href="#custom-placeholders" id="id6">Custom Placeholders</a></li>
-<li><a class="reference internal" href="#regular-expressions" id="id7">Regular Expressions</a></li>
-<li><a class="reference internal" href="#closures" id="id8">Closures</a></li>
-<li><a class="reference internal" href="#mapping-multiple-routes" id="id9">Mapping multiple routes</a></li>
-<li><a class="reference internal" href="#redirecting-routes" id="id10">Redirecting Routes</a></li>
-<li><a class="reference internal" href="#grouping-routes" id="id11">Grouping Routes</a></li>
-<li><a class="reference internal" href="#environment-restrictions" id="id12">Environment Restrictions</a></li>
-<li><a class="reference internal" href="#reverse-routing" id="id13">Reverse Routing</a></li>
-<li><a class="reference internal" href="#using-named-routes" id="id14">Using Named Routes</a></li>
-<li><a class="reference internal" href="#using-http-verbs-in-routes" id="id15">Using HTTP verbs in routes</a></li>
-<li><a class="reference internal" href="#command-line-only-routes" id="id16">Command-Line only Routes</a></li>
-<li><a class="reference internal" href="#global-options" id="id17">Global Options</a><ul>
-<li><a class="reference internal" href="#applying-filters" id="id18">Applying Filters</a></li>
-<li><a class="reference internal" href="#assigning-namespace" id="id19">Assigning Namespace</a></li>
-<li><a class="reference internal" href="#limit-to-hostname" id="id20">Limit to Hostname</a></li>
-<li><a class="reference internal" href="#limit-to-subdomains" id="id21">Limit to Subdomains</a></li>
-<li><a class="reference internal" href="#offsetting-the-matched-parameters" id="id22">Offsetting the Matched Parameters</a></li>
-<li><a class="reference internal" href="#route-processing-queue" id="id23">Route processing queue</a></li>
+<li><a class="reference internal" href="#id2" id="id30">設定你自己的路由規則</a></li>
+<li><a class="reference internal" href="#id3" id="id31">置換符號</a></li>
+<li><a class="reference internal" href="#id4" id="id32">範例</a></li>
+<li><a class="reference internal" href="#id5" id="id33">自定義置換符號</a></li>
+<li><a class="reference internal" href="#id6" id="id34">正規表示式</a></li>
+<li><a class="reference internal" href="#id7" id="id35">匿名函數</a></li>
+<li><a class="reference internal" href="#id8" id="id36">映射多個路由</a></li>
+<li><a class="reference internal" href="#id9" id="id37">重新導向路由</a></li>
+<li><a class="reference internal" href="#id10" id="id38">將路由分組</a></li>
+<li><a class="reference internal" href="#id11" id="id39">環境限制</a></li>
+<li><a class="reference internal" href="#id12" id="id40">反向路由</a></li>
+<li><a class="reference internal" href="#id13" id="id41">使用命名錄由</a></li>
+<li><a class="reference internal" href="#http" id="id42">在路由中使用 HTTP 動詞</a></li>
+<li><a class="reference internal" href="#id14" id="id43">僅命令列可用的路由</a></li>
+<li><a class="reference internal" href="#id15" id="id44">全域選項</a><ul>
+<li><a class="reference internal" href="#id16" id="id45">使用過濾器</a></li>
+<li><a class="reference internal" href="#id17" id="id46">指派命名空間</a></li>
+<li><a class="reference internal" href="#id18" id="id47">主機名稱的限制</a></li>
+<li><a class="reference internal" href="#id19" id="id48">子網域的限制</a></li>
+<li><a class="reference internal" href="#id20" id="id49">位移對應到的參數</a></li>
+<li><a class="reference internal" href="#priority" id="id50">映射處理中的隊列</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#routes-configuration-options" id="id24">Routes Configuration Options</a><ul>
-<li><a class="reference internal" href="#default-namespace" id="id25">Default Namespace</a></li>
-<li><a class="reference internal" href="#default-controller" id="id26">Default Controller</a></li>
-<li><a class="reference internal" href="#default-method" id="id27">Default Method</a></li>
-<li><a class="reference internal" href="#translate-uri-dashes" id="id28">Translate URI Dashes</a></li>
-<li><a class="reference internal" href="#use-defined-routes-only" id="id29">Use Defined Routes Only</a></li>
-<li><a class="reference internal" href="#override" id="id30">404 Override</a></li>
-<li><a class="reference internal" href="#route-processing-by-priority" id="id31">Route processing by priority</a></li>
+<li><a class="reference internal" href="#id22" id="id51">路由設定選項</a><ul>
+<li><a class="reference internal" href="#id23" id="id52">預設命名空間</a></li>
+<li><a class="reference internal" href="#id24" id="id53">預設控制器</a></li>
+<li><a class="reference internal" href="#id25" id="id54">預設方法</a></li>
+<li><a class="reference internal" href="#id26" id="id55">解析 URI 中的破折號</a></li>
+<li><a class="reference internal" href="#use-defined-routes-only" id="id56">只使用有定義的路由</a></li>
+<li><a class="reference internal" href="#id28" id="id57">404 覆寫</a></li>
+<li><a class="reference internal" href="#id29" id="id58">根據優先權處理路由</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<p>Typically there is a one-to-one relationship between a URL string and its corresponding
-controller class/method. The segments in a URI normally follow this pattern:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">class</span><span class="o">/</span><span class="nx">method</span><span class="o">/</span><span class="nx">id</span><span class="o">/</span>
-</pre></div>
-</div>
-<p>In some instances, however, you may want to remap this relationship so that a different
-class/method can be called instead of the one corresponding to the URL.</p>
-<p>For example, let’s say you want your URLs to have this prototype:</p>
+<p>通常一個 URL 字串與他相應的控制器 類別 / 方法的關係是一對一的。
+URI 中的區段規則應該要遵守以下樣式：</p>
+<blockquote>
+<div>example.com/class/method/id/</div></blockquote>
+<p>然而，在某些實體中，你可能會想要把這個關係重新映射，使得一個不同 類別 / 方法可以被不同地呼叫
+而不是與 URL 單一呼應的那樣。</p>
+<p>舉例來說，我們假設你想要你的 URL 們有這個樣式：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">product</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span>
 <span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">product</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span>
 <span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">product</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span>
 <span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">product</span><span class="o">/</span><span class="mi">4</span><span class="o">/</span>
 </pre></div>
 </div>
-<p>Normally the second segment of the URL is reserved for the method name, but in the example
-above it instead has a product ID. To overcome this, CodeIgniter allows you to remap the URI handler.</p>
-<div class="section" id="setting-your-own-routing-rules">
-<h2><a class="toc-backref" href="#id3">Setting your own routing rules</a><a class="headerlink" href="#setting-your-own-routing-rules" title="本標題的永久連結">¶</a></h2>
-<p>Routing rules are defined in the <strong>app/Config/Routes.php</strong> file. In it you’ll see that
-it creates an instance of the RouteCollection class that permits you to specify your own routing criteria.
-Routes can be specified using placeholders or Regular Expressions.</p>
-<p>A route simply takes the URI on the left, and maps it to the controller and method on the right,
-along with any parameters that should be passed to the controller. The controller and method should
-be listed in the same way that you would use a static method, by separating the fully-namespaced class
-and its method with a double-colon, like <code class="docutils literal notranslate"><span class="pre">Users::list</span></code>. If that method requires parameters to be
-passed to it, then they would be listed after the method name, separated by forward-slashes:</p>
+<p>通常第二個 URL 的區段是保留給方法名稱的，但是在這個範例中取而代之的是一個 product ID。
+為了克服這個問題，CodeIgniter 允許你重新映射 URI 處理器。</p>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id30">設定你自己的路由規則</a><a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
+<p>路由規則都被定義在 <strong>app/Config/Routes.php</strong> 檔案中。在裡面你會看到它
+創造了一個 RouteCollection 類別的實體，允許你可以指定你自己的路由標準。
+路由可以使用置換符號或正規表達式來指定。</p>
+<p>一個路由會單純的在左邊讀取 URI，然後再將其映射到右邊的控制器與方法中，伴隨著許多應該被傳輸進控制器中的參數。
+而控制器和方法應該被以相同的方式列出，因此它應該是一個靜態方法，中間再用雙冒號去把它的全命名空間跟方法隔開，
+例如 <code class="docutils literal notranslate"><span class="pre">Users::list</span></code>。如果那個方法含有需要傳遞的參數，那參數們會被列在方法名稱的後面，並以正斜線隔開。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calls the $Users-&gt;list()</span>
 <span class="nx">Users</span><span class="o">::</span><span class="na">list</span>
 <span class="c1">// Calls $Users-&gt;list(1, 23)</span>
@@ -423,158 +420,151 @@ passed to it, then they would be listed after the method name, separated by forw
 </pre></div>
 </div>
 </div>
-<div class="section" id="placeholders">
-<h2><a class="toc-backref" href="#id4">Placeholders</a><a class="headerlink" href="#placeholders" title="本標題的永久連結">¶</a></h2>
-<p>A typical route might look something like this:</p>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id31">置換符號</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>一個典型的路由應該長得像這樣：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;product/(:num)&#39;</span><span class="p">,</span> <span class="s1">&#39;App\Catalog::productLookup&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>In a route, the first parameter contains the URI to be matched, while the second parameter
-contains the destination it should be re-routed to. In the above example, if the literal word
-「product」 is found in the first segment of the URL, and a number is found in the second segment,
-the 「AppCatalog」 class and the 「productLookup」 method are used instead.</p>
-<p>Placeholders are simply strings that represent a Regular Expression pattern. During the routing
-process, these placeholders are replaced with the value of the Regular Expression. They are primarily
-used for readability.</p>
-<p>The following placeholders are available for you to use in your routes:</p>
+<p>在一個路由中，第一個參數會包要被配對的 URI，而第二個參數則要包含需要被重新映射到的目標位置。
+在上面的範例中，如果文字 「product」 在第一個 URL 段落被發現，第二個段落發現一個數字，
+那麼取而代之的將會是 「App/Catalog」 類別以及 「productLookup」 方法。</p>
+<p>置換符號是單純的字串，代表著一個正規表示式。在映射的過程中，這些置換符號將會被政則表達式的值所去帶。
+他們主要是為了可讀性而存在。</p>
+<p>下列的置換符號都可以被使用在你的路由中：</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="10%" />
 <col width="90%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Placeholders</th>
-<th class="head">Description</th>
+<tr class="row-odd"><th class="head">置換符號</th>
+<th class="head">描述</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>(:any)</td>
-<td>will match all characters from that point to the end of the URI. This may include multiple URI segments.</td>
+<td>會比對此段落到 URI 末端的所有字符。有可能會包含多 URI 段落。</td>
 </tr>
 <tr class="row-odd"><td>(:segment)</td>
-<td>will match any character except for a forward slash (/) restricting the result to a single segment.</td>
+<td>會比對任何除了被前斜線 （/）改變單一段落結構以外的字符。</td>
 </tr>
 <tr class="row-even"><td>(:num)</td>
-<td>will match any integer.</td>
+<td>會比對任何數字。</td>
 </tr>
 <tr class="row-odd"><td>(:alpha)</td>
-<td>will match any string of alphabetic characters</td>
+<td>會比對任何由字母字符組合的字串。</td>
 </tr>
 <tr class="row-even"><td>(:alphanum)</td>
-<td>will match any string of alphabetic characters or integers, or any combination of the two.</td>
+<td>會比對任何由字母字符組合或數字的字串，又或者任何兩者的組合。</td>
 </tr>
 <tr class="row-odd"><td>(:hash)</td>
-<td>is the same as <strong>(:segment)</strong>, but can be used to easily see which routes use hashed ids.</td>
+<td>與 <strong>(:segment)</strong> 相同，但又可以被用來輕鬆檢視哪些路由使用了散列值的 id。</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last"><strong>{locale}</strong> cannot be used as a placeholder or other part of the route, as it is reserved for use
-in <a class="reference internal" href="../outgoing/localization.html"><span class="doc">localization</span></a>.</p>
+<p class="last"><strong>{locale}</strong> 不能被當作置換符號或路由的一部分使用，因為它是被保留給 <a class="reference internal" href="../outgoing/localization.html"><span class="doc">localization</span></a> 使用的。</p>
 </div>
 </div>
-<div class="section" id="examples">
-<h2><a class="toc-backref" href="#id5">Examples</a><a class="headerlink" href="#examples" title="本標題的永久連結">¶</a></h2>
-<p>Here are a few basic routing examples.</p>
-<p>A URL containing the word 「journals」 in the first segment will be remapped to the 「AppBlogs」 class,
-and the default method, which is usually <code class="docutils literal notranslate"><span class="pre">index()</span></code>:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;journals&#39;</span><span class="p">,</span> <span class="s1">&#39;App\Blogs&#39;</span><span class="p">);</span>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id32">範例</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<p>這裡有一些基礎的路由映射範例。</p>
+<p>在第一段包含 「journals」 的 URL 會被重新映射到 「App/Blogs」 類別，
+而它的預設方法通常會是 <code class="docutils literal notranslate"><span class="pre">index()</span></code>：</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;journals&#39;</span><span class="p">,</span> <span class="s1">&#39;App/Blogs&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>A URL containing the segments 「blog/joe」 will be remapped to the “Blogs” class and the “users” method.
-The ID will be set to “34”:</p>
+<p>URL 段落包含 「blog/joe」 將會被重新映射到 “Blogs” 類別以及使用 “users” 方法。
+其 ID 將會被設定為 “34”：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;blog/joe&#39;</span><span class="p">,</span> <span class="s1">&#39;Blogs::users/34&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>A URL with “product” as the first segment, and anything in the second will be remapped to the “Catalog” class
-and the “productLookup” method:</p>
+<p>將 “product” 作為第一段落的 URL，會把任何第二段落的路由重新映射到 “Catalog” 類別以及使用 “productLookup” 方法：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;product/(:any)&#39;</span><span class="p">,</span> <span class="s1">&#39;Catalog::productLookup&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>A URL with “product” as the first segment, and a number in the second will be remapped to the “Catalog” class
-and the “productLookupByID” method passing in the match as a variable to the method:</p>
+<p>將 “product” 作為第一段落的 URL，且第二段落是數字的路由將會被重新映射到 “Catalog” 類別
+以及使用 “productLookupByID” 方法並傳入後面跟著的參數給該方法：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;product/(:num)&#39;</span><span class="p">,</span> <span class="s1">&#39;Catalog::productLookupByID/$1&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Note that a single <code class="docutils literal notranslate"><span class="pre">(:any)</span></code> will match multiple segments in the URL if present. For example the route:</p>
+<p>注意一個單獨的 <code class="docutils literal notranslate"><span class="pre">(:any)</span></code> 如果存在將會比對多個 URL 段落。例如以下路由：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;product/(:any)&#39;</span><span class="p">,</span> <span class="s1">&#39;Catalog::productLookup/$1&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>will match product/123, product/123/456, product/123/456/789 and so on. The implementation in the
-Controller should take into account the maximum parameters:</p>
+<p>它將會比對 product/123，product/123/456，product/123/456/789 等等。
+控制器中的實作應該將最大參數考慮進去</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">productLookup</span><span class="p">(</span><span class="nv">$seg1</span> <span class="o">=</span> <span class="k">false</span><span class="p">,</span> <span class="nv">$seg2</span> <span class="o">=</span> <span class="k">false</span><span class="p">,</span> <span class="nv">$seg3</span> <span class="o">=</span> <span class="k">false</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">echo</span> <span class="nv">$seg1</span><span class="p">;</span> <span class="c1">// Will be 123 in all examples</span>
-    <span class="k">echo</span> <span class="nv">$seg2</span><span class="p">;</span> <span class="c1">// false in first, 456 in second and third example</span>
-    <span class="k">echo</span> <span class="nv">$seg3</span><span class="p">;</span> <span class="c1">// false in first and second, 789 in third</span>
+    <span class="k">echo</span> <span class="nv">$seg1</span><span class="p">;</span> <span class="c1">// 會是所有範例中的 123</span>
+    <span class="k">echo</span> <span class="nv">$seg2</span><span class="p">;</span> <span class="c1">// 第一範例中錯誤，以及第二、第三範例中的 456</span>
+    <span class="k">echo</span> <span class="nv">$seg3</span><span class="p">;</span> <span class="c1">// 第一、第二範例中錯誤，以及第三範例中的 789</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>If matching multiple segments is not the intended behavior, <code class="docutils literal notranslate"><span class="pre">(:segment)</span></code> should be used when defining the
-routes. With the examples URLs from above:</p>
+<p>如果比對了多個段落不是你的目標行為， 應該在定義路由的時候使用 <code class="docutils literal notranslate"><span class="pre">(:segment)</span></code> 。
+以上面的範例 URL 作為範例</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;product/(:segment)&#39;</span><span class="p">,</span> <span class="s1">&#39;Catalog::productLookup/$1&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>will only match product/123 and generate 404 errors for other example.</p>
+<p>如此一來只會符合 product/123 並對其他範例產生 404 錯誤。</p>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
-<p class="last">While the <code class="docutils literal notranslate"><span class="pre">add()</span></code> method is convenient, it is recommended to always use the HTTP-verb-based
-routes, described below, as it is more secure. If you use the <a class="reference internal" href="../libraries/security.html"><span class="doc">CSRF protection</span></a>, it does not protect <strong>GET</strong>
-requests. If the URI specified in the <code class="docutils literal notranslate"><span class="pre">add()</span></code> method is accessible by the GET method, the CSRF protection
-will not work.</p>
+<p class="last">雖然 <code class="docutils literal notranslate"><span class="pre">add()</span></code> 方法很便利，我們仍然建議持續使用以 HTTP 動詞為基礎的路由，
+原因如下，因為它更加的安全。如果你使用 <a class="reference internal" href="../libraries/security.html"><span class="doc">CSRF protection</span></a> ，它並未保護 <strong>GET</strong>
+請求。如果在 <code class="docutils literal notranslate"><span class="pre">add()</span></code> 方法中指定的 URI 可以被 GET 方法存取，那麼 CSRF 保護
+將不會起作用。</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">Using the HTTP-verb-based routes will also provide a slight performance increase, since
-only routes that match the current request method are stored, resulting in fewer routes to scan through
-when trying to find a match.</p>
+<p class="last">使用 HTTP 動詞為基礎的路由也會提供些微的效能提升，因為
+只有符合當前方法的路由會被儲存，使得在比對的時候需要
+掃描更少的路由。</p>
 </div>
 </div>
-<div class="section" id="custom-placeholders">
-<h2><a class="toc-backref" href="#id6">Custom Placeholders</a><a class="headerlink" href="#custom-placeholders" title="本標題的永久連結">¶</a></h2>
-<p>You can create your own placeholders that can be used in your routes file to fully customize the experience
-and readability.</p>
-<p>You add new placeholders with the <code class="docutils literal notranslate"><span class="pre">addPlaceholder</span></code> method. The first parameter is the string to be used as
-the placeholder. The second parameter is the Regular Expression pattern it should be replaced with.
-This must be called before you add the route:</p>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id33">自定義置換符號</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<p>你可以創造你自己的置換符號來設定你自己的路由檔案，完整地客製化體驗與可讀性。</p>
+<p>你可以使用 <code class="docutils literal notranslate"><span class="pre">addPlaceholder</span></code> 方法新增置換符號。第一個參數是置換符號的名稱字串。
+第二個參數是要取代進去的正規表示式樣式。
+這必須在你新增路由之前呼叫</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">addPlaceholder</span><span class="p">(</span><span class="s1">&#39;uuid&#39;</span><span class="p">,</span> <span class="s1">&#39;[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}&#39;</span><span class="p">);</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;users/(:uuid)&#39;</span><span class="p">,</span> <span class="s1">&#39;Users::show/$1&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="regular-expressions">
-<h2><a class="toc-backref" href="#id7">Regular Expressions</a><a class="headerlink" href="#regular-expressions" title="本標題的永久連結">¶</a></h2>
-<p>If you prefer you can use regular expressions to define your routing rules. Any valid regular expression
-is allowed, as are back-references.</p>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id34">正規表示式</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
+<p>如果你偏好以正規表示式來定義你的路由映射規則。任何合格的正規表示式
+都是被允許的，向後參照也不例外。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p>Note: If you use back-references you must use the dollar syntax rather than the double backslash syntax.
-A typical RegEx route might look something like this:</p>
+<p>注意：如果你使用向後參照你必須使用  “$” 而不是  “\” 。
+典型的 RegEx 路由應該看起來像這樣</p>
 <div class="last highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;products/([a-z]+)/(\d+)&#39;</span><span class="p">,</span> <span class="s1">&#39;Products::show/$1/id_$2&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<p>In the above example, a URI similar to products/shirts/123 would instead call the <code class="docutils literal notranslate"><span class="pre">show</span></code> method
-of the <code class="docutils literal notranslate"><span class="pre">Products</span></code> controller class, with the original first and second segment passed as arguments to it.</p>
-<p>With regular expressions, you can also catch a segment containing a forward slash (‘/’), which would usually
-represent the delimiter between multiple segments.</p>
-<p>For example, if a user accesses a password protected area of your web application and you wish to be able to
-redirect them back to the same page after they log in, you may find this example useful:</p>
+<p>在上面的範例中，一個類似  products/shirts/123 的 URI反而會呼叫 <code class="docutils literal notranslate"><span class="pre">Products</span></code> 控制器類別中
+的 <code class="docutils literal notranslate"><span class="pre">show</span></code> 方法， 並將原始的第一、第二段落當作參數傳遞給它。</p>
+<p>使用正規表達式，你也可以抓取一個包含前斜線 (‘/’) 的段落，通常可以
+代表多個段落中間的分隔號。</p>
+<p>舉例來說，如果一個使用者存取你網頁中一個受密碼保護的區域，並且你希望可以將它們重新導向到登入前的同一畫面，你應該會覺得這個範例很實用</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;login/(.+)&#39;</span><span class="p">,</span> <span class="s1">&#39;Auth::login/$1&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>For those of you who don’t know regular expressions and want to learn more about them,
-<a class="reference external" href="https://www.regular-expressions.info/">regular-expressions.info</a> might be a good starting point.</p>
+<p>對於那些不知道正規表達式且想要更加認識他們的人，
+<a class="reference external" href="https://www.regular-expressions.info/">regular-expressions.info</a> 應該會是一個很好的起點。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last">Note: You can also mix and match wildcards with regular expressions.</p>
+<p class="last">注意: 你也可以用正規表達式混合比對萬用字元。</p>
 </div>
 </div>
-<div class="section" id="closures">
-<h2><a class="toc-backref" href="#id8">Closures</a><a class="headerlink" href="#closures" title="本標題的永久連結">¶</a></h2>
-<p>You can use an anonymous function, or Closure, as the destination that a route maps to. This function will be
-executed when the user visits that URI. This is handy for quickly executing small tasks, or even just showing
-a simple view:</p>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id35">匿名函數</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
+<p>你可以使用匿名函數作為路由映射的目標位置。這個功能會在
+使用者造訪該 URI 的時候被執行。這對執行小任務或者顯示簡單畫面內容都是很方便的</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;feed&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nv">$rss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RSSFeeder</span><span class="p">();</span>
 
@@ -583,11 +573,11 @@ a simple view:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="mapping-multiple-routes">
-<h2><a class="toc-backref" href="#id9">Mapping multiple routes</a><a class="headerlink" href="#mapping-multiple-routes" title="本標題的永久連結">¶</a></h2>
-<p>While the add() method is simple to use, it is often handier to work with multiple routes at once, using
-the <code class="docutils literal notranslate"><span class="pre">map()</span></code> method. Instead of calling the <code class="docutils literal notranslate"><span class="pre">add()</span></code> method for each route that you need to add, you can
-define an array of routes and then pass it as the first parameter to the <code class="docutils literal notranslate"><span class="pre">map()</span></code> method:</p>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id36">映射多個路由</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h2>
+<p>即便 add() 方法簡單易用，一次與多個路由互動可謂更加方便，為此我們使用 <code class="docutils literal notranslate"><span class="pre">map()</span></code> 方法。
+除了為你個人需要增加的路由呼叫 <code class="docutils literal notranslate"><span class="pre">add()</span></code> 方法以外，你可以用一個路由的陣列然後
+把它當作第一個參數傳入 <code class="docutils literal notranslate"><span class="pre">map()</span></code> 方法</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="nv">$routes</span><span class="p">[</span><span class="s1">&#39;product/(:num)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Catalog::productLookupById&#39;</span><span class="p">;</span>
 <span class="nv">$routes</span><span class="p">[</span><span class="s1">&#39;product/(:alphanum)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Catalog::productLookupByName&#39;</span><span class="p">;</span>
@@ -596,13 +586,13 @@ define an array of routes and then pass it as the first parameter to the <code c
 </pre></div>
 </div>
 </div>
-<div class="section" id="redirecting-routes">
-<h2><a class="toc-backref" href="#id10">Redirecting Routes</a><a class="headerlink" href="#redirecting-routes" title="本標題的永久連結">¶</a></h2>
-<p>Any site that lives long enough is bound to have pages that move. You can specify routes that should redirect
-to other routes with the <code class="docutils literal notranslate"><span class="pre">addRedirect()</span></code> method. The first parameter is the URI pattern for the old route. The
-second parameter is either the new URI to redirect to, or the name of a named route. The third parameter is
-the HTTP status code that should be sent along with the redirect. The default value is <code class="docutils literal notranslate"><span class="pre">302</span></code> which is a temporary
-redirect and is recommended in most cases:</p>
+<div class="section" id="id9">
+<h2><a class="toc-backref" href="#id37">重新導向路由</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h2>
+<p>任何存在夠久的網站一定會有頁面的遷移。你可以透過 <code class="docutils literal notranslate"><span class="pre">addRedirect()</span></code> 方法
+指定重新導向到其他路由。第一個參數是舊路由的 URI 樣式。
+第二個參數可以是重新導向的新路由，或者是已命名的路由的名稱。
+第三個參數是隨著重新導向被送出的 的狀態碼。預設的值是 <code class="docutils literal notranslate"><span class="pre">302</span></code> ，它代表著暫時重新導向且在大部分的
+狀況下都建議這麼做</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;users/profile&#39;</span><span class="p">,</span> <span class="s1">&#39;Users::profile&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;as&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;profile&#39;</span><span class="p">]);</span>
 
 <span class="c1">// Redirect to a named route</span>
@@ -611,37 +601,36 @@ redirect and is recommended in most cases:</p>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">addRedirect</span><span class="p">(</span><span class="s1">&#39;users/about&#39;</span><span class="p">,</span> <span class="s1">&#39;users/profile&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>If a redirect route is matched during a page load, the user will be immediately redirected to the new page before a
-controller can be loaded.</p>
+<p>如果一個重新導向路由在讀取頁面的時候被比對到，使用者會立即在控制器讀取之前被重新導向到一個新頁面。</p>
 </div>
-<div class="section" id="grouping-routes">
-<h2><a class="toc-backref" href="#id11">Grouping Routes</a><a class="headerlink" href="#grouping-routes" title="本標題的永久連結">¶</a></h2>
-<p>You can group your routes under a common name with the <code class="docutils literal notranslate"><span class="pre">group()</span></code> method. The group name becomes a segment that
-appears prior to the routes defined inside of the group. This allows you to reduce the typing needed to build out an
-extensive set of routes that all share the opening string, like when building an admin area:</p>
+<div class="section" id="id10">
+<h2><a class="toc-backref" href="#id38">將路由分組</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h2>
+<p>你可以使用 <code class="docutils literal notranslate"><span class="pre">group()</span></code> 方法將你的路由根據一個通用名稱進行分組。該群組名稱會成為一個段落，
+顯示位階優先於群組中的路由定義。這使得你可以減輕建立一組擁有共同開頭字串的額外路由的打字負擔
+例如建立一個管理者區域的時候</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin\Users::index&#39;</span><span class="p">);</span>
     <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin\Blog::index&#39;</span><span class="p">);</span>
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>This would prefix the 『users』 and 『blog」 URIs with 「admin」, handling URLs like <code class="docutils literal notranslate"><span class="pre">/admin/users</span></code> and <code class="docutils literal notranslate"><span class="pre">/admin/blog</span></code>.</p>
-<p>If you need to assign options to a group, like a <a class="reference external" href="#assigning-namespace">namespace</a>, do it before the callback:</p>
+<p>這會用 「admin」 來當作 『users』 和 『blog』 的 URI 前綴，讓 URI 變得像 <code class="docutils literal notranslate"><span class="pre">/admin/users</span></code> 和 <code class="docutils literal notranslate"><span class="pre">/admin/blog</span></code>。</p>
+<p>如果你需要指派選項到一個群組中像是 <a class="reference external" href="#assigning-namespace">namespace</a>, 請在回呼之前處理</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;api&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;namespace&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;App\API\v1&#39;</span><span class="p">],</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">resource</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">);</span>
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>This would handle a resource route to the <code class="docutils literal notranslate"><span class="pre">App\API\v1\Users</span></code> controller with the <code class="docutils literal notranslate"><span class="pre">/api/users</span></code> URI.</p>
-<p>You can also use a specific <a class="reference external" href="filters.html">filter</a> for a group of routes. This will always
-run the filter before or after the controller. This is especially handy during authentication or api logging:</p>
+<p>這會將 <code class="docutils literal notranslate"><span class="pre">/api/users</span></code> URI 的指向到 <code class="docutils literal notranslate"><span class="pre">App\API\v1\Users</span></code> 的資源路由。</p>
+<p>你也可以為一組路由指定一個 <a class="reference external" href="filters.html">filter</a> 。這會永遠在
+控制器之前後執行。這在處理認證或 api 紀錄時特別的方便</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;api&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;filter&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;api-auth&#39;</span><span class="p">],</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">resource</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">);</span>
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>The value for the filter must match one of the aliases defined within <strong>app/Config/Filters.php</strong>.</p>
-<p>It is possible to nest groups within groups for finer organization if you need it:</p>
+<p>過濾器的值必須符合 <strong>app/Config/Filters.php</strong> 中定義的別名。</p>
+<p>如果你需要在群組中嵌套群組以建立更好的組織，這也是可行的</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
         <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin\Users::list&#39;</span><span class="p">);</span>
@@ -649,89 +638,87 @@ run the filter before or after the controller. This is especially handy during a
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>This would handle the URL at <code class="docutils literal notranslate"><span class="pre">admin/users/list</span></code>. Note that options passed to the outer <code class="docutils literal notranslate"><span class="pre">group()</span></code> (for example
-<code class="docutils literal notranslate"><span class="pre">namespace</span></code> and <code class="docutils literal notranslate"><span class="pre">filter</span></code>) are not merged with the inner <code class="docutils literal notranslate"><span class="pre">group()</span></code> options.</p>
-<p>At some point, you may want to group routes for the purpose of applying filters or other route
-config options like namespace, subdomain, etc. Without necessarily needing to add a prefix to the group, you can pass
-an empty string in place of the prefix and the routes in the group will be routed as though the group never existed but with the
-given route config options.</p>
+<p>這會將路由導向到 <code class="docutils literal notranslate"><span class="pre">admin/users/list</span></code>。注意傳遞到外部 <code class="docutils literal notranslate"><span class="pre">group()</span></code> 的選項（例如 <code class="docutils literal notranslate"><span class="pre">namespace</span></code> 和 <code class="docutils literal notranslate"><span class="pre">filter</span></code>）
+將不會與內部 <code class="docutils literal notranslate"><span class="pre">group()</span></code> 的選項合併。</p>
+<p>某些時候，你可能想要使用過濾器或其他像是命名空間、子網域等路由設定而把路由分組。
+在你沒有一定得對群組增加前綴的時候，你可以傳遞
+一個空字串作為前綴，你群組中的路由會根據給定的路由設定做映射
+就好像路由群組不存在一樣。</p>
 </div>
-<div class="section" id="environment-restrictions">
-<h2><a class="toc-backref" href="#id12">Environment Restrictions</a><a class="headerlink" href="#environment-restrictions" title="本標題的永久連結">¶</a></h2>
-<p>You can create a set of routes that will only be viewable in a certain environment. This allows you to create
-tools that only the developer can use on their local machines that are not reachable on testing or production servers.
-This can be done with the <code class="docutils literal notranslate"><span class="pre">environment()</span></code> method. The first parameter is the name of the environment. Any
-routes defined within this closure are only accessible from the given environment:</p>
+<div class="section" id="id11">
+<h2><a class="toc-backref" href="#id39">環境限制</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h2>
+<p>你可以創造僅會在特定環境中可視的一組路由。讓你可以創造
+只有開發人員可以在本地機器中使用的工具，且在測試或產品伺服器中無法取用。
+這只能透過 <code class="docutils literal notranslate"><span class="pre">environment()</span></code> 方法做到。第一個參數是環境的名稱。 Any
+任何用這個匿名函數定義的路由只能在指定環境下被取用</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">environment</span><span class="p">(</span><span class="s1">&#39;development&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;builder&#39;</span><span class="p">,</span> <span class="s1">&#39;Tools\Builder::index&#39;</span><span class="p">);</span>
 <span class="p">});</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="reverse-routing">
-<h2><a class="toc-backref" href="#id13">Reverse Routing</a><a class="headerlink" href="#reverse-routing" title="本標題的永久連結">¶</a></h2>
-<p>Reverse routing allows you to define the controller and method, as well as any parameters, that a link should go
-to, and have the router lookup the current route to it. This allows route definitions to change without you having
-to update your application code. This is typically used within views to create links.</p>
-<p>For example, if you have a route to a photo gallery that you want to link to, you can use the <code class="docutils literal notranslate"><span class="pre">route_to()</span></code> helper
-function to get the current route that should be used. The first parameter is the fully qualified Controller and method,
-separated by a double colon (::), much like you would use when writing the initial route itself. Any parameters that
-should be passed to the route are passed in next:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// The route is defined as:</span>
+<div class="section" id="id12">
+<h2><a class="toc-backref" href="#id40">反向路由</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h2>
+<p>你可以在反向路由定義控制器和方法，以及任何參數，指定一個連結應該何去何從，
+並讓路由查找他現在的映射為何者。讓你不用更動應用程式的程式碼就改變路由定義。
+通常會被用在視圖中以創造連結。</p>
+<p>舉例來說，如果你有一個想要連結的圖片庫，你可以使用 <code class="docutils literal notranslate"><span class="pre">route_to()</span></code> 輔助函數
+來取得你當前應該使用的路由。第一個參數是完全合規的控制器與方法，
+中間用雙冒號 （::）隔開，很像撰寫初始路由本身的樣子。應該要傳遞給路由的任何其他參數
+都需在後續傳入</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 路由定義為:</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;users/(:num)/gallery(:any)&#39;</span><span class="p">,</span> <span class="s1">&#39;App\Controllers\Galleries::showUserGallery/$1/$2&#39;</span><span class="p">);</span>
 
-<span class="c1">// Generate the relative URL to link to user ID 15, gallery 12</span>
-<span class="c1">// Generates: /users/15/gallery/12</span>
+<span class="c1">// 產生到 user ID 15， gallery 12 的對應路由</span>
+<span class="c1">// 生成： /users/15/gallery/12</span>
 <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;&lt;?= route_to(&#39;App\Controllers\Galleries::showUserGallery&#39;, 15, 12) ?&gt;&quot;</span><span class="o">&gt;</span><span class="nx">View</span> <span class="nx">Gallery</span><span class="o">&lt;/</span><span class="nx">a</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="using-named-routes">
-<h2><a class="toc-backref" href="#id14">Using Named Routes</a><a class="headerlink" href="#using-named-routes" title="本標題的永久連結">¶</a></h2>
-<p>You can name routes to make your application less fragile. This applies a name to a route that can be called
-later, and even if the route definition changes, all of the links in your application built with <code class="docutils literal notranslate"><span class="pre">route_to</span></code>
-will still work without you having to make any changes. A route is named by passing in the <code class="docutils literal notranslate"><span class="pre">as</span></code> option
-with the name of the route:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// The route is defined as:</span>
+<div class="section" id="id13">
+<h2><a class="toc-backref" href="#id41">使用命名錄由</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h2>
+<p>你可以對路由命名使得你的應用程式更不脆弱。這會給路由一個可以被呼叫的名稱，
+即便路由定義被改變了，你應用程式中用 <code class="docutils literal notranslate"><span class="pre">route_to</span></code> 建立的所有連結
+不需要做任何改變就仍會有作用。一個路由透過 <code class="docutils literal notranslate"><span class="pre">as</span></code> 選項傳入的名字就可以被命名</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 路由被定義為：</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;users/(:num)/gallery(:any)&#39;</span><span class="p">,</span> <span class="s1">&#39;Galleries::showUserGallery/$1/$2&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;as&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;user_gallery&#39;</span><span class="p">]);</span>
 
-<span class="c1">// Generate the relative URL to link to user ID 15, gallery 12</span>
-<span class="c1">// Generates: /users/15/gallery/12</span>
+<span class="c1">// 產生到 user ID 15， gallery 12 的對應路由</span>
+<span class="c1">// 生成： /users/15/gallery/12</span>
 <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;&lt;?= route_to(&#39;user_gallery&#39;, 15, 12) ?&gt;&quot;</span><span class="o">&gt;</span><span class="nx">View</span> <span class="nx">Gallery</span><span class="o">&lt;/</span><span class="nx">a</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>This has the added benefit of making the views more readable, too.</p>
+<p>這也有著讓視圖更加的可讀的額外好處。</p>
 </div>
-<div class="section" id="using-http-verbs-in-routes">
-<h2><a class="toc-backref" href="#id15">Using HTTP verbs in routes</a><a class="headerlink" href="#using-http-verbs-in-routes" title="本標題的永久連結">¶</a></h2>
-<p>It is possible to use HTTP verbs (request method) to define your routing rules. This is particularly
-useful when building RESTFUL applications. You can use any standard HTTP verb (GET, POST, PUT, DELETE, etc).
-Each verb has its own method you can use:</p>
+<div class="section" id="http">
+<h2><a class="toc-backref" href="#id42">在路由中使用 HTTP 動詞</a><a class="headerlink" href="#http" title="本標題的永久連結">¶</a></h2>
+<p>你可以在路由規則中使用 HTTP 動詞（請求方法）來定義你的路由規則。這在建立 RESTFUL 應用程式時
+特別實用。你可以使用任何的標準 HTTP 動詞（GET，POST，PUT，DELETE 等等）。
+每個動詞有它自己的可用方法</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;products&#39;</span><span class="p">,</span> <span class="s1">&#39;Product::feature&#39;</span><span class="p">);</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;products&#39;</span><span class="p">,</span> <span class="s1">&#39;Product::feature&#39;</span><span class="p">);</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;products/(:num)&#39;</span><span class="p">,</span> <span class="s1">&#39;Product::feature&#39;</span><span class="p">);</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;products/(:num)&#39;</span><span class="p">,</span> <span class="s1">&#39;Product::feature&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>You can supply multiple verbs that a route should match by passing them in as an array to the <code class="docutils literal notranslate"><span class="pre">match</span></code> method:</p>
+<p>你可以提供多個動詞以陣列的方式傳入到 <code class="docutils literal notranslate"><span class="pre">match</span></code> 方法讓路由去做映射</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">match</span><span class="p">([</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;put&#39;</span><span class="p">],</span> <span class="s1">&#39;products&#39;</span><span class="p">,</span> <span class="s1">&#39;Product::feature&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="command-line-only-routes">
-<h2><a class="toc-backref" href="#id16">Command-Line only Routes</a><a class="headerlink" href="#command-line-only-routes" title="本標題的永久連結">¶</a></h2>
-<p>You can create routes that work only from the command-line, and are inaccessible from the web browser, with the
-<code class="docutils literal notranslate"><span class="pre">cli()</span></code> method. This is great for building cronjobs or CLI-only tools. Any route created by any of the HTTP-verb-based
-route methods will also be inaccessible from the CLI, but routes created by the <code class="docutils literal notranslate"><span class="pre">any()</span></code> method will still be
-available from the command line:</p>
+<div class="section" id="id14">
+<h2><a class="toc-backref" href="#id43">僅命令列可用的路由</a><a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h2>
+<p>你可以製作只有命令列可以使用的路由，且網頁瀏覽器不可取用，透過 <code class="docutils literal notranslate"><span class="pre">cli()</span></code> 方法即可達成。
+在製作 cronjobs 或 CLI-only 工具很實用。任何以 HTTP 動詞為基礎的路由方法也會是 CLI 不可用的。
+但若是以 <code class="docutils literal notranslate"><span class="pre">any()</span></code> 方法製作的路由仍會是命令列可以存取的</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">cli</span><span class="p">(</span><span class="s1">&#39;migrate&#39;</span><span class="p">,</span> <span class="s1">&#39;App\Database::migrate&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="global-options">
-<h2><a class="toc-backref" href="#id17">Global Options</a><a class="headerlink" href="#global-options" title="本標題的永久連結">¶</a></h2>
-<p>All of the methods for creating a route (add, get, post, <a class="reference external" href="restful.html">resource</a> etc) can take an array of options that
-can modify the generated routes, or further restrict them. The <code class="docutils literal notranslate"><span class="pre">$options</span></code> array is always the last parameter:</p>
+<div class="section" id="id15">
+<h2><a class="toc-backref" href="#id44">全域選項</a><a class="headerlink" href="#id15" title="本標題的永久連結">¶</a></h2>
+<p>所有製作路由的方法（add, get, post, <a class="reference external" href="restful.html">resource</a> 等等）可以用一個選項陣列
+來調整所產生的路由，甚至限制它們。 <code class="docutils literal notranslate"><span class="pre">$options</span></code> 陣列永遠都是最後一個引數</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
@@ -746,98 +733,95 @@ can modify the generated routes, or further restrict them. The <code class="docu
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">,</span> <span class="k">function</span> <span class="p">());</span>
 </pre></div>
 </div>
-<div class="section" id="applying-filters">
-<h3><a class="toc-backref" href="#id18">Applying Filters</a><a class="headerlink" href="#applying-filters" title="本標題的永久連結">¶</a></h3>
-<p>You can alter the behavior of specific routes by supplying filters to run before or after the controller. This is especially handy during authentication or api logging.
-The value for the filter can be a string or an array of strings:</p>
+<div class="section" id="id16">
+<h3><a class="toc-backref" href="#id45">使用過濾器</a><a class="headerlink" href="#id16" title="本標題的永久連結">¶</a></h3>
+<p>你可以改變特定路由的行為，透過提供過濾器在控制器前後執行的方式達成。在處理認證或 api 紀錄時特別好用。
+過濾器的值可以是字串或由字串組成的陣列：</p>
 <ul class="simple">
-<li>matching the aliases defined in <strong>app/Config/Filters.php</strong>.</li>
-<li>filter classnames</li>
+<li>符合 <strong>app/Config/Filters.php</strong> 中定義的別名。</li>
+<li>過濾器類別名稱。</li>
 </ul>
-<p>See <a class="reference external" href="filters.html">Controller filters</a> for more information on setting up filters.</p>
+<p>請見 <a class="reference external" href="filters.html">Controller filters</a> 尋找更多設定過濾器的設定。</p>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
-<p class="last">If you set filters to routes in <strong>app/Config/Routes.php</strong>
-(not in <strong>app/Config/Filters.php</strong>), it is recommended to disable auto-routing.
-When auto-routing is enabled, it may be possible that a controller can be accessed
-via a different URL than the configured route,
-in which case the filter you specified to the route will not be applied.
-See <a class="reference internal" href="#use-defined-routes-only"><span class="std std-ref">Use Defined Routes Only</span></a> to disable auto-routing.</p>
+<p class="last">如果你在 <strong>app/Config/Routes.php</strong> 中給路由設定過濾器
+（不是在 <strong>app/Config/Filters.php</strong> 中），我們建議停用自動映射。
+當自動映射被啟用中，有可能會通過不同的 URL 取用到
+控制器而不是你設定的路由，
+這種狀況下你指定的路由就不會被用到。
+請見 <a class="reference internal" href="#use-defined-routes-only"><span class="std std-ref">只使用有定義的路由</span></a> 以停用自動映射。</p>
 </div>
-<p><strong>Alias filter</strong></p>
-<p>You specify an alias defined in <strong>app/Config/Filters.php</strong> for the filter value:</p>
+<p><strong>別名過濾器</strong></p>
+<p>你可以指定 <strong>app/Config/Filters.php</strong> 中的一個別名作為過濾器的值</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span><span class="s1">&#39; AdminController::index&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;filter&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;admin-auth&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p>You may also supply arguments to be passed to the alias filter’s <code class="docutils literal notranslate"><span class="pre">before()</span></code> and <code class="docutils literal notranslate"><span class="pre">after()</span></code> methods:</p>
+<p>你也可以提供要傳給別名過濾器的 <code class="docutils literal notranslate"><span class="pre">before()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">after()</span></code> 方法的引數</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;users/delete/(:segment)&#39;</span><span class="p">,</span> <span class="s1">&#39;AdminController::index&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;filter&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;admin-auth:dual,noreturn&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p><strong>Classname filter</strong></p>
-<p>You specify a filter classname for the filter value:</p>
+<p><strong>類別名稱過濾器</strong></p>
+<p>你可以指定一個類別名稱的過濾器作為過濾器的值</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span><span class="s1">&#39; AdminController::index&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;filter&#39;</span> <span class="o">=&gt;</span> <span class="nx">\App\Filters\SomeFilter</span><span class="o">::</span><span class="na">class</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p><strong>Multiple filters</strong></p>
+<p><strong>多個過濾器</strong></p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last"><em>Multiple filters</em> is disabled by default. Because it breaks backward compatibility. If you want to use it, you need to configure. See <em>Multiple filters for a route</em> in <a class="reference internal" href="../installation/upgrade_415.html"><span class="doc">Upgrading from 4.1.4 to 4.1.5</span></a> for the details.</p>
+<p class="last"><em>多個過濾器</em> 預設不可用。因為他會破壞向後兼容的特性。如果你想要使用它，你要自行設定。請在 <a class="reference internal" href="../installation/upgrade_415.html"><span class="doc">Upgrading from 4.1.4 to 4.1.5</span></a>  <em>一個路由多個過濾器</em> 中尋找更多細節。</p>
 </div>
-<p>You specify an array for the filter value:</p>
+<p>你可以指定一個陣列作為過濾器的值</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span><span class="s1">&#39; AdminController::index&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;filter&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;admin-auth&#39;</span><span class="p">,</span> <span class="nx">\App\Filters\SomeFilter</span><span class="o">::</span><span class="na">class</span><span class="p">]]);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="assigning-namespace">
-<h3><a class="toc-backref" href="#id19">Assigning Namespace</a><a class="headerlink" href="#assigning-namespace" title="本標題的永久連結">¶</a></h3>
-<p>While a default namespace will be prepended to the generated controllers (see below), you can also specify
-a different namespace to be used in any options array, with the <code class="docutils literal notranslate"><span class="pre">namespace</span></code> option. The value should be the
-namespace you want modified:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Routes to \Admin\Users::index()</span>
+<div class="section" id="id17">
+<h3><a class="toc-backref" href="#id46">指派命名空間</a><a class="headerlink" href="#id17" title="本標題的永久連結">¶</a></h3>
+<p>因為預設的命名空間會被作為產生的控制器的前置（詳情如下），你也可以使用　<code class="docutils literal notranslate"><span class="pre">namespace</span></code>　選項
+來指定一個不同的命名空間作為選項陣列使用。該值應該是你想要修改的命名空間　:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 指定路由到 \Admin\Users::index()</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;admin/users&#39;</span><span class="p">,</span> <span class="s1">&#39;Users::index&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;namespace&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Admin&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p>The new namespace is only applied during that call for any methods that create a single route, like get, post, etc.
-For any methods that create multiple routes, the new namespace is attached to all routes generated by that function
-or, in the case of <code class="docutils literal notranslate"><span class="pre">group()</span></code>, all routes generated while in the closure.</p>
+<p>新的命名空間只會在呼叫製作單一路由的任意方法時被應用，像是 get，post 等等。
+對於任何製作多個路由的方法，新的命名空間會附著在該功能產生的所有路由上，
+或者在 <code class="docutils literal notranslate"><span class="pre">group()</span></code> 的情況下，所有的路由會在使用匿名函數的時候產生。</p>
 </div>
-<div class="section" id="limit-to-hostname">
-<h3><a class="toc-backref" href="#id20">Limit to Hostname</a><a class="headerlink" href="#limit-to-hostname" title="本標題的永久連結">¶</a></h3>
-<p>You can restrict groups of routes to function only in certain domain or sub-domains of your application
-by passing the 「hostname」 option along with the desired domain to allow it on as part of the options array:</p>
+<div class="section" id="id18">
+<h3><a class="toc-backref" href="#id47">主機名稱的限制</a><a class="headerlink" href="#id18" title="本標題的永久連結">¶</a></h3>
+<p>你可以對函數進行路由群組的限制，限制只有你的應用程式的特定網域或子網域可用
+通過將「主機名稱」選項以及你想要限制啟用的域名作為選項陣列傳遞來啟用</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;hostname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;accounts.example.com&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p>This example would only allow the specified hosts to work if the domain exactly matched 「accounts.example.com」.
-It would not work under the main site at 「example.com」.</p>
+<p>這個範例只會允許主機名稱符合 「accounts.example.com」 的主機存取。
+在 「example.com」 的主網站下就無法存取。</p>
 </div>
-<div class="section" id="limit-to-subdomains">
-<h3><a class="toc-backref" href="#id21">Limit to Subdomains</a><a class="headerlink" href="#limit-to-subdomains" title="本標題的永久連結">¶</a></h3>
-<p>When the <code class="docutils literal notranslate"><span class="pre">subdomain</span></code> option is present, the system will restrict the routes to only be available on that
-sub-domain. The route will only be matched if the subdomain is the one the application is being viewed through:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Limit to media.example.com</span>
+<div class="section" id="id19">
+<h3><a class="toc-backref" href="#id48">子網域的限制</a><a class="headerlink" href="#id19" title="本標題的永久連結">¶</a></h3>
+<p>當 <code class="docutils literal notranslate"><span class="pre">subdomain</span></code> 的選項存在，系統將會限制路由只對該子網域可用。
+該路由只會有在子網域名稱是正在查看應用程式的子網域的時候才會去匹配路由</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 限制 media.example.com</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;subdomain&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;media&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p>You can restrict it to any subdomain by setting the value to an asterisk, (*). If you are viewing from a URL
-that does not have any subdomain present, this will not be matched:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Limit to any sub-domain</span>
+<p>你可以規定任何子網域，透過設定子網域值為星字號（*）。如果你正在瀏覽不具有子網域的 URL ，你就不會被匹配路由</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 限制任何子網域</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;subdomain&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;*&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last">The system is not perfect and should be tested for your specific domain before being used in production.
-Most domains should work fine but some edge case ones, especially with a period in the domain itself (not used
-to separate suffixes or www) can potentially lead to false positives.</p>
+<p class="last">系統並不是完美的，你應該在上正式環境之前測試你指定的域名。
+大部分域名都會正常的執行，除了某些邊緣情況，特別是域名本身有「點」的
+（不是被用來分開後綴或 www 的）會有導致誤報的潛在危機。</p>
 </div>
 </div>
-<div class="section" id="offsetting-the-matched-parameters">
-<h3><a class="toc-backref" href="#id22">Offsetting the Matched Parameters</a><a class="headerlink" href="#offsetting-the-matched-parameters" title="本標題的永久連結">¶</a></h3>
-<p>You can offset the matched parameters in your route by any numeric value with the <code class="docutils literal notranslate"><span class="pre">offset</span></code> option, with the
-value being the number of segments to offset.</p>
-<p>This can be beneficial when developing API’s with the first URI segment being the version number. It can also
-be used when the first parameter is a language string:</p>
+<div class="section" id="id20">
+<h3><a class="toc-backref" href="#id49">位移對應到的參數</a><a class="headerlink" href="#id20" title="本標題的永久連結">¶</a></h3>
+<p>你可以通過 <code class="docutils literal notranslate"><span class="pre">offset</span></code> 選項以任意數值在你的路由中位移對應到的參數, 以該數值作為段落中偏移的數字。</p>
+<p>這在開發以第一段作為版本號的 API 的時候特別好用。它也可以
+被用在第一個引數是語言字串的時候</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;users/(:num)&#39;</span><span class="p">,</span> <span class="s1">&#39;users/show/$1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;offset&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">]);</span>
 
 <span class="c1">// Creates:</span>
@@ -845,14 +829,13 @@ be used when the first parameter is a language string:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="route-processing-queue">
-<span id="priority"></span><h3><a class="toc-backref" href="#id23">Route processing queue</a><a class="headerlink" href="#route-processing-queue" title="本標題的永久連結">¶</a></h3>
-<p>When working with modules, it can be a problem if the routes in the application contain wildcards.
-Then the module routes will not be processed correctly.
-You can solve this problem by lowering the priority of route processing using the <code class="docutils literal notranslate"><span class="pre">priority</span></code> option. The parameter
-accepts positive integers and zero. The higher the number specified in the 「priority」, the lower
-route priority in the processing queue:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// First you need to enable sorting.</span>
+<div class="section" id="priority">
+<span id="id21"></span><h3><a class="toc-backref" href="#id50">映射處理中的隊列</a><a class="headerlink" href="#priority" title="本標題的永久連結">¶</a></h3>
+<p>在與模組互動的時候，如果應用程式中的路由含有萬用字元會是一個問題。
+會造成模組的路由不被正確地處理。
+你可以透過 <code class="docutils literal notranslate"><span class="pre">priority</span></code> 選項降低路由處理的優先權解決這個問題。
+參數可以使用正整數和零。 「priority」 越高的數字，在處裡隊列中排的越後面</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 首先你要啟用排序</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setPrioritize</span><span class="p">();</span>
 
 <span class="c1">// App\Config\Routes</span>
@@ -861,106 +844,102 @@ route priority in the processing queue:</p>
 <span class="c1">// Modules\Acme\Config\Routes</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin::index&#39;</span><span class="p">);</span>
 
-<span class="c1">// The &quot;admin&quot; route will now be processed before the wildcard router.</span>
+<span class="c1">// &quot;admin&quot; 路由現在會在萬用字元路由之前被處理。</span>
 </pre></div>
 </div>
-<p>To disable this functionality, you must call the method with the parameter <code class="docutils literal notranslate"><span class="pre">false</span></code>:</p>
+<p>如果要停用這個功能，你必須傳入 <code class="docutils literal notranslate"><span class="pre">false</span></code> 到該方法中。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setPrioritize</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">By default, all routes have a priority of 0.
-Negative integers will be cast to the absolute value.</p>
+<p class="last">預設狀況下，所有路由的優先全都是 0，
+負數會被解讀為絕對值。</p>
 </div>
 </div>
 </div>
-<div class="section" id="routes-configuration-options">
-<h2><a class="toc-backref" href="#id24">Routes Configuration Options</a><a class="headerlink" href="#routes-configuration-options" title="本標題的永久連結">¶</a></h2>
-<p>The RoutesCollection class provides several options that affect all routes, and can be modified to meet your
-application’s needs. These options are available at the top of <strong>app/Config/Routes.php</strong>.</p>
-<div class="section" id="default-namespace">
-<h3><a class="toc-backref" href="#id25">Default Namespace</a><a class="headerlink" href="#default-namespace" title="本標題的永久連結">¶</a></h3>
-<p>When matching a controller to a route, the router will add the default namespace value to the front of the controller
-specified by the route. By default, this value is empty, which leaves each route to specify the fully namespaced
-controller:</p>
+<div class="section" id="id22">
+<h2><a class="toc-backref" href="#id51">路由設定選項</a><a class="headerlink" href="#id22" title="本標題的永久連結">¶</a></h2>
+<p>RoutesCollection 類別提供多種選項以設定所有路由，且可以根據你應用程式的需求進行修改。
+這些選項在 <strong>app/Config/Routes.php</strong> 的最上面可以找到。</p>
+<div class="section" id="id23">
+<h3><a class="toc-backref" href="#id52">預設命名空間</a><a class="headerlink" href="#id23" title="本標題的永久連結">¶</a></h3>
+<p>把控制器配對給路由的時候，路由器會把預設密名空間的值加到指定路由控制器的前端。
+預設狀況下，這個值是空值，讓每個路由可以指派控制器的完整名稱</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setDefaultNamespace</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
 
-<span class="c1">// Controller is \Users</span>
+<span class="c1">// Controller 為 \Users</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;Users::index&#39;</span><span class="p">);</span>
 
-<span class="c1">// Controller is \Admin\Users</span>
+<span class="c1">// Controller 為 \Admin\Users</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin\Users::index&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>If your controllers are not explicitly namespaced, there is no need to change this. If you namespace your controllers,
-then you can change this value to save typing:</p>
+<p>如果你的控制器沒有明確的指定命名空間，你就不需要變更這裡。如果你給你的控制器命名空間，
+那你可以改變這邊以減少你的打字負擔</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setDefaultNamespace</span><span class="p">(</span><span class="s1">&#39;App&#39;</span><span class="p">);</span>
 
-<span class="c1">// Controller is \App\Users</span>
+<span class="c1">// Controller 為 \App\Users</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;Users::index&#39;</span><span class="p">);</span>
 
-<span class="c1">// Controller is \App\Admin\Users</span>
+<span class="c1">// Controller 為 \App\Admin\Users</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin\Users::index&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="default-controller">
-<h3><a class="toc-backref" href="#id26">Default Controller</a><a class="headerlink" href="#default-controller" title="本標題的永久連結">¶</a></h3>
-<p>When a user visits the root of your site (i.e., example.com) the controller to use is determined by the value set by
-the <code class="docutils literal notranslate"><span class="pre">setDefaultController()</span></code> method, unless a route exists for it explicitly. The default value for this is <code class="docutils literal notranslate"><span class="pre">Home</span></code>
-which matches the controller at <code class="docutils literal notranslate"><span class="pre">/app/Controllers/Home.php</span></code>:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// example.com routes to app/Controllers/Welcome.php</span>
+<div class="section" id="id24">
+<h3><a class="toc-backref" href="#id53">預設控制器</a><a class="headerlink" href="#id24" title="本標題的永久連結">¶</a></h3>
+<p>當一個使用者造訪你網站的根部 （也就是說 example.com），除非一個路由明確的位網站而存在
+否則要使用哪一個控制器是皆是由 <code class="docutils literal notranslate"><span class="pre">setDefaultController()</span></code> 方法中的值所指定
+此方法的預設值是 <code class="docutils literal notranslate"><span class="pre">Home</span></code>
+與 <code class="docutils literal notranslate"><span class="pre">/app/Controllers/Home.php</span></code> 中的控制器一致</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// example.com 映射到 app/Controllers/Welcome.php</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setDefaultController</span><span class="p">(</span><span class="s1">&#39;Welcome&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The default controller is also used when no matching route has been found, and the URI would point to a directory
-in the controllers directory. For example, if the user visits <code class="docutils literal notranslate"><span class="pre">example.com/admin</span></code>, if a controller was found at
-<code class="docutils literal notranslate"><span class="pre">/app/Controllers/admin/Home.php</span></code> it would be used.</p>
+<p>預設控制器也會在沒有找到對應路由的時候被使用， 且 URI 會被指到控制器的路徑中。
+舉例說明，如果使用者造訪 <code class="docutils literal notranslate"><span class="pre">example.com/admin</span></code>，若是在 <code class="docutils literal notranslate"><span class="pre">/app/Controllers/admin/Home.php</span></code> 中找到一個控制器，該控制器就會被使用。</p>
 </div>
-<div class="section" id="default-method">
-<h3><a class="toc-backref" href="#id27">Default Method</a><a class="headerlink" href="#default-method" title="本標題的永久連結">¶</a></h3>
-<p>This works similar to the default controller setting, but is used to determine the default method that is used
-when a controller is found that matches the URI, but no segment exists for the method. The default value is
-<code class="docutils literal notranslate"><span class="pre">index</span></code>.</p>
-<p>In this example, if the user were to visit example.com/products, and a Products controller existed, the
-<code class="docutils literal notranslate"><span class="pre">Products::listAll()</span></code> method would be executed:</p>
+<div class="section" id="id25">
+<h3><a class="toc-backref" href="#id54">預設方法</a><a class="headerlink" href="#id25" title="本標題的永久連結">¶</a></h3>
+<p>這與預設控制器設定相似，但它是被用來決定控制器與 URI 相符合時卻沒有方法段落存在的時候該使用哪個預設方法。
+預設值為 <code class="docutils literal notranslate"><span class="pre">index</span></code>。</p>
+<p>在這範例中，如果使用者想要造訪 example.com/products，且一個 Products 控制器存在的狀況下，
+<code class="docutils literal notranslate"><span class="pre">Products::listAll()</span></code> 方法就會被執行</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setDefaultMethod</span><span class="p">(</span><span class="s1">&#39;listAll&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="translate-uri-dashes">
-<h3><a class="toc-backref" href="#id28">Translate URI Dashes</a><a class="headerlink" href="#translate-uri-dashes" title="本標題的永久連結">¶</a></h3>
-<p>This option enables you to automatically replace dashes (‘-‘) with underscores in the controller and method
-URI segments, thus saving you additional route entries if you need to do that. This is required because the
-dash isn’t a valid class or method name character and would cause a fatal error if you try to use it:</p>
+<div class="section" id="id26">
+<h3><a class="toc-backref" href="#id55">解析 URI 中的破折號</a><a class="headerlink" href="#id26" title="本標題的永久連結">¶</a></h3>
+<p>這個選項讓你夠自動地將控制器與方法 URI 段落中的破折號 (‘-‘) 取代為下底線，
+因此如果你有需要的話可以省去額外的路由進入點。 This is required because the
+因為破折號並不是一個合規的類別或方法名稱字元且會在試著使用的時候造成致命錯誤，所以這是必須的</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setTranslateURIDashes</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="use-defined-routes-only">
-<span id="id2"></span><h3><a class="toc-backref" href="#id29">Use Defined Routes Only</a><a class="headerlink" href="#use-defined-routes-only" title="本標題的永久連結">¶</a></h3>
-<p>When no defined route is found that matches the URI, the system will attempt to match that URI against the
-controllers and methods as described above. You can disable this automatic matching, and restrict routes
-to only those defined by you, by setting the <code class="docutils literal notranslate"><span class="pre">setAutoRoute()</span></code> option to false:</p>
+<span id="id27"></span><h3><a class="toc-backref" href="#id56">只使用有定義的路由</a><a class="headerlink" href="#use-defined-routes-only" title="本標題的永久連結">¶</a></h3>
+<p>當沒有找到與定義相對應的 URI，系統會像上面所描述的一般，試圖在控制器與方法中
+尋找對應的 URI 。你可以停用這個自動匹配，並將 <code class="docutils literal notranslate"><span class="pre">setAutoRoute()</span></code> 選項設為 false，去限制只能用你定義的路由</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setAutoRoute</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
 </pre></div>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
-<p class="last">If you use the <a class="reference internal" href="../libraries/security.html"><span class="doc">CSRF protection</span></a>, it does not protect <strong>GET</strong>
-requests. If the URI is accessible by the GET method, the CSRF protection will not work.</p>
+<p class="last">如果你使用 <a class="reference internal" href="../libraries/security.html"><span class="doc">CSRF protection</span></a>，它並未保護 <strong>GET</strong>
+請求。如果你的 URI 可以被 GET 方法呼叫，那麼 CSRF 保護將不會起作用。</p>
 </div>
 </div>
-<div class="section" id="override">
-<h3><a class="toc-backref" href="#id30">404 Override</a><a class="headerlink" href="#override" title="本標題的永久連結">¶</a></h3>
-<p>When a page is not found that matches the current URI, the system will show a generic 404 view. You can change
-what happens by specifying an action to happen with the <code class="docutils literal notranslate"><span class="pre">set404Override()</span></code> option. The value can be either
-a valid class/method pair, just like you would show in any route, or a Closure:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Would execute the show404 method of the App\Errors class</span>
+<div class="section" id="id28">
+<h3><a class="toc-backref" href="#id57">404 覆寫</a><a class="headerlink" href="#id28" title="本標題的永久連結">¶</a></h3>
+<p>當沒有頁面符合當前的 URI，系統將會顯示一個通用的 404 視圖。你可以透過指定
+<code class="docutils literal notranslate"><span class="pre">set404Override()</span></code> 選項以改變發生的事情。它的值可以是合規的類別／方法組合，就像在任何路由中的樣子，亦或是一個匿名函數</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 將會執行 App\Errors 類別中的 show404 方法</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">set404Override</span><span class="p">(</span><span class="s1">&#39;App\Errors::show404&#39;</span><span class="p">);</span>
 
-<span class="c1">// Will display a custom view</span>
+<span class="c1">// 將會顯示一個自定義視圖</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">set404Override</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span>
 <span class="p">{</span>
     <span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;my_errors/not_found.html&#39;</span><span class="p">);</span>
@@ -968,15 +947,15 @@ a valid class/method pair, just like you would show in any route, or a Closure:<
 </pre></div>
 </div>
 </div>
-<div class="section" id="route-processing-by-priority">
-<h3><a class="toc-backref" href="#id31">Route processing by priority</a><a class="headerlink" href="#route-processing-by-priority" title="本標題的永久連結">¶</a></h3>
-<p>Enables or disables processing of the routes queue by priority. Lowering the priority is defined in the route option.
-Disabled by default. This functionality affects all routes.
-For an example of use lowering the priority see <a class="reference internal" href="#priority"><span class="std std-ref">Route processing queue</span></a>:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// to enable</span>
+<div class="section" id="id29">
+<h3><a class="toc-backref" href="#id58">根據優先權處理路由</a><a class="headerlink" href="#id29" title="本標題的永久連結">¶</a></h3>
+<p>啟用或停用路由的優先權處理隊列。降低優先權的方法是被定義在路由選項中的。
+預設為停用。這個功能會影響所有的路由。
+可在 <a class="reference internal" href="#priority"><span class="std std-ref">映射處理中的隊列</span></a> 中找到使用降低優先權的範例。</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 啟用</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setPrioritize</span><span class="p">();</span>
 
-<span class="c1">// to disable</span>
+<span class="c1">// 停用</span>
 <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setPrioritize</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -992,7 +971,7 @@ For an example of use lowering the priority see <a class="reference internal" hr
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="filters.html" class="btn btn-neutral float-right" title="Controller Filters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="filters.html" class="btn btn-neutral float-right" title="控制器過濾器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="controllers.html" class="btn btn-neutral float-left" title="控制器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
