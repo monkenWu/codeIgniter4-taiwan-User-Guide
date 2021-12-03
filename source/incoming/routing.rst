@@ -546,7 +546,7 @@ RoutesCollection 類別提供多種選項以設定所有路由，且可以根據
 .. warning:: 如果你使用 :doc:`CSRF protection </libraries/security>`，它並未保護 **GET**
     請求。如果你的 URI 可以被 GET 方法呼叫，那麼 CSRF 保護將不會起作用。
 
-404 複寫
+404 覆寫
 ------------
 
 當沒有頁面符合當前的 URI，系統將會顯示一個通用的 404 視圖。你可以透過指定
