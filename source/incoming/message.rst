@@ -1,102 +1,95 @@
 =============
-HTTP Messages
+HTTP 訊息
 =============
 
-The Message class provides an interface to the portions of an HTTP message that are common to both
-requests and responses, including the message body, protocol version, utilities for working with
-the headers, and methods for handling content negotiation.
+Message 類別提供了 HTTP 訊息中請求和響應共有部分的介面，包括訊息主體、協定版本、處理標頭的程序和處理內容協商的方法。
 
-This class is the parent class that both the :doc:`Request Class </incoming/request>` and the
-:doc:`Response Class </outgoing/response>` extend from. As such, some methods, such as the content
-negotiation methods, may apply only to a request or response, and not the other one, but they have
-been included here to keep the header methods together.
+這個類別是 :doc:`Request 類別 </incoming/request>` 跟 :doc:`Response 類別 </outgoing/response>` 的父類別。
+因此，某些方法（如內容協商方法）可能僅適用於請求或響應其中之一，但他們都已經被包含在此類別裡以維持標頭方法的完整。
 
-What is Content Negotiation?
+
+什麼是內容協商？
 ============================
 
-At it's heart Content Negotiation is simply a part of the HTTP specification that allows a single
-resource to serve more than one type of content, allowing the clients to request the type of
-data that works best for them.
+從本質上講，內容協商只是HTTP規範的一部分，它允許單一資源提供多種類型的內容，允許用戶端請求最適合他們的數據類型。
 
-A classic example of this is a browser that cannot display PNG files can request only GIF or
-JPEG images. When the getServer receives the request, it looks at the available file types the client
-is requesting and selects the best match from the image formats that it supports, in this case
-likely choosing a JPEG image to return.
+一個典型的例子是無法顯示 PNG 檔的瀏覽器只能請求 GIF 或 JPEG 影像。
+當 getServer 收到請求時，它會查看客戶端所請求的的文件類型並從其支援的圖像格式中選擇最佳匹配，在本例中可能選擇 JPEG 圖像來返回。
 
-This same negotiation can happen with four types of data:
+同樣的協商可以發生在四種型別的資料上：
 
-* **Media/Document Type** - this could be image format, or HTML vs. XML or JSON.
-* **Character Set** - The character set the returned document should be set in. Typically is UTF-8.
-* **Document Encoding** - Typically the type of compression used on the results.
-* **Document Language** - For sites that support multiple languages, this helps determine which to return.
-
+* **媒體/文件型別** - 這可能是圖像格式，或 HTML vs. XML 或 JSON。
+* **字元集** - 返回的文件應該設定為何種字元集。通常是 UTF-8 。
+* **文件編碼** - 通常是在結果上使用的壓縮型別。
+* **文件語言** - 對於支援多種語言的網站，這有助於確定要返回的語言。
+  
 ***************
-Class Reference
+類別參考
 ***************
 
 .. php:class:: CodeIgniter\\HTTP\\Message
 
     .. php:method:: getBody()
 
-        :returns: The current message body
-        :rtype: mixed
+        :returns: 目前的訊息主體
+        :rtype: 混和的
 
-        Returns the current message body, if any has been set. If not body exists, returns null::
+        回傳目前的訊息主體（如果已設定）。如果主體不存在，則返回 null 。
+        ::
 
             echo $message->getBody();
 
     .. php:method:: setBody($data)
 
-        :param  mixed  $data: The body of the message.
-        :returns: the Message|Response instance to allow methods to be chained together.
+        :param  mixed  $data: 訊息的主體
+        :returns: 訊息|響應實體，以允許方法被串聯起來
         :rtype: CodeIgniter\\HTTP\\Message|CodeIgniter\\HTTP\\Response
 
-        Sets the body of the current request.
+        設定當前請求的主體。
 
     .. php:method:: appendBody($data)
 
-        :param  mixed  $data: The body of the message.
-        :returns: the Message|Response instance to allow methods to be chained together.
+        :param  mixed  $data: 訊息的主體
+        :returns: 訊息|響應實體，以允許方法被串聯起來
         :rtype: CodeIgniter\\HTTP\\Message|CodeIgniter\\HTTP\\Response
 
-        Appends data to the body of the current request.
+        將資料加到當前請求的主體中。
 
     .. php:method:: populateHeaders()
 
-        :returns: void
+        :returns: 無
 
-        Scans and parses the headers found in the SERVER data and stores it for later access.
-        This is used by the :doc:`IncomingRequest Class </incoming/incomingrequest>` to make
-        the current request's headers available.
+        掃描和分析在 SERVER 資料中找到的標頭，並將其存儲以供以後訪問。
+        這被 :doc:`IncomingRequest 類別 </incoming/incomingrequest>` 使用來確保當前請求的標頭可用。
 
-        The headers are any SERVER data that starts with ``HTTP_``, like ``HTTP_HOST``. Each message
-        is converted from it's standard uppercase and underscore format to a ucwords and dash format.
-        The preceding ``HTTP_`` is removed from the string. So ``HTTP_ACCEPT_LANGUAGE`` becomes
-        ``Accept-Language``.
+        標頭是以 ``HTTP_`` 開頭的任何 SERVER 數據，如 ``HTTP_HOST``。
+        每條訊息都從其標準的大寫字母和底線格式轉換為 ucwords 和破折號格式。
+        前面的 ``HTTP_`` 將從字串中刪除。因此， ``HTTP_ACCEPT_LANGUAGE`` 變成了 ``Accept-Language``。
 
     .. php:method:: headers()
 
-        :returns: An array of all of the headers found.
-        :rtype: array
+        :returns: 所有找到的標頭的陣列
+        :rtype: 陣列
 
-        Returns an array of all headers found or previously set.
+        回傳所有找到的或先前設定的標頭文件的陣列。
 
     .. php:method:: header($name)
 
-        :param  string  $name: The name of the header you want to retrieve the value of.
-        :returns: Returns a single header object. If multiple headers with the same name exist, then will return an array of header objects.
+        :param  string  $name: 要檢索的標頭名稱
+        :returns: 回傳單個標頭物件。如果存在多個同名的標頭，則將返回標頭物件的陣列
         :rtype: \CodeIgniter\\HTTP\\Header|array
 
-        Allows you to retrieve the current value of a single message header. ``$name`` is the case-insensitive header name.
-        While the header is converted internally as described above, you can access the header with any type of case::
+        檢索一個當前訊息標頭的值。 ``$name`` 是標頭名稱但是不區分大小寫。
+        當標頭按上述方式在內部轉換時，您可以使用任何類型的大小寫存取標頭。
+        ::
 
             // These are all the same:
             $message->header('HOST');
             $message->header('Host');
             $message->header('host');
 
-        If the header has multiple values, ``getValue()`` will return as an array of values. You can use the ``getValueLine()``
-        method to retrieve the values as a string::
+        如果標頭有多個值，則 ``getValue()`` 將以陣列形式返回。你可以使用 ``getValueLine()`` 方法來以字串形式檢索。
+        ::
 
             echo $message->header('Accept-Language');
 
@@ -116,24 +109,26 @@ Class Reference
             // Outputs something like:
             'en,en-US'
 
-        You can filter the header by passing a filter value in as the second parameter::
+        你可以在第二個參數輸入過濾值來過濾標頭。
+        ::
 
             $message->header('Document-URI', FILTER_SANITIZE_URL);
 
+
     .. php:method:: hasHeader($name)
 
-        :param  string  $name: The name of the header you want to see if it exists.
-        :returns: Returns true if it exists, false otherwise.
-        :rtype: bool
+        :param  string  $name: 你想要查看是否存在的標頭名稱
+        :returns: 如果標頭名稱存在，則回傳 true，否則返回 false
+        :rtype: 布林值
 
     .. php:method:: getHeaderLine($name)
 
-        :param  string $name: The name of the header to retrieve.
-        :returns: A string representing the header value.
-        :rtype: string
+        :param  string $name: 要檢索的標頭名稱
+        :returns: 表示標頭值的字串
+        :rtype: 字串
 
-        Returns the value(s) of the header as a string. This method allows you to easily get a string representation
-        of the header values when the header has multiple values. The values are appropriately joined::
+        以字串形式返回標頭的值。此方法允許您在標頭具有多個值時輕鬆獲取標頭的字串表示形式。結果會適當地連接。
+        ::
 
             echo $message->getHeaderLine('Accept-Language');
 
@@ -142,67 +137,69 @@ Class Reference
 
     .. php:method:: setHeader($name, $value)
 
-        :param string $name: The name of the header to set the value for.
-        :param mixed  $value: The value to set the header to.
-        :returns: The current Message|Response instance
+        :param string $name: 要為其設定值的標頭的名稱
+        :param mixed  $value: 要將標頭設定為的值
+        :returns: 當前的訊息|響應實體
         :rtype: CodeIgniter\\HTTP\\Message|CodeIgniter\\HTTP\\Response
 
-        Sets the value of a single header. ``$name`` is the case-insensitive name of the header. If the header
-        doesn't already exist in the collection, it will be created. The ``$value`` can be either a string
-        or an array of strings::
+        設定單個標頭的值。 ``$name`` 是不區分大小寫的標頭名稱。
+        如果標頭不存在，則創建一個新的。 ``$value`` 可以是字串或字串陣列。
+        ::
 
             $message->setHeader('Host', 'codeigniter.com');
 
     .. php:method:: removeHeader($name)
 
-        :param string $name: The name of the header to remove.
-        :returns: The current message instance
+        :param string $name: 要移除的標頭的名稱
+        :returns: 當前的訊息實體
         :rtype: CodeIgniter\\HTTP\\Message
 
-        Removes the header from the Message. ``$name`` is the case-insensitive name of the header::
+        從訊息中刪除標頭。 ``$name`` 是不區分大小寫的標題。
+        ::
 
             $message->removeHeader('Host');
 
     .. php:method:: appendHeader($name, $value)
 
-        :param string $name: The name of the header to modify
-        :param string  $value: The value to add to the header.
-        :returns: The current message instance
+        :param string $name: 要修改的標頭的名稱
+        :param string  $value: 要添加到標頭的值
+        :returns: 當前的訊息實體
         :rtype: CodeIgniter\\HTTP\\Message
 
-        Adds a value to an existing header. The header must already be an array of values instead of a single string.
-        If it is a string then a LogicException will be thrown.
+        向現有標頭添加值。標頭必須已經是陣列，而不是單個字串。
+        如果它是一個字串，那麼將拋出一個LogicException。
         ::
 
             $message->appendHeader('Accept-Language', 'en-US; q=0.8');
 
     .. php:method:: prependHeader($name, $value)
 
-        :param string $name: The name of the header to modify
-        :param string  $value: The value to prepend to the header.
-        :returns: The current message instance
+        :param string $name: 要修改的標頭的名稱
+        :param string  $value: 要附加到標頭的值
+        :returns: 當前的訊息實體
         :rtype: CodeIgniter\\HTTP\\Message
 
-        Prepends a value to an existing header. The header must already be an array of values instead of a single string.
-        If it is a string then a LogicException will be thrown.
+        在現有標頭前面附加一個值。標頭必須已經是陣列，而不是單個字串。
+        如果它是一個字串，那麼將拋出一個 LogicException。
         ::
 
             $message->prependHeader('Accept-Language', 'en,');
 
     .. php:method:: getProtocolVersion()
 
-        :returns: The current HTTP protocol version
-        :rtype: string
+        :returns: 當前 HTTP 協定版本
+        :rtype: 字串
 
-        Returns the message's current HTTP protocol. If none has been set, will return ``null``.
-        Acceptable values are ``1.0``, ``1.1`` and ``2.0``.
+        返回訊息當前的 HTTP 協定。如果未設定任何值，將返回 ``null`` 。 
+        可接受的值為 ``1.0`` 、 ``1.1`` 和 ``2.0``。
 
     .. php:method:: setProtocolVersion($version)
 
-        :param string $version: The HTTP protocol version
-        :returns: The current message instance
+        :param string $version: HTTP 協定版本
+        :returns: 當前訊息實體
         :rtype: CodeIgniter\\HTTP\\Message
 
-        Sets the HTTP protocol version this Message uses. Valid values are ``1.0``, ``1.1`` and ``2.0``::
+        設定此訊息使用的 HTTP 協定版本。有效值為 ``1.0`` 、 ``1.1`` 和 ``2.0``
+        ::
 
             $message->setProtocolVersion('1.1');
