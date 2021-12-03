@@ -253,7 +253,7 @@ URL 請求
     echo $uri->getTotalSegments();  // 3
 
 您可以對當前的 URI 字串（相對於您的 baseURL 的路徑）使用 ``getPath()`` 和 ``setPath()`` 方法。
-要注意的是，在 ``IncomingRequest`` 的共享實體中的這個相對路徑會被 :doc:`URL Helper </helpers/url_helper>` 函數使用，所以這是一個「欺騙」用於測試的請求的好方法。
+要注意的是，在 ``IncomingRequest`` 的共享實體中的這個相對路徑會被 :doc:`URL Helper </helpers/url_helper>` 函數使用，所以這是一個「欺騙」用於測試的請求的好方法。 ::
 
     class MyMenuTest extends CIUnitTestCase
     {
