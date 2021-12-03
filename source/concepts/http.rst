@@ -49,7 +49,7 @@ HTTP 響應
 處理 HTTP 請求和響應
 -----------------------------------
 
-雖然 PHP 提供了原生與 HTTP 請求和響應進行交互的方式，但 CodeIgniter 像大多數框架一樣，將它們抽象化，讓你擁有一個一致、簡單的介面。:doc:`IncomingRequest 類別 </incoming/incomingrequest>` 是 HTTP 請求的物件導向形式。它有著你所需要的一切::
+雖然 PHP 提供了原生與 HTTP 請求和響應進行互動的方式，但 CodeIgniter 像大多數框架一樣，將它們抽象化，讓你擁有一個一致、簡單的介面。:doc:`IncomingRequest 類別 </incoming/incomingrequest>` 是 HTTP 請求的物件導向形式。它有著你所需要的一切::
 
 	use CodeIgniter\HTTP\IncomingRequest;
 

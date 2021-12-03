@@ -1106,7 +1106,7 @@ Starts a new group by adding an opening parenthesis to the HAVING clause of the 
 	// ELSE `date` END
 	// WHERE `title` IN ('My title','Another title')
 
-The first parameter is an associative array of values, the second parameter is the where key.
+第一個參數是數值的關聯陣列，第二個參數是 Where 的鍵值。
 
 .. note:: 傳送到這個函數的數值都會自動跳脫，來產生安全的查詢。
 

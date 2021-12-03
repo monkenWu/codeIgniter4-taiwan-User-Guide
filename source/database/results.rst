@@ -162,11 +162,7 @@ which represents a class to instantiate for each result object
         echo $row->body;
     }
 
-For use with MySQLi you may set MySQLi's result mode to 
-``MYSQLI_USE_RESULT`` for maximum memory savings. Use of this is not 
-generally recommended but it can be beneficial in some circumstances 
-such as writing large queries to csv. If you change the result mode 
-be aware of the tradeoffs associated with it.
+為了要與 MySQLi 一同使用，你可以將 MySQLi 回傳模式設定為 ``MYSQLI_USE_RESULT`` ，以節省最多的記憶體。通常我們不建議你使用這個模式，但在某些情況卻是有效的。例如，在大型的查詢後寫入 CSV 。如果改變了回傳模式，請自行注意相關的權衡。
 
 ::
 
@@ -185,12 +181,8 @@ be aware of the tradeoffs associated with it.
 
     $db->resultMode = MYSQLI_STORE_RESULT; // return to default mode
 
-.. note:: When using ``MYSQLI_USE_RESULT`` all subsequent calls on the same  
-    connection will result in error until all records have been fetched or 
-    a ``freeResult()`` call has been made. The ``getNumRows()`` method will only 
-    return the number of rows based on the current position of the data pointer. 
-    MyISAM tables will remain locked until all the records have been fetched 
-    or a ``freeResult()`` call has been made.
+.. note::
+	使用 ``MYSQLI_USE_RESULT`` 時，若在同一連線上再進行後續呼叫，將會導致錯誤發生。請在所有回傳的紀錄被取走後或是呼叫 ``freeResult()`` 再進行後續呼叫。 ``getNumRows()`` 方法僅會回傳基於資料指標的當前位置的行數。MyISAM 資料表將會保持鎖定，直到所有回傳的紀錄被取走後或是呼叫 ``freeResult()`` 。
 
 你可以選擇傳入 'object' （預設）或 'array' 來指定回傳的資料型態：
 
@@ -317,8 +309,7 @@ The second parameter is the class name to instantiate.
 
 **getNumRows()**
 
-The number of records returned by the query. Make sure to call
-the method using your query result object
+查詢回傳的結果數量。確保使用查詢結果物件來呼叫這個方法。
 
 ::
 
@@ -326,9 +317,8 @@ the method using your query result object
 
     echo $query->getNumRows();
 
-.. note:: Because SQLite3 lacks an efficient method returning a record count,
-    CodeIgniter will fetch and buffer the query result records internally and
-    return a count of the resulting record array, which can be inefficient.
+.. note::
+	由於 SQLite3 缺少回傳紀錄數量的方法，因此 CodeIgniter 將會獲取緩衝查詢結果紀錄，並回傳陣列的計數，但這個方法可能造成低效能。
 
 **freeResult()**
 

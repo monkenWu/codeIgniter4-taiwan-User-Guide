@@ -123,10 +123,10 @@
 
 如果你的資料庫有支援，以下的內容是可以從上述函數得到的資訊：
 
--  name - column name
--  max_length - maximum length of the column
--  primary_key - 1 if the column is a primary key
--  type - the type of the column
+-  name - 欄位名稱
+-  max_length - 欄位的最大長度
+-  primary_key - 如果該欄位是主鍵則為 1
+-  type - 欄位的類型
 
 列出資料表的索引
 ===========================

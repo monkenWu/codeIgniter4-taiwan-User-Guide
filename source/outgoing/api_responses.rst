@@ -237,8 +237,6 @@ API 響應特性
 
     當無法照到所請求的資源時，設定適當的狀態碼，通常為 404 。
 
-    Sets the appropriate status code to use when the requested resource cannot be found. Status code is 404.
-
     ::
 
     	return $this->failNotFound('User 13 cannot be found.');
