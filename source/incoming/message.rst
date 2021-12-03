@@ -19,7 +19,7 @@ Message 類別提供了 HTTP 訊息中請求和響應共有部分的介面，包
 同樣的協商可以發生在四種型別的資料上：
 
 * **媒體/文件型別** - 這可能是圖像格式，或 HTML vs. XML 或 JSON。
-* **字元集** - 返回的文件應該設置為何種字元集。通常是 UTF-8 。
+* **字元集** - 返回的文件應該設定為何種字元集。通常是 UTF-8 。
 * **文件編碼** - 通常是在結果上使用的壓縮型別。
 * **文件語言** - 對於支援多種語言的網站，這有助於確定要返回的語言。
   
@@ -34,7 +34,7 @@ Message 類別提供了 HTTP 訊息中請求和響應共有部分的介面，包
         :returns: 目前的訊息主體
         :rtype: 混和的
 
-        回傳目前的訊息主體（如果已設置）。如果主體不存在，則返回 null 。
+        回傳目前的訊息主體（如果已設定）。如果主體不存在，則返回 null 。
         ::
 
             echo $message->getBody();
@@ -45,7 +45,7 @@ Message 類別提供了 HTTP 訊息中請求和響應共有部分的介面，包
         :returns: 訊息|響應實體，以允許方法被串聯起來
         :rtype: CodeIgniter\\HTTP\\Message|CodeIgniter\\HTTP\\Response
 
-        設置當前請求的主體。
+        設定當前請求的主體。
 
     .. php:method:: appendBody($data)
 
@@ -71,7 +71,7 @@ Message 類別提供了 HTTP 訊息中請求和響應共有部分的介面，包
         :returns: 所有找到的標頭的陣列
         :rtype: 陣列
 
-        回傳所有找到的或先前設置的標頭文件的陣列。
+        回傳所有找到的或先前設定的標頭文件的陣列。
 
     .. php:method:: header($name)
 
@@ -119,7 +119,7 @@ Message 類別提供了 HTTP 訊息中請求和響應共有部分的介面，包
 
         :param  string  $name: 你想要查看是否存在的標頭名稱
         :returns: 如果標頭名稱存在，則回傳 true，否則返回 false
-        :rtype: 布林
+        :rtype: 布林值
 
     .. php:method:: getHeaderLine($name)
 
@@ -137,12 +137,12 @@ Message 類別提供了 HTTP 訊息中請求和響應共有部分的介面，包
 
     .. php:method:: setHeader($name, $value)
 
-        :param string $name: 要為其設置值的標頭的名稱
-        :param mixed  $value: 要將標頭設置為的值
+        :param string $name: 要為其設定值的標頭的名稱
+        :param mixed  $value: 要將標頭設定為的值
         :returns: 當前的訊息|響應實體
         :rtype: CodeIgniter\\HTTP\\Message|CodeIgniter\\HTTP\\Response
 
-        設置單個標頭的值。 ``$name`` 是不區分大小寫的標頭名稱。
+        設定單個標頭的值。 ``$name`` 是不區分大小寫的標頭名稱。
         如果標頭不存在，則創建一個新的。 ``$value`` 可以是字串或字串陣列。
         ::
 
@@ -190,7 +190,7 @@ Message 類別提供了 HTTP 訊息中請求和響應共有部分的介面，包
         :returns: 當前 HTTP 協定版本
         :rtype: 字串
 
-        返回訊息當前的 HTTP 協定。如果未設置任何設置，將返回 ``null`` 。 
+        返回訊息當前的 HTTP 協定。如果未設定任何值，將返回 ``null`` 。 
         可接受的值為 ``1.0`` 、 ``1.1`` 和 ``2.0``。
 
     .. php:method:: setProtocolVersion($version)
@@ -199,7 +199,7 @@ Message 類別提供了 HTTP 訊息中請求和響應共有部分的介面，包
         :returns: 當前訊息實體
         :rtype: CodeIgniter\\HTTP\\Message
 
-        設置此訊息使用的 HTTP 協定版本。有效值為 ``1.0`` 、 ``1.1`` 和 ``2.0``
+        設定此訊息使用的 HTTP 協定版本。有效值為 ``1.0`` 、 ``1.1`` 和 ``2.0``
         ::
 
             $message->setProtocolVersion('1.1');
