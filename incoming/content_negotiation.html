@@ -361,11 +361,11 @@
 </pre></div>
 </div>
 <p>以上操作會獲取所有的請求實體並自動將其注入到 Negotiator （協商，下同）類別中。</p>
-<p>該類別並不需要主動載入。而是透過請求的 <code class="docutils literal notranslate"><span class="pre">IncomingRequest</span></code> 實體來進行訪問。儘管你並不能透過這一過程直接訪問該實體，但你可以透過 <code class="docutils literal notranslate"><span class="pre">negotiate()</span></code> 方法來輕鬆的呼叫它的所有方法:</p>
+<p>該類別並不需要主動載入。而是透過請求的 <code class="docutils literal notranslate"><span class="pre">IncomingRequest</span></code> 實體來進行存取。儘管你並不能透過這一過程直接存取該實體，但你可以透過 <code class="docutils literal notranslate"><span class="pre">negotiate()</span></code> 方法來輕鬆的呼叫它的所有方法:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">negotiate</span><span class="p">(</span><span class="s1">&#39;media&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<p>當透過該方法訪問實體時，第一個參數是你需要匹配內容的類型，第二個是所支持的類型值構成的陣列。</p>
+<p>當透過該方法存取實體時，第一個參數是你需要匹配內容的類型，第二個是所支持的類型值構成的陣列。</p>
 </div>
 <div class="section" id="id3">
 <h2>協商<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
@@ -470,7 +470,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月21日。
+        最後更新於 2021年12月03日。
       </span>
 
     </p>

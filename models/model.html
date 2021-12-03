@@ -380,7 +380,7 @@
 <li><a class="reference internal" href="#id19" id="id41">定義回呼</a></li>
 <li><a class="reference internal" href="#id20" id="id42">指定要運作的回呼</a></li>
 <li><a class="reference internal" href="#id21" id="id43">事件參數</a></li>
-<li><a class="reference internal" href="#modifying-find-data" id="id44">Modifying Find* Data</a></li>
+<li><a class="reference internal" href="#find" id="id44">修改 Find* 資料</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#id22" id="id45">創建手動模型</a></li>
@@ -388,7 +388,7 @@
 </div>
 <div class="section" id="id2">
 <h2><a class="toc-backref" href="#id23">模型</a><a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
-<p>模型提供一種與資料庫中特定資料表交互的方法，模型也內建輔助方法，讓你在與資料庫資料表交互的過程中有標準的方法可以呼叫，包括查找記錄、更新記錄，刪除記錄等等。</p>
+<p>模型提供一種與資料庫中特定資料表互動的方法，模型也內建輔助方法，讓你在與資料庫資料表互動的過程中有標準的方法可以呼叫，包括查找記錄、更新記錄，刪除記錄等等。</p>
 </div>
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id24">存取模型</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
@@ -438,10 +438,8 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>這個空的類別提供了對資料庫連接、查詢生成器，和一些額外的便捷方法的訪問。</p>
-<p>Should you need additional setup in your model you may extend the <code class="docutils literal notranslate"><span class="pre">initialize()</span></code> function
-which will be run immediately after the Model’s constructor. This allows you to perform
-extra steps without repeating the constructor parameters, for example extending other models:</p>
+<p>這個空的類別提供了對資料庫連接、查詢生成器，和一些額外的便捷方法的存取。</p>
+<p>如果你需要在模型中進行其他的設定，可以選擇覆寫父類別 <code class="docutils literal notranslate"><span class="pre">initialize()</span></code> 方法。這個函數將在模型的建構函數執行完畢時立即執行。它允許你在不重複撰寫建構函數參數的情況下執行額外的步驟，例如繼承其它模型：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
@@ -519,14 +517,10 @@ extra steps without repeating the constructor parameters, for example extending 
 <p class="last">所有模型必須指定一個 $primaryKey ，以使所有功能可以正常工作。</p>
 </div>
 <p><strong>$useAutoIncrement</strong></p>
-<p>Specifies if the table uses an auto-increment feature for <code class="docutils literal notranslate"><span class="pre">$primaryKey</span></code>. If set to <code class="docutils literal notranslate"><span class="pre">false</span></code>
-then you are responsible for providing primary key value for every record in the table. This
-feature may be handy when we want to implement 1:1 relation or use UUIDs for our model.</p>
+<p>指定資料表是否對 <code class="docutils literal notranslate"><span class="pre">$primaryKey</span></code> 使用自動遞增功能。如果它被宣告為 <code class="docutils literal notranslate"><span class="pre">false</span></code> ，則由你負責提供資料表中每條紀錄得主鍵。當我們想要實作出一對一關係時或對模型使用 UUID 時，這會是個方便的功能。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">If you set <code class="docutils literal notranslate"><span class="pre">$useAutoIncrement</span></code> to <code class="docutils literal notranslate"><span class="pre">false</span></code> then make sure to set your primary
-key in the database to <code class="docutils literal notranslate"><span class="pre">unique</span></code>. This way you will make sure that all of Model’s features
-will still work the same as before.</p>
+<p class="last">如果你宣告 <code class="docutils literal notranslate"><span class="pre">$useAutoIncrement</span></code> 為 <code class="docutils literal notranslate"><span class="pre">false</span></code> ，請保證資料庫中的主鍵為 <code class="docutils literal notranslate"><span class="pre">unique</span></code> 。透過這個方式才能保證 Model 所有功能能夠照常工作。</p>
 </div>
 <p><strong>$returnType</strong></p>
 <p>模型提供的 CRUD 方法將幫助你減少工作量，並自動回傳結果資料，而不適普的的資料庫結果物件。這個設定允許你宣告回傳的資料類型。你可以鍵入 array 或是 object ，或者可以與結果物件的 getCustomResultObject() 方法一起使用完整的類別名稱。</p>
@@ -557,7 +551,7 @@ will still work the same as before.</p>
 <strong>afterDelete</strong></p>
 <p>這些陣列允許你宣告需要執行的回呼方法，並在你指定的事件發生時執行。</p>
 <p><strong>$allowCallbacks</strong></p>
-<p>Whether the callbacks defined above should be used.</p>
+<p>是否允許使用上述回呼方法。</p>
 </div>
 </div>
 <div class="section" id="id7">
@@ -692,7 +686,7 @@ will still work the same as before.</p>
 <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>save() 方法還可以傳入一個物件並自動取得這個物鍵的公開屬性和保護屬性，然後將它們保存成相應的陣列，傳入到插入或更新的方法中。這種方式允許你使用簡潔的實體類別，它表示的是一個物件類型的單一實體。比如使用者、部落格文章、作業等。這個類別負責維護圍繞著物件本身的商業邏輯，例如：以某種方法格式化元素等。它不應該有任何將資料儲存到資料庫的邏輯，最簡單的使用方式如下所示：</p>
+<p>save() 方法還可以傳入一個物件並自動取得這個物件的公開屬性和保護屬性，然後將它們保存成相應的陣列，傳入到插入或更新的方法中。這種方式允許你使用簡潔的實體類別，它表示的是一個物件類型的單一實體。比如使用者、部落格文章、作業等。這個類別負責維護圍繞著物件本身的商業邏輯，例如：以某種方法格式化元素等。它不應該有任何將資料儲存到資料庫的邏輯，最簡單的使用方式如下所示：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">Job</span>
@@ -790,7 +784,7 @@ will still work the same as before.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The other way to set the validation rules to fields by functions,</p>
+<p>另一種方法是利用函數設定欄位與驗證規則：</p>
 <dl class="function">
 <dt id="setValidationRule">
 <code class="descname">setValidationRule</code><span class="sig-paren">(</span><em>$field</em>, <em>$fieldRules</em><span class="sig-paren">)</span><a class="headerlink" href="#setValidationRule" title="本定義的永久連結">¶</a></dt>
@@ -806,8 +800,8 @@ will still work the same as before.</p>
 </tr>
 </tbody>
 </table>
-<p>This function will set the field validation rules.</p>
-<p>Usage example:</p>
+<p>這個函數可以設定欄位驗證規則。</p>
+<p>使用範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$fieldName</span> <span class="o">=</span> <span class="s1">&#39;username&#39;</span><span class="p">;</span>
 <span class="nv">$fieldRules</span> <span class="o">=</span> <span class="s1">&#39;required|alpha_numeric_space|min_length[3]&#39;</span><span class="p">;</span>
 
@@ -830,8 +824,8 @@ will still work the same as before.</p>
 </tr>
 </tbody>
 </table>
-<p>This function will set the validation rules.</p>
-<p>Usage example:</p>
+<p>這個函數可以設定驗證規則。</p>
+<p>使用範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$validationRules</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required|alpha_numeric_space|min_length[3]&#39;</span><span class="p">,</span>
     <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
@@ -846,7 +840,7 @@ will still work the same as before.</p>
 </div>
 </dd></dl>
 
-<p>另一種方式是透過函數將驗證訊息設定成欄位。</p>
+<p>另一種方式是透過函數設定欄位的驗證訊息。</p>
 <dl class="function">
 <dt id="setValidationMessage">
 <code class="descname">setValidationMessage</code><span class="sig-paren">(</span><em>$field</em>, <em>$fieldMessages</em><span class="sig-paren">)</span><a class="headerlink" href="#setValidationMessage" title="本定義的永久連結">¶</a></dt>
@@ -1063,11 +1057,11 @@ will still work the same as before.</p>
 <span class="k">protected</span> <span class="nv">$beforeUpdate</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hashPassword&#39;</span><span class="p">];</span>
 </pre></div>
 </div>
-<p>Additionally, each model may allow (default) or deny callbacks class-wide by setting its $allowCallbacks property:</p>
+<p>此外，每個模型都可以透過設定其 <code class="docutils literal notranslate"><span class="pre">$allowCallbacks</span></code> 屬性來允許（預設）或拒絕類別範圍的回呼：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">protected</span> <span class="nv">$allowCallbacks</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>You may also change this setting temporarily for a single model call sing the <code class="docutils literal notranslate"><span class="pre">allowCallbacks()</span></code> method:</p>
+<p>你也可一透過 <code class="docutils literal notranslate"><span class="pre">allowCallbacks()</span></code> 臨時改變這個設定，在單次呼叫取消回呼。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$model</span><span class="o">-&gt;</span><span class="na">allowCallbacks</span><span class="p">(</span><span class="k">false</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// No callbacks triggered</span>
 <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>                        <span class="c1">// Callbacks subject to original property value</span>
 </pre></div>
@@ -1105,26 +1099,26 @@ will still work the same as before.</p>
 <strong>result</strong> = 透過查詢生成器使用 update() 方法的結果</td>
 </tr>
 <tr class="row-even"><td>beforeFind</td>
-<td>The name of the calling <strong>method</strong>, whether a <strong>singleton</strong> was requested, and these additional fields:</td>
+<td>呼叫　<strong>method</strong>　名稱，是否請求了 <strong>singleton</strong> 以及以下附加參數：</td>
 </tr>
 <tr class="row-odd"><td><ul class="first last simple">
 <li>first()</li>
 </ul>
 </td>
-<td>No additional fields</td>
+<td>沒有附加參數</td>
 </tr>
 <tr class="row-even"><td><ul class="first last simple">
 <li>find()</li>
 </ul>
 </td>
-<td><strong>id</strong> = the primary key of the row being searched for.</td>
+<td><strong>id</strong> = 用於搜索的主鍵</td>
 </tr>
 <tr class="row-odd"><td><ul class="first last simple">
 <li>findAll()</li>
 </ul>
 </td>
-<td><strong>limit</strong> = the number of rows to find.
-<strong>offset</strong> = the number of rows to skip during the search.</td>
+<td><strong>limit</strong> = 所要搜索的列數。
+<strong>offset</strong> = 搜索期間要跳過地列數。</td>
 </tr>
 <tr class="row-even"><td>afterFind</td>
 <td>與 <strong>beforeFind</strong> 相同，但包括結果資料列；如果未找到結果，則為null。</td>
@@ -1148,12 +1142,9 @@ will still work the same as before.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="modifying-find-data">
-<h3><a class="toc-backref" href="#id44">Modifying Find* Data</a><a class="headerlink" href="#modifying-find-data" title="本標題的永久連結">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">beforeFind</span></code> and <code class="docutils literal notranslate"><span class="pre">afterFind</span></code> methods can both return a modified set of data to override the normal response
-from the model. For <code class="docutils literal notranslate"><span class="pre">afterFind</span></code> any changes made to <code class="docutils literal notranslate"><span class="pre">data</span></code> in the return array will automatically be passed back
-to the calling context. In order for <code class="docutils literal notranslate"><span class="pre">beforeFind</span></code> to intercept the find workflow it must also return an additional
-boolean, <code class="docutils literal notranslate"><span class="pre">returnData</span></code>:</p>
+<div class="section" id="find">
+<h3><a class="toc-backref" href="#id44">修改 Find* 資料</a><a class="headerlink" href="#find" title="本標題的永久連結">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">beforeFind</span></code> 和 <code class="docutils literal notranslate"><span class="pre">afterFind</span></code> 方法都可以回傳一組修改後的資料集，用於重寫來自模型的正常響應。對於``afterFind`` 來說，回傳陣列中的 <code class="docutils literal notranslate"><span class="pre">data</span></code> 所做的任何更變都會自動傳遞到回呼方法。為了使 <code class="docutils literal notranslate"><span class="pre">beforeFind</span></code> 攔截 find 的工作流程，它還需要回傳一個額外的 <code class="docutils literal notranslate"><span class="pre">returnData</span></code> 。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">protected</span> <span class="nv">$beforeFind</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;checkCache&#39;</span><span class="p">];</span>
 <span class="c1">// ...</span>
 <span class="k">protected</span> <span class="k">function</span> <span class="nf">checkCache</span><span class="p">(</span><span class="k">array</span> <span class="nv">$data</span><span class="p">)</span>
@@ -1215,7 +1206,7 @@ boolean, <code class="docutils literal notranslate"><span class="pre">returnData
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月21日。
+        最後更新於 2021年12月03日。
       </span>
 
     </p>

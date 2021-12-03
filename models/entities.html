@@ -356,29 +356,29 @@
 <p>CodeIgniter 支援使用實體類別作為資料庫的第一類物件，同時讓它們保持可選擇是否使用。它們通常作為儲存庫模式的一部份，如果這更符合你的需求，也可以直接與 <a class="reference internal" href="model.html"><span class="doc">模型</span></a> 一起使用。</p>
 <div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#id3" id="id14">實體用法</a><ul>
-<li><a class="reference internal" href="#id4" id="id15">建立實體類別</a></li>
-<li><a class="reference internal" href="#id5" id="id16">建立模型</a></li>
-<li><a class="reference internal" href="#id6" id="id17">使用實體類別</a></li>
-<li><a class="reference internal" href="#id7" id="id18">快速填充屬性</a></li>
-<li><a class="reference internal" href="#bulk-accessing-properties" id="id19">Bulk Accessing Properties</a></li>
+<li><a class="reference internal" href="#id3" id="id16">實體用法</a><ul>
+<li><a class="reference internal" href="#id4" id="id17">建立實體類別</a></li>
+<li><a class="reference internal" href="#id5" id="id18">建立模型</a></li>
+<li><a class="reference internal" href="#id6" id="id19">使用實體類別</a></li>
+<li><a class="reference internal" href="#id7" id="id20">快速填充屬性</a></li>
+<li><a class="reference internal" href="#id8" id="id21">批量存取屬性</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id8" id="id20">處理商業邏輯</a></li>
-<li><a class="reference internal" href="#id9" id="id21">資料映射</a></li>
-<li><a class="reference internal" href="#id10" id="id22">修改器</a><ul>
-<li><a class="reference internal" href="#id11" id="id23">資料修改器</a></li>
-<li><a class="reference internal" href="#id12" id="id24">型別轉換</a></li>
-<li><a class="reference internal" href="#array-json" id="id25">Array/Json 轉換</a></li>
-<li><a class="reference internal" href="#csv-casting" id="id26">CSV Casting</a></li>
-<li><a class="reference internal" href="#custom-casting" id="id27">Custom casting</a></li>
+<li><a class="reference internal" href="#id9" id="id22">處理商業邏輯</a></li>
+<li><a class="reference internal" href="#id10" id="id23">資料映射</a></li>
+<li><a class="reference internal" href="#id11" id="id24">修改器</a><ul>
+<li><a class="reference internal" href="#id12" id="id25">資料修改器</a></li>
+<li><a class="reference internal" href="#id13" id="id26">型別轉換</a></li>
+<li><a class="reference internal" href="#array-json" id="id27">Array/Json 轉換</a></li>
+<li><a class="reference internal" href="#csv" id="id28">CSV 轉換</a></li>
+<li><a class="reference internal" href="#id14" id="id29">自訂轉換</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id13" id="id28">檢查類別屬性是否變更</a></li>
+<li><a class="reference internal" href="#id15" id="id30">檢查類別屬性是否變更</a></li>
 </ul>
 </div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id14">實體用法</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">實體用法</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p>就其核心而言，實體類別只是一個表示單個資料庫列的類別。它具有類別屬性來表示資料庫的列，並提供額外的方法來實現該列的商業邏輯。不過它的核心特徵是不能保存自己，因為這是模型或資料庫類別的工作。也就是說，如果保存物件的方式有任何改變，就不必修改使用到這個物件的所有應用程式。這使得你可以在快速雛形階段使用 JSON 或 XML 檔案來儲存物件，當你證明了這個概念可行時，再輕鬆地切換到資料庫模式。</p>
 <p>我們來看看這個簡單的使用者實體，以及我們如何使用這個實體的說明。</p>
 <p>假設你有一個名為 <code class="docutils literal notranslate"><span class="pre">users</span></code> 的資料庫資料表，它的綱目如下：</p>
@@ -390,8 +390,8 @@
 </pre></div>
 </div>
 <div class="section" id="id4">
-<h3><a class="toc-backref" href="#id15">建立實體類別</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
-<p>現在，我們將新建一個實體類別。因為在框架中沒有預設的位置來儲存這些類別，而它與現有的資料夾結構不相容，所以我們新建一個新的 <strong>app/Entities</strong> 目錄，並在其中新建 <strong>app/Entities/User.php</strong> 檔案，並包含以下內容：</p>
+<h3><a class="toc-backref" href="#id17">建立實體類別</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
+<p>現在，我們將新建一個實體類別。因為在框架中沒有預設的位置來儲存這些類別，而它與現有的資料夾結構不相容，所以我們得先建立一個新的 <strong>app/Entities</strong> 資料夾，並在其中新建 <strong>app/Entities/User.php</strong> 檔案，並包含以下內容：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Entity</span><span class="p">;</span>
@@ -402,11 +402,11 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>雖然待會我們將讓它變得更加有用，但在最簡單的情形下，這就是你唯一要做的。</p>
+<p>雖然待會我們讓這個模型變得更加有用，但在最簡單的情形下，這就是你唯一需要做的。</p>
 </div>
 <div class="section" id="id5">
-<h3><a class="toc-backref" href="#id16">建立模型</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
-<p>首先，我們新建一個　 <strong>app/Models/UserModel.php</strong> 模型檔案，讓我們與它進行交互：</p>
+<h3><a class="toc-backref" href="#id18">建立模型</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
+<p>首先，我們新建一個　 <strong>app/Models/UserModel.php</strong> 模型檔案，讓我們與它進行互動：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
@@ -427,7 +427,7 @@
 <p>這個模型使用了資料庫中的 <code class="docutils literal notranslate"><span class="pre">users</span></code> 資料表進行所有活動。並且我們設定 <code class="docutils literal notranslate"><span class="pre">$allowedFields</span></code> 屬性來闡述所有允許被改變的外部欄位。<code class="docutils literal notranslate"><span class="pre">id</span></code> 、 <code class="docutils literal notranslate"><span class="pre">created_at</span></code> 與 <code class="docutils literal notranslate"><span class="pre">updated_at</span></code> 等欄位是由類別或資料庫自動處理的，所以它並不在我們允許被改變的欄位名單中。最後，我們將 <code class="docutils literal notranslate"><span class="pre">$returnType</span></code> 宣告為實體類別的命名空間，這可以讓模型上所有成功的資料庫查詢產生資料的回傳，都會回傳我們所定義的使用者實體類別的實體（ instead ），而不是單純的物件或是陣列。</p>
 </div>
 <div class="section" id="id6">
-<h3><a class="toc-backref" href="#id17">使用實體類別</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id19">使用實體類別</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
 <p>現在，你準備好了前置工作，請以操作其他類別的方式操作實體類別：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$user</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
 
@@ -454,12 +454,11 @@
 <p>當 User 實體類別被傳遞給模型的 <strong>save()</strong> 方法時，它會自動讀取實體內的屬性，判斷這是次的 save() 是插入新記錄還是更新現有記錄，並將資料更新到被  <strong>$allowedFields</strong>  允許的欄位中。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">When we are making a call to the <code class="docutils literal notranslate"><span class="pre">insert()</span></code> all the values from Entity are passed to the method, but when we
-call the <code class="docutils literal notranslate"><span class="pre">update()</span></code>, then only values that have changed are passed.</p>
+<p class="last">當我們呼叫 <code class="docutils literal notranslate"><span class="pre">insert()</span></code> 時，實體中的所有數值都會傳遞給這個方法；但是，當我們呼叫的是 <code class="docutils literal notranslate"><span class="pre">update()</span></code> 時，只會傳遞已經被改動的數值。</p>
 </div>
 </div>
 <div class="section" id="id7">
-<h3><a class="toc-backref" href="#id18">快速填充屬性</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id20">快速填充屬性</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
 <p>實體類別還提供了一個方法 <code class="docutils literal notranslate"><span class="pre">fill()</span></code> ，它可允許你將一個鍵值陣列傳入其中，用來填充實體類別的屬性。陣列中的任何屬性都將被設定在實體中，但是，當透過模型保存實體內容時，只有 $allowedFields 中允許的欄位會被實際儲存在資料庫中，所以你可以在實體上儲存額外的資料，而不並擔心不相干的欄位會被存入資料庫。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getPost</span><span class="p">();</span>
 
@@ -476,16 +475,13 @@ call the <code class="docutils literal notranslate"><span class="pre">update()</
 </pre></div>
 </div>
 </div>
-<div class="section" id="bulk-accessing-properties">
-<h3><a class="toc-backref" href="#id19">Bulk Accessing Properties</a><a class="headerlink" href="#bulk-accessing-properties" title="本標題的永久連結">¶</a></h3>
-<p>The Entity class has two methods to extract all available properties into an array: <code class="docutils literal notranslate"><span class="pre">toArray()</span></code> and <code class="docutils literal notranslate"><span class="pre">toRawArray()</span></code>.
-Using the raw version will bypass magic 「getter」 methods and casts. Both methods can take a boolean first parameter
-to specify whether returned values should be filtered by those that have changed, and a boolean final parameter to
-make the method recursive, in case of nested Entities.</p>
-</div>
-</div>
 <div class="section" id="id8">
-<h2><a class="toc-backref" href="#id20">處理商業邏輯</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h2>
+<h3><a class="toc-backref" href="#id21">批量存取屬性</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
+<p>實體類別有兩個方法用於將可用的屬性轉換到陣列中回傳，分別是 <code class="docutils literal notranslate"><span class="pre">toArray()</span></code> 以及 <code class="docutils literal notranslate"><span class="pre">toRawArray()</span></code> 。使用 Raw 版本的方法將會繞過魔術方法「getter」以及強制轉換。這兩種方法都可以傳入布林作為第二個參數，去指定回傳的數值是否以已經修改過的數值進行過濾。若是傳入第二個布林參數，則可以決定內部實體是否也會被轉換為陣列。</p>
+</div>
+</div>
+<div class="section" id="id9">
+<h2><a class="toc-backref" href="#id22">處理商業邏輯</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h2>
 <p>雖然上述的範例很方便，但它們並不能幫助任何商業邏輯的執行。基本的實體類別實作了一些聰明的 <code class="docutils literal notranslate"><span class="pre">__get()</span></code> 與 <code class="docutils literal notranslate"><span class="pre">__set()</span></code> 方法，這些方法將會檢查特殊方法並使用它們，避免直接使用屬性，從而允許你強制實行所需的商業邏輯或資料轉換。</p>
 <p>下面將提到如何更新 User 實體，並提供了如何使用的範例：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
@@ -537,8 +533,8 @@ make the method recursive, in case of nested Entities.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id9">
-<h2><a class="toc-backref" href="#id21">資料映射</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id10">
+<h2><a class="toc-backref" href="#id23">資料映射</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h2>
 <p>在你的職業生涯中，很多時候你可能會遇到這樣子的狀況：應用程式的用途發生了變化，資料庫中原來的資料列名稱的意義發生改變。或者是，你發現了你的程式碼風格偏向使用駝峰式命名的類別屬性，而你的資料庫卻要求你使用 snake_case （每個單字間以下底線分隔）進行命名。這些時候都可以透過實體類別，輕鬆地進行映射處理。</p>
 <p>透過一個例子來示範，想像一下你有一個簡單的使用者實體，它在整個應用程式中被使用：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
@@ -558,7 +554,7 @@ make the method recursive, in case of nested Entities.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>你的老闆突然告訴你，現在沒有人使用 「usernames」 了，我需要你將它改成電子信箱登入。但他還表示希望可以對應用程式進行個人化設定，因此他想要你改變名稱欄位的用途，讓 <code class="docutils literal notranslate"><span class="pre">name</span></code> 欄位用來表示使用者全名，而不是像以前那樣。為了保持整潔，並確保這個欄位在資料庫中繼續保持著某種意義，你需要使用資料庫遷移，並將欄位重新命名為 <code class="docutils literal notranslate"><span class="pre">full_name</span></code> 。</p>
+<p>你的老闆突然告訴你，現在沒有人使用使用者名稱登入了，我需要你將它改成電子信箱登入。但他還表示希望可以對應用程式進行個人化設定，因此他想要你改變名稱欄位的用途，讓 <code class="docutils literal notranslate"><span class="pre">name</span></code> 欄位用來表示使用者全名，而不是像以前那樣。為了保持整潔，並確保這個欄位在資料庫中繼續保持著某種意義，你需要使用資料庫遷移，並將欄位重新命名為 <code class="docutils literal notranslate"><span class="pre">full_name</span></code> 。</p>
 <p>先別想這個讓人為難的例子，我們現在有兩個選項可以修正使用者類別。可以將類別屬性從 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 改成 <code class="docutils literal notranslate"><span class="pre">$full_name</span></code> ，但這需要修改整個應用程式才行。反之，我們可以簡單地將資料庫中的 <code class="docutils literal notranslate"><span class="pre">full_name</span></code> 欄位映射到 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 屬性，就可以完成對實體的修改。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
 
@@ -576,18 +572,18 @@ make the method recursive, in case of nested Entities.</p>
     <span class="p">];</span>
 
     <span class="k">protected</span> <span class="nv">$datamap</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;full_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;name&#39;</span>
+        <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;full_name&#39;</span>
     <span class="p">],</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>透過在 <code class="docutils literal notranslate"><span class="pre">$datamap</span></code> 陣列中加入我們新的資料庫欄位名稱，等於是告訴類別說：「資料庫中的資料列應該透過甚麼屬性進行存取」。陣列中的鍵是資料庫中的資料列名稱，值則是要它所映射的類別屬性。</p>
-<p>在這個範例中，當模型在使用者類別上設定 <code class="docutils literal notranslate"><span class="pre">full_name</span></code> 欄位時，實際上是將這個值賦值至 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 屬性，所以可以透過 <code class="docutils literal notranslate"><span class="pre">$user-&gt;name</span></code> 來進行存取。這個值仍然可以使用 <code class="docutils literal notranslate"><span class="pre">$user-&gt;full_name</span></code> 進行存取，因為模型需要透過這個來得到資料並將它儲存在資料庫中。但要注意， <code class="docutils literal notranslate"><span class="pre">unset</span></code> 與 <code class="docutils literal notranslate"><span class="pre">isset</span></code> 只對映射到的 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 屬性起作用，而不是對原始名稱 <code class="docutils literal notranslate"><span class="pre">full_name</span></code> 起作用。</p>
+<p>透過在 <code class="docutils literal notranslate"><span class="pre">$datamap</span></code> 陣列中加入我們新的資料庫欄位名稱，等於是告訴類別說：「資料庫中的資料列應該透過什麼屬性進行存取」。陣列中的鍵是類別屬性，值則是要它所映射的資料庫中的資料列名稱。</p>
+<p>在這個範例中，當模型在使用者類別上設定 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 屬性時，實際上是將這個值賦值至 <code class="docutils literal notranslate"><span class="pre">full_name</span></code> 欄位，所以可以透過 <code class="docutils literal notranslate"><span class="pre">$user-&gt;name</span></code> 來進行存取。這個值仍然可以使用 <code class="docutils literal notranslate"><span class="pre">$user-&gt;full_name</span></code> 進行存取，因為模型需要透過這個來得到資料並將它儲存在資料庫中。但要注意， <code class="docutils literal notranslate"><span class="pre">unset</span></code> 與 <code class="docutils literal notranslate"><span class="pre">isset</span></code> 只對映射到的 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 屬性起作用，而不是對原始名稱 <code class="docutils literal notranslate"><span class="pre">full_name</span></code> 起作用。</p>
 </div>
-<div class="section" id="id10">
-<h2><a class="toc-backref" href="#id22">修改器</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h2>
 <div class="section" id="id11">
-<h3><a class="toc-backref" href="#id23">資料修改器</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h3>
+<h2><a class="toc-backref" href="#id24">修改器</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id12">
+<h3><a class="toc-backref" href="#id25">資料修改器</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h3>
 <p>在預設的情形下，實體類別將會在設定或檢索時將命名為 <cite>created_at</cite> 、 <cite>updated_at</cite> ， 以及 <cite>deleted_at</cite> 的欄位轉換為 <a class="reference internal" href="../libraries/time.html"><span class="doc">時間與日期程式庫</span></a> 的實體（instances），這個程式庫將以一種不變的、當地語系化的方式提供大量有用的方法。</p>
 <p>你可以透過將名稱添加到 <strong>options[『dates』]</strong> 陣列來定義那些屬性會被自動轉換：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
@@ -612,8 +608,8 @@ make the method recursive, in case of nested Entities.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id12">
-<h3><a class="toc-backref" href="#id24">型別轉換</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id26">型別轉換</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h3>
 <p>你可以指定在實體中 <strong>成員</strong> 屬性應該強制被轉換成你指定的資料型別，這個選項應該是一個鍵值陣列，其中的鍵是屬性名稱，值是它應該要被強制轉換成的資料型別。強制轉換只在取值時影響，並不會轉換在實體或資料庫中的永久值。屬性可以強制轉換為下列數種資料型別：<strong>integer</strong> 、  <strong>float</strong> 、  <strong>double</strong> 、  <strong>string</strong> 、  <strong>boolean</strong> 、  <strong>object</strong> 、  <strong>array</strong> 、  <strong>datetime</strong> ， 以及 <strong>timestamp</strong>。在屬性前加入問號，可將其標註為 nullable ，例如： <strong>?string</strong> 或 <strong>?integer</strong> 。</p>
 <p>例如：你有一個具有 <strong>is_banned</strong> 屬性的使用者實體，你可以把它轉換為 boolean ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
@@ -631,7 +627,7 @@ make the method recursive, in case of nested Entities.</p>
 </div>
 </div>
 <div class="section" id="array-json">
-<h3><a class="toc-backref" href="#id25">Array/Json 轉換</a><a class="headerlink" href="#array-json" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id27">Array/Json 轉換</a><a class="headerlink" href="#array-json" title="本標題的永久連結">¶</a></h3>
 <p>Array/Json 的轉換對於儲存序列化的陣列或 json 欄位相當有用，當轉換為：</p>
 <ul class="simple">
 <li><strong>array</strong> ，它們將自動取消序列化。</li>
@@ -669,12 +665,9 @@ make the method recursive, in case of nested Entities.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="csv-casting">
-<h3><a class="toc-backref" href="#id26">CSV Casting</a><a class="headerlink" href="#csv-casting" title="本標題的永久連結">¶</a></h3>
-<p>If you know you have a flat array of simple values, encoding them as a serialized or JSON string
-may be more complex than the original structure. Casting as Comma-Separated Values (CSV) is
-a simpler alternative will result in a string that uses less space and is more easily read
-by humans:</p>
+<div class="section" id="csv">
+<h3><a class="toc-backref" href="#id28">CSV 轉換</a><a class="headerlink" href="#csv" title="本標題的永久連結">¶</a></h3>
+<p>如果你有一個簡單數值的攤平陣列，將它們序列化或是轉化為 JSON 字串可能會遠比原始結構還要更加複雜。那麼，轉化為以逗號分隔的數值（CSV）是一種更簡單的替代方案。它將產生一個更精簡的字串，並容易被閱讀。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
@@ -689,20 +682,19 @@ by humans:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Stored in the database as 「red,yellow,green」:</p>
+<p>在資料庫中儲存「red,yellow,green」：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$widget</span><span class="o">-&gt;</span><span class="na">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">];</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">Casting as CSV uses PHP’s internal <code class="docutils literal notranslate"><span class="pre">implode</span></code> and <code class="docutils literal notranslate"><span class="pre">explode</span></code> methods and assumes all values are string-safe and free of commas. For more complex data casts try <code class="docutils literal notranslate"><span class="pre">array</span></code> or <code class="docutils literal notranslate"><span class="pre">json</span></code>.</p>
+<p class="last">轉換成 CSV 使用的是 PHP 的內建  <code class="docutils literal notranslate"><span class="pre">implode</span></code> 與 <code class="docutils literal notranslate"><span class="pre">explode</span></code> 方法，並假定所有數值都是不包含逗號的安全字串。對於更複雜資料轉換，請嘗試更複雜的 <code class="docutils literal notranslate"><span class="pre">array</span></code> 或 <code class="docutils literal notranslate"><span class="pre">json</span></code> 。</p>
 </div>
 </div>
-<div class="section" id="custom-casting">
-<h3><a class="toc-backref" href="#id27">Custom casting</a><a class="headerlink" href="#custom-casting" title="本標題的永久連結">¶</a></h3>
-<p>You can define your own conversion types for getting and setting data.</p>
-<p>At first you need to create a handler class for your type.
-Let’s say the class will be located in the 『app/Entity/Cast』 directory:</p>
+<div class="section" id="id14">
+<h3><a class="toc-backref" href="#id29">自訂轉換</a><a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h3>
+<p>你可以自行宣告你的轉換型別來取得或是設定資料。</p>
+<p>首先，你需要為你的型別建立一個處理類別。我們假設這個類別位於 <code class="docutils literal notranslate"><span class="pre">app/Entity/Cast</span></code> 目錄中：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Entity\Cast</span><span class="p">;</span>
@@ -724,7 +716,7 @@ Let’s say the class will be located in the 『app/Entity/Cast』 directory:</p
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Now you need to register it:</p>
+<p>現在，你需要這麼註冊它：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
@@ -750,7 +742,7 @@ Let’s say the class will be located in the 『app/Entity/Cast』 directory:</p
 <span class="k">echo</span> <span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">key</span><span class="p">;</span>     <span class="c1">// test</span>
 </pre></div>
 </div>
-<p>If you don’t need to change values when getting or setting a value. Then just don’t implement the appropriate method:</p>
+<p>如果你已經知道你的轉換過程不需要改變數值時，那麼就不要實作相應的方法：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\Entity\Cast\BaseCast</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">CastBase64</span> <span class="k">extends</span> <span class="nx">BaseCast</span>
@@ -762,16 +754,15 @@ Let’s say the class will be located in the 『app/Entity/Cast』 directory:</p
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>Parameters</strong></p>
-<p>In some cases, one type is not enough. In this situation, you can use additional parameters.
-Additional parameters are indicated in square brackets and listed with a comma.</p>
+<p><strong>參數</strong></p>
+<p>在某些情況，一種型別是不足的。你可以使用中括弧並以逗號的方式列出，就像這樣：</p>
 <p><strong>type[param1, param2]</strong></p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Defining a type with parameters</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 使用參數定義型別</span>
 <span class="k">protected</span> <span class="nv">$casts</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;some_attribute&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;class[App\SomeClass, param2, param3]&#39;</span><span class="p">,</span>
 <span class="p">];</span>
 
-<span class="c1">// Bind the type to the handler</span>
+<span class="c1">// 將型別繫結到處理器上</span>
 <span class="k">protected</span> <span class="nv">$castHandlers</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;class&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;SomeHandler&#39;</span><span class="p">,</span>
 <span class="p">];</span>
@@ -798,14 +789,12 @@ Additional parameters are indicated in square brackets and listed with a comma.<
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">If the casting type is marked as nullable <code class="docutils literal notranslate"><span class="pre">?bool</span></code> and the passed value is not null, then the parameter with
-the value <code class="docutils literal notranslate"><span class="pre">nullable</span></code> will be passed to the casting type handler.
-If casting type has predefined parameters, then <code class="docutils literal notranslate"><span class="pre">nullable</span></code> will be added to the end of the list.</p>
+<p class="last">如果轉換型別被宣告成可為 null 的 <code class="docutils literal notranslate"><span class="pre">?bool</span></code> ，但傳遞的數值卻不為 null，這時數值為 <code class="docutils literal notranslate"><span class="pre">nullable</span></code> 的參數將被傳遞給轉換型別的處理器。如果轉換型別有預先定義的參數，則 <code class="docutils literal notranslate"><span class="pre">nullable</span></code> 將會被加入至列表的末項。</p>
 </div>
 </div>
 </div>
-<div class="section" id="id13">
-<h2><a class="toc-backref" href="#id28">檢查類別屬性是否變更</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id15">
+<h2><a class="toc-backref" href="#id30">檢查類別屬性是否變更</a><a class="headerlink" href="#id15" title="本標題的永久連結">¶</a></h2>
 <p>你可以檢查一個實體的屬性在創建後始否發生了變化，這個方法唯一的參數就是你所想檢查的屬性名稱：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">();</span>
 <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">hasChanged</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>      <span class="c1">// false</span>
@@ -843,7 +832,7 @@ If casting type has predefined parameters, then <code class="docutils literal no
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月21日。
+        最後更新於 2021年12月03日。
       </span>
 
     </p>

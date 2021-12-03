@@ -448,11 +448,11 @@
 <span class="o">&lt;/</span><span class="nx">VirtualHost</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>如果你的專案資料夾不在 Apache 文件根目錄，則 &lt;VirtualHost&gt; 需要再新增一層 &lt;Directory&gt; 元素來授權網頁伺服器對檔案的訪問。</p>
+<p>如果你的專案資料夾不在 Apache 文件根目錄，則 &lt;VirtualHost&gt; 需要再新增一層 &lt;Directory&gt; 元素來授權網頁伺服器對檔案的存取。</p>
 </div>
 <div class="section" id="id6">
 <h3>測試<a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
-<p>完成了上述的設定後，你的網頁應用程式將可以透過 <code class="docutils literal notranslate"><span class="pre">http://myproject.local</span></code> 在瀏覽器中進行訪問。</p>
+<p>完成了上述的設定後，你的網頁應用程式將可以透過 <code class="docutils literal notranslate"><span class="pre">http://myproject.local</span></code> 在瀏覽器中進行存取。</p>
 <p>每當改變設定的內容時，都需要重新啟動 Apache。</p>
 </div>
 </div>
@@ -495,7 +495,7 @@
 <div class="section" id="vagrant">
 <h2><a class="toc-backref" href="#id15">使用 Vagrant 進行佈署</a><a class="headerlink" href="#vagrant" title="本標題的永久連結">¶</a></h2>
 <p>即便你在不同的環境中進行開發，利用虛擬化技術在預計佈署的環境中，對網頁應用程式進行測試是個不錯的方法。</p>
-<p>程式庫中附帶一個 <code class="docutils literal notranslate"><span class="pre">VagrantFile.dist</span></code> 設定檔，可以複製到 <code class="docutils literal notranslate"><span class="pre">VagrantFile</span></code> 並針對該系統進行訂製，例如：啟用對特定資料庫或快取引擎的訪問。</p>
+<p>程式庫中附帶一個 <code class="docutils literal notranslate"><span class="pre">VagrantFile.dist</span></code> 設定檔，可以複製到 <code class="docutils literal notranslate"><span class="pre">VagrantFile</span></code> 並針對該系統進行訂製，例如：啟用對特定資料庫或快取引擎的存取。</p>
 <div class="section" id="id7">
 <h3>設定<a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
 <p>我們假設你已經為你的平台安裝了 <a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a> 與
@@ -543,7 +543,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月21日。
+        最後更新於 2021年12月03日。
       </span>
 
     </p>

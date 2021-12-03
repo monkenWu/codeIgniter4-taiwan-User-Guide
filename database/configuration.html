@@ -384,8 +384,7 @@
 <p>類別屬性的名稱就是連線名稱，並且可以用特殊群組名稱連線。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">The default location of the SQLite3 database is in the <code class="docutils literal notranslate"><span class="pre">writable</span></code> folder.
-If you want to change the location, you must set the full path to the new folder.</p>
+<p class="last">SQLite3 資料庫的預設位置位於 <code class="docutils literal notranslate"><span class="pre">writable</span></code> 資料夾內，如果你需要更改為至，則必須設定新資料夾的完整路徑。</p>
 </div>
 <p>某些資料庫驅動例如：PDO、PostgreSQL、Oracle、ODBC）可能需要提供完整的DSN字串。在這些狀況下，你就需要使用 DSN 設定參數，就像是使用原生PHP的驅動擴充模組一樣，例如：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// PDO</span>
@@ -399,12 +398,11 @@ If you want to change the location, you must set the full path to the new folder
 <p class="first admonition-title">備註</p>
 <p class="last">如果你沒有為驅動指定 DSN 字串，CodeIgniter 將會使用你提供的其他設定去建構你的資料庫。</p>
 </div>
-<p>You can also set a Data Source Name in universal manner (URL like). In that case DSNs must have this prototype:</p>
+<p>您還可以使用通用方式（類似 URL）設定資料來源名稱。在這種情況下，DSN 必須具有下列原型：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$default</span><span class="p">[</span><span class="s1">&#39;DSN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;DBDriver://username:password@hostname:port/database&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>To override default config values when connecting with a universal version of the DSN string,
-add the config variables as a query string:</p>
+<p>要在使用 DSN 字串進行資料庫連線時覆蓋預設的設定值時，請將設定用的變數作為查詢字串加入到 DSN 中。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// MySQLi</span>
 <span class="nv">$default</span><span class="p">[</span><span class="s1">&#39;DSN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MySQLi://username:password@hostname:3306/database?charset=utf8&amp;DBCollat=utf8_general_ci&#39;</span><span class="p">;</span>
 <span class="c1">// Postgre</span>
@@ -631,7 +629,7 @@ add the config variables as a query string:</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年11月21日。
+        最後更新於 2021年12月03日。
       </span>
 
     </p>
