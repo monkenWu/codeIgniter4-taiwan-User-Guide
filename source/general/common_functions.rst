@@ -138,7 +138,7 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 	:returns: 如果沒有傳入 $key ，則會回傳 Session 物件的實體；如果有傳入 $key ，則尋找 Session 中是否有這個值後回傳，若找不到則為 null。 
 	:rtype: mixed
 
-	提供一個訪問 Session 類別和檢索儲存值的便捷方法，更多訊息請參閱 :doc:`Sessions </libraries/sessions>` 頁面。
+	提供一個存取 Session 類別和檢索儲存值的便捷方法，更多訊息請參閱 :doc:`Sessions </libraries/sessions>` 頁面。
 
 .. php:function:: timer( [$name] )
 
@@ -352,7 +352,7 @@ CodeIgniter 提供了一些全域函數與變數讓你在任何時候都可以�
 	:returns: 指定的服務類別的實體。
 	:rtype: mixed
 
-	提供了對系統中定義的任何 :doc:`Services <../concepts/services>` 的方便訪問。這將始終回傳一個共享的類別實體，因此無論在一次的請求中呼叫多少次，都只會創建一個類別實體。
+	提供了對系統中定義的任何 :doc:`Services <../concepts/services>` 的方便存取。這將始終回傳一個共享的類別實體，因此無論在一次的請求中呼叫多少次，都只會創建一個類別實體。
 
 	範例：
 	
