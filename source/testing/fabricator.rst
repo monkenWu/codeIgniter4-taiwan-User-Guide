@@ -1,16 +1,14 @@
 ####################
-Generating Test Data
+產生測試資料
 ####################
 
-Often you will need sample data for your application to run its tests. The ``Fabricator`` class
-uses fzaninotto's `Faker <https://github.com/fzaninotto/Faker//>`_ to turn models into generators
-of random data. Use fabricators in your seeds or test cases to stage fake data for your unit tests.
+通常，你會需要替你的應用程式提供範例資料以執行測試。 ``Fabricator`` 類別使用 fzaninotto開發的 `Faker 程式庫 <https://github.com/fzaninotto/Faker//>`_ ，以此將模型變成亂數資料的產生器。使你能夠在資料填充或測試案例中，使用資料偽裝器來為你的單元測試提供偽裝資料。
 
 .. contents::
     :local:
     :depth: 2
 
-Supported Models
+支援的模型
 ================
 
 ``Fabricator`` supports any model that extends the framework's core model, ``CodeIgniter\Model``.
@@ -20,7 +18,7 @@ You may use your own custom models by ensuring they implement ``CodeIgniter\Test
 
 .. note:: In addition to methods, the interface outlines some necessary properties for the target model. Please see the interface code for details.
 
-Loading Fabricators
+載入資料偽裝器
 ===================
 
 At its most basic a fabricator takes the model to act on::
@@ -36,7 +34,7 @@ The parameter can be a string specifying the name of the model, or an instance o
 
     $fabricator = new Fabricator($model);
 
-Defining Formatters
+定義格式器
 ===================
 
 Faker generates data by requesting it from a formatter. With no formatters defined, ``Fabricator`` will
@@ -88,7 +86,7 @@ a child class in your test support folder::
         public function fake(&$faker)
         {
 
-Localization
+本土化
 ============
 
 Faker supports a lot of different locales. Check their documentation to determine which providers
@@ -99,7 +97,7 @@ support your locale. Specify a locale in the third parameter while initiating a 
 If no locale is specified it will use the one defined in **app/Config/App.php** as ``defaultLocale``.
 You can check the locale of an existing fabricator using its ``getLocale()`` method.
 
-Faking the Data
+偽裝資料
 ===============
 
 Once you have a properly-initialized fabricator it is easy to generate test data with the ``make()`` command::
@@ -158,7 +156,7 @@ the object with extra database fields above without actually touching the databa
     $this->assertIsNumeric($user->id);
     $this->dontSeeInDatabase('user', ['id' => $user->id]);
 
-Specifying Test Data
+指定測試資料
 ====================
 
 Generated data is great, but sometimes you may want to supply a specific field for a test without
@@ -213,8 +211,8 @@ Notice after the first return the fabricator stops using the overrides::
 
 If no second parameter is supplied then passed values will persist by default.
 
-Test Helper
-===========
+測試輔助函數
+============
 
 Often all you will need is a one-and-done fake object for testing. The Test Helper provides
 the ``fake($model, $overrides, $persist = true)`` function to do just this::
@@ -230,7 +228,7 @@ This is equivalent to::
 
 If you just need a fake object without saving it to the database you can pass false into the persist parameter.
 
-Table Counts
+資料表計數
 ============
 
 Frequently your faked data will depend on other faked data. ``Fabricator`` provides a static
