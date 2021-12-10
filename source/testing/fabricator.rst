@@ -11,24 +11,30 @@
 支援的模型
 ================
 
-``Fabricator`` supports any model that extends the framework's core model, ``CodeIgniter\Model``.
-You may use your own custom models by ensuring they implement ``CodeIgniter\Test\Interfaces\FabricatorModel``::
+``Fabricator`` 支援任何繼承了框架核心 ``CodeIgniter\Model`` 的模型。你可以使用自訂模型並實作 ``CodeIgniter\Test\Interfaces\FabricatorModel`` 介面。
+
+::
 
     class MyModel implements CodeIgniter\Test\Interfaces\FabricatorModel
 
-.. note:: In addition to methods, the interface outlines some necessary properties for the target model. Please see the interface code for details.
+.. note:: 
+    除了方法之外，這個介面還宣告了一些模型的必要屬性，相關細節請參閱介面的程式碼。
 
 載入資料偽裝器
 ===================
 
-At its most basic a fabricator takes the model to act on::
+在最基本的條件下，資料偽裝器將使用模型作為基本操作：
+
+::
 
     use App\Models\UserModel;
     use CodeIgniter\Test\Fabricator;
 
     $fabricator = new Fabricator(UserModel::class);
 
-The parameter can be a string specifying the name of the model, or an instance of the model itself::
+這個參數可以是模型名稱的字串，也可以是模型的實體。
+
+::
 
     $model = new UserModel($testDbConnection);
 
@@ -37,11 +43,9 @@ The parameter can be a string specifying the name of the model, or an instance o
 定義格式器
 ===================
 
-Faker generates data by requesting it from a formatter. With no formatters defined, ``Fabricator`` will
-attempt to guess at the most appropriate fit based on the field name and properties of the model it
-represents, falling back on ``$fabricator->defaultFormatter``. This may be fine if your field names
-correspond with common formatters, or if you don't care much about the content of the fields, but most
-of the time you will want to specify the formatters to use as the second parameter to the constructor::
+Faker 向格式器請求來產生資料，在沒有定義格式器的情況下， ``Fabricator`` 將嘗試根據欄位名稱以及他所表示的模型屬性來猜測最適合的格式，並返回到 ``$fabricator->defaultFormatter`` 。如果你的欄位名稱與常用格式器相對應，又或者你不太在乎欄位的內容，沒有定義格式器可能不會帶來什麼壞處。但在大多數的情形下，你會希望指定一個格式器作為建構函數的第二個參數：
+
+::
 
     $formatters = [
         'first'  => 'firstName',
@@ -52,15 +56,15 @@ of the time you will want to specify the formatters to use as the second paramet
 
     $fabricator = new Fabricator(UserModel::class, $formatters);
 
-You can also change the formatters after a fabricator is initialized by using the ``setFormatters()`` method.
+你還可以使用 ``setFormatters()`` 方法，在初始化資料偽裝器後改變它的格式器。
 
-**Advanced Formatting**
+**進階格式化**
 
-Sometimes the default return of a formatter is not enough. Faker providers allow parameters to most formatters
-to further limit the scope of random data. A fabricator will check its representative model for the ``fake()``
-method where you can define exactly what the faked data should look like::
+有時，格式器的預設回傳是不夠的。Faker 提供大多數格式器的參數，讓你能夠進一步限制隨機資料的範圍。資料偽裝器將檢查並使用你所傳入的模型中宣告的 ``fake()`` 方法，在這個方法裡你將可以準確地描述偽裝的資料所呈現的是什麼樣子：
 
-    class UserModel
+::
+
+  class UserModel
     {
         public function fake(Generator &$faker)
         {
@@ -73,11 +77,9 @@ method where you can define exactly what the faked data should look like::
             ];
         }
 
-Notice in this example how the first three values are equivalent to the formatters from before. However for ``avatar``
-we have requested an image size other than the default and ``login`` uses a conditional based on app configuration,
-neither of which are possible using the ``$formatters`` parameter.
-You may want to keep your test data separate from your production models, so it is a good practice to define
-a child class in your test support folder::
+請注意，這個例子的前三個資料與之前所使用的格式器是相同的。但對於 ``avatar`` 我們請求了一個不同於預設的圖像大小， ``login`` 使用基於應用程式組態的條件。這兩種情況都不能使用 ``$formatters`` 。此時你可能會希望將測試資料的定義與正是的模型分開管理，因此在你的測試 ``support`` 資料夾中定義一個子類別是一個很好的做法：
+
+::
 
     namespace Tests\Support\Models;
 
@@ -89,24 +91,28 @@ a child class in your test support folder::
 本土化
 ============
 
-Faker supports a lot of different locales. Check their documentation to determine which providers
-support your locale. Specify a locale in the third parameter while initiating a fabricator::
+Faker 支援許多不同的地區設定。請查閱 Faker 文件以確定哪些提供者支援你的地區。在建構函數的第三個參數中你可以指定區域設定：
+
+::
 
     $fabricator = new Fabricator(UserModel::class, null, 'fr_FR');
 
-If no locale is specified it will use the one defined in **app/Config/App.php** as ``defaultLocale``.
-You can check the locale of an existing fabricator using its ``getLocale()`` method.
+如果未指定地區，它將使用在 **app/Config/App.php** 中的地區設定作為 ``defaultLocale`` 。你可以使用資料偽裝器的 ``getLocale()`` 方法檢查區域設定。
 
 偽裝資料
 ===============
 
-Once you have a properly-initialized fabricator it is easy to generate test data with the ``make()`` command::
+當你正確初始化了一個資料偽裝器，就可以很輕鬆地使用 ``make()`` 產生測試資料：
+
+::
 
     $fabricator = new Fabricator(UserFabricator::class);
     $testUser   = $fabricator->make();
     print_r($testUser);
 
-You might get back something like this::
+你會得到像是這樣的東西：
+
+::
 
     array(
         'first'  => "Maynard",
@@ -116,21 +122,23 @@ You might get back something like this::
         'login'  => null,
     )
 
-You can also get a lot of them back by supplying a count::
+你也可以透過給予一個數量取得更多結果：
+
+::
 
     $users = $fabricator->make(10);
 
-The return type of ``make()`` mimics what is defined in the representative model, but you can
-force a type using the methods directly::
+``make()`` 的回傳型別會參考模型的定義，但你也可以直接使用以下方法強制使用一個型別：
+
+::
 
     $userArray  = $fabricator->makeArray();
     $userObject = $fabricator->makeObject();
     $userEntity = $fabricator->makeObject('App\Entities\User');
 
-The return from ``make()`` is ready to be used in tests or inserted into the database. Alternatively
-``Fabricator`` includes the ``create()`` command to insert it for you, and return the result. Due
-to model callbacks, database formatting, and special keys like primary and timestamps the return
-from ``create()`` can differ from ``make()``. You might get back something like this::
+從 ``make()`` 回傳的結果可以在測試中使用或插入至你的資料庫中。另外， ``Fabricator`` 包含 ``create()`` 指令，能夠替你插入資料至資料庫，由於模型回呼、資料庫格式，或主鍵與時間戳記等特殊鍵值的關係， ``create()`` 所回傳的結果可能會與 ``make()`` 不同。你可能會得到類似於下面的回傳：
+
+::
 
     array(
         'id'         => 1,
@@ -143,13 +151,16 @@ from ``create()`` can differ from ``make()``. You might get back something like 
         'updated_at' => "2020-05-08 14:52:10",
     )
 
-Similar to ``make()`` you can supply a count to insert and return an array of objects::
+與 ``make()`` 相似，你可以透過提供一個數量來插入並回傳一個由物件組成的陣列：
+
+::
 
     $users = $fabricator->create(100);
 
-Finally, there may be times you want to test with the full database object but you are not actually
-using a database. ``create()`` takes a second parameter to allowing mocking the object, returning
-the object with extra database fields above without actually touching the database::
+
+最後，有時你可能需要使用完整的資料庫物件進行測試，但實際上你並沒有使用資料庫。 ``create()`` 可以透過第二個參數來模擬資料庫物件，回傳帶有上述額外資料庫欄位的物件，而不需要實際接觸資料庫：
+
+::
 
     $user = $fabricator(null, true);
 
