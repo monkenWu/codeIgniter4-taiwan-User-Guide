@@ -96,19 +96,15 @@
 
 **$migrate**
 
-This boolean value determines whether the database migration runs before test.
-By default, the database is always migrated to the latest available state as defined by ``$namespace``.
-If false, migration never runs. If you want to disable migration, set false.
+這個布林數值代表資料庫遷移是否在測試之前執行。預設的情況下，資料庫總是會遷移到 ``$namespace`` 定義的最新可用狀態。如果為 false，則遷移永遠不會執行。如果要禁用遷移，請設定為 false。
 
 **$migrateOnce**
 
-This boolean value determines whether the database migration runs only once. If you want
-to run migration once before the first test, set true. If not present or false, migration
-runs before each test.
+這個布林數值代表資料庫遷移是否只執行一次。如果要在第一次測試之前執行一次遷移，請設定為 true。如果這個屬性不存在或為 false，那麼每次測試之前將會執行遷移。
 
 **$refresh**
 
-這個布林值決定了在每次測時前資料庫是否需要完全初始化，如果為 true ，則所有的遷移都將回歸到 0 版本，資料庫會被遷到你所設定的最新且可用的遷移。
+這個布林數值決定了在每次測時前資料庫是否需要完全初始化，如果為 true ，則所有的遷移都將回歸到 0 版本，資料庫會被遷到你所設定的最新且可用的遷移。
 
 **$seed**
 
@@ -116,9 +112,7 @@ runs before each test.
 
 **$seedOnce**
 
-This boolean value determines whether the database seeding runs only once. If you want
-to run database seeding once before the first test, set true. If not present or false, database seeding
-runs before each test.
+此布林樹值決定資料庫填充是否只運行一次。如果要在第一次測試之前執行一次資料庫填充，請設定為 true。如果這個屬性不存在或為 false ，則在每次測試之前執行資料庫填充。
 
 **$basePath**
 
@@ -135,11 +129,12 @@ runs before each test.
 
 **regressDatabase()**
 
-Called during ``$refresh`` described above, this method is available if you need to reset the database manually.
+
+在上述 ``$refresh`` 期間呼叫，如果需要手動初始化資料庫，則可以使用這個方法。
 
 **migrateDatabase()**
 
-Called during ``setUp``, this method is available if you need to run migrations manually.
+在 ``setUp`` 期間呼叫，如果需要手動執行遷移，則此可以使用這個方法。
 
 **seed($name)**
 
