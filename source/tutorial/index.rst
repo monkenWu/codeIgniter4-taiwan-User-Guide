@@ -5,7 +5,7 @@
 緒論
 ********
 
-本教學旨在向您介紹 CodeIgniter4 框架與 MVC 設計模式的基本原則。它將會向你展示如何逐步建構一個基本的 CodeIgniter 應用程式。
+本教學旨在向你介紹 CodeIgniter4 框架與 MVC 設計模式的基本原則。它將會向你展示如何逐步建構一個基本的 CodeIgniter 應用程式。
 
 如果你對 PHP 並不熟悉，我們建議你在使用這個教學之前，不妨先查看 `W3Schools PHP <https://www.w3school.com.cn/php/index.asp>`_ （簡體中文）教學。
 
@@ -92,7 +92,7 @@
 
 你需要注意幾件事情：
 
-1. 頂部的紅色標題是一個連結，點下去後將會自動打開 Google.com 並替您搜索這個異常。
+1. 頂部的紅色標題是一個連結，點下去後將會自動打開 Google.com 並替你搜索這個異常。
 
 2. 按一下 Backtrace 中任意的 ``arguments`` 鏈結將展開傳遞到該函數，並且呼叫中的引數列表。
 

@@ -121,7 +121,7 @@
     > php spark make:seeder user --suffix
     // Output: UserSeeder.php file located at app/Database/Seeds directory.
 
-您可以透過提供 ``--namespace`` 選項來設定儲存填充檔案的 ``root`` 命名空間：
+你可以透過提供 ``--namespace`` 選項來設定儲存填充檔案的 ``root`` 命名空間：
 
 ::
 
