@@ -2,7 +2,7 @@
 產生測試資料
 ####################
 
-通常，你會需要替你的應用程式提供範例資料以執行測試。 ``Fabricator`` 類別使用 fzaninotto開發的 `Faker 程式庫 <https://github.com/fzaninotto/Faker//>`_ ，以此將模型變成亂數資料的產生器。使你能夠在資料填充或測試案例中，使用資料偽裝器來為你的單元測試提供偽裝資料。
+通常，你會需要替你的應用程式提供範例資料以執行測試。 ``Fabricator`` 類別使用 fzaninotto 所開發的 `Faker 程式庫 <https://github.com/fzaninotto/Faker//>`_ ，以此將模型變成亂數資料的產生器。使你能夠在資料填充或測試案例中，使用資料偽裝器來為你的單元測試提供偽裝資料。
 
 .. contents::
     :local:
@@ -170,14 +170,16 @@ Faker 支援許多不同的地區設定。請查閱 Faker 文件以確定哪些�
 指定測試資料
 ====================
 
-Generated data is great, but sometimes you may want to supply a specific field for a test without
-compromising your formatters configuration. Rather then creating a new fabricator for each variant
-you can use ``setOverrides()`` to specify the value for any fields::
+資料能夠自動產生真的很便利，但你可能會希望在不影響格式化組態的情況下，替你的測試提供特定的欄位，而不是替每個變體建立一個新的資料提供者。這時，你就可以使用 ``setOverrides()`` 來覆寫指定欄位的數值：
+
+::
 
     $fabricator->setOverrides(['first' => 'Bobby']);
     $bobbyUser = $fabricator->make();
 
-Now any data generated with ``make()`` or ``create()`` will always use "Bobby" for the ``first`` field::
+現在，使用 ``make()`` 或 ``create()`` 產生的任何資料一定會以 "Bobby" 做為 ``first`` 欄位的內容：
+
+::
 
     array(
         'first'  => "Bobby",
@@ -195,14 +197,17 @@ Now any data generated with ``make()`` or ``create()`` will always use "Bobby" f
         'login'  => null,
     )
 
-``setOverrides()`` can take a second parameter to indicate whether this should be a persistent
-override or only for a single action::
+可以傳入第二個參數到 ``setOverrides()`` 方法中，用來控制覆寫的動作是持續覆寫還是僅覆寫單次。
+
+::
 
     $fabricator->setOverrides(['first' => 'Bobby'], $persist = false);
     $bobbyUser = $fabricator->make();
     $bobbyUser = $fabricator->make();
 
-Notice after the first return the fabricator stops using the overrides::
+請注意，在第一次的結果回傳後，資料偽裝器將會停止覆寫。
+
+::
 
     array(
         'first'  => "Bobby",
@@ -220,36 +225,36 @@ Notice after the first return the fabricator stops using the overrides::
         'login'  => null,
     )
 
-If no second parameter is supplied then passed values will persist by default.
+如果你並未提供第二個參數，在預設的情型下數值將不會改變。
 
 測試輔助函數
 ============
 
-Often all you will need is a one-and-done fake object for testing. The Test Helper provides
-the ``fake($model, $overrides, $persist = true)`` function to do just this::
+通常，你只需要一個用於測試的一次性偽裝物件。測試輔助函數提供了 ``fake($model, $overrides, $persist = true)`` 函數來幫忙你達成這個需求：
+
+::
 
     helper('test');
     $user = fake('App\Models\UserModel', ['name' => 'Gerry']);
 
-This is equivalent to::
+這相當於你這麼做：
+
+::
 
     $fabricator = new Fabricator('App\Models\UserModel');
     $fabricator->setOverrides(['name' => 'Gerry']);
     $user = $fabricator->create();
 
-If you just need a fake object without saving it to the database you can pass false into the persist parameter.
+如果你只是需要一個偽裝物件，而不會將它儲存到資料庫中，你也可以將 false 傳入至 persist 參數中。
 
 資料表計數
 ============
 
-Frequently your faked data will depend on other faked data. ``Fabricator`` provides a static
-count of the number of faked items you have created for each table. Consider the following
-example:
+通常你的偽裝資料將會依賴於其他偽裝資料， ``Fabricator`` 能夠讓你計算每個資料表建立的偽裝項目的數量，你可以參考以下範例：
 
-Your project has users and groups. In your test case you want to create various scenarios
-with groups of different sizes, so you use ``Fabricator`` to create a bunch of groups.
-Now you want to create fake users but don't want to assign them to a non-existant group ID.
-Your model's fake method could look like this::
+你的專案擁有使用者與群組，在你的測試案例中，你想用不同規模的群組來搭建各種場景，所以你利用 ``Fabricator`` 建立了一堆群組。現在，在你想替這些群組建立偽裝的使用者，但不想把他們分配到部存在的群組 ID ，你的模型中的偽裝方法可能會如下所示：
+
+::
 
     class UserModel
     {
@@ -264,31 +269,26 @@ Your model's fake method could look like this::
             ];
         }
 
-Now creating a new user will ensure it is a part of a valid group: ``$user = fake(UserModel::class);``
+現在，新的使用者的建立將保證是有效群組的一份子：　``$user = fake(UserModel::class);``
 
-``Fabricator`` handles the counts internally but you can also access these static methods
-to assist with using them:
+``Fabricator`` 會在內部處理計數，但你也可以存取下列靜態方法來進行控制：
 
 **getCount(string $table): int**
 
-Return the current value for a specific table (default: 0).
+回傳特定資料表的目前數值（預設為 0 ）。
 
 **setCount(string $table, int $count): int**
 
-Set the value for a specific table manually, for example if you create some test items
-without using a fabricator that you still wanted factored into the final counts.
+手動設定特定資料表的數值，例如，你在沒有使用資料偽裝器的情況下，建立了一些測試項目，但你仍希望把這個動作算入最終計數中。
 
 **upCount(string $table): int**
 
-Increment the value for a specific table by one and return the new value. (This is what is
-used internally with ``Fabricator::create()``).
+將特定資料表的數值加 1 ，並回傳新的數值。（這被 ``Fabricator::create()`` 方法所使用）。
 
 **downCount(string $table): int**
 
-Decrement the value for a specific table by one and return the new value, for example if
-you deleted a fake item but wanted to track the change.
+將特定資料表的數值減 1 併回傳新的數值，例如，如果你刪除了一個偽裝項目但想要追蹤更改。
 
 **resetCounts()**
 
-Resets all counts. Good idea to call this between test cases (though using
-``CIUnitTestCase::$refresh = true`` does it automatically).
+重置所有計數。 在測試案例之間呼叫它是個好選擇（儘管使用了  ``CIUnitTestCase::$refresh = true`` 會自動執行）。
