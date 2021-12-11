@@ -118,7 +118,7 @@ CodeIgniter 假設你使用了所支援資料庫，如 :doc:`系統需求 </intr
     }
 
 
-看看程式碼，你可能會發現與我們之前建立的文件有相似之處。首先，它繼承了 CodeIgniter 核心類別 ``Controller`` ，這個類別提供了幾個輔助方法，並且確保你可以使用當前的 ``Request`` 與 ``Response`` 物件。以及將運作資訊保存在伺服器的 ``Logger`` 類別。
+看看程式碼，你可能會發現與我們之前建立的文件有相似之處。首先，它繼承了 CodeIgniter 核心類別 ``Controller`` ，這個類別提供了幾個輔助方法，並且確保你可以使用當前的 ``Request`` 與 ``Response`` 物件。以及將執行資訊保存在伺服器的 ``Logger`` 類別。
 
 接下來， ``model()`` 函數被用於建立 NewsModel 實體。這是一個輔助函數，你可以在 :doc:`這裡 </general/common_functions>` 閱讀到更多說明。若你不想這麼使用，你也可以寫成 ``$model = new NewsModel();`` 。
 

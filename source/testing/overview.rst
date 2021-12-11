@@ -28,7 +28,7 @@ Composer
 
     > composer require --dev phpunit/phpunit
 
-這將會安裝符合你目前 PHP 版本的 phpUnit 。一旦完成，你就可以透過鍵入這個指令來運作這個專案的所有測試：
+這將會安裝符合你目前 PHP 版本的 phpUnit 。一旦完成，你就可以透過鍵入這個指令來執行這個專案的所有測試：
 
 ::
 
@@ -214,7 +214,7 @@ PHPUnit 組態設定
 
     $this->assertHeaderEmitted("Set-Cookie: foo=bar");
 
-.. note:: 這個測試案例應該在 PHPunit 中作為 `單獨的程序運作 <https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess>`_ 。
+.. note:: 這個測試案例應該在 PHPunit 中作為 `單獨的程序執行 <https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess>`_ 。
 
 **assertHeaderNotEmitted($header, $ignoreCase=false)**
 
@@ -230,7 +230,7 @@ PHPUnit 組態設定
 
     $this->assertHeaderNotEmitted("Set-Cookie: banana");
 
-.. note:: 這個測試案例應該在 PHPunit 中作為 `單獨的處理程序運作 <https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess>`_ 。
+.. note:: 這個測試案例應該在 PHPunit 中作為 `單獨的處理程序執行 <https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess>`_ 。
 
 **assertCloseEnough($expected, $actual, $message=\\'\\', $tolerance=1)**
 

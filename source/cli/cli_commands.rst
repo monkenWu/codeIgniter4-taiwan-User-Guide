@@ -9,16 +9,16 @@
     :depth: 2
 
 ****************
-運作指令
+執行指令
 ****************
 
-定位在根目錄下（就是擁有 **/app** 與 **/system** 的那個目錄），指令就能在命令列中運作。 CodeIgniter 已經提供了一個內建腳本 **spark** ，可以用於執行命令列指令： 
+定位在根目錄下（就是擁有 **/app** 與 **/system** 的那個目錄），指令就能在命令列中執行。 CodeIgniter 已經提供了一個內建腳本 **spark** ，可以用於執行命令列指令： 
 
 ::
 
     > php spark
 
-當你不指定任何指令時，會顯示一個簡單的提示資訊，並提供一個可用的指令列表，你應該以指令的名稱作為第一參數來運作你想使用的指令：
+當你不指定任何指令時，會顯示一個簡單的提示資訊，並提供一個可用的指令列表，你應該以指令的名稱作為第一參數來執行你想使用的指令：
 
 ::
 
@@ -34,7 +34,7 @@ You may always pass ``--no-header`` to suppress the header output, helpful for p
 
     > php spark cache:clear --no-header
 
-對於 CodeIgniter 所提供的指令，如果你沒有鍵入它所需要的參數，你將會被提示正確運作指令應該需要的要求：
+對於 CodeIgniter 所提供的指令，如果你沒有鍵入它所需要的參數，你將會被提示正確執行指令應該需要的要求：
 
 ::
 
@@ -129,7 +129,7 @@ You may also use ``spark list --simple`` to get a raw list of all available comm
 run()
 -----
 
-``run()`` 方法是運作指令時會呼叫的方法，``$params`` 陣列是指令名稱後可以接著使用的參數列表：
+``run()`` 方法是執行指令時會呼叫的方法，``$params`` 陣列是指令名稱後可以接著使用的參數列表：
 
 ::
 

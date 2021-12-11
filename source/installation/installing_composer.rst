@@ -90,7 +90,7 @@ If ``--prefer-source`` doesn't automatically update to pull latest framework sou
 
     php builds release
 
-使用 ``builds`` 後請務必執行 ``composer update`` ，以便將你的 vendor 資料夾與目前希望運作的版本進行同步。
+使用 ``builds`` 後請務必執行 ``composer update`` ，以便將你的 vendor 資料夾與目前希望執行的版本進行同步。
 
 將 CodeIgniter4 佈署到現有專案中
 ============================================================

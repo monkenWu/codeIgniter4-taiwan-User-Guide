@@ -429,7 +429,7 @@ URL 請求
         :returns:       要是沒有提供參數則回傳 $_POST，否則回傳找到的 POST 值，沒找到則回傳 null
         :rtype: mixed|null
 
-        此方法在運作上和 ``getPost()`` 與 ``getGet()`` 大同小異，差別在於此方法結合了兩者。
+        此方法在執行上和 ``getPost()`` 與 ``getGet()`` 大同小異，差別在於此方法結合了兩者。
         此方法會搜索 POST 與 GET 串流來取得資料，先搜尋過 POST 後，再搜尋 GET ::
 
             $request->getPostGet('field1');
@@ -444,7 +444,7 @@ URL 請求
         :returns:       要是沒有提供參數則回傳 $_POST，否則回傳找到的 POST 值，沒找到則回傳 null
         :rtype: mixed|null
 
-        此方法在運作上和 ``getPost()`` 與 ``getGet()`` 大同小異，差別在於此方法結合了兩者。
+        此方法在執行上和 ``getPost()`` 與 ``getGet()`` 大同小異，差別在於此方法結合了兩者。
         此方法會搜索 POST 與 GET 串流來取得資料，先搜尋過 GET 後，再搜尋 POST ::
 
             $request->getGetPost('field1');
