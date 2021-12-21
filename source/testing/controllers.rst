@@ -164,20 +164,19 @@
 驗證響應
 =====================
 
-``ControllerTestTrait::execute()`` returns an instance of a ``TestResponse``. See `Testing Responses <response.html>`_ on
-how to use this class to perform additional assertions and verification in your test cases.
+``ControllerTestTrait::execute()`` 會回傳一個 ``TestResponse`` 的實體。有關如何在測試案例中利用這個類別執行其他斷言和驗證的相關資訊，請參閱 `測試響應` <response.html>`_ 。
 
-Filter Testing
+過濾器測試
 ==============
 
-Similar to Controller Testing, the framework provides tools to help with creating tests for
-custom :doc:`Filters </incoming/filters>` and your projects use of them in routing.
+與控制器測試類似，框架提供了一些工具來幫助你建立用於 :doc:`過濾器 </incoming/filters>` 的測試，以及在你的專案中利用路由使用它們。
 
-The Helper Trait
+輔助特性
 ----------------
 
-Just like with the Controller Tester you need to include the ``FilterTestTrait`` in your test
-cases to enable these features::
+就像是控制器測試，你需要在你的測試案例中引入 ``FilterTestTrait`` 來啟用輔助特性提供的功能。
+
+::
 
     <?php
 
@@ -191,24 +190,20 @@ cases to enable these features::
         use FilterTestTrait;
     }
 
-Configuration
+組態
 -------------
 
-Because of the logical overlap with Controller Testing ``FilterTestTrait`` is designed to
-work together with ``ControllerTestTrait`` should you need both on the same class.
-Once the trait has been included ``CIUnitTestCase`` will detect its ``setUp`` method and
-prepare all the components needed for your tests. Should you need a special configuration
-you can alter any of the properties before calling the support methods:
+因為與控制器測試的邏輯重疊， ``FilterTestTrait`` 被設計為與 ``ControllerTestTrait`` 一起工作，所以在同一個類別上，將同時需要這個特性存在。一旦上述特性被引入， ``CIUnitTestCase`` 將檢查類別中的 ``setUp`` 方法，替你的測試準備所有需要的元件。如果你需要一個特殊的組態，你可以在呼叫支援方法之前改變下列屬性。
 
-* ``$request`` A prepared version of the default ``IncomingRequest`` service
-* ``$response`` A prepared version of the default ``ResponseInterface`` service
-* ``$filtersConfig`` The default ``Config\Filters`` configuration (note: discovery is handle by ``Filters`` so this will not include module aliases)
-* ``$filters`` An instance of ``CodeIgniter\Filters\Filters`` using the three components above
-* ``$collection`` A prepared version of ``RouteCollection`` which includes the discovery of ``Config\Routes``
+* ``$request`` 預設 ``IncomingRequest`` 服務的預備版本
+* ``$response`` 預設 ``ResponseInterface`` 服務的預備版本
+* ``$filtersConfig`` 預設的 ``ConfigFilters`` 配置（注意：探索是由 ``Filters`` 處理的，所以這不包括模組的別名）。
+* ``$filters`` 使用上述三個元件的 ``CodeIgniter\Filters\Filters`` 實體
+* ``$collection`` 是 ``RouteCollection`` 的預備版本，其中包括 ``Config\Routes`` 的探索
 
-The default configuration will usually be best for your testing since it most closely emulates
-a "live" project, but (for example) if you wanted to simulate a filter triggering accidentally
-on an unfiltered route you could add it to the Config::
+預設組態通常會符合你的測試，因為它最接近「即時」專案，但如果你想模擬一個過濾器在某個沒有使用過濾器的路由意外觸發，你可以將這麼設定：
+
+::
 
     class FilterTestCase extends CIUnitTestCase
     {
@@ -222,40 +217,39 @@ on an unfiltered route you could add it to the Config::
         }
     ...
 
-Checking Routes
+檢查路由
 ---------------
 
-The first helper method is ``getFiltersForRoute()`` which will simulate the provided route
-and return a list of all Filters (by their alias) that would have run for the given position
-("before" or "after"), without actually executing any controller or routing code. This has
-a large performance advantage over Controller and HTTP Testing.
+第一個輔助方法是 ``getFiltersForRoute()`` ，它將模擬你所提供的路由，並回傳所有過濾器（按照別名）的清單，這些過濾器將執行在你所設定的位置（「before」 或 「after」），無需實際執行任何控制器或路由程式。比起控制器和 HTTP 測試將有更多的效能優勢。
 
 .. php:function:: getFiltersForRoute($route, $position)
 
-    :param    string    $route: The URI to check
-    :param    string    $position: The filter method to check, "before" or "after"
-    :returns:    Aliases for each filter that would have run
+    :param    string    $route: 被檢查的 URL 
+    :param    string    $position: 被檢查的過濾器方法（「before」 或 「after」）
+    :returns:    將執行的每個過濾器的別名
     :rtype:    string[]
 
-    Usage example::
+    使用範例
+    
+    ::
 
         $result = $this->getFiltersForRoute('/', 'after'); // ['toolbar']
 
-Calling Filter Methods
+呼叫過濾器方法
 ----------------------
 
-The properties describe in Configuration are all set up to ensure maximum performance without
-interfering or interference from other tests. The next helper method will return a callable
-method using these properties to test your Filter code safely and check the results.
+組態中所提到的屬性都是為了保證最好的效能，並且不受其他測試的干擾與影響。下一個輔助方法將使用這些屬性回傳一個能夠被呼叫的匿名函數，藉此安全地測試你的過濾器程式並檢查結果。
 
 .. php:function:: getFilterCaller($filter, $position)
 
-    :param    FilterInterface|string    $filter: The filter instance, class, or alias
-    :param    string    $position: The filter method to run, "before" or "after"
-    :returns:    A callable method to run the simulated Filter event
+    :param    FilterInterface|string    $filter: 過濾器實體、類別或別名
+    :param    string    $position: 被執行的過濾器方法「before」 或 「after」
+    :returns:   用於執行模擬過濾器事件的可呼叫匿名函數
     :rtype:    Closure
 
-    Usage example::
+    使用範例
+    
+    ::
 
         protected function testUnauthorizedAccessRedirects()
         {
@@ -265,30 +259,37 @@ method using these properties to test your Filter code safely and check the resu
             $this->assertInstanceOf('CodeIgniter\HTTP\RedirectResponse', $result);
         }
 
-    Notice how the ``Closure`` can take input parameters which are passed to your filter method.
+    請注意， ``Closure`` 接受何種參數的傳入，這些參數會被傳遞給你的過濾器方法。
 
-Assertions
+斷言
 ----------
 
-In addition to the helper methods above ``FilterTestTrait`` also comes with some assertions
-to streamline your test methods.
+除了上面的輔助方法 ``FilterTestTrait`` 還附帶了一些斷言用於簡化你的測試方法。
 
-The **assertFilter()** method checks that the given route at position uses the filter (by its alias)::
+**assertFilter()** 方法用於檢查你所給予的路由是否使用某個過濾器（透過別名）：
+
+::
 
     // Make sure users are logged in before checking their account
     $this->assertFilter('users/account', 'before', 'login');
 
-The **assertNotFilter()** method checks that the given route at position does not use the filter (by its alias)::
+**assertNotFilter()** 方法用於檢查你所給予的路由是否沒有使用某個過濾器（透過別名）：
+
+::
 
     // Make sure API calls do not try to use the Debug Toolbar
     $this->assertNotFilter('api/v1/widgets', 'after', 'toolbar');
 
-The **assertHasFilters()** method checks that the given route at position has at least one filter set::
+**assertHasFilters()** 方法用於檢查你所給予的路由是否至少設定了一個過濾器：
+
+::
 
     // Make sure that filters are enabled
     $this->assertHasFilters('filtered/route', 'after');
 
-The **assertNotHasFilters()** method checks that the given route at position has no filters set::
+**assertNotHasFilters()** 方法檢查你所給予的路由是否沒有設定過濾器：
+
+::
 
     // Make sure no filters run for our static pages
     $this->assertNotHasFilters('about/contact', 'before');

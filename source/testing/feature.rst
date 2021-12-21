@@ -69,7 +69,7 @@ HTTP 特性測試
     $this->delete($path, $params);
     $this->options($path, $params);
 
-.. note:: 並不是對每個 HTTP 動詞都會使用到 $params 陣列，但為了保持程式的一致，我們將預設把 $params 包含在內。
+.. note:: 並不是對每個 HTTP 動詞都會使用到 $params 陣列，但為了保持示範程式的一致，我們將預設把 $params 包含在內。
 
 設定預設路由
 ------------------------
@@ -105,11 +105,12 @@ HTTP 特性測試
 
     $result = $this->withSession()->get('admin');
 
-Setting Headers
+設定標頭
 ---------------
 
-You can set header values with the ``withHeaders()`` method. This takes an array of key/value pairs that would be
-passed as a header into the call.::
+你可以使用 ``withHeaders()`` 方設定標頭數值。這需要一個鍵值陣列的傳入，這些鍵與值將作為標頭傳遞到呼叫中。
+
+::
 
     $headers = [
         'CONTENT_TYPE' => 'application/json'
@@ -127,13 +128,11 @@ passed as a header into the call.::
     $result = $this->skipEvents()
         ->post('users', $userInfo);
 
-Formatting The Request
+設定請求格式
 -----------------------
 
-You can set the format of your request's body using the ``withBodyFormat()`` method. Currently this supports either
-`json` or `xml`. This will take the parameters passed into ``call(), post(), get()...`` and assign them to the
-body of the request in the given format. This will also set the `Content-Type` header for your request accordingly.
-This is useful when testing JSON or XML API's so that you can set the request in the form that the controller will expect.
+你可以使用 ``withBodyFormat()`` 方法設定請求主體的格式。它支援 `json` 或 `xml` 。這將接收傳遞到 ``call()、post()、get()...`` 的參數，並將它們分配已設定格式的請求主體中。你的將被自動設定對應的 `Content-Type` 標頭。 這在測試 JSON 或 XML API 時很有用，這讓你可以把請求設定成控制器所期望的形式。
+
 ::
 
     //If your feature test contains this:
@@ -142,15 +141,12 @@ This is useful when testing JSON or XML API's so that you can set the request in
     //Your controller can then get the parameters passed in with:
     $userInfo = $this->request->getJson();
 
-Setting the Body
+設定主體
 ----------------
 
-You can set the body of your request with the ``withBody()`` method. This allows you to format the body how you want
-to format it. It is recommended that you use this if you have more complicated xml's to test. This will also not set
-the Content-Type header for you so if you need that, you can set it with the ``withHeaders()`` method.
+你可以使用 ``withBody()`` 方法來設定你的請求主體。你可以按照你想要的格式來設定主體。若你有更複雜的 xml 需要進行測試，建議你使用這個方法。這個方法並不會自動設定 Content-Type 標頭，若你需要，你可以使用 ``withHeaders()`` 方法對其進行設定。
 
 測試響應
 ====================
 
-``FeatureTestTrait::call()`` returns an instance of a ``TestResponse``. See `Testing Responses <response.html>`_ on
-how to use this class to perform additional assertions and verification in your test cases.
+``FeatureTestTrait::call()`` 傳回一個 ``TestResponse`` 的實體。若你需要了解如何使用這個類別在你的測試案例中執行額外的斷言與驗證，請參閱 `測試響應 <response.html>`_ 。

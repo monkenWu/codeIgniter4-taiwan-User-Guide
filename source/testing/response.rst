@@ -1,37 +1,39 @@
 #################
-Testing Responses
+測試響應
 #################
 
-The ``TestResponse`` class provides a number of helpful functions for parsing and testing responses
-from your test cases. Usually a ``TestResponse`` will be provided for you as a result of your
-`Controller Tests <controllers.html>`_ or `HTTP Feature Tests <feature.html>`_, but you can always
-create your own directly using any ``ResponseInterface``::
+``TestResponse`` 類別提供了許多實用功能，用於解析和測試來自測試案例的回應。通常， ``TestResponse`` 將作為 `控制器測試 <controllers.html>`_  或 `HTTP 特性測試 <feature.html>`_ 的結果回傳給你。你也可以傳入符合 ``ResponseInterface`` 介面的實體，建立你自己的 ``TestResponse`` 。
+
+::
 
     $result = new \CodeIgniter\Test\TestResponse($response);
     $result->assertOK();
 
-Testing the Response
+測試你的響應
 ====================
 
-Whether you have received a ``TestResponse`` as a result of your tests or created one yourself,
-there are a number of new assertions that you can use in your tests.
+無論你是在測試中得到了 ``TestResponse`` ，或是自己建立了一個，你都可以在測試中使用下列斷言。
 
-Accessing Request/Response
+存取請求與響應
 --------------------------
 
 **request()**
 
-You can access directly the Request object, if it was set during testing::
+你可以直接存取在測試期間中設定的請求物件：
+
+::
 
     $request = $results->request();
 
 **response()**
 
-This allows you direct access to the response object::
+你可以直接存取響應實體：
+
+::
 
     $response = $results->response();
 
-Checking Response Status
+檢查響應狀態
 ------------------------
 
 **isOK()**
@@ -72,15 +74,16 @@ Checking Response Status
 
 **assertRedirectTo()**
 
-Asserts that the Response is an instance of RedirectResponse and the destination
-matches the uri given.
+斷言這個響應是 RedirectResponse 的實體，並且與你所給予的 URI 相同。
+
 ::
 
     $result->assertRedirectTo('foo/bar');
 
 **getRedirectUrl()**
 
-Returns the URL set for a RedirectResponse, or null for failure.
+回傳 RedirectResponse 設定的 URL ，如果失敗則為 null
+
 ::
 
     $url = $result->getRedirectUrl();
@@ -321,7 +324,9 @@ DOM Assertions
         "foo": "bar"
     }
 
-You can use this method to determine if ``$response`` actually holds JSON content::
+你能夠利用這個方法來確定 ``$response`` 是否真的擁有 JSON 內容：
+
+::
 
     // Verify the response is JSON
     $this->assertTrue($result->getJSON() !== false)

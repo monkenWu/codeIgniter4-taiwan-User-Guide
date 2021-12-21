@@ -59,7 +59,8 @@
 
 在 *除了* 上線環境外的任何環境，這個工具列都是預設啟動的。只要定義了 CI_DEBUG 常數值為 true ，工具列就會顯示。這個常數是在啟動檔案中宣告的（ **app/Config/Boot/development.php** ），可以在啟動檔案中宣告它會在甚麼環境下進行顯示。
 
-.. note:: The Debug Toolbar is not displayed when your ``baseURL`` setting (in **app/Config/App.php** or ``app.baseURL`` in **.env**) does not match your actual URL.
+.. note:: 
+    當你的 ``baseURL`` 設定（在 **app/Config/App.php** 或 **.env** 的 ``app.baseURL``）與你實際的 URL 不一致時，除錯工具列將不會顯示。
 
 工具列本身是以 :doc:`後濾器 </incoming/filters>` 的形式顯示，你可以透過從 **app/Config/Filters.php** 檔案中刪除 ``$globals`` 這個屬性來阻止它的執行。
 
