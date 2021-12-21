@@ -30,7 +30,9 @@
 
     > php spark db:seed DevUserSeeder
 
-You may always pass ``--no-header`` to suppress the header output, helpful for parsing results::
+你可以隨時透過 ``--no-header`` 來抑制標頭的輸出，這可以幫助你解析結果：
+
+::
 
     > php spark cache:clear --no-header
 
@@ -41,21 +43,18 @@ You may always pass ``--no-header`` to suppress the header output, helpful for p
     > php spark migrate:version
     > Version?
 
-Calling Commands
+呼叫指令
 ================
 
-Commands can also be ran from within your own code. This is most often done within a controller for cronjob tasks,
-but they can be used at any time. You do this by using the ``command()`` function. This function is always available.
+指令也可以從你的程式中執行。通常會出現在控制器中執行 cronjob 任務，但它們也可以在任何時候使用。你可以透過使用 ``command()`` 函數來達成。你可以在任何時候呼叫這個函數。
 
 ::
 
     echo command('migrate:create TestMigration');
 
-The only argument is string that is the command called and any parameters. This appears exactly as you would call
-it from the command line.
+這個函數唯一的參數是字串，就是需要被呼叫命令以及所需要的參數。這與你從命令列介面中呼叫它時的用法完全一樣。
 
-All output from the command that is ran is captured when not run from the command line. It is returned from the command
-so that you can choose to display it or not.
+當不從命令列執行時，執行指令的所有輸出都會被蒐集起來。這些輸出會在指令執行後被回傳，這樣你就可以選擇是否顯示它們。
 
 ******************
 使用提示指令
