@@ -71,8 +71,9 @@ CodeIgniter 的命令列程式庫使創建互動式命令列腳本變得簡單�
 
 **promptByKey()**
 
-Predefined answers (options) for prompt sometimes need to be described or are too complex to select via their value.
-``promptByKey()`` allows the user to select an option by its key instead of its value::
+提示預設回答（選項），有時選項需要描述或太過複雜而無法單純透過數值來選擇。而 ``promptByKey()`` 能夠讓使用者透過鍵值而不是數值來選擇一個選項：
+
+::
 
     $fruit = CLI::promptByKey('These are your choices:', ['The red apple', 'The plump orange', 'The ripe banana']);
 
@@ -83,7 +84,9 @@ Predefined answers (options) for prompt sometimes need to be described or are to
     //
     //[0, 1, 2]:
 
-Named keys are also possible::
+你也可以自行命名鍵值：
+
+::
 
     $fruit = CLI::promptByKey(['These are your choices:', 'Which would you like?'], [
         'apple' => 'The red apple',
@@ -98,7 +101,7 @@ Named keys are also possible::
     //
     //Which would you like? [apple, orange, banana]:
 
-Finally, you can pass :doc:`validation </libraries/validation>` rules to the answer input as the third parameter, the acceptable answers are automatically restricted to the passed options.
+最後，你可以將 :doc:`驗證 </libraries/validation>` 規則作為第三個參數傳遞給回答的輸入，能夠被接受的回答會自動地限制在傳遞的選項中。
 
 提供回饋
 ==================
@@ -156,7 +159,7 @@ Finally, you can pass :doc:`validation </libraries/validation>` rules to the ans
 
 **print()**
 
-print()　函數與　``write()``　函數相同，使是它不強制在前後加上換行。相反的，它會將內容輸出到螢幕上游標的位置。這使得你可以在同一行中輸出多個項目，並從不同的呼叫中持續輸出。當你想顯示一些狀態、做一些事情，然後在同一列中輸出 "Done" 時，這個方法特別有用：
+``print()`` 函數與 ``write()`` 函數相同，使是它不強制在前後加上換行。相反的，它會將內容輸出到螢幕上游標的位置。這使得你可以在同一行中輸出多個項目，並從不同的呼叫中持續輸出。當你想顯示一些狀態、做一些事情，然後在同一列中輸出 "Done" 時，這個方法特別有用：
 
 ::
 
@@ -259,7 +262,7 @@ print()　函數與　``write()``　函數相同，使是它不強制在前後�
 
 **showProgress()**
 
-如果你有一個長期運作的任務，你想讓使用者了解最新的進度，你可以使用 ``showProgress()`` 方法來表示進度，這個方法顯示的內容如下：
+如果你有一個長期執行的任務，你想讓使用者了解最新的進度，你可以使用 ``showProgress()`` 方法來表示進度，這個方法顯示的內容如下：
 
 .. code-block:: none
 
@@ -309,11 +312,9 @@ print()　函數與　``write()``　函數相同，使是它不強制在前後�
 
 ::
 
-        // 將會等待你所指定的時間，並顯示倒數計時
-        CLI::wait($seconds, true);
-
-        // 繼續顯示訊息，等待輸入
-        CLI::wait(0, false);
-
-        // 等待你所指定的時間
-        CLI::wait($seconds, false);
+    // 將會等待你所指定的時間，並顯示倒數計時
+    CLI::wait($seconds, true);
+    // 繼續顯示訊息，等待輸入
+    CLI::wait(0, false);
+    // 等待你所指定的時間
+    CLI::wait($seconds, false);

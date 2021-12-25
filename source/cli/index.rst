@@ -2,7 +2,7 @@
 使用命令列介面
 ##################
 
-CodeIgniter4 也可以有提供命令列模式。
+CodeIgniter4 也提供命令列模式。
 
 .. toctree::
     :titlesonly:

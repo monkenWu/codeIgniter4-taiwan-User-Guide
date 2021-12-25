@@ -127,7 +127,7 @@ API 響應特性
 
     在 api 特性中，其他的方法都會基於這個方法是回傳響應給使用者端。
 
-    ``$data`` 元素可以是一個字串或陣列，在預設的情形下，字串將以 HTML 的形式回傳，而陣列將透過  json_encode 運作後已 JSON 形式回傳，除非 :doc:`內容協商  </incoming/content_negotiation>` 決定以不同的格式進行回傳。
+    ``$data`` 元素可以是一個字串或陣列，在預設的情形下，字串將以 HTML 的形式回傳，而陣列將透過  json_encode 執行後已 JSON 形式回傳，除非 :doc:`內容協商  </incoming/content_negotiation>` 決定以不同的格式進行回傳。
 
     如果你傳遞了 ``$message`` 字串，它將會被用來替代響應狀態的標準 IANA 原因代碼。但不是每個使用者端都會遵照自訂的代碼，並且會自動使用與狀態碼相符的 IANA 原因代碼。
 

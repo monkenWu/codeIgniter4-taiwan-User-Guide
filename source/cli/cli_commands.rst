@@ -9,16 +9,16 @@
     :depth: 2
 
 ****************
-運作指令
+執行指令
 ****************
 
-定位在根目錄下（就是擁有 **/app** 與 **/system** 的那個目錄），指令就能在命令列中運作。 CodeIgniter 已經提供了一個內建腳本 **spark** ，可以用於執行命令列指令： 
+定位在根目錄下（就是擁有 **/app** 與 **/system** 的那個目錄），指令就能在命令列中執行。 CodeIgniter 已經提供了一個內建腳本 **spark** ，可以用於執行命令列指令： 
 
 ::
 
     > php spark
 
-當你不指定任何指令時，會顯示一個簡單的提示資訊，並提供一個可用的指令列表，你應該以指令的名稱作為第一參數來運作你想使用的指令：
+當你不指定任何指令時，會顯示一個簡單的提示資訊，並提供一個可用的指令列表，你應該以指令的名稱作為第一參數來執行你想使用的指令：
 
 ::
 
@@ -30,32 +30,31 @@
 
     > php spark db:seed DevUserSeeder
 
-You may always pass ``--no-header`` to suppress the header output, helpful for parsing results::
+你可以隨時透過 ``--no-header`` 來抑制標頭的輸出，這可以幫助你解析結果：
+
+::
 
     > php spark cache:clear --no-header
 
-對於 CodeIgniter 所提供的指令，如果你沒有鍵入它所需要的參數，你將會被提示正確運作指令應該需要的要求：
+對於 CodeIgniter 所提供的指令，如果你沒有鍵入它所需要的參數，你將會被提示正確執行指令應該需要的要求：
 
 ::
 
     > php spark migrate:version
     > Version?
 
-Calling Commands
+呼叫指令
 ================
 
-Commands can also be ran from within your own code. This is most often done within a controller for cronjob tasks,
-but they can be used at any time. You do this by using the ``command()`` function. This function is always available.
+指令也可以從你的程式中執行。通常會出現在控制器中執行 cronjob 任務，但它們也可以在任何時候使用。你可以透過使用 ``command()`` 函數來達成。你可以在任何時候呼叫這個函數。
 
 ::
 
     echo command('migrate:create TestMigration');
 
-The only argument is string that is the command called and any parameters. This appears exactly as you would call
-it from the command line.
+這個函數唯一的參數是字串，就是需要被呼叫命令以及所需要的參數。這與你從命令列介面中呼叫它時的用法完全一樣。
 
-All output from the command that is ran is captured when not run from the command line. It is returned from the command
-so that you can choose to display it or not.
+當不從命令列執行時，執行指令的所有輸出都會被蒐集起來。這些輸出會在指令執行後被回傳，這樣你就可以選擇是否顯示它們。
 
 ******************
 使用提示指令
@@ -67,8 +66,7 @@ so that you can choose to display it or not.
 
     > php spark help db:seed
 
-Use the **list** command to get a list of available commands and their descriptions, sorted by categories.
-You may also use ``spark list --simple`` to get a raw list of all available commands, sorted alphabetically.
+使用 **list** 指令可以得到一个依照類别排序的可用指令與描述的列表。你也可以使用 ``spark list --simple`` 取得依字母順序排序的可用指令原始列表。
 
 *********************
 建立新的指令
@@ -129,7 +127,7 @@ You may also use ``spark list --simple`` to get a raw list of all available comm
 run()
 -----
 
-``run()`` 方法是運作指令時會呼叫的方法，``$params`` 陣列是指令名稱後可以接著使用的參數列表：
+``run()`` 方法是執行指令時會呼叫的方法，``$params`` 陣列是指令名稱後可以接著使用的參數列表：
 
 ::
 

@@ -8,7 +8,7 @@
 
 ::
 
-        <?php namespace App\Database\Seeds;
+    <?php namespace App\Database\Seeds;
 
     class SimpleSeeder extends \CodeIgniter\Database\Seeder
     {
@@ -58,19 +58,18 @@
         $this->call('My\Database\Seeds\CountrySeeder');
     }
 
-Using Faker
-===========
+使用資料偽裝器
+=================
 
-If you want to automate the generation of seed data, you can use
-the `Faker library <https://github.com/fakerphp/faker>`_.
+如果需要自動產生填充資料，你可以使用 `Faker 程式庫 <https://github.com/fakerphp/faker>`_ 。
 
-To install Faker into your project::
+將 Faker 安裝至你的專案中
+
+::
 
     > composer require --dev fakerphp/faker
 
-After installation, an instance of ``Faker\Generator`` is available in the main ``Seeder``
-class and is accessible by all child seeders. You must use the static method ``faker()``
-to access the instance.
+完成安裝後， ``Faker\Generator`` 實體能夠透過主要的 ``Seeder`` 類別使用，並且能夠被所有的子填充器存取。你必須使用靜態方法 ``faker()`` 來存取這個實體。
 
 ::
 
@@ -112,20 +111,22 @@ to access the instance.
 
     > php spark db:seed TestSeeder
 
-Creating Seed Files
+建立填充檔案
 -------------------
 
-Using the command line, you can easily generate seed files.
+你可以透過命令列來輕鬆產生用於填充的檔案。
 
 ::
 
     > php spark make:seeder user --suffix
     // Output: UserSeeder.php file located at app/Database/Seeds directory.
 
-You can supply the **root** namespace where the seed file will be stored by supplying the ``--namespace`` option::
+你可以透過提供 ``--namespace`` 選項來設定儲存填充檔案的 ``root`` 命名空間：
+
+::
 
     > php spark make:seeder MySeeder --namespace Acme\Blog
 
-If ``Acme\Blog`` is mapped to ``app/Blog`` directory, then this command will generate ``MySeeder.php`` at ``app/Blog/Database/Seeds`` directory.
+如果 ``Acme\Blog`` 映射到 ``app/Blog`` 目錄，那麼這個指令會在 ``app/Blog/Database/Seeds`` 資料夾下產生 ``MySeeder.php``。
 
-Supplying the ``--force`` option will overwrite existing files in destination.
+你也能夠使用 ``--force`` 選向來強制覆蓋已存在的檔案。

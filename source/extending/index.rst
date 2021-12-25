@@ -2,7 +2,7 @@
 擴充 CodeIgniter
 #####################
 
-CodeIgniter4 被設計成易於擴充及建構。
+CodeIgniter4 的設計易於擴充與建構。
 
 .. toctree::
     :titlesonly:

@@ -51,7 +51,7 @@ Example::
 
 **$db->getPlatform()**
 
-輸出你目前在運作的資料庫系統（例如：MySQL、MS SQL、Postgres等等）：
+輸出你目前在執行的資料庫系統（例如：MySQL、MS SQL、Postgres等等）：
 
 ::
 
@@ -59,7 +59,7 @@ Example::
 
 **$db->getVersion()**
 
-輸出你目前在運作的資料庫版本：
+輸出你目前在執行的資料庫版本：
 
 ::
 

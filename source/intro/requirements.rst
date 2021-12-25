@@ -27,5 +27,5 @@
   - SQLite 透過 *sqlite* (version 2) 以及 *pdo* 驅動。
   - CUBRID 透過 *cubrid* 以及 *pdo* 驅動。
   - Interbase/Firebird 透過 *ibase* 以及 *pdo* 驅動。
-  - ODBC 透過 *odbc* 以及 *pdo* 驅動 （您必須知道ODBC實際上是一個抽象層）。
+  - ODBC 透過 *odbc* 以及 *pdo* 驅動 （你必須知道ODBC實際上是一個抽象層）。
 

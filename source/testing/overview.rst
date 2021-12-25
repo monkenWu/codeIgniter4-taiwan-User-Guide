@@ -28,7 +28,7 @@ Composer
 
     > composer require --dev phpunit/phpunit
 
-這將會安裝符合你目前 PHP 版本的 phpUnit 。一旦完成，你就可以透過鍵入這個指令來運作這個專案的所有測試：
+這將會安裝符合你目前 PHP 版本的 phpUnit 。一旦完成，你就可以透過鍵入這個指令來執行這個專案的所有測試：
 
 ::
 
@@ -97,20 +97,21 @@ PHPUnit 組態設定
 
 如果你需要測試資料庫結果，你必須使用 `CIDatabaseTestClass <database.html>`_ 類別。
 
-Staging
--------
+過渡環境
+--------
 
-Most tests require some preparation in order to run correctly. PHPUnit's ``TestCase`` provides four methods
-to help with staging and clean up::
+絕大多數的測試都會需要一些準備工作才能如期運行，PHPUnit 的 ``TestCase`` 提供了四種方法用於測試前後的工作：
+
+::
 
     public static function setUpBeforeClass(): void
     public static function tearDownAfterClass(): void
     public function setUp(): void
     public function tearDown(): void
 
-The static methods run before and after the entire test case, whereas the local methods run
-between each test. If you implement any of these special functions make sure you run their
-parent as well so extended test cases do not interfere with staging::
+靜態方法應該在測試案例開始的前後執行，而本地的方法則是在每個測試之間執行。如果你實作了上述任一特殊函數，也必須運行它的父函數，以保障擴充測試案例時不會干擾環境。
+
+::
 
     public function setUp(): void
     {
@@ -118,8 +119,9 @@ parent as well so extended test cases do not interfere with staging::
         helper('text');
     }
 
-In addition to these methods, ``CIUnitTestCase`` also comes with a convenience property for
-parameter-free methods you want run during set up and tear down::
+除了這些方法之外，若你需要在 `set up` 與 `tear down` 期間運行一些無參數方法， ``CIUnitTestCase`` 與提供了一個方便的屬性：
+
+::
 
     protected $setUpMethods = [
         'mockEmail',
@@ -128,8 +130,10 @@ parameter-free methods you want run during set up and tear down::
 
     protected $tearDownMethods = [];
 
-You can see by default these handle the mocking of intrusive services, but your class may override
-that or provide their own::
+
+預設情況下，這將處理侵入性服務模擬，但你的類別可以覆寫它們或自行提供：
+
+::
 
     class OneOfMyModelsTest extends CIUnitTestCase
     {
@@ -142,14 +146,12 @@ that or provide their own::
             $this->model->purgeDeleted()
         }
 
-Traits
+特性
 ------
 
-A common way to enhance your tests is by using traits to consolidate staging across different
-test cases. ``CIUnitTestCase`` will detect any class traits and look for staging methods
-to run named for the trait itself. For example, if you needed to add authentication to some
-of your test cases you could create an authentication trait with a set up method to fake a
-logged in user::
+強化測試的常見方法是使用特性來合併不同測試案例的過渡環境。　``CIUnitTestCase`` 將檢查所有類別特徵，並訓找以特徵命名的過渡方法。例如：如果你需要向某些測試案例加入身份認證，則可以使用 ``set up`` 方法來建立身份驗證特徵以偽裝使用者登入：
+
+::
 
     trait AuthTrait
     {
@@ -212,7 +214,7 @@ logged in user::
 
     $this->assertHeaderEmitted("Set-Cookie: foo=bar");
 
-.. note:: 這個測試案例應該在 PHPunit 中作為 `單獨的程序運作 <https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess>`_ 。
+.. note:: 這個測試案例應該在 PHPunit 中作為 `單獨的程序執行 <https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess>`_ 。
 
 **assertHeaderNotEmitted($header, $ignoreCase=false)**
 
@@ -228,7 +230,7 @@ logged in user::
 
     $this->assertHeaderNotEmitted("Set-Cookie: banana");
 
-.. note:: 這個測試案例應該在 PHPunit 中作為 `單獨的處理程序運作 <https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess>`_ 。
+.. note:: 這個測試案例應該在 PHPunit 中作為 `單獨的處理程序執行 <https://phpunit.readthedocs.io/en/7.4/annotations.html#runinseparateprocess>`_ 。
 
 **assertCloseEnough($expected, $actual, $message=\\'\\', $tolerance=1)**
 
@@ -329,17 +331,17 @@ logged in user::
 
 **resetSingle(string $name)**
 
-Removes any mock and shared instances for a single service, by its name.
+依名稱刪除單個服務的任何模擬與共享實體。
 
-.. note:: The ``Email`` and ``Session`` services are mocked by default to prevent intrusive testing behavior. To prevent these from mocking remove their method callback from the class property: ``$setUpMethods = ['mockEmail', 'mockSession'];``
+.. note:: 
+    ``Email`` 和 ``Session`` 服務將預設模擬以防止侵入性測試行為。 若須阻止這些模擬，請從類別屬性中刪除它們的方法回呼： ``$setUpMethods = ['mockEmail', 'mockSession'];`` 。
 
-Mocking Factory Instances
+模擬工廠實體
 =========================
 
-Similar to Services, you may find yourself needing to supply a pre-configured class instance
-during testing that will be used with ``Factories``. Use the same ``injectMock()`` and ``reset()``
-static methods like **Services**, but they take an additional preceding parameter for the
-component name::
+與服務相似，你可能會發現自己需要在測試期間提供一個預先組態的類別實體，這個實體將與 ``Factories`` 一起使用。你可以使用相同的 ``injectMock()`` 和 ``reset()`` 靜態方法（就像 **Services**），但它們需要一個額外的元件名稱做為前置參數：
+
+::
 
     protected function setUp()
     {
@@ -349,7 +351,8 @@ component name::
         Factories::injectMock('models', 'App\Models\UserModel', $model);
     }
 
-.. note:: All component Factories are reset by default between each test. Modify your test case's ``$setUpMethods`` if you need instances to persist.
+.. note::
+    預設情形下，在每次測試之間會初始化所有元件工廠。修改測試用例的$setUpMethods 可以選擇是否需要將實體持久化。
 
 串流過濾器
 ==============
