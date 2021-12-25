@@ -104,6 +104,6 @@ CodeIgniter 的事件功能提供一種方法，可以在不侵入核心檔案�
 * **pre_system** 在系統執行初期就被呼叫，此時僅載入了基本類別以及事件類別，未執行路由或其他進程。
 * **post_controller_constructor** 在控制器被實體化後及任何方法被呼叫前，立即呼叫。
 * **post_system** 在最終渲染的頁面被發送到瀏覽器後、在系統執行結束後，在最終化的資料被發送到瀏覽器後呼叫。
-* **email** Called after an email sent successfully from ``CodeIgniter\Email\Email``. Receives an array of the ``Email`` class's properties as a parameter.
-* **DBQuery** Called after a successfully-completed database query. Receives the ``Query`` object.
-* **migrate** Called after a successful migration call to ``latest()`` or ``regress()``. Receives the current properties of ``MigrationRunner`` as well as the name of the method.
+* **email** 在 ``CodeIgniter\Email\Email`` 成功傳送電子郵件後呼叫。將接收一個 ``Email`` 類別作為參數。
+* **DBQuery** 在成功的資料庫查詢後呼叫。將接收 ``Query`` 物件。
+* **migrate** 在成功遷移到 ``latest()`` 或 ``regress()`` 後呼叫。接收 ``MigrationRunner`` 的當前屬性以及方法的名稱。
