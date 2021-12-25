@@ -103,7 +103,7 @@ Session Assertions
 
 **assertSessionHas(string $key, $value = null)**
 
-斷言此時的會話中存在所指定鍵。如果你也傳入了 $value ，也會斷言你所指定的鍵的值是否與傳入的 $value 相符。
+斷言此時的工作階段中存在所指定鍵。如果你也傳入了 $value ，也會斷言你所指定的鍵的值是否與傳入的 $value 相符。
 
 ::
 
@@ -111,7 +111,7 @@ Session Assertions
 
 **assertSessionMissing(string $key)**
 
-斷言目前的會談不包含指定的 $key 。
+斷言目前的工作階段不包含指定的 $key 。
 
 ::
 
