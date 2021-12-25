@@ -66,8 +66,7 @@
 
     > php spark help db:seed
 
-Use the **list** command to get a list of available commands and their descriptions, sorted by categories.
-You may also use ``spark list --simple`` to get a raw list of all available commands, sorted alphabetically.
+使用 **list** 指令可以得到一个依照類别排序的可用指令與描述的列表。你也可以使用 ``spark list --simple`` 取得依字母順序排序的可用指令原始列表。
 
 *********************
 建立新的指令
