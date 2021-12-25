@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="CLI Generators" href="cli_generators.html" />
-    <link rel="prev" title="透過命命列運作" href="cli.html" /> 
+    <link rel="next" title="CLI 產生器" href="cli_generators.html" />
+    <link rel="prev" title="透過命命列執行" href="cli.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">使用命令列介面</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">透過命命列執行</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -356,26 +356,26 @@
 <p>雖然像其他路由一樣使用命令列指令很方便，但你可以會發現有的時候你需要一些不同的東西，命令列指令說不定就可以幫助到你。它們是一些簡單的類別，不需要定義路由，這使得它們非常適合用於建構工具。開發者可以透過它處理資料庫遷移、資料庫填充、檢查排程工作狀態，甚至是替公司建構出自訂的程式碼生成器來簡化工作。</p>
 <div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#id3" id="id8">運作指令</a><ul>
-<li><a class="reference internal" href="#calling-commands" id="id9">Calling Commands</a></li>
+<li><a class="reference internal" href="#id3" id="id9">執行指令</a><ul>
+<li><a class="reference internal" href="#id4" id="id10">呼叫指令</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id4" id="id10">使用提示指令</a></li>
-<li><a class="reference internal" href="#id5" id="id11">建立新的指令</a><ul>
-<li><a class="reference internal" href="#id6" id="id12">檔案位置</a></li>
-<li><a class="reference internal" href="#id7" id="id13">範例指令</a></li>
+<li><a class="reference internal" href="#id5" id="id11">使用提示指令</a></li>
+<li><a class="reference internal" href="#id6" id="id12">建立新的指令</a><ul>
+<li><a class="reference internal" href="#id7" id="id13">檔案位置</a></li>
+<li><a class="reference internal" href="#id8" id="id14">範例指令</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#basecommand" id="id14">BaseCommand 類別</a></li>
+<li><a class="reference internal" href="#basecommand" id="id15">BaseCommand 類別</a></li>
 </ul>
 </div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id8">運作指令</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
-<p>定位在根目錄下（就是擁有 <strong>/app</strong> 與 <strong>/system</strong> 的那個目錄），指令就能在命令列中運作。 CodeIgniter 已經提供了一個內建腳本 <strong>spark</strong> ，可以用於執行命令列指令：</p>
+<h2><a class="toc-backref" href="#id9">執行指令</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>定位在根目錄下（就是擁有 <strong>/app</strong> 與 <strong>/system</strong> 的那個目錄），指令就能在命令列中執行。 CodeIgniter 已經提供了一個內建腳本 <strong>spark</strong> ，可以用於執行命令列指令：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span>
 </pre></div>
 </div>
-<p>當你不指定任何指令時，會顯示一個簡單的提示資訊，並提供一個可用的指令列表，你應該以指令的名稱作為第一參數來運作你想使用的指令：</p>
+<p>當你不指定任何指令時，會顯示一個簡單的提示資訊，並提供一個可用的指令列表，你應該以指令的名稱作為第一參數來執行你想使用的指令：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">migrate</span>
 </pre></div>
 </div>
@@ -383,39 +383,35 @@
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">db</span><span class="o">:</span><span class="nx">seed</span> <span class="nx">DevUserSeeder</span>
 </pre></div>
 </div>
-<p>You may always pass <code class="docutils literal notranslate"><span class="pre">--no-header</span></code> to suppress the header output, helpful for parsing results:</p>
+<p>你可以隨時透過 <code class="docutils literal notranslate"><span class="pre">--no-header</span></code> 來抑制標頭的輸出，這可以幫助你解析結果：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">cache</span><span class="o">:</span><span class="nx">clear</span> <span class="o">--</span><span class="nx">no</span><span class="o">-</span><span class="nb">header</span>
 </pre></div>
 </div>
-<p>對於 CodeIgniter 所提供的指令，如果你沒有鍵入它所需要的參數，你將會被提示正確運作指令應該需要的要求：</p>
+<p>對於 CodeIgniter 所提供的指令，如果你沒有鍵入它所需要的參數，你將會被提示正確執行指令應該需要的要求：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">migrate</span><span class="o">:</span><span class="nx">version</span>
 <span class="o">&gt;</span> <span class="nx">Version</span><span class="o">?</span>
 </pre></div>
 </div>
-<div class="section" id="calling-commands">
-<h3><a class="toc-backref" href="#id9">Calling Commands</a><a class="headerlink" href="#calling-commands" title="本標題的永久連結">¶</a></h3>
-<p>Commands can also be ran from within your own code. This is most often done within a controller for cronjob tasks,
-but they can be used at any time. You do this by using the <code class="docutils literal notranslate"><span class="pre">command()</span></code> function. This function is always available.</p>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id10">呼叫指令</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
+<p>指令也可以從你的程式中執行。通常會出現在控制器中執行 cronjob 任務，但它們也可以在任何時候使用。你可以透過使用 <code class="docutils literal notranslate"><span class="pre">command()</span></code> 函數來達成。你可以在任何時候呼叫這個函數。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">command</span><span class="p">(</span><span class="s1">&#39;migrate:create TestMigration&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The only argument is string that is the command called and any parameters. This appears exactly as you would call
-it from the command line.</p>
-<p>All output from the command that is ran is captured when not run from the command line. It is returned from the command
-so that you can choose to display it or not.</p>
+<p>這個函數唯一的參數是字串，就是需要被呼叫命令以及所需要的參數。這與你從命令列介面中呼叫它時的用法完全一樣。</p>
+<p>當不從命令列執行時，執行指令的所有輸出都會被蒐集起來。這些輸出會在指令執行後被回傳，這樣你就可以選擇是否顯示它們。</p>
 </div>
 </div>
-<div class="section" id="id4">
-<h2><a class="toc-backref" href="#id10">使用提示指令</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id11">使用提示指令</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
 <p>你可以使用下列的提示指令來獲得在命令列介面中任何指令的提示資訊：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">help</span> <span class="nx">db</span><span class="o">:</span><span class="nx">seed</span>
 </pre></div>
 </div>
-<p>Use the <strong>list</strong> command to get a list of available commands and their descriptions, sorted by categories.
-You may also use <code class="docutils literal notranslate"><span class="pre">spark</span> <span class="pre">list</span> <span class="pre">--simple</span></code> to get a raw list of all available commands, sorted alphabetically.</p>
+<p>使用 <strong>list</strong> 指令可以得到一个依照類别排序的可用指令與描述的列表。你也可以使用 <code class="docutils literal notranslate"><span class="pre">spark</span> <span class="pre">list</span> <span class="pre">--simple</span></code> 取得依字母順序排序的可用指令原始列表。</p>
 </div>
-<div class="section" id="id5">
-<h2><a class="toc-backref" href="#id11">建立新的指令</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id12">建立新的指令</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
 <p>若是你在開發中需要，那麼建立新的指令真的非常容易。每個新的指令都必須繼承 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\CLI\BaseCommand</span></code> 類別，並且實作 <code class="docutils literal notranslate"><span class="pre">run()</span></code> 方法。</p>
 <p>你應該要在你的新指令類別檔案中實現下列屬性，以及這些指令的使用方式，這樣它就能在命令列指令列表中出現：</p>
 <ul class="simple">
@@ -427,16 +423,16 @@ You may also use <code class="docutils literal notranslate"><span class="pre">sp
 <li><code class="docutils literal notranslate"><span class="pre">$options</span></code>: 描述每個指令選項的鍵值陣列，例如：<code class="docutils literal notranslate"><span class="pre">'-n'</span> <span class="pre">=&gt;</span> <span class="pre">'Set</span> <span class="pre">migration</span> <span class="pre">namespace'</span></code></li>
 </ul>
 <p><strong>提示列表或提示指令所顯示的內容將會從上述的屬性中產出。</strong></p>
-<div class="section" id="id6">
-<h3><a class="toc-backref" href="#id12">檔案位置</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id13">檔案位置</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
 <p>你的指令檔案必須儲存在一個名為 <strong>Commands</strong> 的資料夾下，但是這個資料夾可以位於 <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">自動載入器</span></a> 可以找的到的任何地方。這個目錄可以位於 <strong>/app/Commands</strong> ，也位於專案開發資料夾中你所自訂的目錄，比如說： <strong>Acme/Commands</strong> 。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
 <p class="last">當指令被執行時，完整的 CodeIgniter 命令列環境將被載入，這樣就可以獲得環境訊息、路徑訊息，以及任何在製作控制器時你所使用的工具。</p>
 </div>
 </div>
-<div class="section" id="id7">
-<h3><a class="toc-backref" href="#id13">範例指令</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id14">範例指令</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
 <p>讓我們透過一個示範指令來演示功能。這個指令唯一的作用是產出應用程式本身的基本資訊報告。首先，先至 <strong>/app/Commands/AppInfo.php</strong> 創建一個含有以下程式碼的檔案：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -463,7 +459,7 @@ You may also use <code class="docutils literal notranslate"><span class="pre">sp
 <p>最後的屬性 <code class="docutils literal notranslate"><span class="pre">$description</span></code> 則是一個簡單的字串，將在指令 <strong>列表</strong> 中顯示，它應該要能好好地描述指令的效果。</p>
 <div class="section" id="run">
 <h4>run()<a class="headerlink" href="#run" title="本標題的永久連結">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">run()</span></code> 方法是運作指令時會呼叫的方法，<code class="docutils literal notranslate"><span class="pre">$params</span></code> 陣列是指令名稱後可以接著使用的參數列表：</p>
+<p><code class="docutils literal notranslate"><span class="pre">run()</span></code> 方法是執行指令時會呼叫的方法，<code class="docutils literal notranslate"><span class="pre">$params</span></code> 陣列是指令名稱後可以接著使用的參數列表：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">foo</span> <span class="nx">bar</span> <span class="nx">baz</span>
 </pre></div>
 </div>
@@ -488,7 +484,7 @@ You may also use <code class="docutils literal notranslate"><span class="pre">sp
 </div>
 </div>
 <div class="section" id="basecommand">
-<h2><a class="toc-backref" href="#id14">BaseCommand 類別</a><a class="headerlink" href="#basecommand" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">BaseCommand 類別</a><a class="headerlink" href="#basecommand" title="本標題的永久連結">¶</a></h2>
 <p>所有的指令都必須繼承 <code class="docutils literal notranslate"><span class="pre">BaseCommand</span></code> 類別，這個類別有幾個食用的方法，在創建自己的指令時你應該要熟悉這些方法。這個類別也有一個 <a class="reference internal" href="../general/logging.html"><span class="doc">日誌記錄器</span></a> ，你可以透過 <strong>$this-&gt;logger</strong> 呼叫它。</p>
 <dl class="class">
 <dt>
@@ -587,10 +583,10 @@ You may also use <code class="docutils literal notranslate"><span class="pre">sp
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="cli_generators.html" class="btn btn-neutral float-right" title="CLI Generators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="cli_generators.html" class="btn btn-neutral float-right" title="CLI 產生器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="cli.html" class="btn btn-neutral float-left" title="透過命命列運作" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="cli.html" class="btn btn-neutral float-left" title="透過命命列執行" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -601,7 +597,7 @@ You may also use <code class="docutils literal notranslate"><span class="pre">sp
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

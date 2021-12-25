@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -377,7 +377,7 @@
 </div>
 <div class="section" id="nginx">
 <h3>nginx<a class="headerlink" href="#nginx" title="本標題的永久連結">¶</a></h3>
-<p>在 nginx 下，你必須透過 <code class="docutils literal notranslate"><span class="pre">fastcgi_params</span></code> 將環境變數傳遞給 <cite>$_SERVER</cite> 變數。儘管 env 在伺服器上可以正常運作，但它也可以不使用 env 在虛擬主機上工作。你需要修改你的伺服器設定，類似於這樣：</p>
+<p>在 nginx 下，你必須透過 <code class="docutils literal notranslate"><span class="pre">fastcgi_params</span></code> 將環境變數傳遞給 <cite>$_SERVER</cite> 變數。儘管 env 在伺服器上可以正常執行，但它也可以不使用 env 在虛擬主機上工作。你需要修改你的伺服器設定，類似於這樣：</p>
 <div class="highlight-nginx notranslate"><div class="highlight"><pre><span></span><span class="k">server</span> <span class="p">{</span>
     <span class="kn">server_name</span> <span class="s">localhost</span><span class="p">;</span>
     <span class="kn">include</span>     <span class="s">conf/defaults.conf</span><span class="p">;</span>
@@ -391,7 +391,7 @@
 </pre></div>
 </div>
 <p>這個替代方法可以用於 nginx 或其他伺服器，你也可以完全刪除這個邏輯，並根據伺服器的 IP 位置設定常數。</p>
-<p>除了會影響一些基本的框架行為外（請參考下一個條目），你還可以在你自己的開發中專案使用個常數來區分正在運作的環境為何。</p>
+<p>除了會影響一些基本的框架行為外（請參考下一個條目），你還可以在你自己的開發中專案使用個常數來區分正在執行的環境為何。</p>
 </div>
 <div class="section" id="id4">
 <h3>引導檔案<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
@@ -439,7 +439,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

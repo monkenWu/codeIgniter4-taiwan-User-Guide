@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -357,39 +357,35 @@
 <div class="contents local topic" id="id2">
 <ul class="simple">
 <li><a class="reference internal" href="#id3" id="id20">初始化資料庫建構類別</a></li>
-<li><a class="reference internal" href="#creating-and-dropping-databases" id="id21">Creating and Dropping Databases</a><ul>
-<li><a class="reference internal" href="#creating-databases-in-the-command-line" id="id22">Creating Databases in the Command Line</a></li>
+<li><a class="reference internal" href="#id4" id="id21">建立與刪除資料庫</a><ul>
+<li><a class="reference internal" href="#id5" id="id22">透過命令列建立資料庫</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id4" id="id23">新建與棄用資料庫</a><ul>
-<li><a class="reference internal" href="#id5" id="id24">Creating Databases in the Command Line</a></li>
+<li><a class="reference internal" href="#id6" id="id23">新建與棄用資料表</a><ul>
+<li><a class="reference internal" href="#id7" id="id24">新增欄位</a></li>
+<li><a class="reference internal" href="#id9" id="id25">新增資料庫鍵</a></li>
+<li><a class="reference internal" href="#id10" id="id26">新增外來鍵</a></li>
+<li><a class="reference internal" href="#id11" id="id27">新建資料表</a></li>
+<li><a class="reference internal" href="#id12" id="id28">棄用資料表</a></li>
+<li><a class="reference internal" href="#id13" id="id29">棄用外來鍵</a></li>
+<li><a class="reference internal" href="#dropping-a-key" id="id30">Dropping a Key</a></li>
+<li><a class="reference internal" href="#id14" id="id31">重新命名資料表</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id6" id="id25">新建與棄用資料表</a><ul>
-<li><a class="reference internal" href="#id7" id="id26">新增欄位</a></li>
-<li><a class="reference internal" href="#id9" id="id27">新增資料庫鍵</a></li>
-<li><a class="reference internal" href="#id10" id="id28">新增外來鍵</a></li>
-<li><a class="reference internal" href="#id11" id="id29">新建資料表</a></li>
-<li><a class="reference internal" href="#id12" id="id30">棄用資料表</a></li>
-<li><a class="reference internal" href="#id13" id="id31">棄用外來鍵</a></li>
-<li><a class="reference internal" href="#dropping-a-key" id="id32">Dropping a Key</a></li>
-<li><a class="reference internal" href="#id14" id="id33">重新命名資料表</a></li>
+<li><a class="reference internal" href="#id15" id="id32">修改資料表</a><ul>
+<li><a class="reference internal" href="#id16" id="id33">新增一個資料表欄位</a></li>
+<li><a class="reference internal" href="#id17" id="id34">棄用一個資料表欄位</a></li>
+<li><a class="reference internal" href="#id18" id="id35">修改資料表欄位</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id15" id="id34">修改資料表</a><ul>
-<li><a class="reference internal" href="#id16" id="id35">新增一個資料表欄位</a></li>
-<li><a class="reference internal" href="#id17" id="id36">棄用一個資料表欄位</a></li>
-<li><a class="reference internal" href="#id18" id="id37">修改資料表欄位</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id19" id="id38">類別參考</a></li>
+<li><a class="reference internal" href="#id19" id="id36">類別參考</a></li>
 </ul>
 </div>
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id20">初始化資料庫建構類別</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last">為了初始化 資料庫建構類別，你的資料庫驅動必須是正常運作的狀態，因為 資料庫建構類別將倚賴於它。</p>
+<p class="last">為了初始化 資料庫建構類別，你的資料庫驅動必須是正常執行的狀態，因為 資料庫建構類別將倚賴於它。</p>
 </div>
 <p>依照以下方法載入資料庫建構類別：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span> <span class="o">=</span> <span class="nx">\Config\Database</span><span class="o">::</span><span class="na">forge</span><span class="p">();</span>
@@ -401,76 +397,24 @@
 </div>
 <p>在上述範例，我們傳入了一個不同的資料庫群組名稱作為參數來連接資料庫。</p>
 </div>
-<div class="section" id="creating-and-dropping-databases">
-<h2><a class="toc-backref" href="#id21">Creating and Dropping Databases</a><a class="headerlink" href="#creating-and-dropping-databases" title="本標題的永久連結">¶</a></h2>
-<p><strong>$forge-&gt;createDatabase(『db_name』)</strong></p>
-<p>Permits you to create the database specified in the first parameter.
-Returns TRUE/FALSE based on success or failure:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createDatabase</span><span class="p">(</span><span class="s1">&#39;my_db&#39;</span><span class="p">))</span>
-<span class="p">{</span>
-    <span class="k">echo</span> <span class="s1">&#39;Database created!&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>An optional second parameter set to TRUE will add IF EXISTS statement
-or will check if a database exists before create it (depending on DBMS).</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createDatabase</span><span class="p">(</span><span class="s1">&#39;my_db&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
-<span class="c1">// gives CREATE DATABASE IF NOT EXISTS my_db</span>
-<span class="c1">// or will check if a database exists</span>
-</pre></div>
-</div>
-<p><strong>$forge-&gt;dropDatabase(『db_name』)</strong></p>
-<p>Permits you to drop the database specified in the first parameter.
-Returns TRUE/FALSE based on success or failure:</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropDatabase</span><span class="p">(</span><span class="s1">&#39;my_db&#39;</span><span class="p">))</span>
-<span class="p">{</span>
-    <span class="k">echo</span> <span class="s1">&#39;Database deleted!&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<div class="section" id="creating-databases-in-the-command-line">
-<h3><a class="toc-backref" href="#id22">Creating Databases in the Command Line</a><a class="headerlink" href="#creating-databases-in-the-command-line" title="本標題的永久連結">¶</a></h3>
-<p>CodeIgniter supports creating databases straight from your favorite terminal using the dedicated <code class="docutils literal notranslate"><span class="pre">db:create</span></code>
-command. By using this command it is assumed that the database is not yet existing. Otherwise, CodeIgniter
-will complain that the database creation has failed.</p>
-<p>To start, just type the command and the name of the database (e.g., <code class="docutils literal notranslate"><span class="pre">foo</span></code>):</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">db</span><span class="o">:</span><span class="nx">create</span> <span class="nx">foo</span>
-</pre></div>
-</div>
-<p>If everything went fine, you should expect the <code class="docutils literal notranslate"><span class="pre">Database</span> <span class="pre">&quot;foo&quot;</span> <span class="pre">successfully</span> <span class="pre">created.</span></code> message displayed.</p>
-<p>If you are on a testing environment or you are using the SQLite3 driver, you may pass in the file extension
-for the file where the database will be created using the <code class="docutils literal notranslate"><span class="pre">--ext</span></code> option. Valid values are <code class="docutils literal notranslate"><span class="pre">db</span></code> and
-<code class="docutils literal notranslate"><span class="pre">sqlite</span></code> and defaults to <code class="docutils literal notranslate"><span class="pre">db</span></code>. Remember that these should not be preceded by a period.</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">db</span><span class="o">:</span><span class="nx">create</span> <span class="nx">foo</span> <span class="o">--</span><span class="nx">ext</span> <span class="nx">sqlite</span>
-<span class="c1">// will create the db file in WRITEPATH/foo.sqlite</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">備註</p>
-<p class="last">When using the special SQLite3 database name <code class="docutils literal notranslate"><span class="pre">:memory:</span></code>, expect that the command will still
-produce a success message but no database file is created. This is because SQLite3 will just use
-an in-memory database.</p>
-</div>
-</div>
-</div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id23">新建與棄用資料庫</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id21">建立與刪除資料庫</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
 <p><strong>$forge-&gt;createDatabase(『db_name』)</strong></p>
-<p>允許你傳入資料庫名稱來新建資料庫，根據成功與否回傳 TRUE 或 FALSE ：</p>
+<p>你能夠透過傳入參數至 <code class="docutils literal notranslate"><span class="pre">createDatabase</span></code> 方法來指定要建立的資料庫名稱，依據成功或失敗將回傳 TRUE/FALSE 。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createDatabase</span><span class="p">(</span><span class="s1">&#39;my_db&#39;</span><span class="p">))</span>
 <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">&#39;Database created!&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>第二個可選參數若設定為 TRUE ，將會在查詢中加入 IF EXISTS 語法，或者在新建資料庫之前檢查資料庫是否已經存在（取決於 DBMS ）。</p>
+<p>這個方法有第二個可選參數，用於加入 <code class="docutils literal notranslate"><span class="pre">IF</span> <span class="pre">EXISTS</span></code> 語法至查詢中，以檢查是否已經有相同名稱的資料庫存在（這將取決於你所使用的 DBMS）。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createDatabase</span><span class="p">(</span><span class="s1">&#39;my_db&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
 <span class="c1">// gives CREATE DATABASE IF NOT EXISTS my_db</span>
 <span class="c1">// or will check if a database exists</span>
 </pre></div>
 </div>
 <p><strong>$forge-&gt;dropDatabase(『db_name』)</strong></p>
-<p>允許你傳入資料庫名稱並棄用這個資料庫，根據成功與否回傳 TRUE 或 FALSE ：</p>
+<p>你能夠透過傳入參數至 <code class="docutils literal notranslate"><span class="pre">dropDatabase</span></code> 方法來刪除你所指定的資料庫名稱，依據成功或失敗將回傳 TRUE/FALSE 。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropDatabase</span><span class="p">(</span><span class="s1">&#39;my_db&#39;</span><span class="p">))</span>
 <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">&#39;Database deleted!&#39;</span><span class="p">;</span>
@@ -478,35 +422,29 @@ an in-memory database.</p>
 </pre></div>
 </div>
 <div class="section" id="id5">
-<h3><a class="toc-backref" href="#id24">Creating Databases in the Command Line</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
-<p>CodeIgniter supports creating databases straight from your favorite terminal using the dedicated <code class="docutils literal notranslate"><span class="pre">db:create</span></code>
-command. By using this command it is assumed that the database is not yet existing. Otherwise, CodeIgniter
-will complain that the database creation has failed.</p>
-<p>To start, just type the command and the name of the database (e.g., <code class="docutils literal notranslate"><span class="pre">foo</span></code>):</p>
+<h3><a class="toc-backref" href="#id22">透過命令列建立資料庫</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
+<p>CodeIgniter 支援使用 <code class="docutils literal notranslate"><span class="pre">db：create</span></code> 指令直接從你方便的終端建立資料庫。使用此指令時，我們假設你的資料庫尚未存在。否則，CodeIgniter 將會提示你資料庫創建失敗。</p>
+<p>你只需要輸入指令與資料庫名稱（例如： <code class="docutils literal notranslate"><span class="pre">foo</span></code> ）</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">db</span><span class="o">:</span><span class="nx">create</span> <span class="nx">foo</span>
 </pre></div>
 </div>
-<p>If everything went fine, you should expect the <code class="docutils literal notranslate"><span class="pre">Database</span> <span class="pre">&quot;foo&quot;</span> <span class="pre">successfully</span> <span class="pre">created.</span></code> message displayed.</p>
-<p>If you are on a testing environment or you are using the SQLite3 driver, you may pass in the file extension
-for the file where the database will be created using the <code class="docutils literal notranslate"><span class="pre">--ext</span></code> option. Valid values are <code class="docutils literal notranslate"><span class="pre">db</span></code> and
-<code class="docutils literal notranslate"><span class="pre">sqlite</span></code> and defaults to <code class="docutils literal notranslate"><span class="pre">db</span></code>. Remember that these should not be preceded by a period.</p>
+<p>如果一切順利，你應該可以看見 <code class="docutils literal notranslate"><span class="pre">Database</span> <span class="pre">&quot;foo&quot;</span> <span class="pre">successfully</span> <span class="pre">created.</span></code> 這樣的訊息提示。</p>
+<p>如果你位於測試環境中，或者你正在使用 SQLite3 驅動程式，則可以使用 <code class="docutils literal notranslate"><span class="pre">--ext</span></code> 選項，傳入需要建立資料庫的檔案副檔名。這個選項允許你傳入 <code class="docutils literal notranslate"><span class="pre">db</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sqlite</span></code>，預設為 <code class="docutils literal notranslate"><span class="pre">db</span></code> 。請注意，你不須以「.」作為附檔名的開頭。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">db</span><span class="o">:</span><span class="nx">create</span> <span class="nx">foo</span> <span class="o">--</span><span class="nx">ext</span> <span class="nx">sqlite</span>
 <span class="c1">// will create the db file in WRITEPATH/foo.sqlite</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">When using the special SQLite3 database name <code class="docutils literal notranslate"><span class="pre">:memory:</span></code>, expect that the command will still
-produce a success message but no database file is created. This is because SQLite3 will just use
-an in-memory database.</p>
+<p class="last">使用特殊的 SQLite3 資料庫名稱 <code class="docutils literal notranslate"><span class="pre">:memory:</span></code> 時，這個指令也會回應你成功的訊息，但不會建立任何資料庫檔案。這是因為此時的 SQLite3 將會使用記憶體資料庫。</p>
 </div>
 </div>
 </div>
 <div class="section" id="id6">
-<h2><a class="toc-backref" href="#id25">新建與棄用資料表</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id23">新建與棄用資料表</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
 <p>在建立資料表時，你可能有幾件需要做到的事。加入欄位、宣告主鍵、改變資料列。對於這個需求，CodeIgniter 提出了一種機制。</p>
 <div class="section" id="id7">
-<h3><a class="toc-backref" href="#id26">新增欄位</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id24">新增欄位</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h3>
 <p>欄位通常是透過鍵值陣列建立的，在這個鍵值陣列中你必須包含一個與這個欄位相關的資料類型 「type」 鍵，例如：INT 、 VARCHAR ，以及 TEXT 等。許多資料型別（例如 VARCHAR ），會需要定義 「constraint」 鍵，約束它的最大資料長度。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;users&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
@@ -582,7 +520,7 @@ an in-memory database.</p>
 </div>
 </div>
 <div class="section" id="id9">
-<h3><a class="toc-backref" href="#id27">新增資料庫鍵</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id25">新增資料庫鍵</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h3>
 <p>一般來說，你的資料表會有一個主鍵，這可以透過 $forge-&gt;addKey(『field』) 來實作。這個方法有第二的可選參數，將它設定為 TRUE 時，它將會是主鍵；當它的第三個可選參數被設定為 TRUE 時，它則會成為唯一鍵。注意：在呼叫 addKey() 後必須呼叫 createTable() 。</p>
 <p>多資料欄位且非主鍵的話必須以陣列的形式傳送，下面是 MySQL 的輸出範例。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addKey</span><span class="p">(</span><span class="s1">&#39;blog_id&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
@@ -612,7 +550,7 @@ an in-memory database.</p>
 </div>
 </div>
 <div class="section" id="id10">
-<h3><a class="toc-backref" href="#id28">新增外來鍵</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id26">新增外來鍵</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h3>
 <p>外來鍵有助於資料表的關聯操作，對於需要使用外來鍵的資料表，你可以直接在資料庫建構類別中加入外來鍵：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addForeignKey</span><span class="p">(</span><span class="s1">&#39;users_id&#39;</span><span class="p">,</span><span class="s1">&#39;users&#39;</span><span class="p">,</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
 <span class="c1">// 給予 CONSTRAINT `TABLENAME_users_foreign` FOREIGN KEY(`users_id`) REFERENCES `users`(`id`)</span>
@@ -631,7 +569,7 @@ an in-memory database.</p>
 </div>
 </div>
 <div class="section" id="id11">
-<h3><a class="toc-backref" href="#id29">新建資料表</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id27">新建資料表</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h3>
 <p>在宣告了欄位與外來鍵之後，你就可以新建一個資料表了：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">);</span>
 <span class="c1">// 給予 CREATE TABLE table_name</span>
@@ -654,7 +592,7 @@ an in-memory database.</p>
 </div>
 </div>
 <div class="section" id="id12">
-<h3><a class="toc-backref" href="#id30">棄用資料表</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id28">棄用資料表</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h3>
 <p>執行 DROP TABLE 語句，可選是否使用 IF EXISTS 子句。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 生成: DROP TABLE table_name</span>
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">);</span>
@@ -663,15 +601,14 @@ an in-memory database.</p>
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span><span class="k">TRUE</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>A third parameter can be passed to add a 「CASCADE」 option, which might be required for some
-drivers to handle removal of tables with foreign keys.</p>
+<p>你能夠加入 <code class="docutils literal notranslate"><span class="pre">true</span></code> 作為方法的第三個參數，這個選項將產生  「CASCADE」 的效果。某些驅動程式在刪除上，可能需要會這個選項來處理帶有外來鍵的資料表。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Produces: DROP TABLE `table_name` CASCADE</span>
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id13">
-<h3><a class="toc-backref" href="#id31">棄用外來鍵</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id29">棄用外來鍵</a><a class="headerlink" href="#id13" title="本標題的永久連結">¶</a></h3>
 <p>執行 DROP FOREIGN KEY 語句。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 生成: ALTER TABLE &#39;tablename&#39; DROP FOREIGN KEY &#39;users_foreign&#39;</span>
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropForeignKey</span><span class="p">(</span><span class="s1">&#39;tablename&#39;</span><span class="p">,</span><span class="s1">&#39;users_foreign&#39;</span><span class="p">);</span>
@@ -679,7 +616,7 @@ drivers to handle removal of tables with foreign keys.</p>
 </div>
 </div>
 <div class="section" id="dropping-a-key">
-<h3><a class="toc-backref" href="#id32">Dropping a Key</a><a class="headerlink" href="#dropping-a-key" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id30">Dropping a Key</a><a class="headerlink" href="#dropping-a-key" title="本標題的永久連結">¶</a></h3>
 <p>Execute a DROP KEY.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Produces: DROP INDEX `users_index` ON `tablename`</span>
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropKey</span><span class="p">(</span><span class="s1">&#39;tablename&#39;</span><span class="p">,</span><span class="s1">&#39;users_index&#39;</span><span class="p">);</span>
@@ -687,7 +624,7 @@ drivers to handle removal of tables with foreign keys.</p>
 </div>
 </div>
 <div class="section" id="id14">
-<h3><a class="toc-backref" href="#id33">重新命名資料表</a><a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id31">重新命名資料表</a><a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h3>
 <p>執行 TABLE 重新命名語句。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">renameTable</span><span class="p">(</span><span class="s1">&#39;old_table_name&#39;</span><span class="p">,</span> <span class="s1">&#39;new_table_name&#39;</span><span class="p">);</span>
 <span class="c1">// 給予 ALTER TABLE old_table_name RENAME TO new_table_name</span>
@@ -696,9 +633,9 @@ drivers to handle removal of tables with foreign keys.</p>
 </div>
 </div>
 <div class="section" id="id15">
-<h2><a class="toc-backref" href="#id34">修改資料表</a><a class="headerlink" href="#id15" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id32">修改資料表</a><a class="headerlink" href="#id15" title="本標題的永久連結">¶</a></h2>
 <div class="section" id="id16">
-<h3><a class="toc-backref" href="#id35">新增一個資料表欄位</a><a class="headerlink" href="#id16" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id33">新增一個資料表欄位</a><a class="headerlink" href="#id16" title="本標題的永久連結">¶</a></h3>
 <p><strong>$forge-&gt;addColumn()</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">addColumn()</span></code> 方法用於修改一個現有的資料表，它接受與上述相同的欄位陣列，並可以用於不限量的附加欄位。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
@@ -723,7 +660,7 @@ drivers to handle removal of tables with foreign keys.</p>
 </div>
 </div>
 <div class="section" id="id17">
-<h3><a class="toc-backref" href="#id36">棄用一個資料表欄位</a><a class="headerlink" href="#id17" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id34">棄用一個資料表欄位</a><a class="headerlink" href="#id17" title="本標題的永久連結">¶</a></h3>
 <p><strong>$forge-&gt;dropColumn()</strong></p>
 <p>用來刪除資料表中的資料列。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="s1">&#39;column_to_drop&#39;</span><span class="p">);</span> <span class="c1">// 刪除單一資料列</span>
@@ -736,7 +673,7 @@ drivers to handle removal of tables with foreign keys.</p>
 </div>
 </div>
 <div class="section" id="id18">
-<h3><a class="toc-backref" href="#id37">修改資料表欄位</a><a class="headerlink" href="#id18" title="本標題的永久連結">¶</a></h3>
+<h3><a class="toc-backref" href="#id35">修改資料表欄位</a><a class="headerlink" href="#id18" title="本標題的永久連結">¶</a></h3>
 <p><strong>$forge-&gt;modifyColumn()</strong></p>
 <p>這個方法的使用方式與 <code class="docutils literal notranslate"><span class="pre">addColumn()</span></code> 相同，它只是改變了一個現有的資料欄位，而不是增價一個新的資料欄位。為了改變名稱，可以在欄位定義的陣列中新增一個 「name」 鍵。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
@@ -752,7 +689,7 @@ drivers to handle removal of tables with foreign keys.</p>
 </div>
 </div>
 <div class="section" id="id19">
-<h2><a class="toc-backref" href="#id38">類別參考</a><a class="headerlink" href="#id19" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id36">類別參考</a><a class="headerlink" href="#id19" title="本標題的永久連結">¶</a></h2>
 <dl class="class">
 <dt>
 <code class="descname">CodeIgniter\Database\Forge</code></dt>
@@ -812,11 +749,11 @@ drivers to handle removal of tables with foreign keys.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$fieldName</strong> (<em>string|string[]</em>) – Name of a key field or an array of fields</li>
-<li><strong>$tableName</strong> (<em>string</em>) – Name of a parent table</li>
-<li><strong>$tableField</strong> (<em>string|string[]</em>) – Name of a parent table field or an array of fields</li>
-<li><strong>$onUpdate</strong> (<em>string</em>) – Desired action for the “on update”</li>
-<li><strong>$onDelete</strong> (<em>string</em>) – Desired action for the “on delete”</li>
+<li><strong>$fieldName</strong> (<em>string|string[]</em>) – 欄位名稱或是欄位名稱陣列</li>
+<li><strong>$tableName</strong> (<em>string</em>) – 父資料表名稱</li>
+<li><strong>$tableField</strong> (<em>string|string[]</em>) – 父資料表欄位名稱或是欄位名稱陣列</li>
+<li><strong>$onUpdate</strong> (<em>string</em>) – 希望 <cite>on update</cite> 時採取的行動</li>
+<li><strong>$onDelete</strong> (<em>string</em>) – 希望 <cite>on delete</cite> 時採取的行動</li>
 </ul>
 </td>
 </tr>
@@ -828,7 +765,7 @@ drivers to handle removal of tables with foreign keys.</p>
 </tr>
 </tbody>
 </table>
-<p>Adds a foreign key to the set that will be used to create a table. Usage:  See <a class="reference internal" href="#id10">新增外來鍵</a>.</p>
+<p>在新建資料表的過程中加入外來建，使用方法請參閱 <a class="reference internal" href="#id10">新增外來鍵</a> 。</p>
 </dd></dl>
 
 <dl class="method">
@@ -923,7 +860,7 @@ drivers to handle removal of tables with foreign keys.</p>
 </tr>
 </tbody>
 </table>
-<p>新增一個新的資料庫。 使用方式：請見 <a class="reference internal" href="#id4">新建與棄用資料庫</a>.</p>
+<p>新增一個新的資料庫。 使用方式：請見 <a class="reference internal" href="#id4">建立與刪除資料庫</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -995,7 +932,7 @@ drivers to handle removal of tables with foreign keys.</p>
 </tr>
 </tbody>
 </table>
-<p>棄用資料庫。 使用方式：請見 <a class="reference internal" href="#id4">新建與棄用資料庫</a>.</p>
+<p>棄用資料庫。 使用方式：請見 <a class="reference internal" href="#id4">建立與刪除資料庫</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1097,7 +1034,7 @@ drivers to handle removal of tables with foreign keys.</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

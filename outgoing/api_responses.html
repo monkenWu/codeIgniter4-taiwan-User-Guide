@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -486,7 +486,7 @@
 </tbody>
 </table>
 <p>在 api 特性中，其他的方法都會基於這個方法是回傳響應給使用者端。</p>
-<p><code class="docutils literal notranslate"><span class="pre">$data</span></code> 元素可以是一個字串或陣列，在預設的情形下，字串將以 HTML 的形式回傳，而陣列將透過  json_encode 運作後已 JSON 形式回傳，除非 <a class="reference internal" href="../incoming/content_negotiation.html"><span class="doc">內容協商</span></a> 決定以不同的格式進行回傳。</p>
+<p><code class="docutils literal notranslate"><span class="pre">$data</span></code> 元素可以是一個字串或陣列，在預設的情形下，字串將以 HTML 的形式回傳，而陣列將透過  json_encode 執行後已 JSON 形式回傳，除非 <a class="reference internal" href="../incoming/content_negotiation.html"><span class="doc">內容協商</span></a> 決定以不同的格式進行回傳。</p>
 <p>如果你傳遞了 <code class="docutils literal notranslate"><span class="pre">$message</span></code> 字串，它將會被用來替代響應狀態的標準 IANA 原因代碼。但不是每個使用者端都會遵照自訂的代碼，並且會自動使用與狀態碼相符的 IANA 原因代碼。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
@@ -832,7 +832,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

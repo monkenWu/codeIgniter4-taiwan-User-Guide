@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Testing Responses &mdash; CodeIgniter4 4.1.5 說明文件</title>
+  <title>測試響應 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Testing Responses</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -334,7 +334,7 @@
         
           <li><a href="index.html">測試</a> &raquo;</li>
         
-      <li>Testing Responses</li>
+      <li>測試響應</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -351,35 +351,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="testing-responses">
-<h1>Testing Responses<a class="headerlink" href="#testing-responses" title="本標題的永久連結">¶</a></h1>
-<p>The <code class="docutils literal notranslate"><span class="pre">TestResponse</span></code> class provides a number of helpful functions for parsing and testing responses
-from your test cases. Usually a <code class="docutils literal notranslate"><span class="pre">TestResponse</span></code> will be provided for you as a result of your
-<a class="reference external" href="controllers.html">Controller Tests</a> or <a class="reference external" href="feature.html">HTTP Feature Tests</a>, but you can always
-create your own directly using any <code class="docutils literal notranslate"><span class="pre">ResponseInterface</span></code>:</p>
+  <div class="section" id="id1">
+<h1>測試響應<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">TestResponse</span></code> 類別提供了許多實用功能，用於解析和測試來自測試案例的回應。通常， <code class="docutils literal notranslate"><span class="pre">TestResponse</span></code> 將作為 <a class="reference external" href="controllers.html">控制器測試</a>  或 <a class="reference external" href="feature.html">HTTP 特性測試</a> 的結果回傳給你。你也可以傳入符合 <code class="docutils literal notranslate"><span class="pre">ResponseInterface</span></code> 介面的實體，建立你自己的 <code class="docutils literal notranslate"><span class="pre">TestResponse</span></code> 。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\Test\TestResponse</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
 <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertOK</span><span class="p">();</span>
 </pre></div>
 </div>
-<div class="section" id="testing-the-response">
-<h2>Testing the Response<a class="headerlink" href="#testing-the-response" title="本標題的永久連結">¶</a></h2>
-<p>Whether you have received a <code class="docutils literal notranslate"><span class="pre">TestResponse</span></code> as a result of your tests or created one yourself,
-there are a number of new assertions that you can use in your tests.</p>
-<div class="section" id="accessing-request-response">
-<h3>Accessing Request/Response<a class="headerlink" href="#accessing-request-response" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="id3">
+<h2>測試你的響應<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>無論你是在測試中得到了 <code class="docutils literal notranslate"><span class="pre">TestResponse</span></code> ，或是自己建立了一個，你都可以在測試中使用下列斷言。</p>
+<div class="section" id="id4">
+<h3>存取請求與響應<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
 <p><strong>request()</strong></p>
-<p>You can access directly the Request object, if it was set during testing:</p>
+<p>你可以直接存取在測試期間中設定的請求物件：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$request</span> <span class="o">=</span> <span class="nv">$results</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">();</span>
 </pre></div>
 </div>
 <p><strong>response()</strong></p>
-<p>This allows you direct access to the response object:</p>
+<p>你可以直接存取響應實體：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$response</span> <span class="o">=</span> <span class="nv">$results</span><span class="o">-&gt;</span><span class="na">response</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="checking-response-status">
-<h3>Checking Response Status<a class="headerlink" href="#checking-response-status" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="id5">
+<h3>檢查響應狀態<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
 <p><strong>isOK()</strong></p>
 <p>證明這個響應是成功的響應 ，回傳一個布林值 true 或 false 。主要檢查 HTTP 狀態是否在 200 至 300 這個範圍之間。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">isOK</span><span class="p">())</span> <span class="p">{</span>
@@ -405,13 +401,12 @@ there are a number of new assertions that you can use in your tests.</p>
 </pre></div>
 </div>
 <p><strong>assertRedirectTo()</strong></p>
-<p>Asserts that the Response is an instance of RedirectResponse and the destination
-matches the uri given.</p>
+<p>斷言這個響應是 RedirectResponse 的實體，並且與你所給予的 URI 相同。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertRedirectTo</span><span class="p">(</span><span class="s1">&#39;foo/bar&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>getRedirectUrl()</strong></p>
-<p>Returns the URL set for a RedirectResponse, or null for failure.</p>
+<p>回傳 RedirectResponse 設定的 URL ，如果失敗則為 null</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$url</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">getRedirectUrl</span><span class="p">();</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="nx">site_url</span><span class="p">(</span><span class="s1">&#39;foo/bar&#39;</span><span class="p">),</span> <span class="nv">$url</span><span class="p">);</span>
 </pre></div>
@@ -425,12 +420,12 @@ matches the uri given.</p>
 <div class="section" id="session-assertions">
 <h3>Session Assertions<a class="headerlink" href="#session-assertions" title="本標題的永久連結">¶</a></h3>
 <p><strong>assertSessionHas(string $key, $value = null)</strong></p>
-<p>斷言此時的會話中存在所指定鍵。如果你也傳入了 $value ，也會斷言你所指定的鍵的值是否與傳入的 $value 相符。</p>
+<p>斷言此時的工作階段中存在所指定鍵。如果你也傳入了 $value ，也會斷言你所指定的鍵的值是否與傳入的 $value 相符。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertSessionHas</span><span class="p">(</span><span class="s1">&#39;logged_in&#39;</span><span class="p">,</span> <span class="mi">123</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>assertSessionMissing(string $key)</strong></p>
-<p>斷言目前的會談不包含指定的 $key 。</p>
+<p>斷言目前的工作階段不包含指定的 $key 。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertSessionMissin</span><span class="p">(</span><span class="s1">&#39;logged_in&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -466,8 +461,8 @@ matches the uri given.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id1">
-<h3>響應輔助方法<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="id6">
+<h3>響應輔助方法<a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
 <p>你得到的響應包含著一些輔助方法，用於驗證響應中的 HTML 輸出。這些方法對於在測試中宣告斷言時非常有用。</p>
 <p><strong>see()</strong> 方法將會檢查你所傳入的字串是否存在於頁面本身，你也可以更加具體的描述它，確定他是否是某種標記的描述，例如： tag 、 class 或 id ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 驗證 Hello World 是否存在於頁面中</span>
@@ -588,7 +583,7 @@ matches the uri given.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>You can use this method to determine if <code class="docutils literal notranslate"><span class="pre">$response</span></code> actually holds JSON content:</p>
+<p>你能夠利用這個方法來確定 <code class="docutils literal notranslate"><span class="pre">$response</span></code> 是否真的擁有 JSON 內容：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Verify the response is JSON</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertTrue</span><span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">getJSON</span><span class="p">()</span> <span class="o">!==</span> <span class="k">false</span><span class="p">)</span>
 </pre></div>
@@ -641,7 +636,7 @@ matches the uri given.</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

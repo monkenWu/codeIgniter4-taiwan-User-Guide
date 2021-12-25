@@ -41,7 +41,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="next" title="HTTP 特性測試" href="feature.html" />
-    <link rel="prev" title="Generating Test Data" href="fabricator.html" /> 
+    <link rel="prev" title="產生測試資料" href="fabricator.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="fabricator.html">Generating Data</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -353,28 +353,28 @@
             
   <div class="section" id="id1">
 <h1>控制器測試<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
-<p>透過一些新的輔助類別與 trait（特性），將會讓測試控制器變得更加便利。測試控制器時，你可以在控制器內執行程式碼，而不需要先運作整個應用程式 bootstrap （啟動）的過程。大多數時候，使用 <a class="reference external" href="feature.html">特性測試工具</a> 會更加簡單，但這個功能將始終存在，以備不時之需。</p>
+<p>透過一些新的輔助類別與 trait（特性），將會讓測試控制器變得更加便利。測試控制器時，你可以在控制器內執行程式碼，而不需要先執行整個應用程式 bootstrap （啟動）的過程。大多數時候，使用 <a class="reference external" href="feature.html">特性測試工具</a> 會更加簡單，但這個功能將始終存在，以備不時之需。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
 <p class="last">因為整個框架沒有經過啟動，所以在某些特殊的狀況，你會無法使用這種方式測試控制器。</p>
 </div>
 <div class="contents local topic" id="id3">
 <ul class="simple">
-<li><a class="reference internal" href="#id4" id="id7">使用輔助特性</a></li>
-<li><a class="reference internal" href="#id5" id="id8">輔助方法</a></li>
-<li><a class="reference internal" href="#id6" id="id9">驗證響應</a></li>
-<li><a class="reference internal" href="#filter-testing" id="id10">Filter Testing</a><ul>
-<li><a class="reference internal" href="#the-helper-trait" id="id11">The Helper Trait</a></li>
-<li><a class="reference internal" href="#configuration" id="id12">Configuration</a></li>
-<li><a class="reference internal" href="#checking-routes" id="id13">Checking Routes</a></li>
-<li><a class="reference internal" href="#calling-filter-methods" id="id14">Calling Filter Methods</a></li>
-<li><a class="reference internal" href="#assertions" id="id15">Assertions</a></li>
+<li><a class="reference internal" href="#id4" id="id13">使用輔助特性</a></li>
+<li><a class="reference internal" href="#id5" id="id14">輔助方法</a></li>
+<li><a class="reference internal" href="#id6" id="id15">驗證響應</a></li>
+<li><a class="reference internal" href="#id7" id="id16">過濾器測試</a><ul>
+<li><a class="reference internal" href="#id8" id="id17">輔助特性</a></li>
+<li><a class="reference internal" href="#id9" id="id18">組態</a></li>
+<li><a class="reference internal" href="#id10" id="id19">檢查路由</a></li>
+<li><a class="reference internal" href="#id11" id="id20">呼叫過濾器方法</a></li>
+<li><a class="reference internal" href="#id12" id="id21">斷言</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id7">使用輔助特性</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">使用輔助特性</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
 <p>你只需要在測試中宣告使用 <code class="docutils literal notranslate"><span class="pre">ControllerTester</span></code> 特性，便可以在任何的基礎測試類別中使用它。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -390,7 +390,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>一旦包含了這個特性在你的測試類別中，你就可以開始設定環境，包括請求、響應類別、請求 body ，與 URI 等內容。當你用 <code class="docutils literal notranslate"><span class="pre">controller()</span></code> 方法指定你所要使用的 controller 時，請傳入該 controller 全稱的類別名稱。最後，使用 <code class="docutils literal notranslate"><span class="pre">execute()</span></code> 呼叫你所想要運作的方法名稱。</p>
+<p>一旦包含了這個特性在你的測試類別中，你就可以開始設定環境，包括請求、響應類別、請求 body ，與 URI 等內容。當你用 <code class="docutils literal notranslate"><span class="pre">controller()</span></code> 方法指定你所要使用的 controller 時，請傳入該 controller 全稱的類別名稱。最後，使用 <code class="docutils literal notranslate"><span class="pre">execute()</span></code> 呼叫你所想要執行的方法名稱。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">CodeIgniter</span><span class="p">;</span>
@@ -416,14 +416,14 @@
 </div>
 </div>
 <div class="section" id="id5">
-<h2><a class="toc-backref" href="#id8">輔助方法</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">輔助方法</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
 <p><strong>controller($class)</strong></p>
 <p>指定你所要測試的控制器類別名稱，第一個參數必須是完全正確的類別名稱（包括命名空間）：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">controller</span><span class="p">(</span><span class="nx">\App\Controllers\ForumController</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>execute($method)</strong></p>
-<p>在控制器中執行你所指定的方法，唯一的參數就是你所要運作的方法名稱：</p>
+<p>在控制器中執行你所指定的方法，唯一的參數就是你所要執行的方法名稱：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$results</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">controller</span><span class="p">(</span><span class="nx">\App\Controllers\ForumController</span><span class="o">::</span><span class="na">class</span><span class="p">)</span>
                 <span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="s1">&#39;showCategories&#39;</span><span class="p">);</span>
 </pre></div>
@@ -473,7 +473,7 @@
 </div>
 <p>如果你沒有提供這個實體，那麼將會自動產生一個 Logger 實體，以及預設的組態設定值傳遞到你的控制器中。</p>
 <p><strong>withURI($uri)</strong></p>
-<p>這個方法允許你提供一個新的 URI ，模擬使用者端在運作這個控制器時的 URL 。如果你需要在控制器中檢查 URL 區段的話，這將會是個很有用的功能。這個方法唯一的參數是代表有效 URI 的字串：</p>
+<p>這個方法允許你提供一個新的 URI ，模擬使用者端在執行這個控制器時的 URL 。如果你需要在控制器中檢查 URL 區段的話，這將會是個很有用的功能。這個方法唯一的參數是代表有效 URI 的字串：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$results</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">withURI</span><span class="p">(</span><span class="s1">&#39;http://example.com/forums/categories&#39;</span><span class="p">)</span>
                 <span class="o">-&gt;</span><span class="na">controller</span><span class="p">(</span><span class="nx">\App\Controllers\ForumController</span><span class="o">::</span><span class="na">class</span><span class="p">)</span>
                 <span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="s1">&#39;showCategories&#39;</span><span class="p">);</span>
@@ -491,18 +491,15 @@
 </div>
 </div>
 <div class="section" id="id6">
-<h2><a class="toc-backref" href="#id9">驗證響應</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">ControllerTestTrait::execute()</span></code> returns an instance of a <code class="docutils literal notranslate"><span class="pre">TestResponse</span></code>. See <a class="reference external" href="response.html">Testing Responses</a> on
-how to use this class to perform additional assertions and verification in your test cases.</p>
+<h2><a class="toc-backref" href="#id15">驗證響應</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ControllerTestTrait::execute()</span></code> 會回傳一個 <code class="docutils literal notranslate"><span class="pre">TestResponse</span></code> 的實體。有關如何在測試案例中利用這個類別執行其他斷言和驗證的相關資訊，請參閱 <cite>測試響應</cite> &lt;response.html&gt;`_ 。</p>
 </div>
-<div class="section" id="filter-testing">
-<h2><a class="toc-backref" href="#id10">Filter Testing</a><a class="headerlink" href="#filter-testing" title="本標題的永久連結">¶</a></h2>
-<p>Similar to Controller Testing, the framework provides tools to help with creating tests for
-custom <a class="reference internal" href="../incoming/filters.html"><span class="doc">Filters</span></a> and your projects use of them in routing.</p>
-<div class="section" id="the-helper-trait">
-<h3><a class="toc-backref" href="#id11">The Helper Trait</a><a class="headerlink" href="#the-helper-trait" title="本標題的永久連結">¶</a></h3>
-<p>Just like with the Controller Tester you need to include the <code class="docutils literal notranslate"><span class="pre">FilterTestTrait</span></code> in your test
-cases to enable these features:</p>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id16">過濾器測試</a><a class="headerlink" href="#id7" title="本標題的永久連結">¶</a></h2>
+<p>與控制器測試類似，框架提供了一些工具來幫助你建立用於 <a class="reference internal" href="../incoming/filters.html"><span class="doc">過濾器</span></a> 的測試，以及在你的專案中利用路由使用它們。</p>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id17">輔助特性</a><a class="headerlink" href="#id8" title="本標題的永久連結">¶</a></h3>
+<p>就像是控制器測試，你需要在你的測試案例中引入 <code class="docutils literal notranslate"><span class="pre">FilterTestTrait</span></code> 來啟用輔助特性提供的功能。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">CodeIgniter</span><span class="p">;</span>
@@ -517,23 +514,17 @@ cases to enable these features:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="configuration">
-<h3><a class="toc-backref" href="#id12">Configuration</a><a class="headerlink" href="#configuration" title="本標題的永久連結">¶</a></h3>
-<p>Because of the logical overlap with Controller Testing <code class="docutils literal notranslate"><span class="pre">FilterTestTrait</span></code> is designed to
-work together with <code class="docutils literal notranslate"><span class="pre">ControllerTestTrait</span></code> should you need both on the same class.
-Once the trait has been included <code class="docutils literal notranslate"><span class="pre">CIUnitTestCase</span></code> will detect its <code class="docutils literal notranslate"><span class="pre">setUp</span></code> method and
-prepare all the components needed for your tests. Should you need a special configuration
-you can alter any of the properties before calling the support methods:</p>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id18">組態</a><a class="headerlink" href="#id9" title="本標題的永久連結">¶</a></h3>
+<p>因為與控制器測試的邏輯重疊， <code class="docutils literal notranslate"><span class="pre">FilterTestTrait</span></code> 被設計為與 <code class="docutils literal notranslate"><span class="pre">ControllerTestTrait</span></code> 一起工作，所以在同一個類別上，將同時需要這個特性存在。一旦上述特性被引入， <code class="docutils literal notranslate"><span class="pre">CIUnitTestCase</span></code> 將檢查類別中的 <code class="docutils literal notranslate"><span class="pre">setUp</span></code> 方法，替你的測試準備所有需要的元件。如果你需要一個特殊的組態，你可以在呼叫支援方法之前改變下列屬性。</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">$request</span></code> A prepared version of the default <code class="docutils literal notranslate"><span class="pre">IncomingRequest</span></code> service</li>
-<li><code class="docutils literal notranslate"><span class="pre">$response</span></code> A prepared version of the default <code class="docutils literal notranslate"><span class="pre">ResponseInterface</span></code> service</li>
-<li><code class="docutils literal notranslate"><span class="pre">$filtersConfig</span></code> The default <code class="docutils literal notranslate"><span class="pre">Config\Filters</span></code> configuration (note: discovery is handle by <code class="docutils literal notranslate"><span class="pre">Filters</span></code> so this will not include module aliases)</li>
-<li><code class="docutils literal notranslate"><span class="pre">$filters</span></code> An instance of <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Filters\Filters</span></code> using the three components above</li>
-<li><code class="docutils literal notranslate"><span class="pre">$collection</span></code> A prepared version of <code class="docutils literal notranslate"><span class="pre">RouteCollection</span></code> which includes the discovery of <code class="docutils literal notranslate"><span class="pre">Config\Routes</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">$request</span></code> 預設 <code class="docutils literal notranslate"><span class="pre">IncomingRequest</span></code> 服務的預備版本</li>
+<li><code class="docutils literal notranslate"><span class="pre">$response</span></code> 預設 <code class="docutils literal notranslate"><span class="pre">ResponseInterface</span></code> 服務的預備版本</li>
+<li><code class="docutils literal notranslate"><span class="pre">$filtersConfig</span></code> 預設的 <code class="docutils literal notranslate"><span class="pre">ConfigFilters</span></code> 配置（注意：探索是由 <code class="docutils literal notranslate"><span class="pre">Filters</span></code> 處理的，所以這不包括模組的別名）。</li>
+<li><code class="docutils literal notranslate"><span class="pre">$filters</span></code> 使用上述三個元件的 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Filters\Filters</span></code> 實體</li>
+<li><code class="docutils literal notranslate"><span class="pre">$collection</span></code> 是 <code class="docutils literal notranslate"><span class="pre">RouteCollection</span></code> 的預備版本，其中包括 <code class="docutils literal notranslate"><span class="pre">Config\Routes</span></code> 的探索</li>
 </ul>
-<p>The default configuration will usually be best for your testing since it most closely emulates
-a 「live」 project, but (for example) if you wanted to simulate a filter triggering accidentally
-on an unfiltered route you could add it to the Config:</p>
+<p>預設組態通常會符合你的測試，因為它最接近「即時」專案，但如果你想模擬一個過濾器在某個沒有使用過濾器的路由意外觸發，你可以將這麼設定：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FilterTestCase</span> <span class="k">extends</span> <span class="nx">CIUnitTestCase</span>
 <span class="p">{</span>
     <span class="k">use</span> <span class="nx">FilterTestTrait</span><span class="p">;</span>
@@ -548,12 +539,9 @@ on an unfiltered route you could add it to the Config:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="checking-routes">
-<h3><a class="toc-backref" href="#id13">Checking Routes</a><a class="headerlink" href="#checking-routes" title="本標題的永久連結">¶</a></h3>
-<p>The first helper method is <code class="docutils literal notranslate"><span class="pre">getFiltersForRoute()</span></code> which will simulate the provided route
-and return a list of all Filters (by their alias) that would have run for the given position
-(「before」 or 「after」), without actually executing any controller or routing code. This has
-a large performance advantage over Controller and HTTP Testing.</p>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id19">檢查路由</a><a class="headerlink" href="#id10" title="本標題的永久連結">¶</a></h3>
+<p>第一個輔助方法是 <code class="docutils literal notranslate"><span class="pre">getFiltersForRoute()</span></code> ，它將模擬你所提供的路由，並回傳所有過濾器（按照別名）的清單，這些過濾器將執行在你所設定的位置（「before」 或 「after」），無需實際執行任何控制器或路由程式。比起控制器和 HTTP 測試將有更多的效能優勢。</p>
 <dl class="function">
 <dt id="getFiltersForRoute">
 <code class="descname">getFiltersForRoute</code><span class="sig-paren">(</span><em>$route</em>, <em>$position</em><span class="sig-paren">)</span><a class="headerlink" href="#getFiltersForRoute" title="本定義的永久連結">¶</a></dt>
@@ -562,12 +550,12 @@ a large performance advantage over Controller and HTTP Testing.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$route</strong> (<em>string</em>) – The URI to check</li>
-<li><strong>$position</strong> (<em>string</em>) – The filter method to check, 「before」 or 「after」</li>
+<li><strong>$route</strong> (<em>string</em>) – 被檢查的 URL</li>
+<li><strong>$position</strong> (<em>string</em>) – 被檢查的過濾器方法（「before」 或 「after」）</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">Aliases for each filter that would have run</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">將執行的每個過濾器的別名</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">string[]</p>
@@ -575,18 +563,16 @@ a large performance advantage over Controller and HTTP Testing.</p>
 </tr>
 </tbody>
 </table>
-<p>Usage example:</p>
+<p>使用範例</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getFiltersForRoute</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;after&#39;</span><span class="p">);</span> <span class="c1">// [&#39;toolbar&#39;]</span>
 </pre></div>
 </div>
 </dd></dl>
 
 </div>
-<div class="section" id="calling-filter-methods">
-<h3><a class="toc-backref" href="#id14">Calling Filter Methods</a><a class="headerlink" href="#calling-filter-methods" title="本標題的永久連結">¶</a></h3>
-<p>The properties describe in Configuration are all set up to ensure maximum performance without
-interfering or interference from other tests. The next helper method will return a callable
-method using these properties to test your Filter code safely and check the results.</p>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id20">呼叫過濾器方法</a><a class="headerlink" href="#id11" title="本標題的永久連結">¶</a></h3>
+<p>組態中所提到的屬性都是為了保證最好的效能，並且不受其他測試的干擾與影響。下一個輔助方法將使用這些屬性回傳一個能夠被呼叫的匿名函數，藉此安全地測試你的過濾器程式並檢查結果。</p>
 <dl class="function">
 <dt id="getFilterCaller">
 <code class="descname">getFilterCaller</code><span class="sig-paren">(</span><em>$filter</em>, <em>$position</em><span class="sig-paren">)</span><a class="headerlink" href="#getFilterCaller" title="本定義的永久連結">¶</a></dt>
@@ -595,12 +581,12 @@ method using these properties to test your Filter code safely and check the resu
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">參數:</th><td class="field-body"><ul class="first simple">
-<li><strong>$filter</strong> (<em>FilterInterface|string</em>) – The filter instance, class, or alias</li>
-<li><strong>$position</strong> (<em>string</em>) – The filter method to run, 「before」 or 「after」</li>
+<li><strong>$filter</strong> (<em>FilterInterface|string</em>) – 過濾器實體、類別或別名</li>
+<li><strong>$position</strong> (<em>string</em>) – 被執行的過濾器方法「before」 或 「after」</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">A callable method to run the simulated Filter event</p>
+<tr class="field-even field"><th class="field-name">傳回:</th><td class="field-body"><p class="first">用於執行模擬過濾器事件的可呼叫匿名函數</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">傳回型態:</th><td class="field-body"><p class="first last">Closure</p>
@@ -608,7 +594,7 @@ method using these properties to test your Filter code safely and check the resu
 </tr>
 </tbody>
 </table>
-<p>Usage example:</p>
+<p>使用範例</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">protected</span> <span class="k">function</span> <span class="nf">testUnauthorizedAccessRedirects</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="nv">$caller</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getFilterCaller</span><span class="p">(</span><span class="s1">&#39;permission&#39;</span><span class="p">,</span> <span class="s1">&#39;before&#39;</span><span class="p">);</span>
@@ -618,30 +604,29 @@ method using these properties to test your Filter code safely and check the resu
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Notice how the <code class="docutils literal notranslate"><span class="pre">Closure</span></code> can take input parameters which are passed to your filter method.</p>
+<p>請注意， <code class="docutils literal notranslate"><span class="pre">Closure</span></code> 接受何種參數的傳入，這些參數會被傳遞給你的過濾器方法。</p>
 </dd></dl>
 
 </div>
-<div class="section" id="assertions">
-<h3><a class="toc-backref" href="#id15">Assertions</a><a class="headerlink" href="#assertions" title="本標題的永久連結">¶</a></h3>
-<p>In addition to the helper methods above <code class="docutils literal notranslate"><span class="pre">FilterTestTrait</span></code> also comes with some assertions
-to streamline your test methods.</p>
-<p>The <strong>assertFilter()</strong> method checks that the given route at position uses the filter (by its alias):</p>
+<div class="section" id="id12">
+<h3><a class="toc-backref" href="#id21">斷言</a><a class="headerlink" href="#id12" title="本標題的永久連結">¶</a></h3>
+<p>除了上面的輔助方法 <code class="docutils literal notranslate"><span class="pre">FilterTestTrait</span></code> 還附帶了一些斷言用於簡化你的測試方法。</p>
+<p><strong>assertFilter()</strong> 方法用於檢查你所給予的路由是否使用某個過濾器（透過別名）：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Make sure users are logged in before checking their account</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertFilter</span><span class="p">(</span><span class="s1">&#39;users/account&#39;</span><span class="p">,</span> <span class="s1">&#39;before&#39;</span><span class="p">,</span> <span class="s1">&#39;login&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The <strong>assertNotFilter()</strong> method checks that the given route at position does not use the filter (by its alias):</p>
+<p><strong>assertNotFilter()</strong> 方法用於檢查你所給予的路由是否沒有使用某個過濾器（透過別名）：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Make sure API calls do not try to use the Debug Toolbar</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertNotFilter</span><span class="p">(</span><span class="s1">&#39;api/v1/widgets&#39;</span><span class="p">,</span> <span class="s1">&#39;after&#39;</span><span class="p">,</span> <span class="s1">&#39;toolbar&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The <strong>assertHasFilters()</strong> method checks that the given route at position has at least one filter set:</p>
+<p><strong>assertHasFilters()</strong> 方法用於檢查你所給予的路由是否至少設定了一個過濾器：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Make sure that filters are enabled</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasFilters</span><span class="p">(</span><span class="s1">&#39;filtered/route&#39;</span><span class="p">,</span> <span class="s1">&#39;after&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The <strong>assertNotHasFilters()</strong> method checks that the given route at position has no filters set:</p>
+<p><strong>assertNotHasFilters()</strong> 方法檢查你所給予的路由是否沒有設定過濾器：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Make sure no filters run for our static pages</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertNotHasFilters</span><span class="p">(</span><span class="s1">&#39;about/contact&#39;</span><span class="p">,</span> <span class="s1">&#39;before&#39;</span><span class="p">);</span>
 </pre></div>
@@ -661,7 +646,7 @@ to streamline your test methods.</p>
         <a href="feature.html" class="btn btn-neutral float-right" title="HTTP 特性測試" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="fabricator.html" class="btn btn-neutral float-left" title="Generating Test Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="fabricator.html" class="btn btn-neutral float-left" title="產生測試資料" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -672,7 +657,7 @@ to streamline your test methods.</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

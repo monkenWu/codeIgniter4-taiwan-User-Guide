@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -377,13 +377,13 @@
 </div>
 </div>
 <div class="section" id="a2">
-<h2>A2 身分驗證不足以及會談管理不當<a class="headerlink" href="#a2" title="本標題的永久連結">¶</a></h2>
-<p>身份驗證不足或會談管理不當都可能導致，使用者獲得超過他們身分的許可權。</p>
+<h2>A2 身分驗證不足以及工作階段管理不當<a class="headerlink" href="#a2" title="本標題的永久連結">¶</a></h2>
+<p>身份驗證不足或工作階段管理不當都可能導致，使用者獲得超過他們身分的許可權。</p>
 <div class="section" id="id3">
 <h3>OWASP 建議<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
 <li>演示：驗證使用者和身份；使用表單發送 CSRF token</li>
-<li>設計：僅使用內置會談管理</li>
+<li>設計：僅使用內置工作階段管理</li>
 <li>控制器：驗證使用者、身分、CSRF token</li>
 <li>模型：驗證身分</li>
 <li>提示：考慮使用請求調速器</li>
@@ -392,7 +392,7 @@
 <div class="section" id="id4">
 <h3>CodeIgniter 實踐<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li><a class="reference external" href="../libraries/sessions.html">會談程式庫</a></li>
+<li><a class="reference external" href="../libraries/sessions.html">工作階段程式庫</a></li>
 <li><a class="reference external" href="../incoming/incomingrequest.html">HTTP 程式庫</a> 提供 CSRF 驗證</li>
 <li>易於添加第三方的驗證功能</li>
 </ul>
@@ -464,7 +464,7 @@
 <div class="section" id="id14">
 <h3>CodeIgniter 實踐<a class="headerlink" href="#id14" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
-<li>加密儲存會談金鑰</li>
+<li>加密儲存工作階段金鑰</li>
 </ul>
 </div>
 </div>
@@ -536,7 +536,7 @@
 <h3>CodeIgniter 實踐<a class="headerlink" href="#id24" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
 <li><a class="reference external" href="../incoming/incomingrequest.html">HTTP 程式庫</a> 提供相關功能</li>
-<li><a class="reference external" href="../libraries/sessions.html">會談程式庫</a> 提供快閃記憶體資料</li>
+<li><a class="reference external" href="../libraries/sessions.html">工作階段程式庫</a> 提供快閃記憶體資料</li>
 </ul>
 </div>
 </div>
@@ -564,7 +564,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

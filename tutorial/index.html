@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -353,7 +353,7 @@
 <h1>建構第一個應用程式<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <div class="section" id="id2">
 <h2>緒論<a class="headerlink" href="#id2" title="本標題的永久連結">¶</a></h2>
-<p>本教學旨在向您介紹 CodeIgniter4 框架與 MVC 設計模式的基本原則。它將會向你展示如何逐步建構一個基本的 CodeIgniter 應用程式。</p>
+<p>本教學旨在向你介紹 CodeIgniter4 框架與 MVC 設計模式的基本原則。它將會向你展示如何逐步建構一個基本的 CodeIgniter 應用程式。</p>
 <p>如果你對 PHP 並不熟悉，我們建議你在使用這個教學之前，不妨先查看 <a class="reference external" href="https://www.w3school.com.cn/php/index.asp">W3Schools PHP</a> （簡體中文）教學。</p>
 <p>在這個教學中，你將會創建一個 <strong>基本的新聞應用程式</strong> 。首先會從靜態頁面的程式開始編寫。接著，你將創建從資料庫中讀取新聞內容的程式。最後，你將透過教學創建一個表單頁面，並且透過這個表單你可以在資料庫中創建新聞內容。</p>
 <p>本教學將著重於：</p>
@@ -376,13 +376,13 @@
 </div>
 </div>
 <div class="section" id="id3">
-<h2>佈署與運作<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<h2>佈署與執行<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
 <p>你可以從官方網站手動下載發行版，但在這個教學中，我們推薦你透過 Composer 安裝穩定版框架，請在命令列中使用下列指令：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="nx">create</span><span class="o">-</span><span class="nx">project</span> <span class="nx">codeigniter4</span><span class="o">/</span><span class="nx">appstarter</span> <span class="nx">ci</span><span class="o">-</span><span class="nx">news</span>
 </pre></div>
 </div>
 <p>這將會建立一個新的 ci-blog 資料夾，你的應用程式將會包含在其中， CodeIgniter 將被安裝在 vendor 資料夾。</p>
-<p>在預設情況下，CodeIgniter 將以正式模式運作。這是一項安全性功能，它可以讓你的網站在正式上線後更加安全。但在開發的過程中，我們需要一些環境設定，所以先將根目錄下的 <code class="docutils literal notranslate"><span class="pre">env</span></code> 複製後重新命名成 <code class="docutils literal notranslate"><span class="pre">.env</span></code>，並且打開它。</p>
+<p>在預設情況下，CodeIgniter 將以正式模式執行。這是一項安全性功能，它可以讓你的網站在正式上線後更加安全。但在開發的過程中，我們需要一些環境設定，所以先將根目錄下的 <code class="docutils literal notranslate"><span class="pre">env</span></code> 複製後重新命名成 <code class="docutils literal notranslate"><span class="pre">.env</span></code>，並且打開它。</p>
 <p>這個檔案包含特定於伺服器的設定，這代表著你不需要向版本控制系統提交任何敏感資訊。它包括一些你會需要的常見內容，儘管它們目前是被註解掉的狀態。因此，你首先需要取消 CI_ENVIRONMENT 的註解，並且將 <code class="docutils literal notranslate"><span class="pre">production</span></code> 替換成 <code class="docutils literal notranslate"><span class="pre">development</span></code> ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">CI_ENVIRONMENT</span> <span class="o">=</span> <span class="nx">development</span>
 </pre></div>
@@ -409,7 +409,7 @@
 <img alt="../_images/error.png" src="../_images/error.png" />
 <p>你需要注意幾件事情：</p>
 <ol class="arabic simple">
-<li>頂部的紅色標題是一個連結，點下去後將會自動打開 Google.com 並替您搜索這個異常。</li>
+<li>頂部的紅色標題是一個連結，點下去後將會自動打開 Google.com 並替你搜索這個異常。</li>
 <li>按一下 Backtrace 中任意的 <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 鏈結將展開傳遞到該函數，並且呼叫中的引數列表。</li>
 </ol>
 <p>當你看到它時，一切會非常明瞭。</p>
@@ -439,7 +439,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

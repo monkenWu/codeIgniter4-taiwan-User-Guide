@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -417,7 +417,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>這個程式碼包含兩個不同的查詢，你可以得到所有的新聞紀錄，或者是按條獲取。你可能已經注意到，在執行查詢之前我們尚未進行變數處理。 <a class="reference internal" href="../database/query_builder.html"><span class="doc">查詢產生器</span></a> 會替您執行這個操作，使你的資料庫查詢更加安全。</p>
+<p>這個程式碼包含兩個不同的查詢，你可以得到所有的新聞紀錄，或者是按條獲取。你可能已經注意到，在執行查詢之前我們尚未進行變數處理。 <a class="reference internal" href="../database/query_builder.html"><span class="doc">查詢產生器</span></a> 會替你執行這個操作，使你的資料庫查詢更加安全。</p>
 <p>此處所使用的兩種方法 <code class="docutils literal notranslate"><span class="pre">findAll()</span></code> 與 <code class="docutils literal notranslate"><span class="pre">first()</span></code> 由 Model 類別提供。它們藉由我們在 <strong>NewsModel</strong> 類別中設定的 <code class="docutils literal notranslate"><span class="pre">$table</span></code> 屬性知道要使用的資料表。它們是輔助方法，使用查詢產生器在當前的資料表上執行命查詢，並且以你所選擇的格式回傳結果陣列。在這個範例中， <code class="docutils literal notranslate"><span class="pre">findAll()</span></code> 回傳一個物件陣列。</p>
 </div>
 <div class="section" id="id5">
@@ -448,7 +448,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>看看程式碼，你可能會發現與我們之前建立的文件有相似之處。首先，它繼承了 CodeIgniter 核心類別 <code class="docutils literal notranslate"><span class="pre">Controller</span></code> ，這個類別提供了幾個輔助方法，並且確保你可以使用當前的 <code class="docutils literal notranslate"><span class="pre">Request</span></code> 與 <code class="docutils literal notranslate"><span class="pre">Response</span></code> 物件。以及將運作資訊保存在伺服器的 <code class="docutils literal notranslate"><span class="pre">Logger</span></code> 類別。</p>
+<p>看看程式碼，你可能會發現與我們之前建立的文件有相似之處。首先，它繼承了 CodeIgniter 核心類別 <code class="docutils literal notranslate"><span class="pre">Controller</span></code> ，這個類別提供了幾個輔助方法，並且確保你可以使用當前的 <code class="docutils literal notranslate"><span class="pre">Request</span></code> 與 <code class="docutils literal notranslate"><span class="pre">Response</span></code> 物件。以及將執行資訊保存在伺服器的 <code class="docutils literal notranslate"><span class="pre">Logger</span></code> 類別。</p>
 <p>接下來， <code class="docutils literal notranslate"><span class="pre">model()</span></code> 函數被用於建立 NewsModel 實體。這是一個輔助函數，你可以在 <a class="reference internal" href="../general/common_functions.html"><span class="doc">這裡</span></a> 閱讀到更多說明。若你不想這麼使用，你也可以寫成 <code class="docutils literal notranslate"><span class="pre">$model</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">NewsModel();</span></code> 。</p>
 <blockquote>
 <div><code class="docutils literal notranslate"><span class="pre">$slug</span></code> 變數在第二個方法中傳遞給模型，而模型也使用 slug 回傳相應的新聞。</div></blockquote>
@@ -558,7 +558,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

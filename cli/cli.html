@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>透過命命列運作 &mdash; CodeIgniter4 4.1.5 說明文件</title>
+  <title>透過命命列執行 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">使用命令列介面</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">透過命命列運作</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -334,7 +334,7 @@
         
           <li><a href="index.html">使用命令列介面</a> &raquo;</li>
         
-      <li>透過命命列運作</li>
+      <li>透過命命列執行</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -352,12 +352,12 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>透過命命列運作<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<h1>透過命命列執行<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>除了透過瀏覽器中以 URL 呼叫應用程式的 <a class="reference internal" href="../incoming/controllers.html"><span class="doc">控制器</span></a> 外，你還可以透過命令列介面（ CLI ）來載入它們。</p>
 <div class="contents local topic" id="id2">
 <ul class="simple">
 <li><a class="reference internal" href="#id3" id="id9">什麼是命令列介面</a></li>
-<li><a class="reference internal" href="#id5" id="id10">為何需要透過命令列介面運作</a></li>
+<li><a class="reference internal" href="#id5" id="id10">為何需要透過命令列介面執行</a></li>
 <li><a class="reference internal" href="#hello-world" id="id11">讓我們試試： Hello World!</a></li>
 <li><a class="reference internal" href="#id6" id="id12">基本知識</a><ul>
 <li><a class="reference internal" href="#id7" id="id13">只限於命令列的路由</a></li>
@@ -371,13 +371,13 @@
 <p>命令列介面是一種基於文字與電腦互動的方式，更多資訊可以查看 <a class="reference external" href="https://zh.wikipedia.org/wiki/%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%95%8C%E9%9D%A2">維基百科</a> 。</p>
 </div>
 <div class="section" id="id5">
-<h2><a class="toc-backref" href="#id10">為何需要透過命令列介面運作</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
-<p>從命令列介面運作 CodeIgniter 的原因有很多，雖然它們並不是這麼顯而易見。</p>
+<h2><a class="toc-backref" href="#id10">為何需要透過命令列介面執行</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
+<p>從命令列介面執行 CodeIgniter 的原因有很多，雖然它們並不是這麼顯而易見。</p>
 <ul class="simple">
-<li>運作你的排程工作，不需要使用 <em>wget</em>  或 <em>curl</em> 。</li>
+<li>執行你的排程工作，不需要使用 <em>wget</em>  或 <em>curl</em> 。</li>
 <li>透過檢查 <a class="reference internal" href="../general/common_functions.html#is_cli" title="is_cli"><code class="xref php php-func docutils literal notranslate"><span class="pre">is_cli()</span></code></a> 的回傳值，使你的排程工作無法在 URL 中載入。</li>
-<li>製作互動式的任務，可以做一些特別的事情，比如：權限設定、修剪快取，以及運作備份等。</li>
-<li>與其他語言進行整合，例如： 一個隨意的 C++ 腳本可以呼叫一個命令，然後在你的模型中運作這個程式碼。</li>
+<li>製作互動式的任務，可以做一些特別的事情，比如：權限設定、修剪快取，以及執行備份等。</li>
+<li>與其他語言進行整合，例如： 一個隨意的 C++ 腳本可以呼叫一個命令，然後在你的模型中執行這個程式碼。</li>
 </ul>
 </div>
 <div class="section" id="hello-world">
@@ -459,7 +459,7 @@ $ php index.php tools message
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

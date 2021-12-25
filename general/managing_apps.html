@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -361,7 +361,7 @@
 </pre></div>
 </div>
 <p>你需要在專案根目錄修改兩個額外的檔案，這樣它們就可以找到 <code class="docutils literal notranslate"><span class="pre">Paths</span></code> 這個組態設定檔案：</p>
-<p>－<code class="docutils literal notranslate"><span class="pre">/spark</span></code> 運作命令列應用程式；路徑是在 36 行左右宣告的：</p>
+<p>－<code class="docutils literal notranslate"><span class="pre">/spark</span></code> 執行命令列應用程式；路徑是在 36 行左右宣告的：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">require</span> <span class="s1">&#39;app/Config/Paths.php&#39;</span><span class="p">;</span>
 <span class="c1">// ^^^ 如果你移動了你的應用程式資料夾，請修改這個檔案。</span>
 </pre></div>
@@ -375,7 +375,7 @@
 </div>
 </div>
 <div class="section" id="codeigniter">
-<h2>佈署一個 CodeIgniter 並運作多個應用程式<a class="headerlink" href="#codeigniter" title="本標題的永久連結">¶</a></h2>
+<h2>佈署一個 CodeIgniter 並執行多個應用程式<a class="headerlink" href="#codeigniter" title="本標題的永久連結">¶</a></h2>
 <p>如果你想佈署一個 CodeIgniter 後，利用單個框架來統一管理幾個不同的應用程式，只需要將所有位於你應用程式目錄內的目錄放到這個框架的子目錄中。</p>
 <p>例如：你想創建兩個應用程式，名為 foo 和 bar 。你可以這樣建構你的應用程式專案目錄：</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/foo
@@ -421,7 +421,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -374,14 +374,14 @@
 <h3>模型<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
 <p>模型的主要任務是為應用程式維護單一種類的資料。例如：用戶、部落格貼文、交易資訊等。在這種情況下，模型有以下兩種工作：從資料庫中抓取或輸入資料來執行業務規則；對資料庫中的資料進行實際的保存和查詢。</p>
 <p>對於許多開發人員而言，在確定執行哪些業務規則時會感到困惑。它只是代表著資料的任何限制和需求都由模型負責，包括在保存資料前先將原始資料統一成公司的標準，或者在資料傳給 控制器前先將資料格式化。透過把業務需求保留在模型中，可以保證你不用在多個控制器中出現重複的程式碼，避免忘了更新不同區塊的程式碼而導致出錯。</p>
-<p>模型類型的檔案通常保存在 <strong>/app/Models</strong> 這個資料夾中，雖然它們也可以使用一個命名空間去分組，但是還是建議您將模型檔案放在這個資料夾中。</p>
+<p>模型類型的檔案通常保存在 <strong>/app/Models</strong> 這個資料夾中，雖然它們也可以使用一個命名空間去分組，但是還是建議你將模型檔案放在這個資料夾中。</p>
 <p><a class="reference internal" href="../models/model.html"><span class="doc">想更深入地了解模型</span></a></p>
 </div>
 <div class="section" id="id5">
 <h3>控制器<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
 <p>控制器主要擔任了幾個不同的角色。最常見的就是他們會接收使用者的請求，然後判斷這個請求應該執行什麼樣的操作。而這一過程通常會涉及到將資料發送給模型保存，或者去請求模型將資料傳遞給視圖去顯示畫面。它也可以用來載入其他程式的類別，需要的話，也可以處理模型權限之外的特殊任務。</p>
 <p>控制器的額外任務就是用來處理和 HTTP 請求相關的所有事情 —— 重新導向、認證、Web 安全、編碼等。總而言之，控制器是你的應用程式的入口，透過控制器，存取你的應用程式的使用者才可以到達指定的地方，並獲取符合他們想要的格式的資料。</p>
-<p>控制器通常會保存在 <strong>/app/Controllers</strong> 這個資料夾中, 雖然它們也可以使用命名空間去分組，但是還是建議您將控制器存放在這個資料夾中。</p>
+<p>控制器通常會保存在 <strong>/app/Controllers</strong> 這個資料夾中, 雖然它們也可以使用命名空間去分組，但是還是建議你將控制器存放在這個資料夾中。</p>
 <p><a class="reference internal" href="../incoming/controllers.html"><span class="doc">想更深入地了解控制器</span></a></p>
 </div>
 </div>
@@ -409,7 +409,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

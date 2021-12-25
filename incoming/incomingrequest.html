@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -371,7 +371,7 @@
 </div>
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id10">存取請求</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
-<p>如果當前類別是 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code> 的子類別，並且可以作為類別屬性來訪問，則該請求類別的實體以下提供給您:</p>
+<p>如果當前類別是 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code> 的子類別，並且可以作為類別屬性來訪問，則該請求類別的實體以下提供給你:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
@@ -389,11 +389,11 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>如果您不在控制器內，但仍需存取應用程式的訪問物件，則您可透過 <a class="reference internal" href="../concepts/services.html"><span class="doc">Services class</span></a> 獲取該物件的副本:</p>
+<p>如果你不在控制器內，但仍需存取應用程式的訪問物件，則你可透過 <a class="reference internal" href="../concepts/services.html"><span class="doc">Services class</span></a> 獲取該物件的副本:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$request</span> <span class="o">=</span> <span class="nx">\Config\Services</span><span class="o">::</span><span class="na">request</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>但是，如果該類別不是控制器，則最好將請求作為依賴傳入，如此您可將其作為類別屬性來保存:</p>
+<p>但是，如果該類別不是控制器，則最好將請求作為依賴傳入，如此你可將其作為類別屬性來保存:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\HTTP\RequestInterface</span><span class="p">;</span>
@@ -414,7 +414,7 @@
 </div>
 <div class="section" id="id4">
 <h2><a class="toc-backref" href="#id11">判斷請求的型態</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
-<p>一個請求有可多種的型態，包括 AJAX 請求或者來自命令列的請求。您可以透過 <code class="docutils literal notranslate"><span class="pre">isAJAX()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">isCLI()</span></code> 方法來判斷其型態:</p>
+<p>一個請求有可多種的型態，包括 AJAX 請求或者來自命令列的請求。你可以透過 <code class="docutils literal notranslate"><span class="pre">isAJAX()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">isCLI()</span></code> 方法來判斷其型態:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check for AJAX request.</span>
 <span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">isAJAX</span><span class="p">())</span> <span class="p">{</span>
     <span class="c1">// ...</span>
@@ -432,17 +432,17 @@
 在某些情況下，該標頭預設不會是通過 JavaScript（即 Fetch）在 XHR 請求中發送的。
 有關避免此問題的方法，請查閱 <a class="reference internal" href="../general/ajax.html"><span class="doc">AJAX Requests</span></a>。</p>
 </div>
-<p>您可以透過 <code class="docutils literal notranslate"><span class="pre">method()</span></code> 方法來檢查該請求代表何種 HTTP 方法:</p>
+<p>你可以透過 <code class="docutils literal notranslate"><span class="pre">method()</span></code> 方法來檢查該請求代表何種 HTTP 方法:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Returns &#39;post&#39;</span>
 <span class="nv">$method</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getMethod</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>在預設情況下，此方法會回傳一個小寫字串(即「get」，「post」，等等)。您可以透過將此呼叫放入 <code class="docutils literal notranslate"><span class="pre">str_to_upper()</span></code> 將回傳值轉為大寫字串:</p>
+<p>在預設情況下，此方法會回傳一個小寫字串(即「get」，「post」，等等)。你可以透過將此呼叫放入 <code class="docutils literal notranslate"><span class="pre">str_to_upper()</span></code> 將回傳值轉為大寫字串:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Returns &#39;GET&#39;</span>
 <span class="nv">$method</span> <span class="o">=</span> <span class="nx">str_to_upper</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getMethod</span><span class="p">());</span>
 </pre></div>
 </div>
-<p>您也可以透過 <code class="docutils literal notranslate"><span class="pre">isSecure()</span></code> 方法來檢查該請求是否來自 HTTPS 連線:</p>
+<p>你也可以透過 <code class="docutils literal notranslate"><span class="pre">isSecure()</span></code> 方法來檢查該請求是否來自 HTTPS 連線:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">isSecure</span><span class="p">())</span> <span class="p">{</span>
     <span class="nx">force_https</span><span class="p">();</span>
 <span class="p">}</span>
@@ -451,45 +451,45 @@
 </div>
 <div class="section" id="id5">
 <h2><a class="toc-backref" href="#id12">檢索輸入</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h2>
-<p>您可以透過請求物件中的 $_SERVER，$_GET，$_POST，和 $_ENV 來檢索輸入，資料不會被自動過濾，並且會回傳請求中傳入的原始輸入資料。
-相較於直接存取它們（如 $_POST[『something』]），透過下列內建方法存取最大的好處是如果該資料不存在，則會回傳 null ，並且可以過濾數據。這使您可以更方便地使用這些資料，而不用在每次使用前都需要測試它們是否存在。
-換句話說，在正在情況下您有可能會有下列程式碼:</p>
+<p>你可以透過請求物件中的 $_SERVER，$_GET，$_POST，和 $_ENV 來檢索輸入，資料不會被自動過濾，並且會回傳請求中傳入的原始輸入資料。
+相較於直接存取它們（如 $_POST[『something』]），透過下列內建方法存取最大的好處是如果該資料不存在，則會回傳 null ，並且可以過濾數據。這使你可以更方便地使用這些資料，而不用在每次使用前都需要測試它們是否存在。
+換句話說，在正在情況下你有可能會有下列程式碼:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$something</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="k">null</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>透過 CodeIgniter 的內建方法，您可以簡單地這樣做:</p>
+<p>透過 CodeIgniter 的內建方法，你可以簡單地這樣做:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$something</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getVar</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">getVar()</span></code> 方法會從 $_REQUEST 中拉取並回傳任何來自於 $_GET， $POST，或 $_COOKIE 的資料。
-雖然如此作法很方便，但您通常會需要使用更具體的方法，例如:</p>
+雖然如此作法很方便，但你通常會需要使用更具體的方法，例如:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="sb">``</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getGet</span><span class="p">()</span><span class="sb">``</span>
 <span class="o">*</span> <span class="sb">``</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getPost</span><span class="p">()</span><span class="sb">``</span>
 <span class="o">*</span> <span class="sb">``</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getServer</span><span class="p">()</span><span class="sb">``</span>
 <span class="o">*</span> <span class="sb">``</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getCookie</span><span class="p">()</span><span class="sb">``</span>
 </pre></div>
 </div>
-<p>此外，以下提供一些實用的方法用於檢索 $_GET 或 $_POST 中的資訊，並且可以讓您保有選擇檢索順序的能力:</p>
+<p>此外，以下提供一些實用的方法用於檢索 $_GET 或 $_POST 中的資訊，並且可以讓你保有選擇檢索順序的能力:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="sb">``</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getPostGet</span><span class="p">()</span><span class="sb">``</span> <span class="o">-</span> <span class="nx">checks</span> <span class="nv">$_POST</span> <span class="nx">first</span><span class="p">,</span> <span class="nx">then</span> <span class="nv">$_GET</span>
 <span class="o">*</span> <span class="sb">``</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getGetPost</span><span class="p">()</span><span class="sb">``</span> <span class="o">-</span> <span class="nx">checks</span> <span class="nv">$_GET</span> <span class="nx">first</span><span class="p">,</span> <span class="nx">then</span> <span class="nv">$_POST</span>
 </pre></div>
 </div>
 <p><strong>獲取 JSON 資料</strong></p>
-<p>您可以使用 <code class="docutils literal notranslate"><span class="pre">getJSON()</span></code> 方法來獲取 php://input 中以 JSON 串流表示的內容。</p>
+<p>你可以使用 <code class="docutils literal notranslate"><span class="pre">getJSON()</span></code> 方法來獲取 php://input 中以 JSON 串流表示的內容。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">這無法檢查傳入的資料是否為合法的 JSON，在使用此方法前，您應該要確保傳入的資料是 JSON。</p>
+<p class="last">這無法檢查傳入的資料是否為合法的 JSON，在使用此方法前，你應該要確保傳入的資料是 JSON。</p>
 </div>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$json</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getJSON</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>在預設情況下，這會將 JSON 資料中的任何物件作為物件回傳。如果您想要將其轉為關聯陣列，則將 <code class="docutils literal notranslate"><span class="pre">true</span></code> 作為第一個參數傳入。</p>
+<p>在預設情況下，這會將 JSON 資料中的任何物件作為物件回傳。如果你想要將其轉為關聯陣列，則將 <code class="docutils literal notranslate"><span class="pre">true</span></code> 作為第一個參數傳入。</p>
 <p>第二個和第三個參數對應到的是 <a class="reference external" href="https://www.php.net/manual/en/function.json-decode.php">json_decode</a> PHP 函數中的 <code class="docutils literal notranslate"><span class="pre">depth</span></code> 和 <code class="docutils literal notranslate"><span class="pre">options</span></code> 引數。</p>
-<p>如果傳入的請求中的 <code class="docutils literal notranslate"><span class="pre">CONTENT_TYPE</span></code> 標頭被設為 「application/json」，則您也可以使用 <code class="docutils literal notranslate"><span class="pre">getVar()</span></code> 來獲取 JSON 串流。
+<p>如果傳入的請求中的 <code class="docutils literal notranslate"><span class="pre">CONTENT_TYPE</span></code> 標頭被設為 「application/json」，則你也可以使用 <code class="docutils literal notranslate"><span class="pre">getVar()</span></code> 來獲取 JSON 串流。
 在這情況下使用 <code class="docutils literal notranslate"><span class="pre">getVar()</span></code> 總是會回傳物件。</p>
 <p><strong>獲取 JSON 中特定資料</strong></p>
-<p>您可以透過將您想要的資料名稱作為變數傳傳入 <code class="docutils literal notranslate"><span class="pre">getVar()</span></code> 中來從 JSON 串流中獲取特定的資料。
-或者您可以使用「點」符號來獲取 JSON 中那些不是根等級的資料。</p>
+<p>你可以透過將你想要的資料名稱作為變數傳傳入 <code class="docutils literal notranslate"><span class="pre">getVar()</span></code> 中來從 JSON 串流中獲取特定的資料。
+或者你可以使用「點」符號來獲取 JSON 中那些不是根等級的資料。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">//With a request body of:</span>
 <span class="p">{</span>
     <span class="s2">&quot;foo&quot;</span><span class="o">:</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span>
@@ -504,8 +504,8 @@
 <span class="c1">//$data = &quot;baz&quot;</span>
 </pre></div>
 </div>
-<p>如果您想要的結果是一個關聯陣列而不是物件，則您可以使用 <code class="docutils literal notranslate"><span class="pre">getJsonVar()</span></code> 並且將 <code class="docutils literal notranslate"><span class="pre">true</span></code> 作為第二個參數傳入。
-此函數在您不能保證傳入的請求有正確的 <code class="docutils literal notranslate"><span class="pre">CONTENT_TYPE</span></code> 標頭時，仍可以使用。</p>
+<p>如果你想要的結果是一個關聯陣列而不是物件，則你可以使用 <code class="docutils literal notranslate"><span class="pre">getJsonVar()</span></code> 並且將 <code class="docutils literal notranslate"><span class="pre">true</span></code> 作為第二個參數傳入。
+此函數在你不能保證傳入的請求有正確的 <code class="docutils literal notranslate"><span class="pre">CONTENT_TYPE</span></code> 標頭時，仍可以使用。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">//With the same request as above</span>
 <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getJsonVar</span><span class="p">(</span><span class="s1">&#39;fizz&#39;</span><span class="p">);</span>
 <span class="c1">//$data-&gt;buzz = &quot;baz&quot;</span>
@@ -519,7 +519,7 @@
 <p class="last">有關更多「點」符號的資訊，請查閱 <code class="docutils literal notranslate"><span class="pre">Array</span></code> 輔助函數中的 <code class="docutils literal notranslate"><span class="pre">dot_array_search()</span></code>。</p>
 </div>
 <p><strong>檢索原始資料（PUT，PATCH，DELETE）</strong></p>
-<p>最後，您可以透過 <code class="docutils literal notranslate"><span class="pre">getRawInput()</span></code> 來獲得 php://input 中內容的原始串流:</p>
+<p>最後，你可以透過 <code class="docutils literal notranslate"><span class="pre">getRawInput()</span></code> 來獲得 php://input 中內容的原始串流:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getRawInput</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -533,7 +533,7 @@
 </pre></div>
 </div>
 <p><strong>過濾輸入資料</strong></p>
-<p>為了維持您的應用程式的安全，您將希望過濾所有您要存取的輸入。您可以將要使用的過濾器型態作為第二個參數傳入這些方法。
+<p>為了維持你的應用程式的安全，你將希望過濾所有你要存取的輸入。你可以將要使用的過濾器型態作為第二個參數傳入這些方法。
 原生的 <code class="docutils literal notranslate"><span class="pre">filter_var()</span></code> 函數可以被用來過濾。請前往查閱 PHP 手冊中的 <a class="reference external" href="https://www.php.net/manual/en/filter.filters.php">valid
 filter types</a> 列表。</p>
 <p>過濾一個 POST 變數會看起來像這樣:</p>
@@ -544,7 +544,7 @@ filter types</a> 列表。</p>
 </div>
 <div class="section" id="id6">
 <h2><a class="toc-backref" href="#id13">檢索標頭</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
-<p>您可以透過 <code class="docutils literal notranslate"><span class="pre">headers()</span></code> 方法來存取任何和請求一起送過來的標頭。此方法會回傳包含所有標頭的陣列，此陣列的鍵為標頭的名稱，而值為
+<p>你可以透過 <code class="docutils literal notranslate"><span class="pre">headers()</span></code> 方法來存取任何和請求一起送過來的標頭。此方法會回傳包含所有標頭的陣列，此陣列的鍵為標頭的名稱，而值為
 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\HTTP\Header</span></code> 的一個實體:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">headers</span><span class="p">());</span>
 
@@ -555,7 +555,7 @@ filter types</a> 列表。</p>
 <span class="p">]</span>
 </pre></div>
 </div>
-<p>如果您只需要單一標頭，您可以將標頭名稱傳入 <code class="docutils literal notranslate"><span class="pre">header()</span></code> 方法中。
+<p>如果你只需要單一標頭，你可以將標頭名稱傳入 <code class="docutils literal notranslate"><span class="pre">header()</span></code> 方法中。
 如果存在的話，這會以名稱不區分大小寫的方式攫取特定的標頭物件。反之，它會回傳 <code class="docutils literal notranslate"><span class="pre">null</span></code>:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// these are all equivalent</span>
 <span class="nv">$host</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">);</span>
@@ -563,30 +563,30 @@ filter types</a> 列表。</p>
 <span class="nv">$host</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;HOST&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>您總是可以使用 <code class="docutils literal notranslate"><span class="pre">hasHeader()</span></code> 來檢查這個請求中的特定標頭是否存在:</p>
+<p>你總是可以使用 <code class="docutils literal notranslate"><span class="pre">hasHeader()</span></code> 來檢查這個請求中的特定標頭是否存在:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">hasHeader</span><span class="p">(</span><span class="s1">&#39;DNT&#39;</span><span class="p">))</span> <span class="p">{</span>
     <span class="c1">// Don&#39;t track something...</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>如果您需要標頭所有的值以一行字串表示，可以使用 <code class="docutils literal notranslate"><span class="pre">getHeaderLine()</span></code> 方法:</p>
+<p>如果你需要標頭所有的值以一行字串表示，可以使用 <code class="docutils literal notranslate"><span class="pre">getHeaderLine()</span></code> 方法:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Accept-Encoding: gzip, deflate, sdch</span>
 <span class="k">echo</span> <span class="s1">&#39;Accept-Encoding: &#39;</span><span class="o">.</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getHeaderLine</span><span class="p">(</span><span class="s1">&#39;accept-encoding&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>如果您需要整個標頭，並且希望名稱和值在同一個字串中，只需將標頭轉換成字串:</p>
+<p>如果你需要整個標頭，並且希望名稱和值在同一個字串中，只需將標頭轉換成字串:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span><span class="nv">$header</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="url">
 <h2><a class="toc-backref" href="#id14">URL 請求</a><a class="headerlink" href="#url" title="本標題的永久連結">¶</a></h2>
-<p>您可以通過表示此請求的當前URI的 <a class="reference internal" href="../libraries/uri.html"><span class="doc">URI</span></a> 物件的 <code class="docutils literal notranslate"><span class="pre">$request-&gt;uri</span></code> 屬性來檢索。
-您可以將此物件轉換成字串來獲取當前請求的完整 URL:</p>
+<p>你可以通過表示此請求的當前URI的 <a class="reference internal" href="../libraries/uri.html"><span class="doc">URI</span></a> 物件的 <code class="docutils literal notranslate"><span class="pre">$request-&gt;uri</span></code> 屬性來檢索。
+你可以將此物件轉換成字串來獲取當前請求的完整 URL:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$uri</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">uri</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>此物件讓您完全有能力從該請求中自行獲取任何部分:</p>
+<p>此物件讓你完全有能力從該請求中自行獲取任何部分:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$uri</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">uri</span><span class="p">;</span>
 
 <span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getScheme</span><span class="p">();</span>         <span class="c1">// http</span>
@@ -601,7 +601,7 @@ filter types</a> 列表。</p>
 <span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getTotalSegments</span><span class="p">();</span>  <span class="c1">// 3</span>
 </pre></div>
 </div>
-<p>您可以對當前的 URI 字串（相對於您的 baseURL 的路徑）使用 <code class="docutils literal notranslate"><span class="pre">getPath()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">setPath()</span></code> 方法。
+<p>你可以對當前的 URI 字串（相對於你的 baseURL 的路徑）使用 <code class="docutils literal notranslate"><span class="pre">getPath()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">setPath()</span></code> 方法。
 要注意的是，在 <code class="docutils literal notranslate"><span class="pre">IncomingRequest</span></code> 的共享實體中的這個相對路徑會被 <a class="reference internal" href="../helpers/url_helper.html"><span class="doc">URL Helper</span></a> 函數使用，所以這是一個「欺騙」用於測試的請求的好方法。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyMenuTest</span> <span class="k">extends</span> <span class="nx">CIUnitTestCase</span>
 <span class="p">{</span>
@@ -865,7 +865,7 @@ filter types</a> 列表。</p>
 </tr>
 </tbody>
 </table>
-<p>此方法在運作上和 <code class="docutils literal notranslate"><span class="pre">getPost()</span></code> 與 <code class="docutils literal notranslate"><span class="pre">getGet()</span></code> 大同小異，差別在於此方法結合了兩者。
+<p>此方法在執行上和 <code class="docutils literal notranslate"><span class="pre">getPost()</span></code> 與 <code class="docutils literal notranslate"><span class="pre">getGet()</span></code> 大同小異，差別在於此方法結合了兩者。
 此方法會搜索 POST 與 GET 串流來取得資料，先搜尋過 POST 後，再搜尋 GET</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getPostGet</span><span class="p">(</span><span class="s1">&#39;field1&#39;</span><span class="p">);</span>
 </pre></div>
@@ -896,7 +896,7 @@ filter types</a> 列表。</p>
 </tr>
 </tbody>
 </table>
-<p>此方法在運作上和 <code class="docutils literal notranslate"><span class="pre">getPost()</span></code> 與 <code class="docutils literal notranslate"><span class="pre">getGet()</span></code> 大同小異，差別在於此方法結合了兩者。
+<p>此方法在執行上和 <code class="docutils literal notranslate"><span class="pre">getPost()</span></code> 與 <code class="docutils literal notranslate"><span class="pre">getGet()</span></code> 大同小異，差別在於此方法結合了兩者。
 此方法會搜索 POST 與 GET 串流來取得資料，先搜尋過 GET 後，再搜尋 POST</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getGetPost</span><span class="p">(</span><span class="s1">&#39;field1&#39;</span><span class="p">);</span>
 </pre></div>
@@ -1071,7 +1071,7 @@ filter types</a> 列表。</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

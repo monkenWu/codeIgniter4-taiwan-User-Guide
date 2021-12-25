@@ -40,7 +40,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
-    <link rel="next" title="Generating Test Data" href="fabricator.html" />
+    <link rel="next" title="產生測試資料" href="fabricator.html" />
     <link rel="prev" title="入門" href="overview.html" /> 
 </head>
 
@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -412,7 +412,7 @@
 </div>
 <div class="section" id="id4">
 <h2><a class="toc-backref" href="#id8">建立一個測試用資料庫</a><a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
-<p>在運作資料庫測試時，需要提供一個可以在測試時使用的資料庫。而測試用資料庫 CodeIgniter 框架提供了特別的工具，你不需要使用 PHPUnit 內建的資料庫功能。第一步，請確認你已經在  <strong>app/Config/Database.php</strong> 設定檔案中設定了一個 <code class="docutils literal notranslate"><span class="pre">tests</span></code>  測試用資料庫組。你可以透過這個設定指定一個只有在運作測試時才使用的資料庫，以確保你它資料的安全。</p>
+<p>在執行資料庫測試時，需要提供一個可以在測試時使用的資料庫。而測試用資料庫 CodeIgniter 框架提供了特別的工具，你不需要使用 PHPUnit 內建的資料庫功能。第一步，請確認你已經在  <strong>app/Config/Database.php</strong> 設定檔案中設定了一個 <code class="docutils literal notranslate"><span class="pre">tests</span></code>  測試用資料庫組。你可以透過這個設定指定一個只有在執行測試時才使用的資料庫，以確保你它資料的安全。</p>
 <p>如果你的團隊中有多個工程師，你可以將屬於你的設定存在 <strong>.env</strong> 檔案中。若想達成這個效果，請編輯檔案並且確認在下面提到的設定確實存在並且擁有正確的資訊：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">database</span><span class="o">.</span><span class="nx">tests</span><span class="o">.</span><span class="nx">dbdriver</span> <span class="o">=</span> <span class="s1">&#39;MySQLi&#39;</span><span class="p">;</span>
 <span class="nx">database</span><span class="o">.</span><span class="nx">tests</span><span class="o">.</span><span class="nx">username</span> <span class="o">=</span> <span class="s1">&#39;root&#39;</span><span class="p">;</span>
@@ -422,7 +422,7 @@
 </div>
 <div class="section" id="id5">
 <h3><a class="toc-backref" href="#id9">遷移與資料填充</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
-<p>在運作測試時，你需要確認你的資料庫有正確的 schema （綱目）設定，並且每次測試時都需要確保它處於全知的狀態。你可以透過在測試中添加幾個類別屬性，用於資料庫遷移和資料填充，藉此設定你的資料庫。</p>
+<p>在執行測試時，你需要確認你的資料庫有正確的 schema （綱目）設定，並且每次測試時都需要確保它處於全知的狀態。你可以透過在測試中添加幾個類別屬性，用於資料庫遷移和資料填充，藉此設定你的資料庫。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Database</span><span class="p">;</span>
@@ -441,36 +441,30 @@
 </pre></div>
 </div>
 <p><strong>$migrate</strong></p>
-<p>This boolean value determines whether the database migration runs before test.
-By default, the database is always migrated to the latest available state as defined by <code class="docutils literal notranslate"><span class="pre">$namespace</span></code>.
-If false, migration never runs. If you want to disable migration, set false.</p>
+<p>這個布林數值代表資料庫遷移是否在測試之前執行。預設的情況下，資料庫總是會遷移到 <code class="docutils literal notranslate"><span class="pre">$namespace</span></code> 定義的最新可用狀態。如果為 false，則遷移永遠不會執行。如果要禁用遷移，請設定為 false。</p>
 <p><strong>$migrateOnce</strong></p>
-<p>This boolean value determines whether the database migration runs only once. If you want
-to run migration once before the first test, set true. If not present or false, migration
-runs before each test.</p>
+<p>這個布林數值代表資料庫遷移是否只執行一次。如果要在第一次測試之前執行一次遷移，請設定為 true。如果這個屬性不存在或為 false，那麼每次測試之前將會執行遷移。</p>
 <p><strong>$refresh</strong></p>
-<p>這個布林值決定了在每次測時前資料庫是否需要完全初始化，如果為 true ，則所有的遷移都將回歸到 0 版本，資料庫會被遷到你所設定的最新且可用的遷移。</p>
+<p>這個布林數值決定了在每次測時前資料庫是否需要完全初始化，如果為 true ，則所有的遷移都將回歸到 0 版本，資料庫會被遷到你所設定的最新且可用的遷移。</p>
 <p><strong>$seed</strong></p>
-<p>如果這個屬性存在且不為 empty （空值），則這個屬性所宣告指定的資料填充檔案，將會在每次運作測試前用於資料庫填充使用。</p>
+<p>如果這個屬性存在且不為 empty （空值），則這個屬性所宣告指定的資料填充檔案，將會在每次執行測試前用於資料庫填充使用。</p>
 <p><strong>$seedOnce</strong></p>
-<p>This boolean value determines whether the database seeding runs only once. If you want
-to run database seeding once before the first test, set true. If not present or false, database seeding
-runs before each test.</p>
+<p>此布林樹值決定資料庫填充是否只運行一次。如果要在第一次測試之前執行一次資料庫填充，請設定為 true。如果這個屬性不存在或為 false ，則在每次測試之前執行資料庫填充。</p>
 <p><strong>$basePath</strong></p>
 <p>在預設的情形下， CodeIgniter 將會在 <strong>tests/_support/Database/Seeds</strong> 中查找測試過程中應該執行的資料填充檔案。你可以透過指定 <code class="docutils literal notranslate"><span class="pre">$basePath</span></code> 屬性來改變這個預設的目錄。而你所宣告的路徑不應該包括 <strong>seeds</strong> 資料夾，應該包括的是擁有這個子路的單一目錄的路徑。</p>
 <p><strong>$namespace</strong></p>
-<p>在預設的情形下， CodeIgniter 會在 <strong>tests/_support/Database/Migrations</strong> 中查找在測試過程中應該運作的遷移檔案。你可以透過在 <code class="docutils literal notranslate"><span class="pre">$namespace</span></code> 屬性中宣告一個新的命名空間來更改這個位置。你所需告的新命名空間不應該包括 <strong>Database/Migrations</strong> 這個路徑，而應該是去除了這些路徑的基本命名空間。要從所有可用的命名空間中運作遷移，請將這個屬性設定為 <code class="docutils literal notranslate"><span class="pre">null</span></code> 。</p>
+<p>在預設的情形下， CodeIgniter 會在 <strong>tests/_support/Database/Migrations</strong> 中查找在測試過程中應該執行的遷移檔案。你可以透過在 <code class="docutils literal notranslate"><span class="pre">$namespace</span></code> 屬性中宣告一個新的命名空間來更改這個位置。你所需告的新命名空間不應該包括 <strong>Database/Migrations</strong> 這個路徑，而應該是去除了這些路徑的基本命名空間。要從所有可用的命名空間中執行遷移，請將這個屬性設定為 <code class="docutils literal notranslate"><span class="pre">null</span></code> 。</p>
 </div>
 </div>
 <div class="section" id="id6">
 <h2><a class="toc-backref" href="#id10">輔助方法</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h2>
 <p><strong>CIDatabaseTestCase</strong> 類別提供了幾個輔助方法來幫助你測試你的資料庫。</p>
 <p><strong>regressDatabase()</strong></p>
-<p>Called during <code class="docutils literal notranslate"><span class="pre">$refresh</span></code> described above, this method is available if you need to reset the database manually.</p>
+<p>在上述 <code class="docutils literal notranslate"><span class="pre">$refresh</span></code> 期間呼叫，如果需要手動初始化資料庫，則可以使用這個方法。</p>
 <p><strong>migrateDatabase()</strong></p>
-<p>Called during <code class="docutils literal notranslate"><span class="pre">setUp</span></code>, this method is available if you need to run migrations manually.</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">setUp</span></code> 期間呼叫，如果需要手動執行遷移，則此可以使用這個方法。</p>
 <p><strong>seed($name)</strong></p>
-<p>手動將資料庫填充載入資料庫中。唯一的參數使指你所要運作的資料填充檔案，這個檔案必須存在於 <code class="docutils literal notranslate"><span class="pre">$basePath</span></code> 所指定的路徑中。</p>
+<p>手動將資料庫填充載入資料庫中。唯一的參數使指你所要執行的資料填充檔案，這個檔案必須存在於 <code class="docutils literal notranslate"><span class="pre">$basePath</span></code> 所指定的路徑中。</p>
 <p><strong>dontSeeInDatabase($table, $criteria)</strong></p>
 <p>假設資料庫中不存在 <code class="docutils literal notranslate"><span class="pre">$criteria</span></code> 中所宣告的鍵值陣列所提到的資料。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$criteria</span> <span class="o">=</span> <span class="p">[</span>
@@ -495,7 +489,7 @@ runs before each test.</p>
 </pre></div>
 </div>
 <p><strong>hasInDatabase($table, $data)</strong></p>
-<p>在資料庫中插入一條新的資料，這筆資料將會在測試運作完畢後被刪除。 <code class="docutils literal notranslate"><span class="pre">$data</span></code> 是一個鍵值陣列，這其中包含著你需要插入置資料表中資料。</p>
+<p>在資料庫中插入一條新的資料，這筆資料將會在測試執行完畢後被刪除。 <code class="docutils literal notranslate"><span class="pre">$data</span></code> 是一個鍵值陣列，這其中包含著你需要插入置資料表中資料。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;joe@example.com&#39;</span><span class="p">,</span>
     <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Joe Cool&#39;</span>
@@ -522,7 +516,7 @@ runs before each test.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="fabricator.html" class="btn btn-neutral float-right" title="Generating Test Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="fabricator.html" class="btn btn-neutral float-right" title="產生測試資料" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="overview.html" class="btn btn-neutral float-left" title="入門" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -536,7 +530,7 @@ runs before each test.</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

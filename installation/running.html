@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>運作你的應用程式 &mdash; CodeIgniter4 4.1.5 說明文件</title>
+  <title>執行你的應用程式 &mdash; CodeIgniter4 4.1.5 說明文件</title>
   
 
   
@@ -98,7 +98,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">安裝指引</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">運作你的應用程式</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -334,7 +334,7 @@
         
           <li><a href="index.html">安裝指引</a> &raquo;</li>
         
-      <li>運作你的應用程式</li>
+      <li>執行你的應用程式</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -352,7 +352,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>運作你的應用程式<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
+<h1>執行你的應用程式<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <div class="contents local topic" id="id2">
 <ul class="simple">
 <li><a class="reference internal" href="#id3" id="id11">初始組態與設定</a></li>
@@ -363,7 +363,7 @@
 <li><a class="reference internal" href="#id10" id="id16">啟動應用程式</a></li>
 </ul>
 </div>
-<p>CodeIgniter 4 應用程式可透過多種不同的方式運作，託管在 Web 伺服器上，使用虛擬化或 CodeIgniter 命令列工具進行測試。本條目將會介紹如何使用每種技術，並且說明其中的優缺點。</p>
+<p>CodeIgniter 4 應用程式可透過多種不同的方式執行，託管在 Web 伺服器上，使用虛擬化或 CodeIgniter 命令列工具進行測試。本條目將會介紹如何使用每種技術，並且說明其中的優缺點。</p>
 <p>如果你初次使用 CodeIgniter ，請閱讀使用手冊的 <a class="reference internal" href="../intro/index.html"><span class="doc">入門</span></a> 條目，了解如何建構動態的 PHP 應用程式。享受吧！</p>
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id11">初始組態與設定</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
@@ -374,7 +374,7 @@
 <p>在正式（ production ）環境中，我們可能會禁用 PHP 錯誤報告或任何僅用於開發中的功能。在 CodeIgniter 中，可以透過設定環境變數來達成，在 <a class="reference internal" href="../general/environments.html"><span class="doc">環境變數</span></a> 條目上有更全面的描述。無設定任何環境變數的應用程式將會直接套用正式環境的相關設定。若需要使用框架提供的除錯工具，應將環境設定為開發 <code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code> 。</p>
 <div class="admonition note">
 <p class="first admonition-title">備註</p>
-<p class="last">如果你將在 Web 伺服器（例如：Apache 或 Nginx ）上運作你的網站，則需要修改專案內 <code class="docutils literal notranslate"><span class="pre">writable</span></code> 資料夾許可權，讓 Web 伺服器得以使用具有權限的使用者或帳戶進行寫入。</p>
+<p class="last">如果你將在 Web 伺服器（例如：Apache 或 Nginx ）上執行你的網站，則需要修改專案內 <code class="docutils literal notranslate"><span class="pre">writable</span></code> 資料夾許可權，讓 Web 伺服器得以使用具有權限的使用者或帳戶進行寫入。</p>
 </div>
 </div>
 <div class="section" id="id4">
@@ -388,15 +388,15 @@
 <p class="first admonition-title">備註</p>
 <p class="last">內建的開發伺服器限用於開發環境，它絕不應該在正式伺服器上使用。</p>
 </div>
-<p>如果需要在伺服器上運作特別的網址名稱，而不是簡單的本機 localhost，需要先將主機添加到 <code class="docutils literal notranslate"><span class="pre">hosts</span></code> 檔案中。這個檔案的路徑會根據作業系統而各不相同，所有類 Unix 的系統（包括 OSX ）通常都會將這個檔案放置在 <strong>/etc/hosts</strong> 。 Windows 的 Host 檔案放置在 <strong>C:\WINDOWS\system32\drivers\etc\hosts</strong> 之中。</p>
+<p>如果需要在伺服器上執行特別的網址名稱，而不是簡單的本機 localhost，需要先將主機添加到 <code class="docutils literal notranslate"><span class="pre">hosts</span></code> 檔案中。這個檔案的路徑會根據作業系統而各不相同，所有類 Unix 的系統（包括 OSX ）通常都會將這個檔案放置在 <strong>/etc/hosts</strong> 。 Windows 的 Host 檔案放置在 <strong>C:\WINDOWS\system32\drivers\etc\hosts</strong> 之中。</p>
 <p>你可以透過三種選項自訂本地開發伺服器：</p>
 <ul>
-<li><p class="first">你可以使用 CLI 中的 <code class="docutils literal notranslate"><span class="pre">--host</span></code> 選項將應用程式運作在你所設定的 host 上:</p>
+<li><p class="first">你可以使用 CLI 中的 <code class="docutils literal notranslate"><span class="pre">--host</span></code> 選項將應用程式執行在你所設定的 host 上:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">serve</span> <span class="o">--</span><span class="nx">host</span> <span class="nx">example</span><span class="o">.</span><span class="nx">dev</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">在預設的情形下，伺服器將在 8080 埠上運作。但你可能會需要運做多個網站，或者這個埠已經被其他應用程式佔用。這時，可以使用 CLI 中 <code class="docutils literal notranslate"><span class="pre">--port</span></code> 選項:</p>
+<li><p class="first">在預設的情形下，伺服器將在 8080 埠上執行。但你可能會需要運做多個網站，或者這個埠已經被其他應用程式佔用。這時，可以使用 CLI 中 <code class="docutils literal notranslate"><span class="pre">--port</span></code> 選項:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">spark</span> <span class="nx">serve</span> <span class="o">--</span><span class="nx">port</span> <span class="mi">8081</span>
 </pre></div>
 </div>
@@ -430,7 +430,7 @@
 </div>
 <div class="section" id="id5">
 <h3>虛擬伺服器<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
-<p>我們推薦你在「虛擬伺服器」上運作你的應用程式。你可以為每個應用程式設定不同的別名。</p>
+<p>我們推薦你在「虛擬伺服器」上執行你的應用程式。你可以為每個應用程式設定不同的別名。</p>
 <p>請確認 虛擬伺服器（ virtual hosting ）模組在 Apache 設定檔中啟用，例如：<code class="docutils literal notranslate"><span class="pre">apache2/conf/httpd.conf</span></code>:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">LoadModule</span> <span class="nx">vhost_alias_module</span> <span class="nx">modules</span><span class="o">/</span><span class="nx">mod_vhost_alias</span><span class="o">.</span><span class="nx">so</span>
 </pre></div>
@@ -543,7 +543,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

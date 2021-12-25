@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -353,8 +353,8 @@
             
   <div class="section" id="id1">
 <h1>資料庫遷移<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
-<p>遷移是一種方便的管理模式，它讓你可以有條不紊地改變你地資料庫。你當然可以選擇手0動編輯 SQL 片段，然後告訴開發人員們要記得運作這些片段。但在下一次佈署專案時，說不定你還得追蹤在正式伺服器上是否運作了這些片段。</p>
-<p>而資料庫資料表 <strong>遷移</strong> 功能會自動追蹤哪些資料遷移已經成功運作過了，你只要確定你的遷移已經設定完畢，然後呼叫 <code class="docutils literal notranslate"><span class="pre">$migration-&gt;latest()</span></code> 將資料庫更新到最新的狀態。你也可以使用 <code class="docutils literal notranslate"><span class="pre">$migration-&gt;setNamespace(null)-&gt;progess()</span></code> 來包含所有命名空間中的遷移項目。</p>
+<p>遷移是一種方便的管理模式，它讓你可以有條不紊地改變你地資料庫。你當然可以選擇手0動編輯 SQL 片段，然後告訴開發人員們要記得執行這些片段。但在下一次佈署專案時，說不定你還得追蹤在正式伺服器上是否執行了這些片段。</p>
+<p>而資料庫資料表 <strong>遷移</strong> 功能會自動追蹤哪些資料遷移已經成功執行過了，你只要確定你的遷移已經設定完畢，然後呼叫 <code class="docutils literal notranslate"><span class="pre">$migration-&gt;latest()</span></code> 將資料庫更新到最新的狀態。你也可以使用 <code class="docutils literal notranslate"><span class="pre">$migration-&gt;setNamespace(null)-&gt;progess()</span></code> 來包含所有命名空間中的遷移項目。</p>
 <div class="contents local topic" id="id2">
 <ul class="simple">
 <li><a class="reference internal" href="#id3" id="id12">遷移檔案的命名方式</a></li>
@@ -372,7 +372,7 @@
 </div>
 <div class="custom-index container"></div><div class="section" id="id3">
 <h2><a class="toc-backref" href="#id12">遷移檔案的命名方式</a><a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
-<p>每個遷移都是按照數字順序向前或向後運作，每個遷移都會使用創建遷移時的時間戳進行編號，格式為 <strong>YYYYMMDDHHIISS</strong> （例如： <strong>20121031100537</strong> ）。這有助於防止在團隊開發中發生編號衝突。</p>
+<p>每個遷移都是按照數字順序向前或向後執行，每個遷移都會使用創建遷移時的時間戳進行編號，格式為 <strong>YYYYMMDDHHIISS</strong> （例如： <strong>20121031100537</strong> ）。這有助於防止在團隊開發中發生編號衝突。</p>
 <p>遷移檔案的前綴是遷移的編號，在下底後緊接著是具有一定描述性的遷移名稱。年份、月份以及日期可以使用破折號、下底線，或者完全不使用，就像：</p>
 <ul class="simple">
 <li>20121031100537_add_blog.php</li>
@@ -424,7 +424,7 @@
 <p>另外，你也可以使用命令列介面來產生一個骨架檔案，更多詳情請繼續閱讀下文。</p>
 <div class="section" id="id5">
 <h3><a class="toc-backref" href="#id14">外來鍵</a><a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
-<p>當你的資料表具有外來鍵的特性時，在試圖刪除資料表或資料列等動作，遷移經常會出現問題。要在運作遷移時暫時繞過外來鍵的檢查，請在資料庫連接上使用 <code class="docutils literal notranslate"><span class="pre">disableForeignKeyChecks()</span></code> 以及 <code class="docutils literal notranslate"><span class="pre">enableForeignKeyChecks()</span></code> 方法。</p>
+<p>當你的資料表具有外來鍵的特性時，在試圖刪除資料表或資料列等動作，遷移經常會出現問題。要在執行遷移時暫時繞過外來鍵的檢查，請在資料庫連接上使用 <code class="docutils literal notranslate"><span class="pre">disableForeignKeyChecks()</span></code> 以及 <code class="docutils literal notranslate"><span class="pre">enableForeignKeyChecks()</span></code> 方法。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">disableForeignKeyChecks</span><span class="p">();</span>
@@ -438,7 +438,7 @@
 </div>
 <div class="section" id="id6">
 <h3><a class="toc-backref" href="#id15">資料庫群組</a><a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
-<p>遷移將只針對一個資料庫群組運作，如果你在 <strong>app/Config/Database.php</strong> 中定義了多個群組，那麼它將預設在組態設定檔案中指定的 <code class="docutils literal notranslate"><span class="pre">$defaultGroup</span></code> 上運作。或許有時，你需要不同資料庫的不同模式，你擁有一個資料庫用於記錄一般的站點訊息，而另一個資料庫用於任務關鍵資料的存取，你可以透過在遷移時設定 <code class="docutils literal notranslate"><span class="pre">$DBGroup</span></code> 來確保遷移只針對正確的資料庫群組運作，當然，這個名稱必須與資料庫群組的名稱完全一致。</p>
+<p>遷移將只針對一個資料庫群組執行，如果你在 <strong>app/Config/Database.php</strong> 中定義了多個群組，那麼它將預設在組態設定檔案中指定的 <code class="docutils literal notranslate"><span class="pre">$defaultGroup</span></code> 上執行。或許有時，你需要不同資料庫的不同模式，你擁有一個資料庫用於記錄一般的站點訊息，而另一個資料庫用於任務關鍵資料的存取，你可以透過在遷移時設定 <code class="docutils literal notranslate"><span class="pre">$DBGroup</span></code> 來確保遷移只針對正確的資料庫群組執行，當然，這個名稱必須與資料庫群組的名稱完全一致。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Database\Migrations</span><span class="p">;</span>
@@ -517,7 +517,7 @@
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">migrate</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">test</span> <span class="o">-</span><span class="nx">n</span> <span class="nx">Blog</span>
 </pre></div>
 </div>
-<p>當使用 <code class="docutils literal notranslate"><span class="pre">-all</span></code> 選項，它將掃描所有的命名空間，試圖找到任何尚未運作過的遷移。這些遷移都將被記錄起來，再以創建日期進行排序後執行。這將有助於幫助任何應用程式與模組之間的淺在衝突。</p>
+<p>當使用 <code class="docutils literal notranslate"><span class="pre">-all</span></code> 選項，它將掃描所有的命名空間，試圖找到任何尚未執行過的遷移。這些遷移都將被記錄起來，再以創建日期進行排序後執行。這將有助於幫助任何應用程式與模組之間的淺在衝突。</p>
 <p><strong>rollback</strong></p>
 <p>退回所有遷移，將資料庫群組重新開始，設定有效遷移為 0 ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">migrate</span><span class="o">:</span><span class="nx">rollback</span>
@@ -542,7 +542,7 @@
 <li><code class="docutils literal notranslate"><span class="pre">-f</span></code> 強行透過確認問題，這只有在上線環境會詢問</li>
 </ul>
 <p><strong>status</strong></p>
-<p>顯示所有遷移列表和運作的日前與時間，如果沒有運作過將會顯示 「–」 ：</p>
+<p>顯示所有遷移列表和執行的日前與時間，如果沒有執行過將會顯示 「–」 ：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">migrate</span><span class="o">:</span><span class="nx">status</span>
 <span class="nx">Filename</span>               <span class="nx">Migrated</span> <span class="nx">On</span>
 <span class="nx">First_migration</span><span class="o">.</span><span class="nx">php</span>    <span class="mi">2016</span><span class="o">-</span><span class="mo">04</span><span class="o">-</span><span class="mi">25</span> <span class="mo">04</span><span class="o">:</span><span class="mi">44</span><span class="o">:</span><span class="mi">22</span>
@@ -643,7 +643,7 @@
 </tr>
 </tbody>
 </table>
-<p>這將在一個命名空間（或所有的命名空間）中定位遷移，確定那些遷移還沒有被運作過，並按照它們的版本順序運作（不管位於哪個命名空間都將參與排序）。</p>
+<p>這將在一個命名空間（或所有的命名空間）中定位遷移，確定那些遷移還沒有被執行過，並按照它們的版本順序執行（不管位於哪個命名空間都將參與排序）。</p>
 </dd></dl>
 
 <dl class="method">
@@ -782,7 +782,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

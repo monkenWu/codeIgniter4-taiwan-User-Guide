@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -355,7 +355,7 @@
 <h1>資料庫填充<a class="headerlink" href="#id1" title="本標題的永久連結">¶</a></h1>
 <p>資料庫填充是一種將現有資料添加到資料庫的簡單方法，它在開發的過程中非常有用。當你需要以測試資料填充資料庫，並以這個資料作為開發依據時，此功能極為有效。但它的效果不亞於此，資料庫填充可以包含一些你不想包含在資料遷移中的靜態資料，例如：國家、地理編碼表、事件，或設定訊息等等。</p>
 <p>資料庫填充是個簡單的類別，必須有一個 <strong>run()</strong> 方法，並繼承 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Database\Seeder</span></code> 。在 <strong>run()</strong> 方法中，這個類別可以創建各種形式或你所需要的資料。你可以透過 <code class="docutils literal notranslate"><span class="pre">$this-&gt;db</span></code> 與 <code class="docutils literal notranslate"><span class="pre">$this-&gt;forge</span></code> 分別存取資料庫和連結資料庫建構。資料庫填充檔案必須儲存在 <strong>app/Database/Seeds</strong> 目錄底下，文件名稱需與類別名稱相同。</p>
-<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span>    <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Database\Seeds</span><span class="p">;</span>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">namespace</span> <span class="nx">App\Database\Seeds</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">SimpleSeeder</span> <span class="k">extends</span> <span class="nx">\CodeIgniter\Database\Seeder</span>
 <span class="p">{</span>
@@ -402,17 +402,14 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="using-faker">
-<h2>Using Faker<a class="headerlink" href="#using-faker" title="本標題的永久連結">¶</a></h2>
-<p>If you want to automate the generation of seed data, you can use
-the <a class="reference external" href="https://github.com/fakerphp/faker">Faker library</a>.</p>
-<p>To install Faker into your project:</p>
+<div class="section" id="id3">
+<h2>使用資料偽裝器<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<p>如果需要自動產生填充資料，你可以使用 <a class="reference external" href="https://github.com/fakerphp/faker">Faker 程式庫</a> 。</p>
+<p>將 Faker 安裝至你的專案中</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">composer</span> <span class="k">require</span> <span class="o">--</span><span class="nx">dev</span> <span class="nx">fakerphp</span><span class="o">/</span><span class="nx">faker</span>
 </pre></div>
 </div>
-<p>After installation, an instance of <code class="docutils literal notranslate"><span class="pre">Faker\Generator</span></code> is available in the main <code class="docutils literal notranslate"><span class="pre">Seeder</span></code>
-class and is accessible by all child seeders. You must use the static method <code class="docutils literal notranslate"><span class="pre">faker()</span></code>
-to access the instance.</p>
+<p>完成安裝後， <code class="docutils literal notranslate"><span class="pre">Faker\Generator</span></code> 實體能夠透過主要的 <code class="docutils literal notranslate"><span class="pre">Seeder</span></code> 類別使用，並且能夠被所有的子填充器存取。你必須使用靜態方法 <code class="docutils literal notranslate"><span class="pre">faker()</span></code> 來存取這個實體。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Database\Seeds</span><span class="p">;</span>
@@ -434,33 +431,33 @@ to access the instance.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id3">
-<h2>使用填充器<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="id4">
+<h2>使用填充器<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h2>
 <p>你可以透過資料庫設定類別取得資料填充器的實體：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$seeder</span> <span class="o">=</span> <span class="nx">\Config\Database</span><span class="o">::</span><span class="na">seeder</span><span class="p">();</span>
 <span class="nv">$seeder</span><span class="o">-&gt;</span><span class="na">call</span><span class="p">(</span><span class="s1">&#39;TestSeeder&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="section" id="id4">
-<h3>以命令列執行填充<a class="headerlink" href="#id4" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="id5">
+<h3>以命令列執行填充<a class="headerlink" href="#id5" title="本標題的永久連結">¶</a></h3>
 <p>如果你不想建立一個專門的控制器處理資料填充的需求，也可以使用命令列執行資料填充，它是 CLI 中遷移工具的一部份：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">db</span><span class="o">:</span><span class="nx">seed</span> <span class="nx">TestSeeder</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="creating-seed-files">
-<h3>Creating Seed Files<a class="headerlink" href="#creating-seed-files" title="本標題的永久連結">¶</a></h3>
-<p>Using the command line, you can easily generate seed files.</p>
+<div class="section" id="id6">
+<h3>建立填充檔案<a class="headerlink" href="#id6" title="本標題的永久連結">¶</a></h3>
+<p>你可以透過命令列來輕鬆產生用於填充的檔案。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">make</span><span class="o">:</span><span class="nx">seeder</span> <span class="nx">user</span> <span class="o">--</span><span class="nx">suffix</span>
 <span class="c1">// Output: UserSeeder.php file located at app/Database/Seeds directory.</span>
 </pre></div>
 </div>
-<p>You can supply the <strong>root</strong> namespace where the seed file will be stored by supplying the <code class="docutils literal notranslate"><span class="pre">--namespace</span></code> option:</p>
+<p>你可以透過提供 <code class="docutils literal notranslate"><span class="pre">--namespace</span></code> 選項來設定儲存填充檔案的 <code class="docutils literal notranslate"><span class="pre">root</span></code> 命名空間：</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nx">php</span> <span class="nx">spark</span> <span class="nx">make</span><span class="o">:</span><span class="nx">seeder</span> <span class="nx">MySeeder</span> <span class="o">--</span><span class="k">namespace</span> <span class="nx">Acme\Blog</span>
 </pre></div>
 </div>
-<p>If <code class="docutils literal notranslate"><span class="pre">Acme\Blog</span></code> is mapped to <code class="docutils literal notranslate"><span class="pre">app/Blog</span></code> directory, then this command will generate <code class="docutils literal notranslate"><span class="pre">MySeeder.php</span></code> at <code class="docutils literal notranslate"><span class="pre">app/Blog/Database/Seeds</span></code> directory.</p>
-<p>Supplying the <code class="docutils literal notranslate"><span class="pre">--force</span></code> option will overwrite existing files in destination.</p>
+<p>如果 <code class="docutils literal notranslate"><span class="pre">Acme\Blog</span></code> 映射到 <code class="docutils literal notranslate"><span class="pre">app/Blog</span></code> 目錄，那麼這個指令會在 <code class="docutils literal notranslate"><span class="pre">app/Blog/Database/Seeds</span></code> 資料夾下產生 <code class="docutils literal notranslate"><span class="pre">MySeeder.php</span></code>。</p>
+<p>你也能夠使用 <code class="docutils literal notranslate"><span class="pre">--force</span></code> 選向來強制覆蓋已存在的檔案。</p>
 </div>
 </div>
 </div>
@@ -487,7 +484,7 @@ to access the instance.</p>
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>

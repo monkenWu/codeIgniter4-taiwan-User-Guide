@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安裝指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 安裝</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">手動安裝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">運作你的應用程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">執行你的應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">從舊版升級</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">故障排除</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 儲存庫</a></li>
@@ -253,7 +253,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">Generating Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">控制器測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 特性測試</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">Testing Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">測試響應</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">基準測試</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">偵錯與除錯應用程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">Mocking</a></li>
@@ -262,9 +262,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">使用命令列介面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列運作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli.html">透過命命列執行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">自訂命令列介面指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 產生器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">命令列程式庫</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLI 請求類別</a></li>
 </ul>
@@ -378,7 +378,7 @@
 </li>
 <li><a class="reference internal" href="#id18" id="id40">模型事件</a><ul>
 <li><a class="reference internal" href="#id19" id="id41">定義回呼</a></li>
-<li><a class="reference internal" href="#id20" id="id42">指定要運作的回呼</a></li>
+<li><a class="reference internal" href="#id20" id="id42">指定要執行的回呼</a></li>
 <li><a class="reference internal" href="#id21" id="id43">事件參數</a></li>
 <li><a class="reference internal" href="#find" id="id44">修改 Find* 資料</a></li>
 </ul>
@@ -536,7 +536,7 @@
 <p><strong>$updatedField</strong></p>
 <p>指定使用哪個資料庫欄位來保存資料在更新時的時間戳，請將其留空並避免更新這個欄位（即使啟動了 <code class="docutils literal notranslate"><span class="pre">$useTimestamps</span></code> 功能）。</p>
 <p><strong>$dateFormat</strong></p>
-<p>這個屬性將與 $useTimestamps 與 $useSoftDeletes 一起運作，確保正確的日期被插入到資料庫中。在預設的情形下，這個值會創建 DATETIME 型別的值，而這個屬性可以設定的選項為： datetime 、date 、int （ PHP 時間戳）。</p>
+<p>這個屬性將與 $useTimestamps 與 $useSoftDeletes 一起執行，確保正確的日期被插入到資料庫中。在預設的情形下，這個值會創建 DATETIME 型別的值，而這個屬性可以設定的選項為： datetime 、date 、int （ PHP 時間戳）。</p>
 <p><strong>$validationRules</strong></p>
 <p>這個屬性將會是驗證程式庫的 <a class="reference internal" href="../libraries/validation.html#validation-array"><span class="std std-ref">How to save your rules</span></a> （如何保存規則）條目中所描述的驗證用陣列，或是驗證群組名稱的字串，下面將會更詳細地闡述。</p>
 <p><strong>$validationMessages</strong></p>
@@ -724,7 +724,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>這個模型使用 <code class="docutils literal notranslate"><span class="pre">jobs</span></code> 資料表來運作，並將所有結果以 <code class="docutils literal notranslate"><span class="pre">App\Entities\Job</span></code> 的一個實體回傳。當你需要將這個記錄儲存到資料庫時，你需要撰寫自定方法，使用模型提供的 <code class="docutils literal notranslate"><span class="pre">save()</span></code> 方法檢查類別、獲取公開屬性與私有屬性並將它們儲存到資料庫中。</p>
+<p>這個模型使用 <code class="docutils literal notranslate"><span class="pre">jobs</span></code> 資料表來執行，並將所有結果以 <code class="docutils literal notranslate"><span class="pre">App\Entities\Job</span></code> 的一個實體回傳。當你需要將這個記錄儲存到資料庫時，你需要撰寫自定方法，使用模型提供的 <code class="docutils literal notranslate"><span class="pre">save()</span></code> 方法檢查類別、獲取公開屬性與私有屬性並將它們儲存到資料庫中。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// 獲取你所指定的 Job 實體</span>
 <span class="nv">$job</span> <span class="o">=</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
 
@@ -1051,8 +1051,8 @@
 </div>
 </div>
 <div class="section" id="id20">
-<h3><a class="toc-backref" href="#id42">指定要運作的回呼</a><a class="headerlink" href="#id20" title="本標題的永久連結">¶</a></h3>
-<p>你可以透過將方法名稱添加到相應的類別屬性（ beforeInsert 或 afterUpdate 等），來指定何時該運作哪個回呼。你也可以在一個事件中加入多個回呼，他們將相繼被處理。當然也可以在多個事件中使用同一個回呼。</p>
+<h3><a class="toc-backref" href="#id42">指定要執行的回呼</a><a class="headerlink" href="#id20" title="本標題的永久連結">¶</a></h3>
+<p>你可以透過將方法名稱添加到相應的類別屬性（ beforeInsert 或 afterUpdate 等），來指定何時該執行哪個回呼。你也可以在一個事件中加入多個回呼，他們將相繼被處理。當然也可以在多個事件中使用同一個回呼。</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">protected</span> <span class="nv">$beforeInsert</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hashPassword&#39;</span><span class="p">];</span>
 <span class="k">protected</span> <span class="nv">$beforeUpdate</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hashPassword&#39;</span><span class="p">];</span>
 </pre></div>
@@ -1206,7 +1206,7 @@
     <p>
         &copy; Copyright 2019-2021 CodeIgniter 基金會 | 國立高雄師範大學軟體工程與管理學系 SDPM 實驗室譯製 
       <span class="lastupdated">
-        最後更新於 2021年12月03日。
+        最後更新於 2021年12月25日。
       </span>
 
     </p>
