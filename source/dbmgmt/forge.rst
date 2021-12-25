@@ -11,7 +11,7 @@
 初始化資料庫建構類別
 ****************************
 
-.. important:: 為了初始化 資料庫建構類別，你的資料庫驅動必須是正常運作的狀態，因為 資料庫建構類別將倚賴於它。
+.. important:: 為了初始化 資料庫建構類別，你的資料庫驅動必須是正常執行的狀態，因為 資料庫建構類別將倚賴於它。
 
 依照以下方法載入資料庫建構類別：
 
@@ -28,21 +28,21 @@
 在上述範例，我們傳入了一個不同的資料庫群組名稱作為參數來連接資料庫。
 
 *******************************
-Creating and Dropping Databases
+建立與刪除資料庫
 *******************************
 
 **$forge->createDatabase('db_name')**
 
-Permits you to create the database specified in the first parameter.
-Returns TRUE/FALSE based on success or failure::
+你能夠透過傳入參數至 ``createDatabase`` 方法來指定要建立的資料庫名稱，依據成功或失敗將回傳 TRUE/FALSE 。
+
+::
 
     if ($forge->createDatabase('my_db'))
     {
         echo 'Database created!';
     }
 
-An optional second parameter set to TRUE will add IF EXISTS statement
-or will check if a database exists before create it (depending on DBMS).
+這個方法有第二個可選參數，用於加入 ``IF EXISTS`` 語法至查詢中，以檢查是否已經有相同名稱的資料庫存在（這將取決於你所使用的 DBMS）。
 
 ::
 
@@ -52,66 +52,7 @@ or will check if a database exists before create it (depending on DBMS).
 
 **$forge->dropDatabase('db_name')**
 
-Permits you to drop the database specified in the first parameter.
-Returns TRUE/FALSE based on success or failure::
-
-    if ($forge->dropDatabase('my_db'))
-    {
-        echo 'Database deleted!';
-    }
-
-Creating Databases in the Command Line
-======================================
-
-CodeIgniter supports creating databases straight from your favorite terminal using the dedicated ``db:create``
-command. By using this command it is assumed that the database is not yet existing. Otherwise, CodeIgniter
-will complain that the database creation has failed.
-
-To start, just type the command and the name of the database (e.g., ``foo``)::
-
-    php spark db:create foo
-
-If everything went fine, you should expect the ``Database "foo" successfully created.`` message displayed.
-
-If you are on a testing environment or you are using the SQLite3 driver, you may pass in the file extension
-for the file where the database will be created using the ``--ext`` option. Valid values are ``db`` and
-``sqlite`` and defaults to ``db``. Remember that these should not be preceded by a period.
-::
-
-    php spark db:create foo --ext sqlite
-    // will create the db file in WRITEPATH/foo.sqlite
-
-.. note:: When using the special SQLite3 database name ``:memory:``, expect that the command will still
-    produce a success message but no database file is created. This is because SQLite3 will just use
-    an in-memory database.
-
-
-*******************************
-新建與棄用資料庫
-*******************************
-
-**$forge->createDatabase('db_name')**
-
-允許你傳入資料庫名稱來新建資料庫，根據成功與否回傳 TRUE 或 FALSE ：
-
-::
-
-    if ($forge->createDatabase('my_db'))
-    {
-        echo 'Database created!';
-    }
-
-第二個可選參數若設定為 TRUE ，將會在查詢中加入 IF EXISTS 語法，或者在新建資料庫之前檢查資料庫是否已經存在（取決於 DBMS ）。
-
-::
-
-    $forge->createDatabase('my_db', TRUE);
-    // gives CREATE DATABASE IF NOT EXISTS my_db
-    // or will check if a database exists
-
-**$forge->dropDatabase('db_name')**
-
-允許你傳入資料庫名稱並棄用這個資料庫，根據成功與否回傳 TRUE 或 FALSE ：
+你能夠透過傳入參數至 ``dropDatabase`` 方法來刪除你所指定的資料庫名稱，依據成功或失敗將回傳 TRUE/FALSE 。
 
 ::
 
@@ -120,30 +61,28 @@ for the file where the database will be created using the ``--ext`` option. Vali
         echo 'Database deleted!';
     }
 
-Creating Databases in the Command Line
+透過命令列建立資料庫
 ======================================
 
-CodeIgniter supports creating databases straight from your favorite terminal using the dedicated ``db:create``
-command. By using this command it is assumed that the database is not yet existing. Otherwise, CodeIgniter
-will complain that the database creation has failed.
+CodeIgniter 支援使用 ``db：create`` 指令直接從你方便的終端建立資料庫。使用此指令時，我們假設你的資料庫尚未存在。否則，CodeIgniter 將會提示你資料庫創建失敗。
 
-To start, just type the command and the name of the database (e.g., ``foo``)::
+你只需要輸入指令與資料庫名稱（例如： ``foo`` ）
+
+::
 
     php spark db:create foo
 
-If everything went fine, you should expect the ``Database "foo" successfully created.`` message displayed.
+如果一切順利，你應該可以看見 ``Database "foo" successfully created.`` 這樣的訊息提示。
 
-If you are on a testing environment or you are using the SQLite3 driver, you may pass in the file extension
-for the file where the database will be created using the ``--ext`` option. Valid values are ``db`` and
-``sqlite`` and defaults to ``db``. Remember that these should not be preceded by a period.
+如果你位於測試環境中，或者你正在使用 SQLite3 驅動程式，則可以使用 ``--ext`` 選項，傳入需要建立資料庫的檔案副檔名。這個選項允許你傳入 ``db`` 和 ``sqlite``，預設為 ``db`` 。請注意，你不須以「.」作為附檔名的開頭。
+
 ::
 
     php spark db:create foo --ext sqlite
     // will create the db file in WRITEPATH/foo.sqlite
 
-.. note:: When using the special SQLite3 database name ``:memory:``, expect that the command will still
-    produce a success message but no database file is created. This is because SQLite3 will just use
-    an in-memory database.
+.. note:: 
+    使用特殊的 SQLite3 資料庫名稱 ``:memory:`` 時，這個指令也會回應你成功的訊息，但不會建立任何資料庫檔案。這是因為此時的 SQLite3 將會使用記憶體資料庫。
 
 ****************************
 新建與棄用資料表
@@ -333,8 +272,7 @@ for the file where the database will be created using the ``--ext`` option. Vali
     // 生成: DROP TABLE IF EXISTS table_name
     $forge->dropTable('table_name',TRUE);
 
-A third parameter can be passed to add a "CASCADE" option, which might be required for some
-drivers to handle removal of tables with foreign keys.
+你能夠加入 ``true`` 作為方法的第三個參數，這個選項將產生  "CASCADE" 的效果。某些驅動程式在刪除上，可能需要會這個選項來處理帶有外來鍵的資料表。
 
 ::
 
@@ -467,15 +405,15 @@ Execute a DROP KEY.
 
     .. php:method:: addForeignKey($fieldName, $tableName, $tableField[, $onUpdate = '', $onDelete = ''])
 
-        :param    string|string[]    $fieldName: Name of a key field or an array of fields
-        :param    string    $tableName: Name of a parent table
-        :param    string|string[]    $tableField: Name of a parent table field or an array of fields
-        :param    string    $onUpdate: Desired action for the “on update”
-        :param    string    $onDelete: Desired action for the “on delete”
+        :param    string|string[]    $fieldName: 欄位名稱或是欄位名稱陣列
+        :param    string    $tableName: 父資料表名稱
+        :param    string|string[]    $tableField: 父資料表欄位名稱或是欄位名稱陣列
+        :param    string    $onUpdate: 希望 `on update` 時採取的行動
+        :param    string    $onDelete: 希望 `on delete` 時採取的行動
         :returns:    \CodeIgniter\Database\Forge instance (method chaining)
         :rtype:    \CodeIgniter\Database\Forge
 
-        Adds a foreign key to the set that will be used to create a table. Usage:  See `新增外來鍵`_.
+        在新建資料表的過程中加入外來建，使用方法請參閱 `新增外來鍵`_ 。
 
     .. php:method:: addKey($key[, $primary = FALSE[, $unique = FALSE]])
 
@@ -510,7 +448,7 @@ Execute a DROP KEY.
         :returns:	TRUE 為成功， FALSE 為失敗
         :rtype:	bool
 
-        新增一個新的資料庫。 使用方式：請見 `新建與棄用資料庫`_.
+        新增一個新的資料庫。 使用方式：請見 `建立與刪除資料庫`_.
 
     .. php:method:: createTable($table[, $if_not_exists = FALSE[, array $attributes = []]])
 
@@ -537,7 +475,7 @@ Execute a DROP KEY.
         :returns:	TRUE 為成功， FALSE 為失敗
         :rtype:	bool
 
-        棄用資料庫。 使用方式：請見 `新建與棄用資料庫`_.
+        棄用資料庫。 使用方式：請見 `建立與刪除資料庫`_.
 
     .. php:method:: dropTable($table_name[, $if_exists = FALSE])
 

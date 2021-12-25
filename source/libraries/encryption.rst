@@ -268,7 +268,7 @@ HMAC-SHA512 for the authentication.
 
 		加密輸入數據並回傳加密後的資料。
 		
-		如果您將參數作為第二個參數傳遞，如果 ``$params`` 是陣列，則 ``key`` 元素將是此操作的開始鍵；或者起始鍵可以作為字串傳遞。
+		如果你將參數作為第二個參數傳遞，如果 ``$params`` 是陣列，則 ``key`` 元素將是此操作的開始鍵；或者起始鍵可以作為字串傳遞。
 
 		If you are using the SodiumHandler and want to pass a different ``blockSize``
 		on runtime, pass the ``blockSize`` key in the ``$params`` array.
@@ -293,7 +293,7 @@ HMAC-SHA512 for the authentication.
 
 		解密輸入資料並回傳解密後的資料。
 		
-		如果您將參數作為第二個參數傳遞，如果 ``$params`` 是陣列，則 ``key`` 元素將是此操作的開始鍵；或者起始鍵可以作為字串傳遞。
+		如果你將參數作為第二個參數傳遞，如果 ``$params`` 是陣列，則 ``key`` 元素將是此操作的開始鍵；或者起始鍵可以作為字串傳遞。
 
 		If you are using the SodiumHandler and want to pass a different ``blockSize``
 		on runtime, pass the ``blockSize`` key in the ``$params`` array.

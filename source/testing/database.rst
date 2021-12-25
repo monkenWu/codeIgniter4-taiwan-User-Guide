@@ -60,7 +60,7 @@
 建立一個測試用資料庫
 ==========================
 
-在運作資料庫測試時，需要提供一個可以在測試時使用的資料庫。而測試用資料庫 CodeIgniter 框架提供了特別的工具，你不需要使用 PHPUnit 內建的資料庫功能。第一步，請確認你已經在  **app/Config/Database.php** 設定檔案中設定了一個 ``tests``  測試用資料庫組。你可以透過這個設定指定一個只有在運作測試時才使用的資料庫，以確保你它資料的安全。
+在執行資料庫測試時，需要提供一個可以在測試時使用的資料庫。而測試用資料庫 CodeIgniter 框架提供了特別的工具，你不需要使用 PHPUnit 內建的資料庫功能。第一步，請確認你已經在  **app/Config/Database.php** 設定檔案中設定了一個 ``tests``  測試用資料庫組。你可以透過這個設定指定一個只有在執行測試時才使用的資料庫，以確保你它資料的安全。
 
 如果你的團隊中有多個工程師，你可以將屬於你的設定存在 **.env** 檔案中。若想達成這個效果，請編輯檔案並且確認在下面提到的設定確實存在並且擁有正確的資訊：
 
@@ -74,7 +74,7 @@
 遷移與資料填充
 --------------------
 
-在運作測試時，你需要確認你的資料庫有正確的 schema （綱目）設定，並且每次測試時都需要確保它處於全知的狀態。你可以透過在測試中添加幾個類別屬性，用於資料庫遷移和資料填充，藉此設定你的資料庫。
+在執行測試時，你需要確認你的資料庫有正確的 schema （綱目）設定，並且每次測試時都需要確保它處於全知的狀態。你可以透過在測試中添加幾個類別屬性，用於資料庫遷移和資料填充，藉此設定你的資料庫。
 
 ::
 
@@ -96,29 +96,23 @@
 
 **$migrate**
 
-This boolean value determines whether the database migration runs before test.
-By default, the database is always migrated to the latest available state as defined by ``$namespace``.
-If false, migration never runs. If you want to disable migration, set false.
+這個布林數值代表資料庫遷移是否在測試之前執行。預設的情況下，資料庫總是會遷移到 ``$namespace`` 定義的最新可用狀態。如果為 false，則遷移永遠不會執行。如果要禁用遷移，請設定為 false。
 
 **$migrateOnce**
 
-This boolean value determines whether the database migration runs only once. If you want
-to run migration once before the first test, set true. If not present or false, migration
-runs before each test.
+這個布林數值代表資料庫遷移是否只執行一次。如果要在第一次測試之前執行一次遷移，請設定為 true。如果這個屬性不存在或為 false，那麼每次測試之前將會執行遷移。
 
 **$refresh**
 
-這個布林值決定了在每次測時前資料庫是否需要完全初始化，如果為 true ，則所有的遷移都將回歸到 0 版本，資料庫會被遷到你所設定的最新且可用的遷移。
+這個布林數值決定了在每次測時前資料庫是否需要完全初始化，如果為 true ，則所有的遷移都將回歸到 0 版本，資料庫會被遷到你所設定的最新且可用的遷移。
 
 **$seed**
 
-如果這個屬性存在且不為 empty （空值），則這個屬性所宣告指定的資料填充檔案，將會在每次運作測試前用於資料庫填充使用。
+如果這個屬性存在且不為 empty （空值），則這個屬性所宣告指定的資料填充檔案，將會在每次執行測試前用於資料庫填充使用。
 
 **$seedOnce**
 
-This boolean value determines whether the database seeding runs only once. If you want
-to run database seeding once before the first test, set true. If not present or false, database seeding
-runs before each test.
+此布林樹值決定資料庫填充是否只運行一次。如果要在第一次測試之前執行一次資料庫填充，請設定為 true。如果這個屬性不存在或為 false ，則在每次測試之前執行資料庫填充。
 
 **$basePath**
 
@@ -126,7 +120,7 @@ runs before each test.
 
 **$namespace**
 
-在預設的情形下， CodeIgniter 會在 **tests/_support/Database/Migrations** 中查找在測試過程中應該運作的遷移檔案。你可以透過在 ``$namespace`` 屬性中宣告一個新的命名空間來更改這個位置。你所需告的新命名空間不應該包括 **Database/Migrations** 這個路徑，而應該是去除了這些路徑的基本命名空間。要從所有可用的命名空間中運作遷移，請將這個屬性設定為 ``null`` 。
+在預設的情形下， CodeIgniter 會在 **tests/_support/Database/Migrations** 中查找在測試過程中應該執行的遷移檔案。你可以透過在 ``$namespace`` 屬性中宣告一個新的命名空間來更改這個位置。你所需告的新命名空間不應該包括 **Database/Migrations** 這個路徑，而應該是去除了這些路徑的基本命名空間。要從所有可用的命名空間中執行遷移，請將這個屬性設定為 ``null`` 。
 
 輔助方法
 ==============
@@ -135,15 +129,16 @@ runs before each test.
 
 **regressDatabase()**
 
-Called during ``$refresh`` described above, this method is available if you need to reset the database manually.
+
+在上述 ``$refresh`` 期間呼叫，如果需要手動初始化資料庫，則可以使用這個方法。
 
 **migrateDatabase()**
 
-Called during ``setUp``, this method is available if you need to run migrations manually.
+在 ``setUp`` 期間呼叫，如果需要手動執行遷移，則此可以使用這個方法。
 
 **seed($name)**
 
-手動將資料庫填充載入資料庫中。唯一的參數使指你所要運作的資料填充檔案，這個檔案必須存在於 ``$basePath`` 所指定的路徑中。
+手動將資料庫填充載入資料庫中。唯一的參數使指你所要執行的資料填充檔案，這個檔案必須存在於 ``$basePath`` 所指定的路徑中。
 
 **dontSeeInDatabase($table, $criteria)**
 
@@ -180,7 +175,7 @@ Called during ``setUp``, this method is available if you need to run migrations 
 
 **hasInDatabase($table, $data)**
 
-在資料庫中插入一條新的資料，這筆資料將會在測試運作完畢後被刪除。 ``$data`` 是一個鍵值陣列，這其中包含著你需要插入置資料表中資料。
+在資料庫中插入一條新的資料，這筆資料將會在測試執行完畢後被刪除。 ``$data`` 是一個鍵值陣列，這其中包含著你需要插入置資料表中資料。
 
 ::
 

@@ -1,9 +1,9 @@
 事件
 #####################################
 
-CodeIgniter 的事件功能提供一種方法，可以在不侵入核心檔案的情形下，進入和修改框架內部的工作。當 CodeIgniter 運作時，它會遵循著一定的執行順序，然而在某些情況下，你可能會想在執行過程的特定階段執行一些動作。例如：你需要在載入控制器的前後執行自己撰寫的腳本，亦或是你想在其他地方觸發自己的腳本。
+CodeIgniter 的事件功能提供一種方法，可以在不侵入核心檔案的情形下，進入和修改框架內部的工作。當 CodeIgniter 執行時，它會遵循著一定的執行順序，然而在某些情況下，你可能會想在執行過程的特定階段執行一些動作。例如：你需要在載入控制器的前後執行自己撰寫的腳本，亦或是你想在其他地方觸發自己的腳本。
 
-事件採用 *發布/訂用* 模式運作，在腳本執行的過程中某個時刻會觸發一個事件，其他腳本就可以透過事件類別來 "訂用" 這個事件，讓它知道自己觸發該事件前會執行一些動作。
+事件採用 *發布/訂用* 模式執行，在腳本執行的過程中某個時刻會觸發一個事件，其他腳本就可以透過事件類別來 "訂用" 這個事件，讓它知道自己觸發該事件前會執行一些動作。
 
 事件賦能
 ===============
@@ -21,7 +21,7 @@ CodeIgniter 的事件功能提供一種方法，可以在不侵入核心檔案�
 
 	Events::on('pre_system', ['MyClass', 'MyFunction']);
 
-在這個例子中，每當 **pre_controller** 事件被執行時， ``MyClass`` 將被創建實體，並運作 ``MyFunction`` 方法。請注意，第二個參數需要讓 PHP 識別並且 `可以被呼叫 <https://www.php.net/manual/en/function.is-callable.php>`_ ：
+在這個例子中，每當 **pre_controller** 事件被執行時， ``MyClass`` 將被創建實體，並執行 ``MyFunction`` 方法。請注意，第二個參數需要讓 PHP 識別並且 `可以被呼叫 <https://www.php.net/manual/en/function.is-callable.php>`_ ：
 
 ::
 
@@ -84,7 +84,7 @@ CodeIgniter 的事件功能提供一種方法，可以在不侵入核心檔案�
 模擬事件
 =================
 
-在測試的過程中，你可能不會希望事件真的被啟動了，例如：因為每天發送幾百封電子郵件既慢又會產生反效果。你可以告訴事件類別使用 ``simulate()`` 方法來模擬事件的運作。當它為 **true** 時，所有事件都將在觸發方法期間跳過，不過其它功能都會照常運作。
+在測試的過程中，你可能不會希望事件真的被啟動了，例如：因為每天發送幾百封電子郵件既慢又會產生反效果。你可以告訴事件類別使用 ``simulate()`` 方法來模擬事件的執行。當它為 **true** 時，所有事件都將在觸發方法期間跳過，不過其它功能都會照常執行。
 
 ::
 
@@ -104,6 +104,6 @@ CodeIgniter 的事件功能提供一種方法，可以在不侵入核心檔案�
 * **pre_system** 在系統執行初期就被呼叫，此時僅載入了基本類別以及事件類別，未執行路由或其他進程。
 * **post_controller_constructor** 在控制器被實體化後及任何方法被呼叫前，立即呼叫。
 * **post_system** 在最終渲染的頁面被發送到瀏覽器後、在系統執行結束後，在最終化的資料被發送到瀏覽器後呼叫。
-* **email** Called after an email sent successfully from ``CodeIgniter\Email\Email``. Receives an array of the ``Email`` class's properties as a parameter.
-* **DBQuery** Called after a successfully-completed database query. Receives the ``Query`` object.
-* **migrate** Called after a successful migration call to ``latest()`` or ``regress()``. Receives the current properties of ``MigrationRunner`` as well as the name of the method.
+* **email** 在 ``CodeIgniter\Email\Email`` 成功傳送電子郵件後呼叫。將接收一個 ``Email`` 類別作為參數。
+* **DBQuery** 在成功的資料庫查詢後呼叫。將接收 ``Query`` 物件。
+* **migrate** 在成功遷移到 ``latest()`` 或 ``regress()`` 後呼叫。接收 ``MigrationRunner`` 的當前屬性以及方法的名稱。

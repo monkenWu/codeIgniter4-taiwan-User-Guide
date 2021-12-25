@@ -11,7 +11,7 @@
 存取請求
 ---------------------
 
-如果當前類別是 ``CodeIgniter\Controller`` 的子類別，並且可以作為類別屬性來訪問，則該請求類別的實體以下提供給您::
+如果當前類別是 ``CodeIgniter\Controller`` 的子類別，並且可以作為類別屬性來訪問，則該請求類別的實體以下提供給你::
 
     <?php
 
@@ -29,11 +29,11 @@
         }
     }
 
-如果您不在控制器內，但仍需存取應用程式的訪問物件，則您可透過 :doc:`Services class </concepts/services>` 獲取該物件的副本::
+如果你不在控制器內，但仍需存取應用程式的訪問物件，則你可透過 :doc:`Services class </concepts/services>` 獲取該物件的副本::
 
     $request = \Config\Services::request();
 
-但是，如果該類別不是控制器，則最好將請求作為依賴傳入，如此您可將其作為類別屬性來保存::
+但是，如果該類別不是控制器，則最好將請求作為依賴傳入，如此你可將其作為類別屬性來保存::
 
 
     <?php
@@ -55,7 +55,7 @@
 判斷請求的型態
 ------------------------
 
-一個請求有可多種的型態，包括 AJAX 請求或者來自命令列的請求。您可以透過 ``isAJAX()`` 和 ``isCLI()`` 方法來判斷其型態::
+一個請求有可多種的型態，包括 AJAX 請求或者來自命令列的請求。你可以透過 ``isAJAX()`` 和 ``isCLI()`` 方法來判斷其型態::
 
     // Check for AJAX request.
     if ($request->isAJAX()) {
@@ -71,17 +71,17 @@
     在某些情況下，該標頭預設不會是通過 JavaScript（即 Fetch）在 XHR 請求中發送的。
     有關避免此問題的方法，請查閱 :doc:`AJAX Requests </general/ajax>`。
 
-您可以透過 ``method()`` 方法來檢查該請求代表何種 HTTP 方法::
+你可以透過 ``method()`` 方法來檢查該請求代表何種 HTTP 方法::
 
     // Returns 'post'
     $method = $request->getMethod();
 
-在預設情況下，此方法會回傳一個小寫字串(即「get」，「post」，等等)。您可以透過將此呼叫放入 ``str_to_upper()`` 將回傳值轉為大寫字串::
+在預設情況下，此方法會回傳一個小寫字串(即「get」，「post」，等等)。你可以透過將此呼叫放入 ``str_to_upper()`` 將回傳值轉為大寫字串::
 
     // Returns 'GET'
     $method = str_to_upper($request->getMethod());
 
-您也可以透過 ``isSecure()`` 方法來檢查該請求是否來自 HTTPS 連線::
+你也可以透過 ``isSecure()`` 方法來檢查該請求是否來自 HTTPS 連線::
 
     if (! $request->isSecure()) {
         force_https();
@@ -90,50 +90,50 @@
 檢索輸入
 ----------------
 
-您可以透過請求物件中的 $_SERVER，$_GET，$_POST，和 $_ENV 來檢索輸入，資料不會被自動過濾，並且會回傳請求中傳入的原始輸入資料。
-相較於直接存取它們（如 $_POST[『something』]），透過下列內建方法存取最大的好處是如果該資料不存在，則會回傳 null ，並且可以過濾數據。這使您可以更方便地使用這些資料，而不用在每次使用前都需要測試它們是否存在。
-換句話說，在正在情況下您有可能會有下列程式碼::
+你可以透過請求物件中的 $_SERVER，$_GET，$_POST，和 $_ENV 來檢索輸入，資料不會被自動過濾，並且會回傳請求中傳入的原始輸入資料。
+相較於直接存取它們（如 $_POST[『something』]），透過下列內建方法存取最大的好處是如果該資料不存在，則會回傳 null ，並且可以過濾數據。這使你可以更方便地使用這些資料，而不用在每次使用前都需要測試它們是否存在。
+換句話說，在正在情況下你有可能會有下列程式碼::
 
     $something = isset($_POST['foo']) ? $_POST['foo'] : null;
 
-透過 CodeIgniter 的內建方法，您可以簡單地這樣做::
+透過 CodeIgniter 的內建方法，你可以簡單地這樣做::
 
     $something = $request->getVar('foo');
 
 ``getVar()`` 方法會從 $_REQUEST 中拉取並回傳任何來自於 $_GET， $POST，或 $_COOKIE 的資料。
-雖然如此作法很方便，但您通常會需要使用更具體的方法，例如::
+雖然如此作法很方便，但你通常會需要使用更具體的方法，例如::
 
 * ``$request->getGet()``
 * ``$request->getPost()``
 * ``$request->getServer()``
 * ``$request->getCookie()``
 
-此外，以下提供一些實用的方法用於檢索 $_GET 或 $_POST 中的資訊，並且可以讓您保有選擇檢索順序的能力::
+此外，以下提供一些實用的方法用於檢索 $_GET 或 $_POST 中的資訊，並且可以讓你保有選擇檢索順序的能力::
 
 * ``$request->getPostGet()`` - checks $_POST first, then $_GET
 * ``$request->getGetPost()`` - checks $_GET first, then $_POST
 
 **獲取 JSON 資料**
 
-您可以使用 ``getJSON()`` 方法來獲取 php://input 中以 JSON 串流表示的內容。
+你可以使用 ``getJSON()`` 方法來獲取 php://input 中以 JSON 串流表示的內容。
 
-.. note::  這無法檢查傳入的資料是否為合法的 JSON，在使用此方法前，您應該要確保傳入的資料是 JSON。
+.. note::  這無法檢查傳入的資料是否為合法的 JSON，在使用此方法前，你應該要確保傳入的資料是 JSON。
 
 ::
 
     $json = $request->getJSON();
 
-在預設情況下，這會將 JSON 資料中的任何物件作為物件回傳。如果您想要將其轉為關聯陣列，則將 ``true`` 作為第一個參數傳入。
+在預設情況下，這會將 JSON 資料中的任何物件作為物件回傳。如果你想要將其轉為關聯陣列，則將 ``true`` 作為第一個參數傳入。
 
 第二個和第三個參數對應到的是 `json_decode <https://www.php.net/manual/en/function.json-decode.php>`_ PHP 函數中的 ``depth`` 和 ``options`` 引數。
 
-如果傳入的請求中的 ``CONTENT_TYPE`` 標頭被設為 「application/json」，則您也可以使用 ``getVar()`` 來獲取 JSON 串流。
+如果傳入的請求中的 ``CONTENT_TYPE`` 標頭被設為 「application/json」，則你也可以使用 ``getVar()`` 來獲取 JSON 串流。
 在這情況下使用 ``getVar()`` 總是會回傳物件。
 
 **獲取 JSON 中特定資料**
 
-您可以透過將您想要的資料名稱作為變數傳傳入 ``getVar()`` 中來從 JSON 串流中獲取特定的資料。
-或者您可以使用「點」符號來獲取 JSON 中那些不是根等級的資料。
+你可以透過將你想要的資料名稱作為變數傳傳入 ``getVar()`` 中來從 JSON 串流中獲取特定的資料。
+或者你可以使用「點」符號來獲取 JSON 中那些不是根等級的資料。
 
 ::
 
@@ -151,8 +151,8 @@
     //$data = "baz"
 
 
-如果您想要的結果是一個關聯陣列而不是物件，則您可以使用 ``getJsonVar()`` 並且將 ``true`` 作為第二個參數傳入。
-此函數在您不能保證傳入的請求有正確的 ``CONTENT_TYPE`` 標頭時，仍可以使用。
+如果你想要的結果是一個關聯陣列而不是物件，則你可以使用 ``getJsonVar()`` 並且將 ``true`` 作為第二個參數傳入。
+此函數在你不能保證傳入的請求有正確的 ``CONTENT_TYPE`` 標頭時，仍可以使用。
 
 ::
 
@@ -167,7 +167,7 @@
 
 **檢索原始資料（PUT，PATCH，DELETE）**
 
-最後，您可以透過 ``getRawInput()`` 來獲得 php://input 中內容的原始串流::
+最後，你可以透過 ``getRawInput()`` 來獲得 php://input 中內容的原始串流::
 
     $data = $request->getRawInput();
 
@@ -182,7 +182,7 @@
 
 **過濾輸入資料**
 
-為了維持您的應用程式的安全，您將希望過濾所有您要存取的輸入。您可以將要使用的過濾器型態作為第二個參數傳入這些方法。
+為了維持你的應用程式的安全，你將希望過濾所有你要存取的輸入。你可以將要使用的過濾器型態作為第二個參數傳入這些方法。
 原生的 ``filter_var()`` 函數可以被用來過濾。請前往查閱 PHP 手冊中的 `valid
 filter types <https://www.php.net/manual/en/filter.filters.php>`_ 列表。
 
@@ -195,7 +195,7 @@ filter types <https://www.php.net/manual/en/filter.filters.php>`_ 列表。
 檢索標頭
 ------------------
 
-您可以透過 ``headers()`` 方法來存取任何和請求一起送過來的標頭。此方法會回傳包含所有標頭的陣列，此陣列的鍵為標頭的名稱，而值為
+你可以透過 ``headers()`` 方法來存取任何和請求一起送過來的標頭。此方法會回傳包含所有標頭的陣列，此陣列的鍵為標頭的名稱，而值為
 ``CodeIgniter\HTTP\Header`` 的一個實體::
 
     var_dump($request->headers());
@@ -206,7 +206,7 @@ filter types <https://www.php.net/manual/en/filter.filters.php>`_ 列表。
         'Accept'        => CodeIgniter\HTTP\Header,
     ]
 
-如果您只需要單一標頭，您可以將標頭名稱傳入 ``header()`` 方法中。
+如果你只需要單一標頭，你可以將標頭名稱傳入 ``header()`` 方法中。
 如果存在的話，這會以名稱不區分大小寫的方式攫取特定的標頭物件。反之，它會回傳 ``null``::
 
     // these are all equivalent
@@ -214,30 +214,30 @@ filter types <https://www.php.net/manual/en/filter.filters.php>`_ 列表。
     $host = $request->header('Host');
     $host = $request->header('HOST');
 
-您總是可以使用 ``hasHeader()`` 來檢查這個請求中的特定標頭是否存在::
+你總是可以使用 ``hasHeader()`` 來檢查這個請求中的特定標頭是否存在::
 
     if ($request->hasHeader('DNT')) {
         // Don't track something...
     }
 
-如果您需要標頭所有的值以一行字串表示，可以使用 ``getHeaderLine()`` 方法::
+如果你需要標頭所有的值以一行字串表示，可以使用 ``getHeaderLine()`` 方法::
 
     // Accept-Encoding: gzip, deflate, sdch
     echo 'Accept-Encoding: '.$request->getHeaderLine('accept-encoding');
 
-如果您需要整個標頭，並且希望名稱和值在同一個字串中，只需將標頭轉換成字串::
+如果你需要整個標頭，並且希望名稱和值在同一個字串中，只需將標頭轉換成字串::
 
     echo (string)$header;
 
 URL 請求
 ---------------
 
-您可以通過表示此請求的當前URI的 :doc:`URI </libraries/uri>` 物件的 ``$request->uri`` 屬性來檢索。
-您可以將此物件轉換成字串來獲取當前請求的完整 URL::
+你可以通過表示此請求的當前URI的 :doc:`URI </libraries/uri>` 物件的 ``$request->uri`` 屬性來檢索。
+你可以將此物件轉換成字串來獲取當前請求的完整 URL::
 
     $uri = (string)$request->uri;
 
-此物件讓您完全有能力從該請求中自行獲取任何部分::
+此物件讓你完全有能力從該請求中自行獲取任何部分::
 
     $uri = $request->uri;
 
@@ -252,7 +252,7 @@ URL 請求
     echo $uri->getSegment(1);       // 'path'
     echo $uri->getTotalSegments();  // 3
 
-您可以對當前的 URI 字串（相對於您的 baseURL 的路徑）使用 ``getPath()`` 和 ``setPath()`` 方法。
+你可以對當前的 URI 字串（相對於你的 baseURL 的路徑）使用 ``getPath()`` 和 ``setPath()`` 方法。
 要注意的是，在 ``IncomingRequest`` 的共享實體中的這個相對路徑會被 :doc:`URL Helper </helpers/url_helper>` 函數使用，所以這是一個「欺騙」用於測試的請求的好方法。 ::
 
     class MyMenuTest extends CIUnitTestCase
@@ -429,7 +429,7 @@ URL 請求
         :returns:       要是沒有提供參數則回傳 $_POST，否則回傳找到的 POST 值，沒找到則回傳 null
         :rtype: mixed|null
 
-        此方法在運作上和 ``getPost()`` 與 ``getGet()`` 大同小異，差別在於此方法結合了兩者。
+        此方法在執行上和 ``getPost()`` 與 ``getGet()`` 大同小異，差別在於此方法結合了兩者。
         此方法會搜索 POST 與 GET 串流來取得資料，先搜尋過 POST 後，再搜尋 GET ::
 
             $request->getPostGet('field1');
@@ -444,7 +444,7 @@ URL 請求
         :returns:       要是沒有提供參數則回傳 $_POST，否則回傳找到的 POST 值，沒找到則回傳 null
         :rtype: mixed|null
 
-        此方法在運作上和 ``getPost()`` 與 ``getGet()`` 大同小異，差別在於此方法結合了兩者。
+        此方法在執行上和 ``getPost()`` 與 ``getGet()`` 大同小異，差別在於此方法結合了兩者。
         此方法會搜索 POST 與 GET 串流來取得資料，先搜尋過 GET 後，再搜尋 POST ::
 
             $request->getGetPost('field1');
